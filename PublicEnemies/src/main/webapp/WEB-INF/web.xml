@@ -19,6 +19,7 @@
 	<filter-mapping>
 		<filter-name>SessionFilter</filter-name>
 		<url-pattern>/userStartPage.html</url-pattern>
+		<url-pattern>/1.html</url-pattern>
 	</filter-mapping>
 	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 	<!-- ++++++++++++++++++++++++++++++++++++++++++++SERVLETS+++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
@@ -32,13 +33,6 @@
 		<servlet-name>publicenemies</servlet-name>
 		<url-pattern>*.html</url-pattern>
 	</servlet-mapping>
-
-
-
-
-
-
-
 	<display-name>PublicEnemies</display-name>
 	<welcome-file-list>
 		<welcome-file>userLogin.html</welcome-file>
