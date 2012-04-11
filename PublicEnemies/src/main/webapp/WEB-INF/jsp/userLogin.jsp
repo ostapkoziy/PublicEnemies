@@ -7,82 +7,92 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link type="text/css" href="css/smoothness/jquery-ui-1.8.18.custom.css" rel="stylesheet" />	
-<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
-<script type="text/javascript" src="js/jquery-ui-1.8.18.custom.min.js"></script>
-<title>Public Enemies login</title>
-<script type="text/javascript">
-	$(function(){
-		// Button
-		$("#button").button();
-		$("#radioset").buttonset();
-	});
-</script>
-
+<link type="text/css" href="css/smoothness/jquery-ui-1.8.18.custom.css"
+	rel="stylesheet" />
 <style type="text/css">
-	p {margin-left:120px;
-	margin-bottom:50px
-	}
-	
-	
-	tr {color:black;}
-	#ex5{
-	width: 700px;
-	margin: 0 auto;
-	min-height: 300px;
+body {background-image:url('http://robotmafia.com/wp-content/uploads/2012/03/andre_kunze5.jpg');}
+h2 {
+	color:black;
+	font-family :'impact';
+	font-size: 20pt;
 }
- 
- .shine {
-	margin-bottom:10px;
-	opacity: 0.8;
-	/*transition*/
-	-webkit-transition: all 0.5s ease;
-	-moz-transition: all 0.5s ease;
-	-o-transition: all 0.5s ease;
- 
-	/*ⴤ娥𪠫殭??
-	-webkit-box-reflect: below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(.7, transparent), to(rgba(0,0,0,0.1)));
+button {
+    font-family :'impact';
+    font-size:20px;
+    width:100px;
+    height:44px;
 }
- 
- 
- .shine:hover {  
-   opacity: 1;
- 
-   /*ⴤ娥𪠫殭??
-  -webkit-box-reflect: below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(.7, transparent), to(rgba(0,0,0,0.4)));
- 
-   /*񢳲ԭ/
-  -webkit-box-shadow: 0px 0px 20px rgba(255,255,255,0.8);
-  -moz-box-shadow: 0px 0px 20px rgba(255,255,255,0.8);
-  box-shadow: 0px 0px 20px rgba(255,255,255,0.8);
-  
+
+table.sample {
+	margin-top: 100px; 
+	background-color: #444D48; 
+	opacity: .6;
+	filter: alpha(opacity=60);
+		-moz-opacity: .6;
+	border-width: 3px;
+	border-spacing: 5px;
+	border-style: outset;
+	border-color: white;
+	border-collapse: separate;
+}
+table.sample th {
+	border-width: 0px;
+	padding: 3px;
+	border-style: none;
+	border-color: gray;
+	-moz-border-radius: ;
+}
+table.sample td {
+	border-width: 0px;
+	padding: 3px;
+	border-style: none;
+	border-color: gray;
+	-moz-border-radius: ;
+}
+A:link {text-decoration: underline; color: white;font-size: 20pt;}
+A:visited {text-decoration: underline; color: white;font-size: 20pt;}
+A:active {text-decoration: underline; color: white;font-size: 20pt;}
+A:hover {text-decoration: underline; color: white;font-size: 20pt;}
+a{
+	color:black;
+	font-family :'impact';
+	font-size: 20pt;
+}
 </style>
+<title>Public Enemies login</title>
+
 </head>
 <body>
-	<table>
+	<table class="sample" align="center" width="300">
 		<tr>
-			<td><img src="img/up_bar.png"></img></td>
+			<td align="center">	
+			</td>
 		</tr>
-		<tr>
-			<td id="interactive" align="center">
+		<tr align="center" height="200">
+			<td>
 				<form action="userLogin.html" method="post">
 					<spring:bind path="userToLogin.email">
-					<p>Login</p>
-						<input type="text" name="email" value="${status.value}">
+						<h2 align="center">Login</h2>
+						<input type="text" name="email" value="${status.value}"> <br />
 						<font color="red">${status.errorMessage}</font>
-						<br />
 					</spring:bind>
 					<spring:bind path="userToLogin.password">
-					<p>Password</p>
-						<input type="password" name="password" value="${status.value}">
+						<h2 align="center">Password</h2>
+						<input type="password" name="password" value="${status.value}"> <br />
 						<font color="red">${status.errorMessage}</font>
-						<br />
 					</spring:bind>
-					<button type="submit" id="button">Log in</button>
-					<a href="userRegistration.html">Register</a>
+					<br/>
+					<br/>
+					<button type="submit" id="button"> Log in </button>
 				</form>
 			</td>
 		</tr>
+		<tr>
+			<td align="center">
+				<a href="userRegistration.html">Register</a>
+			</td>
+		</tr>
+
 	</table>
 </body>
 </html>
