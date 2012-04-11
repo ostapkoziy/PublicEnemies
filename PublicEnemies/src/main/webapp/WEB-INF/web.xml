@@ -17,7 +17,7 @@
 	</servlet-mapping>
 	<display-name>PublicEnemies</display-name>
 	<welcome-file-list>
-		<welcome-file>index.htm</welcome-file>
+		<welcome-file>userLogin</welcome-file>
 	</welcome-file-list>
 	<session-config>
 		<session-timeout>30</session-timeout>
