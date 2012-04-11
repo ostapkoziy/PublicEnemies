@@ -11,10 +11,6 @@ public class UserStartPageController implements Controller
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
-		if (CheckUserInSession.isUserInSession(request) == false)
-		{
-			return new ModelAndView("index");
-		}
 		return new ModelAndView("userStartPage");
 	}
 }
