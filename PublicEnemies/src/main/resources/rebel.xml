@@ -2,17 +2,25 @@
 <application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.zeroturnaround.com" xsi:schemaLocation="http://www.zeroturnaround.com http://www.zeroturnaround.com/alderaan/rebel-2_0.xsd">
 
 	<classpath>
+<<<<<<< HEAD
 		<dir name="D:/PublicEnemies/PublicEnemies/target/classes">
+=======
+		<dir name="D:/Work/Git/PublicEnemies/PublicEnemies/target/classes">
+>>>>>>> refs/remotes/origin/master
 		</dir>
 	</classpath>
 
 	<web>
 		<link target="/">
+<<<<<<< HEAD
 			<dir name="D:/PublicEnemies/PublicEnemies/target/m2e-wtp/web-resources">
 			</dir>
 		</link>
 		<link target="/">
 			<dir name="D:/PublicEnemies/PublicEnemies/src/main/webapp">
+=======
+			<dir name="D:/Work/Git/PublicEnemies/PublicEnemies/src/main/webapp">
+>>>>>>> refs/remotes/origin/master
 			</dir>
 		</link>
 	</web>
