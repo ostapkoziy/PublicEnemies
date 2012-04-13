@@ -22,27 +22,23 @@ public class UserDaoImpl implements IUserDao {
 	}
 
 	public void registerUser(User user) {
-		String query = "INSERT INTO USER (ID,EMAIL,PASSWORD) VALUES (?,?,?)";
+		String query = "INSERT INTO user (id,email,password) VALUES (?,?,?)";
 		jdbcTemplate.update(query,
-				new Object[] { 0, user.getEmail(), user.getPassword() });
+				new Object[] {0, user.getEmail(), user.getPassword() });
 	}
 
 	public User findUserById(long id) {
-		String query = "SELECT ID,EMAIL,PASSWORD FROM USER WHERE ID=?";
+		String query = "SELECT id,email,password FROM user WHERE id=?";
 
-		return (User) jdbcTemplate.queryForObject(query,
-				new Object[] { Long.valueOf(id) }, new RowMapper<User>() {
-					public User mapRow(ResultSet resultSet, int rowNum)
-							throws SQLException {
-						return new User(resultSet.getLong("ID"), resultSet
-								.getString("EMAIL"), resultSet
-								.getString("PASSWORD"));
-					}
-				});
+		List<User> list = jdbcTemplate.query(query, new Object[] { id },
+				new BeanPropertyRowMapper<User>(User.class));
+		if (list.isEmpty())
+			return null;
+		return list.get(0);
 	}
 
 	public void updateUserEmailAndPassword(User user) {
-		String query = "UPDATE USER SET EMAIL=?, PASSWORD=? WHERE ID = ?";
+		String query = "UPDATE user SET email=?, password=? WHERE id = ?";
 		jdbcTemplate.update(
 				query,
 				new Object[] { user.getEmail(), user.getPassword(),
@@ -51,25 +47,22 @@ public class UserDaoImpl implements IUserDao {
 	}
 
 	public void deleteUser(User user) {
-		String query = "DELETE FROM USER WHERE ID = ?";
+		String query = "DELETE FROM user WHERE id = ?";
 		jdbcTemplate.update(query, new Object[] { user.getId() });
 	}
 
 	public User findUserByEmailAndPassword(String email, String password) {
-		String query = "SELECT ID,EMAIL,PASSWORD FROM USER WHERE EMAIL=? AND PASSWORD=?";
+		String query = "SELECT id,email,password FROM user WHERE email=? AND password=?";
 
-		return (User) jdbcTemplate.queryForObject(query, new Object[] { email,
-				password }, new RowMapper<User>() {
-			public User mapRow(ResultSet resultSet, int rowNum)
-					throws SQLException {
-				return new User(resultSet.getLong("ID"), resultSet
-						.getString("EMAIL"), resultSet.getString("PASSWORD"));
-			}
-		});
+		List<User> list = jdbcTemplate.query(query, new Object[] { email,
+				password }, new BeanPropertyRowMapper<User>(User.class));
+		if (list.isEmpty())
+			return null;
+		return list.get(0);
 	}
 
 	public List<User> findAllUsers() {
-		String query = "SELECT ID,EMAIL,PASSWORD FROM USER";
+		String query = "SELECT id,email,password FROM user";
 
 		return jdbcTemplate.query(query, new RowMapper<User>() {
 			public User mapRow(ResultSet resultSet, int rowNum)
@@ -82,7 +75,7 @@ public class UserDaoImpl implements IUserDao {
 
 	@Override
 	public User findUserByEmail(String email) {
-		String query = "SELECT ID,EMAIL,PASSWORD FROM USER WHERE EMAIL=?";
+		String query = "SELECT id,email,password FROM user WHERE email=?";
 		List<User> list = jdbcTemplate.query(query, new Object[] { email },
 				new BeanPropertyRowMapper<User>(User.class));
 		if (list.isEmpty())

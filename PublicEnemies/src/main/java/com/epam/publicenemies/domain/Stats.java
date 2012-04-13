@@ -6,11 +6,12 @@ public class Stats {
 	private long id;
 	private int strength;
 	private int agility;
-	// private int STAT3;
+	private int STAT3;
 	private int money;
 	private int experience;
 	private int level;
-
+	private long userId;
+	
 	public Stats() {
 	}
 
@@ -60,5 +61,21 @@ public class Stats {
 
 	public void setLevel(int level) {
 		this.level = level;
+	}
+
+	public int getSTAT3() {
+		return STAT3;
+	}
+
+	public void setSTAT3(int sTAT3) {
+		STAT3 = sTAT3;
+	}
+
+	public long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(long userId) {
+		this.userId = userId;
 	}
 }

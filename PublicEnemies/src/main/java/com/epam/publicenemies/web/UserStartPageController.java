@@ -6,11 +6,13 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
 
-public class UserStartPageController implements Controller
-{
+import com.epam.publicenemies.dto.UserDto;
+
+public class UserStartPageController implements Controller {
 	@Override
-	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception
-	{
-		return new ModelAndView("userStartPage");
+	public ModelAndView handleRequest(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+	UserDto user = (UserDto) request.getSession().getAttribute("user");
+		return new ModelAndView("userStartPage", "user_email", user.getEmail());
 	}
 }

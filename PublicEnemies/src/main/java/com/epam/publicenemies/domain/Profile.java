@@ -10,6 +10,7 @@ public class Profile {
 	private int proffesion;
 	private int fightsTotal;
 	private int fightsWon;
+	private long userId;
 
 	public Profile() {
 	}
@@ -68,5 +69,13 @@ public class Profile {
 
 	public void setFightsWon(int fightsWon) {
 		this.fightsWon = fightsWon;
+	}
+
+	public long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(long userId) {
+		this.userId = userId;
 	}
 }

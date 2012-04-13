@@ -1,11 +1,11 @@
 package com.epam.publicenemies.service;
 
-import com.epam.publicenemies.dto.UserDTO;
+import com.epam.publicenemies.dto.UserDto;
 
 public interface IUserManagerService {
-	UserDTO registerNewUser(UserDTO userDTO);
+	UserDto registerNewUser(UserDto userDTO);
 
-	UserDTO findUserByEmail(String email);
+	UserDto findUserByEmail(String email);
 
-	UserDTO getUserByEmailAndPassword(String name, String password);
+	UserDto getUserByEmailAndPassword(String name, String password);
 }

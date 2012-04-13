@@ -26,7 +26,7 @@ public class TableDaoImpl implements ITableDao {
 	public void createProfileTable() {
 		String query = "DROP TABLE IF EXISTS `profile`;";
 		jdbcTemplate.execute(query);
-		query = "CREATE TABLE `profile` (`id` int(11) NOT NULL AUTO_INCREMENT,`nickName` varchar(45) NOT NULL,`avatar` varchar(45) NOT NULL,`gender` varchar(45) NOT NULL,`proffesion` int(11) NOT NULL,`fightsTotal` int(11) NOT NULL,`fightsWon` int(11) NOT NULL,PRIMARY KEY (`id`));";
+		query = "CREATE TABLE `profile` (`id` int(11) NOT NULL AUTO_INCREMENT,`nickName` varchar(45) NOT NULL,`avatar` varchar(45) NOT NULL,`gender` varchar(45) NOT NULL,`proffesion` int(11) NOT NULL,`fightsTotal` int(11) DEFAULT '0',`fightsWon` int(11) DEFAULT '0',`userId` int(11) NOT NULL,PRIMARY KEY (`id`));";
 		jdbcTemplate.execute(query);
 	}
 
@@ -34,7 +34,7 @@ public class TableDaoImpl implements ITableDao {
 	public void createStatsTable() {
 		String query = "DROP TABLE IF EXISTS `stats`;";
 		jdbcTemplate.execute(query);
-		query = "CREATE TABLE `stats` (`id` int(11) NOT NULL AUTO_INCREMENT,`strength` int(11) NOT NULL,`agility` int(11) NOT NULL,`stat3` int(11) NOT NULL,`money` int(11) NOT NULL,`experience` int(11) NOT NULL,`level` int(11) NOT NULL,PRIMARY KEY (`id`));";
+		query = "CREATE TABLE `stats` (`id` int(11) NOT NULL AUTO_INCREMENT,`strength` int(11) NOT NULL,`agility` int(11) NOT NULL,`stat3` int(11) NOT NULL,`money` int(11) DEFAULT '100',`experience` int(11) DEFAULT '0',`level` int(11) DEFAULT '1',`userId` int(11) NOT NULL,PRIMARY KEY (`id`));";
 		jdbcTemplate.execute(query);
 	}
 
