@@ -1,12 +1,12 @@
 package com.epam.publicenemies.web.memory;
 
+import java.util.HashMap;
 import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
-
+import java.util.Map.Entry;
 import com.epam.publicenemies.dto.GameDto;
 import com.epam.publicenemies.dto.HitDto;
 
-public class FightsHashMap extends ConcurrentHashMap<GameDto, HitDto> {
+public class FightsHashMap extends HashMap<GameDto, HitDto> {
 	private static final long serialVersionUID = -1071171793057015824L;
 
 	@Override

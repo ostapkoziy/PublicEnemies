@@ -15,9 +15,9 @@ public class OnContextLoaderListener extends ContextLoaderListener  {
 	public void contextInitialized(ServletContextEvent event) {
 		super.contextInitialized(event);
 		
-		WebApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(event.getServletContext());
+		/*WebApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(event.getServletContext());
 		CreateTableController bean = context.getBean(CreateTableController.class);
-		bean.createAllTables();
+		bean.createAllTables();*/
 	}
 
 	@Override

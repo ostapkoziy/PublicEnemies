@@ -9,11 +9,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link type="text/css" href="css/smoothness/jquery-ui-1.8.18.custom.css"
 	rel="stylesheet" />
-<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
-<script type="text/javascript" src="js/jquery-ui-1.8.18.custom.min.js"></script>
+	<script type="text/javascript" src="js/jquery-1.7.2.js"></script>
+	<script type="text/javascript" src="js/jquery.imagemapster.js"></script>
 <title>Registration</title>
 <style type="text/css">
-body {background-image:url('http://robotmafia.com/wp-content/uploads/2012/03/andre_kunze5.jpg');}
+body {background-image:url('img/bg_city.jpg');}
 h2 {
 	color:black;
 	font-family :'impact';
@@ -62,36 +62,52 @@ a{
 	font-family :'impact';
 	font-size: 20pt;
 }
+body {
+	background-image: url(img/bg_city.jpg);
+	color: white;
+}
+h1 {
+	font-family :'impact';
+	font-size: 20pt;
+	color: red;
+}
 </style>
 </head>
 <body>
-	<table class="sample" align="center" width="300">
-		<tr>
-			<td>
-				<!-- Тут буде логотип -->
-			</td>
-		</tr>
-		<tr align="center" height="200">
-			<td>
-				<form action="userRegistration.html" method="post">
-					<spring:bind path="userToRegister.email">
-					<h2 align="center">Register</h2>
-						<h2 align="center">Login</h2>
-						<input type="text" name="email" value="${status.value}"> <br />
-						<font color="red">${status.errorMessage}</font>
-						<br />
-					</spring:bind>
-					<spring:bind path="userToRegister.password">
-						<h2 align="center">Password</h2>
-						<input type="password" name="password" ${status.value}> <br />
-						<font color="red">${status.errorMessage}</font>
-					</spring:bind>
-					<br />
-					<br />
-					<button type="submit" class="button">Login</button>
-				</form>
-			</td>
-		</tr>
-	</table>
+<table align="center">
+	<tr>
+		<td>
+			<img src="img/gamelogo.jpg"></img>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<table class="sample" align="center" width="300">
+		
+				<tr align="center" height="200">
+					<td>
+						<form action="userRegistration.html" method="post">
+							<spring:bind path="userToRegister.email">
+							<h1 align="center">REGISTER</h1>
+								<h2 align="center">Login</h2>
+								<input type="text" name="email" value="${status.value}"> <br />
+								<font color="red">${status.errorMessage}</font>
+								<br />
+							</spring:bind>
+							<spring:bind path="userToRegister.password">
+								<h2 align="center">Password</h2>
+								<input type="password" name="password" ${status.value}> <br />
+								<font color="red">${status.errorMessage}</font>
+							</spring:bind>
+							<br />
+							<br />
+							<button type="submit" class="button">Register</button>
+						</form>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
 </body>
 </html>

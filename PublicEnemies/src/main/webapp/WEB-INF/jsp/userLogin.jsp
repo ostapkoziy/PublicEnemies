@@ -10,52 +10,82 @@
 <link type="text/css" href="css/smoothness/jquery-ui-1.8.18.custom.css"
 	rel="stylesheet" />
 <style type="text/css">
-body {background-image:url('http://robotmafia.com/wp-content/uploads/2012/03/andre_kunze5.jpg');}
+body {
+	background-image: url(img/bg_city.jpg);
+	color: white;
+	font-family: 'impact';
+	font-size: 14pt;
+}
+
 h2 {
-	color:black;
-	font-family :'impact';
+	color: black;
+	font-family: 'impact';
 	font-size: 20pt;
 }
+
 button {
-    font-family :'impact';
-    font-size:20px;
-    width:100px;
-    height:44px;
+	font-family: 'impact';
+	font-size: 20px;
+	width: 100px;
+	height: 44px;
 }
 
 table.sample {
-	margin-top: 100px; 
-	background-color: #444D48; 
+	margin-top: 100px;
+	background-color: #444D48;
 	opacity: .6;
-	filter: alpha(opacity=60);
-		-moz-opacity: .6;
+	filter: alpha(opacity = 60);
+	-moz-opacity: .6;
 	border-width: 3px;
 	border-spacing: 5px;
 	border-style: outset;
 	border-color: white;
 	border-collapse: separate;
 }
+
 table.sample th {
 	border-width: 0px;
 	padding: 3px;
 	border-style: none;
 	border-color: gray;
-	-moz-border-radius: ;
+	-moz-border-radius:;
 }
+
 table.sample td {
 	border-width: 0px;
 	padding: 3px;
 	border-style: none;
 	border-color: gray;
-	-moz-border-radius: ;
+	-moz-border-radius:;
 }
-A:link {text-decoration: underline; color: white;font-size: 20pt;}
-A:visited {text-decoration: underline; color: white;font-size: 20pt;}
-A:active {text-decoration: underline; color: white;font-size: 20pt;}
-A:hover {text-decoration: underline; color: white;font-size: 20pt;}
-a{
-	color:black;
-	font-family :'impact';
+
+A:link {
+	text-decoration: underline;
+	color: white;
+	font-size: 20pt;
+}
+
+A:visited {
+	text-decoration: underline;
+	color: white;
+	font-size: 20pt;
+}
+
+A:active {
+	text-decoration: underline;
+	color: white;
+	font-size: 20pt;
+}
+
+A:hover {
+	text-decoration: underline;
+	color: white;
+	font-size: 20pt;
+}
+
+a {
+	color: black;
+	font-family: 'impact';
 	font-size: 20pt;
 }
 </style>
@@ -63,36 +93,43 @@ a{
 
 </head>
 <body>
-	<table class="sample" align="center" width="300">
+	<table align="center">
 		<tr>
-			<td align="center">	
-			</td>
-		</tr>
-		<tr align="center" height="200">
-			<td>
-				<form action="userLogin.html" method="post">
-					<spring:bind path="userToLogin.email">
-						<h2 align="center">Login</h2>
-						<input type="text" name="email" value="${status.value}"> <br />
-						<font color="red">${status.errorMessage}</font>
-					</spring:bind>
-					<spring:bind path="userToLogin.password">
-						<h2 align="center">Password</h2>
-						<input type="password" name="password" value="${status.value}"> <br />
-						<font color="red">${status.errorMessage}</font>
-					</spring:bind>
-					<br/>
-					<br/>
-					<button type="submit" id="button"> Log in </button>
-				</form>
-			</td>
+			<td align="center"><img src="img/gamelogo.jpg"></img></td>
 		</tr>
 		<tr>
-			<td align="center">
-				<a href="userRegistration.html">Register</a>
-			</td>
-		</tr>
+			<table class="sample" align="center" width="300">
+				<tr>
+					<td align="center"></td>
+				</tr>
+				<tr align="center" height="200">
+					<td>
+						<form action="userLogin.html" method="post">
+							<spring:bind path="userToLogin.email">
+								<h2 align="center">Login</h2>
+								<input type="text" name="email" value="${status.value}">
+								<br />
+								<font color="red">${status.errorMessage}</font>
+							</spring:bind>
+							<spring:bind path="userToLogin.password">
+								<h2 align="center">Password</h2>
+								<input type="password" name="password" value="${status.value}">
+								<br />
+								<font color="red">${status.errorMessage}</font>
+							</spring:bind>
+							<br /> <br />
+							<button type="submit" id="button">Log in</button>
+						</form>
+					</td>
+				</tr>
+				<tr>
+					<td align="center"><a href="userRegistration.html">Register</a>
+					</td>
+				</tr>
 
+			</table>
+		</tr>
 	</table>
+
 </body>
 </html>
