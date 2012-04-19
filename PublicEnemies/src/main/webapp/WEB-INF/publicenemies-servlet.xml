@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
 
@@ -23,28 +22,23 @@
 	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 	<!-- +++++++++++++++++++++++++++++++++++ SERVICES ++++++++++++++++++++++++++++++++++++++++++++++++ -->
 	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-	<bean id="userManagerService"
-		class="com.epam.publicenemies.service.impl.UserManagerServiceImpl">
+	<bean id="userManagerService" class="com.epam.publicenemies.service.impl.UserManagerServiceImpl">
 		<property name="userDao" ref="userDao"></property>
 	</bean>
-	<bean id="profileManagerService"
-		class="com.epam.publicenemies.service.impl.ProfileManagerServiceImpl">
+	<bean id="profileManagerService" class="com.epam.publicenemies.service.impl.ProfileManagerServiceImpl">
 		<property name="profileDao" ref="profileDao"></property>
 	</bean>
-	<bean id="statsManagerService"
-		class="com.epam.publicenemies.service.impl.StatsManagerServiceImpl">
+	<bean id="statsManagerService" class="com.epam.publicenemies.service.impl.StatsManagerServiceImpl">
 		<property name="statsDao" ref="statsDao"></property>
 	</bean>
 
 	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 	<!-- +++++++++++++++++++++++++++++++++++ VALIDATORS ++++++++++++++++++++++++++++++++++++++++++++++ -->
 	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-	<bean id="registerUserFormValidator"
-		class="com.epam.publicenemies.web.validators.RegisterUserFormValidator">
+	<bean id="registerUserFormValidator" class="com.epam.publicenemies.web.validators.RegisterUserFormValidator">
 		<property name="userManagerService" ref="userManagerService"></property>
 	</bean>
-	<bean id="loginUserFormValidator"
-		class="com.epam.publicenemies.web.validators.LoginUserFormValidator">
+	<bean id="loginUserFormValidator" class="com.epam.publicenemies.web.validators.LoginUserFormValidator">
 		<property name="userManagerService" ref="userManagerService"></property>
 	</bean>
 	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
@@ -104,26 +98,28 @@
 	<bean id="fightPageController" class="com.epam.publicenemies.web.FightPageFormController">
 		<property name="fights" ref="fights"></property>
 	</bean>
-	<bean id="waitingForOponentPageController"
-		class="com.epam.publicenemies.web.WaitingForOponentPageController">
+	<bean id="waitingForOponentPageController" class="com.epam.publicenemies.web.WaitingForOponentPageController">
 		<property name="fights" ref="fights"></property>
 	</bean>
 	<bean id="userStartPageController" class="com.epam.publicenemies.web.UserStartPageController" />
 	<bean id="newJoinGamePageController" class="com.epam.publicenemies.web.NewJoinGamePageController" />
 	<bean id="userLogoutController" class="com.epam.publicenemies.web.UserLogoutController" />
+	<bean id="indexController" class="com.epam.publicenemies.web.IndexController" />
 
 	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 	<!-- +++++++++++++++++++++++++++++++++++ MAPPING +++++++++++++++++++++++++++++++++++++++++++++++++ -->
 	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-	<bean name="URLmappings"
-		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+	<bean name="URLmappings" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
 		<property name="mappings">
 			<map>
+				<entry key="/index.html" value="indexController"></entry>
 				<entry key="/userRegistration.html" value="registerUserController"></entry>
 				<entry key="/profileSave.html" value="saveProfileController"></entry>
 				<entry key="/userLogin.html" value="loginUserController"></entry>
 				<entry key="/userStartPage.html" value="userStartPageController"></entry>
 				<entry key="/logout.html" value="userLogoutController"></entry>
+
+				<!-- +++++++++++++++++++++++GAME PAGES ++++++++++++++++++++++++++++++++++-->
 				<entry key="/newJoinGame.html" value="newJoinGamePageController"></entry>
 				<entry key="/newGame.html" value="newGameController"></entry>
 				<entry key="/joinGame.html" value="joinGameController"></entry>
@@ -136,18 +132,15 @@
 	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 	<!-- +++++++++++++++++++++++++++++++++++ VIEW RESOLVER +++++++++++++++++++++++++++++++++++++++++++ -->
 	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-	<bean id="viewResolver"
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="viewClass"
-			value="org.springframework.web.servlet.view.JstlView" />
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
 		<property name="prefix" value="/WEB-INF/jsp/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
 	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 	<!-- +++++++++++++++++++++++++++++++++++ MESSAGES +++++++++++++++++++++++++++++++++++++++++++++++ -->
 	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-	<bean id="messageSource"
-		class="org.springframework.context.support.ResourceBundleMessageSource">
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
 		<property name="basename" value="messages" />
 	</bean>
 </beans>
