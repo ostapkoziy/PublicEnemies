@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context-3.0.xsd
+        http://www.springframework.org/schema/mvc
+		http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 
+
+
+	<mvc:annotation-driven />
+	<context:component-scan base-package="com.epam.publicenemies.web" />
 
 	<bean id="fights" class="com.epam.publicenemies.web.memory.FightsHashMap"></bean>
 
@@ -52,14 +64,14 @@
 		<property name="formView" value="userRegistration" />
 		<property name="successView" value="profileSave.html" />
 	</bean>
-	<bean id="loginUserController" class="com.epam.publicenemies.web.LoginUserFormController">
-		<property name="userManagerService" ref="userManagerService"></property>
-		<property name="commandName" value="userToLogin" />
-		<property name="commandClass" value="com.epam.publicenemies.dto.UserDto" />
-		<property name="validator" ref="loginUserFormValidator" />
-		<property name="formView" value="userLogin" />
-		<property name="successView" value="userStartPage.html" />
-	</bean>
+	<!-- <bean id="loginUserController" class="com.epam.publicenemies.web.LoginUserFormController"> -->
+	<!-- <property name="userManagerService" ref="userManagerService"></property> -->
+	<!-- <property name="commandName" value="userToLogin" /> -->
+	<!-- <property name="commandClass" value="com.epam.publicenemies.dto.UserDto" /> -->
+	<!-- <property name="validator" ref="loginUserFormValidator" /> -->
+	<!-- <property name="formView" value="userLogin" /> -->
+	<!-- <property name="successView" value="userStartPage.html" /> -->
+	<!-- </bean> -->
 	<bean id="saveProfileController" class="com.epam.publicenemies.web.SaveProfileFormController">
 		<property name="profileManagerService" ref="profileManagerService"></property>
 		<property name="statsManagerService" ref="statsManagerService"></property>
@@ -115,11 +127,11 @@
 				<entry key="/index.html" value="indexController"></entry>
 				<entry key="/userRegistration.html" value="registerUserController"></entry>
 				<entry key="/profileSave.html" value="saveProfileController"></entry>
-				<entry key="/userLogin.html" value="loginUserController"></entry>
+<!-- 				<entry key="/userLogin.html" value="loginUserController"></entry> -->
 				<entry key="/userStartPage.html" value="userStartPageController"></entry>
 				<entry key="/logout.html" value="userLogoutController"></entry>
 
-				<!-- +++++++++++++++++++++++GAME PAGES ++++++++++++++++++++++++++++++++++-->
+				<!-- +++++++++++++++++++++++GAME PAGES ++++++++++++++++++++++++++++++++++ -->
 				<entry key="/newJoinGame.html" value="newJoinGamePageController"></entry>
 				<entry key="/newGame.html" value="newGameController"></entry>
 				<entry key="/joinGame.html" value="joinGameController"></entry>

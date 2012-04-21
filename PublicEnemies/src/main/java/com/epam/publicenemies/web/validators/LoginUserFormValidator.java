@@ -5,6 +5,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
+import com.epam.publicenemies.domain.User;
 import com.epam.publicenemies.dto.UserDto;
 import com.epam.publicenemies.service.IUserManagerService;
 
@@ -18,13 +19,15 @@ public class LoginUserFormValidator implements Validator
 	}
 	public boolean supports(Class<?> clazz)
 	{
-		return clazz.equals(UserDto.class);
+		return clazz.equals(User.class);
 	}
 	public void validate(Object obj, Errors errors)
 	{
+		log.info("VALIDATING LOGIN....");
+		User user = (User) obj;
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "email.empty");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "password.empty");
-		UserDto user = (UserDto) obj;
+		if (errors.hasErrors()) return;
 		UserDto uDTO = userManagerService.getUserByEmailAndPassword(user.getEmail(), user.getPassword());
 		if (uDTO == null)
 		{

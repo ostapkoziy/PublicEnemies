@@ -1,41 +1,67 @@
 package com.epam.publicenemies.web;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
-import org.springframework.validation.BindException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.SimpleFormController;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.epam.publicenemies.domain.User;
 import com.epam.publicenemies.dto.UserDto;
 import com.epam.publicenemies.service.IUserManagerService;
-import com.epam.publicenemies.web.validators.RegisterUserFormValidator;
 
-@SuppressWarnings("deprecation")
-public class LoginUserFormController extends SimpleFormController
+/**
+ * @author Alexander Ivanov
+ * @since 21.04.2012
+ */
+@Controller
+@RequestMapping(value = "/userLogin")
+public class LoginUserFormController
 {
-	private Logger	log	= Logger.getLogger(RegisterUserFormValidator.class);
+	private Logger				log	= Logger.getLogger(LoginUserFormController.class);
+	@Autowired
+	@Qualifier("userManagerService")
 	private IUserManagerService	userManagerService;
+	@Autowired
+	@Qualifier("loginUserFormValidator")
+	private Validator			validator;
 	public void setUserManagerService(IUserManagerService userManagerService)
 	{
 		this.userManagerService = userManagerService;
 	}
-	public ModelAndView onSubmit(HttpServletRequest request, HttpServletResponse response, Object command, BindException e)
-			throws ServletException
+	public void setValidator(Validator validator)
 	{
-		String name = ((UserDto) command).getEmail();
-		String password = ((UserDto) command).getPassword();
-		UserDto user = userManagerService.getUserByEmailAndPassword(name, password);
-		log.info("USER = " + user.getEmail() + " SUCCESSFULLY LOGGED");
-		request.getSession().setAttribute("user", user);
-		return new ModelAndView(new RedirectView(getSuccessView()));
+		this.validator = validator;
 	}
-	protected Object formBackingObject(HttpServletRequest request) throws ServletException
+	@RequestMapping(method = RequestMethod.GET)
+	public String showForm(ModelMap model)
 	{
-		UserDto user = new UserDto();
-		return user;
+		log.info("SHOW LOGIN FORM");
+		model.put("user", new User());
+		return "userLogin";
+	}
+	@RequestMapping(method = RequestMethod.POST)
+	public ModelAndView processSubmit(@ModelAttribute User user, HttpServletRequest request, BindingResult result, ModelMap model)
+	{
+		validator.validate(user, result);
+		if (result.hasErrors())
+		{
+			log.info("VALIDATING FALSE.....");
+			return new ModelAndView(new RedirectView("userLogin.html"));
+		}
+		log.info("PROCESS FORM");
+		UserDto user2 = userManagerService.getUserByEmailAndPassword(user.getEmail(), user.getPassword());
+		log.info("USER = " + user2.getEmail() + " SUCCESSFULLY LOGGED");
+		request.getSession().setAttribute("user", user2);
+		return new ModelAndView(new RedirectView("userStartPage.html"));// "redirect:userStartPage.html";
 	}
 }
