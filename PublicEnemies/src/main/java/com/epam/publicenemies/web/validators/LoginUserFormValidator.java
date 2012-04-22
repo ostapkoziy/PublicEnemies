@@ -23,7 +23,7 @@ public class LoginUserFormValidator implements Validator
 	}
 	public void validate(Object obj, Errors errors)
 	{
-		log.info("VALIDATING LOGIN....");
+		log.info("VALIDATING LOGIN FORM....");
 		User user = (User) obj;
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "email.empty");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "password.empty");
