@@ -8,7 +8,7 @@ import com.epam.publicenemies.dto.UserDto;
 import com.epam.publicenemies.service.IUserManagerService;
 
 /**
- * @author Alexander Ivanov 22.04.2012 18:44:24
+ * @author Alexander Ivanov 22.04.2012 18:43:23
  */
 public class LoginUserFormValidator implements IValidator
 {
@@ -18,6 +18,7 @@ public class LoginUserFormValidator implements IValidator
 	{
 		this.userManagerService = userManagerService;
 	}
+	@Override
 	public void validate(Object obj, Errors errors)
 	{
 		log.info("VALIDATING LOGIN FORM....");
@@ -37,8 +38,8 @@ public class LoginUserFormValidator implements IValidator
 		}
 	}
 	@Override
-	public boolean supports(Class<?> clas)
+	public boolean supports(Class<?> clazz)
 	{
-		return clas.equals(UserDto.class);
+		return clazz.equals(UserDto.class);
 	}
 }

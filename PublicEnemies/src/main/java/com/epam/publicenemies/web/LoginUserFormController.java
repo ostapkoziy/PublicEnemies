@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -41,11 +42,11 @@ public class LoginUserFormController
 	public String showForm(ModelMap model)
 	{
 		log.info("SHOW LOGIN FORM");
-		model.put("user", new UserDto());
+		model.put("userDto", new UserDto());
 		return "userLogin";
 	}
 	@RequestMapping(method = RequestMethod.POST)
-	public String processSubmit(UserDto user, HttpServletRequest request, BindingResult result)
+	public String processSubmit(@ModelAttribute UserDto user, HttpServletRequest request, BindingResult result)
 	{
 		log.info("PROCESS FORM");
 		validator.validate(user, result);

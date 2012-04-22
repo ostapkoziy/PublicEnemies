@@ -31,7 +31,7 @@ table.sample {
 	margin-top: 100px;
 	background-color: #444D48;
 	opacity: .6;
-	filter: alpha(opacity =             60);
+	filter: alpha(opacity =               60);
 	-moz-opacity: .6;
 	border-width: 3px;
 	border-spacing: 5px;
@@ -99,7 +99,7 @@ a {
 					<td align="center"></td>
 				</tr>
 				<tr align="center" height="200">
-					<td><form:form action="userLogin.html" method="post" commandName="user">
+					<td><form:form action="userLogin.html" method="post" commandName="userDto">
 							<h2 align="center">Login</h2>
 							<form:input path="email" />
 							<br />
