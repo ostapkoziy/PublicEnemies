@@ -50,18 +50,18 @@ public class LoginUserFormController
 		return "userLogin";
 	}
 	@RequestMapping(method = RequestMethod.POST)
-	public ModelAndView processSubmit(@ModelAttribute User user, HttpServletRequest request, BindingResult result, ModelMap model)
+	public String processSubmit(@ModelAttribute User user, HttpServletRequest request, BindingResult result, ModelMap model)
 	{
 		validator.validate(user, result);
 		if (result.hasErrors())
 		{
 			log.info("VALIDATING FALSE.....");
-			return new ModelAndView(new RedirectView("userLogin.html"));
+			return "userLogin";
 		}
 		log.info("PROCESS FORM");
 		UserDto user2 = userManagerService.getUserByEmailAndPassword(user.getEmail(), user.getPassword());
 		log.info("USER = " + user2.getEmail() + " SUCCESSFULLY LOGGED");
 		request.getSession().setAttribute("user", user2);
-		return new ModelAndView(new RedirectView("userStartPage.html"));// "redirect:userStartPage.html";
+		return "redirect:userStartPage";
 	}
 }
