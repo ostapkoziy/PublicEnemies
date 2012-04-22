@@ -10,14 +10,11 @@
         http://www.springframework.org/schema/mvc
 		http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 
-
-
 	<mvc:annotation-driven />
 	<context:component-scan base-package="com.epam.publicenemies.web" />
 
+
 	<bean id="fights" class="com.epam.publicenemies.web.memory.FightsHashMap"></bean>
-
-
 	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 	<!-- +++++++++++++++++++++++++++++++++++ DAO +++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
@@ -64,14 +61,6 @@
 		<property name="formView" value="userRegistration" />
 		<property name="successView" value="profileSave.html" />
 	</bean>
-	<!-- <bean id="loginUserController" class="com.epam.publicenemies.web.LoginUserFormController"> -->
-	<!-- <property name="userManagerService" ref="userManagerService"></property> -->
-	<!-- <property name="commandName" value="userToLogin" /> -->
-	<!-- <property name="commandClass" value="com.epam.publicenemies.dto.UserDto" /> -->
-	<!-- <property name="validator" ref="loginUserFormValidator" /> -->
-	<!-- <property name="formView" value="userLogin" /> -->
-	<!-- <property name="successView" value="userStartPage.html" /> -->
-	<!-- </bean> -->
 	<bean id="saveProfileController" class="com.epam.publicenemies.web.SaveProfileFormController">
 		<property name="profileManagerService" ref="profileManagerService"></property>
 		<property name="statsManagerService" ref="statsManagerService"></property>
@@ -115,8 +104,6 @@
 	</bean>
 	<bean id="userStartPageController" class="com.epam.publicenemies.web.UserStartPageController" />
 	<bean id="newJoinGamePageController" class="com.epam.publicenemies.web.NewJoinGamePageController" />
-	<bean id="userLogoutController" class="com.epam.publicenemies.web.UserLogoutController" />
-	<bean id="indexController" class="com.epam.publicenemies.web.IndexController" />
 
 	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 	<!-- +++++++++++++++++++++++++++++++++++ MAPPING +++++++++++++++++++++++++++++++++++++++++++++++++ -->
@@ -124,12 +111,9 @@
 	<bean name="URLmappings" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
 		<property name="mappings">
 			<map>
-				<entry key="/index.html" value="indexController"></entry>
 				<entry key="/userRegistration.html" value="registerUserController"></entry>
 				<entry key="/profileSave.html" value="saveProfileController"></entry>
-<!-- 				<entry key="/userLogin.html" value="loginUserController"></entry> -->
 				<entry key="/userStartPage.html" value="userStartPageController"></entry>
-				<entry key="/logout.html" value="userLogoutController"></entry>
 
 				<!-- +++++++++++++++++++++++GAME PAGES ++++++++++++++++++++++++++++++++++ -->
 				<entry key="/newJoinGame.html" value="newJoinGamePageController"></entry>
