@@ -60,6 +60,6 @@ public class LoginUserFormController
 		UserDto user2 = userManagerService.getUserByEmailAndPassword(user.getEmail(), user.getPassword());
 		log.info("USER = " + user2.getEmail() + " SUCCESSFULLY LOGGED");
 		request.getSession().setAttribute("user", user2);
-		return "redirect:userStartPage";
+		return "redirect:userStartPage.html";
 	}
 }
