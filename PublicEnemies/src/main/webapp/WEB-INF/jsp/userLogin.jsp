@@ -1,11 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link type="text/css" href="css/smoothness/jquery-ui-1.8.18.custom.css" rel="stylesheet" />
+<link type="text/css" href="css/smoothness/jquery-ui-1.8.18.custom.css"
+	rel="stylesheet" />
 <style type="text/css">
 body {
 	background-image: url(img/bg_city.jpg);
@@ -31,7 +33,7 @@ table.sample {
 	margin-top: 100px;
 	background-color: #444D48;
 	opacity: .6;
-	filter: alpha(opacity =               60);
+	filter: alpha(opacity =                 60);
 	-moz-opacity: .6;
 	border-width: 3px;
 	border-spacing: 5px;
@@ -99,19 +101,17 @@ a {
 					<td align="center"></td>
 				</tr>
 				<tr align="center" height="200">
-					<td><form:form action="userLogin.html" method="post" commandName="userDto">
+					<td><form:form action="userLogin.html" method="post"
+							commandName="userDto">
 							<h2 align="center">Login</h2>
 							<form:input path="email" />
-							<br />
-							<form:errors path="email" />
-							<br />
-							<font color="red"></font>
+
+							<font color="red"><br /> <form:errors path="email" /> <br /></font>
 							<h2 align="center">Password</h2>
 							<form:input path="password" />
-							<br />
-							<form:errors path="password" />
-							<br />
-							<font color="red"></font>
+
+							<font color="red"><br /> <form:errors path="password" />
+								<br /></font>
 							<br />
 							<br />
 							<button type="submit" id="button">Log in</button>

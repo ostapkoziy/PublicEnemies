@@ -53,14 +53,7 @@
 	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 	<!-- +++++++++++++++++++++++++++++++++++ CONTROLLERS +++++++++++++++++++++++++++++++++++++++++++++ -->
 	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-	<bean id="registerUserController" class="com.epam.publicenemies.web.RegisterUserFormController">
-		<property name="userManagerService" ref="userManagerService"></property>
-		<property name="commandName" value="userToRegister" />
-		<property name="commandClass" value="com.epam.publicenemies.dto.UserDto" />
-		<property name="validator" ref="registerUserFormValidator" />
-		<property name="formView" value="userRegistration" />
-		<property name="successView" value="profileSave.html" />
-	</bean>
+
 	<bean id="saveProfileController" class="com.epam.publicenemies.web.SaveProfileFormController">
 		<property name="profileManagerService" ref="profileManagerService"></property>
 		<property name="statsManagerService" ref="statsManagerService"></property>
@@ -111,7 +104,6 @@
 	<bean name="URLmappings" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
 		<property name="mappings">
 			<map>
-				<entry key="/userRegistration.html" value="registerUserController"></entry>
 				<entry key="/profileSave.html" value="saveProfileController"></entry>
 				<entry key="/userStartPage.html" value="userStartPageController"></entry>
 

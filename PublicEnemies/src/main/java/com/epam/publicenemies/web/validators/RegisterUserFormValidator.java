@@ -1,14 +1,17 @@
 package com.epam.publicenemies.web.validators;
 
+/**
+ * @author Nikolay Krivenchuk 22.04.2012 23:18:20
+ */
+
 import org.apache.log4j.Logger;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
-import org.springframework.validation.Validator;
 
 import com.epam.publicenemies.dto.UserDto;
 import com.epam.publicenemies.service.IUserManagerService;
 
-public class RegisterUserFormValidator implements Validator {
+public class RegisterUserFormValidator implements IValidator {
 	private Logger log = Logger.getLogger(RegisterUserFormValidator.class);
 	private IUserManagerService userManagerService;
 
@@ -21,11 +24,13 @@ public class RegisterUserFormValidator implements Validator {
 	}
 
 	public void validate(Object obj, Errors errors) {
-		log.info("VALIDATING...");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email",
-				"email.empty");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password",
-				"password.empty");
+		log.info("Validating REGISTER FORM...");
+		if (!supports(obj.getClass()))
+		{
+			return;
+		}
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "email.empty");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "password.empty");
 		UserDto user = (UserDto) obj;
 		UserDto userDTO = userManagerService.findUserByEmail(user.getEmail());
 		if (userDTO != null) {
