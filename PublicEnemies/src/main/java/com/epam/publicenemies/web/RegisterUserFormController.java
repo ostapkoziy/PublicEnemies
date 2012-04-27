@@ -56,6 +56,6 @@ public class RegisterUserFormController
 		UserDto user = userManagerService.registerNewUser((UserDto) userToRegister);
 		request.getSession().setAttribute("user", user);
 		log.info("NEW USER REGISTERED: EMAIL:" + user.getEmail() + " PASS:" + user.getPassword());
-		return new ModelAndView(new RedirectView("userStartPage.html"));
+		return new ModelAndView(new RedirectView("profileSave.html"));
 	}
 }

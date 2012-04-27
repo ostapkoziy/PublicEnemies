@@ -4,11 +4,30 @@ import com.epam.publicenemies.dao.ITableDao;
 import com.epam.publicenemies.service.ITableManagerService;
 
 public class TableManagerServiceImpl implements ITableManagerService {
+	
 	private ITableDao tableDao;
 
 	public void setTableDao(ITableDao tableDao) {
 		this.tableDao = tableDao;
 	}
+
+	@Override
+	public void deleteTables() {
+		tableDao.deleteAllTable();
+	}
+	
+	@Override
+	public void createTables() {
+		tableDao.createAllTables();		
+	}
+	
+	/* Old code here   
+	
+	private ITableDao tableDao;
+
+	public void setTableDao(ITableDao tableDao) {
+		this.tableDao = tableDao;
+	}	
 
 	@Override
 	public void createUserTable() {
@@ -48,6 +67,5 @@ public class TableManagerServiceImpl implements ITableManagerService {
 	@Override
 	public void createAidsTable() {
 		tableDao.createAidsTable();
-	}
-
+	}*/
 }

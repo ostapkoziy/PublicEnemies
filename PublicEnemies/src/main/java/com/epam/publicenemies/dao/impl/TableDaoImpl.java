@@ -2,80 +2,205 @@ package com.epam.publicenemies.dao.impl;
 
 import javax.sql.DataSource;
 
+import org.apache.log4j.Logger;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.epam.publicenemies.dao.ITableDao;
+import com.epam.publicenemies.web.listeners.OnContextLoaderListener;
 
+/**
+ * This class intended to create and delete all necessary tables
+ * Be caution - its destroys all existing data in db
+ * Updated by I. Kostyrko on Apr 27, 2012
+ *
+ */
 public class TableDaoImpl implements ITableDao {
-
+	
+	private Logger log = Logger.getLogger(OnContextLoaderListener.class);
+	
 	private JdbcTemplate jdbcTemplate;
 
 	public void setDataSource(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 
+	/**
+	 * Creates necessary empty tables in publicenemies database
+	 * 
+	 * Keep hands out of this code! Order of calls does matter 
+	 */
 	@Override
-	public void createUserTable() {
-		String query = "DROP TABLE IF EXISTS `user`;";
-		jdbcTemplate.execute(query);
-		query = "CREATE  TABLE `user` (`id` INT NOT NULL AUTO_INCREMENT ,`email` VARCHAR(45) NOT NULL ,`password` VARCHAR(45) NOT NULL ,PRIMARY KEY (`id`));";
-		jdbcTemplate.execute(query);
+	public void createAllTables() {
+		createWeaponsTable();	
+		log.info("TableDaoImpl: table \"weapons\" added"); 
+		createArmorsTable();		
+		log.info("TableDaoImpl: \"armors\" added");
+		createAidsTable();		
+		log.info("TableDaoImpl: \"aids\" added");
+		createCharactersTable();
+		log.info("TableDaoImpl: \"characters\" added");
+		createChatPropertiesTable();		
+		log.info("TableDaoImpl: \"chatProperties\" added");
+		createIgnoredUsersTable();
+		log.info("TableDaoImpl: \"ignoredUsers\" added");
+		createCharactersTrunksTable();
+		log.info("TableDaoImpl: \"charactersTrunks\" added");
+		createUsersTable();		
+		log.info("TableDaoImpl: \"user\" added");
+	}
+	
+	/**
+	 * Destroys tables if exists 
+	 * 
+	 * Keep hands out of this code! Order of calls does matter 
+	 */
+	@Override
+	public void deleteAllTable(){
+		StringBuilder sql = new StringBuilder();
+		sql.append("DROP TABLE IF EXISTS aids");
+		jdbcTemplate.execute(sql.toString());
+		sql.delete(0, sql.length());
+		sql.append("DROP TABLE IF EXISTS armors");
+		jdbcTemplate.execute(sql.toString());
+		sql.delete(0, sql.length());
+		sql.append("DROP TABLE IF EXISTS weapons");
+		jdbcTemplate.execute(sql.toString());
+		sql.delete(0, sql.length());
+		sql.append("DROP TABLE IF EXISTS users");
+		jdbcTemplate.execute(sql.toString());
+		sql.delete(0, sql.length());
+		sql.append("DROP TABLE IF EXISTS ignoredUsers");
+		jdbcTemplate.execute(sql.toString());
+		sql.delete(0, sql.length());
+		sql.append("DROP TABLE IF EXISTS charactersTrunks");
+		jdbcTemplate.execute(sql.toString());
+		sql.delete(0, sql.length());
+		sql.append("DROP TABLE IF EXISTS characters");
+		jdbcTemplate.execute(sql.toString());
+		sql.delete(0, sql.length());
+		sql.append("DROP TABLE IF EXISTS chatProperties");
+		jdbcTemplate.execute(sql.toString());
+		sql.delete(0, sql.length());	
+		log.info("TableDaoImpl: all tables DELETED");
+	}	
+	
+	// below methods are hidden from external access
+	private void createUsersTable() {
+		StringBuilder sql = new StringBuilder();
+		sql.append("CREATE TABLE users ( ");
+		sql.append("userId INT(10) UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE, ");
+		sql.append("email VARCHAR(100) NOT NULL UNIQUE, ");
+		sql.append("password VARCHAR(100) NOT NULL, ");
+		sql.append("regDate TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, ");
+		sql.append("money INT(10) UNSIGNED NOT NULL DEFAULT 200, ");
+		sql.append("avatar VARCHAR(100) NOT NULL DEFAULT 'avatar', ");
+		sql.append("chatProperty INT(10) UNSIGNED NULL UNIQUE, ");
+		sql.append("userCharacter INT(10) UNSIGNED NULL UNIQUE, ");
+		sql.append("nickName VARCHAR(100) NULL UNIQUE, ");
+		sql.append("PRIMARY KEY (userId), ");
+		sql.append("INDEX (chatProperty), ");
+		sql.append("FOREIGN KEY (chatProperty) REFERENCES chatProperties(chatpropertyId), ");
+		sql.append("INDEX (userCharacter), ");
+		sql.append("FOREIGN KEY (userCharacter) REFERENCES characters(characterId) ");
+		sql.append(") ENGINE=INNODB");
+		jdbcTemplate.execute(sql.toString());
 	}
 
-	@Override
-	public void createProfileTable() {
-		String query = "DROP TABLE IF EXISTS `profile`;";
-		jdbcTemplate.execute(query);
-		query = "CREATE TABLE `profile` (`id` int(11) NOT NULL AUTO_INCREMENT,`nickName` varchar(45) NOT NULL,`avatar` varchar(45) NOT NULL,`gender` varchar(45) NOT NULL,`proffesion` int(11) NOT NULL,`fightsTotal` int(11) DEFAULT '0',`fightsWon` int(11) DEFAULT '0',`userId` int(11) NOT NULL,PRIMARY KEY (`id`));";
-		jdbcTemplate.execute(query);
+	private void createCharactersTable() {
+		StringBuilder sql = new StringBuilder();
+		sql.append("CREATE TABLE characters ( ");
+		sql.append("characterId INT(10) UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE, ");
+		sql.append("sex BIT NOT NULL DEFAULT 1, ");
+		sql.append("experiance INT(10) UNSIGNED NOT NULL DEFAULT 0, ");
+		sql.append("strength INT(5) UNSIGNED NOT NULL DEFAULT 5, ");
+		sql.append("agility INT(5) UNSIGNED NOT NULL DEFAULT 5, ");
+		sql.append("intelect INT(5) UNSIGNED NOT NULL DEFAULT 5, ");
+		sql.append("profession VARCHAR(100) NOT NULL DEFAULT '', ");
+		sql.append("fightsTotal INT(10) UNSIGNED NOT NULL DEFAULT 0, ");
+		sql.append("fightsWon INT(10) UNSIGNED NOT NULL DEFAULT 0, ");
+		sql.append("weapon1 INT(10) UNSIGNED NOT NULL DEFAULT 0, ");
+		sql.append("weapon2 INT(10) UNSIGNED NOT NULL DEFAULT 0, ");
+		sql.append("aid INT(10) UNSIGNED NOT NULL DEFAULT 0, ");
+		sql.append("armor INT(10) UNSIGNED NOT NULL DEFAULT 0, ");
+		sql.append("PRIMARY KEY (characterId) ) ENGINE=INNODB");
+		jdbcTemplate.execute(sql.toString());
 	}
 
-	@Override
-	public void createStatsTable() {
-		String query = "DROP TABLE IF EXISTS `stats`;";
-		jdbcTemplate.execute(query);
-		query = "CREATE TABLE `stats` (`id` int(11) NOT NULL AUTO_INCREMENT,`strength` int(11) NOT NULL,`agility` int(11) NOT NULL,`stat3` int(11) NOT NULL,`money` int(11) DEFAULT '100',`experience` int(11) DEFAULT '0',`level` int(11) DEFAULT '1',`userId` int(11) NOT NULL,PRIMARY KEY (`id`));";
-		jdbcTemplate.execute(query);
+	private void createChatPropertiesTable() {
+		StringBuilder sql = new StringBuilder();
+		sql.append("CREATE TABLE chatProperties ( ");
+		sql.append("chatPropertyId INT(10) UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE, ");
+		sql.append("someProperty1 VARCHAR(100) NOT NULL DEFAULT '', ");
+		sql.append("PRIMARY KEY (chatPropertyId) ");
+		sql.append(") ENGINE=INNODB");
+		jdbcTemplate.execute(sql.toString());
 	}
 
-	@Override
-	public void createInventoryTable() {
-		String query = "DROP TABLE IF EXISTS `inventory`;";
-		jdbcTemplate.execute(query);
-		query = "CREATE TABLE `inventory` (`id` int(11) NOT NULL AUTO_INCREMENT,`armor` int(11) NOT NULL,`weapon1` int(11) NOT NULL,`weapon2` int(11) NOT NULL,`aid` int(11) NOT NULL,PRIMARY KEY (`id`));";
-		jdbcTemplate.execute(query);
+	private void createIgnoredUsersTable() {
+		StringBuilder sql = new StringBuilder();
+		sql.append("CREATE TABLE ignoredUsers ( ");
+		sql.append("ignoredId INT(10) UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE, ");
+		sql.append("chatPropertyId INT(10) UNSIGNED NOT NULL UNIQUE, ");
+		sql.append("userId INT(10) UNSIGNED NOT NULL, ");
+		sql.append("PRIMARY KEY (ignoredId), ");
+		sql.append("INDEX (chatPropertyId), ");
+		sql.append("FOREIGN KEY (chatPropertyId) REFERENCES chatProperties(chatPropertyId) ");
+		sql.append(") ENGINE=INNODB");
+		jdbcTemplate.execute(sql.toString());
+	}
+	
+	private void createCharactersTrunksTable() {
+		StringBuilder sql = new StringBuilder();
+		sql.append("CREATE TABLE charactersTrunks ( ");
+		sql.append("trunkId INT(10) UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE, ");
+		sql.append("itemId INT(10) UNSIGNED NOT NULL, ");
+		sql.append("itemType INT(10) UNSIGNED NOT NULL CHECK (itemType in(1-3)), ");
+		sql.append("characterId INT(10) UNSIGNED NOT NULL, ");
+		sql.append("PRIMARY KEY (trunkId), ");
+		sql.append("INDEX (characterId), ");
+		sql.append("FOREIGN KEY (characterId) REFERENCES characters(characterId) ");
+		sql.append(") ENGINE=INNODB");
+		jdbcTemplate.execute(sql.toString());
 	}
 
-	@Override
-	public void createTrunkTable() {
-		String query = "DROP TABLE IF EXISTS `trunk`;";
-		jdbcTemplate.execute(query);
-		query = "CREATE TABLE `trunk` (`id` int(11) NOT NULL AUTO_INCREMENT,PRIMARY KEY (`id`));";
-		jdbcTemplate.execute(query);
+	private void createWeaponsTable() {
+		StringBuilder sql = new StringBuilder();
+		sql.append("CREATE TABLE weapons ( ");
+		sql.append("weaponId INT(10) UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE, ");
+		sql.append("weaponName VARCHAR(100) NOT NULL UNIQUE, ");
+		sql.append("weaponHitPoints INT(10) UNSIGNED NOT NULL, ");
+		sql.append("weaponPicture VARCHAR(100) NOT NULL DEFAULT 'picture', ");
+		sql.append("weaponType BIT NOT NULL DEFAULT 0, ");
+		sql.append("weaponPrice INT(10) UNSIGNED NOT NULL DEFAULT 100, ");
+		sql.append("PRIMARY KEY (weaponId) ");
+		sql.append(") ENGINE=INNODB ");
+		jdbcTemplate.execute(sql.toString());
 	}
 
-	@Override
-	public void createWeaponsTable() {
-		String query = "DROP TABLE IF EXISTS `weapons`;";
-		jdbcTemplate.execute(query);
-		query = "CREATE TABLE `weapons` (`id` int(11) NOT NULL AUTO_INCREMENT,`price` int(11) NOT NULL,`image` varchar(45) NOT NULL,`damage` int(11) NOT NULL,PRIMARY KEY (`id`));";
-		jdbcTemplate.execute(query);
+	private void createArmorsTable() {
+		StringBuilder sql = new StringBuilder();
+		sql.append("CREATE TABLE armors ( ");
+		sql.append("armorId INT(10) UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE, ");
+		sql.append("armorName VARCHAR(100) NOT NULL UNIQUE, ");
+		sql.append("armorProtection INT(10) UNSIGNED NOT NULL DEFAULT 10, ");
+		sql.append("armorPicture VARCHAR(100) NOT NULL DEFAULT 'picture', ");
+		sql.append("armorPrice INT(10) UNSIGNED NOT NULL DEFAULT 100, ");
+		sql.append("PRIMARY KEY (armorId) ");
+		sql.append(") ENGINE=INNODB");
+		jdbcTemplate.execute(sql.toString());
 	}
 
-	@Override
-	public void createArmorsTable() {
-		String query = "DROP TABLE IF EXISTS `armors`;";
-		jdbcTemplate.execute(query);
-		query = " CREATE TABLE `armors` (`id` int(11) NOT NULL AUTO_INCREMENT,`price` int(11) NOT NULL,`image` varchar(45) NOT NULL,`defence` int(11) NOT NULL,PRIMARY KEY (`id`));";
-		jdbcTemplate.execute(query);
+	private void createAidsTable() {
+		StringBuilder sql = new StringBuilder();
+		sql.append("CREATE TABLE aids ( ");
+		sql.append("aidId INT(10) UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE, ");
+		sql.append("aidName VARCHAR(100) NOT NULL UNIQUE, ");
+		sql.append("aidType VARCHAR(100) NOT NULL, ");
+		sql.append("aidEffect INT(10) UNSIGNED NOT NULL DEFAULT 20, ");
+		sql.append("aidPicture VARCHAR(100) NOT NULL DEFAULT 'picture', ");
+		sql.append("aidPrice INT(10) UNSIGNED NOT NULL DEFAULT 100, ");
+		sql.append("PRIMARY KEY (aidId) ");
+		sql.append(") ENGINE=INNODB");
+		jdbcTemplate.execute(sql.toString());
 	}
-
-	@Override
-	public void createAidsTable() {
-		String query = "DROP TABLE IF EXISTS `aids`;";
-		jdbcTemplate.execute(query);
-		query = " CREATE TABLE `aids` (`id` int(11) NOT NULL AUTO_INCREMENT,`price` int(11) NOT NULL,`image` varchar(45) NOT NULL,`health` int(11) NOT NULL,PRIMARY KEY (`id`));";
-		jdbcTemplate.execute(query);
-	}
-
 }
