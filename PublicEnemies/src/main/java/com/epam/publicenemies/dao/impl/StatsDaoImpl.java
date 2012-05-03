@@ -25,14 +25,14 @@ public class StatsDaoImpl implements IStatsDao {
 		jdbcTemplate.update(
 				query,
 				new Object[] { 0,stats.getStrength(), stats.getAgility(),
-						stats.getSTAT3(), user.getId() });
+						stats.getSTAT3(), user.getUserId() });
 	}
 
 	@Override
 	public Stats getStatsByUser(User user) {
 		String query = "SELECT strength,agility,stat3,money,experience,level,userId FROM stats WHERE userId = ?";
 		List<Stats> list = jdbcTemplate.query(query,
-				new Object[] { user.getId() },
+				new Object[] { user.getUserId() },
 				new BeanPropertyRowMapper<Stats>(Stats.class));
 		if (list.isEmpty())
 			return null;

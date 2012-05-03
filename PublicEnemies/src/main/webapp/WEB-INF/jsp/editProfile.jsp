@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -96,28 +98,28 @@ a {
 				<table class="sample" width="400px">
 					<tr>
 						<td align="center">
-							<form action="profileSave.html" method="post">
-								<spring:bind path="profileToSave.nickName">
+							<form action="editProfile.html" method="post">
+								<spring:bind path="profileToEdit.nickName"> 
 									<p>Nickname:</p>
-									<input type="text" name="nickName" value="${status.value}"><br />
+									<input type="text" name="nickName" value="${profile.getNickName()}"><br />
 									<font color="red">${status.errorMessage}</font>
 									<br />
 								</spring:bind>
-								<spring:bind path="profileToSave.avatar">
+								<spring:bind path="profileToEdit.avatar">
 									<p>Avatar:</p>
-									<input type="text" name="avatar" value="${status.value}"><br />
+									<input type="text" name="avatar" value="${profile.getAvatar()}"><br />
 									<font color="red">${status.errorMessage}</font>
 									<br />
 								</spring:bind>
-								<spring:bind path="profileToSave.gender">
+								<spring:bind path="profileToEdit.sex">
 									<p>Gender:</p>
-									<input type="text" name="gender" value="${status.value}"><br />
+									<input type="text" name="sex" value="${profile.isSex()}"><br />
 									<font color="red">${status.errorMessage}</font>
 									<br />
 								</spring:bind>
-								<spring:bind path="profileToSave.proffesion">
-									<p>Proffesion:</p>
-									<input type="text" name="proffesion" value="${status.value}"><br />
+								<spring:bind path="profileToSave.proffesion">									
+								<p>Proffesion:</p>
+									<input type="text" name="profession" value="${profile.getProfession()}"><br />
 									<font color="red">${status.errorMessage}</font>
 									<br />
 								</spring:bind>
@@ -128,6 +130,6 @@ a {
 				</table>
 			</td>
 		</tr>
-	</table>
+	</table> 
 </body>
 </html>

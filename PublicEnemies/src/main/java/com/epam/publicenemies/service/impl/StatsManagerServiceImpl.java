@@ -39,7 +39,7 @@ public class StatsManagerServiceImpl implements IStatsManagerService{
 		stats.setAgility(3);
 		stats.setSTAT3(3);
 		
-		user.setId(userDto.getId());
+		user.setUserId(userDto.getUserId());
 		statsDao.saveStats(stats, user);
 		return statsDto;
 	}
@@ -47,7 +47,7 @@ public class StatsManagerServiceImpl implements IStatsManagerService{
 	@Override
 	public StatsDto getStatsByUser(UserDto userDto) {
 		User user = new User();
-		user.setId(userDto.getId());
+		user.setUserId(userDto.getUserId());
 		
 		Stats stats = statsDao.getStatsByUser(user);
 		if (stats == null)

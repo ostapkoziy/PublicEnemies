@@ -111,10 +111,10 @@ public class TableDaoImpl implements ITableDao {
 		sql.append("CREATE TABLE characters ( ");
 		sql.append("characterId INT(10) UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE, ");
 		sql.append("sex BIT NOT NULL DEFAULT 1, ");
-		sql.append("experiance INT(10) UNSIGNED NOT NULL DEFAULT 0, ");
+		sql.append("experience INT(10) UNSIGNED NOT NULL DEFAULT 0, ");
 		sql.append("strength INT(5) UNSIGNED NOT NULL DEFAULT 5, ");
 		sql.append("agility INT(5) UNSIGNED NOT NULL DEFAULT 5, ");
-		sql.append("intelect INT(5) UNSIGNED NOT NULL DEFAULT 5, ");
+		sql.append("intellect INT(5) UNSIGNED NOT NULL DEFAULT 5, ");
 		sql.append("profession VARCHAR(100) NOT NULL DEFAULT '', ");
 		sql.append("fightsTotal INT(10) UNSIGNED NOT NULL DEFAULT 0, ");
 		sql.append("fightsWon INT(10) UNSIGNED NOT NULL DEFAULT 0, ");

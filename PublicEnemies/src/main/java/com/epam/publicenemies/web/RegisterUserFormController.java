@@ -53,9 +53,28 @@ public class RegisterUserFormController
 		}
 		log.info("Registration form validation successful");
 		
-		UserDto user = userManagerService.registerNewUser((UserDto) userToRegister);
+		// register new user based on passed parameters: email, pass, nickName
+		// nickName passed as email. need to fix this (? create 3-d field in register form?)
+		// could be refactored. pass just 3 or 2 parameters. not whole object
+		log.info("Try to register new user with attributs: email - " + 
+				((UserDto) userToRegister).getEmail() + " and pass - " +
+				((UserDto) userToRegister).getPassword() );
+		
+		UserDto user = userManagerService.registerNewUser(
+				((UserDto) userToRegister).getEmail(), 
+				((UserDto) userToRegister).getPassword(), 
+				((UserDto) userToRegister).getEmail()
+				);
+		// store user id into session
+		request.getSession().setAttribute("userId", user.getUserId());
+		// old way
 		request.getSession().setAttribute("user", user);
-		log.info("NEW USER REGISTERED: EMAIL:" + user.getEmail() + " PASS:" + user.getPassword());
-		return new ModelAndView(new RedirectView("profileSave.html"));
+		log.info("NEW USER REGISTERED: EMAIL:" + user.getEmail() + 
+				" PASS: "+ user.getPassword() + 
+				" NICKNAME: " + user.getNickName() + 
+				" MONEY: " + user.getMoney() + 
+				" AVATAR_PATH: " + user.getAvatar()
+				);
+		return new ModelAndView(new RedirectView("editProfile.html"));
 	}
 }

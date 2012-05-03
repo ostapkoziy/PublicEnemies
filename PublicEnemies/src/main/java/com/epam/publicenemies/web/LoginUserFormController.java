@@ -23,40 +23,43 @@ import com.epam.publicenemies.web.validators.IValidator;
 @RequestMapping(value = "/userLogin")
 public class LoginUserFormController
 {
-	private Logger				log	= Logger.getLogger(LoginUserFormController.class);
+	private Logger log	= Logger.getLogger(LoginUserFormController.class);
+	
 	@Autowired
 	@Qualifier("userManagerService")
 	private IUserManagerService	userManagerService;
+	
 	@Autowired
 	@Qualifier("loginUserFormValidator")
-	private IValidator			validator;
-	public void setUserManagerService(IUserManagerService userManagerService)
-	{
+	private IValidator validator;
+	public void setUserManagerService(IUserManagerService userManagerService) {
 		this.userManagerService = userManagerService;
 	}
-	public void setValidator(IValidator validator)
-	{
+	public void setValidator(IValidator validator) {
 		this.validator = validator;
 	}
+	
 	@RequestMapping(method = RequestMethod.GET)
-	public String showForm(ModelMap model)
-	{
+	public String showForm(ModelMap model) {
 		log.info("SHOW LOGIN FORM");
 		model.put("userDto", new UserDto());
 		return "userLogin";
 	}
+	
 	@RequestMapping(method = RequestMethod.POST)
-	public String processSubmit(@ModelAttribute UserDto user, HttpServletRequest request, BindingResult result)
-	{
+	public String processSubmit(@ModelAttribute UserDto user, HttpServletRequest request, BindingResult result)	{
 		log.info("PROCESS FORM");
 		validator.validate(user, result);
-		if (result.hasErrors())
-		{
+		if (result.hasErrors()) {
 			log.info("VALIDATING FALSE.....");
 			return "userLogin";
 		}
+		// need to refactor. use getUserIdByEmail... (not implemented yet)
 		UserDto user2 = userManagerService.getUserByEmailAndPassword(user.getEmail(), user.getPassword());
 		log.info("USER = " + user2.getEmail() + " SUCCESSFULLY LOGGED");
+		// store user id into session
+		request.getSession().setAttribute("userId", user2.getUserId());
+		// old way
 		request.getSession().setAttribute("user", user2);
 		return "redirect:userStartPage.html";
 	}

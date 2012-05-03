@@ -2,41 +2,71 @@ package com.epam.publicenemies.dto;
 
 import java.io.Serializable;
 
-public class UserDto implements Serializable
-{
+import com.epam.publicenemies.domain.User;
+
+/**
+ * Prototype of user 
+ * Updated by I. Kostyrko on 30.04.12: 
+ * 		add constructor, money field, getter and setter
+ * 
+ */
+public class UserDto implements Serializable {
 	private static final long	serialVersionUID	= -5337809704733811878L;
-	private int	id;
+	private int	userId; 
 	private String email;
+	// not sure we need this
 	private String password;
+	
+	private int money; 
 	private String nickName;
 	private String avatar;
-	public int getId()
-	{
-		return id;
+	
+	/**
+	 * By default
+	 */
+	public UserDto() {}
+	
+	/**
+	 * Constructs object based on User object
+	 * @param pUser
+	 */
+	public UserDto(User pUser) {
+		this.userId = pUser.getUserId();
+		this.email = pUser.getEmail();
+		this.password = pUser.getPassword();
+		this.money = pUser.getMoney();
+		this.nickName = pUser.getNickName();
+		this.avatar = pUser.getAvatar();
 	}
-	public String getEmail()
-	{
+	
+	public String getEmail()	{
 		return email;
 	}
-	public String getPassword()
-	{
+	public String getPassword()	{
 		return password;
 	}
-	public void setId(int id)
-	{
-		this.id = id;
-	}
-	public void setEmail(String email)
-	{
+	public void setEmail(String email)	{
 		this.email = email;
 	}
-	public void setPassword(String password)
-	{
+	public int getUserId() {
+		return userId;
+	}
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+	public void setPassword(String password)	{
 		this.password = password;
 	}
 	public String getNickName() {
 		return nickName;
 	}
+	public int getMoney() {
+		return money;
+	}
+	public void setMoney(int money) {
+		this.money = money;
+	}
+
 	public void setNickName(String nickName) {
 		this.nickName = nickName;
 	}

@@ -42,6 +42,7 @@ A:hover {text-decoration: underline; color: red;}
 </style>
 
 <body>
+NickName = ${profileInfo.getNickName()}
 	<table align="center">
 		<tr>
 			<td style="background-color:black; width: 100%;">
@@ -55,34 +56,36 @@ A:hover {text-decoration: underline; color: red;}
 							<img src="img/coin.png" width="40px" title="Money"></img>
 						</td>
 						<td width="20" valign="middle" align="left">
-							904
+							${profileInfo.getMoney()}
 						</td>
 						<td width="80" valign="middle" align="right">
 							<img src="img/hp.png" width="40px" title="Hit Points"></img>
 						</td>
 						<td width="20" valign="middle" align="left">
-							80
+							Exp?! ${profileInfo.getExperience()}
 						</td>
 						<td width="80" valign="middle" align="right">
 							<img src="img/strength.png" width="40px" title="Strength"></img>
 						</td>
 						<td width="20" valign="middle" align="left">
-							21
+							${profileInfo.getStrength()}
 						</td>
 						<td width="80" valign="middle" align="right">
 							<img src="img/agility.png" width="40px" title="Agility"></img>
 						</td>
 						<td width="20" valign="middle" align="left">
-							34
+							${profileInfo.getAgility()}
 						</td>
 						<td width="80" valign="middle" align="right">
 							<img src="img/inteligence.png" width="40px" title="Inteligence"></img>
 						</td>
 						<td width="20" valign="middle" align="left">
-							8
+							${profileInfo.getIntellect()}
 						</td>
 						<td width="100" align="right">
-							<img src="img/avatars/gangster.gif" title="${user_email}'s profile" border="1" width="40px"></img>
+							<a href="editProfile.html">
+							click -><img src="img/avatars/gangster.gif" title="${profileInfo.getNickName()}'s profile" border="0" width="40px"></img>
+							</a>
 						</td>
 						<td width="30" align="center">
 							<a href="logout.html">Logout</a> <br />

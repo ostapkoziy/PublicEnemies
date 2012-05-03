@@ -56,7 +56,7 @@ public class JoinGameFormController extends SimpleFormController {
 		
 		fighter.setAvatar(profile.getAvatar());
 		fighter.setHealth(stats.getStrength()*20);
-		fighter.setId(user.getId());
+		fighter.setId(user.getUserId());
 		fighter.setNickName(profile.getNickName());
 		
 		game.setName(((GameDto) command).getName());

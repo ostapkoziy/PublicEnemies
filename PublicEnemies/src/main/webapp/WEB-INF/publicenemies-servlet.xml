@@ -54,14 +54,15 @@
 	<!-- +++++++++++++++++++++++++++++++++++ CONTROLLERS +++++++++++++++++++++++++++++++++++++++++++++ -->
 	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 
-	<bean id="saveProfileController" class="com.epam.publicenemies.web.SaveProfileFormController">
-		<property name="profileManagerService" ref="profileManagerService"></property>
-		<property name="statsManagerService" ref="statsManagerService"></property>
-		<property name="commandName" value="profileToSave" />
-		<property name="commandClass" value="com.epam.publicenemies.dto.ProfileDto" />
+	<bean id="editProfileFormController" class="com.epam.publicenemies.web.EditProfileFormController">
+		<!--  Need help -->
+		<!-- <property name="profileManagerService" ref="profileManagerService"></property> -->
+		<!--  <property name="statsManagerService" ref="statsManagerService"></property>  -->
+		<!-- <property name="commandName" value="profileToEdit" /> -->
+		<!-- <property name="commandClass" value="com.epam.publicenemies.dto.ProfileDto" /> -->
 		<!-- <property name="validator" ref="loginUserFormValidator" /> -->
-		<property name="formView" value="profileSave" />
-		<property name="successView" value="userStartPage.html" />
+		<!-- <property name="formView" value="editProfile" /> -->
+		<!-- <property name="successView" value="userStartPage.html" /> -->
 	</bean>
 
 	<bean id="newGameController" class="com.epam.publicenemies.web.NewGameFormController">
@@ -104,7 +105,7 @@
 	<bean name="URLmappings" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
 		<property name="mappings">
 			<map>
-				<entry key="/profileSave.html" value="saveProfileController"></entry>
+				<entry key="/editProfile.html" value="editProfileFormController"></entry>
 				<entry key="/userStartPage.html" value="userStartPageController"></entry>
 
 				<!-- +++++++++++++++++++++++GAME PAGES ++++++++++++++++++++++++++++++++++ -->

@@ -37,11 +37,11 @@ public class FightHitController extends SimpleFormController {
 		HttpSession session = request.getSession();
 		user = (UserDto) session.getAttribute("user");
 
-		game = fights.getGame(user.getId());
+		game = fights.getGame(user.getUserId());
 
 		hit.setToBlock(((HitDto) command).getToBlock());
 		hit.setToHit(((HitDto) command).getToHit());
-		hit.setUserId(user.getId());
+		hit.setUserId(user.getUserId());
 
 		firstHit = fights.get(game);
 

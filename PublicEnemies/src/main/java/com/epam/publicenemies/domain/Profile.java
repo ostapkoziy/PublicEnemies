@@ -3,23 +3,23 @@ package com.epam.publicenemies.domain;
 
 public class Profile {
 
-	private long id;
+	private int id;
 	private String nickName;
 	private String avatar;
 	private String gender;
 	private int proffesion;
 	private int fightsTotal;
 	private int fightsWon;
-	private long userId;
+	private int userId;
 
 	public Profile() {
 	}
 
-	public long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -71,11 +71,11 @@ public class Profile {
 		this.fightsWon = fightsWon;
 	}
 
-	public long getUserId() {
+	public int getUserId() {
 		return userId;
 	}
 
-	public void setUserId(long userId) {
+	public void setUserId(int userId) {
 		this.userId = userId;
 	}
 }

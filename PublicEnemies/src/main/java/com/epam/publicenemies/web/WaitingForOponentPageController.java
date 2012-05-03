@@ -31,7 +31,7 @@ public class WaitingForOponentPageController extends AbstractController {
 		HttpSession session = request.getSession();
 		user = (UserDto) session.getAttribute("user");
 
-		game = fights.getGame(user.getId());
+		game = fights.getGame(user.getUserId());
 		log.info(game.getFighterFirst().getNickName() + " WAITS FOR OPONENT!");
 		if (game.isStarted()) {
 			while (true)

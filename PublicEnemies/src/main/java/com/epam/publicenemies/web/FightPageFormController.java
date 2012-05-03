@@ -33,7 +33,7 @@ public class FightPageFormController extends AbstractController {
 		HttpSession session = request.getSession();
 		user = (UserDto) session.getAttribute("user");
 
-		game = fights.getGame(user.getId());
+		game = fights.getGame(user.getUserId());
 
 		Map<String, String> model = new HashMap<String, String>();
 		model.put("fighter1_nickName", game.getFighterFirst().getNickName());
