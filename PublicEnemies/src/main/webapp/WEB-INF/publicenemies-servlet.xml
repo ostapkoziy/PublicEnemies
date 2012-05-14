@@ -23,9 +23,9 @@
 	<bean id="profileDao" class="com.epam.publicenemies.dao.impl.ProfileDaoImpl">
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
-	<bean id="statsDao" class="com.epam.publicenemies.dao.impl.StatsDaoImpl">
-		<property name="dataSource" ref="dataSource"></property>
-	</bean>
+<!-- 	<bean id="statsDao" class="com.epam.publicenemies.dao.impl.StatsDaoImpl"> -->
+<!-- 		<property name="dataSource" ref="dataSource"></property> -->
+<!-- 	</bean> -->
 
 
 	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
@@ -37,9 +37,9 @@
 	<bean id="profileManagerService" class="com.epam.publicenemies.service.impl.ProfileManagerServiceImpl">
 		<property name="profileDao" ref="profileDao"></property>
 	</bean>
-	<bean id="statsManagerService" class="com.epam.publicenemies.service.impl.StatsManagerServiceImpl">
-		<property name="statsDao" ref="statsDao"></property>
-	</bean>
+<!-- 	<bean id="statsManagerService" class="com.epam.publicenemies.service.impl.StatsManagerServiceImpl"> -->
+<!-- 		<property name="statsDao" ref="statsDao"></property> -->
+<!-- 	</bean> -->
 
 	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 	<!-- +++++++++++++++++++++++++++++++++++ VALIDATORS ++++++++++++++++++++++++++++++++++++++++++++++ -->
@@ -72,7 +72,7 @@
 
 	<bean id="newGameController" class="com.epam.publicenemies.web.NewGameFormController">
 		<property name="profileManagerService" ref="profileManagerService"></property>
-		<property name="statsManagerService" ref="statsManagerService"></property>
+<!-- 		<property name="statsManagerService" ref="statsManagerService"></property> -->
 		<property name="fights" ref="fights"></property>
 		<property name="commandName" value="gameToCreate" />
 		<property name="commandClass" value="com.epam.publicenemies.dto.GameDto" />
@@ -81,12 +81,12 @@
 	</bean>
 	<bean id="joinGameController" class="com.epam.publicenemies.web.JoinGameFormController">
 		<property name="profileManagerService" ref="profileManagerService"></property>
-		<property name="statsManagerService" ref="statsManagerService"></property>
-		<property name="fights" ref="fights"></property>
-		<property name="commandName" value="gameToJoin" />
-		<property name="commandClass" value="com.epam.publicenemies.dto.GameDto" />
-		<property name="formView" value="joinGame" />
-		<property name="successView" value="fightPage.html" />
+<!-- 		<property name="statsManagerService" ref="statsManagerService"></property> -->
+<!-- 		<property name="fights" ref="fights"></property> -->
+<!-- 		<property name="commandName" value="gameToJoin" /> -->
+<!-- 		<property name="commandClass" value="com.epam.publicenemies.dto.GameDto" /> -->
+<!-- 		<property name="formView" value="joinGame" /> -->
+<!-- 		<property name="successView" value="fightPage.html" /> -->
 	</bean>
 	<bean id="fightHitController" class="com.epam.publicenemies.web.FightHitController">
 		<property name="fights" ref="fights"></property>

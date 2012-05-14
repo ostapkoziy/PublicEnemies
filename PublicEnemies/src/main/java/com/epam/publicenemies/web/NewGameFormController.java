@@ -17,7 +17,6 @@ import com.epam.publicenemies.dto.ProfileDto;
 import com.epam.publicenemies.dto.StatsDto;
 import com.epam.publicenemies.dto.UserDto;
 import com.epam.publicenemies.service.IProfileManagerService;
-import com.epam.publicenemies.service.IStatsManagerService;
 import com.epam.publicenemies.web.memory.FightsHashMap;
 import com.epam.publicenemies.web.validators.RegisterUserFormValidator;
 
@@ -26,17 +25,17 @@ public class NewGameFormController extends SimpleFormController {
 	private Logger log = Logger.getLogger(NewGameFormController.class);
 	private FightsHashMap fights;
 	private IProfileManagerService profileManagerService;
-	private IStatsManagerService statsManagerService;
+	//private IStatsManagerService statsManagerService;
 
 	public void setProfileManagerService(
 			IProfileManagerService profileManagerService) {
 		this.profileManagerService = profileManagerService;
 	}
 	
-	public void setStatsManagerService(
+	/*public void setStatsManagerService(
 			IStatsManagerService statsManagerService) {
 		this.statsManagerService = statsManagerService;
-	}
+	}*/
 
 
 	public void setFights(FightsHashMap fights) {
@@ -49,13 +48,13 @@ public class NewGameFormController extends SimpleFormController {
 		HttpSession session = request.getSession();
 		UserDto user = (UserDto) session.getAttribute("user");
 		ProfileDto profile = profileManagerService.getProfileByUser(user);
-		StatsDto stats = statsManagerService.getStatsByUser(user);
+		//StatsDto stats = statsManagerService.getStatsByUser(user);
 		GameDto game = new GameDto();
 		
 		FighterDto fighter = new FighterDto();
 		
 		fighter.setAvatar(profile.getAvatar());
-		fighter.setHealth(stats.getStrength()*20);
+		//fighter.setHealth(stats.getStrength()*20);
 		fighter.setId(user.getUserId());
 		fighter.setNickName(profile.getNickName());
 		

@@ -17,7 +17,6 @@ import com.epam.publicenemies.dto.ProfileDto;
 import com.epam.publicenemies.dto.StatsDto;
 import com.epam.publicenemies.dto.UserDto;
 import com.epam.publicenemies.service.IProfileManagerService;
-import com.epam.publicenemies.service.IStatsManagerService;
 import com.epam.publicenemies.web.memory.FightsHashMap;
 import com.epam.publicenemies.web.validators.RegisterUserFormValidator;
 
@@ -26,14 +25,15 @@ public class JoinGameFormController extends SimpleFormController {
 	private Logger log = Logger.getLogger(RegisterUserFormValidator.class);
 	private FightsHashMap fights;
 	private IProfileManagerService profileManagerService;
-	private IStatsManagerService statsManagerService;
+	//private IStatsManagerService statsManagerService;
 
 	public void setProfileManagerService(
 			IProfileManagerService profileManagerService) {
 		this.profileManagerService = profileManagerService;
 	}
+}
 	
-	public void setStatsManagerService(
+/*	public void setStatsManagerService(
 			IStatsManagerService statsManagerService) {
 		this.statsManagerService = statsManagerService;
 	}
@@ -81,4 +81,4 @@ public class JoinGameFormController extends SimpleFormController {
 		GameDto game = new GameDto();
 		return game;
 	}
-}
+}*/

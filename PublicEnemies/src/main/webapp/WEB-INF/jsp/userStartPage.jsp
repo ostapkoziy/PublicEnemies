@@ -43,6 +43,15 @@ A:hover {text-decoration: underline; color: red;}
 
 <body>
 NickName = ${profileInfo.getNickName()}
+<br />
+Weapon1Name = ${profileInfo.getDressedWeapon1().getItemName()}
+<br />
+Weapon2Name = ${profileInfo.getDressedWeapon2().getItemName()}
+<br />
+ArmorName = ${profileInfo.getDressedArmor().getItemName()}
+<br />
+AidName = ${profileInfo.getDressedAid().getItemName()}
+<br />
 	<table align="center">
 		<tr>
 			<td style="background-color:black; width: 100%;">

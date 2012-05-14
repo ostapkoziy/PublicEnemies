@@ -1,41 +1,51 @@
 package com.epam.publicenemies.domain;
 
+
+/**
+ * Armor object
+ * 
+ * @author Chetyrkin S.V.
+ *
+ */
 public class Armor extends Item {
 
-//	private int armorId;
-//	private String armorName;
 	private int armorProtection;
-//	private String armorPicture;
-//	private int armorPrice;
-//	public int getArmorId() {
-//		return armorId;
-//	}
-//	public void setArmorId(int armorId) {
-//		this.armorId = armorId;
-//	}
-//	public String getArmorName() {
-//		return armorName;
-//	}
-//	public void setArmorName(String armorName) {
-//		this.armorName = armorName;
-//	}
+	
+	/**
+	 * Default armor constructor
+	 */
+	public Armor () {
+		super();
+		armorProtection = 0;
+	}
+	
+	/**
+	 * Non-default constructor
+	 * @param armorId - id of armor
+	 * @param armorName - name of armor
+	 * @param armorPicture - picture of armor
+	 * @param armorPrice - price of armor
+	 * @param armorProtection - protection of armor
+	 */
+	public Armor (int armorId, String armorName, String armorPicture, int armorPrice, int armorProtection) {
+		super(armorId, armorName, armorPicture, armorPrice);
+		this.armorProtection = armorProtection;
+	}
+	
+	/**
+	 * Get Armor protection
+	 * @return armor protection
+	 */
 	public int getArmorProtection() {
 		return armorProtection;
 	}
+	
+	/**
+	 * Set Armor protection
+	 * @param armorProtection - protection of armor
+	 */
 	public void setArmorProtection(int armorProtection) {
 		this.armorProtection = armorProtection;
 	}
-//	public String getArmorPicture() {
-//		return armorPicture;
-//	}
-//	public void setArmorPicture(String armorPicture) {
-//		this.armorPicture = armorPicture;
-//	}
-//	public int getArmorPrice() {
-//		return armorPrice;
-//	}
-//	public void setArmorPrice(int armorPrice) {
-//		this.armorPrice = armorPrice;
-//	}
 
 }

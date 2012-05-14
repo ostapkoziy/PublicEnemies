@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.epam.publicenemies.domain.Profile;
 import com.epam.publicenemies.dto.ProfileDto;
 import com.epam.publicenemies.service.IProfileManagerService;
 
@@ -42,7 +43,7 @@ public class EditProfileFormController {
 	public ModelAndView showForm(HttpServletRequest request)	{
 		ModelAndView mav = new ModelAndView(); 
 		log.info("Showing editProfile form");
-		ProfileDto pd = profileManagerService.getProfileByUserId((Integer) request.getSession().getAttribute("userId"));
+		Profile pd = profileManagerService.getProfileByUserId((Integer) request.getSession().getAttribute("userId"));
 		if (pd != null) {
 			log.info("Profile has been fetched successfully");
 		} else {
