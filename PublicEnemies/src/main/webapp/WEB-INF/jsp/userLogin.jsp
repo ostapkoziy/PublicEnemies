@@ -10,7 +10,7 @@
 	rel="stylesheet" />
 <style type="text/css">
 body {
-	background-image: url(img/bg_city.jpg);
+	background-image: url(img/bg_city.png);
 	color: white;
 	font-family: 'impact';
 	font-size: 14pt;
@@ -93,7 +93,7 @@ a {
 <body>
 	<table align="center">
 		<tr>
-			<td align="center"><img src="img/gamelogo.jpg"></img></td>
+			<td align="center"><img src="img/gamelogo.png"></img></td>
 		</tr>
 		<tr>
 			<table class="sample" align="center" width="300">

@@ -16,7 +16,7 @@
 <title>Registration</title>
 <style type="text/css">
 body {
-	background-image: url('img/bg_city.jpg');
+	background-image: url('img/bg_city.png');
 }
 
 h2 {
@@ -92,7 +92,7 @@ a {
 }
 
 body {
-	background-image: url(img/bg_city.jpg);
+	background-image: url(img/bg_city.png);
 	color: white;
 }
 
@@ -106,7 +106,7 @@ h1 {
 <body>
 	<table align="center">
 		<tr>
-			<td><img src="img/gamelogo.jpg"></img></td>
+			<td><img src="img/gamelogo.png"></img></td>
 		</tr>
 		<tr>
 			<td>

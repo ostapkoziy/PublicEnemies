@@ -20,7 +20,7 @@
 
 <style type="text/css">
 body {
-	background-image: url(img/bg_city.jpg);
+	background-image: url(img/bg_city.png);
 	color: white;
 	font-family: 'impact';
 	font-size: 14pt;
@@ -42,7 +42,6 @@ A:hover {text-decoration: underline; color: red;}
 </style>
 
 <body>
-NickName = ${profileInfo.getNickName()}
 	<table align="center">
 		<tr>
 			<td style="background-color:black; width: 100%;">
@@ -50,41 +49,41 @@ NickName = ${profileInfo.getNickName()}
 				<table>
 					<tr>
 						<td width="100" align="left">
-							<img src="img/gamelogo_small.jpg" width="100px"></img>
+							<img src="img/gamelogo_small.png" width="100px"></img>
 						</td>
 						<td width="40" valign="middle" align="right">
-							<img src="img/coin.png" width="40px" title="Money"></img>
+							<img src="img/stats/coin.png" width="40px" title="Money"></img>
 						</td>
 						<td width="20" valign="middle" align="left">
 							${profileInfo.getMoney()}
 						</td>
 						<td width="80" valign="middle" align="right">
-							<img src="img/hp.png" width="40px" title="Hit Points"></img>
+							<img src="img/stats/exp.png" width="40px" title="Experience"></img>
 						</td>
 						<td width="20" valign="middle" align="left">
-							Exp?! ${profileInfo.getExperience()}
+							${profileInfo.getExperience()}
 						</td>
 						<td width="80" valign="middle" align="right">
-							<img src="img/strength.png" width="40px" title="Strength"></img>
+							<img src="img/stats/strength.png" width="40px" title="Strength"></img>
 						</td>
 						<td width="20" valign="middle" align="left">
 							${profileInfo.getStrength()}
 						</td>
 						<td width="80" valign="middle" align="right">
-							<img src="img/agility.png" width="40px" title="Agility"></img>
+							<img src="img/stats/agility.png" width="40px" title="Agility"></img>
 						</td>
 						<td width="20" valign="middle" align="left">
 							${profileInfo.getAgility()}
 						</td>
 						<td width="80" valign="middle" align="right">
-							<img src="img/inteligence.png" width="40px" title="Inteligence"></img>
+							<img src="img/stats/inteligence.png" width="40px" title="Inteligence"></img>
 						</td>
 						<td width="20" valign="middle" align="left">
 							${profileInfo.getIntellect()}
 						</td>
 						<td width="100" align="right">
 							<a href="editProfile.html">
-							click -><img src="img/avatars/gangster.gif" title="${profileInfo.getNickName()}'s profile" border="0" width="40px"></img>
+							<img src="img/avatars/angelina.png" title="${profileInfo.getNickName()}'s profile" border="0" width="40px"></img>
 							</a>
 						</td>
 						<td width="30" align="center">
@@ -98,7 +97,7 @@ NickName = ${profileInfo.getNickName()}
 			<table align="center" height="500" border="2">
 				<tr>
 					<td align="center">
-						<img class="map" id="player1" src="img/bw_back.jpg" class="map" usemap="#table1">
+						<img class="map" id="player1" src="img/bw_back.png" class="map" usemap="#table1">
 						<map name="table1" id="map_fight">
 							<area href="newJoinGame.html" data-maphilight='{"strokeColor":"888811","strokeWidth":1,"fillColor":"888811","fillOpacity":0.5}' id="player1" title="fight" shape="poly" coords="675,99,726,78,725,37,744,26,773,31,772,48,886,0,1145,0,1191,13,1194,530,1157,536,1128,544,1095,534,1076,533,1064,520,1048,515,1033,515,1008,513,1003,446,997,360,990,264,984,196,981,174,977,141,933,134,875,125,832,117,812,113,796,105,775,112,773,102,750,101,746,109,712,106">
 							<area href="#" data-maphilight='{"strokeColor":"888811","strokeWidth":0,"fillColor":"888811","fillOpacity":0.5}' id="player1" title="club" shape="poly" coords=" 775,116,818,114,984,142,985,215,998,356,1008,517,970,516,948,523,937,526,927,537,889,541,881,545,878,555,864,556,867,541,854,543,785,544,785,457,782,351,775,116">

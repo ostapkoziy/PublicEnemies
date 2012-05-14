@@ -8,7 +8,7 @@
 <script type="text/javascript" src="js/jquery-1.7.2.js"></script>
 <style type="text/css">
 body {
-	background-image: url('img/bg_city.jpg');
+	background-image: url('img/bg_city.png');
 	color: white;
 	font-family: 'impact';
 	font-size: 14pt;
@@ -62,7 +62,7 @@ $("document").ready(function(){
 				<table width="100%">
 					<tr>
 						<td width="100" align="left">
-							<img src="img/gamelogo_small.jpg" width="100px"></img>
+							<img src="img/gamelogo_small.png" width="100px"></img>
 						</td>
 						<td width="40" valign="middle" align="right">
 							<img src="img/coin.png" width="40px" title="Money"></img>
@@ -95,7 +95,7 @@ $("document").ready(function(){
 							8
 						</td>
 						<td width="100" align="right">
-							<img src="img/avatars/gangster.gif" title="${user_email}'s profile" border="1" width="40px"></img>
+							<img src="img/avatars/gangster.png" title="${user_email}'s profile" border="1" width="40px"></img>
 						</td>
 						<td width="30" align="center">
 							<a href="logout.html">Logout</a> <br />
