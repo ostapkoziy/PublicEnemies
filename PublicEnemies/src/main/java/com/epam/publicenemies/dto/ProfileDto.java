@@ -2,153 +2,155 @@ package com.epam.publicenemies.dto;
 
 import com.epam.publicenemies.domain.UCharacter;
 import com.epam.publicenemies.domain.User;
+import com.epam.publicenemies.domain.Weapon;
+import com.epam.publicenemies.domain.Aid;
+import com.epam.publicenemies.domain.Armor;
 
 public class ProfileDto {
-	// user fields
-	private int userId; 
-	private int profileId;
-	private int money;
-	private String avatar;
-	private String nickName;
+
+	private User pUser;
+//	private int userId; 
+//	private int profileId;
+//	private int money;
+//	private String avatar;
+//	private String nickName;
 	// character fields
-	private boolean sex;
-	private String profession;
-	private int fightsTotal;
-	private int experience;
-	private int strength;
-	private int agility;
-	private int intellect;
-	private int fightsWon;
+	private UCharacter pCharacter;
+//	private boolean sex;
+//	private String profession;
+//	private int fightsTotal;
+//	private int experience;
+//	private int strength;
+//	private int agility;
+//	private int intellect;
+//	private int fightsWon;
 	// id of items
-	private int weapon1Id;
-	private int weapon2Id;
-	private int armorId;
-	private int aidId;
+	private Armor pArmor;
+	private Aid pAid;
+	private Weapon pWeapon1;
+	private Weapon pWeapon2;
+//	private int weapon1Id;
+//	private int weapon2Id;
+//	private int armorId;
+//	private int aidId;
 	
-	public ProfileDto() {}
+	public ProfileDto() {
+		pUser = new User();
+		pCharacter = new UCharacter();
+		pArmor = new Armor();
+		pAid = new Aid();
+		pWeapon1 = new Weapon();
+		pWeapon2 = new Weapon();
+	}
 	
-	public ProfileDto(User user, UCharacter userChar) {
-		userId 		= user.getUserId();
-		money 		= user.getMoney(); 
-		nickName 	= user.getNickName();
-		avatar 		= user.getAvatar();
+	public ProfileDto(User user, UCharacter character) {
+		this.pUser = user;
+		this.pCharacter = character;
 		
-		profileId 	= userChar.getCharacterId();
-		sex 		= userChar.isSex();
-		profession 	= userChar.getProfession();
-		fightsTotal = userChar.getFightsTotal();
-		experience 	= userChar.getExperience();
-		strength 	= userChar.getStrength();
-		agility 	= userChar.getAgility();
-		intellect 	= userChar.getIntellect();
-		fightsWon 	= userChar.getFightsWon();
-		weapon1Id 	= userChar.getWeapon1();
-		weapon2Id 	= userChar.getWeapon2();
-		armorId 	= userChar.getArmor();
 	}
 
 	public int getUserId() {
-		return userId;
+		return pUser.getUserId();
 	}
 	public void setUserId(int userId) {
-		this.userId = userId;
+		pUser.setUserId(userId);
 	}
 	public boolean isSex() {
-		return sex;
+		return pCharacter.isSex();
 	}
 	public void setSex(boolean sex) {
-		this.sex = sex;
+		pCharacter.setSex(sex);
 	}
 	public int getMoney() {
-		return money;
+		return pUser.getMoney();
 	}
 
 	public void setMoney(int money) {
-		this.money = money;
+		pUser.setMoney(money);
 	}
 	public int getExperience() {
-		return experience;
+		return pCharacter.getExperience();
 	}
 	public void setExperience(int experience) {
-		this.experience = experience;
+		pCharacter.setExperience(experience);
 	}
 	public int getStrength() {
-		return strength;
+		return pCharacter.getStrength();
 	}
 	public void setStrength(int strength) {
-		this.strength = strength;
+		pCharacter.setStrength(strength);
 	}
 	public int getAgility() {
-		return agility;
+		return pCharacter.getAgility();
 	}
 	public void setAgility(int agility) {
-		this.agility = agility;
+		pCharacter.setAgility(agility);
 	}
 	public int getIntellect() {
-		return intellect;
+		return pCharacter.getIntellect();
 	}
 	public void setIntellect(int intellect) {
-		this.intellect = intellect;
+		pCharacter.setIntellect(intellect);
 	}
 	public int getWeapon1Id() {
-		return weapon1Id;
+		return pWeapon1.getItemId();
 	}
 	public void setWeapon1Id(int weapon1Id) {
-		this.weapon1Id = weapon1Id;
+		pWeapon1.setItemId(weapon1Id);
 	}
 	public int getWeapon2Id() {
-		return weapon2Id;
+		return pWeapon2.getItemId();
 	}
 	public void setWeapon2Id(int weapon2Id) {
-		this.weapon2Id = weapon2Id;
+		pWeapon2.setItemId(weapon2Id);
 	}
 	public int getArmorId() {
-		return armorId;
+		return pArmor.getItemId();
 	}
 	public void setArmorId(int armorId) {
-		this.armorId = armorId;
+		pArmor.setItemId(armorId);
 	}
 	public int getAidId() {
-		return aidId;
+		return pAid.getItemId();
 	}
 	public void setAidId(int aidId) {
-		this.aidId = aidId;
+		pAid.setItemId(aidId);
 	}
 	public int getProfileId() {
-		return profileId;
+		return pUser.getCharacterId();
 	}
 	public void setProfileId(int profileId) {
-		this.profileId = profileId;
+		pUser.getCharacterId();
 	}
 	public String getNickName() {
-		return nickName;
+		return pUser.getNickName();
 	}
 	public void setNickName(String nickName) {
-		this.nickName = nickName;
+		pUser.setNickName(nickName);
 	}
 	public String getAvatar() {
-		return avatar;
+		return pUser.getAvatar();
 	}
 	public void setAvatar(String avatar) {
-		this.avatar = avatar;
+		pUser.setAvatar(avatar);
 	}
 	
 	public String getProfession() {
-		return profession;
+		return pCharacter.getProfession();
 	}
 	public void setProfession(String profession) {
-		this.profession = profession;
+		pCharacter.setProffesion(profession);
 	}
 	public int getFightsTotal() {
-		return fightsTotal;
+		return pCharacter.getFightsTotal();
 	}
 	public void setFightsTotal(int fightsTotal) {
-		this.fightsTotal = fightsTotal;
+		pCharacter.setFightsTotal(fightsTotal);
 	}
 	public int getFightsWon() {
-		return fightsWon;
+		return pCharacter.getFightsWon();
 	}
 	public void setFightsWon(int fightsWon) {
-		this.fightsWon = fightsWon;
+		pCharacter.setFightsWon(fightsWon);
 	}
 }

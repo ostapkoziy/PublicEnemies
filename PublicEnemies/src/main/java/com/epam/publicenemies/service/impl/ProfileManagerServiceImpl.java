@@ -16,6 +16,7 @@ package com.epam.publicenemies.service.impl;
 import org.apache.log4j.Logger;
 
 import com.epam.publicenemies.dao.IProfileDao;
+import com.epam.publicenemies.domain.Profile;
 import com.epam.publicenemies.domain.UCharacter;
 import com.epam.publicenemies.domain.User;
 import com.epam.publicenemies.dto.ProfileDto;
@@ -28,7 +29,7 @@ import com.epam.publicenemies.web.LoginUserFormController;
  */
 public class ProfileManagerServiceImpl implements IProfileManagerService {
 
-	private Logger log	= Logger.getLogger(LoginUserFormController.class);
+	private Logger log	= Logger.getLogger(ProfileManagerServiceImpl.class);
 	
 	private IProfileDao profileDao;
 
@@ -41,16 +42,18 @@ public class ProfileManagerServiceImpl implements IProfileManagerService {
 	 * @see com.epam.publicenemies.service.IProfileManagerService#getProfileByUserId(int)
 	 */
 	@Override
-	public ProfileDto getProfileByUserId(int userId) {
-		User user = profileDao.getUserById(userId);
-		if (user == null) {
+	public Profile getProfileByUserId(int userId) {
+		Profile prof = profileDao.getProfile(userId);
+		//User user = profileDao.getUserById(userId);
+		if (prof == null) {
 			log.info("ProfileDto: getProfileByUser: user was not found");
 			return null; 
 		}
-		log.info("User has been fetched with userId = " + user.getUserId());
-		UCharacter userChar = profileDao.getCharacterById(user.getCharacterId());
+		log.info("User has been fetched with userId = " + prof.getUserId());
+		UCharacter userChar = profileDao.getCharacterById(prof.getProfileId());
 		// TODO: Not sure: is it allowed that dto classes knows about domain classes
-		return  new ProfileDto(user, userChar);		
+		//return  new ProfileDto(user, userChar);
+		return prof; 
 	}	
 
 	/*
@@ -69,10 +72,11 @@ public class ProfileManagerServiceImpl implements IProfileManagerService {
 	 * 
 	 * Updated by I. Kostyrko by May 2, 2012
 	 * @see com.epam.publicenemies.service.IProfileManagerService#getProfileByUser(com.epam.publicenemies.dto.UserDto)
+	 * no matter
 	 */
 	@Override
 	public ProfileDto getProfileByUser(UserDto userDto) {
-		return getProfileByUserId(userDto.getUserId()); 
+		return new ProfileDto(); //getProfileByUserId(userDto.getUserId()); 
 	}
 
 	/*

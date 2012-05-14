@@ -1,7 +1,9 @@
 package com.epam.publicenemies.service;
 
+import com.epam.publicenemies.domain.Profile;
 import com.epam.publicenemies.dto.ProfileDto;
 import com.epam.publicenemies.dto.UserDto;
+
 
 public interface IProfileManagerService {
 	
@@ -41,6 +43,6 @@ public interface IProfileManagerService {
 	 * @param userId
 	 * @return profile, that corresponds to passed userId
 	 */
-	ProfileDto getProfileByUserId(int userId);
+	Profile getProfileByUserId(int userId);
 
 }

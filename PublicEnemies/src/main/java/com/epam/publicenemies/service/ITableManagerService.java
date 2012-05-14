@@ -11,7 +11,8 @@ public interface ITableManagerService {
 	 */
 	void createTables();
 	
-	/*
-	 * TODO: fill tables with data 
+	/**
+	 * Fills all tables with some data
 	 */
+	void fillAllTables();
 }

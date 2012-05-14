@@ -10,7 +10,7 @@ import com.epam.publicenemies.web.RegisterUserFormController;
 
 public class UserManagerServiceImpl implements IUserManagerService {
 	
-	private Logger	log	= Logger.getLogger(RegisterUserFormController.class);
+	private Logger	log	= Logger.getLogger(UserManagerServiceImpl.class);
 	
 	private IUserDao userDao;
 

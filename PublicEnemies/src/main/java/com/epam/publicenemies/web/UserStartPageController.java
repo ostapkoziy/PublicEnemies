@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
 
+import com.epam.publicenemies.domain.Profile;
 import com.epam.publicenemies.dto.ProfileDto;
 import com.epam.publicenemies.service.IProfileManagerService;
 
@@ -18,7 +19,7 @@ import com.epam.publicenemies.service.IProfileManagerService;
 
 public class UserStartPageController implements Controller {
 	
-	private Logger log	= Logger.getLogger(LoginUserFormController.class);
+	private Logger log	= Logger.getLogger(UserStartPageController.class);
 	
 	@Autowired
 	@Qualifier("profileManagerService")
@@ -34,7 +35,8 @@ public class UserStartPageController implements Controller {
 		ModelAndView mav = new ModelAndView(); 
 		log.info("Showing userStartPage");
 		//log.info("Session: userId = " + request.getSession().getAttribute("userId"));		
-		ProfileDto pd = profileManagerService.getProfileByUserId((Integer) request.getSession().getAttribute("userId"));
+		//ProfileDto pd = profileManagerService.getProfileByUserId((Integer) request.getSession().getAttribute("userId"));
+		Profile pd = profileManagerService.getProfileByUserId((Integer) request.getSession().getAttribute("userId"));
 		if (pd != null) {
 			log.info("Profile has been fetched successfully");
 		} else {			
