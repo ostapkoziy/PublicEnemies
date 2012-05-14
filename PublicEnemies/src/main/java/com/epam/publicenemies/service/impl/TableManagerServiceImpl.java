@@ -25,6 +25,12 @@ public class TableManagerServiceImpl implements ITableManagerService {
 	public void createTables() {
 		tableDao.createAllTables();		
 	}
+
+	@Override
+	public void fillAllTables() {
+		tableDao.fillAllTables();
+	}
+	
 	
 	/* Old code here   
 	

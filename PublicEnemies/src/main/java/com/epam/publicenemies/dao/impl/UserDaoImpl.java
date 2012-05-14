@@ -33,13 +33,9 @@ import com.epam.publicenemies.web.listeners.OnContextLoaderListener;
  * */
 public class UserDaoImpl implements IUserDao {
 
-	private Logger log = Logger.getLogger(OnContextLoaderListener.class);
+	private Logger log = Logger.getLogger(UserDaoImpl.class);
 	private JdbcTemplate jdbcTemplate;
-	/* Query template for creating user */
-	private final String INSERT_USER_SQL = "INSERT INTO users (email, password, nickName, userCharacter) VALUES (?,?,?,?)";
-	private final String INSERT_CHARACTER_SQL = "INSERT INTO characters (sex) VALUES (?)";
-	// ... put list of queries here
-
+	
 	
 	public void setDataSource(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
@@ -73,6 +69,7 @@ public class UserDaoImpl implements IUserDao {
 		}
 		// will contain id of inserted entry
 		KeyHolder keyHolder = new GeneratedKeyHolder();
+		final String INSERT_USER_SQL = "INSERT INTO users (email, password, nickName, userCharacter) VALUES (?,?,?,?)";
 		jdbcTemplate.update(
 				new PreparedStatementCreator() {
 					@Override
@@ -96,7 +93,7 @@ public class UserDaoImpl implements IUserDao {
 	* @return boolean exist or not
 	* */
 	public boolean checkExistedUserEmail (String email){
-		String query = "SELECT userId FROM users WHERE email = ?";
+		final String query = "SELECT userId FROM users WHERE email = ?";
 		
 		int i = jdbcTemplate.queryForInt(query,
 				new Object[] {email}, new RowMapper<Integer>() {
@@ -124,7 +121,7 @@ public class UserDaoImpl implements IUserDao {
 	* @return User object
 	* */
 	public User findUserById(final int userId) {
-		String query = "SELECT * FROM users WHERE userId=?";
+		final String query = "SELECT * FROM users WHERE userId=?";
 		List<User> list = jdbcTemplate.query(query, new Object[]{userId}, new RowMapper<User>() {
 			public User mapRow(ResultSet resultSet, int rowNum)
 					throws SQLException {
@@ -151,9 +148,8 @@ public class UserDaoImpl implements IUserDao {
 	* @param password - user password
 	* @return User object
 	* */
-	@Deprecated
 	public User findUserByEmailAndPassword(final String email, final String password){
-		String query = "SELECT * FROM users WHERE email=? AND password=?";
+		final String query = "SELECT * FROM users WHERE email=? AND password=?";
 		List <User> list = jdbcTemplate.query(query, new Object[]{email, password}, new RowMapper<User>() {
 			public User mapRow(ResultSet resultSet, int rowNum)
 					throws SQLException {
@@ -177,7 +173,7 @@ public class UserDaoImpl implements IUserDao {
 	* @return User object
 	* */
 	public User findUserByEmail(final String email) {
-		String query = "SELECT * FROM users WHERE email=?";
+		final String query = "SELECT * FROM users WHERE email=?";
 		List <User> list = jdbcTemplate.query(query, new Object[]{email}, new RowMapper<User>() {
 			public User mapRow(ResultSet resultSet, int rowNum)
 					throws SQLException {
@@ -201,7 +197,7 @@ public class UserDaoImpl implements IUserDao {
 	* @return true if operation successfully 
 	* */
 	public boolean updateUserEmailAndPassword(User user) {
-		String query = "UPDATE users SET email=?, password=?, WHERE userId = ?";
+		final String query = "UPDATE users SET email=?, password=?, WHERE userId = ?";
 		int i = jdbcTemplate.update(query,
 				new Object[] { user.getEmail(), user.getPassword(),
 						user.getUserId() });
@@ -216,7 +212,7 @@ public class UserDaoImpl implements IUserDao {
 	* @return true if operation successfully  
 	* */
 	public boolean updateUserAvatar(int userId, String avatar){
-		String query = "UPDATE users SET avatar=? WHERE userId = ?";
+		final String query = "UPDATE users SET avatar=? WHERE userId = ?";
 		int i = jdbcTemplate.update(query,
 				new Object[] {avatar, userId});
 		if (i==0) return false;
@@ -230,7 +226,7 @@ public class UserDaoImpl implements IUserDao {
 	* @return true if operation successfully  
 	* */
 	public boolean updateUserNickName(int userId, String nickName){
-		String query = "UPDATE users SET nickName=? WHERE userId = ?";
+		final String query = "UPDATE users SET nickName=? WHERE userId = ?";
 		int i = jdbcTemplate.update(query,
 				new Object[] {nickName, userId});
 		if (i==0) return false;
@@ -243,7 +239,7 @@ public class UserDaoImpl implements IUserDao {
 	* @return true if operation successfully  
 	* */
 	public boolean updateUserInfo (User user){
-		String query = "UPDATE users SET email=?, password=?, nickName=?, avatar=?, WHERE userId = ?";
+		final String query = "UPDATE users SET email=?, password=?, nickName=?, avatar=?, WHERE userId = ?";
 		int i = jdbcTemplate.update(query,
 				new Object[] {user.getEmail(), user.getPassword(), user.getNickName(), user.getAvatar(), user.getUserId()});
 		if (i==0) return false;
@@ -255,7 +251,7 @@ public class UserDaoImpl implements IUserDao {
 	* @param userId - id of user
 	* */
 	public boolean deleteUser(User user) {
-		String query = "DELETE FROM users WHERE id = ?";
+		final String query = "DELETE FROM users WHERE id = ?";
 		int i = jdbcTemplate.update(query, new Object[] { user.getUserId() });
 		if (i==0) return false;
 		else return true;
@@ -266,7 +262,7 @@ public class UserDaoImpl implements IUserDao {
 	* @param userId - id of user
 	* */
 	public boolean deleteUser(int userId){
-		String query = "DELETE FROM users WHERE id = ?";
+		final String query = "DELETE FROM users WHERE id = ?";
 		int i = jdbcTemplate.update(query, new Object[] { userId });
 		if (i==0) return false;
 		else return true;
@@ -291,13 +287,14 @@ public class UserDaoImpl implements IUserDao {
 			}
 		});
 	}
+	
 	/**
 	 * Created character entry. Uses before user creation
 	 * @return identifier
 	 */
 	private int createCharacterEntry() {
 		KeyHolder keyHolder = new GeneratedKeyHolder();
-		//log.info("UserDaoImpl.createCharacterEntry: try to create new one");
+		final String INSERT_CHARACTER_SQL = "INSERT INTO characters (sex) VALUES (?)";
 		jdbcTemplate.update(
 				new PreparedStatementCreator() {
 					@Override

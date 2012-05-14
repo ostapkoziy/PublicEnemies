@@ -54,6 +54,11 @@
 	<!-- +++++++++++++++++++++++++++++++++++ CONTROLLERS +++++++++++++++++++++++++++++++++++++++++++++ -->
 	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 
+
+	
+
+
+
 	<bean id="editProfileFormController" class="com.epam.publicenemies.web.EditProfileFormController">
 		<!--  Need help -->
 		<!-- <property name="profileManagerService" ref="profileManagerService"></property> -->

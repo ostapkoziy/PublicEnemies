@@ -108,7 +108,7 @@ a {
 
 							<font color="red"><br /> <form:errors path="email" /> <br /></font>
 							<h2 align="center">Password</h2>
-							<form:input path="password" />
+							<form:input type="password" path="password"  />
 
 							<font color="red"><br /> <form:errors path="password" />
 								<br /></font>

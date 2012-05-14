@@ -8,6 +8,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import com.epam.publicenemies.dao.ITableDao;
 import com.epam.publicenemies.web.listeners.OnContextLoaderListener;
 
+
+//TODO check for table creations
 /**
  * This class intended to create and delete all necessary tables
  * Be caution - its destroys all existing data in db
@@ -16,7 +18,7 @@ import com.epam.publicenemies.web.listeners.OnContextLoaderListener;
  */
 public class TableDaoImpl implements ITableDao {
 	
-	private Logger log = Logger.getLogger(OnContextLoaderListener.class);
+	private Logger log = Logger.getLogger(TableDaoImpl.class);
 	
 	private JdbcTemplate jdbcTemplate;
 
@@ -48,7 +50,7 @@ public class TableDaoImpl implements ITableDao {
 		createUsersTable();		
 		log.info("TableDaoImpl: \"user\" added");
 	}
-	
+
 	/**
 	 * Destroys tables if exists 
 	 * 
@@ -84,7 +86,141 @@ public class TableDaoImpl implements ITableDao {
 		log.info("TableDaoImpl: all tables DELETED");
 	}	
 	
+	public void fillAllTables()  {
+		fillWeapons();
+		log.info("TableDaoImpl: \"weapons\" filled");
+		fillAids();
+		log.info("TableDaoImpl: \"aids\" filled");
+		fillArmors();
+		log.info("TableDaoImpl: \"armors\" filled");
+		fillCharacters();
+		log.info("TableDaoImpl: \"characters\" filled");
+		fillCharactersTrunks();
+		log.info("TableDaoImpl: \"charactersTrunks\" filled");
+		fillChatProperties();
+		log.info("TableDaoImpl: \"chatProperties\" filled");
+		fillUsers();
+		log.info("TableDaoImpl: \"users\" filled");
+	}
+	
+	
 	// below methods are hidden from external access
+	
+	private void fillWeapons(){
+		StringBuilder sql = new StringBuilder("INSERT INTO weapons ");
+		sql.append("(weaponName, weaponHitPoints, weaponType, weaponPrice) ");
+		sql.append("VALUES ('valera', 500, 1, 1000)");
+		jdbcTemplate.update(sql.toString());
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO weapons ");
+		sql.append("(weaponName, weaponHitPoints, weaponType, weaponPrice) ");
+		sql.append("VALUES ('zatochka', 10, 0, 10)");
+		jdbcTemplate.update(sql.toString());
+	}
+	
+	private void fillArmors(){
+		StringBuilder sql = new StringBuilder("INSERT INTO armors ");
+		sql.append("(armorName, armorProtection, armorPrice) ");
+		sql.append("VALUES ('kevlavr', 50, 1500)");
+		jdbcTemplate.update(sql.toString());
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO armors ");
+		sql.append("(armorName, armorProtection, armorPrice) ");
+		sql.append("VALUES ('bronik', 500, 7000)");
+		jdbcTemplate.update(sql.toString());
+	}
+	
+	private void fillAids() {
+		StringBuilder sql = new StringBuilder("INSERT INTO aids ");
+		sql.append("(aidName, AidType, aidEffect, aidPrice) ");
+		sql.append("VALUES ('cytramon', 'HP', 30, 10)");
+		jdbcTemplate.update(sql.toString());
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO aids ");
+		sql.append("(aidName, AidType, aidEffect, aidPrice) ");
+		sql.append("VALUES ('amphetamine', 'damage', 50, 1050)");
+		jdbcTemplate.update(sql.toString());
+	}
+	
+	private void fillCharacters() {
+		StringBuilder sql = new StringBuilder("INSERT INTO characters ");
+		sql.append("(experience, strength, agility, intellect, profession, ");
+		sql.append("fightsTotal, fightsWon, weapon1, weapon2, aid, armor) ");
+		sql.append("VALUES (500, 20, 25, 1, 'pharaon', 50, 1, 1, 2, 3, 4)");
+		jdbcTemplate.update(sql.toString());
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO characters ");
+		sql.append("(sex, strength, agility, intellect, profession, ");
+		sql.append("fightsTotal, fightsWon, weapon1, weapon2, aid, armor) ");
+		sql.append("VALUES (0, 5, 50, 6, 'baba', 20, 5, 5, 6, 7, 8)");
+		jdbcTemplate.update(sql.toString());
+	}
+	
+	private void fillCharactersTrunks() {
+		StringBuilder sql = new StringBuilder("INSERT INTO charactersTrunks ");
+		sql.append("(itemId, itemType, characterId) ");
+		sql.append("VALUES (1, 1, 1)");
+		jdbcTemplate.update(sql.toString());
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO charactersTrunks ");
+		sql.append("(itemId, itemType, characterId) ");
+		sql.append("VALUES (2, 1, 1)");
+		jdbcTemplate.update(sql.toString());
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO charactersTrunks ");
+		sql.append("(itemId, itemType, characterId) ");
+		sql.append("VALUES (1, 2, 1)");
+		jdbcTemplate.update(sql.toString());
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO charactersTrunks ");
+		sql.append("(itemId, itemType, characterId) ");
+		sql.append("VALUES (1, 3, 1)");
+		jdbcTemplate.update(sql.toString());
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO charactersTrunks ");
+		sql.append("(itemId, itemType, characterId) ");
+		sql.append("VALUES (2, 1, 2)");
+		jdbcTemplate.update(sql.toString());
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO charactersTrunks ");
+		sql.append("(itemId, itemType, characterId) ");
+		sql.append("VALUES (1, 1, 2)");
+		jdbcTemplate.update(sql.toString());
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO charactersTrunks ");
+		sql.append("(itemId, itemType, characterId) ");
+		sql.append("VALUES (2, 2, 2)");
+		jdbcTemplate.update(sql.toString());
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO charactersTrunks ");
+		sql.append("(itemId, itemType, characterId) ");
+		sql.append("VALUES (2, 3, 2)");
+		jdbcTemplate.update(sql.toString());
+	}
+	
+	private void fillChatProperties() {
+		StringBuilder sql = new StringBuilder("INSERT INTO chatProperties ");
+		sql.append("VALUES (1, 'var')");
+		jdbcTemplate.update(sql.toString());
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO chatProperties ");
+		sql.append("VALUES (2, 'rav')");
+		jdbcTemplate.update(sql.toString());
+	}
+	
+	private void fillUsers() {
+		StringBuilder sql = new StringBuilder("INSERT INTO users ");
+		sql.append("(email, password, money, chatProperty, userCharacter, nickName) ");
+		sql.append("VALUES ('janukovych@mail.ru', 'asdf', 1000000, 1, 1, 'president')");
+		jdbcTemplate.update(sql.toString());
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO users ");
+		sql.append("(email, password, money, chatProperty, userCharacter, nickName) ");
+		sql.append("VALUES ('tymoshenko@ukr.net', 'asdf', 100000, 2, 2, 'troublesome')");
+		jdbcTemplate.update(sql.toString());
+	}
+	
+	
 	private void createUsersTable() {
 		StringBuilder sql = new StringBuilder();
 		sql.append("CREATE TABLE users ( ");

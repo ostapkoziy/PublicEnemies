@@ -15,7 +15,7 @@ import com.epam.publicenemies.web.memory.FightsHashMap;
 import com.epam.publicenemies.web.validators.RegisterUserFormValidator;
 
 public class WaitingForOponentPageController extends AbstractController {
-	private Logger log = Logger.getLogger(RegisterUserFormValidator.class);
+	private Logger log = Logger.getLogger(WaitingForOponentPageController.class);
 	private FightsHashMap fights;
 
 	public void setFights(FightsHashMap fights) {

@@ -11,7 +11,7 @@ import com.epam.publicenemies.web.listeners.OnContextLoaderListener;
  *
  */
 public class CreateTableController {
-	private Logger log = Logger.getLogger(OnContextLoaderListener.class);
+	private Logger log = Logger.getLogger(CreateTableController.class);
 	
 	private ITableManagerService tableManagerService;
 	
@@ -29,7 +29,10 @@ public class CreateTableController {
 		tableManagerService.deleteTables();		
 		
 		log.info("CreateTableController - createTables was invoked");
-		tableManagerService.createTables(); 		
+		tableManagerService.createTables(); 
+		
+		log.info("CreateTableController - fillAllTables was invoked");
+		tableManagerService.fillAllTables(); 
 		
 		/* Old version
 		 * This functions replaced into TableDaoIpl

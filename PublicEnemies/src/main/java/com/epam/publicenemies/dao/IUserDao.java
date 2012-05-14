@@ -46,7 +46,6 @@ public interface IUserDao {
 	* @param password - user password
 	* @return User object
 	* */
-	@Deprecated
 	User findUserByEmailAndPassword(String email, String password);
 
 	/**

@@ -18,7 +18,7 @@ import com.epam.publicenemies.service.IProfileManagerService;
 
 public class UserStartPageController implements Controller {
 	
-	private Logger log	= Logger.getLogger(LoginUserFormController.class);
+	private Logger log	= Logger.getLogger(UserStartPageController.class);
 	
 	@Autowired
 	@Qualifier("profileManagerService")

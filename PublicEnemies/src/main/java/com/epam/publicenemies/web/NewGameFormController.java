@@ -23,7 +23,7 @@ import com.epam.publicenemies.web.validators.RegisterUserFormValidator;
 
 @SuppressWarnings("deprecation")
 public class NewGameFormController extends SimpleFormController {
-	private Logger log = Logger.getLogger(RegisterUserFormValidator.class);
+	private Logger log = Logger.getLogger(NewGameFormController.class);
 	private FightsHashMap fights;
 	private IProfileManagerService profileManagerService;
 	private IStatsManagerService statsManagerService;

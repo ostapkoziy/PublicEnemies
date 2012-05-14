@@ -11,6 +11,11 @@ public interface ITableDao {
 	 * Adds necessary tables in db 
 	 */
 	void createAllTables();
+	
+	/**
+	 * Fill tables with some default values
+	 */
+	void fillAllTables();
 	/**
 	 * Removes tables from db 
 	 */

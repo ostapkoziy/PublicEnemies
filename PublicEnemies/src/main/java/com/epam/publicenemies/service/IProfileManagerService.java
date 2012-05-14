@@ -3,6 +3,7 @@ package com.epam.publicenemies.service;
 import com.epam.publicenemies.dto.ProfileDto;
 import com.epam.publicenemies.dto.UserDto;
 
+
 public interface IProfileManagerService {
 	
 	/**

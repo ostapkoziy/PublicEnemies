@@ -20,7 +20,6 @@
 		<filter-name>SessionFilter</filter-name>
 		<url-pattern>/userStartPage.html</url-pattern>
 		<url-pattern>/editProfile.html</url-pattern>
-		<url-pattern>/profileSave.html</url-pattern>
 		<url-pattern>/newJoinGame.html</url-pattern>
 		<url-pattern>/newGame.html</url-pattern>
 		<url-pattern>/joinGame.html</url-pattern>

@@ -14,35 +14,93 @@ import com.epam.publicenemies.dao.IProfileDao;
 import com.epam.publicenemies.domain.Profile;
 import com.epam.publicenemies.domain.UCharacter;
 import com.epam.publicenemies.domain.User;
+import com.epam.publicenemies.domain.Weapon;
+import com.epam.publicenemies.domain.Aid;
+import com.epam.publicenemies.domain.Item;
+import com.epam.publicenemies.dto.WeaponDto;
 import com.epam.publicenemies.web.LoginUserFormController;
 
 public class ProfileDaoImpl implements IProfileDao {
 
-	private Logger log	= Logger.getLogger(LoginUserFormController.class);
+	private Logger log	= Logger.getLogger(ProfileDaoImpl.class);
 	
 	private JdbcTemplate jdbcTemplate;
 
 	public void setDataSource(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
-
+	
 	@Override
-	public void updateProfile(Profile profile) {
-		/*
-		String query = "UPDATE profile SET nickName=?,avatar=?,gender=?,proffesion=?,fightsTotal=?,fightsWon=? WHERE id = ?";
-		jdbcTemplate.update(
-				query,
-				new Object[] { profile.getNickName(), profile.getAvatar(),
-						profile.getGender(), profile.getProffesion(),
-						profile.getFightsTotal(), profile.getFightsWon() });
-		*/
+	public Profile getProfile(final int userId) {
+		Profile profile = new Profile();
+		final User user = getUserById(userId);
+		UCharacter pCharacter = getCharacterById(user.getCharacterId());
+		Integer key = new Integer(0);
+		StringBuilder sql = new StringBuilder();
+		List<Integer> keys = getWeaponKeys(user.getCharacterId());
+		List<Weapon> uWeapons = getWeapons(user.getCharacterId());
+		profile.fillWeaponsList(keys, uWeapons);
+		keys = getAidKeys(user.getCharacterId());
+		List<Aid> uAids = getAids(user.getCharacterId());
+		profile.fillAidsList(keys, uAids);
+		
+		
+		return null;
 	}
-
-	@Override
-	public void deleteProfile(Profile profile) {
-		/*String query = "DELETE FROM profile WHERE id = ?";
-		jdbcTemplate.update(query, new Object[] { profile.getId() });*/
+	
+	private List<Integer> getWeaponKeys (int characterId) {
+		String sql = "SELECT trunkId FROM weapons, charactersTrunks WHERE characterId=? AND itemType=1 AND weaponId=ItemId";
+		List<Integer> keys = jdbcTemplate.query(sql.toString(), new Object[]{characterId},
+				new RowMapper<Integer>() { public Integer mapRow (ResultSet resultSet, int rowNum)
+				throws SQLException{
+					return new Integer(resultSet.getInt("trunkId"));
+				}
+		});
+		return keys;
 	}
+	
+	private List<Weapon> getWeapons (int characterId) {
+		StringBuilder sql = new StringBuilder();
+		sql.append("SELECT weaponId, weaponName, weaponHitPoints, weaponPicture, weaponType, weaponPrice ");
+		sql.append("FROM weapons, charactersTrunks WHERE characterId=? AND itemType=1 AND weaponId=ItemId");
+		List<Weapon> weapons = jdbcTemplate.query(sql.toString(), new Object[]{characterId}, 
+				new RowMapper<Weapon>() { public Weapon mapRow(ResultSet resultSet, int rowNum)
+					throws SQLException {
+				return new Weapon (resultSet.getInt("weaponId"), resultSet.getString("weaponName"),
+						resultSet.getInt("weaponHitPoints"), resultSet.getString("weaponPicture"),
+						resultSet.getBoolean("weaponType"), resultSet.getInt("weaponPrice"));
+				}
+		});
+		return weapons;
+	}
+	
+	private List<Integer> getAidKeys (int characterId) {
+		String sql = "SELECT trunkId FROM aids, charactersTrunks WHERE characterId=? AND itemType=2 AND aidId=ItemId";
+		List<Integer> keys = jdbcTemplate.query(sql.toString(), new Object[]{characterId},
+				new RowMapper<Integer>() { public Integer mapRow (ResultSet resultSet, int rowNum)
+				throws SQLException{
+					return new Integer(resultSet.getInt("trunkId"));
+				}
+		});
+		return keys;
+	}
+	
+	private List<Aid> getAids (int characterId) {
+		StringBuilder sql = new StringBuilder();
+		sql.append("SELECT aidId, aidName, aidType, aidPicture, aidEffect, aidPrice ");
+		sql.append("FROM aids, charactersTrunks WHERE characterId=? AND itemType=2 AND aidId=ItemId");
+		List<Aid> aids = jdbcTemplate.query(sql.toString(), new Object[]{characterId}, 
+				new RowMapper<Aid>() { public Aid mapRow(ResultSet resultSet, int rowNum)
+					throws SQLException {
+				return new Aid (resultSet.getInt("aidId"), resultSet.getString("aidName"),
+						resultSet.getString("aidPicture"), resultSet.getInt("aidPrice"),
+						resultSet.getString("aidType"), resultSet.getInt("aidEffect"));
+				}
+		});
+		return aids;
+	}
+	
+	
 	
 	/**
 	 * Returns necessary user 
@@ -114,6 +172,66 @@ public class ProfileDaoImpl implements IProfileDao {
 				"UPDATE users SET nickName = ?, avatar = ? WHERE userId = ?",
 				new Object[] { nickName, avatar, new Integer(uid) });
 
+	}
+
+	@Override
+	public UCharacter getCharacter(User user) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean updateProfileSex(int characterId, boolean sex) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean updateProfileExpirience(int characterId, int experiance) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean updateProfileStrength(int characterId, int strength) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean updateProfileAgilty(int characterId, int agility) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean updateProfileIntelect(int characterId, int intelect) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean updateProfileProffesion(int characterId, String profession) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean addWonFight(int characterId) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean addLostFight(int characterId) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean deleteCharacter(UCharacter character) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 }

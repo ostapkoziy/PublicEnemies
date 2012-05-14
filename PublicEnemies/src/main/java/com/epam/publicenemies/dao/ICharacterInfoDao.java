@@ -1,12 +1,12 @@
 package com.epam.publicenemies.dao;
 
-import com.epam.publicenemies.domain.UCharacter;
-import com.epam.publicenemies.domain.User;
+//import com.epam.publicenemies.domain.UCharacter;
+import com.epam.publicenemies.domain.*;
 
 
 /**
  * @author Chetyrkin S.V.
- * Updated by Chetyrkin S.V. 27 квіт. 2012
+ * Updated by Chetyrkin S.V. 27 пїЅпїЅпїЅ. 2012
  */
 public interface ICharacterInfoDao {
 

@@ -28,7 +28,7 @@ import com.epam.publicenemies.web.LoginUserFormController;
  */
 public class ProfileManagerServiceImpl implements IProfileManagerService {
 
-	private Logger log	= Logger.getLogger(LoginUserFormController.class);
+	private Logger log	= Logger.getLogger(ProfileManagerServiceImpl.class);
 	
 	private IProfileDao profileDao;
 

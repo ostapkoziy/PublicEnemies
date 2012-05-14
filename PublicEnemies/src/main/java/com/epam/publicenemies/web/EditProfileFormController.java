@@ -24,7 +24,7 @@ import com.epam.publicenemies.service.IProfileManagerService;
 @RequestMapping(value = "/editProfile")
 public class EditProfileFormController {
 	
-	private Logger log	= Logger.getLogger(LoginUserFormController.class);
+	private Logger log	= Logger.getLogger(EditProfileFormController.class);
 	
 	@Autowired
 	@Qualifier("profileManagerService")
