@@ -202,16 +202,10 @@
 	<div id="center">
 		<div id="radio">
 			<div id="hit">
-				<input type="radio" class="radioB" name="hit" value="HEAD" title="HEAD">
-				<input type="radio" class="radioB" name="hit" value="HANDS" title="HANDS">
-				<input type="radio" class="radioB" name="hit" value="BODY" title="BODY">
-				<input type="radio" class="radioB" name="hit" value="LEGS" title="LEGS" checked="checked">
+				<input id="hitInput" type="text" value="Legs" style="width: 50px;">
 			</div>
 			<div id="block">
-				<input type="radio" class="radioB" name="block" value="HEAD" title="HEAD">
-				<input type="radio" class="radioB" name="block" value="HANDS" title="HANDS">
-				<input type="radio" class="radioB" name="block" value="BODY" title="BODY">
-				<input type="radio" class="radioB" name="block" value="LEGS" title="LEGS" checked="checked">
+				<input id="blockInput" type="text" value="Legs" style="width: 50px;">
 			</div>
 			<img id="atackButton" src="img/fight/attack.jpg">
 		</div>

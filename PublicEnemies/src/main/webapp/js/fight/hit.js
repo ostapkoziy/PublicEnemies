@@ -93,11 +93,15 @@ $(function()
 {
 	$("#atackButton").click(function()
 	{
-		var hit = $("#hit input[name=hit]:checked").val();
-		var block = $("#block input[name=block]:checked").val();
+		// var hit = $("#hit input[name=hit]:checked").val();
+		// var block = $("#block input[name=block]:checked").val();
+
+		var hit = $("#hitInput").val();
+		var block = $("#blockInput").val();
+
 		if (hit != undefined & block != undefined)
 		{
-			$.cookie("hit", "true");
+			// $.cookie("hit", "true");
 			hitSend(hit, block);
 		}
 	});
