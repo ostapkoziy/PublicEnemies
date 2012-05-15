@@ -1,5 +1,12 @@
 package com.epam.publicenemies.service;
 
-public interface IShopManagerService {
+import java.util.List;
 
+import com.epam.publicenemies.domain.Aid;
+
+public interface IShopManagerService {
+	
+	List <Aid> getAllAids();
+	
+	void voidMethod(); 
 }

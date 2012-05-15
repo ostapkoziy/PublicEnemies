@@ -38,7 +38,7 @@ public class UserManagerServiceImpl implements IUserManagerService {
 		UserDto returnObj = new UserDto(insertedUser);
 		return returnObj; */		
 		return new UserDto(userDao.findUserById(userDao.registerUser(uEmail,
-				uEmail, uNickName)));
+				uPasswd, uNickName)));
 		/* Old code here
 		User user = new User();
 		user.setUserId(userDTO.getUserId());

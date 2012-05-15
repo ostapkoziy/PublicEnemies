@@ -23,9 +23,9 @@
 	<bean id="profileDao" class="com.epam.publicenemies.dao.impl.ProfileDaoImpl">
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
-<!-- 	<bean id="statsDao" class="com.epam.publicenemies.dao.impl.StatsDaoImpl"> -->
-<!-- 		<property name="dataSource" ref="dataSource"></property> -->
-<!-- 	</bean> -->
+ 	<bean id="aidDao" class="com.epam.publicenemies.dao.impl.AidsDaoImpl"> 
+ 		<property name="dataSource" ref="dataSource"></property>
+ 	</bean>
 
 
 	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
@@ -38,7 +38,7 @@
 		<property name="profileDao" ref="profileDao"></property>
 	</bean>
  	<bean id="shopManagerService" class="com.epam.publicenemies.service.impl.ShopManagerServiceImpl">
-		<!-- <property name="statsDao" ref="statsDao"></property> -->
+		<property name="aidDao" ref="aidDao"> </property>
  	</bean> 
 
 	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
