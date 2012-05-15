@@ -37,9 +37,9 @@
 	<bean id="profileManagerService" class="com.epam.publicenemies.service.impl.ProfileManagerServiceImpl">
 		<property name="profileDao" ref="profileDao"></property>
 	</bean>
-<!-- 	<bean id="statsManagerService" class="com.epam.publicenemies.service.impl.StatsManagerServiceImpl"> -->
-<!-- 		<property name="statsDao" ref="statsDao"></property> -->
-<!-- 	</bean> -->
+ 	<bean id="shopManagerService" class="com.epam.publicenemies.service.impl.ShopManagerServiceImpl">
+		<!-- <property name="statsDao" ref="statsDao"></property> -->
+ 	</bean> 
 
 	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 	<!-- +++++++++++++++++++++++++++++++++++ VALIDATORS ++++++++++++++++++++++++++++++++++++++++++++++ -->
@@ -53,10 +53,6 @@
 	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 	<!-- +++++++++++++++++++++++++++++++++++ CONTROLLERS +++++++++++++++++++++++++++++++++++++++++++++ -->
 	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-
-
-	
-
 
 
 	<bean id="editProfileFormController" class="com.epam.publicenemies.web.EditProfileFormController">
