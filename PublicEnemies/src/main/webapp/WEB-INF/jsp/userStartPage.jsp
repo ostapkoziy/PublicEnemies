@@ -18,28 +18,8 @@
     });</script>
 </head>
 
-<style type="text/css">
-body {
-	background-image: url(img/bg_city.png);
-	color: white;
-	font-family: 'impact';
-	font-size: 14pt;
-}
-h1 {
-	color: red;
-}
-table {
-	width: 100%;
-	height: 100%;
-	background-color: black;
-<!--	opacity: .88;
-	filter: alpha(opacity =   88);
-	-moz-opacity: .88; -->
-}
-A:link {text-decoration: underline; color: white}
-A:visited {text-decoration: none}
-A:hover {text-decoration: underline; color: red;}
-</style>
+<link rel="stylesheet" href="css/userStartPage.css" type="text/css">
+
 
 <body>
 	<table align="center">

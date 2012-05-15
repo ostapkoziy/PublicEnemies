@@ -6,88 +6,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link type="text/css" href="css/smoothness/jquery-ui-1.8.18.custom.css"
-	rel="stylesheet" />
-<style type="text/css">
-body {
-	background-image: url(img/bg_city.png);
-	color: white;
-	font-family: 'impact';
-	font-size: 14pt;
-}
-
-h2 {
-	color: black;
-	font-family: 'impact';
-	font-size: 20pt;
-}
-
-button {
-	font-family: 'impact';
-	font-size: 20px;
-	width: 100px;
-	height: 44px;
-}
-
-table.sample {
-	margin-top: 100px;
-	background-color: #444D48;
-	opacity: .6;
-	filter: alpha(opacity =                 60);
-	-moz-opacity: .6;
-	border-width: 3px;
-	border-spacing: 5px;
-	border-style: outset;
-	border-color: white;
-	border-collapse: separate;
-}
-
-table.sample th {
-	border-width: 0px;
-	padding: 3px;
-	border-style: none;
-	border-color: gray;
-	-moz-border-radius:;
-}
-
-table.sample td {
-	border-width: 0px;
-	padding: 3px;
-	border-style: none;
-	border-color: gray;
-	-moz-border-radius:;
-}
-
-A:link {
-	text-decoration: underline;
-	color: white;
-	font-size: 20pt;
-}
-
-A:visited {
-	text-decoration: underline;
-	color: white;
-	font-size: 20pt;
-}
-
-A:active {
-	text-decoration: underline;
-	color: white;
-	font-size: 20pt;
-}
-
-A:hover {
-	text-decoration: underline;
-	color: white;
-	font-size: 20pt;
-}
-
-a {
-	color: black;
-	font-family: 'impact';
-	font-size: 20pt;
-}
-</style>
+<link rel="stylesheet" href="css/userLogin.css" type="text/css">
+<script type="text/javascript" src="js/jquery-1.7.2.js"></script>
+<script language="javascript" src="js/regular.js"></script>
 <title>Public Enemies login</title>
 </head>
 <body>
@@ -105,14 +26,17 @@ a {
 							commandName="userDto">
 							<h2 align="center">Login</h2>
 							<form:input path="email" />
+							<div id="email_error">
+							
+							</div>
 
 							<font color="red"><br /> <form:errors path="email" /> <br /></font>
 							<h2 align="center">Password</h2>
 							<form:input type="password" path="password"  />
-
+							<div id="password_error">
+							</div>
 							<font color="red"><br /> <form:errors path="password" />
 								<br /></font>
-							<br />
 							<br />
 							<button type="submit" id="button">Log in</button>
 						</form:form></td>

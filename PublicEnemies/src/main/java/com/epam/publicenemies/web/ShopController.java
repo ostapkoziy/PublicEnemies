@@ -42,9 +42,7 @@ public class ShopController {
 		List<Aid> aids = shopManagerService.getAllAids(); 
 		if (aids == null) {
 			log.info("aids doesn't existed"); 
-		}
-		//log.info("Aids have been fetched. Size = " + aids.size());
-		
+		}		
 		mav.addObject("aidsList", aids);
 		mav.addObject("uid", (Integer) req.getSession().getAttribute("userId")); 
 		
