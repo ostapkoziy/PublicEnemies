@@ -30,7 +30,7 @@ public class WaitForOpponentConnect
 		 */
 		long gameId = ((Game) request.getSession().getAttribute("game")).getId();
 		Game game = Utils.findGameById(gameId);
-		log.info(game.getUser1profile().getNickName() + " WAIT WHEN OPPONENT CONNECT TO GAME: " + gameId);
+		// log.info(game.getUser1profile().getNickName() + " WAIT WHEN OPPONENT CONNECT TO GAME: " + gameId);
 		PrintWriter out = response.getWriter();
 		out.print(game.isGameStarted());
 		out.flush();
