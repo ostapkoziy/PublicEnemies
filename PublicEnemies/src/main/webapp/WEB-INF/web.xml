@@ -26,6 +26,7 @@
 		<url-pattern>/joinGame.html</url-pattern>
 		<url-pattern>/fightPage.html</url-pattern>
 		<url-pattern>/fightHit.html</url-pattern>
+		<url-pattern>/cards.html</url-pattern>
 		<url-pattern>/waitingForOponent.html</url-pattern>
 	</filter-mapping>
 	<filter>
