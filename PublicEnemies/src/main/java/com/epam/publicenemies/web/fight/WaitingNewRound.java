@@ -41,12 +41,12 @@ public class WaitingNewRound
 		{
 			log.info("USER: " + userProfile.getNickName() + " DELETE HIS ATTRIBUTE GAME");
 			log.info("--------------GAME IS END FOR USER: " + userProfile.getNickName() + "----------------------");
-			out.print(ser.exclude("class").serialize(game));
+			out.print(ser.exclude("*.class").serialize(game));
 			out.flush();
 			return;
 		}
-		// System.out.println(ser.serialize(game));
-		out.print(ser.serialize(game));
+		// log.info(ser.exclude("*.class").serialize(game));
+		out.print(ser.exclude("*.class").serialize(game));
 		out.flush();
 	}
 }
