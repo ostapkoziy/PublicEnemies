@@ -4,7 +4,7 @@ $(function()
 			var login = $("#email");
 			var pass = $("#password");
 			var button = $("#button");
-			button.fadeOut(1000);
+			//button.fadeOut(1000);
 			var isLoginTrue = false;
 			var isPassTrue = false;
 			// Matches____ e@eee.com | eee@e-e.com | eee@ee.eee.museum
@@ -12,7 +12,6 @@ $(function()
 			var regLogin = /^([0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$/;
 			// 6-10 symbols pass
 			var regPass = /^([A-z0-9]{6,10})$/;
-
 			login.keyup(function()
 			{
 				if (login.val().search(regLogin) == -1)

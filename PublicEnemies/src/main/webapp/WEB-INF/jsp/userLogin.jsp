@@ -9,7 +9,6 @@
 <link rel="stylesheet" href="css/userLogin.css" type="text/css">
 <script type="text/javascript" src="js/jquery-1.7.2.js"></script>
 <script language="javascript" src="js/regular.js"></script>
-
 <title>Public Enemies login</title>
 </head>
 <body>

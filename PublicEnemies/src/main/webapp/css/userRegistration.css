@@ -1,9 +1,17 @@
 body {
-	background-image: url('img/bg_city.png');
+	background-image: url(../img/bg_city.png);
+	color: white;
+	font-family: 'impact';
+	font-size: 14pt;
 }
 
 h2 {
 	color: black;
+	font-family: 'impact';
+	font-size: 20pt;
+}
+h1 {
+	color: red;
 	font-family: 'impact';
 	font-size: 20pt;
 }
@@ -19,7 +27,7 @@ table.sample {
 	margin-top: 100px;
 	background-color: #444D48;
 	opacity: .6;
-	filter: alpha(opacity =   60);
+	filter: alpha(opacity =                 60);
 	-moz-opacity: .6;
 	border-width: 3px;
 	border-spacing: 5px;
@@ -73,14 +81,8 @@ a {
 	font-family: 'impact';
 	font-size: 20pt;
 }
-
-body {
-	background-image: url(img/bg_city.png);
-	color: white;
-}
-
-h1 {
-	font-family: 'impact';
-	font-size: 20pt;
+div {
 	color: red;
+	font-family: 'impact';
+	font-size: 14pt;
 }

@@ -13,6 +13,7 @@
 	rel="stylesheet" />
 <script type="text/javascript" src="js/jquery-1.7.2.js"></script>
 <script type="text/javascript" src="js/jquery.imagemapster.js"></script>
+<script language="javascript" src="js/regular.js"></script>
 <title>Registration</title>
 <link rel="stylesheet" href="css/userRegistration.css" type="text/css">
 </head>
@@ -31,17 +32,21 @@
 								<h1 align="center">REGISTER</h1>
 								<h2 align="center">Login</h2>
 								<form:input type="text" name="email" path="email" />
+								<div id="email_error">
+								</div>
 								<br />
 								<font color="red"><form:errors path="email" /> </font>
 								<br />
 								<h2 align="center">Password</h2>
 								<form:input type="password" name="password" path="password" />
+								<div id="password_error">
+								</div>
 								<br />
 								<font color="red"> <form:errors path="password" />
 								</font>
 								<br />
 								<br />
-								<button type="submit" class="button">Register</button>
+								<button type="submit" class="button" id="button">Register</button>
 							</form:form></td>
 					</tr>
 				</table>
