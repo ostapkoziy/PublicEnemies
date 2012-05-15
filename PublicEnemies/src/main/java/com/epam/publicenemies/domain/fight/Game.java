@@ -14,6 +14,8 @@ public class Game
 	private volatile boolean	gameStarted;
 	private volatile boolean	gameEnd	= false;
 	private Round				round	= new Round();
+	private String				user1resaultPage;
+	private String				user2resaultPage;
 	public long getId()
 	{
 		return id;
@@ -61,5 +63,21 @@ public class Game
 	public void setRound(Round round)
 	{
 		this.round = round;
+	}
+	public String getUser1resaultPage()
+	{
+		return user1resaultPage;
+	}
+	public void setUser1resaultPage(String user1resaultPage)
+	{
+		this.user1resaultPage = user1resaultPage;
+	}
+	public String getUser2resaultPage()
+	{
+		return user2resaultPage;
+	}
+	public void setUser2resaultPage(String user2resaultPage)
+	{
+		this.user2resaultPage = user2resaultPage;
 	}
 }

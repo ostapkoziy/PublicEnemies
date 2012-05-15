@@ -10,18 +10,13 @@
 	height: 400px;
 	margin-left: auto;
 	margin-right: auto;
-	background: url("img/you-win.jpg") no-repeat;
+	background: url("img/fight/you-win.jpg") no-repeat;
 }
 </style>
 </head>
 
 <body>
-	Game:${game}
-	<br />${gameRole}
-	<br />User1: ${game.user1.page}
-	<br />User2: ${game.user2.page}
-	<br />
-	<a href="index.html">Index</a>
+	<a href="userStartPage.html">StartPage</a>
 	<div id="win"></div>
 </body>
 </html>

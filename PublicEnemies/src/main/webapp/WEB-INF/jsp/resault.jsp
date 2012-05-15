@@ -11,13 +11,13 @@
 <body>
 	<c:if test="${gameRole=='creator'}">
 		<%
-			// response.sendRedirect(((Game) session.getAttribute("game")).getUser1().getPage());
+			response.sendRedirect(((Game) session.getAttribute("game")).getUser1resaultPage());
 				//session.removeAttribute("game");
 		%>
 	</c:if>
 	<c:if test="${gameRole=='connector'}">
 		<%
-			// 			response.sendRedirect(((Game) session.getAttribute("game")).getUser2().getPage());
+			response.sendRedirect(((Game) session.getAttribute("game")).getUser2resaultPage());
 				//	session.removeAttribute("game");
 		%>
 	</c:if>

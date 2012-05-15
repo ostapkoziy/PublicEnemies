@@ -45,8 +45,8 @@ public class GameEngine
 		if (user2HPAfterHit <= 0)
 		{
 			game.getUser2profile().setStrength(0);
-			// game.getUser1().setPage("win.html");
-			// game.getUser2().setPage("lose.html");
+			game.setUser1resaultPage("win.html");
+			game.setUser2resaultPage("lose.html");
 			GameEngine.sendServerMessage(game.getId(), game.getUser1profile().getNickName() + " WIN!");
 		}
 		else
@@ -56,8 +56,8 @@ public class GameEngine
 		if (user1HPAfterHit <= 0)
 		{
 			game.getUser1profile().setStrength(0);
-			// game.getUser2().setPage("win.html");
-			// game.getUser1().setPage("lose.html");
+			game.setUser1resaultPage("lose.html");
+			game.setUser2resaultPage("win.html");
 			GameEngine.sendServerMessage(game.getId(), game.getUser2profile().getNickName() + " WIN!");
 		}
 		else
