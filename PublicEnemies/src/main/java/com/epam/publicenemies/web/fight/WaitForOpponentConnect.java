@@ -15,7 +15,7 @@ import com.epam.publicenemies.domain.fight.Game;
 import com.epam.publicenemies.utils.Utils;
 
 /**
- * @author Karamba
+ * @author Alexander Ivanov
  */
 @Controller
 public class WaitForOpponentConnect

@@ -13,7 +13,7 @@ public class Round
 	private String	user2Block	= "";
 	private boolean	u1Hit;
 	private boolean	u2Hit;
-	private String	firstHit;
+	private String	firstHit	= "";
 	private long	roundBeginTime;
 	public int getRoundNumber()
 	{
