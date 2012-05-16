@@ -109,6 +109,7 @@
 .hp {
 	font-size: 20px;
 }
+
 div.box {
 	width: 300px;
 	height: 400px;
@@ -118,28 +119,48 @@ div.box {
 <body>
 	<table align="center">
 		<tr>
-			<td width="100">
-				<table>
-					<tr height="200">
-						<td>
-							<div id="healthUser1" class="hp" align="center">
-								<img alt="img/stats/hp.png" src="img/stats/hp.png"> <span
-									id="hpU1">${game.user1profile.getStrength()}</span>
-							</div>
-						</td>
-					</tr>
 
-					<tr>
-						<td><img src="img/stats/agility.png"> - 900</img></td>
-					</tr>
-					<tr>
-						<td><img src="img/stats/strength.png"> - 900</img></td>
-					</tr>
-					<tr>
-						<td><img src="img/stats/inteligence.png"> - 900</img></td>
-					</tr>
-				</table>
-			</td>
+			<td width="100"><c:if test="${gameRole=='creator'}">
+					<table>
+						<tr height="200">
+							<td>
+								<div id="healthUser1" class="hp" align="center">
+									<img alt="img/stats/hp.png" src="img/stats/hp.png"> <span
+										id="hpU1">${game.user1profile.getStrength()}</span>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td><img src="img/stats/agility.png"> - 900</img></td>
+						</tr>
+						<tr>
+							<td><img src="img/stats/strength.png"> - 900</img></td>
+						</tr>
+						<tr>
+							<td><img src="img/stats/inteligence.png"> - 900</img></td>
+						</tr>
+					</table>
+				</c:if> <c:if test="${gameRole=='connector'}">
+					<table>
+						<tr height="200">
+							<td>
+								<div id="healthUser2" class="hp" align="center">
+									<img alt="img/stats/hp.png" src="img/stats/hp.png"> <span
+										id="hpU2"> ${game.user2profile.getStrength()} </span>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td><img src="img/stats/agility.png"> 300</img></td>
+						</tr>
+						<tr>
+							<td><img src="img/stats/strength.png"> 300</img></td>
+						</tr>
+						<tr>
+							<td><img src="img/stats/inteligence.png"> 300</img></td>
+						</tr>
+					</table>
+				</c:if></td>
 			<c:if test="${gameRole=='creator'}">
 				<!-- 	++++++++++++++++++++++++++++++++++++++++++CREATOR++++++++++++++++++++++++++++++++++++++ -->
 				<td id="creator_section">
@@ -220,27 +241,47 @@ div.box {
 					</table>
 			</c:if>
 			<!-- +++++++++++++++++++++++++++++++++++++++END_CONNECTOR+++++++++++++++++++++++++++++++++ -->
-			<td width="100">
-				<table>
-					<tr height="200">
-						<td>
-							<div id="healthUser2" class="hp" align="center">
-								<img alt="img/stats/hp.png" src="img/stats/hp.png"> <span
-									id="hpU2"> ${game.user2profile.getStrength()} </span>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td><img src="img/stats/agility.png"> 300</img></td>
-					</tr>
-					<tr>
-						<td><img src="img/stats/strength.png"> 300</img></td>
-					</tr>
-					<tr>
-						<td><img src="img/stats/inteligence.png"> 300</img></td>
-					</tr>
-				</table>
-			</td>
+			<td width="100"><c:if test="${gameRole=='connector'}">
+					<table>
+						<tr height="200">
+							<td>
+								<div id="healthUser2" class="hp" align="center">
+									<img alt="img/stats/hp.png" src="img/stats/hp.png"> <span
+										id="hpU2"> ${game.user2profile.getStrength()} </span>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td><img src="img/stats/agility.png"> 300</img></td>
+						</tr>
+						<tr>
+							<td><img src="img/stats/strength.png"> 300</img></td>
+						</tr>
+						<tr>
+							<td><img src="img/stats/inteligence.png"> 300</img></td>
+						</tr>
+					</table>
+				</c:if> <c:if test="${gameRole=='creator'}">
+					<table>
+						<tr height="200">
+							<td>
+								<div id="healthUser1" class="hp" align="center">
+									<img alt="img/stats/hp.png" src="img/stats/hp.png"> <span
+										id="hpU1">${game.user1profile.getStrength()}</span>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td><img src="img/stats/agility.png"> - 900</img></td>
+						</tr>
+						<tr>
+							<td><img src="img/stats/strength.png"> - 900</img></td>
+						</tr>
+						<tr>
+							<td><img src="img/stats/inteligence.png"> - 900</img></td>
+						</tr>
+					</table>
+				</c:if></td>
 		</tr>
 		<tr>
 			<td width="100"></td>

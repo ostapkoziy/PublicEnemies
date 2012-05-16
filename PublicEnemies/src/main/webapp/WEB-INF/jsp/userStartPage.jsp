@@ -19,8 +19,6 @@
 </head>
 
 <link rel="stylesheet" href="css/userStartPage.css" type="text/css">
-
-
 <body>
 	<table align="center">
 		<tr>
