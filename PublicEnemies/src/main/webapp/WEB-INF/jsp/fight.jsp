@@ -17,14 +17,14 @@
 <style type="text/css">
 #left {
 	float: left;
-	height: 500px;
-	width: 400px;
+	height :450px;
+	width: 200px;
 }
 
 #right {
 	float: right;
-	height: 500px;
-	width: 400px;
+	height: 450px;
+	width: 200px;
 }
 
 #insideRight { /* 	outline: 2px solid black; */
@@ -107,15 +107,24 @@
 }
 
 .hp {
-	font-size: 32px;
+	font-size: 20px;
 }
 </style>
 </head>
 <body>
-	<table align="center" border="3">
+	<table align="center">
 		<tr>
 			<td width="100">
 				<table>
+					<tr height="200">
+						<td>
+							<div id="healthUser1" class="hp" align="center">
+								<img alt="img/stats/hp.png" src="img/stats/hp.png"> <span
+									id="hpU1">${game.user1profile.getStrength()}</span>
+							</div>
+						</td>
+					</tr>
+
 					<tr>
 						<td><img src="img/stats/agility.png"> - 900</img></td>
 					</tr>
@@ -125,58 +134,57 @@
 					<tr>
 						<td><img src="img/stats/inteligence.png"> - 900</img></td>
 					</tr>
+				</table>
+			</td>
+			<td id="creator_section">
+				<table width="600">
 					<tr>
-						<td><img src="img/stats/agility.png"> - 900</img></td>
+						<td>
+							<!-- 	++++++++++++++++++++++++++++++++++++++++++CREATOR++++++++++++++++++++++++++++++++++++++ -->
+							<c:if test="${gameRole=='creator'}">
+								<div id="left">
+									<div align="center" id="statsUser1">${game.user1profile.getNickName()}</div>
+									<div align="center" style="color: blue; font-size: 3em;">
+										<img src="img/fight/3.jpg" height="250"></img> <br /> <br />
+										<input id="blockInput" type="text" value="Head"
+											style="width: 50px;">
+
+									</div>
+								</div>
+								<c:choose>
+									<c:when test="${game.gameStarted=='false'}">
+										<script type="text/javascript">
+											waitForOpponent();
+										</script>
+										<div id="right">
+											<div id="insideRight"></div>
+										</div>
+									</c:when>
+									<c:otherwise>
+										<script type="text/javascript">
+											wait();
+										</script>
+										<div id="right">
+											<div align="center" id="statsUser2">
+												${game.user2profile.getNickName()}</div>
+											<div align="center" style="color: red; font-size: 3em;">
+												<img src="img/fight/2.jpg" height="250"></img> <br /> <br />
+												<input id="hitInput" type="text" value="Head"
+													style="width: 50px;">
+
+											</div>
+										</div>
+									</c:otherwise>
+								</c:choose>
+							</c:if> <!-- 	+++++++++++++++++++++++++++++++++++++END_CREATOR++++++++++++++++++++++++++++++++++++++++++++++ -->
+						</td>
+					</tr>
+					<tr align="center">
+						<td><img id="atackButton" src="img/fight/attack.jpg"></td>
 					</tr>
 				</table>
 			</td>
-			<td>
-				<!-- 	++++++++++++++++++++++++++++++++++++++++++CREATOR++++++++++++++++++++++++++++++++++++++ -->
-				<c:if test="${gameRole=='creator'}">
-					<div id="left">
-						<div id="statsUser1">
-							<div id="healthUser1" class="hp" align="center">
-								<img alt="img/stats/hp.png" src="img/stats/hp.png">
-								<span id="hpU1">${game.user1profile.getStrength()}</span>
-							</div>
-						</div>
-						<div style="color: blue; font-size: 3em;">
-							<img src="img/fight/3.jpg" height="350"></img>
-							<br/>
-							${game.user1profile.getNickName()}
-						</div>
-					</div>
-					<c:choose>
-						<c:when test="${game.gameStarted=='false'}">
-							<script type="text/javascript">
-								waitForOpponent();
-							</script>
-							<div id="right">
-								<div id="insideRight"></div>
-							</div>
-						</c:when>
-						<c:otherwise>
-							<script type="text/javascript">
-								wait();
-							</script>
-							<div id="right">
-								<div id="statsUser2">
-									<div id="healthUser2" class="hp" align="center">
-										<img alt="img/stats/hp.png" src="img/stats/hp.png">
-										<span id="hpU2">${game.user2profile.getStrength()}</span>
-									</div>
-								</div>
-								<div style="color: red; font-size: 3em;">
-									<img src="img/fight/2.jpg" height="350"></img>
-									<br/>
-									${game.user2profile.getNickName()}
-								</div>
-							</div>
-						</c:otherwise>
-					</c:choose>
-				</c:if> <!-- 	+++++++++++++++++++++++++++++++++++++END_CREATOR++++++++++++++++++++++++++++++++++++++++++++++ -->
-			</td>
-			<td>
+			<td id="connector_section">
 				<!-- +++++++++++++++++++++++++++++++++++++++++CONNECTOR++++++++++++++++++++++++++++++++++++++++++++ -->
 				<c:if test="${gameRole=='connector'}">
 					<script type="text/javascript">
@@ -184,66 +192,50 @@
 					</script>
 					<div id="left">
 						<div id="statsUser2">
-							<div id="healthUser2" class="hp" align="center">
-								<img alt="img/stats/hp.png" src="img/stats/hp.png">
-								<span id="hpU2">${game.user2profile.getStrength()}</span>
-							</div>
+						${game.user2profile.getNickName()}
+
 						</div>
 						<div style="color: blue; font-size: 3em;">
-						<img src="img/fight/2.jpg" height="350"></img>
-						<br/>
-						${game.user2profile.getNickName()}
+							<img src="img/fight/2.jpg" height="250"></img> <br />
+							
 						</div>
 					</div>
 					<div id="right">
 						<div id="statsUser1">
-							<div class="hp" class="statsLeft">
-
-								<div id="healthUser1" align="center">
-									<img alt="img/stats/hp.png" src="img/stats/hp.png">
-									<span id="hpU1">${game.user1profile.getStrength()}</span>
-								</div>
-							</div>
+							${game.user1profile.getNickName()}
 						</div>
 						<div style="color: red; font-size: 3em;">
-						<img src="img/fight/3.jpg" height="350"></img>
-						<br/>
-						${game.user1profile.getNickName()}
+							<img src="img/fight/3.jpg" height="250"></img> <br />
+							
 						</div>
 					</div>
 				</c:if> <!-- +++++++++++++++++++++++++++++++++++++++END_CONNECTOR+++++++++++++++++++++++++++++++++ -->
 			</td>
+
 			<td width="100">
 				<table>
-					<tr>
-						<td><img src="img/stats/agility.png"> - 300</img></td>
+					<tr height="200">
+						<td>
+							<div id="healthUser2" class="hp" align="center">
+								<img alt="img/stats/hp.png" src="img/stats/hp.png"> <span
+									id="hpU2"> ${game.user2profile.getStrength()} </span>
+							</div>
+						</td>
 					</tr>
 					<tr>
-						<td><img src="img/stats/strength.png"> - 300</img></td>
+						<td><img src="img/stats/agility.png"> 300</img></td>
 					</tr>
 					<tr>
-						<td><img src="img/stats/inteligence.png"> - 300</img></td>
+						<td><img src="img/stats/strength.png"> 300</img></td>
 					</tr>
 					<tr>
-						<td><img src="img/stats/agility.png"> - 300</img></td>
+						<td><img src="img/stats/inteligence.png"> 300</img></td>
 					</tr>
 				</table>
 			</td>
 		</tr>
 		<tr>
-			<td>
-				<div id="radio">
-					<br/>
-					<br/>
-					<div id="hit">
-						<input id="hitInput" type="text" value="hit" style="width: 50px;">
-					</div>
-					<div id="block">
-						<input id="blockInput" type="text" value="block" style= "width: 50px;">
-					</div>
-					<img id="atackButton" src="img/fight/attack.jpg">
-				</div>
-			</td>
+			<td width="100"></td>
 			<td width="400">
 				<div class="box" id="rightbox2">
 					<div class="boxContent">
@@ -260,6 +252,7 @@
 					</div>
 				</div>
 			</td>
+			<td></td>
 		</tr>
 
 	</table>
