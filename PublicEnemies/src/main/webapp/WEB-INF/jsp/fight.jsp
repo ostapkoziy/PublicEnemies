@@ -17,14 +17,14 @@
 <style type="text/css">
 #left {
 	float: left;
-	height: 500px;
-	width: 400px;
+	height: 550px;
+	width: 200px;
 }
 
 #right {
 	float: right;
-	height: 500px;
-	width: 400px;
+	height: 550px;
+	width: 200px;
 }
 
 #insideRight { /* 	outline: 2px solid black; */
@@ -136,14 +136,18 @@
 					<div id="left">
 						<div id="statsUser1">
 							<div id="healthUser1" class="hp" align="center">
-								<img alt="img/stats/hp.png" src="img/stats/hp.png">
-								<span id="hpU1">${game.user1profile.getStrength()}</span>
+								<img alt="img/stats/hp.png" src="img/stats/hp.png"> <span
+									id="hpU1">${game.user1profile.getStrength()}</span>
 							</div>
 						</div>
 						<div style="color: blue; font-size: 3em;">
-							<img src="img/fight/3.jpg" height="350"></img>
-							<br/>
+							<img src="img/fight/3.jpg" height="250"></img> <br />
 							${game.user1profile.getNickName()}
+							<br/>
+							<div id="block">
+								<input id="blockInput" type="text" value="block"
+									style="width: 50px;">
+							</div>
 						</div>
 					</div>
 					<c:choose>
@@ -162,14 +166,18 @@
 							<div id="right">
 								<div id="statsUser2">
 									<div id="healthUser2" class="hp" align="center">
-										<img alt="img/stats/hp.png" src="img/stats/hp.png">
-										<span id="hpU2">${game.user2profile.getStrength()}</span>
+										<img alt="img/stats/hp.png" src="img/stats/hp.png"> <span
+											id="hpU2">${game.user2profile.getStrength()}</span>
 									</div>
 								</div>
 								<div style="color: red; font-size: 3em;">
-									<img src="img/fight/2.jpg" height="350"></img>
-									<br/>
+									<img src="img/fight/2.jpg" height="250"></img> <br />
 									${game.user2profile.getNickName()}
+									<br/>
+									<div id="hit">
+										<input id="hitInput" type="text" value="hit"
+											style="width: 50px;">
+									</div>
 								</div>
 							</div>
 						</c:otherwise>
@@ -185,14 +193,13 @@
 					<div id="left">
 						<div id="statsUser2">
 							<div id="healthUser2" class="hp" align="center">
-								<img alt="img/stats/hp.png" src="img/stats/hp.png">
-								<span id="hpU2">${game.user2profile.getStrength()}</span>
+								<img alt="img/stats/hp.png" src="img/stats/hp.png"> <span
+									id="hpU2">${game.user2profile.getStrength()}</span>
 							</div>
 						</div>
 						<div style="color: blue; font-size: 3em;">
-						<img src="img/fight/2.jpg" height="350"></img>
-						<br/>
-						${game.user2profile.getNickName()}
+							<img src="img/fight/2.jpg" height="250"></img> <br />
+							${game.user2profile.getNickName()}
 						</div>
 					</div>
 					<div id="right">
@@ -200,19 +207,19 @@
 							<div class="hp" class="statsLeft">
 
 								<div id="healthUser1" align="center">
-									<img alt="img/stats/hp.png" src="img/stats/hp.png">
-									<span id="hpU1">${game.user1profile.getStrength()}</span>
+									<img alt="img/stats/hp.png" src="img/stats/hp.png"> <span
+										id="hpU1">${game.user1profile.getStrength()}</span>
 								</div>
 							</div>
 						</div>
 						<div style="color: red; font-size: 3em;">
-						<img src="img/fight/3.jpg" height="350"></img>
-						<br/>
-						${game.user1profile.getNickName()}
+							<img src="img/fight/3.jpg" height="250"></img> <br />
+							${game.user1profile.getNickName()}
 						</div>
 					</div>
 				</c:if> <!-- +++++++++++++++++++++++++++++++++++++++END_CONNECTOR+++++++++++++++++++++++++++++++++ -->
 			</td>
+
 			<td width="100">
 				<table>
 					<tr>
@@ -230,19 +237,16 @@
 				</table>
 			</td>
 		</tr>
-		<tr>
+		<tr align="center">
 			<td>
 				<div id="radio">
-					<br/>
-					<br/>
-					<div id="hit">
-						<input id="hitInput" type="text" value="hit" style="width: 50px;">
-					</div>
-					<div id="block">
-						<input id="blockInput" type="text" value="block" style= "width: 50px;">
-					</div>
 					<img id="atackButton" src="img/fight/attack.jpg">
 				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				
 			</td>
 			<td width="400">
 				<div class="box" id="rightbox2">
