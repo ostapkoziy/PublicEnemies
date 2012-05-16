@@ -42,7 +42,7 @@ public class GameEngine
 			msListInGame.addFirst(mess);
 		}
 	}
-	public synchronized static void startEngine(Game game)
+	public synchronized void startEngine(Game game)
 	{
 		int user1Damage = 1;
 		int user2HPAfterHit = game.getUser2profile().getStrength() - user1Damage;
@@ -83,4 +83,5 @@ public class GameEngine
 			log.info("--------------ENGINE END-------------");
 		}
 	}
+	// private void
 }

@@ -36,56 +36,65 @@ public class HitServlet
 		if (role.equals("creator"))
 		{
 			userProfile = game.getUser1profile();
+			log.info("USER1 (CREATOR): " + userProfile.getNickName() + " HIT : " + hit + " BLOCK: " + block);
+			user1GameSetup(game, hit, block, role);
 		}
 		else
 		{
 			userProfile = game.getUser2profile();
-		}
-		if (role.equals("creator"))
-		{
-			log.info("USER1 (CREATOR): " + userProfile.getNickName() + " HIT : " + hit + " BLOCK: " + block);
-			game.getRound().setUser1Hit(hit);
-			game.getRound().setUser1Block(block);
-			game.getRound().setU1Hit(true);
-			if (game.getRound().isU2Hit())
-			{
-				log.info("AND END ROUND №" + game.getRound().getRoundNumber());
-				game.getRound().setRoundStart(false);
-			}
-			else
-			{
-				setFirstHit(game, role);
-			}
-		}
-		else
-		{
 			log.info("USER2 (CONNECT): " + userProfile.getNickName() + " HIT : " + hit + " BLOCK: " + block);
-			game.getRound().setUser2Hit(hit);
-			game.getRound().setUser2Block(block);
-			game.getRound().setU2Hit(true);
-			if (game.getRound().isU1Hit())
-			{
-				log.info("AND END ROUND №" + game.getRound().getRoundNumber());
-				game.getRound().setRoundStart(false);
-			}
-			else
-			{
-				setFirstHit(game, role);
-			}
+			user2GameSetup(game, hit, block, role);
 		}
 		/*
 		 * Engine Start
 		 */
-		if (!game.getRound().isRoundStart())
-		{
-			GameEngine.startEngine(game);
-		}
+		startEngine(game);
+		/*
+		 * 
+		 */
 	}
 	private synchronized void setFirstHit(Game game, String role)
 	{
 		if (game.getRound().getFirstHit().equals(""))
 		{
 			game.getRound().setFirstHit(role);
+		}
+	}
+	private synchronized void startEngine(Game game)
+	{
+		if (!game.getRound().isRoundStart())
+		{
+			new GameEngine().startEngine(game);
+		}
+	}
+	private void user1GameSetup(Game game, String hit, String block, String role)
+	{
+		game.getRound().setUser1Hit(hit);
+		game.getRound().setUser1Block(block);
+		game.getRound().setU1Hit(true);
+		if (game.getRound().isU2Hit())
+		{
+			log.info("AND END ROUND №" + game.getRound().getRoundNumber());
+			game.getRound().setRoundStart(false);
+		}
+		else
+		{
+			setFirstHit(game, role);
+		}
+	}
+	private void user2GameSetup(Game game, String hit, String block, String role)
+	{
+		game.getRound().setUser2Hit(hit);
+		game.getRound().setUser2Block(block);
+		game.getRound().setU2Hit(true);
+		if (game.getRound().isU1Hit())
+		{
+			log.info("AND END ROUND №" + game.getRound().getRoundNumber());
+			game.getRound().setRoundStart(false);
+		}
+		else
+		{
+			setFirstHit(game, role);
 		}
 	}
 }

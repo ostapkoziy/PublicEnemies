@@ -71,14 +71,14 @@ function wait()
 	interval = setInterval(waitingNewRound, 3000);
 }
 /**
- * If coockie.hit==true hide attack button
+ * Hide attack button
  */
 function hideAttackButton()
 {
 	$("#atackButton").hide();
 }
 /**
- * If coockie.hit==false show attack button
+ * Show attack button
  */
 function showAttackButton()
 {
