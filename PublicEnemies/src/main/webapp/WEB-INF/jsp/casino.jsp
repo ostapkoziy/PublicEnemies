@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-hello
+<a href = "newBlackJackGame.html">BlackJack</a>
+<a href = "newPokerGame.html">Poker</a>
+<a href = "newRouletGame.html">Roulet</a>
 </body>
 </html>

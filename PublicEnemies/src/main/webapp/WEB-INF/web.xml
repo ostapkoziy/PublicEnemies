@@ -24,6 +24,11 @@
 		<url-pattern>/editProfile.html</url-pattern>
 		<url-pattern>/cards.html</url-pattern>
 		<url-pattern>/newJoinGame.html</url-pattern>
+		<!-- ++++++++++++++++++++CASINO+++++++++++++++++++++++ -->
+		<url-pattern>/casino.html</url-pattern>
+		<url-pattern>/newBlackJackGame.html</url-pattern>
+		<url-pattern>/newPokerGame.html</url-pattern>
+		<url-pattern>/newRouletGame.html</url-pattern>		
 		<!-- ++++++++++++++++++++FIGHT+++++++++++++++++++++++ -->
 		<url-pattern>/fight.html</url-pattern>
 		<url-pattern>/allGames.html</url-pattern>
