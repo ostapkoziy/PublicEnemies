@@ -38,24 +38,20 @@ function waitingNewRound()
 			var game = jQuery.parseJSON(data);
 			if (game.gameEnd != true)
 			{
-				// $("#hpU1").html(game.user1.HP);
-				// $("#hpU2").html(game.user2.HP);
 				$("#hpU1").html(game.user1profile.strength);
 				$("#hpU2").html(game.user2profile.strength);
 			}
 			if (game.gameEnd == true)
 			{
 				clearInterval(interval);
-				// $("#hpU1").html(game.user1.HP);
-				// $("#hpU2").html(game.user2.HP);
 				$("#hpU1").html(game.user1profile.strength);
 				$("#hpU2").html(game.user2profile.strength);
 				$("#atackButton").hide();
 				setTimeout(function()
 				{
-					// Redirect to gameResault page after 5 sec
+					// Redirect to gameResault page after 3 sec
 					window.location.replace("resault.html");
-				}, 5000);
+				}, 3000);
 			}
 		},
 		error : function(e, ajaxOptions, thrownError)
@@ -93,15 +89,16 @@ $(function()
 {
 	$("#atackButton").click(function()
 	{
-		var hit = $("#hit input[name=hit]:checked").val();
-		var block = $("#block input[name=block]:checked").val();
+		// var hit = $("#hit input[name=hit]:checked").val();
+		// var block = $("#block input[name=block]:checked").val();
+
+		var hit = $("#hitInput").val();
+		var block = $("#blockInput").val();
+
 		if (hit != undefined & block != undefined)
 		{
-			$.cookie("hit", "true");
 			hitSend(hit, block);
 		}
 	});
-	// hideAttackButton();
-	// wait();
 
 });

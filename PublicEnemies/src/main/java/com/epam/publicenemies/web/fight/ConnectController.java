@@ -16,6 +16,9 @@ import com.epam.publicenemies.domain.fight.Game;
 import com.epam.publicenemies.service.IProfileManagerService;
 import com.epam.publicenemies.utils.Utils;
 
+/**
+ * @author Alexander Ivanov
+ */
 @Controller
 public class ConnectController
 {

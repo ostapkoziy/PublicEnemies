@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -15,17 +16,15 @@
 <link href="css/content.css" rel="stylesheet" type="text/css">
 <style type="text/css">
 #left {
-	outline: solid red 3px;
 	float: left;
-	height: 500px;
-	width: 400px;
+	height: 450px;
+	width: 200px;
 }
 
 #right {
-	outline: solid blue 3px;
 	float: right;
-	height: 500px;
-	width: 400px;
+	height: 450px;
+	width: 200px;
 }
 
 #insideRight { /* 	outline: 2px solid black; */
@@ -108,128 +107,203 @@
 }
 
 .hp {
-	font-size: 32px;
+	font-size: 20px;
+}
+
+div.box {
+	width: 300px;
+	height: 400px;
 }
 </style>
 </head>
 <body>
+	<table align="center">
+		<tr>
 
+			<td width="100"><c:if test="${gameRole=='creator'}">
+					<table>
+						<tr height="200">
+							<td>
+								<div id="healthUser1" class="hp" align="center">
+									<img alt="img/stats/hp.png" src="img/stats/hp.png"> <span
+										id="hpU1">${game.user1profile.getStrength()}</span>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td><img src="img/stats/agility.png"> - 900</img></td>
+						</tr>
+						<tr>
+							<td><img src="img/stats/strength.png"> - 900</img></td>
+						</tr>
+						<tr>
+							<td><img src="img/stats/inteligence.png"> - 900</img></td>
+						</tr>
+					</table>
+				</c:if> <c:if test="${gameRole=='connector'}">
+					<table>
+						<tr height="200">
+							<td>
+								<div id="healthUser2" class="hp" align="center">
+									<img alt="img/stats/hp.png" src="img/stats/hp.png"> <span
+										id="hpU2"> ${game.user2profile.getStrength()} </span>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td><img src="img/stats/agility.png"> 300</img></td>
+						</tr>
+						<tr>
+							<td><img src="img/stats/strength.png"> 300</img></td>
+						</tr>
+						<tr>
+							<td><img src="img/stats/inteligence.png"> 300</img></td>
+						</tr>
+					</table>
+				</c:if></td>
+			<c:if test="${gameRole=='creator'}">
+				<!-- 	++++++++++++++++++++++++++++++++++++++++++CREATOR++++++++++++++++++++++++++++++++++++++ -->
+				<td id="creator_section">
+					<table width="600">
+						<tr>
+							<td>
+								<div id="left">
+									<div align="center" id="statsUser1">${game.user1profile.getNickName()}</div>
+									<div align="center" style="color: blue; font-size: 3em;">
+										<img src="img/fight/3.jpg" height="250"></img> <br /> <br />
+										<input id="blockInput" type="text" value="Head"
+											style="width: 50px;">
 
+									</div>
+								</div> <c:choose>
+									<c:when test="${game.gameStarted=='false'}">
+										<script type="text/javascript">
+											waitForOpponent();
+										</script>
+										<div id="right">
+											<div id="insideRight"></div>
+										</div>
+									</c:when>
+									<c:otherwise>
+										<script type="text/javascript">
+											wait();
+										</script>
+										<div id="right">
+											<div align="center" id="statsUser2">
+												${game.user2profile.getNickName()}</div>
+											<div align="center" style="color: red; font-size: 3em;">
+												<img src="img/fight/2.jpg" height="250"></img> <br /> <br />
+												<input id="hitInput" type="text" value="Head"
+													style="width: 50px;">
 
+											</div>
+										</div>
+									</c:otherwise>
+								</c:choose>
 
+							</td>
+						</tr>
+						<tr align="center">
+							<td><img id="atackButton" src="img/fight/attack.jpg"></td>
+						</tr>
+					</table>
+				</td>
+			</c:if>
+			<!-- 	+++++++++++++++++++++++++++++++++++++END_CREATOR++++++++++++++++++++++++++++++++++++++++++++++ -->
+			<c:if test="${gameRole=='connector'}">
+				<!-- +++++++++++++++++++++++++++++++++++++++++CONNECTOR++++++++++++++++++++++++++++++++++++++++++++ -->
+				<td id="connector_section">
+					<table width="600">
+						<tr>
+							<td><script type="text/javascript"">
+								wait();
+							</script>
+								<div id="left">
+									<div id="statsUser2">${game.user2profile.getNickName()}</div>
+									<div style="color: blue; font-size: 3em;">
+										<img src="img/fight/2.jpg" height="250"></img> <br /> <input
+											id="blockInput" type="text" value="Head" style="width: 50px;">
 
-	<!-- 	++++++++++++++++++++++++++++++++++++++++++CREATOR++++++++++++++++++++++++++++++++++++++ -->
-	<c:if test="${gameRole=='creator'}">
-		<div id="left">
-			<div id="statsUser1">
-				<div id="healthUser1" class="hp">
-					<img alt="img/fight/crest.jpg" src="img/fight/crest.jpg">
-					<span id="hpU1">${game.user1profile.getStrength()}</span>
-				</div>
-			</div>
-			<%-- 			<div>ID: ${game.user1.id}</div> --%>
-			<div style="color: blue; font-size: 3em;">${game.user1profile.getNickName()}</div>
-			<%-- 			<img alt="user1" src="${game.user1.avatar}"> --%>
-		</div>
-		<c:choose>
-			<c:when test="${game.gameStarted=='false'}">
-				<script type="text/javascript">
-					waitForOpponent();
-				</script>
-				<div id="right">
-					<div id="insideRight"></div>
-				</div>
-			</c:when>
-			<c:otherwise>
-				<script type="text/javascript">
-					wait();
-				</script>
-				<div id="right">
-					<div id="statsUser2">
-						<div id="healthUser2" class="hp">
-							<img alt="img/fight/crest.jpg" src="img/fight/crest.jpg">
-							<span id="hpU2">${game.user2profile.getStrength()}</span>
-						</div>
+									</div>
+								</div>
+								<div id="right">
+									<div id="statsUser1">${game.user1profile.getNickName()}</div>
+									<div style="color: red; font-size: 3em;">
+										<img src="img/fight/3.jpg" height="250"></img> <br /> <input
+											id="hitInput" type="text" value="Head" style="width: 50px;">
+									</div>
+								</div></td>
+							</td>
+						</tr>
+						<tr align="center">
+							<td><img id="atackButton" src="img/fight/attack.jpg"></td>
+						</tr>
+					</table>
+			</c:if>
+			<!-- +++++++++++++++++++++++++++++++++++++++END_CONNECTOR+++++++++++++++++++++++++++++++++ -->
+			<td width="100"><c:if test="${gameRole=='connector'}">
+					<table>
+						<tr height="200">
+							<td>
+								<div id="healthUser2" class="hp" align="center">
+									<img alt="img/stats/hp.png" src="img/stats/hp.png"> <span
+										id="hpU2"> ${game.user2profile.getStrength()} </span>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td><img src="img/stats/agility.png"> 300</img></td>
+						</tr>
+						<tr>
+							<td><img src="img/stats/strength.png"> 300</img></td>
+						</tr>
+						<tr>
+							<td><img src="img/stats/inteligence.png"> 300</img></td>
+						</tr>
+					</table>
+				</c:if> <c:if test="${gameRole=='creator'}">
+					<table>
+						<tr height="200">
+							<td>
+								<div id="healthUser1" class="hp" align="center">
+									<img alt="img/stats/hp.png" src="img/stats/hp.png"> <span
+										id="hpU1">${game.user1profile.getStrength()}</span>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td><img src="img/stats/agility.png"> - 900</img></td>
+						</tr>
+						<tr>
+							<td><img src="img/stats/strength.png"> - 900</img></td>
+						</tr>
+						<tr>
+							<td><img src="img/stats/inteligence.png"> - 900</img></td>
+						</tr>
+					</table>
+				</c:if></td>
+		</tr>
+		<tr>
+			<td width="100"></td>
+			<td width="400">
+				<div class="box" id="rightbox2">
+					<div class="boxContent">
+						<form action="MessageServlet">
+							<div id="t1"></div>
+							<textarea id="t2"></textarea>
+							<div id="buttons">
+								<input id="submit" type="button" name="submit" value="Ok">
+								<br /> <img id="button" src="img/fight/r.jpg"
+									alt="Refresh Chat" />
+							</div>
+							<div id="autoRefresh"></div>
+						</form>
 					</div>
-					<%-- 					<div>ID: ${game.user2.id}</div> --%>
-					<div style="color: red; font-size: 3em;">${game.user2profile.getNickName()}</div>
-					<%-- 					<img alt="user1" src="${game.user2.avatar}"> --%>
 				</div>
-			</c:otherwise>
-		</c:choose>
-	</c:if>
-	<!-- 	+++++++++++++++++++++++++++++++++++++END_CREATOR++++++++++++++++++++++++++++++++++++++++++++++ -->
+			</td>
+			<td></td>
+		</tr>
 
-
-
-
-
-	<!-- +++++++++++++++++++++++++++++++++++++++++CONNECTOR++++++++++++++++++++++++++++++++++++++++++++ -->
-	<c:if test="${gameRole=='connector'}">
-		<script type="text/javascript">
-			wait();
-		</script>
-		<div id="left">
-			<div id="statsUser2">
-				<div id="healthUser2" class="hp">
-					<img alt="img/fight/crest.jpg" src="img/fight/crest.jpg">
-					<span id="hpU2">${game.user2profile.getStrength()}</span>
-				</div>
-			</div>
-			<%-- 			<div>ID: ${game.user2.id}</div> --%>
-			<div style="color: blue; font-size: 3em;">${game.user2profile.getNickName()}</div>
-			<%-- 			<img alt="user1" src="${game.user2.avatar}"> --%>
-		</div>
-		<div id="right">
-			<div id="statsUser1">
-				<div class="hp" class="statsLeft">
-
-					<div id="healthUser1">
-						<img alt="img/fight/crest.jpg" src="img/fight/crest.jpg">
-						<span id="hpU1">${game.user1profile.getStrength()}</span>
-					</div>
-				</div>
-			</div>
-			<%-- 			<div>ID: ${game.user1.id}</div> --%>
-			<div style="color: red; font-size: 3em;">${game.user1profile.getNickName()}</div>
-			<%-- 			<img alt="user1" src="${game.user1.avatar}"> --%>
-		</div>
-	</c:if>
-	<!-- +++++++++++++++++++++++++++++++++++++++END_CONNECTOR+++++++++++++++++++++++++++++++++ -->
-
-
-
-	<div id="center">
-		<div id="radio">
-			<div id="hit">
-				<input type="radio" class="radioB" name="hit" value="HEAD" title="HEAD">
-				<input type="radio" class="radioB" name="hit" value="HANDS" title="HANDS">
-				<input type="radio" class="radioB" name="hit" value="BODY" title="BODY">
-				<input type="radio" class="radioB" name="hit" value="LEGS" title="LEGS" checked="checked">
-			</div>
-			<div id="block">
-				<input type="radio" class="radioB" name="block" value="HEAD" title="HEAD">
-				<input type="radio" class="radioB" name="block" value="HANDS" title="HANDS">
-				<input type="radio" class="radioB" name="block" value="BODY" title="BODY">
-				<input type="radio" class="radioB" name="block" value="LEGS" title="LEGS" checked="checked">
-			</div>
-			<img id="atackButton" src="img/fight/attack.jpg">
-		</div>
-		<div id="timer"></div>
-		<div class="box" id="rightbox2">
-			<div class="boxContent">
-				<form action="MessageServlet">
-					<div id="t1"></div>
-					<textarea id="t2"></textarea>
-					<div id="buttons">
-						<input id="submit" type="button" name="submit" value="Ok">
-						<br />
-						<img id="button" src="img/fight/r.jpg" alt="Refresh Chat" />
-					</div>
-					<div id="autoRefresh"></div>
-				</form>
-			</div>
-		</div>
-	</div>
+	</table>
 </body>
 </html>

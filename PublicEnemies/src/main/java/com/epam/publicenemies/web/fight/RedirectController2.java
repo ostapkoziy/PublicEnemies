@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
- * @author Karamba
+ * @author Alexander Ivanov
  */
 @Controller
 public class RedirectController2

@@ -36,7 +36,7 @@ A:hover {
 table#main {
 	background-color: #444D48;
 	opacity: .6;
-	filter: alpha(opacity =           60);
+	filter: alpha(opacity = 60);
 	-moz-opacity: .6;
 	border-width: 3px;
 	border-spacing: 5px;
@@ -125,7 +125,18 @@ table#main {
 					<!-- 							<a href="userStartPage.html">Back</a> -->
 					<!-- 						</td> -->
 					<!-- 					</tr> -->
-
+	
+					<tr>
+						<td>
+							<div>
+								<form action="createGame.html" method="post">
+									<button id="create" type="submit">Create</button>
+								</form>
+						<!-- 	<button id="join" type="button" onclick="redirect()">Join</button> -->
+								<a href="allGames.html">ALL GAMES!!!</a>
+							</div>
+						</td>
+					</tr>
 				</table>
 
 			</td>
@@ -156,10 +167,6 @@ table#main {
 					}
 		});
 	</script>
-	<form action="createGame.html" method="post">
-		<button id="create" type="submit">Create</button>
-	</form>
-	<!-- 	<button id="join" type="button" onclick="redirect()">Join</button> -->
-	<a href="allGames.html">ALL GAMES!!!</a>
+
 </body>
 </html>

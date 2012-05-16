@@ -8,7 +8,7 @@ import org.apache.log4j.Logger;
 import com.epam.publicenemies.chat.MessageList;
 
 /**
- * @author Karamba
+ * @author Alexander Ivanov
  */
 public class GameEngine
 {
@@ -19,6 +19,12 @@ public class GameEngine
 		game.getRound().setUser2Hit("");
 		game.getRound().setUser1Block("");
 		game.getRound().setUser2Block("");
+		game.getRound().setFirstHit("");
+		game.getRound().setU1Hit(false);
+		game.getRound().setU2Hit(false);
+		game.getRound().setRoundNumber(game.getRound().getRoundNumber() + 1);
+		game.getRound().setRoundStart(true);
+		game.getRound().setRoundBeginTime(System.currentTimeMillis() / 1000);
 	}
 	private synchronized static void sendServerMessage(long gameId, String mess)
 	{
@@ -72,12 +78,7 @@ public class GameEngine
 		else
 		{
 			log.info("-------------ENGINE STARTED-------------");
-			game.getRound().setU1Hit(false);
-			game.getRound().setU2Hit(false);
 			GameEngine.sendServerMessage(game.getId(), "<b>Server: </b> Round №" + game.getRound().getRoundNumber() + " end.");
-			game.getRound().setRoundNumber(game.getRound().getRoundNumber() + 1);
-			game.getRound().setRoundStart(true);
-			game.getRound().setRoundBeginTime(System.currentTimeMillis() / 1000);
 			clearHitsBlocks(game);
 			log.info("--------------ENGINE END-------------");
 		}

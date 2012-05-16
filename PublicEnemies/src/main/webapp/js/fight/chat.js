@@ -1,7 +1,10 @@
 $(function()
 {
-	var interval = 0;
-	var eventsReverse = false;
+	// var interval = 0;
+	// var eventsReverse = false;
+	/**
+	 * Chat ON
+	 */
 	chatUserChoise();
 	/**
 	 * Scroll chat to bottom
@@ -18,12 +21,12 @@ $(function()
 	 */
 	function chatUserChoise()
 	{
-		if ($.cookie("chatAuto") == "true")
-		{
-			$("#autoRefresh").css("background-color", "green");
-			eventsReverse = true;
-			autoUpdate();
-		}
+		// if ($.cookie("chatAuto") == "true")
+		// {
+		$("#autoRefresh").css("background-color", "green");
+		// eventsReverse = true;
+		autoUpdate();
+		// }
 	}
 	/**
 	 * Sending messege to server
@@ -70,44 +73,44 @@ $(function()
 	/**
 	 * Enable/disable autoUpdate
 	 */
-	$("#autoRefresh").toggle(autoON, autoOFF);
+	// $("#autoRefresh").toggle(autoON, autoOFF);
 	/**
 	 * ON
 	 */
-	function autoON()
-	{
-		if (!eventsReverse)
-		{
-			$("#autoRefresh").css("background-color", "green");
-			$.cookie("chatAuto", "true");
-			autoUpdate();
-		}
-		else
-		{
-			$("#autoRefresh").css("background-color", "red");
-			$.cookie("chatAuto", null);
-			clearInterval(interval);
-		}
-
-	}
-	/**
-	 * OFF
-	 */
-	function autoOFF()
-	{
-		if (!eventsReverse)
-		{
-			$("#autoRefresh").css("background-color", "red");
-			$.cookie("chatAuto", null);
-			clearInterval(interval);
-		}
-		else
-		{
-			$("#autoRefresh").css("background-color", "green");
-			$.cookie("chatAuto", "true");
-			autoUpdate();
-		}
-	}
+	// function autoON()
+	// {
+	// if (!eventsReverse)
+	// {
+	// $("#autoRefresh").css("background-color", "green");
+	// $.cookie("chatAuto", "true");
+	// autoUpdate();
+	// }
+	// else
+	// {
+	// $("#autoRefresh").css("background-color", "red");
+	// $.cookie("chatAuto", null);
+	// clearInterval(interval);
+	// }
+	//
+	// }
+	// /**
+	// * OFF
+	// */
+	// function autoOFF()
+	// {
+	// if (!eventsReverse)
+	// {
+	// $("#autoRefresh").css("background-color", "red");
+	// $.cookie("chatAuto", null);
+	// clearInterval(interval);
+	// }
+	// else
+	// {
+	// $("#autoRefresh").css("background-color", "green");
+	// $.cookie("chatAuto", "true");
+	// autoUpdate();
+	// }
+	// }
 	/**
 	 * Show messeges when window load
 	 */
