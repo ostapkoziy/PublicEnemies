@@ -17,7 +17,7 @@ public class UCharacter
 	private int		armor;
 	private int		aid;
 	// not in database
-	private int		HP = 200+strength*10;
+	private int		HP;
 	public UCharacter()
 	{
 	}
@@ -40,6 +40,8 @@ public class UCharacter
 		this.weapon2 = weapon2;
 		this.armor = armor;
 		this.aid = aid;
+		//not in DB
+		this.HP = 200+strength*10;
 	}
 	public int getCharacterId()
 	{

@@ -44,9 +44,9 @@ public class GameEngine
 	}
 	public synchronized void startEngine(Game game)
 	{
-		int user1Damage = 1;
+		int user1Damage = 50;
 		int user2HPAfterHit = game.getUser2profile().getHP() - user1Damage;
-		int user2Damage = 2;
+		int user2Damage = 45;
 		int user1HPAfterHit = game.getUser1profile().getHP() - user2Damage;
 		if (user2HPAfterHit <= 0)
 		{
