@@ -7,8 +7,20 @@
 <title>Insert title here</title>
 </head>
 <body>
-<a href = "newBlackJackGame.html">BlackJack</a>
-<a href = "newPokerGame.html">Poker</a>
-<a href = "newRouletGame.html">Roulet</a>
+<form action="blackJackGame.html" method="post">
+<input type="text" name="chips">
+<button type="submit" class="button">Сиграть блекджек</button>
+</form>
+
+<form action="pokerGame.html" method="post">
+<input type="text" name="chips">
+<button type="submit" class="button">Сиграть пакерок</button>
+</form>
+
+<form action="rouletteGame.html" method="post">
+<input type="text" name="chips">
+<button type="submit" class="button">Крутануть рулетку долі</button>
+</form>
+
 </body>
 </html>

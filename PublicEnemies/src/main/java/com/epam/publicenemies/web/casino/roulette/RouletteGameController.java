@@ -1,4 +1,4 @@
-package com.epam.publicenemies.web.casino;
+package com.epam.publicenemies.web.casino.roulette;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -6,12 +6,12 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractController;
 
-public class NewPokerGameController extends AbstractController {
+public class RouletteGameController extends AbstractController {
 
 	@Override
 	protected ModelAndView handleRequestInternal(HttpServletRequest arg0,
 			HttpServletResponse arg1) throws Exception {
-		return new ModelAndView("newPokerGame");
+		return new ModelAndView("rouletteGame");
 	}
 
 }
