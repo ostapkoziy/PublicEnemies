@@ -1,7 +1,7 @@
 package com.epam.publicenemies.domain.fight;
 
 /**
- * @author Karamba
+ * @author Alexander Ivanov
  */
 public class Round
 {
@@ -13,6 +13,7 @@ public class Round
 	private String	user2Block	= "";
 	private boolean	u1Hit;
 	private boolean	u2Hit;
+	private String	firstHit;
 	private long	roundBeginTime;
 	public int getRoundNumber()
 	{
@@ -85,5 +86,13 @@ public class Round
 	public void setRoundBeginTime(long roundBeginTime)
 	{
 		this.roundBeginTime = roundBeginTime;
+	}
+	public String getFirstHit()
+	{
+		return firstHit;
+	}
+	public void setFirstHit(String firstHit)
+	{
+		this.firstHit = firstHit;
 	}
 }
