@@ -14,6 +14,7 @@ import com.epam.publicenemies.web.listeners.OnContextLoaderListener;
  * This class intended to create and delete all necessary tables
  * Be caution - its destroys all existing data in db
  * Updated by I. Kostyrko on Apr 27, 2012
+ * Updated by I. Kostyrko on May 16, 2012 - filling tables
  *
  */
 public class TableDaoImpl implements ITableDao {
@@ -107,39 +108,165 @@ public class TableDaoImpl implements ITableDao {
 	// below methods are hidden from external access
 	
 	private void fillWeapons(){
-		StringBuilder sql = new StringBuilder("INSERT INTO weapons ");
-		sql.append("(weaponName, weaponHitPoints, weaponType, weaponPrice) ");
-		sql.append("VALUES ('valera', 500, 1, 1000)");
+		final String fw = "INSERT INTO weapons (weaponName, weaponHitPoints, weaponType, weaponPicture, weaponPrice) ";
+		StringBuilder sql = new StringBuilder("");
+		//-------------------------------------------------------
+		sql.append(fw);
+		sql.append("VALUES ('Castet', 10, 1, './img/weapons/castet.png', 100)");
 		jdbcTemplate.update(sql.toString());
+		
 		sql.delete(0, sql.length());
-		sql.append("INSERT INTO weapons ");
-		sql.append("(weaponName, weaponHitPoints, weaponType, weaponPrice) ");
-		sql.append("VALUES ('zatochka', 10, 0, 10)");
+		//-------------------------------------------------------
+		sql.append(fw);
+		sql.append("VALUES ('Knife', 120, 1, './img/weapons/knife.png', 200)");
 		jdbcTemplate.update(sql.toString());
+		
+		sql.delete(0, sql.length());
+		//-------------------------------------------------------
+		sql.append(fw);
+		sql.append("VALUES ('Shurictns', 120, 1, './img/weapons/shuricens.png', 200)");
+		jdbcTemplate.update(sql.toString());
+		
+		sql.delete(0, sql.length());
+		//-------------------------------------------------------		
+		sql.append(fw);
+		sql.append("VALUES ('Baseball bat', 15, 1, './img/weapons/bat.png', 300)");
+		jdbcTemplate.update(sql.toString());
+		
+		sql.delete(0, sql.length());
+		//-------------------------------------------------------
+		sql.append(fw);
+		sql.append("VALUES ('Advanced bat', 20, 1, './img/weapons/adv_bat.png', 400)");
+		jdbcTemplate.update(sql.toString());
+		
+		sql.delete(0, sql.length());
+		//-------------------------------------------------------
+		sql.append(fw);
+		sql.append("VALUES ('Katana', 120, 1, './img/weapons/katana.png', 500)");
+		jdbcTemplate.update(sql.toString());
+		
+		sql.delete(0, sql.length());		
+		//-------------------------------------------------------
+		sql.append(fw);
+		sql.append("VALUES ('Revolver', 120, 1, './img/weapons/revolver.png', 800)");
+		jdbcTemplate.update(sql.toString());
+		
+		sql.delete(0, sql.length());
+		//-------------------------------------------------------
+		sql.append(fw);
+		sql.append("VALUES ('Advanced revolver', 60, 1, './img/weapons/adv_revolver.png', 1000)");
+		jdbcTemplate.update(sql.toString());
+		
+		sql.delete(0, sql.length());
+		//-------------------------------------------------------
+		sql.append(fw);
+		sql.append("VALUES ('FN P90', 120, 1, './img/weapons/FN_P90.png', 3000)");
+		jdbcTemplate.update(sql.toString());
+		
+		sql.delete(0, sql.length());
+		//-------------------------------------------------------
+		sql.append(fw);
+		sql.append("VALUES ('ADA 88', 120, 1, './img/weapons/ada88.png', 3000)");
+		jdbcTemplate.update(sql.toString());
+		
+		sql.delete(0, sql.length());
+		//-------------------------------------------------------
+		sql.append(fw);
+		sql.append("VALUES ('M4', 120, 1, './img/weapons/m4.png', 3000)");
+		jdbcTemplate.update(sql.toString());
+		
+		sql.delete(0, sql.length());
+		//-------------------------------------------------------
+		sql.append(fw);
+		sql.append("VALUES ('AK-47', 150, 1, './img/weapons/ak.png', 3500)");
+		jdbcTemplate.update(sql.toString());
+		
+		sql.delete(0, sql.length());
+		//-------------------------------------------------------				
 	}
 	
 	private void fillArmors(){
-		StringBuilder sql = new StringBuilder("INSERT INTO armors ");
-		sql.append("(armorName, armorProtection, armorPrice) ");
-		sql.append("VALUES ('kevlavr', 50, 1500)");
+		final String fa = "INSERT INTO armors (armorName, armorProtection, armorPicture, armorPrice) ";
+		StringBuilder sql = new StringBuilder("");
+		//-------------------------------------------------------
+		sql.append(fa);
+		sql.append("VALUES ('low', 50, './img/armors/low.png', 50)");
 		jdbcTemplate.update(sql.toString());
+		
 		sql.delete(0, sql.length());
-		sql.append("INSERT INTO armors ");
-		sql.append("(armorName, armorProtection, armorPrice) ");
-		sql.append("VALUES ('bronik', 500, 7000)");
+		//-------------------------------------------------------
+		sql.append(fa);
+		sql.append("VALUES ('low_mid', 60, './img/armors/low_mid.png', 60)");
 		jdbcTemplate.update(sql.toString());
+		
+		sql.delete(0, sql.length());
+		//-------------------------------------------------------
+		sql.append(fa);
+		sql.append("VALUES ('mid', 80, './img/armors/mid.png', 80)");
+		jdbcTemplate.update(sql.toString());
+		
+		sql.delete(0, sql.length());
+		//-------------------------------------------------------
+		sql.append(fa);
+		sql.append("VALUES ('mid_advanced', 90, './img/armors/mid_advanced.png', 90)");
+		jdbcTemplate.update(sql.toString());
+		
+		sql.delete(0, sql.length());
+		//-------------------------------------------------------
+		sql.append(fa);
+		sql.append("VALUES ('mid_hight', 100, './img/armors/mid_hight.png', 100)");
+		jdbcTemplate.update(sql.toString());
+		
+		sql.delete(0, sql.length());
+		//-------------------------------------------------------
+		sql.append(fa);
+		sql.append("VALUES ('hight', 120, './img/armors/hight.png', 120)");
+		jdbcTemplate.update(sql.toString());
+		
+		sql.delete(0, sql.length());
+		//-------------------------------------------------------
+		sql.append(fa);
+		sql.append("VALUES ('extra', 150, './img/armors/extra.png', 150)");
+		jdbcTemplate.update(sql.toString());
+		
+		sql.delete(0, sql.length());
+		//-------------------------------------------------------
+		sql.append(fa);
+		sql.append("VALUES ('extra_hight', 180, './img/armors/extra_hight.png', 180)");
+		jdbcTemplate.update(sql.toString());
+		
+		sql.delete(0, sql.length());
+		//-------------------------------------------------------
+		
 	}
 	
 	private void fillAids() {
-		StringBuilder sql = new StringBuilder("INSERT INTO aids ");
-		sql.append("(aidName, AidType, aidEffect, aidPrice) ");
-		sql.append("VALUES ('cytramon', 'HP', 30, 10)");
+		final String aidsSql = "INSERT INTO aids (aidName, AidType, aidEffect, aidPicture, aidPrice) ";
+		StringBuilder sql = new StringBuilder("");
+		//-------------------------------------------------------
+		sql.append(aidsSql);
+		sql.append("VALUES ('small', 'HP', 20, './img/aids/small.png', 50)");
 		jdbcTemplate.update(sql.toString());
+		
 		sql.delete(0, sql.length());
-		sql.append("INSERT INTO aids ");
-		sql.append("(aidName, AidType, aidEffect, aidPrice) ");
-		sql.append("VALUES ('amphetamine', 'damage', 50, 1050)");
+		//-------------------------------------------------------
+		sql.append(aidsSql);
+		sql.append("VALUES ('medium', 'HP', 50, './img/aids/medium.png', 70)");
 		jdbcTemplate.update(sql.toString());
+		
+		sql.delete(0, sql.length());
+		//-------------------------------------------------------
+		sql.append(aidsSql);
+		sql.append("VALUES ('lagre', 'HP', 70, './img/aids/large.png', 100)");
+		jdbcTemplate.update(sql.toString());
+		
+		sql.delete(0, sql.length());
+		//-------------------------------------------------------
+		sql.append(aidsSql);
+		sql.append("VALUES ('very_lagre', 'HP', 100, './img/aids/very_large.png', 150)");
+		jdbcTemplate.update(sql.toString());
+		
+		sql.delete(0, sql.length());		
 	}
 	
 	private void fillCharacters() {
@@ -210,13 +337,13 @@ public class TableDaoImpl implements ITableDao {
 	
 	private void fillUsers() {
 		StringBuilder sql = new StringBuilder("INSERT INTO users ");
-		sql.append("(email, password, money, chatProperty, userCharacter, nickName) ");
-		sql.append("VALUES ('janukovych@mail.ru', 'asdfasdf', 1000000, 1, 1, 'president')");
+		sql.append("(email, password, money, chatProperty, userCharacter, nickName, avatar) ");
+		sql.append("VALUES ('janukovych@mail.ru', 'asdfasdf', 1000000, 1, 1, 'president', './img/avatars/godfather.png')");
 		jdbcTemplate.update(sql.toString());
 		sql.delete(0, sql.length());
 		sql.append("INSERT INTO users ");
-		sql.append("(email, password, money, chatProperty, userCharacter, nickName) ");
-		sql.append("VALUES ('tymoshenko@ukr.net', 'asdfasdf', 100000, 2, 2, 'troublesome')");
+		sql.append("(email, password, money, chatProperty, userCharacter, nickName, avatar) ");
+		sql.append("VALUES ('tymoshenko@ukr.net', 'asdfasdf', 100000, 2, 2, 'troublesome', './img/avatars/angelina.png')");
 		jdbcTemplate.update(sql.toString());
 	}
 	

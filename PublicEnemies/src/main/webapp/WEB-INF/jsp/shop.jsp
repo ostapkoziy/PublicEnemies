@@ -93,76 +93,109 @@ h1 {
 	font-size: 20pt;
 	color: red;
 }
+div.shop_header {
+	text-align: center; 
+	padding: 10px;
+	border-radius: 15px;
+	background: url(img/opacity_background.png); 
+	magrin: 0 auto;	  
+}
+span#money {
+	font-size:50px;
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+}
+div#main_page {
+	float:left; 
+	padding: 15px;
+	font-family: Geneva, Arial, Helvetica, sans-serif; 
+}
+div.left_header_items {
+	padding: 15px;
+	float:right; 
+}
 </style>
 
 </head>
 
 
 <body>
-<h2 style="color:red"> <a href="userStartPage.html">MAIN PAGE </a></h2> 
+<div class="shop_header">
+<div id="main_page"> <a href="userStartPage.html">MAIN PAGE </a></div>
+<img src="./img/dollar_sign.png"> 
+<span id="money" >${money}</span>
+<div class="left_header_items">
+<a href="logout.html">Logout</a> <br />
+</div>
+<div class="left_header_items">
+<a href="editProfile.html">
+	<img src="${profile.getAvatar()}" title="${profile.getNickName()}'s profile" border="0" width="40px"></img>
+</a>
+</div>
+
+
+</div>
+ 
 [log with janukovych@mail.ru to see full functionality]
 	<h2 style="color: white">USER ID = ${uid}</h2>
 	<div style="float: right">
+	
+	<table border='2' align='center'>
+			<c:set var="weapons" value="${weaponsList}" />
+			<caption>WEAPONS</caption>
+			<c:set var="countW" value="0" scope="page" />
+			<c:forEach items="${weapons}" var="weapon">
+			<c:if test="${(countW % 4) == 0 }">
+				<tr>
+				</c:if>			
+				<c:set var="countW" value="${countW + 1}" scope="page"/>
+				<td>				
+				 <img src="${weapon.getItemPicture()}"				 
+				title = "${weapon.getItemId()}, ${weapon.getItemName()}, ${weapon.getItemPrice()}"				
+				/> </td>
+				<c:if test="${(countW % 4) == 0 }">
+				</tr>
+				</c:if>			
+			</c:forEach>
+		</table>
 		<table border='2'>
 			<c:set var="aids" value="${aidsList}" />
 			<caption>AIDS</caption>
 			<tr>
-				<td>ID</td>
-				<td>NAME</td>
-				<td>TYPE</td>
-				<td>EFFECT</td>
-				<td>PICTURE</td>
-				<td>PRICE</td>
-			</tr>
-			<c:forEach items="${aids}" var="aid">
-				<tr>
-					<td><c:out value="${aid.getItemId()}" /></td>
-					<td><c:out value="${aid.getItemName()}" /></td>
-					<td><c:out value="${aid.getAidType()}" /></td>
-					<td><c:out value="${aid.getAidEffect()}" /></td>
-					<td><c:out value="${aid.getItemPicture()}" /></td>
-					<td><c:out value="${aid.getItemPrice()}" /></td>
-				</tr>
+			<c:forEach items="${aids}" var="aid">						
+					<td><img src="${aid.getItemPicture()}" 
+					title="ID:     ${aid.getItemId()}
+NAME: ${aid.getItemName()}
+TYPE: ${aid.getAidType()}
+EFFECT: ${aid.getAidEffect()}
+PRICE: ${aid.getItemPrice()}"/> 
+					</td>				
 			</c:forEach>
+			</tr>	
 		</table>
 
 		<table border='2' align='center'>
 			<c:set var="armors" value="${armorsList}" />
 			<caption>ARMORS</caption>
-			<tr>
-				<td>ID</td>
-				<td>NAME</td>
-				<td>PICTURE</td>
-				<td>PRICE</td>
-			</tr>
-			<c:forEach items="${armors}" var="armor">
+			
+			<c:set var="countAr" value="0" scope="page" />
+			<c:forEach items="${armors}" var="armor">				
+				<!-- <c:out value="${count}" /> -->				
+				<c:if test="${(countAr % 4) == 0 }">
 				<tr>
-					<td><c:out value="${armor.getItemId()}" /></td>
-					<td><c:out value="${armor.getItemName()}" /></td>
-					<td><c:out value="${armor.getItemPicture()}" /></td>
-					<td><c:out value="${armor.getItemPrice()}" /></td>
+				</c:if>			
+				<c:set var="countAr" value="${countAr + 1}" scope="page"/>
+				<td>				
+				 <img src="${armor.getItemPicture()}"				 
+				title = "${armor.getItemId()}, ${armor.getItemName()}, ${armor.getItemPrice()}"				
+				/> </td>
+				<c:if test="${(countAr % 4) == 0 }">
 				</tr>
+				</c:if>						
 			</c:forEach>
+			
 		</table>
 
-		<table border='2' align='center'>
-			<c:set var="weapons" value="${weaponsList}" />
-			<caption>WEAPONS</caption>
-			<tr>
-				<td>ID</td>
-				<td>NAME</td>
-				<td>PICTURE</td>
-				<td>PRICE</td>
-			</tr>
-			<c:forEach items="${weapons}" var="weapon">
-				<tr>
-					<td><c:out value="${weapon.getItemId()}" /></td>
-					<td><c:out value="${weapon.getItemName()}" /></td>
-					<td><c:out value="${weapon.getItemPicture()}" /></td>
-					<td><c:out value="${weapon.getItemPrice()}" /></td>
-				</tr>
-			</c:forEach>
-		</table>
+		
 	</div>
 	<div style="color: white">
 	Nickname = ${profile.getNickName()}
@@ -202,7 +235,7 @@ h1 {
 	<td> ${profile.getDressedAid().getItemName()} </td> 
 	<td> ${profile.getDressedAid().getAidType()} </td> 
 	<td> ${profile.getDressedAid().getAidEffect()} </td> 
-	<td> ${profile.getDressedAid().getItemPicture()} </td> 
+	<td> <img src ="${profile.getDressedAid().getItemPicture()}" title="asdf sdfs"/> </td> 
 	<td> ${profile.getDressedAid().getItemPrice()} </td>
 	</tr>
 	</table>

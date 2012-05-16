@@ -64,6 +64,7 @@ public class ShopController {
 			// TODO: error page ?, unable to find profile for user
 		}
 		
+		mav.addObject("money", pd.getMoney()); 
 		mav.addObject("profile", pd); 
 		mav.addObject("aidsList", aids);
 		mav.addObject("armorsList", armors);

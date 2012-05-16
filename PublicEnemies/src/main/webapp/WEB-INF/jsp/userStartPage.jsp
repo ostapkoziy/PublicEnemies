@@ -61,7 +61,7 @@
 						</td>
 						<td width="100" align="right">
 							<a href="editProfile.html">
-							<img src="img/avatars/angelina.png" title="${profileInfo.getNickName()}'s profile" border="0" width="40px"></img>
+							<img src="${profileInfo.getAvatar()}" title="${profileInfo.getNickName()}'s profile" border="0" width="40px"></img>
 							</a>
 						</td>
 						<td width="30" align="center">
