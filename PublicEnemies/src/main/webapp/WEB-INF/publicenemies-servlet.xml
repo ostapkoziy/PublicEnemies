@@ -14,7 +14,6 @@
 	<mvc:annotation-driven />
 	<context:component-scan base-package="com.epam.publicenemies.web" />
 
-	<bean id="fights" class="com.epam.publicenemies.web.memory.FightsHashMap"></bean>
 	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 	<!-- +++++++++++++++++++++++++++++++++++ DAO +++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
@@ -64,6 +63,10 @@
 
 	<bean id="editProfileFormController" class="com.epam.publicenemies.web.EditProfileFormController" />
 	<bean id="userStartPageController" class="com.epam.publicenemies.web.UserStartPageController" />
+	<bean id="casinoController" class="com.epam.publicenemies.web.casino.CasinoController" />
+	<bean id="newBlackJackGameController" class="com.epam.publicenemies.web.casino.NewBlackJackGameController" />
+	<bean id="newPokerGameController" class="com.epam.publicenemies.web.casino.NewPokerGameController" />
+	<bean id="newRouletGameController" class="com.epam.publicenemies.web.casino.NewRouletGameController" />
 
 	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 	<!-- +++++++++++++++++++++++++++++++++++ MAPPING +++++++++++++++++++++++++++++++++++++++++++++++++ -->
@@ -74,6 +77,12 @@
 			<map>
 				<entry key="/editProfile.html" value="editProfileFormController"></entry>
 				<entry key="/userStartPage.html" value="userStartPageController"></entry>
+				<!-- +++++++++++++++++++++++CASINO PAGES ++++++++++++++++++++++++++++++++++ -->
+				<entry key="/casino.html" value="casinoController"></entry>			
+				<entry key="/newBlackJackGame.html" value="newBlackJackGameController"></entry>			
+				<entry key="/newPokerGame.html" value="newPokerGameController"></entry>			
+				<entry key="/newRouletGame.html" value="newRouletGameController"></entry>			
+				
 			</map>
 		</property>
 	</bean>
