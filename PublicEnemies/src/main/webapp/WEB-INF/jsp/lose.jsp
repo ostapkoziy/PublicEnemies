@@ -16,7 +16,7 @@
 </head>
 
 <body>
-	<a href="index.html">Index</a>
+	<a href="userStartPage.html">StartPage</a>
 	<div id="lose"></div>
 </body>
 </html>

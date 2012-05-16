@@ -15,6 +15,9 @@ import com.epam.publicenemies.domain.fight.Game;
 
 import flexjson.JSONSerializer;
 
+/**
+ * @author Alexander Ivanov
+ */
 @Controller
 public class WaitingNewRound
 {
@@ -23,9 +26,9 @@ public class WaitingNewRound
 	public void newRound(HttpServletRequest request, HttpServletResponse response) throws IOException
 	{
 		response.setContentType("text/html;charset=UTF-8");
-		Profile userProfile;
 		String role = request.getSession().getAttribute("gameRole").toString();
 		Game game = (Game) request.getSession().getAttribute("game");
+		Profile userProfile;
 		if (role.equals("creator"))
 		{
 			userProfile = game.getUser1profile();
@@ -39,7 +42,7 @@ public class WaitingNewRound
 		JSONSerializer ser = new JSONSerializer();
 		if (game.isGameEnd())
 		{
-			log.info("USER: " + userProfile.getNickName() + " DELETE HIS ATTRIBUTE GAME");
+			// log.info("USER: " + userProfile.getNickName() + " DELETE HIS ATTRIBUTE GAME");
 			log.info("--------------GAME IS END FOR USER: " + userProfile.getNickName() + "----------------------");
 			out.print(ser.exclude("*.class").serialize(game));
 			out.flush();

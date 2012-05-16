@@ -15,7 +15,7 @@ import com.epam.publicenemies.domain.fight.Game;
 import com.epam.publicenemies.domain.fight.GameEngine;
 
 /**
- * @author Karamba
+ * @author Alexander Ivanov
  */
 @Controller
 public class HitServlet
@@ -25,11 +25,11 @@ public class HitServlet
 	public void hit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		response.setContentType("text/html;charset=UTF-8");
-		Profile userProfile;
 		String role = request.getSession().getAttribute("gameRole").toString();
 		Game game = (Game) request.getSession().getAttribute("game");
 		String hit = new String(request.getParameter("userHit"));
 		String block = request.getParameter("userBlock");
+		Profile userProfile;
 		/*
 		 * 
 		 */
@@ -41,7 +41,7 @@ public class HitServlet
 		{
 			userProfile = game.getUser2profile();
 		}
-		if (request.getSession().getAttribute("gameRole").equals("creator"))
+		if (role.equals("creator"))
 		{
 			log.info("USER1 (CREATOR): " + userProfile.getNickName() + " HIT : " + hit + " BLOCK: " + block);
 			game.getRound().setUser1Hit(hit);
@@ -49,8 +49,12 @@ public class HitServlet
 			game.getRound().setU1Hit(true);
 			if (game.getRound().isU2Hit())
 			{
-				log.info("AND END ROUND");
+				log.info("AND END ROUND №" + game.getRound().getRoundNumber());
 				game.getRound().setRoundStart(false);
+			}
+			else
+			{
+				setFirstHit(game, role);
 			}
 		}
 		else
@@ -64,6 +68,10 @@ public class HitServlet
 				log.info("AND END ROUND №" + game.getRound().getRoundNumber());
 				game.getRound().setRoundStart(false);
 			}
+			else
+			{
+				setFirstHit(game, role);
+			}
 		}
 		/*
 		 * Engine Start
@@ -71,6 +79,13 @@ public class HitServlet
 		if (!game.getRound().isRoundStart())
 		{
 			GameEngine.startEngine(game);
+		}
+	}
+	private synchronized void setFirstHit(Game game, String role)
+	{
+		if (game.getRound().getFirstHit().equals(""))
+		{
+			game.getRound().setFirstHit(role);
 		}
 	}
 }
