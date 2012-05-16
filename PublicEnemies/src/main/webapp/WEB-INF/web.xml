@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 	id="WebApp_ID" version="3.0">
 
@@ -9,6 +9,10 @@
 	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 	<listener>
 		<listener-class>com.epam.publicenemies.web.listeners.OnContextLoaderListener</listener-class>
+	</listener>
+	<listener>
+		<description>sessionListener</description>
+		<listener-class>com.epam.publicenemies.web.listeners.SessionListener</listener-class>
 	</listener>
 	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 	<!-- ++++++++++++++++++++++++++++++++++++++++++++FILTERS++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
@@ -28,7 +32,7 @@
 		<url-pattern>/casino.html</url-pattern>
 		<url-pattern>/blackJackGame.html</url-pattern>
 		<url-pattern>/pokerGame.html</url-pattern>
-		<url-pattern>/rouletteGame.html</url-pattern>		
+		<url-pattern>/rouletteGame.html</url-pattern>
 		<!-- ++++++++++++++++++++FIGHT+++++++++++++++++++++++ -->
 		<url-pattern>/fight.html</url-pattern>
 		<url-pattern>/allGames.html</url-pattern>

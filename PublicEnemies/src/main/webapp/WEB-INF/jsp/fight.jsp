@@ -14,8 +14,8 @@
 <link href="css/content.css" rel="stylesheet" type="text/css">
 <title>FIGHT</title>
 <style type="text/css">
-div {
-	outline: 1px solid red;
+div { /* 	outline: 1px solid red; */
+	
 }
 
 #content {
@@ -23,6 +23,7 @@ div {
 	margin-left: auto;
 	margin-right: auto;
 	height: 800px;
+	/* 	outline: 5px solid red; */
 }
 
 #insideRight {
@@ -139,8 +140,6 @@ div {
 </head>
 <body>
 	<div id="content">
-
-
 		<!-- 	++++++++++++++++++++++++++++++++++++++++++CREATOR++++++++++++++++++++++++++++++++++++++ -->
 		<!-- 	+++++++++++++++LEFT CREATOR++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 		<c:if test="${gameRole=='creator'}">
