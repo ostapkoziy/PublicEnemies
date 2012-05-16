@@ -31,8 +31,17 @@ public class MessageServlet extends HttpServlet
 		response.setContentType("text/html;charset=UTF-8");
 		String mess = request.getParameter("mess").replace('\'', '`');
 		Game game = ((Game) request.getSession().getAttribute("game"));
+		String role = request.getSession().getAttribute("gameRole").toString();
 		long gameId = game.getId();
-		// String autor = profileManagerService.getProfileByUserId(game.g)
+		String autor;
+		if (role.equals("creator"))
+		{
+			autor = game.getUser1profile().getNickName();
+		}
+		else
+		{
+			autor = game.getUser2profile().getNickName();
+		}
 		PrintWriter pw = response.getWriter();
 		/*
 		 * 
@@ -46,12 +55,12 @@ public class MessageServlet extends HttpServlet
 		if (msListInGame == null)
 		{
 			msListInGame = new LinkedList<String>();
-			msListInGame.addFirst("<b>" + "autor" + ":</b> " + mess);
+			msListInGame.addFirst("<b>" + autor + ":</b> " + mess);
 			ml.getGameMessages().put(gameId, msListInGame);
 		}
 		else
 		{
-			msListInGame.addFirst("<b>" + "autor" + ":</b> " + mess);
+			msListInGame.addFirst("<b>" + autor + ":</b> " + mess);
 		}
 		/*
 		 * RESAULT
