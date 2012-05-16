@@ -23,6 +23,8 @@ import com.epam.publicenemies.domain.Armor;
  * 
  * @author Chetyrkin S.V. 14.05.2012
  * 
+ * TODO: Null Pointer exception if profile doesn't exist. Fix it!
+ * 
  */
 public class ProfileDaoImpl implements IProfileDao {
 

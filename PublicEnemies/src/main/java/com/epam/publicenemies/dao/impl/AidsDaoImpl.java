@@ -26,7 +26,6 @@ public class AidsDaoImpl implements IAidsDao{
 	private Logger log	= Logger.getLogger(AidsDaoImpl.class);
 	private JdbcTemplate jdbcTemplate;
 
-	
 	public void setDataSource(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}

@@ -4,6 +4,11 @@ import java.util.List;
 
 import com.epam.publicenemies.domain.Aid;
 
+/**
+ * 
+ * @author Ivan Kostyrko
+ *
+ */
 public interface IAidsDao {
 	/**
 	 * Gets all aids entry from db

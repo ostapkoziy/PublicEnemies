@@ -211,12 +211,12 @@ public class TableDaoImpl implements ITableDao {
 	private void fillUsers() {
 		StringBuilder sql = new StringBuilder("INSERT INTO users ");
 		sql.append("(email, password, money, chatProperty, userCharacter, nickName) ");
-		sql.append("VALUES ('janukovych@mail.ru', 'asdf', 1000000, 1, 1, 'president')");
+		sql.append("VALUES ('janukovych@mail.ru', 'asdfasdf', 1000000, 1, 1, 'president')");
 		jdbcTemplate.update(sql.toString());
 		sql.delete(0, sql.length());
 		sql.append("INSERT INTO users ");
 		sql.append("(email, password, money, chatProperty, userCharacter, nickName) ");
-		sql.append("VALUES ('tymoshenko@ukr.net', 'asdf', 100000, 2, 2, 'troublesome')");
+		sql.append("VALUES ('tymoshenko@ukr.net', 'asdfasdf', 100000, 2, 2, 'troublesome')");
 		jdbcTemplate.update(sql.toString());
 	}
 	
