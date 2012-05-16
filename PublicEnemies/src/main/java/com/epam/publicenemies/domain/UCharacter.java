@@ -17,7 +17,7 @@ public class UCharacter
 	private int		armor;
 	private int		aid;
 	// not in database
-	private int		HP;
+	private int		HP = 200+strength*10;
 	public UCharacter()
 	{
 	}

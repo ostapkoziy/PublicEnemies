@@ -45,32 +45,32 @@ public class GameEngine
 	public synchronized void startEngine(Game game)
 	{
 		int user1Damage = 1;
-		int user2HPAfterHit = game.getUser2profile().getStrength() - user1Damage;
+		int user2HPAfterHit = game.getUser2profile().getHP() - user1Damage;
 		int user2Damage = 2;
-		int user1HPAfterHit = game.getUser1profile().getStrength() - user2Damage;
+		int user1HPAfterHit = game.getUser1profile().getHP() - user2Damage;
 		if (user2HPAfterHit <= 0)
 		{
-			game.getUser2profile().setStrength(0);
+			game.getUser2profile().setHP(0);
 			game.setUser1resaultPage("win.html");
 			game.setUser2resaultPage("lose.html");
 			GameEngine.sendServerMessage(game.getId(), game.getUser1profile().getNickName() + " WIN!");
 		}
 		else
 		{
-			game.getUser2profile().setStrength(user2HPAfterHit);
+			game.getUser2profile().setHP(user2HPAfterHit);
 		}
 		if (user1HPAfterHit <= 0)
 		{
-			game.getUser1profile().setStrength(0);
+			game.getUser1profile().setHP(0);
 			game.setUser1resaultPage("lose.html");
 			game.setUser2resaultPage("win.html");
 			GameEngine.sendServerMessage(game.getId(), game.getUser2profile().getNickName() + " WIN!");
 		}
 		else
 		{
-			game.getUser1profile().setStrength(user1HPAfterHit);
+			game.getUser1profile().setHP(user1HPAfterHit);
 		}
-		if (game.getUser1profile().getStrength() == 0 || game.getUser2profile().getStrength() == 0)
+		if (game.getUser1profile().getHP() == 0 || game.getUser2profile().getHP() == 0)
 		{
 			game.setGameEnd(true);
 			return;
