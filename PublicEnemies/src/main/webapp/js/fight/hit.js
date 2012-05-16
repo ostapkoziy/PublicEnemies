@@ -38,14 +38,14 @@ function waitingNewRound()
 			var game = jQuery.parseJSON(data);
 			if (game.gameEnd != true)
 			{
-				$("#hpU1").html(game.user1profile.strength);
-				$("#hpU2").html(game.user2profile.strength);
+				$("#U1HP").html(game.user1profile.strength);
+				$("#U2HP").html(game.user2profile.strength);
 			}
 			if (game.gameEnd == true)
 			{
 				clearInterval(interval);
-				$("#hpU1").html(game.user1profile.strength);
-				$("#hpU2").html(game.user2profile.strength);
+				$("#U1HP").html(game.user1profile.strength);
+				$("#U2HP").html(game.user2profile.strength);
 				$("#atackButton").hide();
 				setTimeout(function()
 				{

@@ -18,13 +18,10 @@ public class MessageServlet extends HttpServlet
 {
 	private static final long	serialVersionUID	= 1L;
 	// TODO Servlet into Controller
-	// private IProfileManagerService profileManagerService = new
-	// ProfileManagerServiceImpl();
 	public MessageServlet()
 	{
 		super();
 	}
-	// TODO Can not get autor
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		request.setCharacterEncoding("UTF-8");
