@@ -13,7 +13,7 @@
 	rel="stylesheet" />
 <script type="text/javascript" src="js/jquery-1.7.2.js"></script>
 <script type="text/javascript" src="js/jquery.imagemapster.js"></script>
-<script language="javascript" src="js/regular.js"></script>
+<!-- <script language="javascript" src="js/regular.js"></script> -->
 <title>Registration</title>
 <link rel="stylesheet" href="css/userRegistration.css" type="text/css">
 </head>
