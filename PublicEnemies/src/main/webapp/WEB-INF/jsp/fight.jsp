@@ -17,7 +17,7 @@
 <style type="text/css">
 #left {
 	float: left;
-	height :450px;
+	height: 450px;
 	width: 200px;
 }
 
@@ -109,6 +109,10 @@
 .hp {
 	font-size: 20px;
 }
+div.box {
+	width: 300px;
+	height: 400px;
+}
 </style>
 </head>
 <body>
@@ -136,12 +140,12 @@
 					</tr>
 				</table>
 			</td>
-			<td id="creator_section">
-				<table width="600">
-					<tr>
-						<td>
-							<!-- 	++++++++++++++++++++++++++++++++++++++++++CREATOR++++++++++++++++++++++++++++++++++++++ -->
-							<c:if test="${gameRole=='creator'}">
+			<c:if test="${gameRole=='creator'}">
+				<!-- 	++++++++++++++++++++++++++++++++++++++++++CREATOR++++++++++++++++++++++++++++++++++++++ -->
+				<td id="creator_section">
+					<table width="600">
+						<tr>
+							<td>
 								<div id="left">
 									<div align="center" id="statsUser1">${game.user1profile.getNickName()}</div>
 									<div align="center" style="color: blue; font-size: 3em;">
@@ -150,8 +154,7 @@
 											style="width: 50px;">
 
 									</div>
-								</div>
-								<c:choose>
+								</div> <c:choose>
 									<c:when test="${game.gameStarted=='false'}">
 										<script type="text/javascript">
 											waitForOpponent();
@@ -176,42 +179,47 @@
 										</div>
 									</c:otherwise>
 								</c:choose>
-							</c:if> <!-- 	+++++++++++++++++++++++++++++++++++++END_CREATOR++++++++++++++++++++++++++++++++++++++++++++++ -->
-						</td>
-					</tr>
-					<tr align="center">
-						<td><img id="atackButton" src="img/fight/attack.jpg"></td>
-					</tr>
-				</table>
-			</td>
-			<td id="connector_section">
+
+							</td>
+						</tr>
+						<tr align="center">
+							<td><img id="atackButton" src="img/fight/attack.jpg"></td>
+						</tr>
+					</table>
+				</td>
+			</c:if>
+			<!-- 	+++++++++++++++++++++++++++++++++++++END_CREATOR++++++++++++++++++++++++++++++++++++++++++++++ -->
+			<c:if test="${gameRole=='connector'}">
 				<!-- +++++++++++++++++++++++++++++++++++++++++CONNECTOR++++++++++++++++++++++++++++++++++++++++++++ -->
-				<c:if test="${gameRole=='connector'}">
-					<script type="text/javascript">
-						wait();
-					</script>
-					<div id="left">
-						<div id="statsUser2">
-						${game.user2profile.getNickName()}
+				<td id="connector_section">
+					<table width="600">
+						<tr>
+							<td><script type="text/javascript"">
+								wait();
+							</script>
+								<div id="left">
+									<div id="statsUser2">${game.user2profile.getNickName()}</div>
+									<div style="color: blue; font-size: 3em;">
+										<img src="img/fight/2.jpg" height="250"></img> <br /> <input
+											id="blockInput" type="text" value="Head" style="width: 50px;">
 
-						</div>
-						<div style="color: blue; font-size: 3em;">
-							<img src="img/fight/2.jpg" height="250"></img> <br />
-							
-						</div>
-					</div>
-					<div id="right">
-						<div id="statsUser1">
-							${game.user1profile.getNickName()}
-						</div>
-						<div style="color: red; font-size: 3em;">
-							<img src="img/fight/3.jpg" height="250"></img> <br />
-							
-						</div>
-					</div>
-				</c:if> <!-- +++++++++++++++++++++++++++++++++++++++END_CONNECTOR+++++++++++++++++++++++++++++++++ -->
-			</td>
-
+									</div>
+								</div>
+								<div id="right">
+									<div id="statsUser1">${game.user1profile.getNickName()}</div>
+									<div style="color: red; font-size: 3em;">
+										<img src="img/fight/3.jpg" height="250"></img> <br /> <input
+											id="hitInput" type="text" value="Head" style="width: 50px;">
+									</div>
+								</div></td>
+							</td>
+						</tr>
+						<tr align="center">
+							<td><img id="atackButton" src="img/fight/attack.jpg"></td>
+						</tr>
+					</table>
+			</c:if>
+			<!-- +++++++++++++++++++++++++++++++++++++++END_CONNECTOR+++++++++++++++++++++++++++++++++ -->
 			<td width="100">
 				<table>
 					<tr height="200">
