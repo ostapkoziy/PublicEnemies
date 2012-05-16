@@ -26,9 +26,9 @@
 		<url-pattern>/newJoinGame.html</url-pattern>
 		<!-- ++++++++++++++++++++CASINO+++++++++++++++++++++++ -->
 		<url-pattern>/casino.html</url-pattern>
-		<url-pattern>/newBlackJackGame.html</url-pattern>
-		<url-pattern>/newPokerGame.html</url-pattern>
-		<url-pattern>/newRouletGame.html</url-pattern>		
+		<url-pattern>/blackJackGame.html</url-pattern>
+		<url-pattern>/pokerGame.html</url-pattern>
+		<url-pattern>/rouletteGame.html</url-pattern>		
 		<!-- ++++++++++++++++++++FIGHT+++++++++++++++++++++++ -->
 		<url-pattern>/fight.html</url-pattern>
 		<url-pattern>/allGames.html</url-pattern>
