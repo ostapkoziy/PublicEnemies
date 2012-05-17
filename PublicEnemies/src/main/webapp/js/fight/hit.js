@@ -42,6 +42,7 @@ function waitingNewRound()
 				$("#U2HP").html(game.user2profile.HP);
 				$("#innerLeftProgressHP").css("width", game.user1profile.HP / game.user1profile.allHP * 100 + "%");
 				$("#innerRightProgressHP").css("width", game.user2profile.HP / game.user2profile.allHP * 100 + "%");
+				HPColor();
 			}
 			if (game.gameEnd == true)
 			{
@@ -50,7 +51,7 @@ function waitingNewRound()
 				$("#U2HP").html(game.user2profile.HP);
 				$("#innerLeftProgressHP").css("width", game.user1profile.HP / game.user1profile.allHP * 100 + "%");
 				$("#innerRightProgressHP").css("width", game.user2profile.HP / game.user2profile.allHP * 100 + "%");
-				$("#atackButton").hide();
+				HPColor();
 				setTimeout(function()
 				{
 					// Redirect to gameResault page after 3 sec
@@ -72,7 +73,7 @@ function waitingNewRound()
  */
 function wait()
 {
-	interval = setInterval(waitingNewRound, 3000);
+	interval = setInterval(waitingNewRound, 1000);
 }
 /**
  * Hide attack button
@@ -94,6 +95,7 @@ function showAttackButton()
 $(window).load(function()
 {
 	waitingNewRound();
+	HPColor();
 });
 // DOM READY
 $(function()

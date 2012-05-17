@@ -8,7 +8,7 @@
 <script type="text/javascript" src="js/fight/hit.js"></script>
 <script type="text/javascript" src="js/fight/waitForConnect.js"></script>
 <script type="text/javascript" src="js/fight/chat.js"></script>
-
+<script type="text/javascript" src="js/fight/hpBar.js"></script>
 
 <link href="css/main.css" rel="stylesheet" type="text/css">
 <link href="css/content.css" rel="stylesheet" type="text/css">
@@ -27,7 +27,7 @@ div { /* 	outline: 1px solid red; */
 }
 
 #insideRight {
-	outline: 2px solid black;
+/* 	outline: 2px solid black; */
 	width: 150px;
 	height: 150px;
 	margin-left: auto;
@@ -108,7 +108,6 @@ div { /* 	outline: 1px solid red; */
 #innerLeftProgressHP {
 	height: 15px;
 	width: 100%;
-	background-color: green;
 }
 
 #rightProgressHP {
@@ -121,20 +120,30 @@ div { /* 	outline: 1px solid red; */
 #innerRightProgressHP {
 	height: 15px;
 	width: 100%;
-	background-color: green;
-	float: right;
+	float: left;
 }
 /* ************************************** */
 #rightAgility,#rightStrength,#rightInteligence {
 	float: right;
 }
 /* ******************************************* */
-/* ******************************************* */
 #attackBlock {
 	margin-left: auto;
 	margin-right: auto;
 	width: 75px;
 	clear: both;
+}
+/* *************************************** */
+.orange {
+	background-color: orange;
+}
+
+.red {
+	background-color: red;
+}
+
+.green {
+	background-color: green;
 }
 </style>
 </head>
@@ -150,7 +159,7 @@ div { /* 	outline: 1px solid red; */
 						<span id="U1HP">${game.user1profile.getHP()}</span>
 					</div>
 					<div id="leftProgressHP">
-						<div id="innerLeftProgressHP"></div>
+						<div id="innerLeftProgressHP" class="green"></div>
 					</div>
 				</div>
 				<div id="leftStats">
@@ -195,7 +204,7 @@ div { /* 	outline: 1px solid red; */
 								<img alt="HP" src="img/hp.png">
 							</div>
 							<div id="rightProgressHP">
-								<div id="innerRightProgressHP"></div>
+								<div id="innerRightProgressHP" class="green"></div>
 							</div>
 						</div>
 						<div id="rightStats">
@@ -241,7 +250,8 @@ div { /* 	outline: 1px solid red; */
 						<span id="U2HP">${game.user2profile.getHP()}</span>
 					</div>
 					<div id="leftProgressHP">
-						<div id="innerLeftProgressHP"></div>
+						<!-- *********************Inversion************** -->
+						<div id="innerRightProgressHP" class="green"></div>
 					</div>
 				</div>
 				<div id="leftStats">
@@ -273,7 +283,8 @@ div { /* 	outline: 1px solid red; */
 						<img alt="HP" src="img/hp.png">
 					</div>
 					<div id="rightProgressHP">
-						<div id="innerRightProgressHP"></div>
+						<!-- *********************Inversion************** -->
+						<div id="innerLeftProgressHP" class="green"></div>
 					</div>
 				</div>
 				<div id="rightStats">
