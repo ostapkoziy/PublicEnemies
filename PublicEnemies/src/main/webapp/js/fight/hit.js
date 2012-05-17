@@ -40,12 +40,16 @@ function waitingNewRound()
 			{
 				$("#U1HP").html(game.user1profile.HP);
 				$("#U2HP").html(game.user2profile.HP);
+				$("#innerLeftProgressHP").css("width", game.user1profile.HP / game.user1profile.allHP * 100 + "%");
+				$("#innerRightProgressHP").css("width", game.user2profile.HP / game.user2profile.allHP * 100 + "%");
 			}
 			if (game.gameEnd == true)
 			{
 				clearInterval(interval);
 				$("#U1HP").html(game.user1profile.HP);
 				$("#U2HP").html(game.user2profile.HP);
+				$("#innerLeftProgressHP").css("width", game.user1profile.HP / game.user1profile.allHP * 100 + "%");
+				$("#innerRightProgressHP").css("width", game.user2profile.HP / game.user2profile.allHP * 100 + "%");
 				$("#atackButton").hide();
 				setTimeout(function()
 				{
@@ -84,6 +88,13 @@ function showAttackButton()
 {
 	$("#atackButton").show();
 }
+/**
+ * Update data when window load.
+ */
+$(window).load(function()
+{
+	waitingNewRound();
+});
 // DOM READY
 $(function()
 {

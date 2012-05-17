@@ -107,7 +107,7 @@ div { /* 	outline: 1px solid red; */
 
 #innerLeftProgressHP {
 	height: 15px;
-	width: 30%;
+	width: 100%;
 	background-color: green;
 }
 
@@ -120,7 +120,7 @@ div { /* 	outline: 1px solid red; */
 
 #innerRightProgressHP {
 	height: 15px;
-	width: 56%;
+	width: 100%;
 	background-color: green;
 	float: right;
 }
