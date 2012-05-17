@@ -11,7 +11,7 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.epam.publicenemies.domain.fight.Game;
+import com.epam.publicenemies.domain.fight.Fight;
 import com.epam.publicenemies.utils.Utils;
 
 /**
@@ -28,8 +28,8 @@ public class WaitForOpponentConnect
 		/*
 		 * Гра точно існує бо вже створена User1
 		 */
-		long gameId = ((Game) request.getSession().getAttribute("game")).getId();
-		Game game = Utils.findGameById(gameId);
+		long gameId = ((Fight) request.getSession().getAttribute("game")).getId();
+		Fight game = Utils.findGameById(gameId);
 		// log.info(game.getUser1profile().getNickName() + " WAIT WHEN OPPONENT CONNECT TO GAME: " + gameId);
 		PrintWriter out = response.getWriter();
 		out.print(game.isGameStarted());

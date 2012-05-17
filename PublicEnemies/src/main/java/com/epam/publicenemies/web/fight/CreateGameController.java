@@ -14,8 +14,8 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.epam.publicenemies.domain.Profile;
-import com.epam.publicenemies.domain.fight.Game;
-import com.epam.publicenemies.domain.fight.GamesList;
+import com.epam.publicenemies.domain.fight.Fight;
+import com.epam.publicenemies.domain.fight.FightsList;
 import com.epam.publicenemies.service.IProfileManagerService;
 
 /**
@@ -37,10 +37,10 @@ public class CreateGameController
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
 		Profile userProfile = profileManagerService.getProfileByUserId((Integer) request.getSession().getAttribute("userId"));
-		Game game = new Game();
+		Fight game = new Fight();
 		game.setId(new Random().nextInt());
 		game.setUser1profile(userProfile);
-		GamesList.newInstanse().getList().add(game);
+		FightsList.newInstanse().getList().add(game);
 		/*
 		 * SESSION_SETUP
 		 */

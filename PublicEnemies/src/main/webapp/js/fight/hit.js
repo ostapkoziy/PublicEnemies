@@ -38,24 +38,21 @@ function waitingNewRound()
 			var game = jQuery.parseJSON(data);
 			if (game.gameEnd != true)
 			{
-				$("#U1HP").html(game.user1profile.HP);
-				$("#U2HP").html(game.user2profile.HP);
-				$("#innerLeftProgressHP").css("width", game.user1profile.HP / game.user1profile.allHP * 100 + "%");
-				$("#innerRightProgressHP").css("width", game.user2profile.HP / game.user2profile.allHP * 100 + "%");
+				allDataUpdate(game);
+				// alert(game.whoIAm);
 			}
 			if (game.gameEnd == true)
 			{
+
 				clearInterval(interval);
-				$("#U1HP").html(game.user1profile.HP);
-				$("#U2HP").html(game.user2profile.HP);
-				$("#innerLeftProgressHP").css("width", game.user1profile.HP / game.user1profile.allHP * 100 + "%");
-				$("#innerRightProgressHP").css("width", game.user2profile.HP / game.user2profile.allHP * 100 + "%");
-				$("#atackButton").hide();
+				allDataUpdate(game);
+				// ****** Redirect to gameResault page after 3 sec*************
 				setTimeout(function()
 				{
-					// Redirect to gameResault page after 3 sec
+
 					window.location.replace("resault.html");
 				}, 3000);
+				// ********************************************************
 			}
 		},
 		error : function(e, ajaxOptions, thrownError)
@@ -67,12 +64,23 @@ function waitingNewRound()
 
 	});
 }
+/*******************************************************************************
+ * UPDATE ALL DATA ON PAGE
+ ******************************************************************************/
+function allDataUpdate(game)
+{
+	$("#U1HP").html(game.user1profile.HP);
+	$("#U2HP").html(game.user2profile.HP);
+	$("#innerLeftProgressHP").css("width", game.user1profile.HP / game.user1profile.allHP * 100 + "%");
+	$("#innerRightProgressHP").css("width", game.user2profile.HP / game.user2profile.allHP * 100 + "%");
+	HPColor();
+}
 /**
  * Setup timer for new round waiting
  */
 function wait()
 {
-	interval = setInterval(waitingNewRound, 3000);
+	interval = setInterval(waitingNewRound, 1000);
 }
 /**
  * Hide attack button

@@ -1,4 +1,4 @@
-<%@ page import="com.epam.publicenemies.domain.fight.Game"%>
+<%@ page import="com.epam.publicenemies.domain.fight.Fight"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -11,13 +11,13 @@
 <body>
 	<c:if test="${gameRole=='creator'}">
 		<%
-			response.sendRedirect(((Game) session.getAttribute("game")).getUser1resaultPage());
+			response.sendRedirect(((Fight) session.getAttribute("game")).getUser1resaultPage());
 				//session.removeAttribute("game");
 		%>
 	</c:if>
 	<c:if test="${gameRole=='connector'}">
 		<%
-			response.sendRedirect(((Game) session.getAttribute("game")).getUser2resaultPage());
+			response.sendRedirect(((Fight) session.getAttribute("game")).getUser2resaultPage());
 				//	session.removeAttribute("game");
 		%>
 	</c:if>

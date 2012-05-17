@@ -2,8 +2,8 @@ package com.epam.publicenemies.utils;
 
 import java.util.List;
 
-import com.epam.publicenemies.domain.fight.Game;
-import com.epam.publicenemies.domain.fight.GamesList;
+import com.epam.publicenemies.domain.fight.Fight;
+import com.epam.publicenemies.domain.fight.FightsList;
 
 /**
  * @author Alexander Ivanov
@@ -14,10 +14,10 @@ public class Utils
 	/**
 	 * Find game by ID
 	 */
-	public static Game findGameById(long gameId)
+	public static Fight findGameById(long gameId)
 	{
-		Game game = null;
-		for (Game game1 : GamesList.newInstanse().getList())
+		Fight game = null;
+		for (Fight game1 : FightsList.newInstanse().getList())
 		{
 			if (game1.getId() == gameId)
 			{
@@ -32,8 +32,8 @@ public class Utils
 	 */
 	public static void deleteGame(long id)
 	{
-		List<Game> allGames = GamesList.newInstanse().getList();
-		for (Game game1 : allGames)
+		List<Fight> allGames = FightsList.newInstanse().getList();
+		for (Fight game1 : allGames)
 		{
 			if (game1.getId() == id)
 			{

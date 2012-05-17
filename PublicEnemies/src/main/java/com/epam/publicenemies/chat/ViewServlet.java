@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.epam.publicenemies.domain.fight.Game;
+import com.epam.publicenemies.domain.fight.Fight;
 
 @WebServlet("/ViewServlet")
 public class ViewServlet extends HttpServlet
@@ -25,7 +25,7 @@ public class ViewServlet extends HttpServlet
 	{
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
-		Game game = (Game) request.getSession().getAttribute("game");
+		Fight game = (Fight) request.getSession().getAttribute("game");
 		if (game == null)
 		{
 			return;

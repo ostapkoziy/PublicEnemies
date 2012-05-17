@@ -3,7 +3,7 @@ package com.epam.publicenemies.domain.fight;
 /**
  * @author Alexander Ivanov
  */
-public class Round
+public class FightRound
 {
 	private int		roundNumber	= 1;
 	private boolean	roundStart	= true;

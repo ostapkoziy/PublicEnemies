@@ -8,14 +8,13 @@
 <script type="text/javascript" src="js/fight/hit.js"></script>
 <script type="text/javascript" src="js/fight/waitForConnect.js"></script>
 <script type="text/javascript" src="js/fight/chat.js"></script>
+<script type="text/javascript" src="js/fight/hpBar.js"></script>
 
-
-<link href="css/main.css" rel="stylesheet" type="text/css">
-<link href="css/content.css" rel="stylesheet" type="text/css">
+<link href="css/fight/content.css" rel="stylesheet" type="text/css">
 <title>FIGHT</title>
 <style type="text/css">
-div { /* 	outline: 1px solid red; */
-	
+div {
+/* 	outline: 1px solid red; */
 }
 
 #content {
@@ -26,8 +25,7 @@ div { /* 	outline: 1px solid red; */
 	/* 	outline: 5px solid red; */
 }
 
-#insideRight {
-	outline: 2px solid black;
+#insideRight { /* 	outline: 2px solid black; */
 	width: 150px;
 	height: 150px;
 	margin-left: auto;
@@ -108,7 +106,6 @@ div { /* 	outline: 1px solid red; */
 #innerLeftProgressHP {
 	height: 15px;
 	width: 100%;
-	background-color: green;
 }
 
 #rightProgressHP {
@@ -121,14 +118,12 @@ div { /* 	outline: 1px solid red; */
 #innerRightProgressHP {
 	height: 15px;
 	width: 100%;
-	background-color: green;
-	float: right;
+	float: left;
 }
 /* ************************************** */
 #rightAgility,#rightStrength,#rightInteligence {
 	float: right;
 }
-/* ******************************************* */
 /* ******************************************* */
 #attackBlock {
 	margin-left: auto;
@@ -136,6 +131,24 @@ div { /* 	outline: 1px solid red; */
 	width: 75px;
 	clear: both;
 }
+
+#atackButtonWrapper {
+	width: 72px;
+	height: 75px;
+}
+/* *************************************** */
+.orange {
+	background-color: orange;
+}
+
+.red {
+	background-color: red;
+}
+
+.green {
+	background-color: green;
+}
+/* ********************************************* */
 </style>
 </head>
 <body>
@@ -150,7 +163,7 @@ div { /* 	outline: 1px solid red; */
 						<span id="U1HP">${game.user1profile.getHP()}</span>
 					</div>
 					<div id="leftProgressHP">
-						<div id="innerLeftProgressHP"></div>
+						<div id="innerLeftProgressHP" class="green"></div>
 					</div>
 				</div>
 				<div id="leftStats">
@@ -195,7 +208,7 @@ div { /* 	outline: 1px solid red; */
 								<img alt="HP" src="img/hp.png">
 							</div>
 							<div id="rightProgressHP">
-								<div id="innerRightProgressHP"></div>
+								<div id="innerRightProgressHP" class="green"></div>
 							</div>
 						</div>
 						<div id="rightStats">
@@ -241,7 +254,8 @@ div { /* 	outline: 1px solid red; */
 						<span id="U2HP">${game.user2profile.getHP()}</span>
 					</div>
 					<div id="leftProgressHP">
-						<div id="innerLeftProgressHP"></div>
+						<!-- *********************Inversion************** -->
+						<div id="innerRightProgressHP" class="green"></div>
 					</div>
 				</div>
 				<div id="leftStats">
@@ -273,7 +287,8 @@ div { /* 	outline: 1px solid red; */
 						<img alt="HP" src="img/hp.png">
 					</div>
 					<div id="rightProgressHP">
-						<div id="innerRightProgressHP"></div>
+						<!-- *********************Inversion************** -->
+						<div id="innerLeftProgressHP" class="green"></div>
 					</div>
 				</div>
 				<div id="rightStats">
@@ -305,7 +320,9 @@ div { /* 	outline: 1px solid red; */
 		<div id="attackBlock">
 			<input id="hitInput" type="text" value="Head" hidden="true">
 			<input id="blockInput" type="text" value="Head" hidden="true">
-			<img id="atackButton" src="img/fight/attack.jpg">
+			<div id="atackButtonWrapper">
+				<img id="atackButton" src="img/fight/attack.jpg">
+			</div>
 		</div>
 
 

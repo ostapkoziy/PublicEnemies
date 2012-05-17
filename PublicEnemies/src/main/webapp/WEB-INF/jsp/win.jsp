@@ -16,7 +16,7 @@
 </head>
 
 <body>
-	<a href="userStartPage.html">StartPage</a>
+	<a href="newJoinGame.html">StartPage</a>
 	<div id="win"></div>
 </body>
 </html>

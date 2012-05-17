@@ -11,7 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.epam.publicenemies.domain.Profile;
-import com.epam.publicenemies.domain.fight.Game;
+import com.epam.publicenemies.domain.fight.Fight;
 
 import flexjson.JSONSerializer;
 
@@ -27,29 +27,31 @@ public class WaitingNewRound
 	{
 		response.setContentType("text/html;charset=UTF-8");
 		String role = request.getSession().getAttribute("gameRole").toString();
-		Game game = (Game) request.getSession().getAttribute("game");
+		Fight fight = (Fight) request.getSession().getAttribute("game");
 		Profile userProfile;
 		if (role.equals("creator"))
 		{
-			userProfile = game.getUser1profile();
+			userProfile = fight.getUser1profile();
+			fight.setWhoIAm("user1");
 		}
 		else
 		{
-			userProfile = game.getUser2profile();
+			userProfile = fight.getUser2profile();
+			fight.setWhoIAm("user2");
 		}
 		// log.info(": WAIT FOR OPPONENT HIT");
 		PrintWriter out = response.getWriter();
 		JSONSerializer ser = new JSONSerializer();
-		if (game.isGameEnd())
+		if (fight.isGameEnd())
 		{
 			// log.info("USER: " + userProfile.getNickName() + " DELETE HIS ATTRIBUTE GAME");
 			log.info("--------------GAME IS END FOR USER: " + userProfile.getNickName() + "----------------------");
-			out.print(ser.exclude("*.class").serialize(game));
+			out.print(ser.exclude("*.class").serialize(fight));
 			out.flush();
 			return;
 		}
 		// log.info(ser.exclude("*.class").serialize(game));
-		out.print(ser.exclude("*.class").serialize(game));
+		out.print(ser.exclude("*.class").serialize(fight));
 		out.flush();
 	}
 }

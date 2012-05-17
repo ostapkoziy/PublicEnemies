@@ -1,7 +1,7 @@
 package com.epam.publicenemies.domain;
 
 import java.util.List;
-import java.util.TreeMap;
+import java.util.HashMap;
 
 import org.apache.log4j.Logger;
 
@@ -19,9 +19,9 @@ public class Profile
 	private Aid							pAid;
 	private Weapon						pWeapon1;
 	private Weapon						pWeapon2;
-	private TreeMap<Integer, TrunkItem>	weapons;
-	private TreeMap<Integer, TrunkItem>	aids;
-	private TreeMap<Integer, TrunkItem>	armors;
+	private HashMap<Integer, TrunkItem>	weapons;
+	private HashMap<Integer, TrunkItem>	aids;
+	private HashMap<Integer, TrunkItem>	armors;
 	/**
 	 * Default Profile constructor
 	 */
@@ -33,9 +33,9 @@ public class Profile
 		pAid = new Aid();
 		pWeapon1 = new Weapon();
 		pWeapon2 = new Weapon();
-		weapons = new TreeMap<Integer, TrunkItem>();
-		aids = new TreeMap<Integer, TrunkItem>();
-		armors = new TreeMap<Integer, TrunkItem>();
+		weapons = new HashMap<Integer, TrunkItem>();
+		aids = new HashMap<Integer, TrunkItem>();
+		armors = new HashMap<Integer, TrunkItem>();
 	}
 	/**
 	 * Non-default Profile constructor
@@ -53,9 +53,57 @@ public class Profile
 		pAid = new Aid();
 		pWeapon1 = new Weapon();
 		pWeapon2 = new Weapon();
-		weapons = new TreeMap<Integer, TrunkItem>();
-		aids = new TreeMap<Integer, TrunkItem>();
-		armors = new TreeMap<Integer, TrunkItem>();
+		weapons = new HashMap<Integer, TrunkItem>();
+		aids = new HashMap<Integer, TrunkItem>();
+		armors = new HashMap<Integer, TrunkItem>();
+	}
+	
+	/**
+	 * Get all weapons
+	 * @return all character's weapons
+	 */
+	public HashMap<Integer, TrunkItem> getWeapons() {
+		return weapons;
+	}
+	
+	/**
+	 * Set all weapons
+	 * @param weapons - map of all weapons
+	 */
+	public void setWeapons(HashMap<Integer, TrunkItem> weapons) {
+		this.weapons = weapons;
+	}
+	
+	/**
+	 * Get all character's aids
+	 * @return all characters aids
+	 */
+	public HashMap<Integer, TrunkItem> getAids() {
+		return aids;
+	}
+	
+	/**
+	 * Set character's aids
+	 * @param aids - map of all character aids
+	 */
+	public void setAids(HashMap<Integer, TrunkItem> aids) {
+		this.aids = aids;
+	}
+	
+	/**
+	 * Get all character armors
+	 * @return all character armors
+	 */
+	public HashMap<Integer, TrunkItem> getArmors() {
+		return armors;
+	}
+	
+	/**
+	 * Set all character's armors
+	 * @param armors - map of all character armors
+	 */
+	public void setArmors(HashMap<Integer, TrunkItem> armors) {
+		this.armors = armors;
 	}
 	/**
 	 * Set dressed armor

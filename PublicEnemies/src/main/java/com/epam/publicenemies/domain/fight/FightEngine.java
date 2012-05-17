@@ -10,10 +10,10 @@ import com.epam.publicenemies.chat.MessageList;
 /**
  * @author Alexander Ivanov
  */
-public class GameEngine
+public class FightEngine
 {
-	private static Logger	log	= Logger.getLogger(GameEngine.class);
-	private static void clearHitsBlocks(Game game)
+	private static Logger	log	= Logger.getLogger(FightEngine.class);
+	private static void clearHitsBlocks(Fight game)
 	{
 		game.getRound().setUser1Hit("");
 		game.getRound().setUser2Hit("");
@@ -42,7 +42,7 @@ public class GameEngine
 			msListInGame.addFirst(mess);
 		}
 	}
-	public synchronized void startEngine(Game game)
+	public synchronized void startEngine(Fight game)
 	{
 		int user1Damage = 50;
 		int user2HPAfterHit = game.getUser2profile().getHP() - user1Damage;
@@ -53,7 +53,7 @@ public class GameEngine
 			game.getUser2profile().setHP(0);
 			game.setUser1resaultPage("win.html");
 			game.setUser2resaultPage("lose.html");
-			GameEngine.sendServerMessage(game.getId(), game.getUser1profile().getNickName() + " WIN!");
+			FightEngine.sendServerMessage(game.getId(), game.getUser1profile().getNickName() + " WIN!");
 		}
 		else
 		{
@@ -64,7 +64,7 @@ public class GameEngine
 			game.getUser1profile().setHP(0);
 			game.setUser1resaultPage("lose.html");
 			game.setUser2resaultPage("win.html");
-			GameEngine.sendServerMessage(game.getId(), game.getUser2profile().getNickName() + " WIN!");
+			FightEngine.sendServerMessage(game.getId(), game.getUser2profile().getNickName() + " WIN!");
 		}
 		else
 		{
@@ -78,7 +78,7 @@ public class GameEngine
 		else
 		{
 			log.info("-------------ENGINE STARTED-------------");
-			GameEngine.sendServerMessage(game.getId(), "<b>Server: </b> Round №" + game.getRound().getRoundNumber() + " end.");
+			FightEngine.sendServerMessage(game.getId(), "<b>Server: </b> Round №" + game.getRound().getRoundNumber() + " end.");
 			clearHitsBlocks(game);
 			log.info("--------------ENGINE END-------------");
 		}

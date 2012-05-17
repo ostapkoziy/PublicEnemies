@@ -23,7 +23,7 @@ import com.epam.publicenemies.domain.Armor;
  * 
  * @author Chetyrkin S.V. 14.05.2012
  * 
- * TODO: Null Pointer exception if profile doesn't exist. Fix it!
+ *         TODO: Null Pointer exception if profile doesn't exist. Fix it!
  * 
  */
 public class ProfileDaoImpl implements IProfileDao {
@@ -38,7 +38,9 @@ public class ProfileDaoImpl implements IProfileDao {
 
 	/**
 	 * Get Profile information from database
-	 * @param userId - id of user
+	 * 
+	 * @param userId
+	 *            - id of user
 	 * @return - Profile object
 	 */
 	@Override
@@ -67,26 +69,22 @@ public class ProfileDaoImpl implements IProfileDao {
 			profile.setDressedWeapon1((Weapon) profile.getTrunkWeapon(
 					pCharacter.getWeapon1()).getItem());
 			profile.getTrunkWeapon(pCharacter.getWeapon1()).setWearing(true);
-		} 
-
+		}
 		if (pCharacter.getWeapon2() != 0) {
 			profile.setDressedWeapon2((Weapon) profile.getTrunkWeapon(
 					pCharacter.getWeapon2()).getItem());
 			profile.getTrunkWeapon(pCharacter.getWeapon2()).setWearing(true);
-		} 
-
-		
+		}
 		if (pCharacter.getAid() != 0) {
-			profile.setDressedAid((Aid) profile.getTrunkAid(
-					pCharacter.getAid()).getItem());
+			profile.setDressedAid((Aid) profile
+					.getTrunkAid(pCharacter.getAid()).getItem());
 			profile.getTrunkAid(pCharacter.getAid()).setWearing(true);
-		} 
-
+		}
 		if (pCharacter.getArmor() != 0) {
 			profile.setDressedArmor((Armor) profile.getTrunkArmor(
 					pCharacter.getArmor()).getItem());
 			profile.getTrunkArmor(pCharacter.getArmor()).setWearing(true);
-		} 
+		}
 		log.info("ProfileDaoImpl.getProfile: ID of user is " + userId);
 		return profile;
 	}
@@ -201,28 +199,54 @@ public class ProfileDaoImpl implements IProfileDao {
 										.getInt("userCharacter"));
 					}
 				});
+		log.info("ProfileDaoImpl.getUserById: ID of user is " + userId);
 		if (list.isEmpty())
 			return null;
 		return list.get(0);
 	}
 
+	/**
+	 * Get UCharacter by user id
+	 * 
+	 * @param userId
+	 *            - id of user
+	 * @return - UCharacter object
+	 */
 	@Override
 	public UCharacter getCharacterByUserId(int userId) {
-//		String sql = "SELECT characterId, sex, experience, strength, agility, intellect, " +
-//				"profession,  fightsTotal, fightsWon, weapon1, weapon2, aid, armor " +
-//				"FROM users, characters WHERE userId=? AND userCharacter=characterId";
-//		UCharacter ch = jdbcTemplate.queryForObject(sql, new Object [] {userId}, 
-//				new RowMapper<UCharacter>() {
-//			public UCharacter mapRow (ResultSet resultSet, int rowNum)
-//			throws SQLException {
-//				return new UCharacter(resultSet.getInt("characterId"),
-//						resultSet.getBoolean("sex") ,resultSet.getInt("experience"), 
-//		resultSet.getInt("strength"), agility, intelect, profession, fightsTotal, fightsWon, weapon1, weapon2, armor, aid)
-//			}
-//		});
-		return null;
+		String sql = "SELECT characterId, sex, experience, strength, agility, intellect, "
+				+ "profession,  fightsTotal, fightsWon, weapon1, weapon2, aid, armor "
+				+ "FROM users, characters WHERE userId=? AND userCharacter=characterId";
+		UCharacter ch = jdbcTemplate.queryForObject(sql,
+				new Object[] { userId }, new RowMapper<UCharacter>() {
+					public UCharacter mapRow(ResultSet resultSet, int rowNum)
+							throws SQLException {
+						return new UCharacter(resultSet.getInt("characterId"),
+								resultSet.getBoolean("sex"), resultSet
+										.getInt("experience"), resultSet
+										.getInt("strength"), resultSet
+										.getInt("agility"), resultSet
+										.getInt("intellect"), resultSet
+										.getString("profession"), resultSet
+										.getInt("fightsTotal"), resultSet
+										.getInt("fightsWon"), resultSet
+										.getInt("weapon1"), resultSet
+										.getInt("weapon2"), resultSet
+										.getInt("armor"), resultSet
+										.getInt("aid"));
+					}
+				});
+		log.info("ProfileDaoImpl.getCharacterByUserId: ID of user is " + userId);
+		return ch;
 	}
 
+	/**
+	 * Get character by character Id
+	 * 
+	 * @param characterId
+	 *            - id of character
+	 * @return UCharacter object
+	 */
 	@Override
 	public UCharacter getCharacterById(final int characterId) {
 		log.info("ProfileDaoImpl: GetCharacterById, characterId = "
@@ -232,93 +256,254 @@ public class ProfileDaoImpl implements IProfileDao {
 				new Object[] { characterId }, new RowMapper<UCharacter>() {
 					public UCharacter mapRow(ResultSet rs, int rowNum)
 							throws SQLException {
-						UCharacter selectedCh = new UCharacter(characterId, rs
-								.getBoolean("sex"), rs.getInt("experience"), rs
-								.getInt("strength"), rs.getInt("agility"), rs
-								.getInt("intellect"), rs
-								.getString("profession"), rs
-								.getInt("fightsTotal"), rs.getInt("fightsWon"),
-								rs.getInt("weapon1"), rs.getInt("weapon2"), rs
-										.getInt("armor"), rs.getInt("aid"));
-						return selectedCh;
+						return new UCharacter(characterId,
+								rs.getBoolean("sex"), rs.getInt("experience"),
+								rs.getInt("strength"), rs.getInt("agility"), 
+								rs.getInt("intellect"), rs.getString("profession"), 
+								rs.getInt("fightsTotal"), rs.getInt("fightsWon"), 
+								rs.getInt("weapon1"), rs.getInt("weapon2"), 
+								rs.getInt("armor"),	rs.getInt("aid"));
 					}
 				});
+		log.info("ProfileDaoImpl.getCharacterById: ID of character is "
+				+ characterId);
 		return uch;
 	}
 
-	/*
-	 * TODO: changes only nickName and avatar. Add prof. and sex
+	/**
+	 * Update nick name, avatar, sex and profession by user id
 	 * 
-	 * @see com.epam.publicenemies.dao.IProfileDao#updateProfile(int,
-	 * java.lang.String, java.lang.String, boolean, java.lang.String)
+	 * @param uid
+	 *            - user id
+	 * @param nickName
+	 *            - nick name
+	 * @param avatar
+	 *            - avatar
+	 * @param prof
+	 *            - profession
 	 */
 	@Override
 	public void updateProfile(int uid, String nickName, String avatar,
 			boolean sex, String prof) {
-		this.jdbcTemplate.update(
-				"UPDATE users SET nickName = ?, avatar = ? WHERE userId = ?",
-				new Object[] { nickName, avatar, new Integer(uid) });
-
+		this.jdbcTemplate
+				.update("UPDATE users, characters SET nickName = ?, avatar = ?, sex=?, profession=? WHERE userId = ? and characterId=userCharacter",
+						new Object[] { nickName, avatar, sex, prof, uid });
+		log.info("ProfileDaoImpl.getUpdateProfile: ID of user is " + uid);
 	}
 
+	/**
+	 * Get Character by User object
+	 * 
+	 * @param user
+	 *            - User object
+	 * @return uCharacter object
+	 */
 	@Override
-	public UCharacter getCharacter(User user) {
-		// TODO Auto-generated method stub
-		return null;
+	public UCharacter getCharacter(final User user) {
+		String sql = "SELECT sex, experience, strength, agility, intellect, "
+				+ "profession,  fightsTotal, fightsWon, weapon1, weapon2, aid, armor "
+				+ "FROM characters WHERE characterId=?";
+		UCharacter ch = jdbcTemplate.queryForObject(sql,
+				new Object[] { user.getCharacterId() },
+				new RowMapper<UCharacter>() {
+					public UCharacter mapRow(ResultSet resultSet, int rowNum)
+							throws SQLException {
+						return new UCharacter(user.getCharacterId(), resultSet
+								.getBoolean("sex"), resultSet
+								.getInt("experience"), resultSet
+								.getInt("strength"), resultSet
+								.getInt("agility"), resultSet
+								.getInt("intellect"), resultSet
+								.getString("profession"), resultSet
+								.getInt("fightsTotal"), resultSet
+								.getInt("fightsWon"), resultSet
+								.getInt("weapon1"),
+								resultSet.getInt("weapon2"), resultSet
+										.getInt("armor"), resultSet
+										.getInt("aid"));
+					}
+				});
+		log.info("ProfileDaoImpl.getCharacterByUserId: ID of character is "
+				+ user.getCharacterId());
+		return ch;
 	}
 
+	/**
+	 * Update character sex
+	 * 
+	 * @param userId
+	 *            - id of user
+	 * @param sex
+	 *            - UCharacter sex
+	 * @return true if operation is successfully
+	 */
 	@Override
-	public boolean updateProfileSex(int characterId, boolean sex) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean updateProfileSex(int userId, boolean sex) {
+		String sql = "UPDATE characters, users SET sex = ? WHERE userId=? AND userCharacter=characterId";
+		int i = jdbcTemplate.update(sql, new Object[] { sex, userId });
+		if (i > 0) {
+			log.info("ProfileDaoImpl.updateProfileSex: ID of user is " + userId);
+			return true;
+		}
+		else {
+			log.info("ProfileDaoImpl.updateProfileSex: ID of user is " + userId);
+			return false;
+		}
 	}
 
+	/**
+	 * Update character experience
+	 * @param userId - id of user
+	 * @param experiance - amount of experience
+	 * @return true if operation is successfully
+	 */
 	@Override
-	public boolean updateProfileExpirience(int characterId, int experiance) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean updateProfileExpirience(int userId, int experiance) {
+		String sql = "UPDATE characters, users SET experience = ? WHERE userId=? AND userCharacter=characterId";
+		int i = jdbcTemplate.update(sql, new Object[] { experiance, userId });
+		if (i > 0){
+			log.info("ProfileDaoImpl.updateProfileExperience: ID of user is " + userId);
+			return true;
+		}
+		else {
+			log.info("ProfileDaoImpl.updateProfileExperience: ID of user is " + userId);
+			return false;
+		}
 	}
 
+	/**
+	 * Update character strength
+	 * @param userId - id of user
+	 * @param strength - amount of strength
+	 * @return true if operation is successfully
+	 */
 	@Override
-	public boolean updateProfileStrength(int characterId, int strength) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean updateProfileStrength(int userId, int strength) {
+		String sql = "UPDATE characters, users SET strength = ? WHERE userId=? AND userCharacter=characterId";
+		int i = jdbcTemplate.update(sql, new Object[] { strength, userId });
+		if (i > 0){
+			log.info("ProfileDaoImpl.updateProfileStrength: ID of user is " + userId);
+			return true;
+		}
+		else {
+			log.info("ProfileDaoImpl.updateProfileStrength: ID of user is " + userId);
+			return false;
+		}
 	}
 
+	/**
+	 * Update character agility
+	 * @param userId - id of user
+	 * @param agility - amount of agility
+	 * @return true if operation is successfully
+	 */
 	@Override
-	public boolean updateProfileAgilty(int characterId, int agility) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean updateProfileAgilty(int userId, int agility) {
+		String sql = "UPDATE characters, users SET agility = ? WHERE userId=? AND userCharacter=characterId";
+		int i = jdbcTemplate.update(sql, new Object[] { agility, userId });
+		if (i > 0){
+			log.info("ProfileDaoImpl.updateProfileAgility: ID of user is " + userId);
+			return true;
+		}
+		else {
+			log.info("ProfileDaoImpl.updateProfileAgility: ID of user is " + userId);
+			return false;
+		}
 	}
 
+	/**
+	 * Update character intellect
+	 * @param userId - id of user
+	 * @param intelect - amount of intellect
+	 * @return true if operation is successfully
+	 */
 	@Override
-	public boolean updateProfileIntelect(int characterId, int intelect) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean updateProfileIntelect(int userId, int intellect) {
+		String sql = "UPDATE characters, users SET intellect = ? WHERE userId=? AND userCharacter=characterId";
+		int i = jdbcTemplate.update(sql, new Object[] { intellect, userId });
+		if (i > 0) {
+			log.info("ProfileDaoImpl.updateProfileIntellect: ID of user is " + userId);
+			return true;
+		}
+		else{
+			log.info("ProfileDaoImpl.updateProfileIntellect: ID of user is " + userId);
+			return false;
+		}
+			
 	}
 
+	/**
+	 * Update character profession
+	 * @param userId - id of user
+	 * @param profession - character profession
+	 * @return true if operation is successfully
+	 */
 	@Override
-	public boolean updateProfileProffesion(int characterId, String profession) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean updateProfileProffesion(int userId, String profession) {
+		String sql = "UPDATE characters, users SET profession = ? WHERE userId=? AND userCharacter=characterId";
+		int i = jdbcTemplate.update(sql, new Object[] { profession, userId });
+		if (i > 0){
+			log.info("ProfileDaoImpl.updateProfileProfession: ID of user is " + userId);
+			return true;
+		}
+		else
+			log.info("ProfileDaoImpl.updateProfileProfession: ID of user is " + userId);
+			return false;
 	}
 
+	/**
+	 * Add won fight
+	 * @param userId - id of user
+	 * @return true if operation is successfully
+	 */
 	@Override
-	public boolean addWonFight(int characterId) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean addWonFight(int userId) {
+		String sql = "UPDATE characters, users SET fightsWon = fightsWon+1, fightsTotal=fightsTotal+1 WHERE userId=? AND userCharacter=characterId";
+		int i = jdbcTemplate.update(sql, new Object[] { userId });
+		if (i > 0){
+			log.info("ProfileDaoImpl.addWonFight: ID of user is " + userId);
+			return true;
+		}
+		else
+			log.info("ProfileDaoImpl.addWonFight: ID of user is " + userId);
+			return false;
 	}
 
+	/**
+	 * Add lost fight 
+	 * @param userId - id of user
+	 * @return true if operation is successfully
+	 */
 	@Override
-	public boolean addLostFight(int characterId) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean addLostFight(int userId) {
+		String sql = "UPDATE characters, users SET fightsTotal=fightsTotal+1 WHERE userId=? AND userCharacter=characterId";
+		int i = jdbcTemplate.update(sql, new Object[] { userId });
+		if (i > 0){
+			log.info("ProfileDaoImpl.addLostFight: ID of user is " + userId);
+			return true;
+		}
+		else
+			log.info("ProfileDaoImpl.addLostFight: ID of user is " + userId);
+			return false;
 	}
 
+	/**
+	 * Delete character(and user)
+	 * @param userId - id of user
+	 * @return true if operation is successfully
+	 */
 	@Override
-	public boolean deleteCharacter(UCharacter character) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean deleteCharacter(int userId) {
+		String sql = "DELETE ch FROM users user, characters ch " +
+				"WHERE user.userId=? AND user.userCharacter=ch.characterId";
+		int j = jdbcTemplate.update(sql, new Object[] { userId });
+		if (j > 0){
+			log.info("ProfileDaoImpl.deleteCharacter: ID of user is " + userId);
+			return true;
+		}
+		else
+			log.info("ProfileDaoImpl.deleteCharacter: ID of user is " + userId);
+			return false;
 	}
 
 }

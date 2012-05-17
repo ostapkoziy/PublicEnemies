@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.epam.publicenemies.domain.fight.Game;
+import com.epam.publicenemies.domain.fight.Fight;
 
 @WebServlet("/MessageServlet")
 public class MessageServlet extends HttpServlet
@@ -27,7 +27,7 @@ public class MessageServlet extends HttpServlet
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
 		String mess = request.getParameter("mess").replace('\'', '`');
-		Game game = ((Game) request.getSession().getAttribute("game"));
+		Fight game = ((Fight) request.getSession().getAttribute("game"));
 		String role = request.getSession().getAttribute("gameRole").toString();
 		long gameId = game.getId();
 		String autor;

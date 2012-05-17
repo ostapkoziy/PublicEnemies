@@ -6,16 +6,17 @@ import com.epam.publicenemies.domain.Profile;
  * @author Alexander Ivanov
  * @since 19.04.2012
  */
-public class Game
+public class Fight
 {
 	private long				id;
 	private Profile				user1profile;
 	private Profile				user2profile;
 	private volatile boolean	gameStarted;
 	private volatile boolean	gameEnd	= false;
-	private Round				round	= new Round();
+	private FightRound			round	= new FightRound();
 	private String				user1resaultPage;
 	private String				user2resaultPage;
+	private String				whoIAm;
 	public long getId()
 	{
 		return id;
@@ -56,11 +57,11 @@ public class Game
 	{
 		this.gameEnd = gameEnd;
 	}
-	public Round getRound()
+	public FightRound getRound()
 	{
 		return round;
 	}
-	public void setRound(Round round)
+	public void setRound(FightRound round)
 	{
 		this.round = round;
 	}
@@ -79,5 +80,13 @@ public class Game
 	public void setUser2resaultPage(String user2resaultPage)
 	{
 		this.user2resaultPage = user2resaultPage;
+	}
+	public String getWhoIAm()
+	{
+		return whoIAm;
+	}
+	public void setWhoIAm(String whoIAm)
+	{
+		this.whoIAm = whoIAm;
 	}
 }

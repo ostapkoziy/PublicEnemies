@@ -31,72 +31,72 @@ public interface IProfileDao {
 	
 	/**
 	 * Update character sex
-	 * @param characterId - id of character
+	 * @param userId - id of user
 	 * @param sex - UCharacter sex
 	 * @return true if operation is successfully
 	 */
-	boolean updateProfileSex(int characterId, boolean sex);
+	boolean updateProfileSex(int userId, boolean sex);
 	
 	/**
 	 * Update character experience
-	 * @param characterId - id of character 
+	 * @param userId - id of user
 	 * @param experiance - amount of experience
 	 * @return true if operation is successfully
 	 */
-	boolean updateProfileExpirience(int characterId, int experiance);
+	boolean updateProfileExpirience(int userId, int experiance);
 	
 	/**
 	 * Update character strength
-	 * @param characterId - id of character 
+	 * @param userId - id of user
 	 * @param strength - amount of strength
 	 * @return true if operation is successfully
 	 */
-	boolean updateProfileStrength(int characterId, int strength);
+	boolean updateProfileStrength(int userId, int strength);
 	
 	/**
 	 * Update character agility
-	 * @param characterId - id of character 
+	 * @param userId - id of user
 	 * @param agility - amount of agility
 	 * @return true if operation is successfully
 	 */
-	boolean updateProfileAgilty(int characterId, int agility);
+	boolean updateProfileAgilty(int userId, int agility);
 	
 	/**
-	 * Update character intelect
-	 * @param characterId - id of character
-	 * @param intelect - amount of intelect
+	 * Update character intellect
+	 * @param userId - id of user
+	 * @param intelect - amount of intellect
 	 * @return true if operation is successfully
 	 */
-	boolean updateProfileIntelect(int characterId, int intelect);
+	boolean updateProfileIntelect(int userId, int intellect);
 	
 	/**
 	 * Update character profession
-	 * @param characterId - id of character
+	 * @param userId - id of user
 	 * @param profession - character profession
 	 * @return true if operation is successfully
 	 */
-	boolean updateProfileProffesion(int characterId, String profession);
+	boolean updateProfileProffesion(int userId, String profession);
 	
 	/**
 	 * Add won fight
-	 * @param characterId - id of character
+	 * @param userId - id of user
 	 * @return true if operation is successfully
 	 */
-	boolean addWonFight(int characterId);
+	boolean addWonFight(int userId);
 	
 	/**
 	 * Add lost fight 
-	 * @param characterId - id of character
+	 * @param userId - id of user
 	 * @return true if operation is successfully
 	 */
-	boolean addLostFight(int characterId);
+	boolean addLostFight(int userId);
 	
 	/**
-	 * Delete character
-	 * @param UCharacter - Character object
+	 * Delete character(and user)
+	 * @param userId - id of user
 	 * @return true if operation is successfully
 	 */
-	boolean deleteCharacter(UCharacter character);
+	boolean deleteCharacter(int userId);
 	
 	
 }
