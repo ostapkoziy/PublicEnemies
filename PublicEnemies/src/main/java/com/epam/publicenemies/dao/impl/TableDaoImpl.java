@@ -112,37 +112,37 @@ public class TableDaoImpl implements ITableDao {
 		StringBuilder sql = new StringBuilder("");
 		//-------------------------------------------------------
 		sql.append(fw);
-		sql.append("VALUES ('Castet', 10, 1, './img/weapons/castet.png', 100)");
+		sql.append("VALUES ('Castet', 10, 0, './img/weapons/castet.png', 100)");
 		jdbcTemplate.update(sql.toString());
 		
 		sql.delete(0, sql.length());
 		//-------------------------------------------------------
 		sql.append(fw);
-		sql.append("VALUES ('Knife', 120, 1, './img/weapons/knife.png', 200)");
+		sql.append("VALUES ('Knife', 120, 0, './img/weapons/knife.png', 200)");
 		jdbcTemplate.update(sql.toString());
 		
 		sql.delete(0, sql.length());
 		//-------------------------------------------------------
 		sql.append(fw);
-		sql.append("VALUES ('Shurictns', 120, 1, './img/weapons/shuricens.png', 200)");
+		sql.append("VALUES ('Shurictns', 120, 0, './img/weapons/shuricens.png', 200)");
 		jdbcTemplate.update(sql.toString());
 		
 		sql.delete(0, sql.length());
 		//-------------------------------------------------------		
 		sql.append(fw);
-		sql.append("VALUES ('Baseball bat', 15, 1, './img/weapons/bat.png', 300)");
+		sql.append("VALUES ('Baseball bat', 15, 0, './img/weapons/bat.png', 300)");
 		jdbcTemplate.update(sql.toString());
 		
 		sql.delete(0, sql.length());
 		//-------------------------------------------------------
 		sql.append(fw);
-		sql.append("VALUES ('Advanced bat', 20, 1, './img/weapons/adv_bat.png', 400)");
+		sql.append("VALUES ('Advanced bat', 20, 0, './img/weapons/adv_bat.png', 400)");
 		jdbcTemplate.update(sql.toString());
 		
 		sql.delete(0, sql.length());
 		//-------------------------------------------------------
 		sql.append(fw);
-		sql.append("VALUES ('Katana', 120, 1, './img/weapons/katana.png', 500)");
+		sql.append("VALUES ('Katana', 120, 0, './img/weapons/katana.png', 500)");
 		jdbcTemplate.update(sql.toString());
 		
 		sql.delete(0, sql.length());		
@@ -364,7 +364,7 @@ public class TableDaoImpl implements ITableDao {
 		sql.append("INDEX (chatProperty), ");
 		sql.append("FOREIGN KEY (chatProperty) REFERENCES chatProperties(chatpropertyId), ");
 		sql.append("INDEX (userCharacter), ");
-		sql.append("FOREIGN KEY (userCharacter) REFERENCES characters(characterId) ");
+		sql.append("FOREIGN KEY (userCharacter) REFERENCES characters(characterId) ON DELETE CASCADE ");
 		sql.append(") ENGINE=INNODB");
 		jdbcTemplate.execute(sql.toString());
 	}
@@ -421,7 +421,7 @@ public class TableDaoImpl implements ITableDao {
 		sql.append("characterId INT(10) UNSIGNED NOT NULL, ");
 		sql.append("PRIMARY KEY (trunkId), ");
 		sql.append("INDEX (characterId), ");
-		sql.append("FOREIGN KEY (characterId) REFERENCES characters(characterId) ");
+		sql.append("FOREIGN KEY (characterId) REFERENCES characters(characterId) ON DELETE CASCADE ");
 		sql.append(") ENGINE=INNODB");
 		jdbcTemplate.execute(sql.toString());
 	}
