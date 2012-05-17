@@ -39,22 +39,19 @@ public class HitBlackJackController extends AbstractController{
 		playerCards.add(deck.getCard());
 		game.setPlayerCards(playerCards);
 		// Get index of last card
-		
+		int index = game.getPlayerCards().size() - 1;
 		// Calculate your points
 		int yourPoints = game.getYourPoints()
-				+ playerCards.get(1).rank().getValue();
+				+ playerCards.get(index).rank().getValue();
 		game.setYourPoints(yourPoints);
-		// Get your bet
-		int bet = Integer.valueOf(request.getParameter("bet"));
-		game.setBet(bet);
 		// Push it all in map
 		Map<String, String> objects = new HashMap<String, String>();
 		objects.put("chips", String.valueOf(game.getChips()));
-		objects.put("dealer_card0", dealerCards.get(0).image());
+		objects.put("dealer_card0", String.valueOf(game.getDealerCards().get(0)));
 		objects.put("player_card0", playerCards.get(0).image());
 		objects.put("player_card1", playerCards.get(1).image());
 		objects.put("your_points", String.valueOf(yourPoints));
-		objects.put("bet", String.valueOf(bet));
+		objects.put("bet", String.valueOf(game.getBet()));
 
 		return new ModelAndView("blackJackGame", objects);
 
