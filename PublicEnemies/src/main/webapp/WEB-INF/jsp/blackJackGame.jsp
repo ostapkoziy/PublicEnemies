@@ -7,22 +7,36 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<table align="center">
+		<tr>
+			<td align="center"><img src="img/cards/back_image.png"></img></td>
+		</tr>
+		<tr>
+			<table class="sample" align="center" width="300">
+				<tr>
+					<td align="center"><img src="${dealer_card}"></img></td>
+				</tr>
+				<tr align="center" height="200">
+					Your balance - ${chips}
+					<form action="startBlackJack.html" method="post">
+						<button type="submit" class="button">Start</button>
+					</form>
+					<form action="standBlackJack.html" method="post">
+						<button type="submit" class="button">Stand</button>
+					</form>
+					<form action="hitBlackJack.html" method="post">
+						<button type="submit" class="button">Hit</button>
+					</form>
+					<form action="splitBlackJack.html" method="post">
+						<button type="submit" class="button">Split</button>
+					</form>
+					<form action="doubleDownBlackJack.html" method="post">
+						<button type="submit" class="button">Double Down</button>
+					</form>
+				</tr>
+			</table>
+		</tr>
+	</table>
 
-
-	<form action="startBlackJack.html" method="post">
-		<button type="submit" class="button">Start</button>
-	</form>
-	<form action="standBlackJack.html" method="post">
-		<button type="submit" class="button">Stand</button>
-	</form>
-	<form action="hitBlackJack.html" method="post">
-		<button type="submit" class="button">Hit</button>
-	</form>
-	<form action="splitBlackJack.html" method="post">
-		<button type="submit" class="button">Split</button>
-	</form>
-	<form action="doubleDownBlackJack.html" method="post">
-		<button type="submit" class="button">Double Down</button>
-	</form>
 </body>
 </html>

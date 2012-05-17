@@ -89,7 +89,9 @@
 	<bean id="deck"
 		class="com.epam.publicenemies.web.casino.blackjack.Deck"  >
 	</bean>
-	
+	<bean id="game"
+		class="com.epam.publicenemies.web.casino.blackjack.BlackJackGame"  >
+	</bean>	
 
 	<bean id="standBlackJackController"
 		class="com.epam.publicenemies.web.casino.blackjack.StandBlackJackController"  >

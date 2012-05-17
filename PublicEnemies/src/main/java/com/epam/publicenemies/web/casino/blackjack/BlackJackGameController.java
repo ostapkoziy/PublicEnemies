@@ -1,5 +1,8 @@
 package com.epam.publicenemies.web.casino.blackjack;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -11,9 +14,12 @@ public class BlackJackGameController extends AbstractController {
 	@Override
 	protected ModelAndView handleRequestInternal(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		String a =request.getParameter("chips");
-		System.out.println(a);
-		return new ModelAndView("blackJackGame");
+		String chips = request.getParameter("chips") + " $";
+		
+		Map<String, String> objects = new HashMap<String, String>();
+		objects.put("chips", chips);
+		
+		return new ModelAndView("blackJackGame",objects);
 	}
 
 }

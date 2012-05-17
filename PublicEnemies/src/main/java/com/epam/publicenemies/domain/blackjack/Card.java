@@ -1,4 +1,4 @@
-package com.epam.publicenemies.web.casino.blackjack;
+package com.epam.publicenemies.domain.blackjack;
 
 public class Card {
 	public enum Rank {
@@ -43,7 +43,7 @@ public class Card {
 	public Card(Rank rank, Suit suit) {
 		this.rank = rank;
 		this.suit = suit;
-		this.image = toString();
+		this.image = "img/cards/"+toString()+".png";
 	}
 
 	public Rank rank() {

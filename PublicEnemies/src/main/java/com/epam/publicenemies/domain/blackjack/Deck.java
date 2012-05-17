@@ -1,10 +1,12 @@
-package com.epam.publicenemies.web.casino.blackjack;
+package com.epam.publicenemies.domain.blackjack;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
-import com.epam.publicenemies.web.casino.blackjack.Card.Rank;
-import com.epam.publicenemies.web.casino.blackjack.Card.Suit;
+import com.epam.publicenemies.domain.blackjack.Card.Rank;
+import com.epam.publicenemies.domain.blackjack.Card.Suit;
+
 
 public class Deck {
 	private List<Card> deck;
@@ -17,7 +19,8 @@ public class Deck {
 	}
 	
 	public Card getCard(){
-		Card card = deck.get(10);
+		Random rand = new Random();
+		Card card = deck.get(rand.nextInt());
 		return card;
 	}
 }
