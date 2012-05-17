@@ -38,8 +38,10 @@ public class HitBlackJackController extends AbstractController{
 		List<BlackJackCard> playerCards = new ArrayList<BlackJackCard>();
 		playerCards.add(deck.getCard());
 		game.setPlayerCards(playerCards);
+		// Get index of last card
+		
 		// Calculate your points
-		int yourPoints = playerCards.get(0).rank().getValue()
+		int yourPoints = game.getYourPoints()
 				+ playerCards.get(1).rank().getValue();
 		game.setYourPoints(yourPoints);
 		// Get your bet
