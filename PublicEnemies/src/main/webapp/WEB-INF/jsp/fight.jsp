@@ -9,12 +9,13 @@
 <script type="text/javascript" src="js/fight/waitForConnect.js"></script>
 <script type="text/javascript" src="js/fight/chat.js"></script>
 <script type="text/javascript" src="js/fight/hpBar.js"></script>
+<script type="text/javascript" src="js/fight/timer.js"></script>
 
 <link href="css/fight/content.css" rel="stylesheet" type="text/css">
 <title>FIGHT</title>
 <style type="text/css">
-div {
-/* 	outline: 1px solid red; */
+div { /* 	outline: 1px solid red; */
+	
 }
 
 #content {
@@ -149,6 +150,11 @@ div {
 	background-color: green;
 }
 /* ********************************************* */
+#timer {
+	width: 100%;
+	height: 20px;
+	outline: 2px solid red;
+}
 </style>
 </head>
 <body>
@@ -318,6 +324,7 @@ div {
 
 
 		<div id="attackBlock">
+			<div id="timer"></div>
 			<input id="hitInput" type="text" value="Head" hidden="true">
 			<input id="blockInput" type="text" value="Head" hidden="true">
 			<div id="atackButtonWrapper">

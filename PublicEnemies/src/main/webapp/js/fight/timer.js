@@ -1,8 +1,8 @@
 var timerIntervalID = 0;
-var timerBeginTime = $.cookie("roundBegin");
 var nowTime = Math.ceil(new Date().getTime() / 1000);
-var limit = 5;
-function time()
+var limit = 60;
+
+function timer(timerBeginTime)
 {
 	if ((nowTime - timerBeginTime) < limit)
 	{
@@ -21,26 +21,18 @@ function time()
 	else
 	{
 		stopTimer();
-		hitSend("", "");
-		$.cookie("hit", "true");
 		$("#timer").fadeTo(0, 0);
 	}
 
 }
-function timerStart()
+function timerStart(timerBeginTime)
 {
-	timerIntervalID = setInterval(time, 1000);
+	timerIntervalID = setInterval(function(timerBeginTime)
+	{
+		timer(timerBeginTime);
+	}, 1000);
 }
 function stopTimer()
 {
-	$.cookie("timer", "off");
 	clearInterval(timerIntervalID);
 }
-
-$(function()
-{
-	if ($.cookie("timer") == "on")
-	{
-//		timerStart();
-	}
-});

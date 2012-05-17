@@ -34,10 +34,11 @@ function waitingNewRound()
 		url : "WaitingNewRound.html",
 		success : function(data)
 		{
-
 			var game = jQuery.parseJSON(data);
 			if (game.gameEnd != true)
 			{
+				// alert(game.round.roundBeginTime);
+				timerStart(game.round.roundBeginTime);
 				allDataUpdate(game);
 				// alert(game.whoIAm);
 			}
