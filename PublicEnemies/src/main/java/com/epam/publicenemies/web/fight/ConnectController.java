@@ -12,7 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.epam.publicenemies.domain.Profile;
-import com.epam.publicenemies.domain.fight.Game;
+import com.epam.publicenemies.domain.fight.Fight;
 import com.epam.publicenemies.service.IProfileManagerService;
 import com.epam.publicenemies.utils.Utils;
 
@@ -35,7 +35,7 @@ public class ConnectController
 	{
 		Profile userProfile = profileManagerService.getProfileByUserId((Integer) request.getSession().getAttribute("userId"));
 		long gameId = new Long(request.getParameter("gameId"));
-		Game game = Utils.findGameById(gameId);
+		Fight game = Utils.findGameById(gameId);
 		if (game.isGameStarted())
 		{
 			return new ModelAndView(new RedirectView("gameStarted.html"));

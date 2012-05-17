@@ -11,8 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.epam.publicenemies.domain.Profile;
-import com.epam.publicenemies.domain.fight.Game;
-import com.epam.publicenemies.domain.fight.GameEngine;
+import com.epam.publicenemies.domain.fight.Fight;
+import com.epam.publicenemies.domain.fight.FightEngine;
 
 /**
  * @author Alexander Ivanov
@@ -26,7 +26,7 @@ public class HitServlet
 	{
 		response.setContentType("text/html;charset=UTF-8");
 		String role = request.getSession().getAttribute("gameRole").toString();
-		Game game = (Game) request.getSession().getAttribute("game");
+		Fight game = (Fight) request.getSession().getAttribute("game");
 		String hit = new String(request.getParameter("userHit"));
 		String block = request.getParameter("userBlock");
 		Profile userProfile;
@@ -53,21 +53,21 @@ public class HitServlet
 		 * 
 		 */
 	}
-	private synchronized void setFirstHit(Game game, String role)
+	private synchronized void setFirstHit(Fight game, String role)
 	{
 		if (game.getRound().getFirstHit().equals(""))
 		{
 			game.getRound().setFirstHit(role);
 		}
 	}
-	private synchronized void startEngine(Game game)
+	private synchronized void startEngine(Fight game)
 	{
 		if (!game.getRound().isRoundStart())
 		{
-			new GameEngine().startEngine(game);
+			new FightEngine().startEngine(game);
 		}
 	}
-	private void user1GameSetup(Game game, String hit, String block, String role)
+	private void user1GameSetup(Fight game, String hit, String block, String role)
 	{
 		game.getRound().setUser1Hit(hit);
 		game.getRound().setUser1Block(block);
@@ -82,7 +82,7 @@ public class HitServlet
 			setFirstHit(game, role);
 		}
 	}
-	private void user2GameSetup(Game game, String hit, String block, String role)
+	private void user2GameSetup(Fight game, String hit, String block, String role)
 	{
 		game.getRound().setUser2Hit(hit);
 		game.getRound().setUser2Block(block);

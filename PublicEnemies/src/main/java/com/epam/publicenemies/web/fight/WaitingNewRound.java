@@ -11,7 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.epam.publicenemies.domain.Profile;
-import com.epam.publicenemies.domain.fight.Game;
+import com.epam.publicenemies.domain.fight.Fight;
 
 import flexjson.JSONSerializer;
 
@@ -27,7 +27,7 @@ public class WaitingNewRound
 	{
 		response.setContentType("text/html;charset=UTF-8");
 		String role = request.getSession().getAttribute("gameRole").toString();
-		Game game = (Game) request.getSession().getAttribute("game");
+		Fight game = (Fight) request.getSession().getAttribute("game");
 		Profile userProfile;
 		if (role.equals("creator"))
 		{
