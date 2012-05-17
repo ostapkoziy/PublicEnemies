@@ -1,6 +1,6 @@
 package com.epam.publicenemies.domain.fight;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 /**
  * @author Alexander Ivanov
@@ -8,7 +8,7 @@ import java.util.LinkedList;
  */
 public class GamesList
 {
-	private LinkedList<Game>	list	= new LinkedList<Game>();
+	private ArrayList<Game>		list	= new ArrayList<Game>();
 	private static GamesList	gl;
 	private GamesList()
 	{
@@ -23,21 +23,21 @@ public class GamesList
 		else
 			return gl;
 	}
-	public LinkedList<Game> getList()
+	public ArrayList<Game> getList()
 	{
 		return list;
 	}
-	public LinkedList<Game> getNotStartedGames()
-	{
-		LinkedList<Game> gl = new LinkedList<Game>();
-		for (Game game : getList())
-		{
-			if (!game.isGameStarted()) gl.addFirst(game);
-		}
-		return gl;
-	}
-	public void setList(LinkedList<Game> list)
+	public void setList(ArrayList<Game> list)
 	{
 		this.list = list;
+	}
+	public ArrayList<Game> getNotStartedGames()
+	{
+		ArrayList<Game> gl = new ArrayList<Game>();
+		for (Game game : getList())
+		{
+			if (!game.isGameStarted()) gl.add(game);
+		}
+		return gl;
 	}
 }
