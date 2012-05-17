@@ -1,5 +1,7 @@
 package com.epam.publicenemies.domain;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.HashMap;
 
@@ -58,6 +60,30 @@ public class Profile
 		armors = new HashMap<Integer, TrunkItem>();
 	}
 	
+	/**
+	 * Get LinkedList of character's all weapons
+	 * @return LinkedList of character's all weapons
+	 */
+	public LinkedList<TrunkItem> getListOfWeapons () {
+		return new LinkedList<TrunkItem>(weapons.values());
+	}
+	
+	/**
+	 * Get LinkedList of character's all armors
+	 * @return LinkedList of character's all armors
+	 */
+	public LinkedList<TrunkItem> getListOfArmors () {
+		return new LinkedList<TrunkItem>(armors.values());
+	}
+	
+	/**
+	 * Get LinkedList of character's all aids
+	 * @return LinkedList of character's all aids
+	 */
+	public LinkedList<TrunkItem> getListOfAids () {
+		return new LinkedList<TrunkItem>(aids.values());
+	}
+		
 	/**
 	 * Get all weapons
 	 * @return all character's weapons

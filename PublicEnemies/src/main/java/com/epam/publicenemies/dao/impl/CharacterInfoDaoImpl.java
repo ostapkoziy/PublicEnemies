@@ -1,12 +1,19 @@
 package com.epam.publicenemies.dao.impl;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.sql.DataSource;
 
+import org.apache.log4j.Logger;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 
 import com.epam.publicenemies.dao.ICharacterInfoDao;
 import com.epam.publicenemies.domain.User;
@@ -14,32 +21,46 @@ import com.epam.publicenemies.domain.UCharacter;
 
 public class CharacterInfoDaoImpl implements ICharacterInfoDao {
 	
+	private Logger log = Logger.getLogger(CharacterInfoDaoImpl.class);
+	
 	private JdbcTemplate jdbcTemplate;
 
 	public void setDataSource(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 
+	/**
+	 * Add new character for user
+	 * @param character - Character object
+	 * @param user - User object
+	 * @return id of new character
+	 */
 	@Override
-	public int addCharacter(UCharacter character, User user) {
-		String query = "INSERT INTO characters (sex, experience, strenght, agility, intellect, profession," +
+	public int addCharacter(final UCharacter character, User user) {
+		KeyHolder keyHolder = new GeneratedKeyHolder();
+		final String INSERT_CHARACTER_SQL = "INSERT INTO characters (sex, experience, strenght, agility, intellect, profession," +
 				" fightsWon, fightsTotal) VALUES (?,?,?,?,?,?,?,?)";
-		jdbcTemplate.update(query,
-				new Object[] { character.isSex(), character.getExperience(), character.getStrength(),
-				character.getAgility(), character.getIntellect(), character.getProfession(), 
-				character.getFightsWon(), character.getFightsTotal()});
-		
-		query = "SELECT characterId FROM characters WHERE characterId=MAX(characterId)";
-		int id =  jdbcTemplate.queryForInt(query, new RowMapper<Integer>() {
-					public Integer mapRow(ResultSet resultSet, int rowNum)
-							throws SQLException {
-						return new Integer(resultSet.getInt("characterId"));
+		jdbcTemplate.update(
+				new PreparedStatementCreator() {
+					@Override
+					public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
+						PreparedStatement ps = connection.prepareStatement(INSERT_CHARACTER_SQL, Statement.RETURN_GENERATED_KEYS);
+						ps.setBoolean(1, character.isSex());	
+						ps.setInt(2, character.getExperience());
+						ps.setInt(3, character.getStrength());
+						ps.setInt(4, character.getAgility());
+						ps.setInt(5, character.getIntellect());
+						ps.setString(6, character.getProfession());
+						ps.setInt(7, character.getFightsWon());
+						ps.setInt(8, character.getFightsTotal());
+						return ps;
 					}
-				});
-		query = "INSERT INTO users (userCharacter) VALUES(?) WHERE userId=?";
-		jdbcTemplate.update(query, new Object[] {id, user.getUserId()});
-
-		return id;
+				}, keyHolder);
+		log.info("UserDaoImpl.createCharacterEntry: ID is " + keyHolder.getKey().intValue());
+		
+		String query = "UPDATE users SET userCharacter=? WHERE userID=?";
+		jdbcTemplate.update(query, new Object[] {keyHolder.getKey().intValue(), user.getUserId()});
+		return keyHolder.getKey().intValue();
 	}
 
 	@Override
