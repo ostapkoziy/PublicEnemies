@@ -564,4 +564,15 @@ public class Profile
 	{
 		pCharacter.setHP(hp);
 	}
+	
+	public int getAllHP() {
+		return pCharacter.getAllUserHP();
+	}
+	
+	public void setAllHP(int hp) {
+		pCharacter.setAllUserHP(hp);
+	}
+	
+	
+	
 }

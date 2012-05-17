@@ -8,14 +8,17 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.epam.publicenemies.domain.Aid;
 import com.epam.publicenemies.domain.Armor;
 import com.epam.publicenemies.domain.Profile;
 import com.epam.publicenemies.domain.Weapon;
+import com.epam.publicenemies.dto.UserDto;
 import com.epam.publicenemies.service.IProfileManagerService;
 import com.epam.publicenemies.service.IShopManagerService;
 
@@ -74,4 +77,5 @@ public class ShopController {
 		mav.setViewName("shop"); 
 		return mav;	
 	}
+	
 }

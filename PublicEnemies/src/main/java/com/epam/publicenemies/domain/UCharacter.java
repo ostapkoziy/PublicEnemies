@@ -17,7 +17,7 @@ public class UCharacter
 	private int		armor;
 	private int		aid;
 	// not in database
-	private int		currentHP;
+	private int		HP;
 	private int		allUserHP;
 	public UCharacter()
 	{
@@ -43,7 +43,7 @@ public class UCharacter
 		this.aid = aid;
 		//not in DB
 		this.allUserHP = 200+strength*10;
-		this.currentHP = allUserHP;
+		this.HP = allUserHP;
 	}
 	public int getCharacterId()
 	{
@@ -151,10 +151,19 @@ public class UCharacter
 	}
 	public int getHP()
 	{
-		return currentHP;
+		return HP;
 	}
 	public void setHP(int hP)
 	{
-		currentHP = hP;
+		HP = hP;
+	}
+	public int getAllUserHP() {
+		return allUserHP;
+	}
+	public void setAllUserHP(int allUserHP) {
+		this.allUserHP = allUserHP;
+	}
+	public void setProfession(String profession) {
+		this.profession = profession;
 	}
 }

@@ -2,7 +2,9 @@ package com.epam.publicenemies.domain;
 
 /**
  * Weapon object
+ * 
  * @author Chetyrkin S.V. 
+ * Updated Chetyrkin S.V. 17.05.2012 - added getters and setters for basic object parameters
  *
  */
 public class Weapon extends Item {
@@ -34,6 +36,70 @@ public class Weapon extends Item {
 		weaponType = false;
 	}
 	
+	/**
+	 * Get Weapon name
+	 * @return - Weapon name
+	 */
+	public String getWaponName() {
+		return super.getItemName();
+	}
+	
+	/**
+	 * Get id of weapon
+	 * @return - id of Weapon
+	 */
+	public int getWeaponId() {
+		return super.getItemId();
+	}
+	
+	/**
+	 * Get price of Weapon 
+	 * @return - price of Weapon
+	 */
+	public int getWeaponPrice() {
+		return super.getItemPrice();
+	}
+	
+	/**
+	 * Get picture of Weapon
+	 * @return - picture of Weapon
+	 */
+	public String getWeaponPicture() {
+		return super.getItemPicture();
+	}
+	
+	/**
+	 * Set Weapon name
+	 * @param weaponName - name of Weapon 
+	 */
+	public void setWeaponName(String weaponName) {
+		super.setItemName(weaponName);
+	}
+	
+	/**
+	 * Set id of Weapon
+	 * @param weaponId - id of Weapon
+	 */
+	public void setWeaponId(int weaponId) {
+		super.setItemId(weaponId);
+	}
+	
+	/**
+	 * Set price of Weapon
+	 * @param weaponPrice - price of Weapon
+	 */
+	public void setWeaponPrice(int weaponPrice) {
+		super.setItemPrice(weaponPrice);
+	}
+	
+	/**
+	 * Set picture of Weapon
+	 * @param weaponPicture - picture of Weapon
+	 */
+	public void setWeaponPicture(String weaponPicture) {
+		super.setItemPicture(weaponPicture);
+	}
+		
 	/**
 	 * Get Weapon hit points
 	 * @return Weapon hit points

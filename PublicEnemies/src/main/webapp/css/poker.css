@@ -10,7 +10,9 @@ h2 {
 	font-family: 'impact';
 	font-size: 20pt;
 }
-
+table#poker_table{
+	background-image: url(../img/layout/poker_layout.png);
+}
 button {
 	font-family: 'impact';
 	font-size: 20px;
@@ -21,9 +23,9 @@ button {
 table.sample {
 	margin-top: 100px;
 	background-color: #444D48;
-	opacity: .8;
-	filter: alpha(opacity =                 80);
-	-moz-opacity: .8;
+	opacity: .95;
+	filter: alpha(opacity =                 95);
+	-moz-opacity: .95;
 	border-width: 3px;
 	border-spacing: 5px;
 	border-style: outset;
@@ -31,21 +33,6 @@ table.sample {
 	border-collapse: separate;
 }
 
-table.sample th {
-	border-width: 0px;
-	padding: 3px;
-	border-style: none;
-	border-color: gray;
-	-moz-border-radius:;
-}
-
-table.sample td {
-	border-width: 0px;
-	padding: 3px;
-	border-style: none;
-	border-color: gray;
-	-moz-border-radius:;
-}
 
 A:link {
 	text-decoration: underline;

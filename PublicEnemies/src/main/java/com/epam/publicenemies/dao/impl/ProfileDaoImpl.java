@@ -38,109 +38,56 @@ public class ProfileDaoImpl implements IProfileDao {
 
 	/**
 	 * Get Profile information from database
-	 * 
-	 * @param userId
-	 *            - id of user
+	 * @param userId - id of user
 	 * @return - Profile object
 	 */
 	@Override
 	public Profile getProfile(final int userId) {
 		/** Get User object */
 		User user = getUserById(userId);
-		if (user != null)
-			log.info("user created");
-		else
-			log.info("user failed");
 		/** Get User object */
 		UCharacter pCharacter = getCharacterById(user.getCharacterId());
-		if (pCharacter != null)
-			log.info("character created");
-		else
-			log.info("character failed");
 		/** Initiate Profile object with user and character */
 		Profile profile = new Profile(user, pCharacter);
-		if (profile != null)
-			log.info("first profile created");
-		else
-			log.info("first profile failed");
 		/** Get all character's weapons from trunk */
 		List<Integer> keys = getWeaponKeys(user.getCharacterId());
-		if (keys != null)
-			log.info("weapon key fetched");
-		else
-			log.info("weapon key not fetched");
 		List<Weapon> uWeapons = getWeapons(user.getCharacterId());
-		if (uWeapons != null)
-			log.info("weapons fetched");
-		else
-			log.info("weapons not fetched");
 		profile.fillWeaponsMap(keys, uWeapons);
 		/** Get all character's aids from trunk */
 		List<Integer> aidKeys = getAidKeys(user.getCharacterId());
-		if (aidKeys != null)
-			log.info("aid keys fetched");
-		else
-			log.info("aid keys not fetched");
 		List<Aid> uAids = getAids(user.getCharacterId());
-		if (uAids != null)
-			log.info("aids fetched");
-		else
-			log.info("aids not fetched");
 		profile.fillAidsMap(aidKeys, uAids);
-		if (uAids != null)
-			log.info("aids fetched");
-		else
-			log.info("aids not fetched");
 		/** Get all character's armors from trunk */
 		List<Integer> armorKeys = getArmorKeys(user.getCharacterId());
-		if (armorKeys != null)
-			log.info("armor keysfetched");
-		else
-			log.info("armor keys not fetched");
 		List<Armor> uArmors = getArmors(user.getCharacterId());
-		if (uArmors != null)
-			log.info("armors fetched");
-		else
-			log.info("armors not fetched");
 		profile.fillArmorsMap(armorKeys, uArmors);
-		// log.info("" + profile.getTrunkWeapon(1));
 
-		
-		int weapon1Id = pCharacter.getWeapon1();
-		if (weapon1Id != 0) {
-			profile.setDressedWeapon1((Weapon) profile.getTrunkWeapon(weapon1Id).getItem());
-			log.info("weapon1 exists");
-		} else {
-			log.info(" Weapon1 not exist");
-		}
+		/** Set dressed items */
+		if (pCharacter.getWeapon1() != 0) {
+			profile.setDressedWeapon1((Weapon) profile.getTrunkWeapon(
+					pCharacter.getWeapon1()).getItem());
+			profile.getTrunkWeapon(pCharacter.getWeapon1()).setWearing(true);
+		} 
 
 		if (pCharacter.getWeapon2() != 0) {
 			profile.setDressedWeapon2((Weapon) profile.getTrunkWeapon(
 					pCharacter.getWeapon2()).getItem());
-			log.info("weapon2 exists");
-		} else log.info(" Weapon2 not exist");
+			profile.getTrunkWeapon(pCharacter.getWeapon2()).setWearing(true);
+		} 
 
 		
 		if (pCharacter.getAid() != 0) {
 			profile.setDressedAid((Aid) profile.getTrunkAid(
 					pCharacter.getAid()).getItem());
-			log.info("Aid exists");
-		} else log.info("Aid not exists");
+			profile.getTrunkAid(pCharacter.getAid()).setWearing(true);
+		} 
 
 		if (pCharacter.getArmor() != 0) {
 			profile.setDressedArmor((Armor) profile.getTrunkArmor(
 					pCharacter.getArmor()).getItem());
-			log.info("Armor exists");
-		} else log.info("Armor not exists");
-		
-//		log.info("Armor dressed" + profile.getDressedArmor().getItemName());
-//		log.info("UID " + profile.getUserId());
-//		log.info("NICKNAME " + profile.getNickName());
-		// log.info(" " + profile.getNickName());
-		// profile.getTrunkWeapon(pCharacter.getWeapon1()).setWearing(true);
-		// /profile.getTrunkWeapon(pCharacter.getWeapon2()).setWearing(true);
-		// profile.getTrunkAid(pCharacter.getAid()).setWearing(true);
-		// profile.getTrunkArmor(pCharacter.getArmor()).setWearing(true);
+			profile.getTrunkArmor(pCharacter.getArmor()).setWearing(true);
+		} 
+		log.info("ProfileDaoImpl.getProfile: ID of user is " + userId);
 		return profile;
 	}
 
@@ -261,8 +208,18 @@ public class ProfileDaoImpl implements IProfileDao {
 
 	@Override
 	public UCharacter getCharacterByUserId(int userId) {
-		// String query = "SELECT " +
-		// "u.userId, u.email, u.money, u.avatar u.nickName, characters.* FROM users INNER JOIN characters ON";
+//		String sql = "SELECT characterId, sex, experience, strength, agility, intellect, " +
+//				"profession,  fightsTotal, fightsWon, weapon1, weapon2, aid, armor " +
+//				"FROM users, characters WHERE userId=? AND userCharacter=characterId";
+//		UCharacter ch = jdbcTemplate.queryForObject(sql, new Object [] {userId}, 
+//				new RowMapper<UCharacter>() {
+//			public UCharacter mapRow (ResultSet resultSet, int rowNum)
+//			throws SQLException {
+//				return new UCharacter(resultSet.getInt("characterId"),
+//						resultSet.getBoolean("sex") ,resultSet.getInt("experience"), 
+//		resultSet.getInt("strength"), agility, intelect, profession, fightsTotal, fightsWon, weapon1, weapon2, armor, aid)
+//			}
+//		});
 		return null;
 	}
 
