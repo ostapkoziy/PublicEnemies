@@ -14,7 +14,7 @@
 		<tr>
 			<table class="sample" align="center" width="300">
 				<tr align="center" height="200">
-					Your balance - ${chips} Your points - ${your_points} Your bet -
+					Your balance - ${chips}  Your points - ${your_points} Your bet -
 					${bet}
 					<form action="startBlackJack.html" method="post">
 						<input type="text" name="bet">
