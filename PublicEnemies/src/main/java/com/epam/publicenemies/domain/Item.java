@@ -5,6 +5,7 @@ package com.epam.publicenemies.domain;
  * 
  * @author Chetyrkin S.V. 14.05.2012
  * 
+ * 
  * */
 
 public abstract class Item {
