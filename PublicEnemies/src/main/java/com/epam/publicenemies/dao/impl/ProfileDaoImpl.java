@@ -61,28 +61,32 @@ public class ProfileDaoImpl implements IProfileDao {
 		List<Integer> armorKeys = getArmorKeys(user.getCharacterId());
 		List<Armor> uArmors = getArmors(user.getCharacterId());
 		profile.fillArmorsMap(armorKeys, uArmors);
+
 		/** Set dressed items */
 		if (pCharacter.getWeapon1() != 0) {
 			profile.setDressedWeapon1((Weapon) profile.getTrunkWeapon(
 					pCharacter.getWeapon1()).getItem());
 			profile.getTrunkWeapon(pCharacter.getWeapon1()).setWearing(true);
 		} 
+
 		if (pCharacter.getWeapon2() != 0) {
 			profile.setDressedWeapon2((Weapon) profile.getTrunkWeapon(
 					pCharacter.getWeapon2()).getItem());
 			profile.getTrunkWeapon(pCharacter.getWeapon2()).setWearing(true);
 		} 
+
+		
 		if (pCharacter.getAid() != 0) {
 			profile.setDressedAid((Aid) profile.getTrunkAid(
 					pCharacter.getAid()).getItem());
 			profile.getTrunkAid(pCharacter.getAid()).setWearing(true);
 		} 
+
 		if (pCharacter.getArmor() != 0) {
 			profile.setDressedArmor((Armor) profile.getTrunkArmor(
 					pCharacter.getArmor()).getItem());
 			profile.getTrunkArmor(pCharacter.getArmor()).setWearing(true);
 		} 
-		
 		log.info("ProfileDaoImpl.getProfile: ID of user is " + userId);
 		return profile;
 	}
