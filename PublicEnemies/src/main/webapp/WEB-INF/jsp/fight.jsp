@@ -13,8 +13,8 @@
 <link href="css/fight/content.css" rel="stylesheet" type="text/css">
 <title>FIGHT</title>
 <style type="text/css">
-div { /* 	outline: 1px solid red; */
-	
+div {
+/* 	outline: 1px solid red; */
 }
 
 #content {
@@ -131,6 +131,11 @@ div { /* 	outline: 1px solid red; */
 	width: 75px;
 	clear: both;
 }
+
+#atackButtonWrapper {
+	width: 72px;
+	height: 75px;
+}
 /* *************************************** */
 .orange {
 	background-color: orange;
@@ -143,6 +148,7 @@ div { /* 	outline: 1px solid red; */
 .green {
 	background-color: green;
 }
+/* ********************************************* */
 </style>
 </head>
 <body>
@@ -314,7 +320,9 @@ div { /* 	outline: 1px solid red; */
 		<div id="attackBlock">
 			<input id="hitInput" type="text" value="Head" hidden="true">
 			<input id="blockInput" type="text" value="Head" hidden="true">
-			<img id="atackButton" src="img/fight/attack.jpg">
+			<div id="atackButtonWrapper">
+				<img id="atackButton" src="img/fight/attack.jpg">
+			</div>
 		</div>
 
 

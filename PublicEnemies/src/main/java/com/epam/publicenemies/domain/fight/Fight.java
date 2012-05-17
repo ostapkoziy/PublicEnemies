@@ -16,6 +16,7 @@ public class Fight
 	private FightRound			round	= new FightRound();
 	private String				user1resaultPage;
 	private String				user2resaultPage;
+	private String				whoIAm;
 	public long getId()
 	{
 		return id;
@@ -79,5 +80,13 @@ public class Fight
 	public void setUser2resaultPage(String user2resaultPage)
 	{
 		this.user2resaultPage = user2resaultPage;
+	}
+	public String getWhoIAm()
+	{
+		return whoIAm;
+	}
+	public void setWhoIAm(String whoIAm)
+	{
+		this.whoIAm = whoIAm;
 	}
 }
