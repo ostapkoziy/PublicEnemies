@@ -23,17 +23,17 @@
 	<bean id="profileDao" class="com.epam.publicenemies.dao.impl.ProfileDaoImpl">
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
- 	<bean id="aidDao" class="com.epam.publicenemies.dao.impl.AidsDaoImpl"> 
- 		<property name="dataSource" ref="dataSource"></property>
- 	</bean>
- 	<bean id="weaponDao" class="com.epam.publicenemies.dao.impl.WeaponsDaoImpl"> 
- 		<property name="dataSource" ref="dataSource"></property>
- 	</bean>
- 	<bean id="armorDao" class="com.epam.publicenemies.dao.impl.ArmorsDaoImpl"> 
- 		<property name="dataSource" ref="dataSource"></property>
- 	</bean>
+	<bean id="aidDao" class="com.epam.publicenemies.dao.impl.AidsDaoImpl">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	<bean id="weaponDao" class="com.epam.publicenemies.dao.impl.WeaponsDaoImpl">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	<bean id="armorDao" class="com.epam.publicenemies.dao.impl.ArmorsDaoImpl">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
 
-	
+
 	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 	<!-- +++++++++++++++++++++++++++++++++++ SERVICES ++++++++++++++++++++++++++++++++++++++++++++++++ -->
 	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
@@ -46,11 +46,15 @@
 		<property name="profileDao" ref="profileDao"></property>
 	</bean>
 
- 	<bean id="shopManagerService" class="com.epam.publicenemies.service.impl.ShopManagerServiceImpl">
-		<property name="aidDao" ref="aidDao"> </property>
-		<property name="armorDao" ref="armorDao"> </property>
-		<property name="weaponDao" ref="weaponDao"> </property>
- 	</bean>
+	<bean id="shopManagerService"
+		class="com.epam.publicenemies.service.impl.ShopManagerServiceImpl">
+		<property name="aidDao" ref="aidDao">
+		</property>
+		<property name="armorDao" ref="armorDao">
+		</property>
+		<property name="weaponDao" ref="weaponDao">
+		</property>
+	</bean>
 
 	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 	<!-- +++++++++++++++++++++++++++++++++++ VALIDATORS ++++++++++++++++++++++++++++++++++++++++++++++ -->
@@ -70,10 +74,43 @@
 
 	<bean id="editProfileFormController" class="com.epam.publicenemies.web.EditProfileFormController" />
 	<bean id="userStartPageController" class="com.epam.publicenemies.web.UserStartPageController" />
+
+	<!-- +++++++++++++++++++++++++++++++++++ CASINO +++++++++++++++++++++++++++++++++++++++++++++ -->
+
 	<bean id="casinoController" class="com.epam.publicenemies.web.casino.CasinoController" />
-	<bean id="blackJackGameController" class="com.epam.publicenemies.web.casino.blackjack.BlackJackGameController" />
-	<bean id="pokerGameController" class="com.epam.publicenemies.web.casino.poker.PokerGameController" />
-	<bean id="rouletteGameController" class="com.epam.publicenemies.web.casino.roulette.RouletteGameController" />
+	<bean id="blackJackGameController"
+		class="com.epam.publicenemies.web.casino.blackjack.BlackJackGameController" />
+	<bean id="pokerGameController"
+		class="com.epam.publicenemies.web.casino.poker.PokerGameController" />
+	<bean id="rouletteGameController"
+		class="com.epam.publicenemies.web.casino.roulette.RouletteGameController" />
+
+	<!-- +++++++++++++++++++++++++++++++++++ BlackJack +++++++++++++++++++++++++++++++++++++++++++++ -->
+	<bean id="deck"
+		class="com.epam.publicenemies.web.casino.blackjack.Deck"  >
+	</bean>
+	
+
+	<bean id="standBlackJackController"
+		class="com.epam.publicenemies.web.casino.blackjack.StandBlackJackController"  >
+		<property name="deck" ref="deck"></property>
+	</bean>
+	<bean id="startBlackJackController"
+		class="com.epam.publicenemies.web.casino.blackjack.StartBlackJackController" >
+		<property name="deck" ref="deck"></property>
+	</bean>
+	<bean id="splitBlackJackController"
+		class="com.epam.publicenemies.web.casino.blackjack.SplitBlackJackController" >
+		<property name="deck" ref="deck"></property>
+	</bean>
+	<bean id="hitBlackJackController"
+		class="com.epam.publicenemies.web.casino.blackjack.HitBlackJackController" >
+		<property name="deck" ref="deck"></property>
+	</bean>
+	<bean id="doubleDownBlackJackController"
+		class="com.epam.publicenemies.web.casino.blackjack.DoubleDownBlackJackController" >
+		<property name="deck" ref="deck"></property>
+	</bean>
 
 	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 	<!-- +++++++++++++++++++++++++++++++++++ MAPPING +++++++++++++++++++++++++++++++++++++++++++++++++ -->
@@ -85,11 +122,16 @@
 				<entry key="/editProfile.html" value="editProfileFormController"></entry>
 				<entry key="/userStartPage.html" value="userStartPageController"></entry>
 				<!-- +++++++++++++++++++++++CASINO PAGES ++++++++++++++++++++++++++++++++++ -->
-				<entry key="/casino.html" value="casinoController"></entry>			
-				<entry key="/blackJackGame.html" value="blackJackGameController"></entry>			
-				<entry key="/pokerGame.html" value="pokerGameController"></entry>			
-				<entry key="/rouletteGame.html" value="rouletteGameController"></entry>			
-				
+				<entry key="/casino.html" value="casinoController"></entry>
+				<entry key="/blackJackGame.html" value="blackJackGameController"></entry>
+				<entry key="/pokerGame.html" value="pokerGameController"></entry>
+				<entry key="/rouletteGame.html" value="rouletteGameController"></entry>
+				<!-- +++++++++++++++++++++++BlackJack PAGES ++++++++++++++++++++++++++++++++++ -->
+				<entry key="/startBlackJack.html" value="startBlackJackController"></entry>
+				<entry key="/standBlackJack.html" value="standBlackJackController"></entry>
+				<entry key="/hitBlackJack.html" value="hitBlackJackController"></entry>
+				<entry key="/splitBlackJack.html" value="splitBlackJackController"></entry>
+				<entry key="/doubleDownBlackJack.html" value="doubleDownBlackJackController"></entry>
 			</map>
 		</property>
 	</bean>
