@@ -269,8 +269,8 @@ div { /* 	outline: 1px solid red; */
 			<div id="right">
 				<div id="rightHP">
 					<div id="rightHPWrapper">
-						<img alt="HP" src="img/hp.png">
 						<span id="U1HP">${game.user1profile.getHP()}</span>
+						<img alt="HP" src="img/hp.png">
 					</div>
 					<div id="rightProgressHP">
 						<div id="innerRightProgressHP"></div>
