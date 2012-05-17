@@ -10,8 +10,7 @@
 <script type="text/javascript" src="js/fight/chat.js"></script>
 <script type="text/javascript" src="js/fight/hpBar.js"></script>
 
-<link href="css/main.css" rel="stylesheet" type="text/css">
-<link href="css/content.css" rel="stylesheet" type="text/css">
+<link href="css/fight/content.css" rel="stylesheet" type="text/css">
 <title>FIGHT</title>
 <style type="text/css">
 div { /* 	outline: 1px solid red; */
@@ -26,8 +25,7 @@ div { /* 	outline: 1px solid red; */
 	/* 	outline: 5px solid red; */
 }
 
-#insideRight {
-/* 	outline: 2px solid black; */
+#insideRight { /* 	outline: 2px solid black; */
 	width: 150px;
 	height: 150px;
 	margin-left: auto;

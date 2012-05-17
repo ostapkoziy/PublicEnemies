@@ -7,7 +7,7 @@
 	-webkit-border-radius: 15px;
 	-moz-border-radius: 15px;
 	overflow: hidden;
-/* 	margin: 0px 20px; */
+	/* 	margin: 0px 20px; */
 	box-shadow: 0 0 5px black;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 	-moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
@@ -51,4 +51,21 @@
 	margin-left: auto;
 	margin-right: auto;
 	width: 40px;
+}
+
+input:FOCUS,textarea:FOCUS {
+	outline: none;
+}
+
+input:active,textarea:active {
+	outline: none;
+}
+
+input,textarea {
+	outline: none;
+}
+
+input,texarea {
+	padding: 0;
+	margin: 0;
 }
