@@ -110,6 +110,7 @@ public class ProfileDaoImpl implements IProfileDao {
 		if (weapon1Id != 0) {
 			profile.setDressedWeapon1((Weapon) profile.getTrunkWeapon(weapon1Id).getItem());
 			log.info("weapon1 exists");
+			profile.getTrunkWeapon(pCharacter.getWeapon1()).setWearing(true);
 		} else {
 			log.info(" Weapon1 not exist");
 		}
@@ -117,6 +118,7 @@ public class ProfileDaoImpl implements IProfileDao {
 		if (pCharacter.getWeapon2() != 0) {
 			profile.setDressedWeapon2((Weapon) profile.getTrunkWeapon(
 					pCharacter.getWeapon2()).getItem());
+			profile.getTrunkWeapon(pCharacter.getWeapon2()).setWearing(true);
 			log.info("weapon2 exists");
 		} else log.info(" Weapon2 not exist");
 
@@ -124,12 +126,14 @@ public class ProfileDaoImpl implements IProfileDao {
 		if (pCharacter.getAid() != 0) {
 			profile.setDressedAid((Aid) profile.getTrunkAid(
 					pCharacter.getAid()).getItem());
+			profile.getTrunkAid(pCharacter.getAid()).setWearing(true);
 			log.info("Aid exists");
 		} else log.info("Aid not exists");
 
 		if (pCharacter.getArmor() != 0) {
 			profile.setDressedArmor((Armor) profile.getTrunkArmor(
 					pCharacter.getArmor()).getItem());
+			profile.getTrunkArmor(pCharacter.getArmor()).setWearing(true);
 			log.info("Armor exists");
 		} else log.info("Armor not exists");
 		
