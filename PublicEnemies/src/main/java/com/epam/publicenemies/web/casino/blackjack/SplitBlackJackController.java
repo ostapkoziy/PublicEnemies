@@ -2,16 +2,19 @@ package com.epam.publicenemies.web.casino.blackjack;
 
 import org.apache.log4j.Logger;
 
-import com.epam.publicenemies.domain.blackjack.Deck;
+import com.epam.publicenemies.domain.blackjack.BlackJackGame;
+import com.epam.publicenemies.domain.blackjack.BlackJackDeck;
+import com.epam.publicenemies.domain.blackjack.BlackJackGameList;
 
 public class SplitBlackJackController {
 	private Logger log = Logger.getLogger(StartBlackJackController.class);
 	
-	private Deck deck;
-	
-
-	public void setDeck(Deck deck) {
+	private BlackJackDeck deck;
+	private BlackJackGameList games;
+	public void setDeck(BlackJackDeck deck) {
 		this.deck = deck;
+	}	
+	public void setGames(BlackJackGameList games) {
+		this.games = games;
 	}
-
 }

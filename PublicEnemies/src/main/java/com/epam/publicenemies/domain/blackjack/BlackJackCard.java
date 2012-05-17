@@ -1,6 +1,6 @@
 package com.epam.publicenemies.domain.blackjack;
 
-public class Card {
+public class BlackJackCard {
 	public enum Rank {
 		TWO(2,"2"), THREE(3,"3"), FOUR(4,"4"), FIVE(5,"5"), SIX(6,"6"), SEVEN(7,"7"), EIGHT(8,"8"), NINE(9,"9"), TEN(
 				10,"T"), JACK(10,"J"), QUEEN(10,"Q"), KING(10,"K"), ACE(11,"A");
@@ -40,7 +40,7 @@ public class Card {
 	private final Suit suit;
 	private final String image;
 
-	public Card(Rank rank, Suit suit) {
+	public BlackJackCard(Rank rank, Suit suit) {
 		this.rank = rank;
 		this.suit = suit;
 		this.image = "img/cards/"+toString()+".png";

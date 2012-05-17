@@ -9,16 +9,15 @@
 <body>
 	<table align="center">
 		<tr>
-			<td align="center"><img src="img/cards/back_image.png"></img></td>
+			<td align="center"><img src="${dealer_card0}"></img></td>
 		</tr>
 		<tr>
 			<table class="sample" align="center" width="300">
-				<tr>
-					<td align="center"><img src="${dealer_card}"></img></td>
-				</tr>
 				<tr align="center" height="200">
-					Your balance - ${chips}
+					Your balance - ${chips} Your points - ${your_points} Your bet -
+					${bet}
 					<form action="startBlackJack.html" method="post">
+						<input type="text" name="bet">
 						<button type="submit" class="button">Start</button>
 					</form>
 					<form action="standBlackJack.html" method="post">
@@ -33,6 +32,12 @@
 					<form action="doubleDownBlackJack.html" method="post">
 						<button type="submit" class="button">Double Down</button>
 					</form>
+				</tr>
+				<tr align="center">
+					<td><img src="${player_card0}"></img> <img
+						src="${player_card1}"></img> <img src="${player_card2}"></img> <img
+						src="${player_card3}"></img> <img src="${player_card4}"></img> <img
+						src="${player_card5}"></img></td>
 				</tr>
 			</table>
 		</tr>
