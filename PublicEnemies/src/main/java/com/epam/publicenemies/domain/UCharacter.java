@@ -36,7 +36,7 @@ public class UCharacter
 		this.agility = agility;
 		this.intellect = intelect;
 		this.profession = profession;
-		this.professionAvatar = professionAvatar;
+		this.setProfessionAvatar(professionAvatar);
 		this.fightsTotal = fightsTotal;
 		this.fightsWon = fightsWon;
 		this.weapon1 = weapon1;
@@ -167,5 +167,11 @@ public class UCharacter
 	}
 	public void setProfession(String profession) {
 		this.profession = profession;
+	}
+	public String getProfessionAvatar() {
+		return professionAvatar;
+	}
+	public void setProfessionAvatar(String professionAvatar) {
+		this.professionAvatar = professionAvatar;
 	}
 }
