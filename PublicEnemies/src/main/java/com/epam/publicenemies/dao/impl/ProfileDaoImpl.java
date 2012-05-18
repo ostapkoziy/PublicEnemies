@@ -81,6 +81,12 @@ public class ProfileDaoImpl implements IProfileDao {
 		} else return false;
 	}
 	
+	
+	private boolean sellWeapon (final int userId, final int weaponId) {
+		
+		return false;
+	}
+	
 	/**
 	 * Buy weapons for user
 	 * @param userId - id of user

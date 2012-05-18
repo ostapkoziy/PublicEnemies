@@ -60,8 +60,6 @@ public class Profile
 		armors = new HashMap<Integer, TrunkItem>();
 	}
 	
-	
-	
 	public int byeWeapon(int weaponId) {
 		
 		return 0;
@@ -71,24 +69,24 @@ public class Profile
 	 * Get LinkedList of character's all weapons
 	 * @return LinkedList of character's all weapons
 	 */
-	public LinkedList<TrunkItem> getListOfWeapons () {
-		return new LinkedList<TrunkItem>(weapons.values());
+	public ArrayList<TrunkItem> getListOfWeapons () {
+		return new ArrayList<TrunkItem>(weapons.values());
 	}
 	
 	/**
 	 * Get LinkedList of character's all armors
 	 * @return LinkedList of character's all armors
 	 */
-	public LinkedList<TrunkItem> getListOfArmors () {
-		return new LinkedList<TrunkItem>(armors.values());
+	public ArrayList<TrunkItem> getListOfArmors () {
+		return new ArrayList<TrunkItem>(armors.values());
 	}
 	
 	/**
 	 * Get LinkedList of character's all aids
 	 * @return LinkedList of character's all aids
 	 */
-	public LinkedList<TrunkItem> getListOfAids () {
-		return new LinkedList<TrunkItem>(aids.values());
+	public ArrayList<TrunkItem> getListOfAids () {
+		return new ArrayList<TrunkItem>(aids.values());
 	}
 		
 	/**
