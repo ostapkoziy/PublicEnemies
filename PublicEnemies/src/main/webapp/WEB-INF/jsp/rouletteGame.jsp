@@ -11,17 +11,17 @@
 
 <title>Insert title here</title>
 <script src="js/jquery-1.7.2.js" type="text/javascript"></script>
-<script type="text/javascript" src="js/roulette.js"></script>
+<script type="text/javascript" src="js/roulette/roulette.js"></script>
 
 
 
 </head>
 <body>
 	
-	<b><c:out value="${user.name}, you have ${user.money}$. Make your bet!" /></b>
-	<p><b><c:out value="${gameInfo.msg}" /></b>
+	<b><c:out value="${user.nickName}, you have ${rouletteGameInfo.getChips()}$. Make your bet!" /></b>
+	<p><b><c:out value="${rouletteGameInfo.msg}" /></b>
 
-	<form method="post" action="RouletteController" onsubmit="form_send()">
+	<form method="post" action="rouletteGame.html" onsubmit="form_send()">
 	
 		<b>Your BET:</b>
 		<input class="bet" type="radio" name="betVal" value="10" onclick="betChanged(this)" checked="checked"><b>10</b>
@@ -32,14 +32,14 @@
 		<input id ="submit" type="submit" value="DEAL">
 	</form>
 
-	<img id="0" class="RouletteTable" src="img/0.bmp"/>
-	<img id="1" class="RouletteTable" src="img/1.bmp"/>
-	<img id="2" class="RouletteTable" src="img/2.bmp"/>
-	<img id="3" class="RouletteTable" src="img/3.bmp"/><p>
-	<img id="4" class="RouletteTable" src="img/4.bmp"/>
-	<img id="5" class="RouletteTable" src="img/5.bmp"/>
-	<img id="6" class="RouletteTable" src="img/6.bmp"/>
-	<img id="7" class="RouletteTable" src="img/7.bmp"/>
+	<img id="0" class="RouletteTable" src="img/roulette/0.bmp"/>
+	<img id="1" class="RouletteTable" src="img/roulette/1.bmp"/>
+	<img id="2" class="RouletteTable" src="img/roulette/2.bmp"/>
+	<img id="3" class="RouletteTable" src="img/roulette/3.bmp"/><p>
+	<img id="4" class="RouletteTable" src="img/roulette/4.bmp"/>
+	<img id="5" class="RouletteTable" src="img/roulette/5.bmp"/>
+	<img id="6" class="RouletteTable" src="img/roulette/6.bmp"/>
+	<img id="7" class="RouletteTable" src="img/roulette/7.bmp"/>
 
 </body>
 </html>

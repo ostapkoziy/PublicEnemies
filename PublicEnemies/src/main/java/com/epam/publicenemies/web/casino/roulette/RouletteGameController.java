@@ -1,120 +1,96 @@
 package com.epam.publicenemies.web.casino.roulette;
 
 import java.util.Random;
-import java.io.IOException;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
-import com.epam.publicenemies.domain.Profile;
-import com.epam.publicenemies.service.IProfileManagerService;
-import com.epam.publicenemies.web.casino.poker.PokerGameController;
+import com.epam.publicenemies.domain.roulette.RouletteGameInfo;
 
 
 @Controller
-@RequestMapping("/rouletteGame")
+@RequestMapping("/rouletteGame.html")
 public class RouletteGameController{
+	
+	RouletteGameInfo rouletteGameInfo;
 
-	private Logger log = Logger.getLogger(PokerGameController.class); 
+	private Logger log = Logger.getLogger(RouletteGameController.class); 
 	
 	final int ROULETTE_NUMBERS = 7;// 0..36
-
-//	User user;
-//	RouletteGameInfo gameInfo;
-
-	private IProfileManagerService	profileManagerService;
-
-	public void setProfileManagerService(IProfileManagerService profileManagerService) {
-		this.profileManagerService = profileManagerService;
-	}
-	
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public ModelAndView showRoulette(HttpServletRequest request)
-	{
-		ModelAndView mav = new ModelAndView();
-		
-		Profile prof = profileManagerService.getProfileByUserId((Integer) request.getSession().getAttribute("userId"));
-		if (prof != null) {
-			log.info("Profile has been fetched successfully");
-		} else {
-			log.info("USER NOT FOUND!");
-		}
-		
-		mav.addObject("profile", prof); 
-
-		
-		mav.setViewName("rouletteGame"); 	
-		
-		return mav;
+	public String showRouletteGame(){
+		log.debug("In da rouletteGameController, GET method.");
+		return "rouletteGame";
 	}
-	
+
 	@RequestMapping(method = RequestMethod.POST)
-	public ModelAndView handleRequest(HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
+	public String processForm(HttpServletRequest request){
 
-		HttpSession session = request.getSession();
-		
 		int rnd = new Random().nextInt(ROULETTE_NUMBERS);
-//		gameInfo = (RouletteGameInfo) session.getAttribute("gameInfo");
-//		user = (User) session.getAttribute("user");
-		String unparsedBetNumbers = (String) request.getParameter("userBetNumbers");
-		String[] betNumbers = unparsedBetNumbers.split(",");
-		int money;
-//		gameInfo.setMsg("");
+		int chips;
 
-//		gameInfo.setBetAmount(Integer.valueOf(request.getParameter("betVal")));
-//		System.out.println("\nMoney before:" + user.getMoney()+"$ BET:"+ gameInfo.getBetAmount()+"$");
+		log.debug("In da rouletteGameController, POST method.");
 		
-//		int betOnTable = betNumbers.length * gameInfo.getBetAmount(); // THIS IS Simple BET calculation
-		
-//		money = user.getMoney() - betOnTable;
-		
-		//Does RouletteTable bets empty?
-		if ( betNumbers[0] == "" ) {
-//			gameInfo.setMsg("Make your BET on Roulette table! "+unparsedBetNumbers);
-			response.sendRedirect("RouletteGame");
-//			return;
+		HttpSession session = request.getSession();
+		rouletteGameInfo = (RouletteGameInfo)session.getAttribute("rouletteGameInfo");
+		if ((session.getAttribute("rouletteGameInfo")==null)||(request.getParameter("userBetNumbers")==null)) 
+		{
+			//old way getting user
+			log.debug("Creating new rouletteGameInfo for session");
+			rouletteGameInfo = new RouletteGameInfo();
+			rouletteGameInfo.setChips(Integer.valueOf(request.getParameter("chips")));
+			session.setAttribute("rouletteGameInfo", rouletteGameInfo);
+			return "rouletteGame";
+		}else{
+			String unparsedBetNumbers = request.getParameter("userBetNumbers");
+			String[] betNumbers = unparsedBetNumbers.split(",");
+			rouletteGameInfo.setBetNumbers(betNumbers);
+			rouletteGameInfo.setMsg("");
+			rouletteGameInfo.setBetAmount(Integer.valueOf(request.getParameter("betVal")));
+			int betOnTable = betNumbers.length * rouletteGameInfo.getBetAmount(); // THIS IS Simple BET calculation
+			
+			chips = rouletteGameInfo.getChips() - betOnTable;
+			//Does RouletteTable bets empty?
+			if ( betNumbers[0] == "" ) {
+				rouletteGameInfo.setMsg("Make your BET on Roulette table! ");
+				return "rouletteGame";
+			}
+
+			//Is money enough to make this BET?
+			if ( chips < 0 ){
+//				gameInfo.setMsg("Money:"+user.getMoney()+" BET:"+ gameInfo.getBetAmount() +" Money without bet:" + money);
+				rouletteGameInfo.setMsg("You have not enough money to make this BET (BET on table:" + betOnTable +"$)");
+				return "rouletteGame";
+			}
+			
 		}
 
-		//Is money enough to make this BET?
-//		if ( money < 0 ){
-//			gameInfo.setMsg("You have not enough money to make this BET (BET on table:" + betOnTable +"$)");
-			response.sendRedirect("RouletteGame");
-//			return;
-//		}
+		rouletteGameInfo.setChips(chips + calculatePrize( rouletteGameInfo.getBetNumbers(), rnd ));
 
-		
-//		user.setMoney(money + calculatePrize(betNumbers,rnd));
+		log.debug("rnd = " + rnd + "\nBet on: "+ (String) request.getParameter("userBetNumbers"));
 
-		System.out.print("rnd = " + rnd + "\nBet on: "+ (String) request.getParameter("userBetNumbers"));
+		log.debug(" Chips after:" + rouletteGameInfo.getChips() + "$");
 
-//		System.out.println(" Money after:" + user.getMoney() + "$");
-		
-		return new ModelAndView("rouletteGame");
+		return "rouletteGame";
 	}
-	
+
 	private int calculatePrize(String[] betNumbers, int rnd){
 		int prize=0;
 
 		for (String s : betNumbers) {
 			if (s.equals(String.valueOf(rnd))){
-//				prize=gameInfo.getBetAmount()*(ROULETTE_NUMBERS-2);//Simple PRIZE calculation
-				System.out.println("Number "+ s +" had WON!");
-//				System.out.println("Bet is " + gameInfo.getBetAmount());
-				System.out.println("Prize is " + prize);
+				prize=rouletteGameInfo.getBetAmount()*(ROULETTE_NUMBERS-2);//Simple PRIZE calculation
+				log.debug("Number "+ s +" had WON!");
+				log.debug("Bet is " + rouletteGameInfo.getBetAmount());
+				log.debug("Prize is " + prize);
 			}
 		}
 		return prize;
 	}
-
 }
