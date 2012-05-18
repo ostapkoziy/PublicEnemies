@@ -54,4 +54,6 @@ public class BlackJackGame {
 	public void setBet(int bet) {
 		this.bet = bet;
 	}
+
+
 }

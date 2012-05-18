@@ -7,7 +7,7 @@ import com.epam.publicenemies.domain.blackjack.BlackJackDeck;
 import com.epam.publicenemies.domain.blackjack.BlackJackGameList;
 
 public class SplitBlackJackController {
-	private Logger log = Logger.getLogger(StartBlackJackController.class);
+	private Logger log = Logger.getLogger(SplitBlackJackController.class);
 	
 	private BlackJackDeck deck;
 	private BlackJackGameList games;
