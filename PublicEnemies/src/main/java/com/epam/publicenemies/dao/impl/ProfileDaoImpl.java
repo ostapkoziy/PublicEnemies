@@ -88,26 +88,51 @@ public class ProfileDaoImpl implements IProfileDao {
 	 * @return true if operation was successfully
 	 */
 	public boolean buyWeapons(int userId, List<Integer> weapons) {
-		int count=0;
+		int count = 0;
 		for (Integer i : weapons) {
-			if(buyWeapon(userId, i))
-			count++;
+			if (buyWeapon(userId, i)) count++;
 		}
-		if (count==weapons.size()){
+		if (count == weapons.size()) {
 			log.info("ProfileDaoImpl.buyWeapons: Were added " + count + " weapons");
 			return true;
 		}
 		else return false;
 	}
 	
-	@Override
+	/**
+	 * Buy aids for user
+	 * @param userId - id of user
+	 * @param aids - List of aids ids
+	 * @return true if operation was successfully
+	 */
 	public boolean buyAids(int userId, List<Integer> aids) {
-		// TODO Auto-generated method stub
-		return false;
+		int count = 0;
+		for (Integer i : aids) {
+			if (buyAid(userId, i)) count++;
+		}
+		if (count == aids.size()) {
+			log.info("ProfileDaoImpl.buyAids: Were added " + count + " aids");
+			return true;
+		}
+		else return false;
 	}
 	
+	/**
+	 * Buy armors for user
+	 * @param userId - id of user
+	 * @param armors - List armors ids
+	 * @return true if operation was successfully
+	 */
 	public boolean buyArmors(int userId, List<Integer> armors){
-		return false;
+		int count = 0;
+		for (Integer i : armors) {
+			if(buyArmor(userId, i)) count++;
+		}
+		if (count == armors.size()) {
+			log.info("ProfileDaoImpl.buyArmors: Were added " + count + " armors");
+			return true;
+		}
+		else return false;
 	}
 	
 	/**
@@ -302,6 +327,7 @@ public class ProfileDaoImpl implements IProfileDao {
 										.getInt("agility"), resultSet
 										.getInt("intellect"), resultSet
 										.getString("profession"), resultSet
+										.getString("professionAvatar"), resultSet
 										.getInt("fightsTotal"), resultSet
 										.getInt("fightsWon"), resultSet
 										.getInt("weapon1"), resultSet
@@ -334,6 +360,7 @@ public class ProfileDaoImpl implements IProfileDao {
 								rs.getBoolean("sex"), rs.getInt("experience"),
 								rs.getInt("strength"), rs.getInt("agility"), 
 								rs.getInt("intellect"), rs.getString("profession"), 
+								rs.getString("professionAvatar"),
 								rs.getInt("fightsTotal"), rs.getInt("fightsWon"), 
 								rs.getInt("weapon1"), rs.getInt("weapon2"), 
 								rs.getInt("armor"),	rs.getInt("aid"));
@@ -389,6 +416,7 @@ public class ProfileDaoImpl implements IProfileDao {
 								.getInt("agility"), resultSet
 								.getInt("intellect"), resultSet
 								.getString("profession"), resultSet
+								.getString("professionAvatar"), resultSet
 								.getInt("fightsTotal"), resultSet
 								.getInt("fightsWon"), resultSet
 								.getInt("weapon1"),

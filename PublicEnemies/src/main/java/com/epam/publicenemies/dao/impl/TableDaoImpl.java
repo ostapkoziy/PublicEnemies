@@ -426,6 +426,7 @@ public class TableDaoImpl implements ITableDao {
 		sql.append("agility INT(5) UNSIGNED NOT NULL DEFAULT 5, ");
 		sql.append("intellect INT(5) UNSIGNED NOT NULL DEFAULT 5, ");
 		sql.append("profession VARCHAR(100) NOT NULL DEFAULT '', ");
+		sql.append("professionAvatar VARCHAR(100) NOT NULL DEFAULT '', ");
 		sql.append("fightsTotal INT(10) UNSIGNED NOT NULL DEFAULT 0, ");
 		sql.append("fightsWon INT(10) UNSIGNED NOT NULL DEFAULT 0, ");
 		sql.append("weapon1 INT(10) UNSIGNED NOT NULL DEFAULT 0, ");
