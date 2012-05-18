@@ -1,5 +1,7 @@
 package com.epam.publicenemies.dao.impl;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -8,7 +10,10 @@ import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 
 import com.epam.publicenemies.dao.IProfileDao;
 import com.epam.publicenemies.domain.Profile;
@@ -17,6 +22,7 @@ import com.epam.publicenemies.domain.User;
 import com.epam.publicenemies.domain.Weapon;
 import com.epam.publicenemies.domain.Aid;
 import com.epam.publicenemies.domain.Armor;
+import com.mysql.jdbc.Statement;
 
 /**
  * Profile data access object
@@ -35,7 +41,106 @@ public class ProfileDaoImpl implements IProfileDao {
 	public void setDataSource(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
-
+	
+	private boolean buyWeapon(final int userId, final int weaponId) {
+		final String TRUNK_SQL = "INSERT INTO charactersTrunks (characterId, itemId, itemType) SELECT userCharacter, ?, 1 " +
+				"FROM users WHERE userId=?";
+		jdbcTemplate.update(TRUNK_SQL, new Object[] {weaponId, userId});
+		final String MONEY_SQL = "UPDATE users SET money=money-(SELECT weaponPrice FROM weapons WHERE weaponID=?)" +
+				"WHERE userId=?";
+		int i = jdbcTemplate.update(MONEY_SQL, new Object[] {weaponId, userId});
+		if (i>0) {
+			log.info("ProfileDaoImpl.buyWeapon: ID of weapon is " + weaponId);
+			return true;
+		} else return false;
+	}
+	
+	private boolean buyAid(final int userId, final int aidId) {
+		final String TRUNK_SQL = "INSERT INTO charactersTrunks (characterId, itemId, itemType) SELECT userCharacter, ?, 2 " +
+				"FROM users WHERE userId=?";
+		jdbcTemplate.update(TRUNK_SQL, new Object[] {aidId, userId});
+		final String MONEY_SQL = "UPDATE users SET money=money-(SELECT aidPrice FROM aids WHERE aidID=?)" +
+				"WHERE userId=?";
+		int i = jdbcTemplate.update(MONEY_SQL, new Object[] {aidId, userId});
+		if (i>0) {
+			log.info("ProfileDaoImpl.buyWeapon: ID of aid is " + aidId);
+			return true;
+		} else return false;
+	}
+	
+	private boolean buyArmor (final int userId, final int armorId) {
+		final String TRUNK_SQL = "INSERT INTO charactersTrunks (characterId, itemId, itemType) SELECT userCharacter, ?, 3 " +
+				"FROM users WHERE userId=?";
+		jdbcTemplate.update(TRUNK_SQL, new Object[] {armorId, userId});
+		final String MONEY_SQL = "UPDATE users SET money=money-(SELECT armorPrice FROM armors WHERE armorID=?)" +
+				"WHERE userId=?";
+		int i = jdbcTemplate.update(MONEY_SQL, new Object[] {armorId, userId});
+		if (i>0) {
+			log.info("ProfileDaoImpl.buyWeapon: ID of armor is " + armorId);
+			return true;
+		} else return false;
+	}
+	
+	
+	private boolean sellWeapon (final int userId, final int weaponId) {
+		
+		return false;
+	}
+	
+	/**
+	 * Buy weapons for user
+	 * @param userId - id of user
+	 * @param weapons - List of weapons
+	 * @return true if operation was successfully
+	 */
+	public boolean buyWeapons(int userId, List<Integer> weapons) {
+		int count = 0;
+		for (Integer i : weapons) {
+			if (buyWeapon(userId, i)) count++;
+		}
+		if (count == weapons.size()) {
+			log.info("ProfileDaoImpl.buyWeapons: Were added " + count + " weapons");
+			return true;
+		}
+		else return false;
+	}
+	
+	/**
+	 * Buy aids for user
+	 * @param userId - id of user
+	 * @param aids - List of aids ids
+	 * @return true if operation was successfully
+	 */
+	public boolean buyAids(int userId, List<Integer> aids) {
+		int count = 0;
+		for (Integer i : aids) {
+			if (buyAid(userId, i)) count++;
+		}
+		if (count == aids.size()) {
+			log.info("ProfileDaoImpl.buyAids: Were added " + count + " aids");
+			return true;
+		}
+		else return false;
+	}
+	
+	/**
+	 * Buy armors for user
+	 * @param userId - id of user
+	 * @param armors - List armors ids
+	 * @return true if operation was successfully
+	 */
+	public boolean buyArmors(int userId, List<Integer> armors){
+		int count = 0;
+		for (Integer i : armors) {
+			if(buyArmor(userId, i)) count++;
+		}
+		if (count == armors.size()) {
+			log.info("ProfileDaoImpl.buyArmors: Were added " + count + " armors");
+			return true;
+		}
+		else return false;
+	}
+	
 	/**
 	 * Get Profile information from database
 	 * 
@@ -228,6 +333,7 @@ public class ProfileDaoImpl implements IProfileDao {
 										.getInt("agility"), resultSet
 										.getInt("intellect"), resultSet
 										.getString("profession"), resultSet
+										.getString("professionAvatar"), resultSet
 										.getInt("fightsTotal"), resultSet
 										.getInt("fightsWon"), resultSet
 										.getInt("weapon1"), resultSet
@@ -260,6 +366,7 @@ public class ProfileDaoImpl implements IProfileDao {
 								rs.getBoolean("sex"), rs.getInt("experience"),
 								rs.getInt("strength"), rs.getInt("agility"), 
 								rs.getInt("intellect"), rs.getString("profession"), 
+								rs.getString("professionAvatar"),
 								rs.getInt("fightsTotal"), rs.getInt("fightsWon"), 
 								rs.getInt("weapon1"), rs.getInt("weapon2"), 
 								rs.getInt("armor"),	rs.getInt("aid"));
@@ -315,6 +422,7 @@ public class ProfileDaoImpl implements IProfileDao {
 								.getInt("agility"), resultSet
 								.getInt("intellect"), resultSet
 								.getString("profession"), resultSet
+								.getString("professionAvatar"), resultSet
 								.getInt("fightsTotal"), resultSet
 								.getInt("fightsWon"), resultSet
 								.getInt("weapon1"),
@@ -429,7 +537,6 @@ public class ProfileDaoImpl implements IProfileDao {
 			log.info("ProfileDaoImpl.updateProfileIntellect: ID of user is " + userId);
 			return false;
 		}
-			
 	}
 
 	/**
@@ -505,5 +612,4 @@ public class ProfileDaoImpl implements IProfileDao {
 			log.info("ProfileDaoImpl.deleteCharacter: ID of user is " + userId);
 			return false;
 	}
-
 }

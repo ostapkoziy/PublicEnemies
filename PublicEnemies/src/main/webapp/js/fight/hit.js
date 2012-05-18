@@ -14,7 +14,6 @@ function hitSend(hit, block)
 			userBlock : block }),
 		success : function(data)
 		{
-
 		},
 		error : function(e, ajaxOptions, thrownError)
 		{
@@ -37,8 +36,7 @@ function waitingNewRound()
 			var game = jQuery.parseJSON(data);
 			if (game.gameEnd != true)
 			{
-				// alert(game.round.roundBeginTime);
-				timerStart(game.round.roundBeginTime);
+				// timerStart(game.round.roundBeginTime);
 				allDataUpdate(game);
 				// alert(game.whoIAm);
 			}

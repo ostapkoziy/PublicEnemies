@@ -9,6 +9,7 @@ public class UCharacter
 	private int		agility;
 	private int		intellect;
 	private String	profession;
+	private String 	professionAvatar;
 	private int		fightsTotal;
 	private int		fightsWon;
 	// id of items
@@ -25,8 +26,8 @@ public class UCharacter
 	/*
 	 * Order as in 'characters' table
 	 */
-	public UCharacter(int characterId, boolean sex, int experience, int strength, int agility, int intelect, String profession, int fightsTotal,
-			int fightsWon, int weapon1, int weapon2, int armor, int aid)
+	public UCharacter(int characterId, boolean sex, int experience, int strength, int agility, int intelect, String profession, 
+			String professionAvatar, int fightsTotal, int fightsWon, int weapon1, int weapon2, int armor, int aid)
 	{
 		this.characterId = characterId;
 		this.sex = sex;
@@ -35,6 +36,7 @@ public class UCharacter
 		this.agility = agility;
 		this.intellect = intelect;
 		this.profession = profession;
+		this.setProfessionAvatar(professionAvatar);
 		this.fightsTotal = fightsTotal;
 		this.fightsWon = fightsWon;
 		this.weapon1 = weapon1;
@@ -165,5 +167,11 @@ public class UCharacter
 	}
 	public void setProfession(String profession) {
 		this.profession = profession;
+	}
+	public String getProfessionAvatar() {
+		return professionAvatar;
+	}
+	public void setProfessionAvatar(String professionAvatar) {
+		this.professionAvatar = professionAvatar;
 	}
 }

@@ -1,7 +1,6 @@
 var timerIntervalID = 0;
 var nowTime = Math.ceil(new Date().getTime() / 1000);
 var limit = 60;
-
 function timer(timerBeginTime)
 {
 	if ((nowTime - timerBeginTime) < limit)
@@ -11,11 +10,9 @@ function timer(timerBeginTime)
 		if (sub < 10)
 		{
 			sub = "0" + sub;
-		}
-		if (sub < 10)
-		{
 			$("#timer").css("color", "red");
 		}
+
 		$("#timer").html("00:" + sub);
 	}
 	else
@@ -27,7 +24,7 @@ function timer(timerBeginTime)
 }
 function timerStart(timerBeginTime)
 {
-	timerIntervalID = setInterval(function(timerBeginTime)
+	timerIntervalID = setInterval(function()
 	{
 		timer(timerBeginTime);
 	}, 1000);

@@ -273,17 +273,18 @@ public class TableDaoImpl implements ITableDao {
 		StringBuilder sql = new StringBuilder("INSERT INTO characters ");
 		sql.append("(experience, strength, agility, intellect, profession, ");
 		sql.append("fightsTotal, fightsWon, weapon1, weapon2, aid, armor) ");
-		sql.append("VALUES (500, 20, 25, 1, 'pharaon', 50, 1, 1, 2, 3, 4)");
+		sql.append("VALUES (500, 20, 25, 1, 'pharaon', 50, 1, 1, 2, 5, 7)");
 		jdbcTemplate.update(sql.toString());
 		sql.delete(0, sql.length());
 		sql.append("INSERT INTO characters ");
 		sql.append("(sex, strength, agility, intellect, profession, ");
 		sql.append("fightsTotal, fightsWon, weapon1, weapon2, aid, armor) ");
-		sql.append("VALUES (0, 5, 50, 6, 'baba', 20, 5, 5, 6, 7, 8)");
+		sql.append("VALUES (0, 5, 50, 6, 'baba', 20, 5, 9, 10, 13, 15)");
 		jdbcTemplate.update(sql.toString());
 	}
 	
 	private void fillCharactersTrunks() {
+		// janukovych weapons
 		StringBuilder sql = new StringBuilder("INSERT INTO charactersTrunks ");
 		sql.append("(itemId, itemType, characterId) ");
 		sql.append("VALUES (1, 1, 1)");
@@ -296,13 +297,37 @@ public class TableDaoImpl implements ITableDao {
 		sql.delete(0, sql.length());
 		sql.append("INSERT INTO charactersTrunks ");
 		sql.append("(itemId, itemType, characterId) ");
+		sql.append("VALUES (3, 1, 1)");
+		jdbcTemplate.update(sql.toString());
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO charactersTrunks ");
+		sql.append("(itemId, itemType, characterId) ");
+		sql.append("VALUES (4, 1, 1)");
+		jdbcTemplate.update(sql.toString());
+		// janukovych aids
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO charactersTrunks ");
+		sql.append("(itemId, itemType, characterId) ");
 		sql.append("VALUES (1, 2, 1)");
 		jdbcTemplate.update(sql.toString());
+				sql.delete(0, sql.length());
+		sql.append("INSERT INTO charactersTrunks ");
+		sql.append("(itemId, itemType, characterId) ");
+		sql.append("VALUES (2, 2, 1)");
+		jdbcTemplate.update(sql.toString());
+		//janukovuch armors
 		sql.delete(0, sql.length());
 		sql.append("INSERT INTO charactersTrunks ");
 		sql.append("(itemId, itemType, characterId) ");
 		sql.append("VALUES (1, 3, 1)");
 		jdbcTemplate.update(sql.toString());
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO charactersTrunks ");
+		sql.append("(itemId, itemType, characterId) ");
+		sql.append("VALUES (2, 3, 1)");
+		jdbcTemplate.update(sql.toString());
+		
+		// tymoshenko weapons
 		sql.delete(0, sql.length());
 		sql.append("INSERT INTO charactersTrunks ");
 		sql.append("(itemId, itemType, characterId) ");
@@ -316,12 +341,34 @@ public class TableDaoImpl implements ITableDao {
 		sql.delete(0, sql.length());
 		sql.append("INSERT INTO charactersTrunks ");
 		sql.append("(itemId, itemType, characterId) ");
+		sql.append("VALUES (10, 1, 2)");
+		jdbcTemplate.update(sql.toString());
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO charactersTrunks ");
+		sql.append("(itemId, itemType, characterId) ");
+		sql.append("VALUES (12, 1, 2)");
+		jdbcTemplate.update(sql.toString());
+		//tymoshenko aids
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO charactersTrunks ");
+		sql.append("(itemId, itemType, characterId) ");
 		sql.append("VALUES (2, 2, 2)");
 		jdbcTemplate.update(sql.toString());
 		sql.delete(0, sql.length());
 		sql.append("INSERT INTO charactersTrunks ");
 		sql.append("(itemId, itemType, characterId) ");
+		sql.append("VALUES (4, 2, 2)");
+		jdbcTemplate.update(sql.toString());
+		//tymoshenko armors
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO charactersTrunks ");
+		sql.append("(itemId, itemType, characterId) ");
 		sql.append("VALUES (2, 3, 2)");
+		jdbcTemplate.update(sql.toString());
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO charactersTrunks ");
+		sql.append("(itemId, itemType, characterId) ");
+		sql.append("VALUES (4, 3, 2)");
 		jdbcTemplate.update(sql.toString());
 	}
 	
@@ -379,6 +426,7 @@ public class TableDaoImpl implements ITableDao {
 		sql.append("agility INT(5) UNSIGNED NOT NULL DEFAULT 5, ");
 		sql.append("intellect INT(5) UNSIGNED NOT NULL DEFAULT 5, ");
 		sql.append("profession VARCHAR(100) NOT NULL DEFAULT '', ");
+		sql.append("professionAvatar VARCHAR(100) NOT NULL DEFAULT '', ");
 		sql.append("fightsTotal INT(10) UNSIGNED NOT NULL DEFAULT 0, ");
 		sql.append("fightsWon INT(10) UNSIGNED NOT NULL DEFAULT 0, ");
 		sql.append("weapon1 INT(10) UNSIGNED NOT NULL DEFAULT 0, ");
