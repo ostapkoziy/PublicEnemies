@@ -57,7 +57,6 @@ public class CharacterInfoDaoImpl implements ICharacterInfoDao {
 					}
 				}, keyHolder);
 		log.info("UserDaoImpl.createCharacterEntry: ID is " + keyHolder.getKey().intValue());
-		
 		String query = "UPDATE users SET userCharacter=? WHERE userID=?";
 		jdbcTemplate.update(query, new Object[] {keyHolder.getKey().intValue(), user.getUserId()});
 		return keyHolder.getKey().intValue();

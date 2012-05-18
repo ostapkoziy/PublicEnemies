@@ -1,8 +1,11 @@
 package com.epam.publicenemies.dao;
 
+import java.util.List;
+
 import com.epam.publicenemies.domain.Profile;
 import com.epam.publicenemies.domain.UCharacter;
 import com.epam.publicenemies.domain.User;
+import com.epam.publicenemies.domain.Weapon;
 
 public interface IProfileDao {
 	/*Profile getProfileByUser(User user);*/
@@ -22,6 +25,16 @@ public interface IProfileDao {
 	
 	Profile getProfile(int userId);
 	
+	
+	
+	/**
+	 * Buy weapons for user
+	 * @param userId - id of user
+	 * @param weapons - List of weapons ids
+	 * @return true if operation was successfully
+	 */
+	boolean buyWeapons(int userId, List<Integer> weapons);
+
 	/**
 	 * Get character by user note
 	 * @param user - User object
