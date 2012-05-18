@@ -2,10 +2,11 @@ package com.epam.publicenemies.domain.roulette;
 
 public class RouletteGameInfo {
 	
-	private int betNumbers[];
-	private int bet=0;
-	private int prize=0;
+	private String betNumbers[];
+	private int bet;
+	private int prize;
 	private int luckyNumber;
+	private int chips;
 	private String msg = "";
 
 	public int getPrize() {
@@ -14,8 +15,11 @@ public class RouletteGameInfo {
 	public void setPrize(int prize) {
 		this.prize = prize;
 	}
-	public int[] getBetNumbers() {
+	public String[] getBetNumbers() {
 		return betNumbers;
+	}
+	public void setBetNumbers(String[] betNumbers) {
+		this.betNumbers = betNumbers;
 	}
 	public int getBetAmount() {
 		return bet;
@@ -34,5 +38,11 @@ public class RouletteGameInfo {
 	}
 	public void setMsg(String msg) {
 		this.msg = msg;
+	}
+	public int getChips() {
+		return chips;
+	}
+	public void setChips(int chips) {
+		this.chips = chips;
 	}
 }
