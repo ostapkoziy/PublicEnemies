@@ -284,6 +284,7 @@ public class TableDaoImpl implements ITableDao {
 	}
 	
 	private void fillCharactersTrunks() {
+		// janukovych weapons
 		StringBuilder sql = new StringBuilder("INSERT INTO charactersTrunks ");
 		sql.append("(itemId, itemType, characterId) ");
 		sql.append("VALUES (1, 1, 1)");
@@ -296,13 +297,37 @@ public class TableDaoImpl implements ITableDao {
 		sql.delete(0, sql.length());
 		sql.append("INSERT INTO charactersTrunks ");
 		sql.append("(itemId, itemType, characterId) ");
+		sql.append("VALUES (3, 1, 1)");
+		jdbcTemplate.update(sql.toString());
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO charactersTrunks ");
+		sql.append("(itemId, itemType, characterId) ");
+		sql.append("VALUES (4, 1, 1)");
+		jdbcTemplate.update(sql.toString());
+		// janukovych aids
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO charactersTrunks ");
+		sql.append("(itemId, itemType, characterId) ");
 		sql.append("VALUES (1, 2, 1)");
 		jdbcTemplate.update(sql.toString());
+				sql.delete(0, sql.length());
+		sql.append("INSERT INTO charactersTrunks ");
+		sql.append("(itemId, itemType, characterId) ");
+		sql.append("VALUES (2, 2, 1)");
+		jdbcTemplate.update(sql.toString());
+		//janukovuch armors
 		sql.delete(0, sql.length());
 		sql.append("INSERT INTO charactersTrunks ");
 		sql.append("(itemId, itemType, characterId) ");
 		sql.append("VALUES (1, 3, 1)");
 		jdbcTemplate.update(sql.toString());
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO charactersTrunks ");
+		sql.append("(itemId, itemType, characterId) ");
+		sql.append("VALUES (2, 3, 1)");
+		jdbcTemplate.update(sql.toString());
+		
+		// tymoshenko weapons
 		sql.delete(0, sql.length());
 		sql.append("INSERT INTO charactersTrunks ");
 		sql.append("(itemId, itemType, characterId) ");
@@ -316,12 +341,34 @@ public class TableDaoImpl implements ITableDao {
 		sql.delete(0, sql.length());
 		sql.append("INSERT INTO charactersTrunks ");
 		sql.append("(itemId, itemType, characterId) ");
+		sql.append("VALUES (10, 1, 2)");
+		jdbcTemplate.update(sql.toString());
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO charactersTrunks ");
+		sql.append("(itemId, itemType, characterId) ");
+		sql.append("VALUES (12, 1, 2)");
+		jdbcTemplate.update(sql.toString());
+		//tymoshenko aids
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO charactersTrunks ");
+		sql.append("(itemId, itemType, characterId) ");
 		sql.append("VALUES (2, 2, 2)");
 		jdbcTemplate.update(sql.toString());
 		sql.delete(0, sql.length());
 		sql.append("INSERT INTO charactersTrunks ");
 		sql.append("(itemId, itemType, characterId) ");
+		sql.append("VALUES (4, 2, 2)");
+		jdbcTemplate.update(sql.toString());
+		//tymoshenko armors
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO charactersTrunks ");
+		sql.append("(itemId, itemType, characterId) ");
 		sql.append("VALUES (2, 3, 2)");
+		jdbcTemplate.update(sql.toString());
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO charactersTrunks ");
+		sql.append("(itemId, itemType, characterId) ");
+		sql.append("VALUES (4, 3, 2)");
 		jdbcTemplate.update(sql.toString());
 	}
 	

@@ -48,8 +48,8 @@ public class ProfileDaoImpl implements IProfileDao {
 		final String TRUNK_SQL = "INSERT INTO charactersTrunks (characterId, itemId, itemType) SELECT userCharacter, ?, 1 " +
 				"FROM users WHERE userId=?";
 		jdbcTemplate.update(TRUNK_SQL, new Object[] {weaponId, userId});
-		final String MONEY_SQL = "UPDATE users SET money=money-(SELECT weaponPrice FROM weapon WHERE weaponID=?)" +
-				"WHERE userid=?";
+		final String MONEY_SQL = "UPDATE users SET money=money-(SELECT weaponPrice FROM weapons WHERE weaponID=?)" +
+				"WHERE userId=?";
 		int i = jdbcTemplate.update(MONEY_SQL, new Object[] {weaponId, userId});
 		if (i>0) {
 			log.info("ProfileDaoImpl.buyWeapon: ID of weapon is " + weaponId);
@@ -58,7 +58,29 @@ public class ProfileDaoImpl implements IProfileDao {
 	}
 	
 	private boolean buyAid(final int userId, final int aidId) {
-		return false;
+		final String TRUNK_SQL = "INSERT INTO charactersTrunks (characterId, itemId, itemType) SELECT userCharacter, ?, 2 " +
+				"FROM users WHERE userId=?";
+		jdbcTemplate.update(TRUNK_SQL, new Object[] {aidId, userId});
+		final String MONEY_SQL = "UPDATE users SET money=money-(SELECT aidPrice FROM aids WHERE aidID=?)" +
+				"WHERE userId=?";
+		int i = jdbcTemplate.update(MONEY_SQL, new Object[] {aidId, userId});
+		if (i>0) {
+			log.info("ProfileDaoImpl.buyWeapon: ID of aid is " + aidId);
+			return true;
+		} else return false;
+	}
+	
+	private boolean buyArmor (final int userId, final int armorId) {
+		final String TRUNK_SQL = "INSERT INTO charactersTrunks (characterId, itemId, itemType) SELECT userCharacter, ?, 3 " +
+				"FROM users WHERE userId=?";
+		jdbcTemplate.update(TRUNK_SQL, new Object[] {armorId, userId});
+		final String MONEY_SQL = "UPDATE users SET money=money-(SELECT armorPrice FROM armors WHERE armorID=?)" +
+				"WHERE userId=?";
+		int i = jdbcTemplate.update(MONEY_SQL, new Object[] {armorId, userId});
+		if (i>0) {
+			log.info("ProfileDaoImpl.buyWeapon: ID of armor is " + armorId);
+			return true;
+		} else return false;
 	}
 	
 	/**
@@ -549,6 +571,14 @@ public class ProfileDaoImpl implements IProfileDao {
 		else
 			log.info("ProfileDaoImpl.deleteCharacter: ID of user is " + userId);
 			return false;
+	}
+
+
+
+	@Override
+	public boolean buyAids(int userId, List<Integer> aids) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

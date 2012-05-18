@@ -36,6 +36,15 @@ public interface IProfileDao {
 	boolean buyWeapons(int userId, List<Integer> weapons);
 
 	/**
+	 * Buy aids for user
+	 * @param userId - id of user
+	 * @param aids - List of weapons ids
+	 * @return true if operation was successfully
+	 */
+	boolean buyAids(int userId, List<Integer> aids);
+	
+	
+	/**
 	 * Get character by user note
 	 * @param user - User object
 	 * @return UCharacter object
