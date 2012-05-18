@@ -38,11 +38,18 @@ public interface IProfileDao {
 	/**
 	 * Buy aids for user
 	 * @param userId - id of user
-	 * @param aids - List of weapons ids
+	 * @param aids - List of aids ids
 	 * @return true if operation was successfully
 	 */
 	boolean buyAids(int userId, List<Integer> aids);
 	
+	/**
+	 * Buy armors for user
+	 * @param userId - id of user
+	 * @param armors - List armors ids
+	 * @return true if operation was successfully
+	 */
+	boolean buyArmors(int userId, List<Integer> armors);
 	
 	/**
 	 * Get character by user note

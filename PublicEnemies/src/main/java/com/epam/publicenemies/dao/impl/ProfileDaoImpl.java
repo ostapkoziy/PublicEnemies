@@ -41,8 +41,6 @@ public class ProfileDaoImpl implements IProfileDao {
 	public void setDataSource(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
-
-	
 	
 	private boolean buyWeapon(final int userId, final int weaponId) {
 		final String TRUNK_SQL = "INSERT INTO charactersTrunks (characterId, itemId, itemType) SELECT userCharacter, ?, 1 " +
@@ -102,6 +100,15 @@ public class ProfileDaoImpl implements IProfileDao {
 		else return false;
 	}
 	
+	@Override
+	public boolean buyAids(int userId, List<Integer> aids) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	public boolean buyArmors(int userId, List<Integer> armors){
+		return false;
+	}
 	
 	/**
 	 * Get Profile information from database
@@ -496,7 +503,6 @@ public class ProfileDaoImpl implements IProfileDao {
 			log.info("ProfileDaoImpl.updateProfileIntellect: ID of user is " + userId);
 			return false;
 		}
-			
 	}
 
 	/**
@@ -572,13 +578,4 @@ public class ProfileDaoImpl implements IProfileDao {
 			log.info("ProfileDaoImpl.deleteCharacter: ID of user is " + userId);
 			return false;
 	}
-
-
-
-	@Override
-	public boolean buyAids(int userId, List<Integer> aids) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 }

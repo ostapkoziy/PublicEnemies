@@ -273,13 +273,13 @@ public class TableDaoImpl implements ITableDao {
 		StringBuilder sql = new StringBuilder("INSERT INTO characters ");
 		sql.append("(experience, strength, agility, intellect, profession, ");
 		sql.append("fightsTotal, fightsWon, weapon1, weapon2, aid, armor) ");
-		sql.append("VALUES (500, 20, 25, 1, 'pharaon', 50, 1, 1, 2, 3, 4)");
+		sql.append("VALUES (500, 20, 25, 1, 'pharaon', 50, 1, 1, 2, 5, 7)");
 		jdbcTemplate.update(sql.toString());
 		sql.delete(0, sql.length());
 		sql.append("INSERT INTO characters ");
 		sql.append("(sex, strength, agility, intellect, profession, ");
 		sql.append("fightsTotal, fightsWon, weapon1, weapon2, aid, armor) ");
-		sql.append("VALUES (0, 5, 50, 6, 'baba', 20, 5, 5, 6, 7, 8)");
+		sql.append("VALUES (0, 5, 50, 6, 'baba', 20, 5, 9, 10, 13, 15)");
 		jdbcTemplate.update(sql.toString());
 	}
 	
