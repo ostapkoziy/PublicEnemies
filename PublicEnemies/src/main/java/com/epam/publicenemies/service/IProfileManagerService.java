@@ -44,5 +44,7 @@ public interface IProfileManagerService {
 	 * @return profile, that corresponds to passed userId
 	 */
 	Profile getProfileByUserId(int userId);
+	
+	
 
 }

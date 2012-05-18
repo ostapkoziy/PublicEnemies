@@ -1,7 +1,5 @@
 package com.epam.publicenemies.dao.impl;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -10,10 +8,7 @@ import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
-import org.springframework.jdbc.support.KeyHolder;
 
 import com.epam.publicenemies.dao.IProfileDao;
 import com.epam.publicenemies.domain.Profile;
@@ -22,12 +17,13 @@ import com.epam.publicenemies.domain.User;
 import com.epam.publicenemies.domain.Weapon;
 import com.epam.publicenemies.domain.Aid;
 import com.epam.publicenemies.domain.Armor;
-import com.mysql.jdbc.Statement;
 
 /**
  * Profile data access object
  * 
  * @author Chetyrkin S.V. 14.05.2012
+ * Updated Chetyrkin S.V. 18.05.2012
+ *			added selling and buying methods for weapons, armors and aids
  * 
  *         TODO: Null Pointer exception if profile doesn't exist. Fix it!
  * 
@@ -83,8 +79,105 @@ public class ProfileDaoImpl implements IProfileDao {
 	
 	
 	private boolean sellWeapon (final int userId, final int weaponId) {
-		
-		return false;
+		final String DELETE_SQL = "DELETE ct FROM charactersTrunks AS ct, users AS u, characters AS c "
+				+ "WHERE u.userId=? AND u.userCharacter=c.characterId AND c.characterId=ct.characterId AND ct.itemType=1 AND "
+				+ "ct.itemId=? AND c.weapon1<>ct.trunkId AND c.weapon2<>ct.trunkId";
+		final String ADD_MONEY = "UPDATE users SET money=money+0.6*(SELECT weaponPrice FROM weapons WHERE weaponId=?) WHERE userId=?";
+		int j = 0;
+		int i = jdbcTemplate.update ( DELETE_SQL,	new Object[] {userId, weaponId} );
+		if (i > 0) {
+			j = jdbcTemplate.update ( ADD_MONEY, new Object[] {weaponId,  userId} );
+			if (j > 0) {
+				log.info("ProfileDaoImpl.sellWeapon: ID of weapon " + weaponId);
+				return true;
+			} else return false;
+		} else return false;
+	}
+	
+	private boolean sellAid (final int userId, final int aidId) {
+		final String DELETE_SQL = "DELETE ct FROM charactersTrunks AS ct, users AS u, characters AS c "
+				+ "WHERE u.userId=? AND u.userCharacter=c.characterId AND c.characterId=ct.characterId AND ct.itemType=2 AND "
+				+ "ct.itemId=? AND c.aid<>ct.trunkId";
+		final String ADD_MONEY = "UPDATE users SET money=money+0.6*(SELECT aidPrice FROM aids WHERE aidId=?) WHERE userId=?";
+		int j = 0;
+		int i = jdbcTemplate.update ( DELETE_SQL, new Object[] {userId, aidId} );
+		if (i>0) {
+			j = jdbcTemplate.update ( ADD_MONEY, new Object[] {aidId, userId} );
+			if (j > 0) {
+				log.info("ProfileDaoImpl.sellAid: ID of aid " + aidId);
+				return true;
+			} else return false;
+		} else	return false;
+	}
+	
+	private boolean sellArmor (final int userId, final int armorId) {
+		final String DELETE_SQL = "DELETE ct FROM charactersTrunks AS ct, users AS u, characters AS c "
+				+ "WHERE u.userId=? AND u.userCharacter=c.characterId AND c.characterId=ct.characterId AND ct.itemType=3 AND "
+				+ "ct.itemId=? AND c.armor<>ct.trunkId";
+		final String ADD_MONEY = "UPDATE users SET money=money+0.6*(SELECT armorPrice FROM armors WHERE armorId=?) WHERE userId=?";
+		int j = 0;
+		int i = jdbcTemplate.update ( DELETE_SQL, new Object[] {userId, armorId} );
+		if (i>0) {
+			j = jdbcTemplate.update ( ADD_MONEY, new Object[] {armorId, userId} );
+			if (j > 0) {
+				log.info("ProfileDaoImpl.sellArmor: ID of armor " + armorId);
+				return true;
+			} else return false;
+		} else	return false;
+	}
+	
+	/**
+	 * Sell user's weapons
+	 * @param userId - id of user
+	 * @param weapons - List of weapons ids
+	 * @return true if operation was successfully
+	 */
+	public boolean sellWeapons(int userId, List<Integer> weapons) {
+		int count = 0;
+		for (Integer i : weapons) {
+			if (sellWeapon(userId, i)) count++;
+		}
+		if (count == weapons.size()) {
+			log.info("ProfileDaoImpl.sellWeapons: Were selled " + count + " weapons");
+			return true;
+		}
+		else return false;
+	}
+	
+	/**
+	 * Sell user's aids
+	 * @param userId - id of user
+	 * @param aids - List of aids ids
+	 * @return true if operation was successfully
+	 */
+	public boolean sellAids(int userId, List<Integer> aids) {
+		int count = 0;
+		for (Integer i : aids) {
+			if (sellAid(userId, i)) count++;
+		}
+		if (count == aids.size()) {
+			log.info("ProfileDaoImpl.sellAids: Were selled " + count + " aids");
+			return true;
+		}
+		else return false;
+	}
+	
+	/**
+	 * Sell user's armors
+	 * @param userId - id of user
+	 * @param armors - List of armors ids
+	 * @return true if operation was successfully
+	 */
+	public boolean sellArmors(int userId, List<Integer> armors) {
+		int count = 0;
+		for (Integer i : armors) {
+			if (sellArmor(userId, i)) count++;
+		}
+		if (count == armors.size()) {
+			log.info("ProfileDaoImpl.sellWeapons: Were selled " + count + " armors");
+			return true;
+		}
+		else return false;
 	}
 	
 	/**

@@ -273,13 +273,13 @@ public class TableDaoImpl implements ITableDao {
 		StringBuilder sql = new StringBuilder("INSERT INTO characters ");
 		sql.append("(experience, strength, agility, intellect, profession, ");
 		sql.append("fightsTotal, fightsWon, weapon1, weapon2, aid, armor) ");
-		sql.append("VALUES (500, 20, 25, 1, 'pharaon', 50, 1, 1, 2, 5, 7)");
+		sql.append("VALUES (500, 20, 25, 1, 'Gangster', 50, 1, 1, 2, 5, 7)");
 		jdbcTemplate.update(sql.toString());
 		sql.delete(0, sql.length());
 		sql.append("INSERT INTO characters ");
 		sql.append("(sex, strength, agility, intellect, profession, ");
 		sql.append("fightsTotal, fightsWon, weapon1, weapon2, aid, armor) ");
-		sql.append("VALUES (0, 5, 50, 6, 'baba', 20, 5, 9, 10, 13, 15)");
+		sql.append("VALUES (0, 5, 50, 6, 'Thief', 20, 5, 9, 10, 13, 15)");
 		jdbcTemplate.update(sql.toString());
 	}
 	
@@ -425,7 +425,9 @@ public class TableDaoImpl implements ITableDao {
 		sql.append("strength INT(5) UNSIGNED NOT NULL DEFAULT 5, ");
 		sql.append("agility INT(5) UNSIGNED NOT NULL DEFAULT 5, ");
 		sql.append("intellect INT(5) UNSIGNED NOT NULL DEFAULT 5, ");
-		sql.append("profession VARCHAR(100) NOT NULL DEFAULT '', ");
+		sql.append("profession VARCHAR(100) NOT NULL DEFAULT 'Gangster' ");
+		sql.append("check (profession in('Butcher', 'Gangster', 'Criminal', ");
+		sql.append("'Thief', 'Assasin', 'Professor' )), ");
 		sql.append("professionAvatar VARCHAR(100) NOT NULL DEFAULT '', ");
 		sql.append("fightsTotal INT(10) UNSIGNED NOT NULL DEFAULT 0, ");
 		sql.append("fightsWon INT(10) UNSIGNED NOT NULL DEFAULT 0, ");

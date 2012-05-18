@@ -60,11 +60,6 @@ public class Profile
 		armors = new HashMap<Integer, TrunkItem>();
 	}
 	
-	public int byeWeapon(int weaponId) {
-		
-		return 0;
-	}
-	
 	/**
 	 * Get LinkedList of character's all weapons
 	 * @return LinkedList of character's all weapons
