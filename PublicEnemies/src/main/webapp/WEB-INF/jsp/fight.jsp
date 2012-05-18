@@ -38,13 +38,13 @@ div { /* 	outline: 1px solid red; */
 #left {
 	float: left;
 	width: 400px;
-	height: 400px;
+	height: 420px;
 }
 
 #right {
 	float: right;
 	width: 400px;
-	height: 400px;
+	height: 420px;
 }
 /* +++++++++++++++++++++++++++++++++++++++ */
 #leftHP {
@@ -62,16 +62,16 @@ div { /* 	outline: 1px solid red; */
 #leftHPWrapper {
 	float: left;
 }
-/* ******************************** */
+/* **************STATS****************** */
 #leftStats {
 	width: 100px;
-	height: 330px;
+	height: 250px;
 	float: left;
 }
 
 #rightStats {
 	width: 100px;
-	height: 330px;
+	height: 250px;
 	float: right;
 }
 
@@ -82,7 +82,7 @@ div { /* 	outline: 1px solid red; */
 #rightStatsWrapper {
 	float: right;
 }
-/* ************************************ */
+/* *************AVATAR*********************** */
 #leftAvatar {
 	margin-left: 100px;
 	outline: 2px solid green;
@@ -96,17 +96,19 @@ div { /* 	outline: 1px solid red; */
 	width: 200px;
 	height: 250px;
 }
-/* +++++++++++++++++++++++++++++++++++++++++ */
+/* +++++++++++++++++++HP++++++++++++++++++++++ */
 #leftProgressHP {
 	height: 15px;
 	width: 96%;
 	background-color: gray;
 	float: left;
+	border-radius: 25px;
 }
 
 #innerLeftProgressHP {
 	height: 15px;
 	width: 100%;
+	border-radius: 25px;
 }
 
 #rightProgressHP {
@@ -114,12 +116,14 @@ div { /* 	outline: 1px solid red; */
 	width: 96%;
 	background-color: gray;
 	float: right;
+	border-radius: 25px;
 }
 
 #innerRightProgressHP {
 	height: 15px;
 	width: 100%;
 	float: left;
+	border-radius: 25px;
 }
 /* ************************************** */
 #rightAgility,#rightStrength,#rightInteligence {
@@ -137,23 +141,89 @@ div { /* 	outline: 1px solid red; */
 	width: 72px;
 	height: 75px;
 }
-/* *************************************** */
+
+#hitInput {
+	width: 30px;
+}
+
+#blockInput {
+	width: 30px;
+}
+/* ****************COLOR HP*********************** */
 .orange {
-	background-color: orange;
+	background: url("img/fight/orange.png");
 }
 
 .red {
-	background-color: red;
+	background: url("img/fight/red.png");
 }
 
 .green {
-	background-color: green;
+	background: url("img/fight/green.png");
 }
-/* ********************************************* */
+/* ****************TIMER***************************** */
 #timer {
 	width: 100%;
 	height: 20px;
-	outline: 2px solid red;
+	/* 	outline: 2px solid red; */
+}
+/* *********************************** */
+#leftInventory {
+	width: 300px;
+	height: 100px;
+	float: left;
+}
+
+#rightInventory {
+	width: 300px;
+	height: 100px;
+	float: right;
+}
+
+#leftItem1 {
+	width: 100px;
+	height: 100px;
+	float: left;
+	/* 	outline: 5px solid blue; */
+	background-image: url("img/fight/item1.png");
+}
+
+#leftItem2 {
+	width: 100px;
+	height: 100px;
+	float: left;
+	/* 	outline: 2px solid green; */
+	background-image: url("img/fight/item2.png");
+}
+
+#leftItem3 {
+	width: 100px;
+	height: 100px;
+	float: left;
+	background-image: url("img/fight/item3.png");
+}
+
+#rightItem1 {
+	width: 100px;
+	height: 100px;
+	float: right;
+	/* 	outline: 5px solid blue; */
+	background-image: url("img/fight/item1.png");
+}
+
+#rightItem2 {
+	width: 100px;
+	height: 100px;
+	float: right;
+	/* 	outline: 2px solid green; */
+	background-image: url("img/fight/item2.png");
+}
+
+#rightItem3 {
+	width: 100px;
+	height: 100px;
+	float: right;
+	background-image: url("img/fight/item3.png");
 }
 </style>
 </head>
@@ -190,6 +260,11 @@ div { /* 	outline: 1px solid red; */
 				</div>
 				<div id="leftAvatar">
 					<img alt="avatar" src="img/fight/3.jpg" width="200">
+				</div>
+				<div id="leftInventory">
+					<div id="leftItem1"></div>
+					<div id="leftItem2"></div>
+					<div id="leftItem3"></div>
 				</div>
 			</div>
 			<!-- 	+++++++++++++++END LEFT CREATOR++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
@@ -235,6 +310,11 @@ div { /* 	outline: 1px solid red; */
 						</div>
 						<div id="rightAvatar">
 							<img alt="avatar" src="img/fight/4.jpg" width="200">
+						</div>
+						<div id="rightInventory">
+							<div id="rightItem1"></div>
+							<div id="rightItem2"></div>
+							<div id="rightItem3"></div>
 						</div>
 					</div>
 				</c:otherwise>
@@ -283,6 +363,11 @@ div { /* 	outline: 1px solid red; */
 				<div id="leftAvatar">
 					<img alt="avatar" src="img/fight/4.jpg" width="200">
 				</div>
+				<div id="leftInventory">
+					<div id="leftItem1"></div>
+					<div id="leftItem2"></div>
+					<div id="leftItem3"></div>
+				</div>
 			</div>
 			<!-- 	++++++++++++++++++++++++END LEFT CONNECTOR+++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 			<!-- 	++++++++++++++++++++++RIGHTT CONNECTOR+++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
@@ -316,6 +401,11 @@ div { /* 	outline: 1px solid red; */
 				<div id="rightAvatar">
 					<img alt="avatar" src="img/fight/3.jpg" width="200">
 				</div>
+				<div id="rightInventory">
+					<div id="rightItem1"></div>
+					<div id="rightItem2"></div>
+					<div id="rightItem3"></div>
+				</div>
 			</div>
 		</c:if>
 		<!-- 	+++++++++++++++++++++END RIGHT CONNECTOR++++++++++++++++++++++++++++++++++++++++++++++++++ -->
@@ -325,8 +415,8 @@ div { /* 	outline: 1px solid red; */
 
 		<div id="attackBlock">
 			<div id="timer"></div>
-			<input id="hitInput" type="text" value="Head" hidden="true">
-			<input id="blockInput" type="text" value="Head" hidden="true">
+			<input id="hitInput" type="text" value="Head">
+			<input id="blockInput" type="text" value="Head">
 			<div id="atackButtonWrapper">
 				<img id="atackButton" src="img/fight/attack.jpg">
 			</div>
