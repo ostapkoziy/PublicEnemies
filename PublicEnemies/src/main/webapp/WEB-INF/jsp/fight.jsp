@@ -213,21 +213,21 @@ div { /* 	outline: 1px solid red; */
 #user2Item1 {
 	width: 100px;
 	height: 100px;
-	float: right;
+	float: left;
 	background-image: url("img/fight/item1.png");
 }
 
 #user2Item2 {
 	width: 100px;
 	height: 100px;
-	float: right;
+	float: left;
 	background-image: url("img/fight/item2.png");
 }
 
 #user2Item3 {
 	width: 100px;
 	height: 100px;
-	float: right;
+	float: left;
 	background-image: url("img/fight/item3.png");
 }
 
@@ -283,10 +283,7 @@ div { /* 	outline: 1px solid red; */
 					<div id="leftAvatar">
 						<img alt="avatar" src="img/fight/3.jpg" width="200">
 					</div>
-
 				</div>
-
-
 				<!-- 	+++++++++++++++END LEFT CREATOR++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 				<!-- 	+++++++++++++++RIGHT CREATOR+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 				<!-- ++++++++++++++++++GAME NOT STARTED+++++++++++++++++++++++++++++++ -->
@@ -453,13 +450,11 @@ div { /* 	outline: 1px solid red; */
 
 
 		<div id="box">
-			<form action="MessageServlet">
-				<div id="allMesseges"></div>
-				<textarea id="myMessege"></textarea>
-				<div id="chatSubmit">
-					<input id="submit" type="button" name="submit" value="Ok">
-				</div>
-			</form>
+			<div id="allMesseges"></div>
+			<textarea id="myMessege"></textarea>
+			<div id="chatSubmit">
+				<input id="submit" type="button" name="submit" value="Ok">
+			</div>
 		</div>
 
 	</div>
