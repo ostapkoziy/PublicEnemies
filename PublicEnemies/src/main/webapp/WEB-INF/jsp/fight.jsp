@@ -168,14 +168,14 @@ div { /* 	outline: 1px solid red; */
 #timer {
 	width: 100%;
 	height: 20px;
-	/* 	outline: 2px solid red; */
+	outline: 2px solid red;
 }
 /* ***************Inventory***User1***************** */
 #user1Inventory {
 	width: 300px;
 	height: 100px;
 	clear: both;
-	/* 	outline: 5px solid blue; */
+	/*outline: 5px solid blue; */
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -230,7 +230,7 @@ div { /* 	outline: 1px solid red; */
 	float: left;
 	background-image: url("img/fight/item3.png");
 }
-
+/* **************DOLL********************* */
 #attackBlockDoll {
 	width: 200px;
 	/* 	height: 100px;; */

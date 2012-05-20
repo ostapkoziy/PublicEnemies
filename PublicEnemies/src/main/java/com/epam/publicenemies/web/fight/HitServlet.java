@@ -53,6 +53,11 @@ public class HitServlet
 		 * 
 		 */
 	}
+	/**
+	 * Можна буде забрати якщо передавати в ENGINE того хто стартанув гру(він
+	 * вдарив другим)
+	 * 
+	 */
 	private synchronized void setFirstHit(Fight game, String role)
 	{
 		if (game.getRound().getFirstHit().equals(""))
