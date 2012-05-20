@@ -24,8 +24,11 @@
 	<filter-mapping>
 		<filter-name>SessionFilter</filter-name>
 		<url-pattern>/userStartPage.html</url-pattern>
-		<url-pattern>/shop.html</url-pattern>
+		
+		<url-pattern>/adminPanel.html</url-pattern>
+		<url-pattern>/shop.html</url-pattern>		
 		<url-pattern>/editProfile.html</url-pattern>
+		
 		<url-pattern>/cards.html</url-pattern>
 		<url-pattern>/newJoinGame.html</url-pattern>
 		<!-- ++++++++++++++++++++CASINO+++++++++++++++++++++++ -->

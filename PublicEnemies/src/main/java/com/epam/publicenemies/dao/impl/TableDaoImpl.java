@@ -6,7 +6,6 @@ import org.apache.log4j.Logger;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.epam.publicenemies.dao.ITableDao;
-import com.epam.publicenemies.web.listeners.OnContextLoaderListener;
 
 
 //TODO check for table creations
@@ -111,36 +110,36 @@ public class TableDaoImpl implements ITableDao {
 		final String fw = "INSERT INTO weapons (weaponName, weaponHitPoints, weaponType, weaponPicture, weaponPrice) ";
 		StringBuilder sql = new StringBuilder("");
 		//-------------------------------------------------------
+		/*sql.append(fw);
+		sql.append("VALUES ('Fist', 10, 0, './img/weapons/fist.png', 100)");
+		jdbcTemplate.update(sql.toString());
+		
+		sql.delete(0, sql.length());*/
+		//-------------------------------------------------------
 		sql.append(fw);
-		sql.append("VALUES ('Castet', 10, 0, './img/weapons/castet.png', 100)");
+		sql.append("VALUES ('Knuckle', 10, 0, './img/weapons/knuckle.png', 100)");
 		jdbcTemplate.update(sql.toString());
 		
 		sql.delete(0, sql.length());
 		//-------------------------------------------------------
 		sql.append(fw);
-		sql.append("VALUES ('Knife', 120, 0, './img/weapons/knife.png', 200)");
+		sql.append("VALUES ('Extinguisher', 120, 0, './img/weapons/extinguisher.png', 200)");
 		jdbcTemplate.update(sql.toString());
 		
 		sql.delete(0, sql.length());
 		//-------------------------------------------------------
 		sql.append(fw);
-		sql.append("VALUES ('Shurictns', 120, 0, './img/weapons/shuricens.png', 200)");
+		sql.append("VALUES ('Bat', 120, 0, './img/weapons/bat.png', 200)");
 		jdbcTemplate.update(sql.toString());
 		
 		sql.delete(0, sql.length());
+		//-------------------------------------------------------
+		sql.append(fw);
+		sql.append("VALUES ('Sickle', 120, 0, './img/weapons/sickle.png', 200)");
+		jdbcTemplate.update(sql.toString());
+		
+		sql.delete(0, sql.length());	
 		//-------------------------------------------------------		
-		sql.append(fw);
-		sql.append("VALUES ('Baseball bat', 15, 0, './img/weapons/bat.png', 300)");
-		jdbcTemplate.update(sql.toString());
-		
-		sql.delete(0, sql.length());
-		//-------------------------------------------------------
-		sql.append(fw);
-		sql.append("VALUES ('Advanced bat', 20, 0, './img/weapons/adv_bat.png', 400)");
-		jdbcTemplate.update(sql.toString());
-		
-		sql.delete(0, sql.length());
-		//-------------------------------------------------------
 		sql.append(fw);
 		sql.append("VALUES ('Katana', 120, 0, './img/weapons/katana.png', 500)");
 		jdbcTemplate.update(sql.toString());
@@ -148,41 +147,66 @@ public class TableDaoImpl implements ITableDao {
 		sql.delete(0, sql.length());		
 		//-------------------------------------------------------
 		sql.append(fw);
-		sql.append("VALUES ('Revolver', 120, 1, './img/weapons/revolver.png', 800)");
+		sql.append("VALUES ('Chainsaw', 120, 0, './img/weapons/chainsaw.png', 500)");
+		jdbcTemplate.update(sql.toString());
+		
+		sql.delete(0, sql.length());		
+		//-------------------------------------------------------
+		sql.append(fw);
+		sql.append("VALUES ('Desert Eagle', 120, 1, './img/weapons/desert_eagle.png', 800)");
+		jdbcTemplate.update(sql.toString());
+		
+		sql.delete(0, sql.length());
+		//-------------------------------------------------------
+		
+		sql.append(fw);
+		sql.append("VALUES ('USP Tactical', 120, 0, './img/weapons/usp_tactical.png', 500)");
+		jdbcTemplate.update(sql.toString());
+		
+		sql.delete(0, sql.length());		
+		//-------------------------------------------------------
+		sql.append(fw);
+		sql.append("VALUES ('Short gun', 60, 1, './img/weapons/short_gun.png', 1000)");
 		jdbcTemplate.update(sql.toString());
 		
 		sql.delete(0, sql.length());
 		//-------------------------------------------------------
 		sql.append(fw);
-		sql.append("VALUES ('Advanced revolver', 60, 1, './img/weapons/adv_revolver.png', 1000)");
+		sql.append("VALUES ('TMP', 120, 1, './img/weapons/tmp.png', 3000)");
 		jdbcTemplate.update(sql.toString());
 		
 		sql.delete(0, sql.length());
 		//-------------------------------------------------------
 		sql.append(fw);
-		sql.append("VALUES ('FN P90', 120, 1, './img/weapons/FN_P90.png', 3000)");
+		sql.append("VALUES ('M3 Super90', 120, 1, './img/weapons/m3_super90.png', 3000)");
 		jdbcTemplate.update(sql.toString());
 		
 		sql.delete(0, sql.length());
 		//-------------------------------------------------------
 		sql.append(fw);
-		sql.append("VALUES ('ADA 88', 120, 1, './img/weapons/ada88.png', 3000)");
+		sql.append("VALUES ('XM1014', 120, 1, './img/weapons/xm1014.png', 3000)");
 		jdbcTemplate.update(sql.toString());
 		
 		sql.delete(0, sql.length());
 		//-------------------------------------------------------
 		sql.append(fw);
-		sql.append("VALUES ('M4', 120, 1, './img/weapons/m4.png', 3000)");
+		sql.append("VALUES ('M4A1', 120, 1, './img/weapons/m4a1.png', 3000)");
 		jdbcTemplate.update(sql.toString());
 		
 		sql.delete(0, sql.length());
 		//-------------------------------------------------------
 		sql.append(fw);
-		sql.append("VALUES ('AK-47', 150, 1, './img/weapons/ak.png', 3500)");
+		sql.append("VALUES ('AK-47', 150, 1, './img/weapons/ak-47.png', 3500)");
 		jdbcTemplate.update(sql.toString());
 		
 		sql.delete(0, sql.length());
-		//-------------------------------------------------------				
+		//-------------------------------------------------------
+		sql.append(fw);
+		sql.append("VALUES ('awp', 150, 1, './img/weapons/awp.png', 3500)");
+		jdbcTemplate.update(sql.toString());
+		
+		sql.delete(0, sql.length());
+		//-------------------------------------------------------
 	}
 	
 	private void fillArmors(){
@@ -225,18 +249,6 @@ public class TableDaoImpl implements ITableDao {
 		
 		sql.delete(0, sql.length());
 		//-------------------------------------------------------
-		sql.append(fa);
-		sql.append("VALUES ('extra', 150, './img/armors/extra.png', 150)");
-		jdbcTemplate.update(sql.toString());
-		
-		sql.delete(0, sql.length());
-		//-------------------------------------------------------
-		sql.append(fa);
-		sql.append("VALUES ('extra_hight', 180, './img/armors/extra_hight.png', 180)");
-		jdbcTemplate.update(sql.toString());
-		
-		sql.delete(0, sql.length());
-		//-------------------------------------------------------
 		
 	}
 	
@@ -266,7 +278,19 @@ public class TableDaoImpl implements ITableDao {
 		sql.append("VALUES ('very_lagre', 'HP', 100, './img/aids/very_large.png', 150)");
 		jdbcTemplate.update(sql.toString());
 		
-		sql.delete(0, sql.length());		
+		sql.delete(0, sql.length());	
+		//-------------------------------------------------------
+		sql.append(aidsSql);
+		sql.append("VALUES ('Average', 'HP', 100, './img/aids/average.png', 150)");
+		jdbcTemplate.update(sql.toString());
+		
+		sql.delete(0, sql.length());	
+		//-------------------------------------------------------
+		sql.append(aidsSql);
+		sql.append("VALUES ('Shugar', 'HP', 100, './img/aids/extra.png', 150)");
+		jdbcTemplate.update(sql.toString());
+				
+		sql.delete(0, sql.length());	
 	}
 	
 	private void fillCharacters() {

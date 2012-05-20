@@ -5,7 +5,6 @@ import java.util.List;
 import com.epam.publicenemies.domain.Profile;
 import com.epam.publicenemies.domain.UCharacter;
 import com.epam.publicenemies.domain.User;
-import com.epam.publicenemies.domain.Weapon;
 
 public interface IProfileDao {
 	/*Profile getProfileByUser(User user);*/

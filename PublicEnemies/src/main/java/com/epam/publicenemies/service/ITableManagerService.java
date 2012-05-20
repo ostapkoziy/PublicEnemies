@@ -1,5 +1,9 @@
 package com.epam.publicenemies.service;
 
+/**
+ * Updated by I. Kostyrko: splitted into two methods: create and delete
+ *
+ */
 public interface ITableManagerService {	
 	/**
 	 * Allows to delete all tables in publicenemies database

@@ -128,20 +128,28 @@ public class ProfileDaoImpl implements IProfileDao {
 	
 	/**
 	 * Sell user's weapons
+	 * 
 	 * @param userId - id of user
 	 * @param weapons - List of weapons ids
 	 * @return true if operation was successfully
 	 */
 	public boolean sellWeapons(int userId, List<Integer> weapons) {
 		int count = 0;
+		log.info("ProfileDaoImpl: sellWeapons - enter"); 
 		for (Integer i : weapons) {
-			if (sellWeapon(userId, i)) count++;
+			if (sellWeapon(userId, i)) {
+				count++;
+			}
 		}
 		if (count == weapons.size()) {
 			log.info("ProfileDaoImpl.sellWeapons: Were selled " + count + " weapons");
+			log.info("ProfileDaoImpl: sellWeapons - leave"); 
 			return true;
 		}
-		else return false;
+		else {
+			log.info("ProfileDaoImpl: sellWeapons - leave"); 
+			return false;
+		}
 	}
 	
 	/**

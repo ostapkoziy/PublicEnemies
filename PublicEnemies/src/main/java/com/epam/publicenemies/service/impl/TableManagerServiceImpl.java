@@ -4,8 +4,9 @@ import com.epam.publicenemies.dao.ITableDao;
 import com.epam.publicenemies.service.ITableManagerService;
 /**
  * Allows to create/delete all necessary tables. 
- * Implements interface methods only, except of setter   
- * Updated by I. Kostyrko on Apr 26, 2012 
+ * Implements interface methods only, except of setter
+ *    
+ * Updated by I. Kostyrko on May 19, 2012: Removed unnecessary code 
  * @see com.epam.publicenemies.service.ITableManagerService
  */
 public class TableManagerServiceImpl implements ITableManagerService {
@@ -29,54 +30,5 @@ public class TableManagerServiceImpl implements ITableManagerService {
 	@Override
 	public void fillAllTables() {
 		tableDao.fillAllTables();
-	}
-	
-	
-	/* Old code here   
-	
-	private ITableDao tableDao;
-
-	public void setTableDao(ITableDao tableDao) {
-		this.tableDao = tableDao;
 	}	
-
-	@Override
-	public void createUserTable() {
-		tableDao.createUserTable();
-	}
-
-	@Override
-	public void createProfileTable() {
-		tableDao.createProfileTable();
-	}
-
-	@Override
-	public void createStatsTable() {
-		tableDao.createStatsTable();
-	}
-
-	@Override
-	public void createInventoryTable() {
-		tableDao.createInventoryTable();
-	}
-
-	@Override
-	public void createTrunkTable() {
-		tableDao.createTrunkTable();
-	}
-
-	@Override
-	public void createWeaponsTable() {
-		tableDao.createWeaponsTable();
-	}
-
-	@Override
-	public void createArmorsTable() {
-		tableDao.createArmorsTable();
-	}
-
-	@Override
-	public void createAidsTable() {
-		tableDao.createAidsTable();
-	}*/
 }

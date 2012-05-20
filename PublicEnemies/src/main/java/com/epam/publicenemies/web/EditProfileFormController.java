@@ -19,7 +19,7 @@ import com.epam.publicenemies.service.IProfileManagerService;
 /**
  * Allows to edit user/profile info
  * TODO: need to refactor
- *
+ * Updated by I. Kostyrko
  */
 @Controller
 @RequestMapping(value = "/editProfile")
@@ -82,42 +82,3 @@ public class EditProfileFormController {
 		return "redirect:userStartPage.html";		
 	} 
 }
-
-/* Old code here 
-@SuppressWarnings("deprecation")
-public class EditProfileFormController extends SimpleFormController {
-
-	private Logger log = Logger.getLogger(EditProfileFormController.class);
-	private IProfileManagerService profileManagerService;
-	private IStatsManagerService statsManagerService;
-
-	public void setProfileManagerService(
-			IProfileManagerService profileManagerService) {
-		this.profileManagerService = profileManagerService;
-	}
-	
-	public void setStatsManagerService(
-			IStatsManagerService statsManagerService) {
-		this.statsManagerService = statsManagerService;
-	}
-
-	@Override
-	protected ModelAndView onSubmit(HttpServletRequest request,
-			HttpServletResponse response, Object command, BindException errors)
-			throws Exception {
-		HttpSession session = request.getSession();
-		UserDto user = (UserDto) session.getAttribute("user");
-		
-		ProfileDto profile = profileManagerService.saveProfile(((ProfileDto) command), user);
-		statsManagerService.saveStats(new StatsDto(), user);
-		log.info("NEW PROFILE SAVED: NICKNAME = " + profile.getNickName());
-		return new ModelAndView(new RedirectView(getSuccessView()));
-	}
-
-	@Override
-	protected Object formBackingObject(HttpServletRequest request)
-			throws Exception {
-		return new ProfileDto();
-	}
-
-}*/

@@ -4,7 +4,12 @@ import com.epam.publicenemies.domain.Profile;
 import com.epam.publicenemies.dto.ProfileDto;
 import com.epam.publicenemies.dto.UserDto;
 
-
+/**
+ * 
+ * Updated by I. Kostyrko
+ * TODO: remove unnecessary methods, dto
+ *
+ */
 public interface IProfileManagerService {
 	
 	/**

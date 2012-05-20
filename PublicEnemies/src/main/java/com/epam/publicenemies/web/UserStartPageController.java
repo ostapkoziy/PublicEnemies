@@ -10,7 +10,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
 
 import com.epam.publicenemies.domain.Profile;
-import com.epam.publicenemies.dto.ProfileDto;
 import com.epam.publicenemies.service.IProfileManagerService;
 
 /**

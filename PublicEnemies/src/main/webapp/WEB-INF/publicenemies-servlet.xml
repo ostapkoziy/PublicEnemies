@@ -13,6 +13,8 @@
 
 	<mvc:annotation-driven />
 	<context:component-scan base-package="com.epam.publicenemies.web" />
+	<context:component-scan base-package="com.epam.publicenemies.web.adminpanel" />
+	<context:component-scan base-package="com.epam.publicenemies.service.impl" />
 
 	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 	<!-- +++++++++++++++++++++++++++++++++++ DAO +++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
@@ -24,36 +26,30 @@
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
 	<bean id="aidDao" class="com.epam.publicenemies.dao.impl.AidsDaoImpl">
-		<property name="dataSource" ref="dataSource"></property>
+		<property name="dataSource" ref="dataSource"/>
 	</bean>
 	<bean id="weaponDao" class="com.epam.publicenemies.dao.impl.WeaponsDaoImpl">
-		<property name="dataSource" ref="dataSource"></property>
+		<property name="dataSource" ref="dataSource"/>
 	</bean>
 	<bean id="armorDao" class="com.epam.publicenemies.dao.impl.ArmorsDaoImpl">
-		<property name="dataSource" ref="dataSource"></property>
+		<property name="dataSource" ref="dataSource"/>
 	</bean>
 
 
 	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 	<!-- +++++++++++++++++++++++++++++++++++ SERVICES ++++++++++++++++++++++++++++++++++++++++++++++++ -->
 	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+	
+	<!-- Replaced with annotations.
+	Below - can't remove. See exceptions -->
+	
 	<bean id="userManagerService"
 		class="com.epam.publicenemies.service.impl.UserManagerServiceImpl">
-		<property name="userDao" ref="userDao"></property>
+		<property name="userDao" ref="userDao" />
 	</bean>
 	<bean id="profileManagerService"
 		class="com.epam.publicenemies.service.impl.ProfileManagerServiceImpl">
-		<property name="profileDao" ref="profileDao"></property>
-	</bean>
-
-	<bean id="shopManagerService"
-		class="com.epam.publicenemies.service.impl.ShopManagerServiceImpl">
-		<property name="aidDao" ref="aidDao">
-		</property>
-		<property name="armorDao" ref="armorDao">
-		</property>
-		<property name="weaponDao" ref="weaponDao">
-		</property>
+		<property name="profileDao" ref="profileDao" />
 	</bean>
 
 	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
@@ -61,11 +57,11 @@
 	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 	<bean id="registerUserFormValidator"
 		class="com.epam.publicenemies.web.validators.RegisterUserFormValidator">
-		<property name="userManagerService" ref="userManagerService"></property>
+		<property name="userManagerService" ref="userManagerService"/>
 	</bean>
 	<bean id="loginUserFormValidator"
 		class="com.epam.publicenemies.web.validators.LoginUserFormValidator">
-		<property name="userManagerService" ref="userManagerService"></property>
+		<property name="userManagerService" ref="userManagerService"/>
 	</bean>
 	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 	<!-- +++++++++++++++++++++++++++++++++++ CONTROLLERS +++++++++++++++++++++++++++++++++++++++++++++ -->

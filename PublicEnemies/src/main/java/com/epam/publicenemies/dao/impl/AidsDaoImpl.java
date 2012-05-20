@@ -2,7 +2,6 @@ package com.epam.publicenemies.dao.impl;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -13,8 +12,6 @@ import org.springframework.jdbc.core.RowMapper;
 
 import com.epam.publicenemies.dao.IAidsDao;
 import com.epam.publicenemies.domain.Aid;
-import com.epam.publicenemies.domain.User;
-import com.epam.publicenemies.web.LoginUserFormController;
 
 /**
  * Works with aids table
