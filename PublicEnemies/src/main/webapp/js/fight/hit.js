@@ -36,7 +36,6 @@ function waitingNewRound()
 			var game = jQuery.parseJSON(data);
 			if (game.gameEnd != true)
 			{
-				// timerStart(game.round.roundBeginTime);
 				timer(game.round.roundBeginTime);
 				allDataUpdate(game);
 				// alert(game.whoIAm);
@@ -99,10 +98,10 @@ function showAttackButton()
 /**
  * Update data when window load.
  */
-$(window).load(function()
-{
-	waitingNewRound();
-});
+// $(window).load(function()
+// {
+// waitingNewRound();
+// });
 // DOM READY
 $(function()
 {
@@ -110,7 +109,6 @@ $(function()
 	{
 		// var hit = $("#hit input[name=hit]:checked").val();
 		// var block = $("#block input[name=block]:checked").val();
-
 		var hit = $("#hitInput").val();
 		var block = $("#blockInput").val();
 
