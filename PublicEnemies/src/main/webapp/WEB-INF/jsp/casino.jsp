@@ -12,7 +12,7 @@
 <button type="submit" class="button">Сиграть блекджек</button>
 </form>
 
-<form action="pokerGame.html" method="post">
+<form action="createPokerGame.html" method="post">
 <input type="text" name="chips">
 <button type="submit" class="button">Сиграть пакерок</button>
 </form>

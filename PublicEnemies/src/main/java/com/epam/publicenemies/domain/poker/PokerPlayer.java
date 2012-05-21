@@ -1,14 +1,20 @@
-package com.epam.publicenemies.web.casino.poker;
+package com.epam.publicenemies.domain.poker;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import org.apache.log4j.Logger;
+
+import com.epam.publicenemies.web.casino.poker.FoldException;
+import com.epam.publicenemies.web.casino.poker.WaitingNewPokerRound;
+
 public class PokerPlayer implements IPokerPlayer {
+	private Logger	log	= Logger.getLogger(PokerPlayer.class);
+	
 	private String name;
 	private int cash;
 	//===================
-	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	
 	public PokerPlayer(String name, int cash) {
 		this.name = name;
@@ -24,20 +30,16 @@ public class PokerPlayer implements IPokerPlayer {
 		this.name = name;
 	}
 	public void setCash(int cash) {
+		
 		this.cash = cash;
 	}
 	public int makeMove(PokerTable table, PokerHand hand, boolean isSmallBlind) throws FoldException{
 		int in = 0;
-		System.out.println("You have "+(table.getPlayer2Bet() - table.getPlayer1Bet())+" to call");
-		System.out.println(name+" please enter the sum");
+		log.info("You have "+(table.getPlayer2Bet() - table.getPlayer1Bet())+" to call");
+		log.info(name+" please enter the sum");
 		
-		try {
-			in = Integer.valueOf(br.readLine());
-		} catch (NumberFormatException e) {
-			e.printStackTrace();
-		} catch (IOException e) {	
-			e.printStackTrace();
-		}
+		//in = player's move
+		
 		table.setPlayer1Bet(table.getPlayer1Bet() + in);
 		this.cash -= in;
 		

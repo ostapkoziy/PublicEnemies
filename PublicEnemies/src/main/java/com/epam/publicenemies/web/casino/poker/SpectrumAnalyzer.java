@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
+import com.epam.publicenemies.domain.poker.PokerHand;
+
 
 public class SpectrumAnalyzer {
 	private String[][] map = new String[13][13];

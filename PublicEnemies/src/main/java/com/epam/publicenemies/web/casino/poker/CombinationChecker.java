@@ -6,6 +6,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.epam.publicenemies.domain.poker.PokerCard;
+import com.epam.publicenemies.domain.poker.PokerCombination;
+import com.epam.publicenemies.domain.poker.PokerHand;
+import com.epam.publicenemies.domain.poker.Suit;
+
 
 public class CombinationChecker {
 
