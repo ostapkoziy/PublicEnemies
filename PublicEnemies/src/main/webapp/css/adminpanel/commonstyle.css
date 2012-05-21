@@ -1,0 +1,47 @@
+body {
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+}
+
+div.admin_header {
+	background: #AAAAAA;
+	padding: 10px; 
+	/*magrin: 5px;*/ 	
+}
+div#adm_panel {
+	/*margin: 5px;*/
+	margin-bottom: 10px;  
+}
+span#adm_panel_words {
+	
+	font-size: 32px;
+	font-weight: bold;
+	margin: 10px;  
+}
+
+span#users_area, 
+span#weapons_area, 
+span#armors_area, 
+span#aids_area {
+	display: inline-block;
+	border-width: 2px; 
+	border-style: solid;
+	border-radius: 15px;
+	padding: 5px;	 
+}
+span#users_area:hover, 
+span#weapons_area:hover, 
+span#armors_area:hover, 
+span#aids_area:hover {
+	background:#DDDDDD 
+}
+a.div_link {
+	text-decoration: none;
+	color:black; 	
+}
+
+div#summary_div {
+	border-width: 2px; 
+	border-style: solid; 
+	margin: 5px; 
+	/*border-radius: 10px;*/ 
+}
