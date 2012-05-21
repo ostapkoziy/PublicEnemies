@@ -18,6 +18,19 @@ public interface IUserDao {
 	int registerUser(User user);
 	
 	/**
+	 * Get amount of of registered users
+	 * @return amount of of registered users
+	 */
+	int getUsersAmount ();
+	
+	/**
+	 * Get last 5 registered users
+	 * @return List of 5 users
+	 */
+	// TODO:
+	//List<User> getNewUsers();
+	
+	/**
 	 * Register new user with email, password and nick name
 	 * @param email - email of new user
 	 * @param password - password of new user

@@ -47,46 +47,56 @@ public class RouletteGameController{
 			rouletteGameInfo.setChips(Integer.valueOf(request.getParameter("chips")));
 			session.setAttribute("rouletteGameInfo", rouletteGameInfo);
 			return "rouletteGame";
-		}else{
-			String unparsedBetNumbers = request.getParameter("userBetNumbers");
-			String[] betNumbers = unparsedBetNumbers.split(",");
-			rouletteGameInfo.setBetNumbers(betNumbers);
-			rouletteGameInfo.setMsg("");
-			rouletteGameInfo.setBetAmount(Integer.valueOf(request.getParameter("betVal")));
-			int betOnTable = betNumbers.length * rouletteGameInfo.getBetAmount(); // THIS IS Simple BET calculation
-			
-			chips = rouletteGameInfo.getChips() - betOnTable;
-			//Does RouletteTable bets empty?
-			if ( betNumbers[0] == "" ) {
-				rouletteGameInfo.setMsg("Make your BET on Roulette table! ");
-				return "rouletteGame";
-			}
-
-			//Is money enough to make this BET?
-			if ( chips < 0 ){
-//				gameInfo.setMsg("Money:"+user.getMoney()+" BET:"+ gameInfo.getBetAmount() +" Money without bet:" + money);
-				rouletteGameInfo.setMsg("You have not enough money to make this BET (BET on table:" + betOnTable +"$)");
-				return "rouletteGame";
-			}
-			
+		}
+		else
+		{
+		String[] unparsedBets = request.getParameter("userBetNumbers").split(";");
+		Integer[] bets = new Integer[ROULETTE_NUMBERS + 1];
+		rouletteGameInfo.setMsg("");
+		
+		if ( request.getParameter("userBetNumbers") == "" ) {
+			rouletteGameInfo.setMsg("Make your BET on Roulette table! ");
+			return "rouletteGame";
 		}
 
-		rouletteGameInfo.setChips(chips + calculatePrize( rouletteGameInfo.getBetNumbers(), rnd ));
+		for(String s:unparsedBets){
+			String[] buf = s.split(":");
+			bets[Integer.valueOf(buf[0])] = Integer.valueOf(buf[1]);
+		}
+			
+		rouletteGameInfo.setBets(bets);
+			
+		rouletteGameInfo.setBetAmount(0);
+		for(int i=0; i<bets.length; i++){
+			if (bets[i]!=null) rouletteGameInfo.setBetAmount(rouletteGameInfo.getBetAmount() + bets[i]); 
+		}
+			
+		chips = rouletteGameInfo.getChips() - rouletteGameInfo.getBetAmount();
 
-		log.debug("rnd = " + rnd + "\nBet on: "+ (String) request.getParameter("userBetNumbers"));
 
-		log.debug(" Chips after:" + rouletteGameInfo.getChips() + "$");
+			//Is money enough to make this BET?
+		if ( chips < 0 ){
+			rouletteGameInfo.setMsg("You have not enough money to make this BET (BET on table:" + rouletteGameInfo.getBetAmount() +"$)");
+			return "rouletteGame";
+		}
+			
+	}
+
+	rouletteGameInfo.setChips(chips + calculatePrize( rouletteGameInfo.getBets(), rnd ));
+
+	log.debug("rnd = " + rnd + "\nBet on: "+ (String) request.getParameter("userBetNumbers"));
+
+	log.debug(" Chips after:" + rouletteGameInfo.getChips() + "$");
 
 		return "rouletteGame";
 	}
 
-	private int calculatePrize(String[] betNumbers, int rnd){
+	private int calculatePrize(Integer[] betNumbers, int rnd){
 		int prize=0;
-
-		for (String s : betNumbers) {
-			if (s.equals(String.valueOf(rnd))){
+		for (int i=0; i<betNumbers.length; i++) {
+			if ((betNumbers[i] != null) && (betNumbers[i] == rnd)){
 				prize=rouletteGameInfo.getBetAmount()*(ROULETTE_NUMBERS-2);//Simple PRIZE calculation
-				log.debug("Number "+ s +" had WON!");
+				log.debug("Number "+ betNumbers[i] +" had WON!");
 				log.debug("Bet is " + rouletteGameInfo.getBetAmount());
 				log.debug("Prize is " + prize);
 			}

@@ -60,29 +60,137 @@ public class Profile
 	}
 	
 	/**
-	 * Get LinkedList of character's all weapons
-	 * @return LinkedList of character's all weapons
+	 * Get ArrayList of character's all weapons
+	 * @return ArrayList of character's all weapons
 	 */
 	public ArrayList<TrunkItem> getListOfWeapons () {
 		return new ArrayList<TrunkItem>(weapons.values());
 	}
 	
 	/**
-	 * Get LinkedList of character's all armors
-	 * @return LinkedList of character's all armors
+	 * Get ArrayList of character's all armors
+	 * @return ArrayList of character's all armors
 	 */
 	public ArrayList<TrunkItem> getListOfArmors () {
 		return new ArrayList<TrunkItem>(armors.values());
 	}
 	
 	/**
-	 * Get LinkedList of character's all aids
-	 * @return LinkedList of character's all aids
+	 * Get ArrayList of character's all aids
+	 * @return ArrayList of character's all aids
 	 */
 	public ArrayList<TrunkItem> getListOfAids () {
 		return new ArrayList<TrunkItem>(aids.values());
 	}
+	
+	/**
+	 * Get all ArraylList of all undressed weapons
+	 * @return ArraylList of all undressed weapons
+	 */
+	public ArrayList<Weapon> getUndresedWeapons() {
+		ArrayList<Weapon> arr = new ArrayList<Weapon>();
+		for (TrunkItem t : this.getListOfWeapons()) {
+			if ( !t.isWearing() ) arr.add( (Weapon) t.getItem() );
+		}
+		return arr;
+	}
+	
+	/**
+	 * Get all ArraylList of all undressed armors
+	 * @return ArraylList of all undressed armors
+	 */
+	public ArrayList<Armor> getUndressedArmors() {
+		ArrayList<Armor> arr = new ArrayList<Armor>();
+		for (TrunkItem t : this.getListOfArmors()) {
+			if ( !t.isWearing() ) arr.add( (Armor) t.getItem() );
+		}
+		return arr;
+	}
+	
+	/**
+	 * Get all ArraylList of all undressed aids
+	 * @return ArraylList of all undressed aids
+	 */
+	public ArrayList<Aid> getUndressedAids() {
+		ArrayList<Aid> arr = new ArrayList<Aid>();
+		for (TrunkItem t : this.getListOfAids()) {
+			if ( !t.isWearing() ) arr.add( (Aid) t.getItem() );
+		}
+		return arr;
+	}
+	
+	/**
+	 * Get all ArraylList of all dressed weapons
+	 * @return ArraylList of all dressed weapons
+	 */
+	public ArrayList<Weapon> getDresedWeapons() {
+		ArrayList<Weapon> arr = new ArrayList<Weapon>();
+		for (TrunkItem t : this.getListOfWeapons()) {
+			if ( t.isWearing() ) arr.add( (Weapon) t.getItem() );
+		}
+		return arr;
+	}
+	
+	/**
+	 * Get all ArraylList of all dressed armors
+	 * @return ArraylList of all dressed armors
+	 */
+	public ArrayList<Armor> getDressedArmors() {
+		ArrayList<Armor> arr = new ArrayList<Armor>();
+		for (TrunkItem t : this.getListOfArmors()) {
+			if ( t.isWearing() ) arr.add( (Armor) t.getItem() );
+		}
+		return arr;
+	}
+	
+	/**
+	 * Get all ArraylList of all dressed aids
+	 * @return ArraylList of all dressed aids
+	 */
+	public ArrayList<Aid> getDressedAids() {
+		ArrayList<Aid> arr = new ArrayList<Aid>();
+		for (TrunkItem t : this.getListOfAids()) {
+			if ( t.isWearing() ) arr.add( (Aid) t.getItem() );
+		}
+		return arr;
+	}
 		
+	/**
+	 * Get all weapons that are not dressed
+	 * @return amount of undressed weapons
+	 */
+	public int getUndressedWeaponsAmount() {
+		int i = 0;
+		for(TrunkItem t : this.getListOfWeapons()) {
+			if (!t.isWearing()) i++;
+		}
+		return i;
+	}
+	
+	/**
+	 * Get amount of undressed armors
+	 * @return amount of undressed armors
+	 */
+	public int getUndressedArmorsAmount() {
+		int i = 0;
+		for(TrunkItem t : this.getListOfArmors()) {
+			if (!t.isWearing()) i++;
+		}
+		return i;
+	}
+	
+	/**
+	 * Get amount of undressed aids
+	 * @return amount of undressed aids
+	 */
+	public int getUndressedAidsAmount() {
+		int i = 0;
+		for(TrunkItem t : this.getListOfAids()) {
+			if (!t.isWearing()) i++;
+		}
+		return i;
+	}
+	
 	/**
 	 * Get all weapons
 	 * @return all character's weapons

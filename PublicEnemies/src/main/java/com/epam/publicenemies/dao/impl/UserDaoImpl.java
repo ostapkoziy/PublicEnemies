@@ -40,6 +40,22 @@ public class UserDaoImpl implements IUserDao {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 
+	
+	/**
+	 * Get amount of of registered users
+	 * @return amount of of registered users
+	 */
+	public int getUsersAmount () {
+		final String AMOUNT_SQL = "SELECT COUNT(*) FROM users";
+		int i = jdbcTemplate.queryForInt(AMOUNT_SQL);
+		return i;
+	}
+	
+	public List<User> getNewUsers () {
+		final String USERS_SQL = "SELECT ";
+		return null;
+	}
+	
 	/**
 	 * Registers new user with email, password and nick name and returns id
 	 * 

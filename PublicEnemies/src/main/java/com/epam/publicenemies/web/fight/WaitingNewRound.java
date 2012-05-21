@@ -29,6 +29,7 @@ public class WaitingNewRound
 		String role = request.getSession().getAttribute("gameRole").toString();
 		Fight fight = (Fight) request.getSession().getAttribute("game");
 		Profile userProfile;
+		opponentNotHit(fight, role);
 		if (role.equals("creator"))
 		{
 			userProfile = fight.getUser1profile();
@@ -53,5 +54,22 @@ public class WaitingNewRound
 		// log.info(ser.exclude("*.class").serialize(game));
 		out.print(ser.exclude("*.class").serialize(fight));
 		out.flush();
+	}
+	private void opponentNotHit(Fight fight, String role)
+	{
+		if ((System.currentTimeMillis() / 1000) > (fight.getRound().getRoundBeginTime() + 60))
+		{
+			if (role.equals("creator") && !fight.getRound().isU2Hit())
+			{
+				fight.setUser1resaultPage("win.html");
+				fight.setUser2resaultPage("lose.html");
+			}
+			if (role.equals("connector") && !fight.getRound().isU1Hit())
+			{
+				fight.setUser2resaultPage("win.html");
+				fight.setUser1resaultPage("lose.html");
+			}
+			fight.setGameEnd(true);
+		}
 	}
 }
