@@ -43,9 +43,10 @@ $(function() {
 	});
 
 	$(".RouletteTable").hover(function(){
-		$(this).fadeOut(100);
-		$(this).fadeIn(200);
-	});
+			$(this).fadeOut(100);
+			$(this).fadeIn(300);
+		}, function(){}
+	);
 });
 
 function form_send() { //MAKE UP!!!!!!!!!!!!
