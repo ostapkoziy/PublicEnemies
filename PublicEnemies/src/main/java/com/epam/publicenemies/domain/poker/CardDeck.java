@@ -1,8 +1,9 @@
-package com.epam.publicenemies.web.casino.poker;
+package com.epam.publicenemies.domain.poker;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
 
 public class CardDeck {
 	private static final CardDeck INSTANCE = new CardDeck();

@@ -4,7 +4,6 @@ body {
 	font-family: 'impact';
 	font-size: 14pt;
 }
-
 h2 {
 	color: black;
 	font-family: 'impact';
@@ -64,7 +63,7 @@ a {
 	font-size: 20pt;
 }
 div {
-	color: red;
+	color: white;
 	font-family: 'impact';
 	font-size: 14pt;
 }

@@ -1,14 +1,18 @@
-package com.epam.publicenemies.web.casino.poker;
+package com.epam.publicenemies.domain.poker;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import com.epam.publicenemies.web.casino.poker.CombinationChecker;
+import com.epam.publicenemies.web.casino.poker.FoldException;
+import com.epam.publicenemies.web.casino.poker.SpectrumAnalyzer;
+
 
 public class EasyBot implements IPokerPlayer {
-	private String name;
-	private int cash;
-	private boolean initiative = false;
+	public String name;
+	public int cash;
+	public boolean initiative = false;
 	
 	public EasyBot(String name, int cash) {
 		this.name = name;
@@ -28,7 +32,7 @@ public class EasyBot implements IPokerPlayer {
 	}
 	public int makeMove(PokerTable deck, PokerHand hand, boolean isSmallBlind) throws FoldException {
 		int result = 0;
-		
+		/*	
 		if(isPreFlop(deck)){		//PREFLOP
 			result = this.makeMovePreFlop(deck, hand, isSmallBlind);
 		} else if (isFlop(deck)){	//FLOP
@@ -49,7 +53,7 @@ public class EasyBot implements IPokerPlayer {
 			}catch(FoldException e){
 				throw new FoldException();
 			}
-		}
+		}*/
 			
 	
 		return result;
