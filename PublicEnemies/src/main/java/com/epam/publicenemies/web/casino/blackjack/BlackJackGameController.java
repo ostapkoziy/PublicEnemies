@@ -28,6 +28,10 @@ public class BlackJackGameController extends AbstractController {
 		
 		Map<String, String> objects = new HashMap<String, String>();
 		objects.put("chips", chips + " $");
+		objects.put("hit_state", "disabled=\"disabled\"");
+		objects.put("stand_state", "disabled=\"disabled\"");
+		objects.put("doubledown_state", "disabled=\"disabled\"");
+		objects.put("split_state", "disabled=\"disabled\"");
 		
 		return new ModelAndView("blackJackGame",objects);
 	}

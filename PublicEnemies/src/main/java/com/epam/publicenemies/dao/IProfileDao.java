@@ -5,7 +5,6 @@ import java.util.List;
 import com.epam.publicenemies.domain.Profile;
 import com.epam.publicenemies.domain.UCharacter;
 import com.epam.publicenemies.domain.User;
-import com.epam.publicenemies.domain.Weapon;
 
 public interface IProfileDao {
 	/*Profile getProfileByUser(User user);*/
@@ -50,6 +49,30 @@ public interface IProfileDao {
 	 * @return true if operation was successfully
 	 */
 	boolean buyArmors(int userId, List<Integer> armors);
+	
+	/**
+	 * Sell user's weapons
+	 * @param userId - id of user
+	 * @param weapons - List of weapons ids
+	 * @return true if operation was successfully
+	 */
+	boolean sellWeapons(int userId, List<Integer> weapons);
+	
+	/**
+	 * Sell user's aids
+	 * @param userId - id of user
+	 * @param aids - List of aids ids
+	 * @return true if operation was successfully
+	 */
+	boolean sellAids(int userId, List<Integer> aids);
+	
+	/**
+	 * Sell user's armors
+	 * @param userId - id of user
+	 * @param armors - List of armors ids
+	 * @return true if operation was successfully
+	 */
+	boolean sellArmors(int userId, List<Integer> armors);
 	
 	/**
 	 * Get character by user note

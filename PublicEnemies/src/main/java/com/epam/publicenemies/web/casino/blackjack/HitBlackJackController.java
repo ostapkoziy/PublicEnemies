@@ -17,17 +17,20 @@ import com.epam.publicenemies.domain.blackjack.BlackJackGame;
 import com.epam.publicenemies.domain.blackjack.BlackJackDeck;
 import com.epam.publicenemies.domain.blackjack.BlackJackGameList;
 
-public class HitBlackJackController extends AbstractController{
-	private Logger log = Logger.getLogger(StartBlackJackController.class);
-	
+public class HitBlackJackController extends AbstractController {
+	private Logger log = Logger.getLogger(HitBlackJackController.class);
+
 	private BlackJackDeck deck;
 	private BlackJackGameList games;
+
 	public void setDeck(BlackJackDeck deck) {
 		this.deck = deck;
-	}	
+	}
+
 	public void setGames(BlackJackGameList games) {
 		this.games = games;
 	}
+
 	@Override
 	protected ModelAndView handleRequestInternal(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
@@ -35,7 +38,7 @@ public class HitBlackJackController extends AbstractController{
 		BlackJackGame game = games.getGameById((Integer) request.getSession()
 				.getAttribute("userId"));
 		// Take one card for player
-		List<BlackJackCard> playerCards = new ArrayList<BlackJackCard>();
+		List<BlackJackCard> playerCards = game.getPlayerCards();
 		playerCards.add(deck.getCard());
 		game.setPlayerCards(playerCards);
 		// Get index of last card
@@ -44,17 +47,30 @@ public class HitBlackJackController extends AbstractController{
 		int yourPoints = game.getYourPoints()
 				+ playerCards.get(index).rank().getValue();
 		game.setYourPoints(yourPoints);
+		// Get result
+		String result = null;
+		if (yourPoints == 21) {
+			result = "You WIN!!!";
+			game.setChips(game.getChips() + game.getBet());
+			
+		} else if (yourPoints > 21) {
+			result = "You LOSE!!!";
+			game.setChips(game.getChips() - game.getBet());
+		}
+
 		// Push it all in map
-		Map<String, String> objects = new HashMap<String, String>();
-		objects.put("chips", String.valueOf(game.getChips()));
-		objects.put("dealer_card0", String.valueOf(game.getDealerCards().get(0)));
-		objects.put("player_card0", playerCards.get(0).image());
-		objects.put("player_card1", playerCards.get(1).image());
-		objects.put("your_points", String.valueOf(yourPoints));
-		objects.put("bet", String.valueOf(game.getBet()));
+		Map<String, Object> objects = new HashMap<String, Object>();
+		objects.put("chips", game.getChips());
+		objects.put("dealer_cards", game.getDealerCards());
+		objects.put("player_cards", game.getPlayerCards());
+		objects.put("your_points", game.getYourPoints());
+		objects.put("bet", game.getBet());
+		objects.put("result", result);
+		objects.put("start_state", "disabled=\"disabled\"");
+		objects.put("split_state", "disabled=\"disabled\"");
+
 
 		return new ModelAndView("blackJackGame", objects);
 
 	}
-	
 }

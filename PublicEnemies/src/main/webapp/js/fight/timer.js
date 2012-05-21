@@ -3,6 +3,8 @@ var nowTime = Math.ceil(new Date().getTime() / 1000);
 var limit = 60;
 function timer(timerBeginTime)
 {
+	$("#timer").fadeTo(0, 1);
+	$("#timer").css("color", "black");
 	if ((nowTime - timerBeginTime) < limit)
 	{
 		nowTime = Math.ceil(new Date().getTime() / 1000);
@@ -17,8 +19,9 @@ function timer(timerBeginTime)
 	}
 	else
 	{
-		stopTimer();
+		// stopTimer();
 		$("#timer").fadeTo(0, 0);
+//		$("#atackButton").hide();
 	}
 
 }

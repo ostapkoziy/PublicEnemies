@@ -48,6 +48,10 @@ public class StartBlackJackController extends AbstractController {
 		for (int i = 0; i < 2; i++) {
 			playerCards.add(deck.getCard());
 		}
+		String split = "disabled=\"disabled\"";
+		if (playerCards.get(0).rank().getValue() == playerCards.get(1).rank()
+				.getValue())
+			split = null;
 		game.setPlayerCards(playerCards);
 		// Calculate your points
 		int yourPoints = playerCards.get(0).rank().getValue()
@@ -56,14 +60,27 @@ public class StartBlackJackController extends AbstractController {
 		// Get your bet
 		int bet = Integer.valueOf(request.getParameter("bet"));
 		game.setBet(bet);
+
+		// Get result
+		String result = null;
+		if (yourPoints == 21) {
+			result = "You WIN!!!";
+			game.setChips(game.getChips() + game.getBet());
+		}
+
 		// Push it all in map
-		Map<String, String> objects = new HashMap<String, String>();
-		objects.put("chips", String.valueOf(game.getChips()));
-		objects.put("dealer_card0", dealerCards.get(0).image());
-		objects.put("player_card0", playerCards.get(0).image());
-		objects.put("player_card1", playerCards.get(1).image());
-		objects.put("your_points", String.valueOf(yourPoints));
-		objects.put("bet", String.valueOf(bet));
+		Map<String, Object> objects = new HashMap<String, Object>();
+		objects.put("chips", game.getChips());
+		objects.put("dealer_cards", game.getDealerCards());
+		objects.put("player_cards", game.getPlayerCards());
+		objects.put("your_points", game.getYourPoints());
+		objects.put("bet", game.getBet());
+		objects.put("result", result);
+		objects.put("start_state", "disabled=\"disabled\"");
+		objects.put("hit_state", null);
+		objects.put("stand_state", null);
+		objects.put("doubledown_state", null);
+		objects.put("split_state", split);
 
 		return new ModelAndView("blackJackGame", objects);
 	}

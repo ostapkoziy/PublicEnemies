@@ -18,7 +18,6 @@ import org.springframework.jdbc.support.KeyHolder;
 
 import com.epam.publicenemies.dao.IUserDao;
 import com.epam.publicenemies.domain.User;
-import com.epam.publicenemies.web.listeners.OnContextLoaderListener;
 
 
 /**

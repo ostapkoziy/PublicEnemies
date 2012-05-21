@@ -37,6 +37,7 @@ function waitingNewRound()
 			if (game.gameEnd != true)
 			{
 				// timerStart(game.round.roundBeginTime);
+				timer(game.round.roundBeginTime);
 				allDataUpdate(game);
 				// alert(game.whoIAm);
 			}

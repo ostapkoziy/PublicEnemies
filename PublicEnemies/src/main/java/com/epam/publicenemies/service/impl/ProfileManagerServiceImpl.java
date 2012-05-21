@@ -17,15 +17,14 @@ import org.apache.log4j.Logger;
 
 import com.epam.publicenemies.dao.IProfileDao;
 import com.epam.publicenemies.domain.Profile;
-import com.epam.publicenemies.domain.UCharacter;
-import com.epam.publicenemies.domain.User;
 import com.epam.publicenemies.dto.ProfileDto;
 import com.epam.publicenemies.dto.UserDto;
 import com.epam.publicenemies.service.IProfileManagerService;
-import com.epam.publicenemies.web.LoginUserFormController;
 
 /**
  * Updated by I. Kostyrko on 01.05.12
+ * TODO: replace DTO objects! use domain instead
+ * Updated by I. Kostyrko on 20.05.12: annotation driven style (tried but no success)
  */
 public class ProfileManagerServiceImpl implements IProfileManagerService {
 
@@ -44,24 +43,22 @@ public class ProfileManagerServiceImpl implements IProfileManagerService {
 	@Override
 	public Profile getProfileByUserId(int userId) {
 		Profile prof = profileDao.getProfile(userId);
-		//User user = profileDao.getUserById(userId);
+		
 		if (prof == null) {
 			log.info("ProfileDto: getProfileByUser: user was not found");
 			return null; 
 		}
 		log.info("User has been fetched with userId = " + prof.getUserId());
-		UCharacter userChar = profileDao.getCharacterById(prof.getProfileId());
-		// TODO: Not sure: is it allowed that dto classes knows about domain classes
-		//return  new ProfileDto(user, userChar);
+		
 		return prof; 
 	}	
 
 	/*
-	 * 
 	 * Updated by I. Kostyrko by May 2, 2012
 	 * @see com.epam.publicenemies.service.IProfileManagerService#updateProfile(com.epam.publicenemies.dto.ProfileDto)
 	 * TODO: implement it
 	 */
+	@Deprecated
 	@Override
 	public ProfileDto updateProfile(ProfileDto profileDto) {
 		
@@ -69,11 +66,11 @@ public class ProfileManagerServiceImpl implements IProfileManagerService {
 	}
 
 	/*
-	 * 
 	 * Updated by I. Kostyrko by May 2, 2012
 	 * @see com.epam.publicenemies.service.IProfileManagerService#getProfileByUser(com.epam.publicenemies.dto.UserDto)
 	 * no matter
 	 */
+	@Deprecated
 	@Override
 	public ProfileDto getProfileByUser(UserDto userDto) {
 		return new ProfileDto(); //getProfileByUserId(userDto.getUserId()); 

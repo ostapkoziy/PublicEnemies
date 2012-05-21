@@ -26,8 +26,8 @@ public class UCharacter
 	/*
 	 * Order as in 'characters' table
 	 */
-	public UCharacter(int characterId, boolean sex, int experience, int strength, int agility, int intelect, String profession, String professionAvatar, int fightsTotal,
-			int fightsWon, int weapon1, int weapon2, int armor, int aid)
+	public UCharacter(int characterId, boolean sex, int experience, int strength, int agility, int intelect, String profession, 
+			String professionAvatar, int fightsTotal, int fightsWon, int weapon1, int weapon2, int armor, int aid)
 	{
 		this.characterId = characterId;
 		this.sex = sex;

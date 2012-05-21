@@ -187,8 +187,7 @@ $(document).ready(function(){
 			if(element.title != selected_name){
 				$(element).css("border", "2px solid #ccc");
 			}
-
-			});
+		});
 	});
 	
 	$("#gender_select").click(function(){

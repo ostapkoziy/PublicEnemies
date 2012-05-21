@@ -1,17 +1,24 @@
 package com.epam.publicenemies.service.impl;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.epam.publicenemies.dao.IUserDao;
 import com.epam.publicenemies.domain.User;
 import com.epam.publicenemies.dto.UserDto;
 import com.epam.publicenemies.service.IUserManagerService;
-import com.epam.publicenemies.web.RegisterUserFormController;
 
+/**
+ * Updated by I. Kostyrko on May 19, 2012: removed unnecessary code
+ * TODO: REMOVE DTO (use domain instead)
+ */
+//@Service
 public class UserManagerServiceImpl implements IUserManagerService {
 	
 	private Logger	log	= Logger.getLogger(UserManagerServiceImpl.class);
 	
+	//@Autowired
 	private IUserDao userDao;
 
 	public void setUserDao(IUserDao userDao) {
@@ -38,17 +45,8 @@ public class UserManagerServiceImpl implements IUserManagerService {
 		UserDto returnObj = new UserDto(insertedUser);
 		return returnObj; */		
 		return new UserDto(userDao.findUserById(userDao.registerUser(uEmail,
-				uPasswd, uNickName)));
-		/* Old code here
-		User user = new User();
-		user.setUserId(userDTO.getUserId());
-		user.setEmail(userDTO.getEmail());
-		user.setPassword(userDTO.getPassword());
-		userDao.registerUser(user);
-		return new UserDto(); */
+				uPasswd, uNickName)));		
 	}
-
-	@SuppressWarnings("deprecation")
 	@Override
 	public UserDto getUserByEmailAndPassword(String name, String password) {
 		User user = userDao.findUserByEmailAndPassword(name, password);

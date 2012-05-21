@@ -46,7 +46,7 @@ public class ConnectController
 		log.info(userProfile.getNickName() + " CONNECT TO GAME: " + game.getId());
 		game.setGameStarted(true);
 		game.setUser2profile(userProfile);
-		game.getRound().setRoundBeginTime(System.currentTimeMillis());
+		game.getRound().setRoundBeginTime(System.currentTimeMillis() / 1000);
 		/*
 		 * SESSION_CONFIG
 		 */

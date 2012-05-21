@@ -14,19 +14,20 @@
 <link href="css/fight/content.css" rel="stylesheet" type="text/css">
 <title>FIGHT</title>
 <style type="text/css">
+/* *********************Content****************** */
 div { /* 	outline: 1px solid red; */
 	
 }
 
 #content {
-	width: 800px;
+	width: 1000px;
 	margin-left: auto;
 	margin-right: auto;
 	height: 800px;
 	/* 	outline: 5px solid red; */
 }
 
-#insideRight { /* 	outline: 2px solid black; */
+#insideRight {
 	width: 150px;
 	height: 150px;
 	margin-left: auto;
@@ -34,25 +35,27 @@ div { /* 	outline: 1px solid red; */
 	margin-top: 175px;
 	background: url("img/fight/wait.gif") no-repeat;
 }
-/* ++++++++++++++++++++++++++++++++++++++++ */
+
 #left {
 	float: left;
 	width: 400px;
 	height: 420px;
+	/* 	outline: 4px solid purple; */
 }
 
 #right {
 	float: right;
 	width: 400px;
 	height: 420px;
+	/* 	outline: 4px solid black; */
 }
-/* +++++++++++++++++++++++++++++++++++++++ */
+/* +++++++++++++HP++++++++++++++++++++++++++ */
 #leftHP {
-	height: 70px;
+	height: 80px;
 }
 
 #rightHP {
-	height: 70px;
+	height: 80px;
 }
 
 #rightHPWrapper {
@@ -98,7 +101,7 @@ div { /* 	outline: 1px solid red; */
 }
 /* +++++++++++++++++++HP++++++++++++++++++++++ */
 #leftProgressHP {
-	height: 15px;
+	height: 25px;
 	width: 96%;
 	background-color: gray;
 	float: left;
@@ -106,13 +109,13 @@ div { /* 	outline: 1px solid red; */
 }
 
 #innerLeftProgressHP {
-	height: 15px;
+	height: 25px;
 	width: 100%;
 	border-radius: 25px;
 }
 
 #rightProgressHP {
-	height: 15px;
+	height: 25px;
 	width: 96%;
 	background-color: gray;
 	float: right;
@@ -120,7 +123,7 @@ div { /* 	outline: 1px solid red; */
 }
 
 #innerRightProgressHP {
-	height: 15px;
+	height: 25px;
 	width: 100%;
 	float: left;
 	border-radius: 25px;
@@ -129,7 +132,7 @@ div { /* 	outline: 1px solid red; */
 #rightAgility,#rightStrength,#rightInteligence {
 	float: right;
 }
-/* ******************************************* */
+/* ***************Attack Block**************************** */
 #attackBlock {
 	margin-left: auto;
 	margin-right: auto;
@@ -165,65 +168,82 @@ div { /* 	outline: 1px solid red; */
 #timer {
 	width: 100%;
 	height: 20px;
-	/* 	outline: 2px solid red; */
+	outline: 2px solid red;
 }
-/* *********************************** */
-#leftInventory {
+/* ***************Inventory***User1***************** */
+#user1Inventory {
 	width: 300px;
 	height: 100px;
-	float: left;
+	clear: both;
+	/*outline: 5px solid blue; */
+	margin-left: auto;
+	margin-right: auto;
 }
 
-#rightInventory {
-	width: 300px;
-	height: 100px;
-	float: right;
-}
-
-#leftItem1 {
+#user1Item1 {
 	width: 100px;
 	height: 100px;
 	float: left;
-	/* 	outline: 5px solid blue; */
 	background-image: url("img/fight/item1.png");
 }
 
-#leftItem2 {
+#user1Item2 {
 	width: 100px;
 	height: 100px;
 	float: left;
-	/* 	outline: 2px solid green; */
 	background-image: url("img/fight/item2.png");
 }
 
-#leftItem3 {
+#user1Item3 {
 	width: 100px;
 	height: 100px;
 	float: left;
 	background-image: url("img/fight/item3.png");
 }
+/* ***************Inventory***User2***************** */
+#user2Inventory {
+	width: 300px;
+	height: 100px;
+	clear: both;
+	/* 	outline: 5px solid blue; */
+	margin-left: auto;
+	margin-right: auto;
+}
 
-#rightItem1 {
+#user2Item1 {
 	width: 100px;
 	height: 100px;
-	float: right;
-	/* 	outline: 5px solid blue; */
+	float: left;
 	background-image: url("img/fight/item1.png");
 }
 
-#rightItem2 {
+#user2Item2 {
 	width: 100px;
 	height: 100px;
-	float: right;
-	/* 	outline: 2px solid green; */
+	float: left;
 	background-image: url("img/fight/item2.png");
 }
 
-#rightItem3 {
+#user2Item3 {
 	width: 100px;
 	height: 100px;
-	float: right;
+	float: left;
 	background-image: url("img/fight/item3.png");
+}
+/* **************DOLL********************* */
+#attackBlockDoll {
+	width: 200px;
+	/* 	height: 100px;; */
+	/* 	outline: 5px solid green; */
+	margin-left: 400px;
+	margin-right: 400px;
+}
+
+#doll {
+	width: 150px;
+	height: 400px;
+	margin: 0 auto;
+	background: url("img/fight/doll.png") no-repeat;
 }
 </style>
 </head>
@@ -232,93 +252,96 @@ div { /* 	outline: 1px solid red; */
 		<!-- 	++++++++++++++++++++++++++++++++++++++++++CREATOR++++++++++++++++++++++++++++++++++++++ -->
 		<!-- 	+++++++++++++++LEFT CREATOR++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 		<c:if test="${gameRole=='creator'}">
-			<div id="left">
-				<div id="leftHP">
-					<div id="leftHPWrapper">
-						<img alt="HP" src="img/hp.png">
-						<span id="U1HP">${game.user1profile.getHP()}</span>
-					</div>
-					<div id="leftProgressHP">
-						<div id="innerLeftProgressHP" class="green"></div>
-					</div>
-				</div>
-				<div id="leftStats">
-					<div id="leftStatsWrapper">
-						<div id="leftAgility">
-							<img src="img/stats/agility.png">
-							${game.user1profile.getAgility()}
+			<div id="leftRightWrapper">
+
+				<div id="left">
+					<div id="leftHP">
+						<div id="leftHPWrapper">
+							<img alt="HP" src="img/hp.png">
+							<span id="U1HP">${game.user1profile.getHP()}</span>
 						</div>
-						<div id="leftStrength">
-							<img src="img/stats/strength.png">
-							${game.user1profile.getStrength()}
-						</div>
-						<div id="leftInteligence">
-							<img src="img/stats/inteligence.png">
-							${game.user1profile.getIntellect()}
+						<div id="leftProgressHP">
+							<div id="innerLeftProgressHP" class="green"></div>
 						</div>
 					</div>
+					<div id="leftStats">
+						<div id="leftStatsWrapper">
+							<div id="leftAgility">
+								<img src="img/stats/agility.png">
+								${game.user1profile.getAgility()}
+							</div>
+							<div id="leftStrength">
+								<img src="img/stats/strength.png">
+								${game.user1profile.getStrength()}
+							</div>
+							<div id="leftInteligence">
+								<img src="img/stats/inteligence.png">
+								${game.user1profile.getIntellect()}
+							</div>
+						</div>
+					</div>
+					<div id="leftAvatar">
+						<img alt="avatar" src="img/fight/3.jpg" width="200">
+					</div>
 				</div>
-				<div id="leftAvatar">
-					<img alt="avatar" src="img/fight/3.jpg" width="200">
+				<!-- 	+++++++++++++++END LEFT CREATOR++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+				<!-- 	+++++++++++++++RIGHT CREATOR+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+				<!-- ++++++++++++++++++GAME NOT STARTED+++++++++++++++++++++++++++++++ -->
+				<c:choose>
+					<c:when test="${game.gameStarted=='false'}">
+						<script type="text/javascript">
+							waitForOpponent();
+						</script>
+						<div id="right">
+							<div id="insideRight"></div>
+						</div>
+					</c:when>
+					<c:otherwise>
+						<script type="text/javascript">
+							wait();
+						</script>
+						<div id="right">
+							<div id="rightHP">
+								<div id="rightHPWrapper">
+									<span id="U2HP">${game.user2profile.getHP()}</span>
+									<img alt="HP" src="img/hp.png">
+								</div>
+								<div id="rightProgressHP">
+									<div id="innerRightProgressHP" class="green"></div>
+								</div>
+							</div>
+							<div id="rightStats">
+								<div id="rightStatsWrapper">
+									<div id="rightAgility">
+										${game.user2profile.getAgility()}
+										<img src="img/stats/agility.png">
+									</div>
+									<div id="rightStrength">
+										${game.user2profile.getStrength()}
+										<img src="img/stats/strength.png">
+									</div>
+									<div id="rightInteligence">
+										${game.user2profile.getIntellect()}
+										<img src="img/stats/inteligence.png">
+									</div>
+								</div>
+							</div>
+							<div id="rightAvatar">
+								<img alt="avatar" src="img/fight/4.jpg" width="200">
+							</div>
+						</div>
+					</c:otherwise>
+				</c:choose>
+				<div id="attackBlockDoll">
+					<div id="doll"></div>
 				</div>
-				<div id="leftInventory">
-					<div id="leftItem1"></div>
-					<div id="leftItem2"></div>
-					<div id="leftItem3"></div>
+				<div id="user1Inventory">
+					<div id="user1Item1"></div>
+					<div id="user1Item2"></div>
+					<div id="user1Item3"></div>
 				</div>
+
 			</div>
-			<!-- 	+++++++++++++++END LEFT CREATOR++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-			<!-- 	+++++++++++++++RIGHT CREATOR+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-			<c:choose>
-				<c:when test="${game.gameStarted=='false'}">
-					<script type="text/javascript">
-						waitForOpponent();
-					</script>
-					<div id="right">
-						<div id="insideRight"></div>
-					</div>
-				</c:when>
-				<c:otherwise>
-					<script type="text/javascript">
-						wait();
-					</script>
-					<div id="right">
-						<div id="rightHP">
-							<div id="rightHPWrapper">
-								<span id="U2HP">${game.user2profile.getHP()}</span>
-								<img alt="HP" src="img/hp.png">
-							</div>
-							<div id="rightProgressHP">
-								<div id="innerRightProgressHP" class="green"></div>
-							</div>
-						</div>
-						<div id="rightStats">
-							<div id="rightStatsWrapper">
-								<div id="rightAgility">
-									${game.user2profile.getAgility()}
-									<img src="img/stats/agility.png">
-								</div>
-								<div id="rightStrength">
-									${game.user2profile.getStrength()}
-									<img src="img/stats/strength.png">
-								</div>
-								<div id="rightInteligence">
-									${game.user2profile.getIntellect()}
-									<img src="img/stats/inteligence.png">
-								</div>
-							</div>
-						</div>
-						<div id="rightAvatar">
-							<img alt="avatar" src="img/fight/4.jpg" width="200">
-						</div>
-						<div id="rightInventory">
-							<div id="rightItem1"></div>
-							<div id="rightItem2"></div>
-							<div id="rightItem3"></div>
-						</div>
-					</div>
-				</c:otherwise>
-			</c:choose>
 		</c:if>
 		<!-- 	+++++++++++++++++++++++++END RIGHT CREATOR+++++++++++++++++++++++++++++++++++++++++++++++ -->
 		<!-- 	+++++++++++++++++++++++++++++++++++++END_CREATOR+++++++++++++++++++++++++++++++++++++++++ -->
@@ -330,81 +353,81 @@ div { /* 	outline: 1px solid red; */
 		<!-- +++++++++++++++++++++++++++++++++++++++++CONNECTOR++++++++++++++++++++++++++++++++++++++++++++ -->
 		<!-- 	+++++++++++++++LEFT CONNECTOR++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 		<c:if test="${gameRole=='connector'}">
-			<script type="text/javascript">
-				wait();
-			</script>
-			<div id="left">
-				<div id="leftHP">
-					<div id="leftHPWrapper">
-						<img alt="HP" src="img/hp.png">
-						<span id="U2HP">${game.user2profile.getHP()}</span>
-					</div>
-					<div id="leftProgressHP">
-						<!-- *********************Inversion************** -->
-						<div id="innerRightProgressHP" class="green"></div>
-					</div>
-				</div>
-				<div id="leftStats">
-					<div id="leftStatsWrapper">
-						<div id="leftAgility">
-							<img src="img/stats/agility.png">
-							${game.user2profile.getAgility()}
+			<div id="leftRightWrapper">
+				<script type="text/javascript">
+					wait();
+				</script>
+				<div id="left">
+					<div id="leftHP">
+						<div id="leftHPWrapper">
+							<img alt="HP" src="img/hp.png">
+							<span id="U2HP">${game.user2profile.getHP()}</span>
 						</div>
-						<div id="leftStrength">
-							<img src="img/stats/strength.png">
-							${game.user2profile.getStrength()}
-						</div>
-						<div id="leftInteligence">
-							<img src="img/stats/inteligence.png">
-							${game.user2profile.getIntellect()}
+						<div id="leftProgressHP">
+							<!-- *********************Inversion************** -->
+							<div id="innerRightProgressHP" class="green"></div>
 						</div>
 					</div>
-				</div>
-				<div id="leftAvatar">
-					<img alt="avatar" src="img/fight/4.jpg" width="200">
-				</div>
-				<div id="leftInventory">
-					<div id="leftItem1"></div>
-					<div id="leftItem2"></div>
-					<div id="leftItem3"></div>
-				</div>
-			</div>
-			<!-- 	++++++++++++++++++++++++END LEFT CONNECTOR+++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-			<!-- 	++++++++++++++++++++++RIGHTT CONNECTOR+++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-			<div id="right">
-				<div id="rightHP">
-					<div id="rightHPWrapper">
-						<span id="U1HP">${game.user1profile.getHP()}</span>
-						<img alt="HP" src="img/hp.png">
-					</div>
-					<div id="rightProgressHP">
-						<!-- *********************Inversion************** -->
-						<div id="innerLeftProgressHP" class="green"></div>
-					</div>
-				</div>
-				<div id="rightStats">
-					<div id="rightStatsWrapper">
-						<div id="rightAgility">
-							${game.user1profile.getAgility()}
-							<img src="img/stats/agility.png">
-						</div>
-						<div id="rightStrength">
-							${game.user1profile.getStrength()}
-							<img src="img/stats/strength.png">
-						</div>
-						<div id="rightInteligence">
-							${game.user1profile.getIntellect()}
-							<img src="img/stats/inteligence.png">
+					<div id="leftStats">
+						<div id="leftStatsWrapper">
+							<div id="leftAgility">
+								<img src="img/stats/agility.png">
+								${game.user2profile.getAgility()}
+							</div>
+							<div id="leftStrength">
+								<img src="img/stats/strength.png">
+								${game.user2profile.getStrength()}
+							</div>
+							<div id="leftInteligence">
+								<img src="img/stats/inteligence.png">
+								${game.user2profile.getIntellect()}
+							</div>
 						</div>
 					</div>
+					<div id="leftAvatar">
+						<img alt="avatar" src="img/fight/4.jpg" width="200">
+					</div>
 				</div>
-				<div id="rightAvatar">
-					<img alt="avatar" src="img/fight/3.jpg" width="200">
+				<!-- 	++++++++++++++++++++++++END LEFT CONNECTOR+++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+				<!-- 	++++++++++++++++++++++RIGHTT CONNECTOR+++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+				<div id="right">
+					<div id="rightHP">
+						<div id="rightHPWrapper">
+							<span id="U1HP">${game.user1profile.getHP()}</span>
+							<img alt="HP" src="img/hp.png">
+						</div>
+						<div id="rightProgressHP">
+							<!-- *********************Inversion************** -->
+							<div id="innerLeftProgressHP" class="green"></div>
+						</div>
+					</div>
+					<div id="rightStats">
+						<div id="rightStatsWrapper">
+							<div id="rightAgility">
+								${game.user1profile.getAgility()}
+								<img src="img/stats/agility.png">
+							</div>
+							<div id="rightStrength">
+								${game.user1profile.getStrength()}
+								<img src="img/stats/strength.png">
+							</div>
+							<div id="rightInteligence">
+								${game.user1profile.getIntellect()}
+								<img src="img/stats/inteligence.png">
+							</div>
+						</div>
+					</div>
+					<div id="rightAvatar">
+						<img alt="avatar" src="img/fight/3.jpg" width="200">
+					</div>
 				</div>
-				<div id="rightInventory">
-					<div id="rightItem1"></div>
-					<div id="rightItem2"></div>
-					<div id="rightItem3"></div>
+				<div id="attackBlockDoll">
+					<div id="doll"></div>
+				</div>
+				<div id="user2Inventory">
+					<div id="user2Item1"></div>
+					<div id="user2Item2"></div>
+					<div id="user2Item3"></div>
 				</div>
 			</div>
 		</c:if>
@@ -427,13 +450,11 @@ div { /* 	outline: 1px solid red; */
 
 
 		<div id="box">
-			<form action="MessageServlet">
-				<div id="allMesseges"></div>
-				<textarea id="myMessege"></textarea>
-				<div id="chatSubmit">
-					<input id="submit" type="button" name="submit" value="Ok">
-				</div>
-			</form>
+			<div id="allMesseges"></div>
+			<textarea id="myMessege"></textarea>
+			<div id="chatSubmit">
+				<input id="submit" type="button" name="submit" value="Ok">
+			</div>
 		</div>
 
 	</div>
