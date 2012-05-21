@@ -18,6 +18,7 @@ import com.epam.publicenemies.domain.roulette.RouletteGameInfo;
 public class RouletteGameController{
 	
 	RouletteGameInfo rouletteGameInfo;
+	int betOnTable = 0;
 
 	private Logger log = Logger.getLogger(RouletteGameController.class); 
 	
@@ -48,16 +49,30 @@ public class RouletteGameController{
 			session.setAttribute("rouletteGameInfo", rouletteGameInfo);
 			return "rouletteGame";
 		}else{
-			String unparsedBetNumbers = request.getParameter("userBetNumbers");
-			String[] betNumbers = unparsedBetNumbers.split(",");
-			rouletteGameInfo.setBetNumbers(betNumbers);
+			String[] unparsedBets = request.getParameter("userBetNumbers").split(";");
+			Integer[] bets = new Integer[ROULETTE_NUMBERS + 1];
+
+			
+			for(String s:unparsedBets){
+				String[] buf = s.split(":");
+//				System.out.println(buf.length);
+//				System.out.println("="+s+" " + Integer.valueOf(buf[0])+" "+Integer.valueOf(buf[1]));
+				bets[Integer.valueOf(buf[0])] = Integer.valueOf(buf[1]);
+			}
+				
+			rouletteGameInfo.setBets(bets);
 			rouletteGameInfo.setMsg("");
-			rouletteGameInfo.setBetAmount(Integer.valueOf(request.getParameter("betVal")));
-			int betOnTable = betNumbers.length * rouletteGameInfo.getBetAmount(); // THIS IS Simple BET calculation
+//			rouletteGameInfo.setBetAmount(Integer.valueOf(request.getParameter("betVal")));
+			
+			for(int i=0; i<bets.length; i++){
+				if (bets[i]!=null) betOnTable += bets[i]; 
+			}
+//			for (String)
 			
 			chips = rouletteGameInfo.getChips() - betOnTable;
 			//Does RouletteTable bets empty?
-			if ( betNumbers[0] == "" ) {
+//			if ( bets[0] == "" ) {
+			if ( bets.length == 0 ) {
 				rouletteGameInfo.setMsg("Make your BET on Roulette table! ");
 				return "rouletteGame";
 			}
@@ -71,7 +86,7 @@ public class RouletteGameController{
 			
 		}
 
-		rouletteGameInfo.setChips(chips + calculatePrize( rouletteGameInfo.getBetNumbers(), rnd ));
+		rouletteGameInfo.setChips(chips + calculatePrize( rouletteGameInfo.getBets(), rnd ));
 
 		log.debug("rnd = " + rnd + "\nBet on: "+ (String) request.getParameter("userBetNumbers"));
 
@@ -80,14 +95,14 @@ public class RouletteGameController{
 		return "rouletteGame";
 	}
 
-	private int calculatePrize(String[] betNumbers, int rnd){
+	private int calculatePrize(Integer[] betNumbers, int rnd){
 		int prize=0;
-
-		for (String s : betNumbers) {
-			if (s.equals(String.valueOf(rnd))){
-				prize=rouletteGameInfo.getBetAmount()*(ROULETTE_NUMBERS-2);//Simple PRIZE calculation
-				log.debug("Number "+ s +" had WON!");
-				log.debug("Bet is " + rouletteGameInfo.getBetAmount());
+//		for (Integer betNum : betNumbers) {System.out.println(betNum);}
+		for (int i=0; i<betNumbers.length; i++) {
+			if ((betNumbers[i] != null) && (betNumbers[i] == rnd)){
+				prize=betOnTable*(ROULETTE_NUMBERS-2);//Simple PRIZE calculation
+				log.debug("Number "+ betNumbers[i] +" had WON!");
+				log.debug("Bet is " + betOnTable);
 				log.debug("Prize is " + prize);
 			}
 		}

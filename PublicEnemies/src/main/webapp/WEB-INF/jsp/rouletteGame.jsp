@@ -18,18 +18,20 @@
 </head>
 <body>
 	
-	<b><c:out value="${user.nickName}, you have ${rouletteGameInfo.getChips()}$. Make your bet!" /></b>
+	<b><c:out value="${rouletteGameInfo.getChips()}$" /></b>
 	<p><b><c:out value="${rouletteGameInfo.msg}" /></b>
 
 	<form method="post" action="rouletteGame.html" onsubmit="form_send()">
 	
 		<b>Your BET:</b>
-		<input class="bet" type="radio" name="betVal" value="10" onclick="betChanged(this)" checked="checked"><b>10</b>
-		<input class="bet" type="radio" name="betVal" value="25" onclick="betChanged(this)"><b>25</b>
-		<input class="bet" type="radio" name="betVal" value="50" onclick="betChanged(this)"><b>50</b><p>
+		<input class="bet" type="radio" name="betVal" value="10"><b>10</b>
+		<input class="bet" type="radio" name="betVal" value="25" checked="checked"><b>25</b>
+		<input class="bet" type="radio" name="betVal" value="50"><b>50</b><p>
 		<b>(to send):</b> <input id="userBetNumbers" type="text" name="userBetNumbers" readonly="readonly">
 		<input id ="btn_test" type="button" value="test">
 		<input id ="submit" type="submit" value="DEAL">
+		<input id="clearBet" type="button" value="Clear bet">
+		<div id="showBet">0</div>
 	</form>
 
 	<img id="0" class="RouletteTable" src="img/roulette/0.bmp"/>
