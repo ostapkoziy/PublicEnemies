@@ -11,9 +11,9 @@ public class Fight
 	private long				id;
 	private Profile				user1profile;
 	private Profile				user2profile;
-	private volatile boolean	gameStarted;
-	private volatile boolean	gameEnd	= false;
-	private FightRound			round	= new FightRound();
+	private volatile boolean	gameStarted	= false;
+	private volatile boolean	gameEnd		= false;
+	private FightRound			round		= new FightRound();
 	private String				user1resaultPage;
 	private String				user2resaultPage;
 	private String				whoIAm;

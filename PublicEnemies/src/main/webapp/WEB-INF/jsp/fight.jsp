@@ -39,14 +39,14 @@ div { /* 	outline: 1px solid red; */
 #left {
 	float: left;
 	width: 400px;
-	height: 420px;
+	height: 430px;
 	/* 	outline: 4px solid purple; */
 }
 
 #right {
 	float: right;
 	width: 400px;
-	height: 420px;
+	height: 430px;
 	/* 	outline: 4px solid black; */
 }
 /* +++++++++++++HP++++++++++++++++++++++++++ */
@@ -201,36 +201,34 @@ div { /* 	outline: 1px solid red; */
 	background-image: url("img/fight/item3.png");
 }
 /* ***************Inventory***User2***************** */
-#user2Inventory {
-	width: 300px;
-	height: 100px;
-	clear: both;
-	/* 	outline: 5px solid blue; */
-	margin-left: auto;
-	margin-right: auto;
-}
-
-#user2Item1 {
-	width: 100px;
-	height: 100px;
-	float: left;
-	background-image: url("img/fight/item1.png");
-}
-
-#user2Item2 {
-	width: 100px;
-	height: 100px;
-	float: left;
-	background-image: url("img/fight/item2.png");
-}
-
-#user2Item3 {
-	width: 100px;
-	height: 100px;
-	float: left;
-	background-image: url("img/fight/item3.png");
-}
-/* **************DOLL********************* */
+/* #user2Inventory { */
+/* 	width: 300px; */
+/* 	height: 100px; */
+/* 	clear: both; */
+/* 	/* 	outline: 5px solid blue; */
+* /
+	/* 	margin-left: auto; */
+	/* 	margin-right: auto; */
+	/* } */
+	/* #user2Item1 { */
+	/* 	width: 100px; */
+	/* 	height: 100px; */
+	/* 	float: left; */
+	/* 	background-image: url("img/fight/item1.png"); */
+	/* } */
+	/* #user2Item2 { */
+	/* 	width: 100px; */
+	/* 	height: 100px; */
+	/* 	float: left; */
+	/* 	background-image: url("img/fight/item2.png"); */
+	/* } */
+	/* #user2Item3 { */
+	/* 	width: 100px; */
+	/* 	height: 100px; */
+	/* 	float: left; */
+	/* 	background-image: url("img/fight/item3.png"); */
+	/* } */
+	/* **************DOLL********************* */                     
 #attackBlockDoll {
 	width: 200px;
 	/* 	height: 100px;; */
@@ -241,9 +239,28 @@ div { /* 	outline: 1px solid red; */
 
 #doll {
 	width: 150px;
-	height: 400px;
+	height: 430px;
 	margin: 0 auto;
 	background: url("img/fight/doll.png") no-repeat;
+}
+/* *********************************************************** */
+#rightInventory {
+	float: right;
+	height: 100px;
+	width: 400px;
+	/* 	outline: 3px solid red; */
+}
+
+#leftInventory {
+	height: 100px;
+	width: 400px;
+	/* 	outline: 7px solid blue; */
+}
+
+.item {
+	float: left;
+	height: 100px;
+	width: 100px;
 }
 </style>
 </head>
@@ -282,6 +299,20 @@ div { /* 	outline: 1px solid red; */
 					</div>
 					<div id="leftAvatar">
 						<img alt="avatar" src="img/fight/3.jpg" width="200">
+					</div>
+					<div id="leftInventory">
+						<div class="item">
+							<img src="${game.user1profile.getDressedWeapon1().getItemPicture()}">
+						</div>
+						<div class="item">
+							<img src="${game.user1profile.getDressedWeapon2().getItemPicture()}">
+						</div>
+						<div class="item">
+							<img src="${game.user1profile.getDressedArmor().getItemPicture()}">
+						</div>
+						<div class="item">
+							<img src="${game.user1profile.getDressedAid().getItemPicture()}">
+						</div>
 					</div>
 				</div>
 				<!-- 	+++++++++++++++END LEFT CREATOR++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
@@ -329,27 +360,42 @@ div { /* 	outline: 1px solid red; */
 							<div id="rightAvatar">
 								<img alt="avatar" src="img/fight/4.jpg" width="200">
 							</div>
+							<div id="rightInventory">
+								<div class="item">
+									<img src="${game.user2profile.getDressedWeapon1().getItemPicture()}">
+								</div>
+								<div class="item">
+									<img src="${game.user2profile.getDressedWeapon2().getItemPicture()}">
+								</div>
+								<div class="item">
+									<img src="${game.user2profile.getDressedArmor().getItemPicture()}">
+								</div>
+								<div class="item">
+									<img src="${game.user2profile.getDressedAid().getItemPicture()}">
+								</div>
+							</div>
 						</div>
 					</c:otherwise>
 				</c:choose>
 				<div id="attackBlockDoll">
 					<div id="doll"></div>
 				</div>
-				<div id="user1Inventory">
-					<div id="user1Item1"></div>
-					<div id="user1Item2"></div>
-					<div id="user1Item3"></div>
-				</div>
+				<!-- 				<div id="user1Inventory"> -->
+				<!-- 					<div id="user1Item1"></div> -->
+				<!-- 					<div id="user1Item2"></div> -->
+				<!-- 					<div id="user1Item3"></div> -->
+				<!-- 				</div> -->
 
 			</div>
 		</c:if>
 		<!-- 	+++++++++++++++++++++++++END RIGHT CREATOR+++++++++++++++++++++++++++++++++++++++++++++++ -->
 		<!-- 	+++++++++++++++++++++++++++++++++++++END_CREATOR+++++++++++++++++++++++++++++++++++++++++ -->
-
-
-
-
-
+		<!--    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+		<!--    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+		<!--    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+		<!--    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+		<!--    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+		<!--    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 		<!-- +++++++++++++++++++++++++++++++++++++++++CONNECTOR++++++++++++++++++++++++++++++++++++++++++++ -->
 		<!-- 	+++++++++++++++LEFT CONNECTOR++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 		<c:if test="${gameRole=='connector'}">
@@ -387,6 +433,20 @@ div { /* 	outline: 1px solid red; */
 					<div id="leftAvatar">
 						<img alt="avatar" src="img/fight/4.jpg" width="200">
 					</div>
+					<div id="leftInventory">
+						<div class="item">
+							<img src="${game.user2profile.getDressedWeapon1().getItemPicture()}">
+						</div>
+						<div class="item">
+							<img src="${game.user2profile.getDressedWeapon2().getItemPicture()}">
+						</div>
+						<div class="item">
+							<img src="${game.user2profile.getDressedArmor().getItemPicture()}">
+						</div>
+						<div class="item">
+							<img src="${game.user2profile.getDressedAid().getItemPicture()}">
+						</div>
+					</div>
 				</div>
 				<!-- 	++++++++++++++++++++++++END LEFT CONNECTOR+++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 				<!-- 	++++++++++++++++++++++RIGHTT CONNECTOR+++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
@@ -420,15 +480,29 @@ div { /* 	outline: 1px solid red; */
 					<div id="rightAvatar">
 						<img alt="avatar" src="img/fight/3.jpg" width="200">
 					</div>
+					<div id="rightInventory">
+						<div class="item">
+							<img src="${game.user1profile.getDressedWeapon1().getItemPicture()}">
+						</div>
+						<div class="item">
+							<img src="${game.user1profile.getDressedWeapon2().getItemPicture()}">
+						</div>
+						<div class="item">
+							<img src="${game.user1profile.getDressedArmor().getItemPicture()}">
+						</div>
+						<div class="item">
+							<img src="${game.user1profile.getDressedAid().getItemPicture()}">
+						</div>
+					</div>
 				</div>
 				<div id="attackBlockDoll">
 					<div id="doll"></div>
 				</div>
-				<div id="user2Inventory">
-					<div id="user2Item1"></div>
-					<div id="user2Item2"></div>
-					<div id="user2Item3"></div>
-				</div>
+				<!-- 				<div id="user2Inventory"> -->
+				<!-- 					<div id="user2Item1"></div> -->
+				<!-- 					<div id="user2Item2"></div> -->
+				<!-- 					<div id="user2Item3"></div> -->
+				<!-- 				</div> -->
 			</div>
 		</c:if>
 		<!-- 	+++++++++++++++++++++END RIGHT CONNECTOR++++++++++++++++++++++++++++++++++++++++++++++++++ -->

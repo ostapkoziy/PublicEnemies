@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee"
-	xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 	id="WebApp_ID" version="3.0">
 
@@ -24,11 +24,11 @@
 	<filter-mapping>
 		<filter-name>SessionFilter</filter-name>
 		<url-pattern>/userStartPage.html</url-pattern>
-		
+
 		<url-pattern>/adminPanel.html</url-pattern>
-		<url-pattern>/shop.html</url-pattern>		
+		<url-pattern>/shop.html</url-pattern>
 		<url-pattern>/editProfile.html</url-pattern>
-		
+
 		<url-pattern>/cards.html</url-pattern>
 		<url-pattern>/newJoinGame.html</url-pattern>
 		<!-- ++++++++++++++++++++CASINO+++++++++++++++++++++++ -->
@@ -41,6 +41,16 @@
 		<url-pattern>/allGames.html</url-pattern>
 		<url-pattern>/createGame.html</url-pattern>
 	</filter-mapping>
+	<!-- ************************FIGHT******************** -->
+	<filter>
+		<filter-name>EndGame</filter-name>
+		<filter-class>com.epam.publicenemies.web.filters.EndGame</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>EndGame</filter-name>
+		<url-pattern>/fight.html</url-pattern>
+	</filter-mapping>
+	<!-- ************************************************* -->
 	<filter>
 		<description>Filters pages encoding to be UTF-8</description>
 		<filter-name>charsetFilter</filter-name>

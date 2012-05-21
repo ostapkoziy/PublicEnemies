@@ -20,7 +20,7 @@ import com.epam.publicenemies.domain.fight.FightEngine;
 @Controller
 public class HitServlet
 {
-	private Logger	log	= Logger.getLogger(HitServlet.class);
+	private static Logger	log	= Logger.getLogger(HitServlet.class);
 	@RequestMapping("/HitServlet")
 	public void hit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
@@ -54,25 +54,23 @@ public class HitServlet
 		 */
 	}
 	/**
-	 * Можна буде забрати якщо передавати в ENGINE того хто стартанув гру(він
-	 * вдарив другим)
-	 * 
+	 * Можна буде забрати якщо передавати в ENGINE того хто стартанув гру(він вдарив другим). Add STATIC
 	 */
-	private synchronized void setFirstHit(Fight game, String role)
+	protected static synchronized void setFirstHit(Fight game, String role)
 	{
 		if (game.getRound().getFirstHit().equals(""))
 		{
 			game.getRound().setFirstHit(role);
 		}
 	}
-	private synchronized void startEngine(Fight game)
+	protected static synchronized void startEngine(Fight game)
 	{
 		if (!game.getRound().isRoundStart())
 		{
 			new FightEngine().startEngine(game);
 		}
 	}
-	private void user1GameSetup(Fight game, String hit, String block, String role)
+	protected static void user1GameSetup(Fight game, String hit, String block, String role)
 	{
 		game.getRound().setUser1Hit(hit);
 		game.getRound().setUser1Block(block);
@@ -87,7 +85,7 @@ public class HitServlet
 			setFirstHit(game, role);
 		}
 	}
-	private void user2GameSetup(Fight game, String hit, String block, String role)
+	protected static void user2GameSetup(Fight game, String hit, String block, String role)
 	{
 		game.getRound().setUser2Hit(hit);
 		game.getRound().setUser2Block(block);

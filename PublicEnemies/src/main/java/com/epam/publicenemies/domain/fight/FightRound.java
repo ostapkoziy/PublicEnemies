@@ -5,16 +5,16 @@ package com.epam.publicenemies.domain.fight;
  */
 public class FightRound
 {
-	private int		roundNumber	= 1;
-	private boolean	roundStart	= true;
-	private String	user1Hit	= "";
-	private String	user1Block	= "";
-	private String	user2Hit	= "";
-	private String	user2Block	= "";
-	private boolean	u1Hit;
-	private boolean	u2Hit;
-	private String	firstHit	= "";
-	private long	roundBeginTime;
+	private int				roundNumber	= 1;
+	private boolean			roundStart	= true;
+	private String			user1Hit	= "";
+	private String			user1Block	= "";
+	private String			user2Hit	= "";
+	private String			user2Block	= "";
+	private boolean			u1Hit;
+	private boolean			u2Hit;
+	private String			firstHit	= "";
+	private volatile long	roundBeginTime;
 	public int getRoundNumber()
 	{
 		return roundNumber;

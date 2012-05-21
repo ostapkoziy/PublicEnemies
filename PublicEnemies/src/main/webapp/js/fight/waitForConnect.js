@@ -1,4 +1,4 @@
-var toServer = 3000;
+var toServer = 1000;
 var intervalID;
 /**
  * Відсилає Ajax запит на сервер <br/> <b>Відсилає:</b> ID гри <br/><b>Приймає:</b>
