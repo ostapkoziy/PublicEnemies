@@ -18,7 +18,6 @@ import com.epam.publicenemies.domain.roulette.RouletteGameInfo;
 public class RouletteGameController{
 	
 	RouletteGameInfo rouletteGameInfo;
-	int betOnTable = 0;
 
 	private Logger log = Logger.getLogger(RouletteGameController.class); 
 	
@@ -64,12 +63,13 @@ public class RouletteGameController{
 			rouletteGameInfo.setMsg("");
 //			rouletteGameInfo.setBetAmount(Integer.valueOf(request.getParameter("betVal")));
 			
+			rouletteGameInfo.setBetAmount(0);
 			for(int i=0; i<bets.length; i++){
-				if (bets[i]!=null) betOnTable += bets[i]; 
+				if (bets[i]!=null) rouletteGameInfo.setBetAmount(rouletteGameInfo.getBetAmount() + bets[i]); 
 			}
 //			for (String)
 			
-			chips = rouletteGameInfo.getChips() - betOnTable;
+			chips = rouletteGameInfo.getChips() - rouletteGameInfo.getBetAmount();
 			//Does RouletteTable bets empty?
 //			if ( bets[0] == "" ) {
 			if ( bets.length == 0 ) {
@@ -80,7 +80,7 @@ public class RouletteGameController{
 			//Is money enough to make this BET?
 			if ( chips < 0 ){
 //				gameInfo.setMsg("Money:"+user.getMoney()+" BET:"+ gameInfo.getBetAmount() +" Money without bet:" + money);
-				rouletteGameInfo.setMsg("You have not enough money to make this BET (BET on table:" + betOnTable +"$)");
+				rouletteGameInfo.setMsg("You have not enough money to make this BET (BET on table:" + rouletteGameInfo.getBetAmount() +"$)");
 				return "rouletteGame";
 			}
 			
@@ -100,9 +100,9 @@ public class RouletteGameController{
 //		for (Integer betNum : betNumbers) {System.out.println(betNum);}
 		for (int i=0; i<betNumbers.length; i++) {
 			if ((betNumbers[i] != null) && (betNumbers[i] == rnd)){
-				prize=betOnTable*(ROULETTE_NUMBERS-2);//Simple PRIZE calculation
+				prize=rouletteGameInfo.getBetAmount()*(ROULETTE_NUMBERS-2);//Simple PRIZE calculation
 				log.debug("Number "+ betNumbers[i] +" had WON!");
-				log.debug("Bet is " + betOnTable);
+				log.debug("Bet is " + rouletteGameInfo.getBetAmount());
 				log.debug("Prize is " + prize);
 			}
 		}
