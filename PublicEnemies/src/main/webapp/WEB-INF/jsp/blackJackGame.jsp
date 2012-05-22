@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="css/blackjack.css" type="text/css">
 <title>Insert title here</title>
 <script type="text/javascript" src="js/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="js/blackjack/hit.js"></script>
 </head>
 <body>
 	<table id="blackjack_table" height="800" width="1200" align="center">
@@ -28,8 +29,8 @@
 			</td>
 			<td>
 				<form action="startBlackJack.html" method="post">
-					<input type="text" name="bet">
-					<input type="image" src="img/layout/deal.png" alt="Submit button">
+					<input id="bet" type="text" name="bet">
+					<input id="deal" type="image" src="img/layout/deal.png" alt="Submit button">
 				</form>
 			</td>
 			<td>

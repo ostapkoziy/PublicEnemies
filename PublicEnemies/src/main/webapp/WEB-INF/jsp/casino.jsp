@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="blackJackGame.html" method="post">
+<form action="createBlackJackGame.html" method="post">
 <input type="text" name="chips">
 <button type="submit" class="button">Сиграть блекджек</button>
 </form>

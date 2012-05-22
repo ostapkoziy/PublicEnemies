@@ -74,8 +74,6 @@
 	<!-- +++++++++++++++++++++++++++++++++++ CASINO +++++++++++++++++++++++++++++++++++++++++++++ -->
 
 	<bean id="casinoController" class="com.epam.publicenemies.web.casino.CasinoController" />
-	<!-- <bean id="pokerGameController"
-		class="com.epam.publicenemies.web.casino.poker.PokerGameController" /> -->
 	<bean id="rouletteGameController"
 		class="com.epam.publicenemies.web.casino.roulette.RouletteGameController" />
 
@@ -85,37 +83,6 @@
 	<bean id="games"
 		class="com.epam.publicenemies.domain.blackjack.BlackJackGameList">
 	</bean>
-
-	<bean id="blackJackGameController"
-		class="com.epam.publicenemies.web.casino.blackjack.BlackJackGameController">
-		<property name="games" ref="games"></property>
-	</bean>
-	<bean id="standBlackJackController"
-		class="com.epam.publicenemies.web.casino.blackjack.StandBlackJackController">
-		<property name="deck" ref="deck"></property>
-		<property name="games" ref="games"></property>
-	</bean>
-	<bean id="startBlackJackController"
-		class="com.epam.publicenemies.web.casino.blackjack.StartBlackJackController">
-		<property name="games" ref="games"></property>
-		<property name="deck" ref="deck"></property>
-	</bean>
-	<bean id="splitBlackJackController"
-		class="com.epam.publicenemies.web.casino.blackjack.SplitBlackJackController">
-		<property name="games" ref="games"></property>
-		<property name="deck" ref="deck"></property>
-	</bean>
-	<bean id="hitBlackJackController"
-		class="com.epam.publicenemies.web.casino.blackjack.HitBlackJackController">
-		<property name="games" ref="games"></property>
-		<property name="deck" ref="deck"></property>
-	</bean>
-	<bean id="doubleDownBlackJackController"
-		class="com.epam.publicenemies.web.casino.blackjack.DoubleDownBlackJackController">
-		<property name="games" ref="games"></property>
-		<property name="deck" ref="deck"></property>
-	</bean>
-
 	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 	<!-- +++++++++++++++++++++++++++++++++++ MAPPING +++++++++++++++++++++++++++++++++++++++++++++++++ -->
 	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
@@ -127,15 +94,7 @@
 				<entry key="/userStartPage.html" value="userStartPageController"></entry>
 				<!-- +++++++++++++++++++++++CASINO PAGES ++++++++++++++++++++++++++++++++++ -->
 				<entry key="/casino.html" value="casinoController"></entry>
-				<entry key="/blackJackGame.html" value="blackJackGameController"></entry>
-				<!-- <entry key="/pokerGame.html" value="pokerGameController"></entry> -->
 				<entry key="/rouletteGame.html" value="rouletteGameController"></entry>
-				<!-- +++++++++++++++++++++++BlackJack PAGES ++++++++++++++++++++++++++++++++++ -->
-				<entry key="/startBlackJack.html" value="startBlackJackController"></entry>
-				<entry key="/standBlackJack.html" value="standBlackJackController"></entry>
-				<entry key="/hitBlackJack.html" value="hitBlackJackController"></entry>
-				<entry key="/splitBlackJack.html" value="splitBlackJackController"></entry>
-				<entry key="/doubleDownBlackJack.html" value="doubleDownBlackJackController"></entry>
 			</map>
 		</property>
 	</bean>

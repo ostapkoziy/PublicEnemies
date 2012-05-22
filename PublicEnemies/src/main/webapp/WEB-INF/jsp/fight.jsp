@@ -465,11 +465,7 @@ div { /* 	outline: 1px solid red; */
 				<img id="atackButton" src="img/fight/attack.jpg">
 			</div>
 		</div>
-
-
-
-
-
+		
 		<div id="box">
 			<div id="allMesseges"></div>
 			<textarea id="myMessege"></textarea>
