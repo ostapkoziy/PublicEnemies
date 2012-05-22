@@ -1,0 +1,69 @@
+body {
+	background-image: url(../img/bg_city.png);
+	color: white;
+	font-family: 'impact';
+	font-size: 14pt;
+}
+h2 {
+	color: black;
+	font-family: 'impact';
+	font-size: 20pt;
+}
+#blackjack_table{
+	background-image: url(../img/layout/blackjack_layout.png);
+}
+button {
+	font-family: 'impact';
+	font-size: 20px;
+	width: 100px;
+	height: 44px;
+}
+
+table.sample {
+	margin-top: 100px;
+	background-color: #444D48;
+	opacity: .95;
+	filter: alpha(opacity =                 95);
+	-moz-opacity: .95;
+	border-width: 3px;
+	border-spacing: 5px;
+	border-style: outset;
+	border-color: white;
+	border-collapse: separate;
+}
+
+
+A:link {
+	text-decoration: underline;
+	color: white;
+	font-size: 20pt;
+}
+
+A:visited {
+	text-decoration: underline;
+	color: white;
+	font-size: 20pt;
+}
+
+A:active {
+	text-decoration: underline;
+	color: white;
+	font-size: 20pt;
+}
+
+A:hover {
+	text-decoration: underline;
+	color: white;
+	font-size: 20pt;
+}
+
+a {
+	color: black;
+	font-family: 'impact';
+	font-size: 20pt;
+}
+div {
+	color: white;
+	font-family: 'impact';
+	font-size: 14pt;
+}

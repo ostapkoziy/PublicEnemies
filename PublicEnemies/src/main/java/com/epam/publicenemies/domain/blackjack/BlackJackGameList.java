@@ -18,10 +18,4 @@ public class BlackJackGameList {
 		allGames.add(new BlackJackGame(id,chips));
 	}
 	
-	public void recreateNewGame(int id,int chips){
-		for (BlackJackGame game : allGames){
-			allGames.remove(game);
-			allGames.add(new BlackJackGame(id, chips));
-		}
-	}
 }
