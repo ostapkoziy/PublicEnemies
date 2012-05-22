@@ -11,8 +11,8 @@ $(document).ready(function() {
 			$.ajax({
 				url : "DealBlackJackController.html",
 				data : ({
-					userBet : bet,
-					userNothing : nothing
+					playerBet : bet,
+					playerNothing : nothing
 				}),
 				success : function(data) {
 				},

@@ -6,7 +6,8 @@ public class BlackJackRound {
 	private List<BlackJackCard> playerCards;
 	private List<BlackJackCard> dealerCards;
 	private int bet;
-	private int yourPoints;
+	private int playerPoints;
+	
 	public List<BlackJackCard> getPlayerCards() {
 		return playerCards;
 	}
@@ -25,11 +26,11 @@ public class BlackJackRound {
 	public void setBet(int bet) {
 		this.bet = bet;
 	}
-	public int getYourPoints() {
-		return yourPoints;
+	public int getPlayerPoints() {
+		return playerPoints;
 	}
-	public void setYourPoints(int yourPoints) {
-		this.yourPoints = yourPoints;
+	public void setPlayerPoints(int playerPoints) {
+		this.playerPoints = playerPoints;
 	}
 
 }

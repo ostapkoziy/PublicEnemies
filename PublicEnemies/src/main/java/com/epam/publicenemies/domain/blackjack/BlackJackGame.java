@@ -1,5 +1,7 @@
 package com.epam.publicenemies.domain.blackjack;
 
+import java.util.List;
+
 
 public class BlackJackGame {
 	private final int id;
@@ -22,7 +24,7 @@ public class BlackJackGame {
 	public int getId() {
 		return id;
 	}
-
+	
 	public BlackJackRound getRound() {
 		return round;
 	}
@@ -30,5 +32,4 @@ public class BlackJackGame {
 	public void setRound(BlackJackRound round) {
 		this.round = round;
 	}
-
 }
