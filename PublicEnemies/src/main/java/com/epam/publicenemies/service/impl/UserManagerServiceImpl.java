@@ -1,8 +1,6 @@
 package com.epam.publicenemies.service.impl;
 
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import com.epam.publicenemies.dao.IUserDao;
 import com.epam.publicenemies.domain.User;
@@ -67,4 +65,18 @@ public class UserManagerServiceImpl implements IUserManagerService {
 		}
 		return makeUserDto(user);
 	}
+	
+	/**
+	 * Update money amount
+	 * @param userId - id of user
+	 * @param money - amount of money
+	 * @return true if operation was successful
+	 */
+	public boolean updateMoney(int userId, int money) {
+		if(userDao.updateMoney(userId, money)) {
+			log.info("User's (" + userId + ") money (" + money + ") was updated");
+			return true;
+		} else return false;
+	}
+
 }

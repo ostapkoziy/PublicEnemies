@@ -21,18 +21,5 @@ public interface ITableDao {
 	 */
 	void deleteAllTable();	
 	
-	/* Old version
-	 * Why old version is bad:
-	 * 		it is required to create tables in particular order (new version)
-	 * 		
-	 * 
-	void createUserTable();	
-	void createProfileTable();	
-	void createStatsTable();	
-	void createInventoryTable();	
-	void createTrunkTable();	
-	void createWeaponsTable();	
-	void createArmorsTable();	
-	void createAidsTable(); 
-	*/	
+	
 }

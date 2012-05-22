@@ -12,4 +12,12 @@ public interface IUserManagerService {
 	UserDto findUserByEmail(String email);
 	
 	UserDto getUserByEmailAndPassword(String name, String password);
+	
+	/**
+	 * Update money amount
+	 * @param userId - id of user
+	 * @param money - amount of money
+	 * @return true if operation was successful
+	 */
+	boolean updateMoney(int userId, int money);
 }

@@ -56,8 +56,17 @@ public class UserDaoImpl implements IUserDao {
 	 * @return List of 5 users
 	 */
 	public List<User> getNewUsers () {
-		final String USERS_SQL = "SELECT userId, email, password, nickName, money, avatar, userCharacter ORDER BY regDate LIMIT 5";
-		return null;
+		final String USERS_SQL = "SELECT userId, email, password, nickName, money, avatar, userCharacter" +
+				"FROM users ORDER BY regDate LIMIT 5";
+		List<User> list = jdbcTemplate.query(USERS_SQL, new RowMapper<User>() {
+			public User mapRow(ResultSet resultSet, int rowNum) throws SQLException {
+				return new User ( resultSet.getInt("userId"), resultSet.getString("email"),
+						resultSet.getString("password"), resultSet.getString("nickName"),
+						resultSet.getInt("money"), resultSet.getString("avatar"),
+						resultSet.getInt("userCharacter") );
+			}
+		});
+		return list;
 	}
 	
 	/**
@@ -326,4 +335,25 @@ public class UserDaoImpl implements IUserDao {
 		log.info("UserDaoImpl.createCharacterEntry: ID is " + keyHolder.getKey().intValue());
 		return keyHolder.getKey().intValue();	
 	}
+
+
+
+	/**
+	 * Update money amount
+	 * @param userId - id of user
+	 * @param money - amount of money
+	 * @return true if operation was successful
+	 */
+	public boolean updateMoney(int userId, int money) {
+		final String UPDATE_MONEY = "UPDATE users SET money=? WHERE userId=?";
+		int i = 0;
+		i = jdbcTemplate.update(UPDATE_MONEY, new Object[] { money, userId});
+		if (i>0) {
+			log.info("UserDaoImpl.updateMoney: userId is " + userId + " new money amount is " + money);
+			return true;
+		} else return false;
+	}
+	
+	
+	
 }

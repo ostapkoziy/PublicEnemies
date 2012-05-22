@@ -114,4 +114,13 @@ public interface IUserDao {
 	* @return List<User> - list of all users on database
 	* */
 	List<User> findAllUsers();
+	
+	/**
+	 * Update money amount
+	 * @param userId - id of user
+	 * @param money - amount of money
+	 * @return true if operation was successful
+	 */
+	boolean updateMoney (int userId, int money);
+	
 }

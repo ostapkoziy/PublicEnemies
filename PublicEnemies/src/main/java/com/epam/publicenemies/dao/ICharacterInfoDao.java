@@ -114,7 +114,5 @@ public interface ICharacterInfoDao {
 	 * @return true if operation is successfully
 	 */
 	boolean deleteCharacter(UCharacter character);
-
-	
 	
 }
