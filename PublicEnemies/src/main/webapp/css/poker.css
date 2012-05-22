@@ -11,6 +11,7 @@ h2 {
 }
 table#poker_table{
 	background-image: url(../img/layout/poker_layout.png);
+	background-repeat: no-repeat;
 }
 button {
 	font-family: 'impact';

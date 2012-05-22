@@ -16,6 +16,7 @@ import com.epam.publicenemies.domain.poker.EasyBot;
 import com.epam.publicenemies.domain.poker.IPokerPlayer;
 import com.epam.publicenemies.domain.poker.PokerHand;
 import com.epam.publicenemies.web.fight.HitServlet;
+import com.google.gson.Gson;
 
 import flexjson.JSONSerializer;
 
@@ -34,14 +35,16 @@ public class PokerServlet {
 		String userBet = new String(request.getParameter("userBet"));
 		pokerGame = (PokerGame) request.getSession().getAttribute("pokerGame");
 		log.info(pokerGame.getUser1Profile().getNickName() + " BET " + userBet);
+		int bet = Integer.valueOf(userBet);
+		bet += pokerGame.getPokerGameRound().getPlayer1Bet();
 		PrintWriter out = response.getWriter();
 		JSONSerializer ser = new JSONSerializer();
 		
-		log.info("Bets are - " + pokerGame.getPokerGameEngine().getTable().getPlayer1Bet() + " and " + pokerGame.getPokerGameEngine().getTable().getPlayer2Bet());
-		
+		pokerGame.getPokerGameRound().setPlayer1Bet(bet);
 		int money = pokerGame.getUser1Profile().getMoney();
 		money -= Integer.valueOf(userBet);
 		pokerGame.getUser1Profile().setMoney(money);
+		log.info(ser.serialize(pokerGame));
 		out.print(ser.serialize(pokerGame));
 		out.flush();
 	}

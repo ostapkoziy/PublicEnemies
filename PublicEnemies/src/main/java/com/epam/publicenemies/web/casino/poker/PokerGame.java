@@ -9,7 +9,7 @@ public class PokerGame {
 
 	private long id;
 	private Profile user1Profile;
-	private PokerGameEngine pokerGameEngine;
+	private PokerRound pokerGameRound;
 	private String userResultPage;
 	public long getId() {
 		return id;
@@ -23,11 +23,12 @@ public class PokerGame {
 	public void setUser1Profile(Profile user1Profile) {
 		this.user1Profile = user1Profile;
 	}
-	public PokerGameEngine getPokerGameEngine() {
-		return pokerGameEngine;
+
+	public PokerRound getPokerGameRound() {
+		return pokerGameRound;
 	}
-	public void setPokerGameEngine(PokerGameEngine pokerGameEngine) {
-		this.pokerGameEngine = pokerGameEngine;
+	public void setPokerGameRound(PokerRound pokerGameRound) {
+		this.pokerGameRound = pokerGameRound;
 	}
 	public String getUserResultPage() {
 		return userResultPage;
