@@ -12,10 +12,11 @@ public class OnContextLoaderListener extends ContextLoaderListener  {
 	@Override
 	public void contextInitialized(ServletContextEvent event) {
 		super.contextInitialized(event);
-		// could be commented after database were created
-	/*	WebApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(event.getServletContext());
+		// could NOT be commented after database were created
+		// ne minjaty bljad'!!!!
+		WebApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(event.getServletContext());
 		CreateTableController bean = context.getBean(CreateTableController.class);
-		bean.createAllTables();*/
+		bean.createAllTables();
 	}
 
 	@Override

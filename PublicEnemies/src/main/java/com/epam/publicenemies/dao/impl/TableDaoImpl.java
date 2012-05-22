@@ -312,33 +312,32 @@ public class TableDaoImpl implements ITableDao {
 		sql.append("INSERT INTO characters ");
 		sql.append("(sex, strength, agility, intellect, profession, ");
 		sql.append("fightsTotal, fightsWon, weapon1, weapon2, aid, armor) ");
-		sql.append("VALUES (1, 5, 50, 6, 'Assasin', 20, 5, 9, 10, 13, 15)");
+		sql.append("VALUES (1, 5, 50, 6, 'Assasin', 20, 5, 17, 18, 22, 23)");
 		jdbcTemplate.update(sql.toString());
 		sql.delete(0, sql.length());
 		// 4-th character
 		sql.append("INSERT INTO characters ");
 		sql.append("(sex, strength, agility, intellect, profession, ");
 		sql.append("fightsTotal, fightsWon, weapon1, weapon2, aid, armor) ");
-		sql.append("VALUES (1, 5, 50, 6, 'Criminal', 20, 5, 9, 10, 13, 15)");
+		sql.append("VALUES (1, 5, 50, 6, 'Criminal', 20, 5, 25, 26, 30, 31)");
 		jdbcTemplate.update(sql.toString());
 		sql.delete(0, sql.length());
 		// 5-th character
 		sql.append("INSERT INTO characters ");
 		sql.append("(sex, strength, agility, intellect, profession, ");
 		sql.append("fightsTotal, fightsWon, weapon1, weapon2, aid, armor) ");
-		sql.append("VALUES (1, 5, 50, 6, 'Professor', 20, 5, 9, 10, 13, 15)");
+		sql.append("VALUES (1, 5, 50, 6, 'Professor', 20, 5, 33, 34, 38, 39)");
 		jdbcTemplate.update(sql.toString());
 		sql.delete(0, sql.length());
 		// 6-th character
 		sql.append("INSERT INTO characters ");
 		sql.append("(sex, strength, agility, intellect, profession, ");
 		sql.append("fightsTotal, fightsWon, weapon1, weapon2, aid, armor) ");
-		sql.append("VALUES (1, 5, 50, 6, 'Butcher', 20, 5, 9, 10, 13, 15)");
+		sql.append("VALUES (1, 5, 50, 6, 'Butcher', 20, 5, 41, 42, 46, 47)");
 		jdbcTemplate.update(sql.toString());
 	}
 	
 	private void fillCharactersTrunks() {
-		
 		// ------------------------ janukovych weapons ----------------------------------
 		StringBuilder sql = new StringBuilder("INSERT INTO charactersTrunks ");
 		sql.append("(itemId, itemType, characterId) ");
@@ -381,8 +380,7 @@ public class TableDaoImpl implements ITableDao {
 		sql.append("(itemId, itemType, characterId) ");
 		sql.append("VALUES (2, 3, 1)");
 		jdbcTemplate.update(sql.toString());
-		
-		
+				
 		// ------------------------ tymoshenko weapons ----------------------------------
 		sql.delete(0, sql.length());
 		sql.append("INSERT INTO charactersTrunks ");
@@ -427,6 +425,49 @@ public class TableDaoImpl implements ITableDao {
 		sql.append("VALUES (4, 3, 2)");
 		jdbcTemplate.update(sql.toString());
 		
+		// ------------------------ admin weapons ----------------------------------
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO charactersTrunks ");
+		sql.append("(itemId, itemType, characterId) ");
+		sql.append("VALUES (1, 1, 3)");
+		jdbcTemplate.update(sql.toString());
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO charactersTrunks ");
+		sql.append("(itemId, itemType, characterId) ");
+		sql.append("VALUES (2, 1, 3)");
+		jdbcTemplate.update(sql.toString());
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO charactersTrunks ");
+		sql.append("(itemId, itemType, characterId) ");
+		sql.append("VALUES (3, 1, 3)");
+		jdbcTemplate.update(sql.toString());
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO charactersTrunks ");
+		sql.append("(itemId, itemType, characterId) ");
+		sql.append("VALUES (4, 1, 3)");
+		jdbcTemplate.update(sql.toString());
+		// ------------------------ admin aids ----------------------------------
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO charactersTrunks ");
+		sql.append("(itemId, itemType, characterId) ");
+		sql.append("VALUES (1, 2, 3)");
+		jdbcTemplate.update(sql.toString());
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO charactersTrunks ");
+		sql.append("(itemId, itemType, characterId) ");
+		sql.append("VALUES (2, 2, 3)");
+		jdbcTemplate.update(sql.toString());
+		// ------------------------ admin armors ----------------------------------
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO charactersTrunks ");
+		sql.append("(itemId, itemType, characterId) ");
+		sql.append("VALUES (1, 3, 3)");
+		jdbcTemplate.update(sql.toString());
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO charactersTrunks ");
+		sql.append("(itemId, itemType, characterId) ");
+		sql.append("VALUES (2, 3, 3)");
+		jdbcTemplate.update(sql.toString());
 		
 		// ------------------------ 1 weapons ----------------------------------
 		sql.delete(0, sql.length());
@@ -472,7 +513,6 @@ public class TableDaoImpl implements ITableDao {
 		sql.append("VALUES (4, 3, 4)");
 		jdbcTemplate.update(sql.toString());
 		
-		
 		// ------------------------ 2 weapons ----------------------------------
 		sql.delete(0, sql.length());
 		sql.append("INSERT INTO charactersTrunks ");
@@ -516,7 +556,6 @@ public class TableDaoImpl implements ITableDao {
 		sql.append("(itemId, itemType, characterId) ");
 		sql.append("VALUES (2, 3, 5)");
 		jdbcTemplate.update(sql.toString());
-		
 		
 		// ------------------------ someone weapons ----------------------------------
 		sql.delete(0, sql.length());
