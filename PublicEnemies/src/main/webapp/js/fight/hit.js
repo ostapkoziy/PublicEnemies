@@ -98,10 +98,10 @@ function showAttackButton()
 /**
  * Update data when window load.
  */
-// $(window).load(function()
-// {
-// waitingNewRound();
-// });
+ $(window).load(function()
+{
+	waitingNewRound();
+});
 // DOM READY
 $(function()
 {
