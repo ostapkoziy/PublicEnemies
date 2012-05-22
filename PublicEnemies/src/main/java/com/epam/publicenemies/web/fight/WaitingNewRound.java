@@ -29,7 +29,6 @@ public class WaitingNewRound
 		String role = request.getSession().getAttribute("gameRole").toString();
 		Fight fight = (Fight) request.getSession().getAttribute("game");
 		Profile userProfile;
-		// opponentNotHit(fight, role);
 		if (role.equals("creator"))
 		{
 			userProfile = fight.getUser1profile();
@@ -42,6 +41,7 @@ public class WaitingNewRound
 		}
 		PrintWriter out = response.getWriter();
 		JSONSerializer ser = new JSONSerializer();
+		opponentNotHit(fight, role);
 		if (fight.isGameEnd())
 		{
 			log.info("--------------GAME IS END FOR USER: " + userProfile.getNickName() + "----------------------");
@@ -54,7 +54,7 @@ public class WaitingNewRound
 	}
 	private void opponentNotHit(Fight fight, String role)
 	{
-		if ((System.currentTimeMillis() / 1000) > (fight.getRound().getRoundBeginTime() + 60))
+		if ((System.currentTimeMillis() / 1000) > (fight.getRound().getRoundBeginTime() + 30) && fight.isGameStarted())
 		{
 			if (role.equals("creator") && !fight.getRound().isU2Hit())
 			{

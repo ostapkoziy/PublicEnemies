@@ -36,15 +36,15 @@ function waitingNewRound()
 			var game = jQuery.parseJSON(data);
 			if (game.gameEnd != true)
 			{
-				timer(game.round.roundBeginTime);
+				timerController(game);
 				allDataUpdate(game);
-				// alert(game.whoIAm);
 			}
 			if (game.gameEnd == true)
 			{
 
 				clearInterval(interval);
 				allDataUpdate(game);
+				hideAttackButton();
 				// ****** Redirect to gameResault page after 3 sec*************
 				setTimeout(function()
 				{
@@ -75,6 +75,39 @@ function allDataUpdate(game)
 	HPColor();
 }
 /**
+ * 
+ * 
+ */
+function timerController(game)
+{
+	if (game.whoIAm == "user1")
+	{
+		if (game.round.u1Hit == true)
+		{
+			hideAttackButton();
+			$("#timer").fadeTo(0, 0);
+		}
+		else
+		{
+			$("#timer").fadeTo(0, 1);
+			timer(game.round.roundBeginTime);
+		}
+	}
+	else
+	{
+		if (game.round.u2Hit == true)
+		{
+			hideAttackButton();
+			$("#timer").fadeTo(0, 0);
+		}
+		else
+		{
+			$("#timer").fadeTo(0, 1);
+			timer(game.round.roundBeginTime);
+		}
+	}
+}
+/**
  * Setup timer for new round waiting
  */
 function wait()
@@ -98,7 +131,7 @@ function showAttackButton()
 /**
  * Update data when window load.
  */
- $(window).load(function()
+$(window).load(function()
 {
 	waitingNewRound();
 });
@@ -107,8 +140,6 @@ $(function()
 {
 	$("#atackButton").click(function()
 	{
-		// var hit = $("#hit input[name=hit]:checked").val();
-		// var block = $("#block input[name=block]:checked").val();
 		var hit = $("#hitInput").val();
 		var block = $("#blockInput").val();
 

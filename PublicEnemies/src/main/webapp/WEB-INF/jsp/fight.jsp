@@ -170,7 +170,9 @@ div { /* 	outline: 1px solid red; */
 #timer {
 	width: 100%;
 	height: 20px;
-	outline: 2px solid red;
+	/* 	outline: 2px solid red; */
+	font-size: 20px;
+	text-align: center;
 }
 
 /* *************DOLL******************************/
