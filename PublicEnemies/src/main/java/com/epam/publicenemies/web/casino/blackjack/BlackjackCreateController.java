@@ -26,40 +26,40 @@ public class BlackjackCreateController {
 	private Logger log = Logger.getLogger(BlackjackCreateController.class);
 	@Autowired
 	@Qualifier("profileManagerService")
-	private IProfileManagerService	profileManagerService;
-	public void setProfileManagerService(IProfileManagerService profileManagerService)
-	{
+	private IProfileManagerService profileManagerService;
+
+	public void setProfileManagerService(
+			IProfileManagerService profileManagerService) {
 		this.profileManagerService = profileManagerService;
 	}
-	
+
 	@Autowired
 	@Qualifier("games")
 	private BlackJackGameList games;
-	public void setGames(BlackJackGameList games){
+
+	public void setGames(BlackJackGameList games) {
 		this.games = games;
 	}
-	
+
 	@RequestMapping("/createBlackJackGame.html")
-	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception
-	{
-		log.info("heeeeeeeeelooooooooo");
+	public ModelAndView handleRequest(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
 		Integer userId = (Integer) request.getSession().getAttribute("userId");
 		Profile userProfile = profileManagerService.getProfileByUserId(userId);
-	
+
 		Integer chips = Integer.valueOf(request.getParameter("chips"));
 		userProfile.setMoney(userProfile.getMoney() - chips);
-		
-		log.info(chips);
-		
+
 		games.createNewGame(userId, chips);
-		
+
 		log.info("BLACKJACK GAME: " + userId + "  CREATED");
-		Map<String,Object> objects = new HashMap<String, Object>();
-		
+		Map<String, Object> objects = new HashMap<String, Object>();
+
 		objects.put("chips", chips);
-		
-		ModelAndView mav = new ModelAndView(new RedirectView("blackJackGame.html"));
+
+		ModelAndView mav = new ModelAndView(new RedirectView(
+				"blackJackGame.html"));
 		mav.addObject("chips", chips);
-		return new ModelAndView("blackJackGame",objects);
+		return new ModelAndView("blackJackGame", objects);
 	}
 }

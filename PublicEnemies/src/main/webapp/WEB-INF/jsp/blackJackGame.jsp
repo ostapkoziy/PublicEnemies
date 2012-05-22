@@ -8,10 +8,14 @@
 <link rel="stylesheet" href="css/blackjack.css" type="text/css">
 <title>Insert title here</title>
 <script type="text/javascript" src="js/jquery-1.7.2.js"></script>
-<script type="text/javascript" src="js/blackjack/hit.js"></script>
+<script type="text/javascript" src="js/blackjack/deal.js"></script>
 </head>
 <body>
 	<table id="blackjack_table" height="800" width="1200" align="center">
+		<tr>
+			<td>Your balance - ${chips} <br>Your bet - ${bet}
+			</td>
+		</tr>
 		<tr align="center">
 			<td><c:forEach items="${dealer_cards}" var="dealer_card">
 					<img src="${dealer_card.image()}"></img>
@@ -19,40 +23,33 @@
 		</tr>
 		<tr align="center">
 			<td>${result}
-			<td><c:forEach items="${player_cards}" var="player_card">
+			<td>Your points - ${your_points} <c:forEach
+					items="${player_cards}" var="player_card">
 					<img src="${player_card.image()}"></img>
 				</c:forEach>
 		</tr>
+		<tr>
+			<td><img id="10_button" src="img/chips/10.png"
+				style="position: relative; top: -90px; left: 300px;"> <img
+				id="25_button" src="img/chips/25.png"
+				style="position: relative; top: -90px; left: 300px;"> <img
+				id="50_button" src="img/chips/50.png"
+				style="position: relative; top: -90px; left: 300px;"> <img
+				id="100_button" src="img/chips/100.png"
+				style="position: relative; top: -90px; left: 300px;"></img></td>
+		</tr>
 		<tr align="center">
-			<td>Your balance - ${chips} <br>Your points -
-				${your_points} <br>Your bet - ${bet}
-			</td>
-			<td>
-				<form action="startBlackJack.html" method="post">
-					<input id="bet" type="text" name="bet">
-					<input id="deal" type="image" src="img/layout/deal.png" alt="Submit button">
-				</form>
-			</td>
-			<td>
-				<form action="standBlackJack.html" method="post">
-					<input type="image" src="img/layout/stand.png" alt="Submit button">
-				</form>
-			</td>
-			<td>
-				<form action="hitBlackJack.html" method="post">
-					<input type="image" src="img/layout/hit.png" alt="Submit button">
-				</form>
-			</td>
-			<td>
-				<form action="splitBlackJack.html" method="post">
-					<input type="image" src="img/layout/split.png" alt="Submit button">
-				</form>
-			</td>
-			<td>
-				<form action="doubleDownBlackJack.html" method="post">
-					<input type="image" src="img/layout/double.png" alt="Submit button">
-				</form>
-			</td>
+			<td><input id="bet" type="text" name="bet"> <img
+				id="deal_button" src="img/layout/deal.png"
+				style="position: relative; top: -90px; left: 300px;"></img></td>
+			<td><img id="stand_button" src="img/layout/stand.png"
+				style="position: relative; top: -90px; left: 300px;"></img></td>
+			<td><img id="hit_button" src="img/layout/hit.png"
+				style="position: relative; top: -90px; left: 300px;"></img></td>
+			<td><img id="split_button" src="img/layout/split.png"
+				style="position: relative; top: -90px; left: 300px;"></img></td>
+			<td><img id="double_button" src="img/layout/double.png"
+				style="position: relative; top: -90px; left: 300px;"></img></td>
 	</table>
 </body>
 </html>
