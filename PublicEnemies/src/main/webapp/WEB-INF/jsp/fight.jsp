@@ -214,7 +214,6 @@ div { /* 	outline: 1px solid red; */
 		<!-- 	+++++++++++++++LEFT CREATOR++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 		<c:if test="${gameRole=='creator'}">
 			<div id="leftRightWrapper">
-
 				<div id="left">
 					<div id="leftHP">
 						<div id="leftHPWrapper">
@@ -461,8 +460,8 @@ div { /* 	outline: 1px solid red; */
 
 		<div id="attackBlock">
 			<div id="timer"></div>
-			<input id="hitInput" type="text" value="Head">
 			<input id="blockInput" type="text" value="Head">
+			<input id="hitInput" type="text" value="Head">
 			<div id="atackButtonWrapper">
 				<img id="atackButton" src="img/fight/attack.jpg">
 			</div>
