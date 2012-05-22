@@ -6,46 +6,5 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Admin Panel</title>
 
-<style type="text/css">
-span#users_area, 
-span#weapons_area, 
-span#armors_area, 
-span#aids_area {
-	display: inline-block;
-	border-width: 2px; 
-	border-style: solid;
-	border-radius: 15px;
-	padding: 5px;	 
-}
-span#users_area:hover, 
-span#weapons_area:hover, 
-span#armors_area:hover, 
-span#aids_area:hover {
-	background:#DDDDDD 
-}
-a.div_link {
-	text-decoration: none;
-	color:black; 	
-}
-</style>
-
-</head>
-<body>
-	<a class="div_link" href=""> 
-	<h1>Admin panel</h1>
-	</a>
-<a class="div_link" href="#">
-	<span id="users_area"> USERS </span>
-</a>
-<a class="div_link" href="#">
-<span id="weapons_area"> WEAPONS </span>
-</a>
-<a class="div_link" href="#">
-<span id="armors_area"> ARMORS </span>
-</a>
-<a class="div_link" href="#">
-<span id="aids_area"> AIDS </span>
-</a>
-<div> Value is ${passedValue}</div>
 </body>
 </html>
