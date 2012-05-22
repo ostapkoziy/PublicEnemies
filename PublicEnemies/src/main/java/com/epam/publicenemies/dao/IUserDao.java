@@ -27,8 +27,7 @@ public interface IUserDao {
 	 * Get last 5 registered users
 	 * @return List of 5 users
 	 */
-	// TODO:
-	//List<User> getNewUsers();
+	List<User> getNewUsers();
 	
 	/**
 	 * Register new user with email, password and nick name
