@@ -2,7 +2,7 @@
 
 body{
 	background-color: white;
-	background-image: url("../img/roulette/floor.jpg");
+/* 	background-image: url("../img/roulette/floor.jpg"); */
 }
 
 .panel {
@@ -11,6 +11,7 @@ body{
 
 #topPanel{
 	min-height: 70px;
+	text-align: center;
 }
 
 #leftPanel {
@@ -27,10 +28,13 @@ body{
 }
 
 #bottomPanel {
+	text-align: center;
 	clear: both;
 }
 
 #centerPanel {
+	
+	text-align: center;
 	margin-left: 250px;
 	margin-right: 350px;
 /* 	min-height: 300px; */
