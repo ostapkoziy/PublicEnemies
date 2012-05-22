@@ -35,9 +35,9 @@ public class PokerGameEngine{
 	}
 
 	public void game() {
-	/*	this.dealHand();
+		this.dealHand();
 		this.placeBlinds();
-		this.show();
+		/*	this.show();
 		this.preflop();
 
 		if (!gameFinished)	{ //FLOP
@@ -78,14 +78,14 @@ public class PokerGameEngine{
 		 this.displayResults();*/
 	}
 
-	private void show() {
+	public void show() {
 		System.out.println("" + player1.getName() + "" + " $"
 				+ player1.getCash() + " - " + player1Hand);
 		System.out.println("" + player2.getName() + "" + " $"
 				+ player2.getCash() + " - " + player2Hand);
 	}
 
-	private void placeBlinds() {
+	public void placeBlinds() {
 		if (dealer) {
 			player1.setCash(player1.getCash() - table.getBigBlind());
 			player2.setCash(player2.getCash() - table.getSmallBlind());
@@ -100,7 +100,7 @@ public class PokerGameEngine{
 		// DISPLAY BLINDS ON TABLE
 	}
 
-	private List<PokerHand> dealHand() {
+	public List<PokerHand> dealHand() {
 		List<PokerHand> result = new ArrayList<PokerHand>();
 		deck.shuffleDeck(); // shuffle the deck
 		gameFinished = false; // no one folded yet
@@ -120,7 +120,7 @@ public class PokerGameEngine{
 		return result;
 	}
 
-	private PokerCard getUniqueCard() {
+	public PokerCard getUniqueCard() {
 		PokerCard result = null;
 		Random random = new Random();
 		while (result == null) {
@@ -135,7 +135,7 @@ public class PokerGameEngine{
 		return result;
 	}
 	//the PokerHand parameter in ALL times is the BOT hand
-	private int getSbMove() {
+	public int getSbMove() {
 		int bet = 0;
 		if(dealer){
 			try {
@@ -159,7 +159,7 @@ public class PokerGameEngine{
 		return bet;
 	}
 	
-	private int getBbMove() {
+	public int getBbMove() {
 		int bet = 0;
 		if(dealer){
 			try {
@@ -181,7 +181,7 @@ public class PokerGameEngine{
 		return bet;
 	}
 
-	private void getMoves(){
+	public void getMoves(){
 		int result, count = 0;
 		do{
 			result = this.getSbMove();
@@ -200,7 +200,7 @@ public class PokerGameEngine{
 		
 	}
 	
-	private void preflop() {
+	public void preflop() {
 
 		this.getMoves();
 		
@@ -222,7 +222,7 @@ public class PokerGameEngine{
 		
 	}
 
-	private void turn() {
+	public void turn() {
 		PokerCard card1;
 		card1 = this.getUniqueCard();
 		table.setTurn(card1);
@@ -230,7 +230,7 @@ public class PokerGameEngine{
 		this.getMoves();
 	}
 
-	private void river() {
+	public void river() {
 		PokerCard card1;
 		card1 = this.getUniqueCard();
 		table.setRiver(card1);
@@ -253,7 +253,7 @@ public class PokerGameEngine{
 		
 	}
 
-	private void showDown() {
+	public void showDown() {
 		System.out.println("SHOWDOWN");
 
 	}
@@ -296,6 +296,14 @@ public class PokerGameEngine{
 
 	public void setPlayer2Combination(PokerCombination player2Combination) {
 		this.player2Combination = player2Combination;
+	}
+
+	public PokerTable getTable() {
+		return table;
+	}
+
+	public void setTable(PokerTable table) {
+		this.table = table;
 	}
 
 	

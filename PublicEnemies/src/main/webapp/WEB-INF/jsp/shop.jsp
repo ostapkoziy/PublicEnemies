@@ -3,331 +3,22 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+<link href="css/shop/shopstyle.css" rel="stylesheet"
+	type="text/css">
+	
+	
+	
+	
 <title>Shop</title>
-<style type="text/css">
-body {
-	background-image: url('./img/bg_city.png');
-	font-family: Geneva, Arial, Helvetica, sans-serif;
-	color: white;
-}
 
-button {
-	font-family: 'impact';
-	border-radius: 10px;
-	font-size: 20px;
-	width: 100px;
-	height: 40px;
-}
 
-A:hover,A:active,A:visited,A:link {
-	text-decoration: underline;
-	color: white;
-	font-size: 20pt;
-}
 
-A {
-	color: black;
-	font-family: 'impact';
-	font-size: 20pt;
-}
+<script type="text/javascript" src="js/shop/shopmanager.js"></script>
 
-div.shop_header {
-	text-align: center;
-	padding: 10px;
-	border-radius: 15px;
-	background: url(./img/opacity_background.png);
-	magrin: 0 auto;
-}
-
-span#money {
-	font-size: 50px;
-	font-family: Geneva, Arial, Helvetica, sans-serif;
-}
-
-div#main_page {
-	float: left;
-	padding: 15px;
-	font-family: Geneva, Arial, Helvetica, sans-serif;
-}
-
-div.left_header_items {
-	padding: 15px;
-	float: right;
-}
-
-div#center_div {
-	text-align: center;
-	magrin: 0 auto;
-}
-
-div#user_div {
-	background: url(./img/opacity_background.png);
-	text-align: center;
-	padding: 10px;
-	border-radius: 15px;
-	margin: 20px;
-	vertical-align: top;
-	width: 330px; 
-}
-
-div#shop_div {
-	background: url(./img/opacity_background.png);
-	text-align: center;
-	padding: 10px;
-	border-radius: 15px;
-	margin: 20px;
-	vertical-align: top;
-	width: 430; 
-}
-
-div#basket_div {
-	background: url(./img/opacity_background.png);
-	text-align: center;
-	padding: 10px;
-	border-radius: 15px;
-	margin: 20px;
-	width: 320px;
-}
-div#weapon_shop, div#armor_shop, div#aid_shop {
-	border-style: solid; 
-	border-color: black; 
-	border-radius: 10px
-}
-div.item, div.mutual_item, div.shop_item {
-	width: 100px;
-	height: 100px;
-	margin: 0 auto;
-	border-radius: 15px;
-	/*padding: 5px;*/
-	 
-}
-
-div.mutual_item, div.shop_item {
-	display:inline-block;
-}
-div.item, div.mutual_item {
-	background: url(./img/no_item.png);
-}
-div.item:hover, div.mutual_item:hover, div.shop_item:hover {
-	background: grey; 
-}
-
-div.margin_div_vertical {
-	height: 10px; 
-	width: 5px;	
-}
-span.weapon_name, span.armor_name, span.aid_name {	 
-	padding: 5px; 
-	magrin:5px;
-	border: 5px; 
-	border-radius: 10px;  
-	background: black;
-	
-	font-family: Geneva, Arial, Helvetica, sans-serif;
-	font-size: 20px;
-	font-weight: bold;  
-}
-span.weapon_name {
-	color: #BB0000; 
-}
-span.armor_name {
-	color: #0b4950; 
-}
-p.sel_items {
-	background: black;
-	border-radius: 20px; 
-	padding: 5px; 
-}
-div#cart_items {
-	/*background: blue; */
-	margin-bottom: 10px; 
-	margin-top: 10px;
-	
-	border-radius: 20px; 
-	padding-top 10px;
-	padding-left: 10px; 
-	padding-bottom: 5px; 
-	padding-right: 10px;	 
-	  
-	border-color: black; 
-	border-width: 3px; 
-	border-style: solid; 
-	
-}
-
-div#balance_inscription  {
-	padding: 10px;
-	font-size: 20;
-	font-family: impact;
-	font-size: 20pt;
-}
-div#balance_after {
-	margin-bottom: 10px; 	
-}
-span#money_value {
-	background: black;
-	padding: 5px; 
-	border-radius: 10px; 
-	font-size: 20pt; 
-	 
-}
-div#cart_inscription {
-	padding: 1px;
-	font-size: 20;
-	font-family: impact;
-	font-size: 20pt;
-}
-</style>
-
-<script type="text/javascript">
-<!-- //
-
-toBuy = new Array();
-toSell = new Array();
-
-Count = new Array();
-
-//shows how many items selected to buy/sell
-buyCount = 0;
-sellCount = 0; 
-
-bSumm = new Array();
-
-//increase_money = 0; 
-decrease_money = 0;
-function sell(item, price) {
-	var curr_money = document.getElementById("money").innerHTML - decrease_money + price;
-	decrease_money -= parseInt(price);
-	document.getElementById("money_value").innerHTML = "$ " + curr_money;
-	
-	document.getElementById("selected_items").innerHTML 
-	+= "<p class='sel_items' id='r" + item + "'></p>";
-	toSell[toSell.length] = item;
-	document.getElementById("r"+item).innerHTML = " - " +
-		document.getElementById(item).getAttribute("info")
-		+ " <a style=\"cursor:pointer;\" onclick=\"unSell('"
-		+ item + "', '" + price + "')\"><img src='./img/cancel_buying.png'/></a>";
-	document.getElementById(item).style.display = "none";
-	sellCount++;	
-}
-
-function buy(item, price){
-	var tb = false;
-	var i = 0;
-	var curr_money = document.getElementById("money").innerHTML - decrease_money - price;
-	// check for below zero
-	if (curr_money >= 0) {	 
-		decrease_money += price;
-		document.getElementById("money_value").innerHTML = "$ " + curr_money;
-		
-		// looking for matching id
-		for(i = 0; i < toBuy.length; i++){
-			if(toBuy[i] == item){
-				tb = true;
-				break;
-			}
-		}
-		// if there is no match - put 1, else - increase
-		if(!tb){
-			toBuy[toBuy.length] = item;
-			Count[Count.length] = 1;
-		} else { Count[i]++; }
-		
-		if(!bSumm[item]) { // && bSumm[item]!=0){
-			bSumm[item]=0;
-			document.getElementById("selected_items").innerHTML 
-				+= "<p class='sel_items' id='s" 
-				+ item + "'></p>";			
-		}
-		bSumm[item]++;
-		document.getElementById("s"+item).innerHTML = 
-			" + " + document.getElementById(item).getAttribute("info")
-			+ " ["+bSumm[item]+ "] <a style=\"cursor:pointer;\" onclick=\"unBuy('"
-			+ item + "', '" + price+"')\"><img src='./img/cancel_buying.png'/></a>";		
-	} else {		
-		alert("NO MONEY!");
-	}
-	buyCount++;
-}
-	
-function unSell(item, price){
-	var i = 0;
-	var curr_money = document.getElementById("money").innerHTML;
-	
-	decrease_money += parseInt(price);
-	
-	document.getElementById("money_value").innerHTML = "$ " + (curr_money - decrease_money);
-	document.getElementById("r"+item).parentNode.removeChild(document.getElementById("r"+item));
-	for (i = 0; i < toSell.length; i++) {
-		if (toSell[i] == item) {
-			toSell[i] = 0;
-		}
-	}	 
-	document.getElementById(item).style.display = "block";
-	sellCount--;
-}
-	
-// back money and delete from list elements
-function unBuy(item, price){
-	var curr_money = document.getElementById("money").innerHTML;
-	// back money if delete from cart	 
-	decrease_money -= price;
-	document.getElementById("money_value").innerHTML = "$ " + (curr_money - decrease_money);
-	bSumm[item]--;
-	// deleting <p> tag
-	if(bSumm[item]==0){
-		document.getElementById("s"+item).parentNode.removeChild(document.getElementById("s"+item));	
-		//toBuy[item] = null;
-	}
-	else {
-		document.getElementById("s"+item).innerHTML = 
-			" + " + document.getElementById(item).getAttribute("info")
-			+ " ["+bSumm[item] + "] <a style=\"cursor:pointer;\" onclick=\"unBuy('" 
-					+ item + "', '" + price + "')\"><img src='./img/cancel_buying.png'/></a>";
-	}
-	var i = 0; 
-	for(i=0;i<toBuy.length;i++){
-		if(toBuy[i]==item){
-			Count[i]--;
-		break;
-		}
-	}
-	buyCount--;
-}
-// creates hidden fields into form and commits (go to controller)
-function doBuy(){
-	if(buyCount > 0 || sellCount > 0){
-		var i = 0; 
-				
-		for(i = 0; i < toBuy.length; i++){
-			if (Count[i] == 0) {
-				continue;
-			}
-			child = document.createElement("input");
-			child.type = "hidden";
-			child.name = "buy_" + toBuy[i];
-			child.value = Count[i];
-			document.forms.dobuy.appendChild(child);			
-		}	
-		for(i = 0;i<toSell.length;i++){
-			if (toSell[i] == 0) {
-				continue;
-			}
-			child = document.createElement("input");
-			child.type = "hidden";
-			child.name = "sell_" + toSell[i];
-			child.value = "1";
-			document.forms.dobuy.appendChild(child);			
-		}
-		// do submit (goes into controller through post)
-		document.forms.dobuy.submit();
-	} else {
-		alert("You haven't selected anything!");
-	}
-}
-</script>
 </head>
 
 <body>
@@ -365,11 +56,11 @@ function doBuy(){
 							<div> <span class="weapon_name"> WEAPONS </span> </div>
 							<div class="margin_div_vertical"></div>
 							
-							<h2>${profile.getListOfWeapons().size()}</h2>
+							<!-- <h2>${profile.getListOfWeapons().size()}</h2> -->
 							
 														
 							<c:choose>
-							<c:when test="${profile.getListOfWeapons().size() != 0}">								 
+							<c:when test="${profile.getUndresedWeapons().size() != 0}">								 
 								<c:set var="weaponsIntoTrunk"
 									value="${profile.getListOfWeapons()}" />								
 								<c:forEach items="${weaponsIntoTrunk}" var="weaponIT">
@@ -403,9 +94,9 @@ function doBuy(){
 							<div> <span class="armor_name"> ARMORS </span> </div>
 							<div class="margin_div_vertical"></div>	
 												
-								<h2>${profile.getListOfArmors().size()}</h2>
+								<!-- <h2>${profile.getUndressedArmors().size()}</h2> -->
 								<c:choose>
-								<c:when test="${profile.getListOfArmors().size() != 0}">
+								<c:when test="${profile.getUndressedArmors().size() != 0}">
 									<c:set var="armorsIntoTrunk"
 										value="${profile.getListOfArmors()}" />								
 
@@ -440,7 +131,7 @@ function doBuy(){
 						<div> <span class="aid_name"> AIDS </span> </div>
 							<div class="margin_div_vertical"></div>
 								<c:choose>
-								<c:when test="${profile.getListOfAids().size() != 0}">
+								<c:when test="${profile.getUndressedAids().size() != 0}">
 									<c:set var="aidsIntoTrunk" value="${profile.getListOfAids()}" />
 							
 								<c:forEach items="${aidsIntoTrunk}" var="aidIT">

@@ -51,8 +51,12 @@ public class UserDaoImpl implements IUserDao {
 		return i;
 	}
 	
+	/**
+	 * Get last 5 registered users
+	 * @return List of 5 users
+	 */
 	public List<User> getNewUsers () {
-		final String USERS_SQL = "SELECT ";
+		final String USERS_SQL = "SELECT userId, email, password, nickName, money, avatar, userCharacter ORDER BY regDate LIMIT 5";
 		return null;
 	}
 	

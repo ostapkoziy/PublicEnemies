@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import org.apache.log4j.Logger;
 
 import com.epam.publicenemies.web.casino.poker.FoldException;
+import com.epam.publicenemies.web.casino.poker.WaitingNewPokerRound;
 
 
 public class PokerPlayer implements IPokerPlayer {
@@ -37,14 +38,14 @@ public class PokerPlayer implements IPokerPlayer {
 	}
 	public int makeMove(PokerTable table, PokerHand hand, boolean isSmallBlind) throws FoldException{
 		int in = 0;
-		log.info("You have "+(table.getPlayer2Bet() - table.getPlayer1Bet())+" to call");
+/*		log.info("You have "+(table.getPlayer2Bet() - table.getPlayer1Bet())+" to call");
 		log.info(name+" please enter the sum");
 		
 		//in = player's move
 		
 		table.setPlayer1Bet(table.getPlayer1Bet() + in);
 		this.cash -= in;
-		
+		*/
 		return in;
 	}
 	

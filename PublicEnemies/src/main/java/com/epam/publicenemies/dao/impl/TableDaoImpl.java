@@ -294,21 +294,51 @@ public class TableDaoImpl implements ITableDao {
 	}
 	
 	private void fillCharacters() {
+		// 1-st character
 		StringBuilder sql = new StringBuilder("INSERT INTO characters ");
 		sql.append("(experience, strength, agility, intellect, profession, ");
 		sql.append("fightsTotal, fightsWon, weapon1, weapon2, aid, armor) ");
 		sql.append("VALUES (500, 20, 25, 1, 'Gangster', 50, 1, 1, 2, 5, 7)");
 		jdbcTemplate.update(sql.toString());
 		sql.delete(0, sql.length());
+		// 2-nd character
 		sql.append("INSERT INTO characters ");
 		sql.append("(sex, strength, agility, intellect, profession, ");
 		sql.append("fightsTotal, fightsWon, weapon1, weapon2, aid, armor) ");
 		sql.append("VALUES (0, 5, 50, 6, 'Thief', 20, 5, 9, 10, 13, 15)");
 		jdbcTemplate.update(sql.toString());
+		sql.delete(0, sql.length());
+		// 3-rd character 
+		sql.append("INSERT INTO characters ");
+		sql.append("(sex, strength, agility, intellect, profession, ");
+		sql.append("fightsTotal, fightsWon, weapon1, weapon2, aid, armor) ");
+		sql.append("VALUES (1, 5, 50, 6, 'Assasin', 20, 5, 17, 18, 22, 23)");
+		jdbcTemplate.update(sql.toString());
+		sql.delete(0, sql.length());
+		// 4-th character
+		sql.append("INSERT INTO characters ");
+		sql.append("(sex, strength, agility, intellect, profession, ");
+		sql.append("fightsTotal, fightsWon, weapon1, weapon2, aid, armor) ");
+		sql.append("VALUES (1, 5, 50, 6, 'Criminal', 20, 5, 25, 26, 30, 31)");
+		jdbcTemplate.update(sql.toString());
+		sql.delete(0, sql.length());
+		// 5-th character
+		sql.append("INSERT INTO characters ");
+		sql.append("(sex, strength, agility, intellect, profession, ");
+		sql.append("fightsTotal, fightsWon, weapon1, weapon2, aid, armor) ");
+		sql.append("VALUES (1, 5, 50, 6, 'Professor', 20, 5, 33, 34, 38, 39)");
+		jdbcTemplate.update(sql.toString());
+		sql.delete(0, sql.length());
+		// 6-th character
+		sql.append("INSERT INTO characters ");
+		sql.append("(sex, strength, agility, intellect, profession, ");
+		sql.append("fightsTotal, fightsWon, weapon1, weapon2, aid, armor) ");
+		sql.append("VALUES (1, 5, 50, 6, 'Butcher', 20, 5, 41, 42, 46, 47)");
+		jdbcTemplate.update(sql.toString());
 	}
 	
 	private void fillCharactersTrunks() {
-		// janukovych weapons
+		// ------------------------ janukovych weapons ----------------------------------
 		StringBuilder sql = new StringBuilder("INSERT INTO charactersTrunks ");
 		sql.append("(itemId, itemType, characterId) ");
 		sql.append("VALUES (1, 1, 1)");
@@ -328,18 +358,18 @@ public class TableDaoImpl implements ITableDao {
 		sql.append("(itemId, itemType, characterId) ");
 		sql.append("VALUES (4, 1, 1)");
 		jdbcTemplate.update(sql.toString());
-		// janukovych aids
+		// ------------------------ janukovych aids ----------------------------------
 		sql.delete(0, sql.length());
 		sql.append("INSERT INTO charactersTrunks ");
 		sql.append("(itemId, itemType, characterId) ");
 		sql.append("VALUES (1, 2, 1)");
 		jdbcTemplate.update(sql.toString());
-				sql.delete(0, sql.length());
+		sql.delete(0, sql.length());
 		sql.append("INSERT INTO charactersTrunks ");
 		sql.append("(itemId, itemType, characterId) ");
 		sql.append("VALUES (2, 2, 1)");
 		jdbcTemplate.update(sql.toString());
-		//janukovuch armors
+		// ------------------------ janukovych armors ----------------------------------
 		sql.delete(0, sql.length());
 		sql.append("INSERT INTO charactersTrunks ");
 		sql.append("(itemId, itemType, characterId) ");
@@ -350,8 +380,8 @@ public class TableDaoImpl implements ITableDao {
 		sql.append("(itemId, itemType, characterId) ");
 		sql.append("VALUES (2, 3, 1)");
 		jdbcTemplate.update(sql.toString());
-		
-		// tymoshenko weapons
+				
+		// ------------------------ tymoshenko weapons ----------------------------------
 		sql.delete(0, sql.length());
 		sql.append("INSERT INTO charactersTrunks ");
 		sql.append("(itemId, itemType, characterId) ");
@@ -372,7 +402,7 @@ public class TableDaoImpl implements ITableDao {
 		sql.append("(itemId, itemType, characterId) ");
 		sql.append("VALUES (12, 1, 2)");
 		jdbcTemplate.update(sql.toString());
-		//tymoshenko aids
+		// ------------------------ tymoshenko aids ----------------------------------
 		sql.delete(0, sql.length());
 		sql.append("INSERT INTO charactersTrunks ");
 		sql.append("(itemId, itemType, characterId) ");
@@ -383,7 +413,7 @@ public class TableDaoImpl implements ITableDao {
 		sql.append("(itemId, itemType, characterId) ");
 		sql.append("VALUES (4, 2, 2)");
 		jdbcTemplate.update(sql.toString());
-		//tymoshenko armors
+		// ------------------------ tymoshenko armors ----------------------------------
 		sql.delete(0, sql.length());
 		sql.append("INSERT INTO charactersTrunks ");
 		sql.append("(itemId, itemType, characterId) ");
@@ -394,6 +424,183 @@ public class TableDaoImpl implements ITableDao {
 		sql.append("(itemId, itemType, characterId) ");
 		sql.append("VALUES (4, 3, 2)");
 		jdbcTemplate.update(sql.toString());
+		
+		// ------------------------ admin weapons ----------------------------------
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO charactersTrunks ");
+		sql.append("(itemId, itemType, characterId) ");
+		sql.append("VALUES (1, 1, 3)");
+		jdbcTemplate.update(sql.toString());
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO charactersTrunks ");
+		sql.append("(itemId, itemType, characterId) ");
+		sql.append("VALUES (2, 1, 3)");
+		jdbcTemplate.update(sql.toString());
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO charactersTrunks ");
+		sql.append("(itemId, itemType, characterId) ");
+		sql.append("VALUES (3, 1, 3)");
+		jdbcTemplate.update(sql.toString());
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO charactersTrunks ");
+		sql.append("(itemId, itemType, characterId) ");
+		sql.append("VALUES (4, 1, 3)");
+		jdbcTemplate.update(sql.toString());
+		// ------------------------ admin aids ----------------------------------
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO charactersTrunks ");
+		sql.append("(itemId, itemType, characterId) ");
+		sql.append("VALUES (1, 2, 3)");
+		jdbcTemplate.update(sql.toString());
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO charactersTrunks ");
+		sql.append("(itemId, itemType, characterId) ");
+		sql.append("VALUES (2, 2, 3)");
+		jdbcTemplate.update(sql.toString());
+		// ------------------------ admin armors ----------------------------------
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO charactersTrunks ");
+		sql.append("(itemId, itemType, characterId) ");
+		sql.append("VALUES (1, 3, 3)");
+		jdbcTemplate.update(sql.toString());
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO charactersTrunks ");
+		sql.append("(itemId, itemType, characterId) ");
+		sql.append("VALUES (2, 3, 3)");
+		jdbcTemplate.update(sql.toString());
+		
+		// ------------------------ 1 weapons ----------------------------------
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO charactersTrunks ");
+		sql.append("(itemId, itemType, characterId) ");
+		sql.append("VALUES (2, 1, 4)");
+		jdbcTemplate.update(sql.toString());
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO charactersTrunks ");
+		sql.append("(itemId, itemType, characterId) ");
+		sql.append("VALUES (1, 1, 4)");
+		jdbcTemplate.update(sql.toString());
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO charactersTrunks ");
+		sql.append("(itemId, itemType, characterId) ");
+		sql.append("VALUES (10, 1, 4)");
+		jdbcTemplate.update(sql.toString());
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO charactersTrunks ");
+		sql.append("(itemId, itemType, characterId) ");
+		sql.append("VALUES (12, 1, 4)");
+		jdbcTemplate.update(sql.toString());
+		// ------------------------ 1 aids ----------------------------------
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO charactersTrunks ");
+		sql.append("(itemId, itemType, characterId) ");
+		sql.append("VALUES (2, 2, 4)");
+		jdbcTemplate.update(sql.toString());
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO charactersTrunks ");
+		sql.append("(itemId, itemType, characterId) ");
+		sql.append("VALUES (4, 2, 4)");
+		jdbcTemplate.update(sql.toString());
+		// ------------------------ 1 armors ----------------------------------
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO charactersTrunks ");
+		sql.append("(itemId, itemType, characterId) ");
+		sql.append("VALUES (2, 3, 4)");
+		jdbcTemplate.update(sql.toString());
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO charactersTrunks ");
+		sql.append("(itemId, itemType, characterId) ");
+		sql.append("VALUES (4, 3, 4)");
+		jdbcTemplate.update(sql.toString());
+		
+		// ------------------------ 2 weapons ----------------------------------
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO charactersTrunks ");
+		sql.append("(itemId, itemType, characterId) ");
+		sql.append("VALUES (1, 1, 5)");
+		jdbcTemplate.update(sql.toString());
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO charactersTrunks ");
+		sql.append("(itemId, itemType, characterId) ");
+		sql.append("VALUES (2, 1, 5)");
+		jdbcTemplate.update(sql.toString());
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO charactersTrunks ");
+		sql.append("(itemId, itemType, characterId) ");
+		sql.append("VALUES (3, 1, 5)");
+		jdbcTemplate.update(sql.toString());
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO charactersTrunks ");
+		sql.append("(itemId, itemType, characterId) ");
+		sql.append("VALUES (4, 1, 5)");
+		jdbcTemplate.update(sql.toString());
+		// ------------------------ 2 aids ----------------------------------
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO charactersTrunks ");
+		sql.append("(itemId, itemType, characterId) ");
+		sql.append("VALUES (1, 2, 5)");
+		jdbcTemplate.update(sql.toString());
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO charactersTrunks ");
+		sql.append("(itemId, itemType, characterId) ");
+		sql.append("VALUES (2, 2, 5)");
+		jdbcTemplate.update(sql.toString());
+		// ------------------------ 2 armors ----------------------------------
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO charactersTrunks ");
+		sql.append("(itemId, itemType, characterId) ");
+		sql.append("VALUES (1, 3, 5)");
+		jdbcTemplate.update(sql.toString());
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO charactersTrunks ");
+		sql.append("(itemId, itemType, characterId) ");
+		sql.append("VALUES (2, 3, 5)");
+		jdbcTemplate.update(sql.toString());
+		
+		// ------------------------ someone weapons ----------------------------------
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO charactersTrunks ");
+		sql.append("(itemId, itemType, characterId) ");
+		sql.append("VALUES (1, 1, 6)");
+		jdbcTemplate.update(sql.toString());
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO charactersTrunks ");
+		sql.append("(itemId, itemType, characterId) ");
+		sql.append("VALUES (2, 1, 6)");
+		jdbcTemplate.update(sql.toString());
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO charactersTrunks ");
+		sql.append("(itemId, itemType, characterId) ");
+		sql.append("VALUES (3, 1, 6)");
+		jdbcTemplate.update(sql.toString());
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO charactersTrunks ");
+		sql.append("(itemId, itemType, characterId) ");
+		sql.append("VALUES (4, 1, 6)");
+		jdbcTemplate.update(sql.toString());
+		// ------------------------ someone aids ----------------------------------
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO charactersTrunks ");
+		sql.append("(itemId, itemType, characterId) ");
+		sql.append("VALUES (1, 2, 6)");
+		jdbcTemplate.update(sql.toString());
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO charactersTrunks ");
+		sql.append("(itemId, itemType, characterId) ");
+		sql.append("VALUES (2, 2, 6)");
+		jdbcTemplate.update(sql.toString());
+		// ------------------------ someone armors ----------------------------------
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO charactersTrunks ");
+		sql.append("(itemId, itemType, characterId) ");
+		sql.append("VALUES (1, 3, 6)");
+		jdbcTemplate.update(sql.toString());
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO charactersTrunks ");
+		sql.append("(itemId, itemType, characterId) ");
+		sql.append("VALUES (2, 3, 6)");
+		jdbcTemplate.update(sql.toString());
+		
 	}
 	
 	private void fillChatProperties() {
@@ -404,18 +611,86 @@ public class TableDaoImpl implements ITableDao {
 		sql.append("INSERT INTO chatProperties ");
 		sql.append("VALUES (2, 'rav')");
 		jdbcTemplate.update(sql.toString());
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO chatProperties ");
+		sql.append("VALUES (3, 'rav')");
+		jdbcTemplate.update(sql.toString());
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO chatProperties ");
+		sql.append("VALUES (4, 'rav')");
+		jdbcTemplate.update(sql.toString());
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO chatProperties ");
+		sql.append("VALUES (5, 'rav')");
+		jdbcTemplate.update(sql.toString());
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO chatProperties ");
+		sql.append("VALUES (6, 'rav')");
+		jdbcTemplate.update(sql.toString());
 	}
 	
 	private void fillUsers() {
+		// janukovych
 		StringBuilder sql = new StringBuilder("INSERT INTO users ");
 		sql.append("(email, password, money, chatProperty, userCharacter, nickName, avatar) ");
 		sql.append("VALUES ('janukovych@mail.ru', 'asdfasdf', 1000000, 1, 1, 'president', './img/avatars/godfather.png')");
 		jdbcTemplate.update(sql.toString());
 		sql.delete(0, sql.length());
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		// tymoshenko
 		sql.append("INSERT INTO users ");
 		sql.append("(email, password, money, chatProperty, userCharacter, nickName, avatar) ");
 		sql.append("VALUES ('tymoshenko@ukr.net', 'asdfasdf', 100000, 2, 2, 'troublesome', './img/avatars/angelina.png')");
 		jdbcTemplate.update(sql.toString());
+		sql.delete(0, sql.length());
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		// admin
+		sql.append("INSERT INTO users ");
+		sql.append("(email, password, money, chatProperty, userCharacter, nickName, avatar) ");
+		sql.append("VALUES ('admin@admin', 'admin', 100000, 3, 3, 'admin', './img/avatars/tommy.png')");
+		jdbcTemplate.update(sql.toString());
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		// 1
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO users ");
+		sql.append("(email, password, money, chatProperty, userCharacter, nickName, avatar) ");
+		sql.append("VALUES ('1', '1', 100000, 4, 4, '1', './img/avatars/gangster.png')");
+		jdbcTemplate.update(sql.toString());
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		// 2
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO users ");
+		sql.append("(email, password, money, chatProperty, userCharacter, nickName, avatar) ");
+		sql.append("VALUES ('2', '2', 100000, 5, 5, '2', './img/avatars/mafia.png')");
+		jdbcTemplate.update(sql.toString());
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		// someone
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO users ");
+		sql.append("(email, password, money, chatProperty, userCharacter, nickName, avatar) ");
+		sql.append("VALUES ('someone@some.ua', 'someone', 100000, 6, 6, 'someone', './img/avatars/default.png')");
+		jdbcTemplate.update(sql.toString());
+		
 	}
 	
 	

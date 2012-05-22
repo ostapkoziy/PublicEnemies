@@ -37,9 +37,13 @@ public class PokerServlet {
 		PrintWriter out = response.getWriter();
 		JSONSerializer ser = new JSONSerializer();
 		
+		log.info("Bets are - " + pokerGame.getPokerGameEngine().getTable().getPlayer1Bet() + " and " + pokerGame.getPokerGameEngine().getTable().getPlayer2Bet());
+		
 		int money = pokerGame.getUser1Profile().getMoney();
 		money -= Integer.valueOf(userBet);
 		pokerGame.getUser1Profile().setMoney(money);
+		out.print(ser.serialize(pokerGame));
+		out.flush();
 	}
 
 }
