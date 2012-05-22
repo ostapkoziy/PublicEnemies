@@ -43,15 +43,19 @@ public class PokerCreateController {
 		Profile userProfile = profileManagerService.getProfileByUserId((Integer) request.getSession().getAttribute("userId"));
 		PokerGame pokerGame = new PokerGame();
 		pokerGame.setId(new Random().nextInt());
+		
+		log.info("POKER GAME: " + pokerGame.getId() + "  CREATED");
+		
 		pokerGame.setUser1Profile(userProfile);
 
 		IPokerPlayer player1 = new PokerPlayer(pokerGame.getUser1Profile().getNickName(), pokerGame.getUser1Profile().getMoney());
 		IPokerPlayer player2 = new EasyBot("Dirty Sanzhez", 1488);
 		pokerGame.setPokerGameEngine(new PokerGameEngine(player1, player2, 25, 50));
+		pokerGame.getPokerGameEngine().dealHand();
+		//pokerGame.getPokerGameEngine().placeBlinds();
 		/*
 		 * SESSION_SETUP
 		 */
-		log.info("POKER GAME: " + pokerGame.getId() + "  CREATED");
 		request.getSession().setAttribute("pokerGame", pokerGame);
 		ModelAndView mav = new ModelAndView(new RedirectView("pokerGame.html"));
 		String chips = request.getParameter("chips");
