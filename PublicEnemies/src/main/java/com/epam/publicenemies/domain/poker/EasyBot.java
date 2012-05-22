@@ -10,6 +10,7 @@ import com.epam.publicenemies.web.casino.poker.SpectrumAnalyzer;
 
 
 public class EasyBot implements IPokerPlayer {
+
 	public String name;
 	public int cash;
 	public boolean initiative = false;

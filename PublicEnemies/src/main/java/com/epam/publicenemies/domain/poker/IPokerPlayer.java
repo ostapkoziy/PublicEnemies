@@ -1,10 +1,12 @@
 package com.epam.publicenemies.domain.poker;
 
+import java.io.Serializable;
+
 import com.epam.publicenemies.web.casino.poker.FoldException;
 
 
 
-public interface IPokerPlayer {
+public interface IPokerPlayer{
 	public int makeMove(PokerTable deck, PokerHand hand, boolean isSmallBlind) throws FoldException;
 
 	public String getName();
