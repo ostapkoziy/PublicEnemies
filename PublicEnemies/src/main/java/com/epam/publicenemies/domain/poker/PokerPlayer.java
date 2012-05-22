@@ -10,6 +10,8 @@ import com.epam.publicenemies.web.casino.poker.FoldException;
 
 
 public class PokerPlayer implements IPokerPlayer {
+
+
 	private Logger	log	= Logger.getLogger(PokerPlayer.class);
 	
 	private String name;
