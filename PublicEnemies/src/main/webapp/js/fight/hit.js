@@ -75,7 +75,8 @@ function allDataUpdate(game)
 	HPColor();
 }
 /**
- * 
+ * Call timer function if user do not hit. If user hits - hide timer and
+ * atackButton.
  * 
  */
 function timerController(game)

@@ -7,6 +7,7 @@ var intervalID;
  */
 function isGameStarted()
 {
+	
 	$.ajax({
 		url : "WaitForOpponent.html",
 		success : function(isGameStarted)

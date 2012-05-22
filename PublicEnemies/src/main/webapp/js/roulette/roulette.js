@@ -17,12 +17,12 @@ $(function() {
 		try{
 		if (clearBetToggle == false){
 			$(this).css("opacity", faded);
-			if (isNaN(arr[$(this).attr("id")])) arr[$(this).attr("id")] = 0;
-			arr[$(this).attr("id")] = arr[$(this).attr("id")] + parseInt($("input[@name=betVal]:checked").val());
-//			alert(arr[$(this).attr("id")]);
+			if (isNaN(arr[$(this).attr("alt")])) arr[$(this).attr("alt")] = 0;
+			arr[$(this).attr("alt")] = arr[$(this).attr("alt")] + parseInt($("input[@name=betVal]:checked").val());
+//			alert(arr[$(this).attr("alt")]);
 		}else 
 			{$(this).css("opacity", "1");
-			arr[$(this).attr("id")] = 0;
+			arr[$(this).attr("alt")] = 0;
 		}
 		}catch(e){e.message;};
 	});
@@ -38,8 +38,8 @@ $(function() {
 	});
 	
 	$(".RouletteTable").mousemove(function(){
-		if (isNaN(arr[$(this).attr("id")])) arr[$(this).attr("id")]=0;
-		$("#showBet").html(arr[$(this).attr("id")]);
+		if (isNaN(arr[$(this).attr("alt")])) arr[$(this).attr("alt")]=0;
+		$("#showBet").html(arr[$(this).attr("alt")]);
 	});
 
 	$(".RouletteTable").hover(function(){
