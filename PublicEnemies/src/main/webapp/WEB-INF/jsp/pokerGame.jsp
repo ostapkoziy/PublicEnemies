@@ -13,7 +13,6 @@
 <title>Poker</title>
 </head>
 <body>
-	<button id="nextmove">next move</button>
 	<table align="center">
 		<tr>
 			<td align="center"><img src="img/gamelogo.png"></img></td>

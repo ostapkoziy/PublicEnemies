@@ -12,7 +12,8 @@ import com.epam.publicenemies.domain.poker.PokerHand;
 import com.epam.publicenemies.domain.poker.PokerTable;
 
 
-public class PokerGameEngine {
+public class PokerGameEngine{
+
 	private PokerHand player1Hand = null;
 	private PokerHand player2Hand = null;
 	private CardDeck deck = CardDeck.getInstance();
@@ -77,14 +78,14 @@ public class PokerGameEngine {
 		 this.displayResults();*/
 	}
 
-	public void show() {
+	private void show() {
 		System.out.println("" + player1.getName() + "" + " $"
 				+ player1.getCash() + " - " + player1Hand);
 		System.out.println("" + player2.getName() + "" + " $"
 				+ player2.getCash() + " - " + player2Hand);
 	}
 
-	public void placeBlinds() {
+	private void placeBlinds() {
 		if (dealer) {
 			player1.setCash(player1.getCash() - table.getBigBlind());
 			player2.setCash(player2.getCash() - table.getSmallBlind());
@@ -99,7 +100,7 @@ public class PokerGameEngine {
 		// DISPLAY BLINDS ON TABLE
 	}
 
-	public List<PokerHand> dealHand() {
+	private List<PokerHand> dealHand() {
 		List<PokerHand> result = new ArrayList<PokerHand>();
 		deck.shuffleDeck(); // shuffle the deck
 		gameFinished = false; // no one folded yet
@@ -119,7 +120,7 @@ public class PokerGameEngine {
 		return result;
 	}
 
-	public PokerCard getUniqueCard() {
+	private PokerCard getUniqueCard() {
 		PokerCard result = null;
 		Random random = new Random();
 		while (result == null) {
@@ -134,7 +135,7 @@ public class PokerGameEngine {
 		return result;
 	}
 	//the PokerHand parameter in ALL times is the BOT hand
-	public int getSbMove() {
+	private int getSbMove() {
 		int bet = 0;
 		if(dealer){
 			try {
@@ -158,7 +159,7 @@ public class PokerGameEngine {
 		return bet;
 	}
 	
-	public int getBbMove() {
+	private int getBbMove() {
 		int bet = 0;
 		if(dealer){
 			try {
@@ -180,7 +181,7 @@ public class PokerGameEngine {
 		return bet;
 	}
 
-	public void getMoves(){
+	private void getMoves(){
 		int result, count = 0;
 		do{
 			result = this.getSbMove();
@@ -199,7 +200,7 @@ public class PokerGameEngine {
 		
 	}
 	
-	public void preflop() {
+	private void preflop() {
 
 		this.getMoves();
 		
@@ -221,7 +222,7 @@ public class PokerGameEngine {
 		
 	}
 
-	public void turn() {
+	private void turn() {
 		PokerCard card1;
 		card1 = this.getUniqueCard();
 		table.setTurn(card1);
@@ -229,7 +230,7 @@ public class PokerGameEngine {
 		this.getMoves();
 	}
 
-	public void river() {
+	private void river() {
 		PokerCard card1;
 		card1 = this.getUniqueCard();
 		table.setRiver(card1);
@@ -252,7 +253,7 @@ public class PokerGameEngine {
 		
 	}
 
-	public void showDown() {
+	private void showDown() {
 		System.out.println("SHOWDOWN");
 
 	}

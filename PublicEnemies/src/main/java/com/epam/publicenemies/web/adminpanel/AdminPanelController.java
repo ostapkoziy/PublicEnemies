@@ -29,13 +29,59 @@ public class AdminPanelController {
 	private IAdminPanelManagerService adminPanelManagerService; 
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public ModelAndView showAdminPage(HttpServletRequest req) {
-		log.info("AdminPanelController: get method"); 
+	public String showAdminPage(HttpServletRequest req) {
+		
+		return "redirect:adminPanel/summary.html";	
+	}
+	
+	@RequestMapping(value = "summary", method = RequestMethod.GET)
+	public ModelAndView showSummaryPage(HttpServletRequest req) {
+		
 		ModelAndView mav = new ModelAndView();
 		
 		mav.addObject("passedValue", adminPanelManagerService.getUsersNumber()); 
 		
-		mav.setViewName("adminPanel"); 
+		mav.setViewName("/adminPanel/summary"); 
+		
+		return mav; 
+	}
+	
+	@RequestMapping(value="/users", method = RequestMethod.GET)
+	public ModelAndView showUsers(HttpServletRequest req) {
+		
+		ModelAndView mav = new ModelAndView();
+		
+		mav.setViewName("/adminPanel/users");
+		
+		return mav; 
+	}
+	
+	@RequestMapping(value="/weapons", method = RequestMethod.GET)
+	public ModelAndView showWeapons(HttpServletRequest req) {
+		
+		ModelAndView mav = new ModelAndView();
+		
+		mav.setViewName("/adminPanel/weapons");
+		
+		return mav; 
+	}
+	
+	@RequestMapping(value="/armors", method = RequestMethod.GET)
+	public ModelAndView showArmors(HttpServletRequest req) {
+		
+		ModelAndView mav = new ModelAndView();
+		
+		mav.setViewName("/adminPanel/armors");
+		
+		return mav; 
+	}
+	
+	@RequestMapping(value="/aids", method = RequestMethod.GET)
+	public ModelAndView showAids(HttpServletRequest req) {
+		
+		ModelAndView mav = new ModelAndView();
+		
+		mav.setViewName("/adminPanel/aids");
 		
 		return mav; 
 	}

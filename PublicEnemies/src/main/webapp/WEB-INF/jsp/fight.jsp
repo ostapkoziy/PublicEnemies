@@ -5,6 +5,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script type="text/javascript" src="js/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="js/jquery.imagemapster.js"></script>
+<script type="text/javascript" src="js/fight/imageMap.js"></script>
 <script type="text/javascript" src="js/fight/hit.js"></script>
 <script type="text/javascript" src="js/fight/waitForConnect.js"></script>
 <script type="text/javascript" src="js/fight/chat.js"></script>
@@ -170,78 +172,18 @@ div { /* 	outline: 1px solid red; */
 	height: 20px;
 	outline: 2px solid red;
 }
-/* ***************Inventory***User1***************** */
-#user1Inventory {
-	width: 300px;
-	height: 100px;
-	clear: both;
-	/*outline: 5px solid blue; */
-	margin-left: auto;
-	margin-right: auto;
-}
 
-#user1Item1 {
-	width: 100px;
-	height: 100px;
-	float: left;
-	background-image: url("img/fight/item1.png");
-}
-
-#user1Item2 {
-	width: 100px;
-	height: 100px;
-	float: left;
-	background-image: url("img/fight/item2.png");
-}
-
-#user1Item3 {
-	width: 100px;
-	height: 100px;
-	float: left;
-	background-image: url("img/fight/item3.png");
-}
-/* ***************Inventory***User2***************** */
-/* #user2Inventory { */
-/* 	width: 300px; */
-/* 	height: 100px; */
-/* 	clear: both; */
-/* 	/* 	outline: 5px solid blue; */
-* /
-	/* 	margin-left: auto; */
-	/* 	margin-right: auto; */
-	/* } */
-	/* #user2Item1 { */
-	/* 	width: 100px; */
-	/* 	height: 100px; */
-	/* 	float: left; */
-	/* 	background-image: url("img/fight/item1.png"); */
-	/* } */
-	/* #user2Item2 { */
-	/* 	width: 100px; */
-	/* 	height: 100px; */
-	/* 	float: left; */
-	/* 	background-image: url("img/fight/item2.png"); */
-	/* } */
-	/* #user2Item3 { */
-	/* 	width: 100px; */
-	/* 	height: 100px; */
-	/* 	float: left; */
-	/* 	background-image: url("img/fight/item3.png"); */
-	/* } */
-	/* **************DOLL********************* */                     
+/* *************DOLL******************************/
 #attackBlockDoll {
 	width: 200px;
-	/* 	height: 100px;; */
-	/* 	outline: 5px solid green; */
 	margin-left: 400px;
 	margin-right: 400px;
 }
 
 #doll {
-	width: 150px;
+	width: 152px;
 	height: 430px;
 	margin: 0 auto;
-	background: url("img/fight/doll.png") no-repeat;
 }
 /* *********************************************************** */
 #rightInventory {
@@ -378,14 +320,16 @@ div { /* 	outline: 1px solid red; */
 					</c:otherwise>
 				</c:choose>
 				<div id="attackBlockDoll">
-					<div id="doll"></div>
+					<div id="doll">
+						<div style="float: left;">
+							<img class="map" id="doll_block" src="img/fight/doll_block.png" usemap="#table1" />
+						</div>
+						<div style="float: left;">
+							<img class="map" id="doll_hit" src="img/fight/doll_hit.png" usemap="#table2" />
+						</div>
+						<jsp:include page="fight/map.jsp"></jsp:include>
+					</div>
 				</div>
-				<!-- 				<div id="user1Inventory"> -->
-				<!-- 					<div id="user1Item1"></div> -->
-				<!-- 					<div id="user1Item2"></div> -->
-				<!-- 					<div id="user1Item3"></div> -->
-				<!-- 				</div> -->
-
 			</div>
 		</c:if>
 		<!-- 	+++++++++++++++++++++++++END RIGHT CREATOR+++++++++++++++++++++++++++++++++++++++++++++++ -->
@@ -496,13 +440,16 @@ div { /* 	outline: 1px solid red; */
 					</div>
 				</div>
 				<div id="attackBlockDoll">
-					<div id="doll"></div>
+					<div id="doll">
+						<div style="float: left;">
+							<img class="map" id="doll_block" src="img/fight/doll_block.png" usemap="#table1" />
+						</div>
+						<div style="float: left;">
+							<img class="map" id="doll_hit" src="img/fight/doll_hit.png" usemap="#table2" />
+						</div>
+						<jsp:include page="fight/map.jsp"></jsp:include>
+					</div>
 				</div>
-				<!-- 				<div id="user2Inventory"> -->
-				<!-- 					<div id="user2Item1"></div> -->
-				<!-- 					<div id="user2Item2"></div> -->
-				<!-- 					<div id="user2Item3"></div> -->
-				<!-- 				</div> -->
 			</div>
 		</c:if>
 		<!-- 	+++++++++++++++++++++END RIGHT CONNECTOR++++++++++++++++++++++++++++++++++++++++++++++++++ -->

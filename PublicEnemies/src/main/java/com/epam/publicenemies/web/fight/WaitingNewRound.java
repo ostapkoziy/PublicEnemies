@@ -29,7 +29,7 @@ public class WaitingNewRound
 		String role = request.getSession().getAttribute("gameRole").toString();
 		Fight fight = (Fight) request.getSession().getAttribute("game");
 		Profile userProfile;
-		opponentNotHit(fight, role);
+		// opponentNotHit(fight, role);
 		if (role.equals("creator"))
 		{
 			userProfile = fight.getUser1profile();
@@ -40,18 +40,15 @@ public class WaitingNewRound
 			userProfile = fight.getUser2profile();
 			fight.setWhoIAm("user2");
 		}
-		// log.info(": WAIT FOR OPPONENT HIT");
 		PrintWriter out = response.getWriter();
 		JSONSerializer ser = new JSONSerializer();
 		if (fight.isGameEnd())
 		{
-			// log.info("USER: " + userProfile.getNickName() + " DELETE HIS ATTRIBUTE GAME");
 			log.info("--------------GAME IS END FOR USER: " + userProfile.getNickName() + "----------------------");
 			out.print(ser.exclude("*.class").serialize(fight));
 			out.flush();
 			return;
 		}
-		// log.info(ser.exclude("*.class").serialize(game));
 		out.print(ser.exclude("*.class").serialize(fight));
 		out.flush();
 	}

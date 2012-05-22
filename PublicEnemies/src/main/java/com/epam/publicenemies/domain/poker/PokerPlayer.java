@@ -7,9 +7,12 @@ import java.io.InputStreamReader;
 import org.apache.log4j.Logger;
 
 import com.epam.publicenemies.web.casino.poker.FoldException;
-//import com.epam.publicenemies.web.casino.poker.WaitingNewPokerRound;
+import com.epam.publicenemies.web.casino.poker.WaitingNewPokerRound;
+
 
 public class PokerPlayer implements IPokerPlayer {
+
+
 	private Logger	log	= Logger.getLogger(PokerPlayer.class);
 	
 	private String name;

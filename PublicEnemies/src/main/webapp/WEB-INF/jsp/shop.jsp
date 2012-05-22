@@ -187,11 +187,13 @@ div#cart_inscription {
 toBuy = new Array();
 toSell = new Array();
 
-Count = new Array(); 
-sellCount = 0; // shows how many items selected to sell
+Count = new Array();
+
+//shows how many items selected to buy/sell
+buyCount = 0;
+sellCount = 0; 
 
 bSumm = new Array();
-//sSum = new Array(); 
 
 //increase_money = 0; 
 decrease_money = 0;
@@ -199,7 +201,6 @@ function sell(item, price) {
 	var curr_money = document.getElementById("money").innerHTML - decrease_money + price;
 	decrease_money -= parseInt(price);
 	document.getElementById("money_value").innerHTML = "$ " + curr_money;
-	//document.getElementById("decrease_money").innerHTML = decrease_money;
 	
 	document.getElementById("selected_items").innerHTML 
 	+= "<p class='sel_items' id='r" + item + "'></p>";
@@ -220,7 +221,6 @@ function buy(item, price){
 	if (curr_money >= 0) {	 
 		decrease_money += price;
 		document.getElementById("money_value").innerHTML = "$ " + curr_money;
-		//document.getElementById("decrease_money").innerHTML = decrease_money;
 		
 		// looking for matching id
 		for(i = 0; i < toBuy.length; i++){
@@ -249,6 +249,7 @@ function buy(item, price){
 	} else {		
 		alert("NO MONEY!");
 	}
+	buyCount++;
 }
 	
 function unSell(item, price){
@@ -257,7 +258,6 @@ function unSell(item, price){
 	
 	decrease_money += parseInt(price);
 	
-	//document.getElementById("decrease_money").innerHTML = decrease_money;
 	document.getElementById("money_value").innerHTML = "$ " + (curr_money - decrease_money);
 	document.getElementById("r"+item).parentNode.removeChild(document.getElementById("r"+item));
 	for (i = 0; i < toSell.length; i++) {
@@ -275,7 +275,6 @@ function unBuy(item, price){
 	// back money if delete from cart	 
 	decrease_money -= price;
 	document.getElementById("money_value").innerHTML = "$ " + (curr_money - decrease_money);
-	//document.getElementById("decrease_money").innerHTML = decrease_money;	
 	bSumm[item]--;
 	// deleting <p> tag
 	if(bSumm[item]==0){
@@ -295,10 +294,11 @@ function unBuy(item, price){
 		break;
 		}
 	}
+	buyCount--;
 }
-
+// creates hidden fields into form and commits (go to controller)
 function doBuy(){
-	if(Count.length > 0 || sellCount > 0){
+	if(buyCount > 0 || sellCount > 0){
 		var i = 0; 
 				
 		for(i = 0; i < toBuy.length; i++){
@@ -364,6 +364,9 @@ function doBuy(){
 							<div class="margin_div_vertical"></div>
 							<div> <span class="weapon_name"> WEAPONS </span> </div>
 							<div class="margin_div_vertical"></div>
+							
+							<h2>${profile.getListOfWeapons().size()}</h2>
+							
 														
 							<c:choose>
 							<c:when test="${profile.getListOfWeapons().size() != 0}">								 
@@ -398,7 +401,9 @@ function doBuy(){
 						<div>
 							<div class="margin_div_vertical"></div>
 							<div> <span class="armor_name"> ARMORS </span> </div>
-							<div class="margin_div_vertical"></div>							
+							<div class="margin_div_vertical"></div>	
+												
+								<h2>${profile.getListOfArmors().size()}</h2>
 								<c:choose>
 								<c:when test="${profile.getListOfArmors().size() != 0}">
 									<c:set var="armorsIntoTrunk"
@@ -631,8 +636,6 @@ PRICE: ${aid.getItemPrice()}" />
 				</td>
 			</tr>
 		</table>
-
 	</div>
-
 </body>
 </html>

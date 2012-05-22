@@ -84,6 +84,11 @@ public class ProfileDaoImpl implements IProfileDao {
 	
 	
 	private boolean sellWeapon (final int userId, final int weaponId) {
+
+		/*final String DELETE_SQL = "DELETE ct FROM charactersTrunks AS ct, users AS u, characters AS c "
+				+ "WHERE u.userId=? AND u.userCharacter=c.characterId AND c.characterId=ct.characterId AND ct.itemType=1 AND "
+				+ "ct.itemId=? AND c.weapon1<>ct.trunkId AND c.weapon2<>ct.trunkId";*/
+
 		final String DELETE_SQL = "DELETE FROM charactersTrunks WHERE characterId=? AND itemType=1 AND "
 				+ "itemId=? AND trunkId<>? AND trunkId<>? LIMIT 1";
 		final String ADD_MONEY = "UPDATE users SET money=money+"+KOEF+"*(SELECT weaponPrice FROM weapons WHERE weaponId=?) WHERE userId=?";
@@ -109,6 +114,7 @@ public class ProfileDaoImpl implements IProfileDao {
 	}
 	
 	private boolean sellAid (final int userId, final int aidId) {
+
 		final String DELETE_SQL = "DELETE FROM charactersTrunks WHERE characterId=? AND itemType=2 AND "
 				+ "itemId=? AND trunkId<>? LIMIT 1";
 		final String ADD_MONEY = "UPDATE users SET money=money+"+KOEF+"*(SELECT aidPrice FROM aids WHERE aidId=?) WHERE userId=?";
@@ -165,6 +171,7 @@ public class ProfileDaoImpl implements IProfileDao {
 	public boolean sellWeapons(int userId, List<Integer> weapons) {
 		int count = 0;
 		log.info("ProfileDaoImpl: sellWeapons - enter"); 
+		//Set<Integer> uniqueW = 
 		for (Integer i : weapons) {
 			if (sellWeapon(userId, i)) {
 				count++;
