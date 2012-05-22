@@ -38,34 +38,34 @@ public class HitBlackJackController extends AbstractController {
 		BlackJackGame game = games.getGameById((Integer) request.getSession()
 				.getAttribute("userId"));
 		// Take one card for player
-		List<BlackJackCard> playerCards = game.getPlayerCards();
-		playerCards.add(deck.getCard());
-		game.setPlayerCards(playerCards);
+//		List<BlackJackCard> playerCards = game.getPlayerCards();
+//		playerCards.add(deck.getCard());
+//		game.setPlayerCards(playerCards);
 		// Get index of last card
-		int index = game.getPlayerCards().size() - 1;
-		// Calculate your points
-		int yourPoints = game.getYourPoints()
-				+ playerCards.get(index).rank().getValue();
-		game.setYourPoints(yourPoints);
-		// Get result
-		String result = null;
-		if (yourPoints == 21) {
-			result = "You WIN!!!";
-			game.setChips(game.getChips() + game.getBet());
-			
-		} else if (yourPoints > 21) {
-			result = "You LOSE!!!";
-			game.setChips(game.getChips() - game.getBet());
-		}
+//		int index = game.getPlayerCards().size() - 1;
+//		// Calculate your points
+//		int yourPoints = game.getYourPoints()
+//				+ playerCards.get(index).rank().getValue();
+//		game.setYourPoints(yourPoints);
+//		// Get result
+//		String result = null;
+//		if (yourPoints == 21) {
+//			result = "You WIN!!!";
+//			game.setChips(game.getChips() + game.getBet());
+//			
+//		} else if (yourPoints > 21) {
+//			result = "You LOSE!!!";
+//			game.setChips(game.getChips() - game.getBet());
+//		}
 
 		// Push it all in map
 		Map<String, Object> objects = new HashMap<String, Object>();
 		objects.put("chips", game.getChips());
-		objects.put("dealer_cards", game.getDealerCards());
-		objects.put("player_cards", game.getPlayerCards());
-		objects.put("your_points", game.getYourPoints());
-		objects.put("bet", game.getBet());
-		objects.put("result", result);
+//		objects.put("dealer_cards", game.getDealerCards());
+//		objects.put("player_cards", game.getPlayerCards());
+//		objects.put("your_points", game.getYourPoints());
+//		objects.put("bet", game.getBet());
+//		objects.put("result", result);
 		objects.put("start_state", "disabled=\"disabled\"");
 		objects.put("split_state", "disabled=\"disabled\"");
 

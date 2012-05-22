@@ -36,7 +36,9 @@ public class ProfileDaoImpl implements IProfileDao {
 	private Logger log = Logger.getLogger(ProfileDaoImpl.class);
 
 	private JdbcTemplate jdbcTemplate;
-
+	
+	final static public double KOEF = 0.6;
+	
 	public void setDataSource(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
@@ -89,17 +91,19 @@ public class ProfileDaoImpl implements IProfileDao {
 
 		final String DELETE_SQL = "DELETE FROM charactersTrunks WHERE characterId=? AND itemType=1 AND "
 				+ "itemId=? AND trunkId<>? AND trunkId<>? LIMIT 1";
-		final String ADD_MONEY = "UPDATE users SET money=money+0.6*(SELECT weaponPrice FROM weapons WHERE weaponId=?) WHERE userId=?";
+		final String ADD_MONEY = "UPDATE users SET money=money+"+KOEF+"*(SELECT weaponPrice FROM weapons WHERE weaponId=?) WHERE userId=?";
 		final String SELECT_SQL = "SELECT weapon1, weapon2, characterId FROM users, characters WHERE userId=? AND userCharacter=characterId";
 		List<Map<String, Object>> arr = jdbcTemplate.queryForList(SELECT_SQL, new Object[] {userId});
-		Long weapon1 = (Long) arr.get(0).get("weapon1");
-		int intWeapon1 = weapon1.intValue();
-		Long weapon2 = (Long) arr.get(0).get("weapon2");
-		int intWeapon2 = weapon2.intValue();
-		Long uCharacterId = (Long) arr.get(0).get("characterId");
-		int intUCharacter = uCharacterId.intValue();
+		// This is madness!!!
+		Long longWeapon1 = (Long) arr.get(0).get("weapon1");
+		int intWeapon1 = longWeapon1.intValue();
+		Long longWeapon2 = (Long) arr.get(0).get("weapon2");
+		int intWeapon2 = longWeapon2.intValue();
+		Long longCharacterId = (Long) arr.get(0).get("characterId");
+		int intCharacter = longCharacterId.intValue();
+		// NO! THIS! IS! !!!!JAVA!!!!
 		int j = 0;
-		int i = jdbcTemplate.update ( DELETE_SQL,	new Object[] { intUCharacter, weaponId, intWeapon1, intWeapon2} );
+		int i = jdbcTemplate.update ( DELETE_SQL,	new Object[] { intCharacter, weaponId, intWeapon1, intWeapon2} );
 		if (i > 0) {
 			j = jdbcTemplate.update ( ADD_MONEY, new Object[] {weaponId,  userId} );
 			if (j > 0) {
@@ -110,22 +114,23 @@ public class ProfileDaoImpl implements IProfileDao {
 	}
 	
 	private boolean sellAid (final int userId, final int aidId) {
-		/*final String DELETE_SQL = "DELETE ct FROM charactersTrunks AS ct, users AS u, characters AS c "
-				+ "WHERE u.userId=? AND u.userCharacter=c.characterId AND c.characterId=ct.characterId AND ct.itemType=2 AND "
-				+ "ct.itemId=? AND c.aid<>ct.trunkId ";*/
-		final String DELETE_SQL = "DELETE FROM charactersTrunks WHERE characterId=? AND c.characterId=ct.characterId AND ct.itemType=2 AND "
-				+ "ct.itemId=? AND c.aid<>ct.trunkId AND trunkId=min(trunkId)";
-		final String ADD_MONEY = "UPDATE users SET money=money+0.6*(SELECT aidPrice FROM aids WHERE aidId=?) WHERE userId=?";
+
+		final String DELETE_SQL = "DELETE FROM charactersTrunks WHERE characterId=? AND itemType=2 AND "
+				+ "itemId=? AND trunkId<>? LIMIT 1";
+		final String ADD_MONEY = "UPDATE users SET money=money+"+KOEF+"*(SELECT aidPrice FROM aids WHERE aidId=?) WHERE userId=?";
 		final String SELECT_SQL = "SELECT aid, characterId FROM users, characters WHERE userId=? AND userCharacter=characterId";
 		List<Map<String, Object>> arr = jdbcTemplate.queryForList(SELECT_SQL, new Object[] {userId});
-		Long aid = (Long) arr.get(0).get("aid");
-		int intAid = aid.intValue();
-		Long uCharacterId = (Long) arr.get(0).get("characterId");
-		int intUCharacter = uCharacterId.intValue();
+		// This is madness!!!
+		Long longAid = (Long) arr.get(0).get("aid");
+		int intAid = longAid.intValue();
+		Long longCharacterId = (Long) arr.get(0).get("characterId");
+		int intCharacter = longCharacterId.intValue();
+		// NO! THIS! IS! !!!!JAVA!!!!
 		int j = 0;
-		int i = jdbcTemplate.update ( DELETE_SQL, new Object[] {userId, aidId} );
+		int i = jdbcTemplate.update ( DELETE_SQL, new Object[] {intCharacter, aidId, intAid} );
 		if (i>0) {
 			j = jdbcTemplate.update ( ADD_MONEY, new Object[] {aidId, userId} );
+			log.info("add money query");
 			if (j > 0) {
 				log.info("ProfileDaoImpl.sellAid: ID of aid " + aidId);
 				return true;
@@ -134,12 +139,19 @@ public class ProfileDaoImpl implements IProfileDao {
 	}
 	
 	private boolean sellArmor (final int userId, final int armorId) {
-		final String DELETE_SQL = "DELETE ct FROM charactersTrunks AS ct, users AS u, characters AS c "
-				+ "WHERE u.userId=? AND u.userCharacter=c.characterId AND c.characterId=ct.characterId AND ct.itemType=3 AND "
-				+ "ct.itemId=? AND c.armor<>ct.trunkId ";
-		final String ADD_MONEY = "UPDATE users SET money=money+0.6*(SELECT armorPrice FROM armors WHERE armorId=?) WHERE userId=?";
+		final String DELETE_SQL = "DELETE FROM charactersTrunks WHERE characterId=? AND itemType=3 AND "
+				+ "itemId=? AND trunkId<>? LIMIT 1";
+		final String ADD_MONEY = "UPDATE users SET money=money+"+KOEF+"*(SELECT armorPrice FROM armors WHERE armorId=?) WHERE userId=?";
+		final String SELECT_SQL = "SELECT armor, characterId FROM users, characters WHERE userId=? AND usercharacter=characterId";
+		List<Map<String, Object>> arr = jdbcTemplate.queryForList(SELECT_SQL, new Object[] {userId});
+		// This is madness!!!
+		Long longArmor = (Long) arr.get(0).get("armor");
+		int intArmor = longArmor.intValue();
+		Long longCharacterId = (Long) arr.get(0).get("characterId");
+		int intCharacter = longCharacterId.intValue();
+		// NO! THIS! IS! !!!!JAVA!!!!
 		int j = 0;
-		int i = jdbcTemplate.update ( DELETE_SQL, new Object[] {userId, armorId} );
+		int i = jdbcTemplate.update ( DELETE_SQL, new Object[] {intCharacter, armorId, intArmor} );
 		if (i>0) {
 			j = jdbcTemplate.update ( ADD_MONEY, new Object[] {armorId, userId} );
 			if (j > 0) {

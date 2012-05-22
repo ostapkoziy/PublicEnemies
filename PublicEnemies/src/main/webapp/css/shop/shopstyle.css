@@ -1,0 +1,172 @@
+body {
+	background-image: url('../../img/bg_city.png');
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	color: white;
+}
+
+button {
+	font-family: 'impact';
+	border-radius: 10px;
+	font-size: 20px;
+	width: 100px;
+	height: 40px;
+}
+
+A:hover,A:active,A:visited,A:link {
+	text-decoration: underline;
+	color: white;
+	font-size: 20pt;
+}
+
+A {
+	color: black;
+	font-family: 'impact';
+	font-size: 20pt;
+}
+
+div.shop_header {
+	text-align: center;
+	padding: 10px;
+	border-radius: 15px;
+	background: url(../../img/opacity_background.png);
+	magrin: 0 auto;
+}
+
+span#money {
+	font-size: 50px;
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+}
+
+div#main_page {
+	float: left;
+	padding: 15px;
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+}
+
+div.left_header_items {
+	padding: 15px;
+	float: right;
+}
+
+div#center_div {
+	text-align: center;
+	magrin: 0 auto;
+}
+
+div#user_div {
+	background: url(../../img/opacity_background.png);
+	text-align: center;
+	padding: 10px;
+	border-radius: 15px;
+	margin: 20px;
+	vertical-align: top;
+	width: 330px; 
+}
+
+div#shop_div {
+	background: url(../../img/opacity_background.png);
+	text-align: center;
+	padding: 10px;
+	border-radius: 15px;
+	margin: 20px;
+	vertical-align: top;
+	width: 430; 
+}
+
+div#basket_div {
+	background: url(../../img/opacity_background.png);
+	text-align: center;
+	padding: 10px;
+	border-radius: 15px;
+	margin: 20px;
+	width: 320px;
+}
+div#weapon_shop, div#armor_shop, div#aid_shop {
+	border-style: solid; 
+	border-color: black; 
+	border-radius: 10px
+}
+div.item, div.mutual_item, div.shop_item {
+	width: 100px;
+	height: 100px;
+	margin: 0 auto;
+	border-radius: 15px;
+	/*padding: 5px;*/
+	 
+}
+
+div.mutual_item, div.shop_item {
+	display:inline-block;
+}
+div.item, div.mutual_item {
+	background: url(../../img/no_item.png);
+}
+div.item:hover, div.mutual_item:hover, div.shop_item:hover {
+	background: grey; 
+}
+
+div.margin_div_vertical {
+	height: 10px; 
+	width: 5px;	
+}
+span.weapon_name, span.armor_name, span.aid_name {	 
+	padding: 5px; 
+	magrin:5px;
+	border: 5px; 
+	border-radius: 10px;  
+	background: black;
+	
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	font-size: 20px;
+	font-weight: bold;  
+}
+span.weapon_name {
+	color: #BB0000; 
+}
+span.armor_name {
+	color: #0b4950; 
+}
+p.sel_items {
+	background: black;
+	border-radius: 20px; 
+	padding: 5px; 
+}
+div#cart_items {
+	/*background: blue; */
+	margin-bottom: 10px; 
+	margin-top: 10px;
+	
+	border-radius: 20px; 
+	padding-top 10px;
+	padding-left: 10px; 
+	padding-bottom: 5px; 
+	padding-right: 10px;	 
+	  
+	border-color: black; 
+	border-width: 3px; 
+	border-style: solid; 
+	
+}
+
+div#balance_inscription  {
+	padding: 10px;
+	font-size: 20;
+	font-family: impact;
+	font-size: 20pt;
+}
+div#balance_after {
+	margin-bottom: 10px; 	
+}
+span#money_value {
+	background: black;
+	padding: 5px; 
+	border-radius: 10px; 
+	font-size: 20pt; 
+	 
+}
+div#cart_inscription {
+	padding: 1px;
+	font-size: 20;
+	font-family: impact;
+	font-size: 20pt;
+}
