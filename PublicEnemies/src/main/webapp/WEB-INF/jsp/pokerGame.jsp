@@ -25,6 +25,7 @@
 					</td>
 					<td>
 						<img style="position:relative; top:135px; left:-305px; width: 35px"src="img/chips/chips.png"></img>
+						<div id="bot_chips"style="position:relative; top:105px; left: -270px">1488</div>
 					</td>
 				</tr>
 				<tr align="center" height="270">
@@ -44,7 +45,7 @@
 										<tr>
 											<td>
 												<img style="position:relative; top:40px; left:20px; width: 35px"src="img/chips/chips.png"></img>
-												<font style="position:relative; left:25px; top: 30px">bet</font>
+												<div id="botBet" style="position:relative; left:60px; top: 2px"></div>
 											</td>
 										</tr>
 									</table>
@@ -56,36 +57,36 @@
 							<tr height="120">
 								<td colspan="3">	
 									<!--++++++++++++++++++++++++++++++++++DECK++++++++++++++++++++++++++++++++++++ -->
-									<img id="deck" style="position:relative; top:0px; left:40px; width: 40px" src="img/cards/deck.png"></img>
+									<img id="deck" style="position:relative; top:-25px; left:40px; width: 40px" src="img/cards/deck.png"></img>
 									<!--++++++++++++++++++++++++++++++++++FLOP++++++++++++++++++++++++++++++++++++ -->
-									<img id="flop1" style="position:relative; top:0px; left:93px; width: 35px" src=""></img>
-									<img id="flop2" style="position:relative; top:0px; left:98px; width: 35px" src=""></img>
-									<img id="flop3" style="position:relative; top:0px; left:103px; width: 35px" src=""></img>
+									<img id="flop1" style="position:relative; top:-25px; left:93px; width: 35px" src=""></img>
+									<img id="flop2" style="position:relative; top:-25px; left:98px; width: 35px" src=""></img>
+									<img id="flop3" style="position:relative; top:-25px; left:103px; width: 35px" src=""></img>
 									<!--++++++++++++++++++++++++++++++++++TURN++++++++++++++++++++++++++++++++++++ -->
-									<img id="turn" style="position:relative; top:0px; left:108px; width: 35px" src=""></img>
+									<img id="turn" style="position:relative; top:-25px; left:108px; width: 35px" src=""></img>
 									<!--++++++++++++++++++++++++++++++++++RIVER+++++++++++++++++++++++++++++++++++ -->
-									<img id="river" style="position:relative; top:0px; left:113px; width: 35px" src=""></img>
+									<img id="river" style="position:relative; top:-25px; left:113px; width: 35px" src=""></img>
 									<!--++++++++++++++++++++++++++++++++++POT++++++++++++++++++++++++++++++++++++ -->
-									<img id="pot_chips" style="position:relative; top:0px; left:130px; width: 35px" src="img/chips/chips.png"></img>
-									<font id="pot_size" style="position:relative; top:-10px; left:140px;">pot</font>
+									<img id="pot_chips" style="position:relative; top:-25px; left:130px; width: 35px" src="img/chips/chips.png"></img>
+									<font id="pot_size" style="position:relative; top:-40px; left:140px;">pot</font>
 								</td>
 							</tr>
 							<tr height="50">
 								<td width="100">
-									<img style="position:relative; top:-10px; left:35px; width: 35px"src="img/chips/chips.png"></img>
+									<img style="position:relative; top:-35px; left:35px; width: 35px"src="img/chips/chips.png"></img>
 								</td>
 								<td>
 									<table>
 										<tr>
 											<td>
-												<img style="position:relative; top:-30px; left:20px; width: 35px"src="img/chips/chips.png"></img>
-												<font id="player_bet" style="position:relative; top:-40px; left:25px">bet</font>
+												<img style="position:relative; top:-55px; left:20px; width: 35px"src="img/chips/chips.png"></img>
+												<div id="playerBet" style="position:relative; top:-85px; left:65px"></div>
 											</td>
 										</tr>
 										<tr>
 											<td>
-												<img id="player_card1" style="position:relative; top:-30px; left:10px; width: 35px"  border="2" SRC="img/cards/Ac.png">
-												<img id="player_card2" style="position:relative; top:-30px; left:15px; width: 35px"  border="2" SRC="img/cards/Kc.png">
+												<img id="player_card1" style="position:relative; top:-55px; left:10px; width: 35px"  border="2" SRC="img/cards/Ac.png">
+												<img id="player_card2" style="position:relative; top:-55px; left:15px; width: 35px"  border="2" SRC="img/cards/Kc.png">
 											</td>
 										</tr>
 									</table>
@@ -100,25 +101,23 @@
 				</tr>
 				<tr align="center" height="70">
 					<td>
-						<div id="player_chips" style="position:relative; top:-129px; left:-30px; width:80px; height:80px">
-							
-						</div>
+						<div id="player_chips" style="position:relative; top:-165px; left:-30px; width:80px; height:80px"></div>
 					</td>
 					<td>
-						<img id="player_avatar" style="position:relative; top:-70px; left:-250px; width:80px; height:80px"  border="2" src="">
-						<div id="player_name" style="position:relative; top:-70px; left:-250px; width:80px; height:80px"></div>
+						<img id="player_avatar" style="position:relative; top:-115px; left:-250px; width:80px; height:80px"  border="2" src="">
+						<div id="player_name" style="position:relative; top:-115px; left:-250px; width:80px; height:80px"></div>
 					</td>
 				</tr>
  				<tr>
  					<td>
- 						<img id="fold_button" src="img/layout/fold.png" style="position:relative; top:-90px; left:300px;"></img>
- 						<img id="call_button" src="img/layout/call.png" style="position:relative; top:-90px; left:340px;"></img>
- 						<img id="raise_button" src="img/layout/raise.png" style="position:relative; top:-90px; left:390px;"></img>
+ 						<img id="fold_button" src="img/layout/fold.png" style="position:relative; top:-150px; left:300px;"></img>
+ 						<img id="call_button" src="img/layout/call.png" style="position:relative; top:-150px; left:340px;"></img>
+ 						<img id="raise_button" src="img/layout/raise.png" style="position:relative; top:-150px; left:390px;"></img>
  					</td>
  				</tr>
  				<tr height="30">
  					<td>
-						<form action="pokerGame.html" method="post" style="position:relative; top:-90px; left:450px; width:80px; height:80px; border: 2px">
+						<form action="pokerGame.html" method="post" style="position:relative; top:-150px; left:450px; width:80px; height:80px; border: 2px">
 							<input id="userBetInput" type="text" value="userbet">
 						</form>
 						<div id="attackBlock"style="position:relative; top:-150px; left:0px; width:80px; border: 2px">

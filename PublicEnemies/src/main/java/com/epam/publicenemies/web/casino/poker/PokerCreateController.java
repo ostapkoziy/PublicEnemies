@@ -1,5 +1,7 @@
 package com.epam.publicenemies.web.casino.poker;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +20,8 @@ import com.epam.publicenemies.domain.fight.Fight;
 import com.epam.publicenemies.domain.fight.FightsList;
 import com.epam.publicenemies.domain.poker.EasyBot;
 import com.epam.publicenemies.domain.poker.IPokerPlayer;
+import com.epam.publicenemies.domain.poker.PokerCard;
+import com.epam.publicenemies.domain.poker.PokerCombination;
 import com.epam.publicenemies.domain.poker.PokerPlayer;
 import com.epam.publicenemies.service.IProfileManagerService;
 import com.epam.publicenemies.utils.Utils;
@@ -49,10 +53,11 @@ public class PokerCreateController {
 		pokerGame.setUser1Profile(userProfile);
 
 		IPokerPlayer player1 = new PokerPlayer(pokerGame.getUser1Profile().getNickName(), pokerGame.getUser1Profile().getMoney());
-		IPokerPlayer player2 = new EasyBot("Dirty Sanzhez", 1488);
-		pokerGame.setPokerGameEngine(new PokerGameEngine(player1, player2, 25, 50));
-		pokerGame.getPokerGameEngine().dealHand();
-		//pokerGame.getPokerGameEngine().placeBlinds();
+		IPokerPlayer player2 = new EasyBot("Dirty Sanzhez", 3000);
+		pokerGame.setPokerGameRound(new PokerRound(player1, player2, 25, 50));
+		pokerGame.getPokerGameRound().initGame();
+		log.info("Cards - " + pokerGame.getPokerGameRound().getPlayer1Hand());
+		log.info("Cards - " + pokerGame.getPokerGameRound().getPlayer2Hand());
 		/*
 		 * SESSION_SETUP
 		 */
@@ -62,4 +67,5 @@ public class PokerCreateController {
 		mav.addObject("chips", chips);
 		return mav;
 	}
+	
 }

@@ -15,7 +15,9 @@ $(document).ready(function(){
 		else if (count == 3){
 			$("img#river").attr("src", "img/cards/As.png");
 		}
+		
 	});
+	$("#botBetInput").hide();
 
 	/**
 	 * Send USER HIT and BLOCK if <br/><b>Success:</b> coockie.hit=true and hide
@@ -49,21 +51,22 @@ $(document).ready(function(){
 	 ******************************************************************************/
 	function allDataUpdate(pokerGame)
 	{
+
 		var image_prefix = "img/cards/";
 		var image_suffix = ".png";
+		$("div#botBet").empty().append(pokerGame.pokerGameRound.player2Bet);
+		$("div#playerBet").empty().append(pokerGame.pokerGameRound.player1Bet);
 		$("img#player_avatar").attr("src", pokerGame.user1Profile.avatar);
 		$("#player_name").empty().append(pokerGame.user1Profile.nickName);
 		$("#player_chips").empty().append(pokerGame.user1Profile.money);
-		var p1c1 = pokerGame.pokerGameEngine.player1Hand.card1.value.name + "" + pokerGame.pokerGameEngine.player1Hand.card1.suit.name;
-		var p1c2 = pokerGame.pokerGameEngine.player1Hand.card2.value.name + "" + pokerGame.pokerGameEngine.player1Hand.card2.suit.name;
-		var p2c1 = pokerGame.pokerGameEngine.player2Hand.card1.value.name + "" + pokerGame.pokerGameEngine.player2Hand.card1.suit.name;
-		var p2c2 = pokerGame.pokerGameEngine.player2Hand.card2.value.name + "" + pokerGame.pokerGameEngine.player2Hand.card2.suit.name;
+		var p1c1 = pokerGame.pokerGameRound.player1Hand.card1.value.name + "" + pokerGame.pokerGameRound.player1Hand.card1.suit.name;
+		var p1c2 = pokerGame.pokerGameRound.player1Hand.card2.value.name + "" + pokerGame.pokerGameRound.player1Hand.card2.suit.name;
+		var p2c1 = pokerGame.pokerGameRound.player2Hand.card1.value.name + "" + pokerGame.pokerGameRound.player2Hand.card1.suit.name;
+		var p2c2 = pokerGame.pokerGameRound.player2Hand.card2.value.name + "" + pokerGame.pokerGameRound.player2Hand.card2.suit.name;
 		//$("#bot_card1").attr("src",image_prefix + p2c1 + image_suffix);
 		//$("#bot_card2").attr("src",image_prefix + p2c2 + image_suffix);
 		$("#player_card1").attr("src",image_prefix + p1c1 + image_suffix);
 		$("#player_card2").attr("src",image_prefix + p1c2 + image_suffix);
-		
-		alert("BLINDS - " + pokerGame.pokerGameEngine.table.player1Bet + " and " + pokerGame.pokerGameEngine.table.player2Bet);
 	}
 	
 	$(function()
@@ -71,7 +74,7 @@ $(document).ready(function(){
 		$("#raise_button").click(function()
 		{
 			var userBet = $("#userBetInput").val();
-			$("#player_bet").empty().append(userBet);
+			$("#playerBet").empty().append(userBet);
 			var botBet = $("#botBetInput").val();
 
 			if (userBet != undefined & botBet != undefined)

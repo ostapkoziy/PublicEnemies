@@ -114,9 +114,9 @@ public class EasyBot implements IPokerPlayer {
 				return result;
 			}
 
-			if(deck.getPlayer1Bet() == deck.getPlayer2Bet()){
+	/*		if(deck.getPlayer1Bet() == deck.getPlayer2Bet()){
 				return this.check(deck);
-			}
+			}*/
 			return this.fold();
 		}
 		
@@ -155,9 +155,9 @@ public class EasyBot implements IPokerPlayer {
 			}
 
 			//if TPTK = call
-			if(deck.getPlayer1Bet() == deck.getPlayer2Bet()){
+		/*	if(deck.getPlayer1Bet() == deck.getPlayer2Bet()){
 				return this.check(deck);
-			}
+			}*/
 			return this.fold();
 		}
 		
@@ -194,9 +194,9 @@ public class EasyBot implements IPokerPlayer {
 				result = this.call(deck);
 				return result;
 			}
-			if(deck.getPlayer1Bet() == deck.getPlayer2Bet()){
+	/*		if(deck.getPlayer1Bet() == deck.getPlayer2Bet()){
 				return this.check(deck);
-			}
+			}*/
 			return this.fold();
 		}
 		
@@ -224,8 +224,8 @@ public class EasyBot implements IPokerPlayer {
 			if(SpectrumAnalyzer.getInstance().inRange(hand, raiseCondition)){
 				result = this.bet(deck);
 			}else if (SpectrumAnalyzer.getInstance().inRange(hand, foldCondition)){
-				if (deck.getPlayer1Bet() - deck.getPlayer2Bet() == 0){
-					result = this.check(deck);
+				/*if (deck.getPlayer1Bet() - deck.getPlayer2Bet() == 0){
+					result = this.check(deck);*/
 				}else{
 					this.fold();				
 				}
@@ -234,7 +234,7 @@ public class EasyBot implements IPokerPlayer {
 				result = this.call(deck);
 				
 			}
-		}else{
+		/*	}else{
 			//top 2-3% of spectrum
 			List<String> triBetCondition = new ArrayList<String>();
 			triBetCondition.add("TT+");
@@ -259,18 +259,18 @@ public class EasyBot implements IPokerPlayer {
 					this.fold();
 				}
 			}
-		}
+		}*/
 		
 		return result;
 	}
 	private int call(PokerTable deck) {
-		int toCall = deck.getPlayer1Bet() - deck.getPlayer2Bet();
+		int toCall = 0;//deck.getPlayer1Bet() - deck.getPlayer2Bet();
 		if(toCall > 0){
 			if(toCall > cash){
 				this.allIn();
 			}
 			this.cash -=toCall;
-			deck.setPlayer2Bet(deck.getPlayer2Bet() + toCall);
+		//	deck.setPlayer2Bet(deck.getPlayer2Bet() + toCall);
 			System.out.println(name+" called "+toCall);
 		}
 		else if (toCall == 0){
@@ -280,9 +280,9 @@ public class EasyBot implements IPokerPlayer {
 	}
 
 	private int check(PokerTable deck) {
-		if (deck.getPlayer1Bet() == deck.getPlayer2Bet()){
+/*		if (deck.getPlayer1Bet() == deck.getPlayer2Bet()){
 			return 0;
-		}
+		}*/
 		return -1;
 	}
 
@@ -344,10 +344,10 @@ public class EasyBot implements IPokerPlayer {
 		return result;
 	}
 	
-	private boolean countOdds(PokerTable deck){
+/*	private boolean countOdds(PokerTable deck){
 		double potOdds = (deck.getPlayer1Bet() - deck.getPlayer2Bet())/(deck.getPlayer1Bet() + deck.getPlayer2Bet());
 		double combinationOdds = 0.0;
 		
 		return potOdds < combinationOdds ? true : false ; 
-	}
+	}*/
 }

@@ -7,8 +7,6 @@ public class PokerTable {
 	private List<PokerCard> flop = new ArrayList<PokerCard>();
 	private PokerCard turn;
 	private PokerCard river;
-	private int player1Bet;
-	private int player2Bet;
 	private int smallBlind;
 	private int bigBlind;
 	
@@ -43,18 +41,6 @@ public class PokerTable {
 	}
 	public void setBigBlind(int bigBlind) {
 		this.bigBlind = bigBlind;
-	}
-	public int getPlayer1Bet() {
-		return player1Bet;
-	}
-	public int getPlayer2Bet() {
-		return player2Bet;
-	}
-	public void setPlayer1Bet(int player1Bet) {
-		this.player1Bet = player1Bet;
-	}
-	public void setPlayer2Bet(int player2Bet) {
-		this.player2Bet = player2Bet;
 	}
 	@Override
 	public String toString() {

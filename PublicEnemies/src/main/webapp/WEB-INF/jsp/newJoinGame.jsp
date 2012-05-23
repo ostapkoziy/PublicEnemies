@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Game</title>
 <script type="text/javascript" src="js/jquery-1.7.2.js"></script>
-<script type="text/javascript" src="js/connect.js"></script>
+<script type="text/javascript" src="js/fight/unload.js"></script>
 <style type="text/css">
 body {
 	background-image: url('img/bg_city.png');
@@ -36,7 +36,7 @@ A:hover {
 table#main {
 	background-color: #444D48;
 	opacity: .6;
-	filter: alpha(opacity = 60);
+	filter: alpha(opacity =   60);
 	-moz-opacity: .6;
 	border-width: 3px;
 	border-spacing: 5px;
@@ -81,58 +81,13 @@ table#main {
 		<tr>
 			<td>
 				<table id="main" align="center" width="500" height="500" style="margin-top: 50px">
-					<!-- 					<tr> -->
-					<!-- 						<td> -->
-					<!-- 							<form name="radio"> -->
-					<!-- 								<div align="left"><br /> -->
-					<!-- 									<input type="radio" name="group1" value="0"> Create new game vs player<br> -->
-					<!-- 									PvP mode -->
-					<!-- 										<div id="pvp" align="center"> -->
-					<!-- 											<form action="newGame.html" method="post"> -->
-					<!-- 												<spring:bind path="gameToCreate.name"> -->
-					<!-- 												<p>Enter the name of the game that you want to create:</p> -->
-					<%-- 												<input type="text" name="name" value="${status.value}"><br /> --%>
-					<%-- 												<font color="red">${status.errorMessage}</font> --%>
-					<!-- 												<br /> -->
-					<!-- 												</spring:bind> -->
-					<!-- 												<button type="submit" id="button">Create</button><br /> -->
-					<!-- 											</form> -->
-					<!-- 										</div> -->
-					<!-- 									<input type="radio" name="group1" value="1">Join an existing game<br /> -->
-					<!-- 									Join game mode  -->
-					<!-- 										<div id="join" align="center"> -->
-					<!-- 											<form action="joinGame.html" method="post"> -->
-					<!-- 												<spring:bind path="gameToJoin.name"> -->
-					<!-- 												<p>Enter the name of the game that you want to join:</p> -->
-					<%-- 												<input type="text" name="name" value="${status.value}"> --%>
-					<%-- 												<font color="red">${status.errorMessage}</font> --%>
-					<!-- 												<br /> -->
-					<!-- 												</spring:bind> -->
-					<!-- 												<button type="submit" id="button">Join</button> -->
-					<!-- 											</form> -->
-					<!-- 										</div> -->
-					<!-- 									<input type="radio" name="group1" value="2">Create new game vs bot -->
-					<!-- 									Player vs Bot mode -->
-					<!-- 									<div id="bot" align="center"> -->
-					<!-- 										<h1>Not implemented yet, sorry :)</h1> -->
-					<!-- 									</div> -->
-					<!-- 								</div> -->
-					<!-- 							</form> -->
-					<!-- 						</td> -->
-					<!-- 					</tr> -->
-					<!-- 					<tr> -->
-					<!-- 						<td valign="bottom" align="center"> -->
-					<!-- 							<a href="userStartPage.html">Back</a> -->
-					<!-- 						</td> -->
-					<!-- 					</tr> -->
-	
 					<tr>
 						<td>
 							<div>
 								<form action="createGame.html" method="post">
 									<button id="create" type="submit">Create</button>
 								</form>
-						<!-- 	<button id="join" type="button" onclick="redirect()">Join</button> -->
+								<!-- 	<button id="join" type="button" onclick="redirect()">Join</button> -->
 								<a href="allGames.html">ALL GAMES!!!</a>
 							</div>
 						</td>
