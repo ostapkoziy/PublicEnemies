@@ -36,7 +36,7 @@ A:hover {
 table#main {
 	background-color: #444D48;
 	opacity: .6;
-	filter: alpha(opacity =   60);
+	filter: alpha(opacity =     60);
 	-moz-opacity: .6;
 	border-width: 3px;
 	border-spacing: 5px;
@@ -72,7 +72,8 @@ table#main {
 						<td width="20" valign="middle" align="left">34</td>
 						<td width="80" valign="middle" align="right"><img src="img/inteligence.png" width="40px" title="Inteligence"></img></td>
 						<td width="20" valign="middle" align="left">8</td>
-						<td width="100" align="right"><img src="img/avatars/gangster.png" title="${user_email}'s profile" border="1" width="40px"></img></td>
+						<td width="100" align="right"><img src="img/avatars/gangster.png" title="${user_email}'s profile" border="1"
+								width="40px"></img></td>
 						<td width="30" align="center"><a href="logout.html">Logout</a> <br /></td>
 					</tr>
 				</table>
@@ -97,31 +98,7 @@ table#main {
 			</td>
 		</tr>
 	</table>
-	<script type="text/javascript">
-		$("input[name='group1']").change(function()
-		{
-			if ($("input[name='group1']:checked").val() == 0)
-			{
-				$("div#pvp").slideDown("slow");
-				$("div#join").slideUp("slow");
-				$("div#bot").slideUp("slow");
-			}
-			else
-				if ($("input[name='group1']:checked").val() == 1)
-				{
-					$("div#pvp").slideUp("slow");
-					$("div#join").slideDown("slow");
-					$("div#bot").slideUp("slow");
-				}
-				else
-					if ($("input[name='group1']:checked").val() == 2)
-					{
-						$("div#pvp").slideUp("slow");
-						$("div#join").slideUp("slow");
-						$("div#bot").slideDown("slow");
-					}
-		});
-	</script>
+
 
 </body>
 </html>

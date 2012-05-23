@@ -6,11 +6,11 @@
 <title>You Win</title>
 <style type="text/css">
 #win { /* 	outline: 2px solid red; */
-	width: 400px;
-	height: 400px;
+	width: 334px;
+	height: 334px;
 	margin-left: auto;
 	margin-right: auto;
-	background: url("img/fight/you-win.jpg") no-repeat;
+	background: url("img/fight/you-win.png") no-repeat;
 }
 </style>
 </head>
