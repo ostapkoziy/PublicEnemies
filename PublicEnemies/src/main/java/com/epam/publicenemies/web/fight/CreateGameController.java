@@ -40,7 +40,7 @@ public class CreateGameController
 		Fight game = new Fight();
 		game.setId(new Random().nextInt());
 		game.setUser1profile(userProfile);
-		FightsList.newInstanse().getList().add(game);
+		FightsList.newInstanse().getMap().put(game.getId(), game);
 		/*
 		 * SESSION_SETUP
 		 */

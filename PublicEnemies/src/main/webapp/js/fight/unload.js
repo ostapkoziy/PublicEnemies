@@ -2,6 +2,6 @@ $(document).ready(function()
 {
 	$(window).unload(function()
 	{
-		alert("Goodbye!");
+		// alert("Goodbye!");
 	});
 });

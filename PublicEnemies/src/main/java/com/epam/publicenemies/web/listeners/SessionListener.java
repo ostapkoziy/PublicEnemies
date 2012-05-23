@@ -16,20 +16,20 @@ public class SessionListener implements HttpSessionListener
 	private int				sessionCount	= 0;
 	public void sessionCreated(HttpSessionEvent event)
 	{
-		log.info("Session Created: " + event.getSession().getId());
-		log.info("Total Sessions: " + sessionCount);
 		synchronized (this)
 		{
 			sessionCount++;
 		}
+		log.info("Session Created: " + event.getSession().getId());
+		log.info("Total Sessions: " + sessionCount);
 	}
 	public void sessionDestroyed(HttpSessionEvent event)
 	{
-		log.info("Session Destroyed");
-		log.info("Total Sessions: " + sessionCount);
 		synchronized (this)
 		{
 			sessionCount--;
 		}
+		log.info("Session Destroyed");
+		log.info("Total Sessions: " + sessionCount);
 	}
 }

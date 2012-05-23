@@ -1,6 +1,7 @@
 package com.epam.publicenemies.domain.fight;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * @author Alexander Ivanov
@@ -8,7 +9,7 @@ import java.util.ArrayList;
  */
 public class FightsList
 {
-	private ArrayList<Fight>	list	= new ArrayList<Fight>();
+	HashMap<Long, Fight>		map	= new HashMap<>();
 	private static FightsList	gl;
 	private FightsList()
 	{
@@ -23,21 +24,21 @@ public class FightsList
 		else
 			return gl;
 	}
-	public ArrayList<Fight> getList()
+	public HashMap<Long, Fight> getMap()
 	{
-		return list;
+		return map;
 	}
-	public void setList(ArrayList<Fight> list)
+	public void setMap(HashMap<Long, Fight> list)
 	{
-		this.list = list;
+		this.map = list;
 	}
 	public ArrayList<Fight> getNotStartedGames()
 	{
-		ArrayList<Fight> gl = new ArrayList<Fight>();
-		for (Fight game : getList())
+		ArrayList<Fight> gameList = new ArrayList<>();
+		for (Fight game : map.values())
 		{
-			if (!game.isGameStarted()) gl.add(game);
+			if (!game.isGameStarted()) gameList.add(game);
 		}
-		return gl;
+		return gameList;
 	}
 }

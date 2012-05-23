@@ -1,4 +1,3 @@
-var timerIntervalID = 0;
 var nowTime = Math.ceil(new Date().getTime() / 1000);
 var limit = 30;
 function timer(timerBeginTime)
@@ -22,15 +21,4 @@ function timer(timerBeginTime)
 		$("#timer").fadeTo(0, 0);
 	}
 
-}
-function timerStart(timerBeginTime)
-{
-	timerIntervalID = setInterval(function()
-	{
-		timer(timerBeginTime);
-	}, 1000);
-}
-function stopTimer()
-{
-	clearInterval(timerIntervalID);
 }

@@ -3,7 +3,7 @@ $(function()
 	/**
 	 * Chat ON
 	 */
-	chatUserChoise();
+	autoUpdate();
 	/**
 	 * Scroll chat to bottom
 	 */
@@ -12,14 +12,6 @@ $(function()
 		$("#allMesseges").prop({
 
 			scrollTop : $("#allMesseges").prop("scrollHeight") });
-	}
-	/**
-	 * If user choise autoUpdate chat in first round, in second round this
-	 * option will be enable
-	 */
-	function chatUserChoise()
-	{
-		autoUpdate();
 	}
 	/**
 	 * Sending messege to server
@@ -36,33 +28,18 @@ $(function()
 		});
 	});
 	/**
-	 * Refresh by click
-	 */
-	$("#button").click(function()
-	{
-		$.post("ViewServlet", {}, function(data)
-		{
-			$("#allMesseges").html(data);
-		});
-	});
-	/**
-	 * Update chat
-	 */
-	function update()
-	{
-		$.post("ViewServlet", {}, function(data)
-		{
-			$("#allMesseges").html(data);
-		});
-
-	}
-	/**
-	 * Refresh chat each 2 second
+	 * Update chat every 2 sec.
 	 */
 	function autoUpdate()
 	{
-		interval = setInterval(update, 2000);
+		$.post("ViewServlet", {}, function(data)
+		{
+			$("#allMesseges").html(data);
+			setTimeout(autoUpdate, 2000);
+		});
+
 	}
+
 	/**
 	 * Show messeges when window load
 	 */

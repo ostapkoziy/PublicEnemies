@@ -1,12 +1,8 @@
-var interval;
 /**
- * Send USER HIT and BLOCK if <br/><b>Success:</b> coockie.hit=true and hide
- * attack button;
- * 
+ * Sends USER HIT and BLOCK
  */
 function hitSend(hit, block)
 {
-
 	$.ajax({
 		url : "HitServlet.html",
 		data : ({
@@ -17,6 +13,7 @@ function hitSend(hit, block)
 		},
 		error : function(e, ajaxOptions, thrownError)
 		{
+			// TODO if error redirect to userStartPage.html
 			alert(e.status);
 			alert(thrownError);
 			alert("Error in hitSend()");
@@ -38,17 +35,16 @@ function waitingNewRound()
 			{
 				timerController(game);
 				allDataUpdate(game);
+				setTimeout(waitingNewRound, 1000);
 			}
 			if (game.gameEnd == true)
 			{
 
-				clearInterval(interval);
 				allDataUpdate(game);
 				hideAttackButton();
 				// ****** Redirect to gameResault page after 3 sec*************
 				setTimeout(function()
 				{
-
 					window.location.replace("resault.html");
 				}, 3000);
 				// ********************************************************
@@ -56,6 +52,7 @@ function waitingNewRound()
 		},
 		error : function(e, ajaxOptions, thrownError)
 		{
+			// TODO if error redirect to userStartPage.html
 			alert(e.status);
 			alert(thrownError);
 			alert("Error in waitingNewRound()");
@@ -75,7 +72,7 @@ function allDataUpdate(game)
 	HPColor();
 }
 /**
- * Call timer function if user do not hit. If user hits - hide timer and
+ * Calls timer function if user doesn't hit. If user hits - hides timer and
  * atackButton.
  * 
  */
@@ -109,13 +106,6 @@ function timerController(game)
 	}
 }
 /**
- * Setup timer for new round waiting
- */
-function wait()
-{
-	interval = setInterval(waitingNewRound, 1000);
-}
-/**
  * Hide attack button
  */
 function hideAttackButton()
@@ -129,13 +119,6 @@ function showAttackButton()
 {
 	$("#atackButton").show();
 }
-/**
- * Update data when window load.
- */
-$(window).load(function()
-{
-	waitingNewRound();
-});
 // DOM READY
 $(function()
 {

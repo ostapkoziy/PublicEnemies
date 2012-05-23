@@ -1,7 +1,5 @@
 package com.epam.publicenemies.utils;
 
-import java.util.List;
-
 import com.epam.publicenemies.domain.fight.Fight;
 import com.epam.publicenemies.domain.fight.FightsList;
 
@@ -17,7 +15,7 @@ public class Utils
 	public static Fight findGameById(long gameId)
 	{
 		Fight game = null;
-		for (Fight game1 : FightsList.newInstanse().getList())
+		for (Fight game1 : FightsList.newInstanse().getMap().values())
 		{
 			if (game1.getId() == gameId)
 			{
@@ -29,17 +27,11 @@ public class Utils
 	}
 	/**
 	 * Delete game by ID
+	 * 
+	 * @throws NotImplementedExeption
 	 */
-	public static void deleteGame(long id)
+	public static void deleteGame(long id) throws NotImplementedExeption
 	{
-		List<Fight> allGames = FightsList.newInstanse().getList();
-		for (Fight game1 : allGames)
-		{
-			if (game1.getId() == id)
-			{
-				allGames.remove(game1);
-				break;
-			}
-		}
+		throw new NotImplementedExeption();
 	}
 }

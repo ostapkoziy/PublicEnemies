@@ -272,7 +272,7 @@ div { /* 	outline: 1px solid red; */
 					</c:when>
 					<c:otherwise>
 						<script type="text/javascript">
-							wait();
+							waitingNewRound();
 						</script>
 						<div id="right">
 							<div id="rightHP">
@@ -346,7 +346,7 @@ div { /* 	outline: 1px solid red; */
 		<c:if test="${gameRole=='connector'}">
 			<div id="leftRightWrapper">
 				<script type="text/javascript">
-					wait();
+					waitingNewRound();
 				</script>
 				<div id="left">
 					<div id="leftHP">
@@ -466,7 +466,7 @@ div { /* 	outline: 1px solid red; */
 				<img id="atackButton" src="img/fight/attack.jpg">
 			</div>
 		</div>
-		
+
 		<div id="box">
 			<div id="allMesseges"></div>
 			<textarea id="myMessege"></textarea>
