@@ -6,11 +6,11 @@
 <title>You Lose</title>
 <style type="text/css">
 #lose { /* 	outline: 2px solid red; */
-	width: 484px;
-	height: 331px;
+	width: 334px;
+	height: 334px;
 	margin-left: auto;
 	margin-right: auto;
-	background: url("img/fight/lose.jpg") no-repeat;
+	background: url("img/fight/you-lose.png") no-repeat;
 }
 </style>
 </head>

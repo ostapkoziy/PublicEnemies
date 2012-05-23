@@ -34,4 +34,10 @@ public class RedirectController2
 	{
 		return "/fight/fight";
 	}
+	//TODO DELETE THIS
+	@RequestMapping("/mod.html")
+	public String mod()
+	{
+		return "/fight/mod";
+	}
 }

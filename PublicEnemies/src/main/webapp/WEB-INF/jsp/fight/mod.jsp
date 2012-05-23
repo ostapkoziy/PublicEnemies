@@ -29,7 +29,7 @@ body {
 	position: fixed;
 	left: 0;
 	top: 0;
-	background: url("http://www.jacklmoore.com/colorbox/example1/images/overlay.png");
+	background: url("img/fight/overlay.png");
 	z-index: 1000;
 }
 
@@ -46,7 +46,6 @@ body {
 	margin-right: auto;
 	opacity: 0.6;
 	border-radius: 15px;
-	margin-left: auto;
 }
 
 #color3 {
@@ -61,15 +60,20 @@ body {
 	z-index: 3000;
 	background: white;
 	border-radius: 15px;
+	/* 	outline: 2px solid blue; */
 }
 
 #imageWrapper {
-	position: relative;
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 20px;
-	width: 400px;
+	width: 334px;
 	margin-left: auto;
+	outline: 2px solid blue;
+}
+
+#createJoin {
+	outline: 10px solid red;
 }
 </style>
 </head>
@@ -79,8 +83,14 @@ body {
 	<div id="color2"></div>
 	<div id="color3">
 		<div id="imageWrapper">
-			<img alt="asfasf" src="img/fight/you-win.jpg">
-			<!-- 			<img alt="asfasf" src="img/fight/you-lose.jpg"> -->
+			<img alt="" src="img/fight/you-win.png">
+			<!--<img alt="asfasf" src="img/fight/you-lose.png"> -->
+		</div>
+		<div id="createJoinWrapper">
+			<form action="createGame.html" method="post">
+				<button id="create" type="submit">Create</button>
+			</form>
+			<a href="allGames.html">ALL GAMES</a>
 		</div>
 	</div>
 </body>
