@@ -27,7 +27,7 @@ import flexjson.JSONSerializer;
 public class PokerServlet {
 	private Logger log = Logger.getLogger(HitServlet.class);
 	private PokerGame pokerGame;
-
+	static int partCounter = -1;
 	@RequestMapping("/PokerServlet")
 	public void hit(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -40,6 +40,10 @@ public class PokerServlet {
 		PrintWriter out = response.getWriter();
 		JSONSerializer ser = new JSONSerializer();
 		
+		if(partCounter == 0){
+			//preflop
+			int botBet = 0;
+		}
 		pokerGame.getPokerGameRound().setPlayer1Bet(bet);
 		int money = pokerGame.getUser1Profile().getMoney();
 		money -= Integer.valueOf(userBet);

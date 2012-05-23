@@ -56,8 +56,7 @@ public class PokerCreateController {
 		IPokerPlayer player2 = new EasyBot("Dirty Sanzhez", 3000);
 		pokerGame.setPokerGameRound(new PokerRound(player1, player2, 25, 50));
 		pokerGame.getPokerGameRound().initGame();
-		log.info("Cards - " + pokerGame.getPokerGameRound().getPlayer1Hand());
-		log.info("Cards - " + pokerGame.getPokerGameRound().getPlayer2Hand());
+		PokerServlet.partCounter = 0;
 		/*
 		 * SESSION_SETUP
 		 */

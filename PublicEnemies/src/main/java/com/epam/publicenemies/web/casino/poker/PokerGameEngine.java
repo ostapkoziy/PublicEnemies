@@ -35,8 +35,8 @@ public class PokerGameEngine{
 	}
 
 	public void game() {
-		this.dealHand();
-		this.placeBlinds();
+		//this.dealHand();
+		//this.placeBlinds();
 		/*	this.show();
 		this.preflop();
 
@@ -75,7 +75,7 @@ public class PokerGameEngine{
 				+ player2Combination.getName());
 
 		 //this.showDown(); 
-		 this.displayResults();*/
+		 this.displayResults();
 	}
 
 	public void show() {
@@ -305,6 +305,6 @@ public class PokerGameEngine{
 	public void setTable(PokerTable table) {
 		this.table = table;
 	}
-
-	
+*/
+	}
 }

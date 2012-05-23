@@ -1,24 +1,38 @@
 $(document).ready(function(){
 	var count = 0;
+	var image_prefix = "img/cards/";
+	var image_suffix = ".png";
+	
 	betSend(0,0);
 	//deal cards
 	$("img#deck").click(function(){
 		count ++;
 		if(count == 1){
-			$("img#flop1").attr("src", "img/cards/Ts.png");
-			$("img#flop2").attr("src", "img/cards/Js.png");
-			$("img#flop3").attr("src", "img/cards/Qs.png");
+			dealFlop("Ts","Js","Qs");
 		}
 		else if (count == 2){
-			$("img#turn").attr("src", "img/cards/Ks.png");
+			dealTurn("Ks");
 		}
 		else if (count == 3){
-			$("img#river").attr("src", "img/cards/As.png");
+			dealRiver("As");
 		}
 		
 	});
 	$("#botBetInput").hide();
 
+	function dealFlop (card1, card2, card3){
+		$("img#flop1").attr("src", image_prefix + card1 + image_suffix);
+		$("img#flop2").attr("src", image_prefix + card2 + image_suffix);
+		$("img#flop3").attr("src", image_prefix + card3 + image_suffix);
+	}
+	function dealTurn (card1){
+		$("img#turn1").attr("src", image_prefix + card1 + image_suffix);
+
+	}
+	function dealRiver (card1){
+		$("img#river1").attr("src", image_prefix + card1 + image_suffix);
+	}
+	
 	/**
 	 * Send USER HIT and BLOCK if <br/><b>Success:</b> coockie.hit=true and hide
 	 * attack button;
@@ -52,8 +66,7 @@ $(document).ready(function(){
 	function allDataUpdate(pokerGame)
 	{
 
-		var image_prefix = "img/cards/";
-		var image_suffix = ".png";
+		
 		$("div#botBet").empty().append(pokerGame.pokerGameRound.player2Bet);
 		$("div#playerBet").empty().append(pokerGame.pokerGameRound.player1Bet);
 		$("img#player_avatar").attr("src", pokerGame.user1Profile.avatar);
