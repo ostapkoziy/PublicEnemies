@@ -144,31 +144,43 @@ public class WeaponsDaoImpl implements IWeaponsDao {
 
 	@Override
 	public boolean updateWeaponHitPoints(int weaponId, int hitPoints) {
-		final String UPDATE_SQL = "UPDATE weapons SET weaponName=? WHERE weaponId=?";
-	//	int i = jdbcTemplate.update(UPDATE_SQL, new Object[] {name, weaponId});
-	//	if (i>0) {
-	//		log.info("WeaponDaoImpl.updateWeaponName : weapon(" + weaponId + ") was renamed to " + name);
-	//		return true;
-	//	} else	
-		return false;
+		final String UPDATE_SQL = "UPDATE weapons SET weaponHitPoints=? WHERE weaponId=?";
+		int i = jdbcTemplate.update(UPDATE_SQL, new Object[] {hitPoints, weaponId});
+		if (i>0) {
+			log.info("WeaponDaoImpl.updateWeaponName : weapon(" + weaponId + ") hit points now are " + hitPoints);
+			return true;
+		} else	return false;
 	}
 
 	@Override
 	public boolean updateWeaponPicture(int weaponId, String picture) {
-		// TODO Auto-generated method stub
-		return false;
+		final String UPDATE_SQL = "UPDATE weapons SET weaponPicture=? WHERE weaponId=?";
+		int i = jdbcTemplate.update(UPDATE_SQL, new Object[] {picture, weaponId});
+		if (i>0) {
+			log.info("WeaponDaoImpl.updateWeaponName : weapon(" + weaponId + ") picture now are " + picture);
+			return true;
+		} else	return false;
+	}
+
+	
+	@Override
+	public boolean updateWeaponType(int weaponId, boolean weaponType) {
+		final String UPDATE_SQL = "UPDATE weapons SET weaponType=? WHERE weaponId=?";
+		int i = jdbcTemplate.update(UPDATE_SQL, new Object[] {weaponType, weaponId});
+		if (i>0) {
+			log.info("WeaponDaoImpl.updateWeaponName : weapon(" + weaponId + ") type now are " + weaponType);
+			return true;
+		} else	return false;
 	}
 
 	@Override
-	public boolean updateWeaponType(int weaponid, boolean weaponType) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean updateWeaponPrice(int weaponid, int price) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean updateWeaponPrice(int weaponId, int price) {
+		final String UPDATE_SQL = "UPDATE weapons SET weaponPrice=? WHERE weaponId=?";
+		int i = jdbcTemplate.update(UPDATE_SQL, new Object[] {price, weaponId});
+		if (i>0) {
+			log.info("WeaponDaoImpl.updateWeaponName : weapon(" + weaponId + ") price now are " + price);
+			return true;
+		} else	return false;
 	}	
 
 	

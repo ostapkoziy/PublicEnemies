@@ -1,5 +1,6 @@
 package com.epam.publicenemies.domain;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.HashMap;
@@ -756,5 +757,9 @@ public class Profile
 	
 	public String getEmail() {
 		return pUser.getEmail();
+	}
+	
+	public Timestamp getRegDate() {
+		return pUser.getRegDate();
 	}
 }

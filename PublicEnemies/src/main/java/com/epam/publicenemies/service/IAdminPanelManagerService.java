@@ -48,4 +48,6 @@ public interface IAdminPanelManagerService {
 	 * @return list of all registered users
 	 */
 	public List<User> getAllUsers ();
+	
+	
 }
