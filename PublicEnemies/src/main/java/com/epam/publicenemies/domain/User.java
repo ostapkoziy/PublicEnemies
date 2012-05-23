@@ -1,10 +1,11 @@
 package com.epam.publicenemies.domain;
 
+import java.sql.Timestamp;
+
 /**
  * Represent user (the same way as 'users' table)
  * 
  * Updated by I. Kostyrko on 30.04.12
- * TODO: Registered time Date() ?
  */
 public class User {
 
@@ -16,6 +17,7 @@ public class User {
 	private String avatar;
 	private int money; 
 	private int characterId;
+	private Timestamp regDate;
 
 	public User() {
 		email = new String();
@@ -32,7 +34,7 @@ public class User {
 	 * TODO: table 'user' contains more fields. They may be added later
 	 */
 	public User(int userId, String email, String password, String nickName,
-			int money, String avatar, int userChar) {
+			int money, String avatar, int userChar, Timestamp regDate) {
 		this.userId = userId;
 		this.email = email;
 		this.password = password;
@@ -40,6 +42,7 @@ public class User {
 		this.money = money; 
 		this.avatar = avatar;
 		this.characterId = userChar;
+		this.regDate = regDate;
 	}
 	
 	public int getUserId() {
@@ -95,5 +98,13 @@ public class User {
 	}
 	public void setCharacterId(int characterId) {
 		this.characterId = characterId;
+	}
+
+	public Timestamp getRegDate() {
+		return regDate;
+	}
+
+	public void setRegDate(Timestamp regDate) {
+		this.regDate = regDate;
 	}
 }

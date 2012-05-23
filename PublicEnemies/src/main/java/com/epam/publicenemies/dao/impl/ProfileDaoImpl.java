@@ -428,7 +428,7 @@ public class ProfileDaoImpl implements IProfileDao {
 	 */
 	@Override
 	public User getUserById(final int userId) {
-		String query = "SELECT * FROM users WHERE userId=?";
+		String query = "SELECT email, password, nickName, money, avatar, userCharacter, regDate FROM users WHERE userId=?";
 		List<User> list = jdbcTemplate.query(query, new Object[] { userId },
 				new RowMapper<User>() {
 					public User mapRow(ResultSet resultSet, int rowNum)
@@ -438,7 +438,7 @@ public class ProfileDaoImpl implements IProfileDao {
 										.getString("nickName"), resultSet
 										.getInt("money"), resultSet
 										.getString("avatar"), resultSet
-										.getInt("userCharacter"));
+										.getInt("userCharacter"), resultSet.getTimestamp("regDate"));
 					}
 				});
 		log.info("ProfileDaoImpl.getUserById: ID of user is " + userId);

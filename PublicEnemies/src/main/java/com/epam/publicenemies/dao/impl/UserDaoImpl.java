@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.PreparedStatement; 
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -42,6 +43,23 @@ public class UserDaoImpl implements IUserDao {
 
 	
 	/**
+	 * Get user registration date
+	 * @param userId - id of user
+	 * @return - registration date
+	 */
+	public Timestamp getUserRegDate (int userId) {
+		final String SELECT_SQL = "SELECT regDate FROM users WHERE userId=?";
+		Timestamp time = (Timestamp) jdbcTemplate.queryForObject(SELECT_SQL, new Object[] {userId},
+		new RowMapper<Timestamp>() {
+			public Timestamp mapRow(ResultSet resultSet, int rowNum) throws SQLException {
+				return resultSet.getTimestamp("regdate");
+			}
+		
+		});
+		return time;
+	}
+	
+	/**
 	 * Get amount of of registered users
 	 * @return amount of of registered users
 	 */
@@ -56,14 +74,14 @@ public class UserDaoImpl implements IUserDao {
 	 * @return List of 5 users
 	 */
 	public List<User> getNewUsers () {
-		final String USERS_SQL = "SELECT userId, email, password, nickName, money, avatar, userCharacter" +
+		final String USERS_SQL = "SELECT userId, email, password, nickName, money, avatar, userCharacter, regDate" +
 				" FROM users ORDER BY regDate LIMIT 5";
 		List<User> list = jdbcTemplate.query(USERS_SQL, new RowMapper<User>() {
 			public User mapRow(ResultSet resultSet, int rowNum) throws SQLException {
 				return new User ( resultSet.getInt("userId"), resultSet.getString("email"),
 						resultSet.getString("password"), resultSet.getString("nickName"),
 						resultSet.getInt("money"), resultSet.getString("avatar"),
-						resultSet.getInt("userCharacter") );
+						resultSet.getInt("userCharacter"), resultSet.getTimestamp("regDate") );
 			}
 		});
 		return list;
@@ -149,7 +167,7 @@ public class UserDaoImpl implements IUserDao {
 	* @return User object
 	* */
 	public User findUserById(final int userId) {
-		final String query = "SELECT * FROM users WHERE userId=?";
+		final String query = "SELECT email, password, nickName, money, avatar, userCharacter, regDate FROM users WHERE userId=?";
 		List<User> list = jdbcTemplate.query(query, new Object[]{userId}, new RowMapper<User>() {
 			public User mapRow(ResultSet resultSet, int rowNum)
 					throws SQLException {
@@ -159,7 +177,8 @@ public class UserDaoImpl implements IUserDao {
 						resultSet.getString("nickName"),
 						resultSet.getInt("money"),
 						resultSet.getString("avatar"),
-						resultSet.getInt("userCharacter")
+						resultSet.getInt("userCharacter"),
+						resultSet.getTimestamp("regDate")
 						);
 			}
 		});
@@ -177,17 +196,16 @@ public class UserDaoImpl implements IUserDao {
 	* @return User object
 	* */
 	public User findUserByEmailAndPassword(final String email, final String password){
-		final String query = "SELECT * FROM users WHERE email=? AND password=?";
+		final String query = "SELECT userId, nickName, money, avatar, userCharacter, regDate FROM users WHERE email=? AND password=?";
 		List <User> list = jdbcTemplate.query(query, new Object[]{email, password}, new RowMapper<User>() {
 			public User mapRow(ResultSet resultSet, int rowNum)
 					throws SQLException {
-				return new User(resultSet.getInt("userId"), 
-						resultSet.getString("email"), 
-						resultSet.getString("password"), 
+				return new User(resultSet.getInt("userId"), email, password, 
 						resultSet.getString("nickName"),
 						resultSet.getInt("money"),
 						resultSet.getString("avatar"),
-						resultSet.getInt("userCharacter"));
+						resultSet.getInt("userCharacter"),
+						resultSet.getTimestamp("regDate"));
 			}
 		});
 		if (list.isEmpty())
@@ -201,17 +219,17 @@ public class UserDaoImpl implements IUserDao {
 	* @return User object
 	* */
 	public User findUserByEmail(final String email) {
-		final String query = "SELECT * FROM users WHERE email=?";
+		final String query = "SELECT userId, password, nickName, money, avatar, userCharacter, regDate FROM users WHERE email=?";
 		List <User> list = jdbcTemplate.query(query, new Object[]{email}, new RowMapper<User>() {
 			public User mapRow(ResultSet resultSet, int rowNum)
 					throws SQLException {
-				return new User(resultSet.getInt("userId"), 
-						resultSet.getString("email"), 
+				return new User(resultSet.getInt("userId"),	email, 
 						resultSet.getString("password"), 
 						resultSet.getString("nickName"),
 						resultSet.getInt("money"),
 						resultSet.getString("avatar"),
-						resultSet.getInt("userCharacter"));
+						resultSet.getInt("userCharacter"),
+						resultSet.getTimestamp("regDate"));
 			}
 		});
 		if (list.isEmpty())
@@ -275,6 +293,25 @@ public class UserDaoImpl implements IUserDao {
 	}
 	
 	/**
+	 * Update user's fields
+	 * @param userId - user id
+	 * @param email - user's email
+	 * @param nickname - user's nick name
+	 * @param avatar - user's avatar
+	 * @param money - user's amount of money
+	 * @param userCharacter - id of users's character
+	 * @return
+	 */
+	public boolean updateUserInfo(int userId, String email, String nickName, String avatar, int money, int userCharacter) {
+		final String UPDATE_SQL = "UPDATE users SET email=?, nickName=?, avatar=?, money=?, userCharacter=? WHERE userId=?"; 
+		int i = jdbcTemplate.update(UPDATE_SQL, new Object[] {email, nickName, avatar, money, userCharacter, userId});
+		if (i>0) {
+			log.info("UserDaoImpl.updatUserInfo : user("+userId+") updated");
+			return true;
+		} else	return false;
+	}
+	
+	/**
 	* Delete user
 	* @param userId - id of user
 	* */
@@ -311,7 +348,8 @@ public class UserDaoImpl implements IUserDao {
 						resultSet.getString("nickName"),
 						resultSet.getInt("money"),
 						resultSet.getString("avatar"),
-						resultSet.getInt("userCharacter"));
+						resultSet.getInt("userCharacter"),
+						resultSet.getTimestamp("regDate"));
 			}
 		});
 	}
