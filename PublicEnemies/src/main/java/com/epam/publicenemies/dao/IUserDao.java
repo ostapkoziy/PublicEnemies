@@ -1,5 +1,6 @@
 package com.epam.publicenemies.dao;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import com.epam.publicenemies.domain.User;
@@ -98,6 +99,18 @@ public interface IUserDao {
 	boolean updateUserInfo (User user);
 	
 	/**
+	 * Update user's fields
+	 * @param userId - user id
+	 * @param email - user's email
+	 * @param nickname - user's nick name
+	 * @param avatar - user's avatar
+	 * @param money - user's amount of money
+	 * @param userCharacter - id of users's character
+	 * @return
+	 */
+	boolean updateUserInfo (int userId, String email, String nickName, String avatar, int money, int userCharacter);
+	
+	/**
 	* Delete user
 	* @param userId - id of user
 	* */
@@ -122,5 +135,12 @@ public interface IUserDao {
 	 * @return true if operation was successful
 	 */
 	boolean updateMoney (int userId, int money);
+	
+	/**
+	 * Get user registration date
+	 * @param userId - id of user
+	 * @return - registration date
+	 */
+	Timestamp getUserRegDate (int userId);
 	
 }

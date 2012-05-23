@@ -11,6 +11,7 @@ public class PokerGame {
 	private Profile user1Profile;
 	private PokerRound pokerGameRound;
 	private String userResultPage;
+	private String comment;
 	public long getId() {
 		return id;
 	}
@@ -35,6 +36,12 @@ public class PokerGame {
 	}
 	public void setUserResultPage(String userResultPage) {
 		this.userResultPage = userResultPage;
+	}
+	public String getComment() {
+		return comment;
+	}
+	public void setComment(String comment) {
+		this.comment = comment;
 	}
 	
 	

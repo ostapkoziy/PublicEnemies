@@ -1,5 +1,7 @@
 package com.epam.publicenemies.domain;
 
+import java.sql.Timestamp;
+
 /**
  * Represent user (the same way as 'users' table)
  * 
@@ -15,6 +17,7 @@ public class User {
 	private String avatar;
 	private int money; 
 	private int characterId;
+	private Timestamp regDate;
 
 	public User() {
 		email = new String();
@@ -31,7 +34,7 @@ public class User {
 	 * TODO: table 'user' contains more fields. They may be added later
 	 */
 	public User(int userId, String email, String password, String nickName,
-			int money, String avatar, int userChar) {
+			int money, String avatar, int userChar, Timestamp regDate) {
 		this.userId = userId;
 		this.email = email;
 		this.password = password;
@@ -39,35 +42,9 @@ public class User {
 		this.money = money; 
 		this.avatar = avatar;
 		this.characterId = userChar;
+		this.regDate = regDate;
 	}
 	
-	/* 
-	 * Old code 
-	 * could be dangerous. Necessary data might be lost. 
-	 * Use the biggest constructor or constructor by default  
-	public User(int id, String email, String password) {
-		//super();
-		this.userId = id;
-		this.email = email;
-		this.password = password;
-		avatar = new String();
-	}	
-	public User (int userId, String email, String password, String nickName) {
-		this.userId = userId;
-		this.email = email;
-		this.password = password;
-		this.nickName = nickName;
-		avatar = new String();
-	}
-	public User (int userId, String email, String password, String nickName, String avatar) {
-		this.userId = userId;
-		this.email = email;
-		this.password = password;
-		this.nickName = nickName;
-		this.avatar = avatar;
-	} */
-	
-
 	public int getUserId() {
 		return userId;
 	}
@@ -121,5 +98,13 @@ public class User {
 	}
 	public void setCharacterId(int characterId) {
 		this.characterId = characterId;
+	}
+
+	public Timestamp getRegDate() {
+		return regDate;
+	}
+
+	public void setRegDate(Timestamp regDate) {
+		this.regDate = regDate;
 	}
 }

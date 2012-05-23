@@ -26,7 +26,7 @@ public class PokerRound {
 	private boolean dealer = false;	// TRUE if player1 is dealer,
 								   // FALSE if player2 is dealer
 	private boolean gameFinished = false; // fold flag
-	
+	public boolean move = true; //TRUE if player1 has to make move 
 	
 	public PokerRound(IPokerPlayer arg1, IPokerPlayer arg2, int sb, int bb) {
 		this.player1 = arg1;
@@ -78,8 +78,30 @@ public class PokerRound {
 			this.setPlayer2Bet(table.getBigBlind());
 		}
 	}
+	public List<PokerCard> flop(){
+		PokerCard card1, card2, card3;
+		card1 = this.getUniqueCard();
+		card2 = this.getUniqueCard();
+		card3 = this.getUniqueCard();
+		List<PokerCard> flop = new ArrayList<PokerCard>();
+		flop.add(card1);
+		flop.add(card2);
+		flop.add(card3);
+		return flop;
+	}
 	
-	public PokerCard getUniqueCard() {
+	public PokerCard turn() {
+		PokerCard card1;
+		card1 = this.getUniqueCard();
+		return card1;
+	}
+
+	public PokerCard river() {
+		PokerCard card1;
+		card1 = this.getUniqueCard();
+		return card1;
+	}
+	private PokerCard getUniqueCard() {
 		PokerCard result = null;
 		Random random = new Random();
 		while (result == null) {
@@ -94,37 +116,7 @@ public class PokerRound {
 		return result;
 	}
 
-	public IPokerPlayer getPlayer1() {
-		return player1;
-	}
 
-	public void setPlayer1(IPokerPlayer player1) {
-		this.player1 = player1;
-	}
-
-	public IPokerPlayer getPlayer2() {
-		return player2;
-	}
-
-	public void setPlayer2(IPokerPlayer player2) {
-		this.player2 = player2;
-	}
-
-	public PokerHand getPlayer1Hand() {
-		return player1Hand;
-	}
-
-	public void setPlayer1Hand(PokerHand player1Hand) {
-		this.player1Hand = player1Hand;
-	}
-
-	public PokerHand getPlayer2Hand() {
-		return player2Hand;
-	}
-
-	public void setPlayer2Hand(PokerHand player2Hand) {
-		this.player2Hand = player2Hand;
-	}
 	/*public int getSbMove() {
 	int bet = 0;
 	if(dealer){
@@ -248,5 +240,93 @@ public void showDown() {
 
 }*/
 
+	public IPokerPlayer getPlayer1() {
+		return player1;
+	}
+
+	public void setPlayer1(IPokerPlayer player1) {
+		this.player1 = player1;
+	}
+
+	public IPokerPlayer getPlayer2() {
+		return player2;
+	}
+
+	public void setPlayer2(IPokerPlayer player2) {
+		this.player2 = player2;
+	}
+
+	public PokerHand getPlayer1Hand() {
+		return player1Hand;
+	}
+
+	public void setPlayer1Hand(PokerHand player1Hand) {
+		this.player1Hand = player1Hand;
+	}
+
+	public PokerHand getPlayer2Hand() {
+		return player2Hand;
+	}
+
+	public void setPlayer2Hand(PokerHand player2Hand) {
+		this.player2Hand = player2Hand;
+	}
+
+	public CardDeck getDeck() {
+		return deck;
+	}
+
+	public void setDeck(CardDeck deck) {
+		this.deck = deck;
+	}
+
+	public PokerTable getTable() {
+		return table;
+	}
+
+	public void setTable(PokerTable table) {
+		this.table = table;
+	}
+
+	public CombinationChecker getCombinationChecker() {
+		return combinationChecker;
+	}
+
+	public void setCombinationChecker(CombinationChecker combinationChecker) {
+		this.combinationChecker = combinationChecker;
+	}
+
+	public PokerCombination getPlayer1Combination() {
+		return player1Combination;
+	}
+
+	public void setPlayer1Combination(PokerCombination player1Combination) {
+		this.player1Combination = player1Combination;
+	}
+
+	public PokerCombination getPlayer2Combination() {
+		return player2Combination;
+	}
+
+	public void setPlayer2Combination(PokerCombination player2Combination) {
+		this.player2Combination = player2Combination;
+	}
+
+	public boolean isDealer() {
+		return dealer;
+	}
+
+	public void setDealer(boolean dealer) {
+		this.dealer = dealer;
+	}
+
+	public boolean isGameFinished() {
+		return gameFinished;
+	}
+
+	public void setGameFinished(boolean gameFinished) {
+		this.gameFinished = gameFinished;
+	}
+	
 	
 }
