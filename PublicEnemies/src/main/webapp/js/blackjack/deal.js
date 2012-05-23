@@ -15,6 +15,8 @@ $(document).ready(function() {
 					playerNothing : nothing
 				}),
 				success : function(data) {
+					var round = jQuery.parseJSON(data);
+					allDataUpdate(round);
 				},
 				error : function(e, ajaxOptions, thrownError) {
 					alert(e.status);
@@ -25,6 +27,14 @@ $(document).ready(function() {
 			});
 		}
 
+	}
+	
+	function allDataUpdate(round)
+	{
+		var i = 0;
+		for(i = 0; i < round.playerCards.length ; i = i + 1){
+			$("#cards").append("<img src="+round.playerCards[i].image+"></img>");			
+		}
 	}
 
 });

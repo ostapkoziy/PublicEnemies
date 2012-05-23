@@ -20,6 +20,7 @@ import com.epam.publicenemies.domain.blackjack.BlackJackDeck;
 import com.epam.publicenemies.domain.blackjack.BlackJackGame;
 import com.epam.publicenemies.domain.blackjack.BlackJackGameList;
 import com.epam.publicenemies.domain.blackjack.BlackJackRound;
+import com.google.gson.Gson;
 
 import flexjson.JSONSerializer;
 
@@ -72,13 +73,17 @@ public class DealBlackJackController {
 		round.setPlayerCards(playerCards);
 		round.setPlayerPoints(playerPoints);
 		round.setDealerCards(dealerCards);
+		
+		log.info(round.toString());
 	
 		BlackJackGame game = games.getGameById(userId);
 		game.setRound(round);
 		
 		PrintWriter out = response.getWriter();
-		JSONSerializer ser = new JSONSerializer();
-		out.print(ser.serialize(round));
+		Gson gson = new Gson();
+		
+		log.info(gson.toJson(round));
+		out.print(gson.toJson(round));
 		out.flush();		
 	}
 }

@@ -22,11 +22,14 @@
 				</c:forEach>
 		</tr>
 		<tr align="center">
-			<td>${result}
+			<td>${result}</td>
 			<td>Your points - ${your_points} <c:forEach
 					items="${player_cards}" var="player_card">
 					<img src="${player_card.image()}"></img>
 				</c:forEach>
+				<div id="cards">
+				</div>
+				</td>
 		</tr>
 		<tr>
 			<td><img id="10_button" src="img/chips/10.png"
