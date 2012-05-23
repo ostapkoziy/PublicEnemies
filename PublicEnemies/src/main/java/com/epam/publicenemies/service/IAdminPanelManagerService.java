@@ -42,4 +42,10 @@ public interface IAdminPanelManagerService {
 	 * @return
 	 */
 	public boolean updateUserInfo(int userId, String email, String nickName, String avatar, int money, int userCharacter);
+	
+	/**
+	 * Get all registered users
+	 * @return list of all registered users
+	 */
+	public List<User> getAllUsers ();
 }

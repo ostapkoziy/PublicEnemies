@@ -87,7 +87,15 @@ public class AdminPanelManagerService implements IAdminPanelManagerService {
 	public boolean updateUserInfo(int userId, String email, String nickName, 
 			String avatar, int money, int userCharacter) {
 		return userDao.updateUserInfo(userId, email, nickName, avatar, money, userCharacter);
-		
+	}
+	
+	/**
+	 * Get all registered users
+	 * @return list of all registered users
+	 */
+	public List<User> getAllUsers () {
+		log.info("Getting all users");
+		return userDao.findAllUsers();
 	}
 	
 }

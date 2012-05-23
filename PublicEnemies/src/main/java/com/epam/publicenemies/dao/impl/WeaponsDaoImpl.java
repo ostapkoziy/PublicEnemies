@@ -1,14 +1,20 @@
 package com.epam.publicenemies.dao.impl;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 
 import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 
 import com.epam.publicenemies.dao.IWeaponsDao;
 import com.epam.publicenemies.domain.Weapon;
@@ -45,6 +51,124 @@ public class WeaponsDaoImpl implements IWeaponsDao {
 	        weapon.setItemPrice(rs.getInt("weaponPrice"));
 	        return weapon;
 	    } 
+	}
+
+	@Override
+	public int addWeapon(final String name, final int hitPoints, final String picture,
+			final boolean weaponType, final int price) {
+		KeyHolder keyHolder = new GeneratedKeyHolder();
+		final String INSERT_SQL = "INSERT INTO weapons (weaponName, weaponHitPoints, weponPicture, weaponType," +
+				"weaponPrice) VALUES (?,?,?,?,?)";
+		jdbcTemplate.update(
+		new PreparedStatementCreator() {
+			@Override
+			public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
+				PreparedStatement ps = connection.prepareStatement(INSERT_SQL, Statement.RETURN_GENERATED_KEYS);
+				ps.setString(1, name);
+				ps.setInt(2, hitPoints);
+				ps.setString(3, picture);
+				ps.setBoolean(4, weaponType);
+				ps.setInt(5, price);
+				return ps;
+			}
+		}, keyHolder);
+		int i = keyHolder.getKey().intValue();
+			log.info("WeaponsDaoImpl.addWeapon : weapon id is" + i);
+		return i;
+	}
+
+	@Override
+	public int addWeapon(final Weapon weapon) {
+		KeyHolder keyHolder = new GeneratedKeyHolder();
+		final String INSERT_SQL = "INSERT INTO weapons (weaponName, weaponHitPoints, weponPicture, weaponType," +
+				"weaponPrice) VALUES (?,?,?,?,?)";
+		jdbcTemplate.update(
+		new PreparedStatementCreator() {
+			@Override
+			public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
+				PreparedStatement ps = connection.prepareStatement(INSERT_SQL, Statement.RETURN_GENERATED_KEYS);
+				ps.setString(1, weapon.getItemName());
+				ps.setInt(2, weapon.getHitPoints());
+				ps.setString(3, weapon.getItemPicture());
+				ps.setBoolean(4, weapon.isWeaponType());
+				ps.setInt(5, weapon.getItemPrice());
+				return ps;
+			}
+		}, keyHolder);
+		int i = keyHolder.getKey().intValue();
+			log.info("WeaponsDaoImpl.addWeapon : weapon id is " + i);
+		return i;
+	}
+
+	@Override
+	public Weapon getWeaponById(int weaponId) {
+		final String SELECT_SQL = "SELECT * FROM weapons WHERE weaponId=?";
+		Weapon weapon = jdbcTemplate.queryForObject(SELECT_SQL, new Object[]{ weaponId }, new WeaponMapper());
+			log.info("WeaponDaoImpl.getWeaponById : weapon id is " + weaponId);
+			return weapon;
+	}
+
+	@Override
+	public Weapon getWeaponByName(String name) {
+		final String SELECT_SQL = "SELECT * FROM weapons WHERE weaponName=?";
+		Weapon weapon = jdbcTemplate.queryForObject(SELECT_SQL, new Object[]{ name }, new WeaponMapper());
+		log.info("WeaponDaoImpl.getWeaponByName : weapon id is " + weapon.getItemId());
+		return weapon;
+	}
+
+	@Override
+	public List<Weapon> getAllFirearm() {
+		final String SELECT_SQL = "SELECT * FROM weapons WHERE weaponType=1";
+		List<Weapon> weapons = jdbcTemplate.query(SELECT_SQL, new WeaponMapper());
+		log.info("WeaponDaoImpl.getAllFirearms : were " + weapons.size() + " weapons selected");
+		return weapons;
+	}
+
+	@Override
+	public List<Weapon> getAllColdSteel() {
+		final String SELECT_SQL = "SELECT * FROM weapons WHERE weaponType=0";
+		List<Weapon> weapons = jdbcTemplate.query(SELECT_SQL, new WeaponMapper());
+		log.info("WeaponDaoImpl.getAllColdSteel : were " + weapons.size() + " weapons selected");
+		return weapons;
+	}
+
+	@Override
+	public boolean updateWeaponName(int weaponId, String name) {
+		final String UPDATE_SQL = "UPDATE weapons SET weaponName=? WHERE weaponId=?";
+		int i = jdbcTemplate.update(UPDATE_SQL, new Object[] {name, weaponId});
+		if (i>0) {
+			log.info("WeaponDaoImpl.updateWeaponName : weapon(" + weaponId + ") was renamed to " + name);
+			return true;
+		} else	return false;
+	}
+
+	@Override
+	public boolean updateWeaponHitPoints(int weaponId, int hitPoints) {
+		final String UPDATE_SQL = "UPDATE weapons SET weaponName=? WHERE weaponId=?";
+	//	int i = jdbcTemplate.update(UPDATE_SQL, new Object[] {name, weaponId});
+	//	if (i>0) {
+	//		log.info("WeaponDaoImpl.updateWeaponName : weapon(" + weaponId + ") was renamed to " + name);
+	//		return true;
+	//	} else	
+		return false;
+	}
+
+	@Override
+	public boolean updateWeaponPicture(int weaponId, String picture) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean updateWeaponType(int weaponid, boolean weaponType) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean updateWeaponPrice(int weaponid, int price) {
+		// TODO Auto-generated method stub
+		return false;
 	}	
 
 	

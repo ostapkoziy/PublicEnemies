@@ -374,8 +374,6 @@ public class UserDaoImpl implements IUserDao {
 		return keyHolder.getKey().intValue();	
 	}
 
-
-
 	/**
 	 * Update money amount
 	 * @param userId - id of user

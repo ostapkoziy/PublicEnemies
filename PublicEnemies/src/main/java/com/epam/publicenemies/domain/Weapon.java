@@ -40,7 +40,7 @@ public class Weapon extends Item {
 	 * Get Weapon name
 	 * @return - Weapon name
 	 */
-	public String getWaponName() {
+	public String getWeaponName() {
 		return super.getItemName();
 	}
 	

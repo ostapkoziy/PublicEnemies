@@ -753,4 +753,8 @@ public class Profile
 	public void setAllHP(int hp) {
 		pCharacter.setAllUserHP(hp);
 	}
+	
+	public String getEmail() {
+		return pUser.getEmail();
+	}
 }
