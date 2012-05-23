@@ -7,6 +7,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="css/poker.css" type="text/css">
 <script type="text/javascript" src="js/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="js/poker/jquery.valid8.js"></script>
+
 <title>Poker</title>
 <script type="text/javascript" src="js/poker/bet.js"></script>
 
@@ -60,13 +62,13 @@
 									<!--++++++++++++++++++++++++++++++++++DECK++++++++++++++++++++++++++++++++++++ -->
 									<img id="deck" style="position:relative; top:-25px; left:40px; width: 40px" src="img/cards/deck.png"></img>
 									<!--++++++++++++++++++++++++++++++++++FLOP++++++++++++++++++++++++++++++++++++ -->
-									<img id="flop1" style="position:relative; top:-25px; left:93px; width: 35px" src=""></img>
-									<img id="flop2" style="position:relative; top:-25px; left:98px; width: 35px" src=""></img>
-									<img id="flop3" style="position:relative; top:-25px; left:103px; width: 35px" src=""></img>
+									<img id="flop1" class="none" style="position:relative; top:-25px; left:93px; width: 35px" src=""></img>
+									<img id="flop2" class="none"  style="position:relative; top:-25px; left:98px; width: 35px" src=""></img>
+									<img id="flop3" class="none" style="position:relative; top:-25px; left:103px; width: 35px" src=""></img>
 									<!--++++++++++++++++++++++++++++++++++TURN++++++++++++++++++++++++++++++++++++ -->
-									<img id="turn" style="position:relative; top:-25px; left:108px; width: 35px" src=""></img>
+									<img id="turn" class="none" style="position:relative; top:-25px; left:108px; width: 35px" src=""></img>
 									<!--++++++++++++++++++++++++++++++++++RIVER+++++++++++++++++++++++++++++++++++ -->
-									<img id="river" style="position:relative; top:-25px; left:113px; width: 35px" src=""></img>
+									<img id="river" class="none" style="position:relative; top:-25px; left:113px; width: 35px" src=""></img>
 									<!--++++++++++++++++++++++++++++++++++POT++++++++++++++++++++++++++++++++++++ -->
 									<img id="pot_chips" style="position:relative; top:-25px; left:130px; width: 35px" src="img/chips/chips.png"></img>
 									<font id="pot_size" style="position:relative; top:-40px; left:140px;">pot</font>
@@ -112,9 +114,9 @@
 				</tr>
  				<tr>
  					<td>
- 						<img id="fold_button" src="img/layout/fold.png" style="position:relative; top:-150px; left:300px;"></img>
- 						<img id="call_button" src="img/layout/call.png" style="position:relative; top:-150px; left:340px;"></img>
- 						<img id="raise_button" src="img/layout/raise.png" style="position:relative; top:-150px; left:390px;"></img>
+ 						<img id="fold_button" name="active" src="img/layout/fold.png" style="position:relative; top:-150px; left:300px;"></img>
+ 						<img id="call_button" name="active" src="img/layout/call.png" style="position:relative; top:-150px; left:340px;"></img>
+ 						<img id="raise_button" name="active" src="img/layout/raise.png" style="position:relative; top:-150px; left:390px;"></img>
  					</td>
  				</tr>
  				<tr height="30">

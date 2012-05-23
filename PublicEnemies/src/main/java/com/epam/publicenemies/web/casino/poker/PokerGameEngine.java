@@ -100,7 +100,7 @@ public class PokerGameEngine{
 		// DISPLAY BLINDS ON TABLE
 	}
 
-	public List<PokerHand> dealHand() {
+	/*	public List<PokerHand> dealHand() {
 		List<PokerHand> result = new ArrayList<PokerHand>();
 		deck.shuffleDeck(); // shuffle the deck
 		gameFinished = false; // no one folded yet
@@ -137,7 +137,7 @@ public class PokerGameEngine{
 	//the PokerHand parameter in ALL times is the BOT hand
 	public int getSbMove() {
 		int bet = 0;
-		/*if(dealer){
+		if(dealer){
 			try {
 				bet = player2.makeMove(table, player2Hand, dealer);
 			} catch (FoldException e) {
@@ -155,7 +155,7 @@ public class PokerGameEngine{
 				return -1;
 			}
 			table.setPlayer1Bet(table.getPlayer1Bet() + bet);
-		}*/
+		}
 		return bet;
 	}
 	
@@ -197,10 +197,10 @@ public class PokerGameEngine{
 			}
 			count ++;
 		}while(table.getPlayer1Bet() != table.getPlayer2Bet());
-		*/
+		
 	}
-	
-	public void preflop() {
+	*/
+	/*	public void preflop() {
 
 		this.getMoves();
 		
@@ -305,5 +305,5 @@ public class PokerGameEngine{
 	public void setTable(PokerTable table){
 		this.table = table;
 	}
-
+	*/
 	}

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import org.apache.log4j.Logger;
+
 import com.epam.publicenemies.domain.poker.CardDeck;
 import com.epam.publicenemies.domain.poker.IPokerPlayer;
 import com.epam.publicenemies.domain.poker.PokerCard;
@@ -12,6 +14,8 @@ import com.epam.publicenemies.domain.poker.PokerHand;
 import com.epam.publicenemies.domain.poker.PokerTable;
 
 public class PokerRound {
+	private Logger log = Logger.getLogger(PokerRound.class);
+	
 	private PokerHand player1Hand = null;
 	private PokerHand player2Hand = null;
 	private CardDeck deck = CardDeck.getInstance();
@@ -27,6 +31,7 @@ public class PokerRound {
 								   // FALSE if player2 is dealer
 	private boolean gameFinished = false; // fold flag
 	public boolean move = true; //TRUE if player1 has to make move 
+	private String result;
 	
 	public PokerRound(IPokerPlayer arg1, IPokerPlayer arg2, int sb, int bb) {
 		this.player1 = arg1;
@@ -78,6 +83,7 @@ public class PokerRound {
 			this.setPlayer2Bet(table.getBigBlind());
 		}
 	}
+
 	public List<PokerCard> flop(){
 		PokerCard card1, card2, card3;
 		card1 = this.getUniqueCard();
@@ -87,21 +93,32 @@ public class PokerRound {
 		flop.add(card1);
 		flop.add(card2);
 		flop.add(card3);
+		table.setFlop(flop);
+		player1Combination = getCombinationChecker().checkForCombinations(getTable().getTable(), getPlayer1Hand());
+		player2Combination = getCombinationChecker().checkForCombinations(getTable().getTable(), getPlayer2Hand());
+		
 		return flop;
 	}
 	
 	public PokerCard turn() {
 		PokerCard card1;
 		card1 = this.getUniqueCard();
+		table.setTurn(card1);
+		player1Combination = getCombinationChecker().checkForCombinations(getTable().getTable(), getPlayer1Hand());
+		player2Combination = getCombinationChecker().checkForCombinations(getTable().getTable(), getPlayer2Hand());
 		return card1;
 	}
 
 	public PokerCard river() {
 		PokerCard card1;
 		card1 = this.getUniqueCard();
+		table.setRiver(card1);
+		player1Combination = getCombinationChecker().checkForCombinations(getTable().getTable(), getPlayer1Hand());
+		player2Combination = getCombinationChecker().checkForCombinations(getTable().getTable(), getPlayer2Hand());
 		return card1;
 	}
-	private PokerCard getUniqueCard() {
+	
+private PokerCard getUniqueCard() {
 		PokerCard result = null;
 		Random random = new Random();
 		while (result == null) {
@@ -114,6 +131,23 @@ public class PokerRound {
 			}
 		}
 		return result;
+	}
+	
+	public void displayResults() {
+	//	if(!gameFinished){
+		log.info("player1combo - " + player1Combination.getName());
+		log.info("player2combo - " + player2Combination.getName());
+			if (PokerCombination.compare(player1Combination, player2Combination) == player1Combination){
+				result = player1.getName()+" won with "+ player1Combination.getName();
+			}else if(PokerCombination.compare(player1Combination, player2Combination) == player2Combination){
+				result = player2.getName()+" won with "+ player2Combination.getName();
+			}else{
+				result = "Split pot";
+			}
+	/*	}else{
+			System.out.println("One of the players folded");
+		}*/
+		
 	}
 
 
@@ -188,52 +222,9 @@ public void preflop() {
 	
 }
 
-public void flop() {
-	PokerCard card1, card2, card3;
-	card1 = this.getUniqueCard();
-	card2 = this.getUniqueCard();
-	card3 = this.getUniqueCard();
-	List<PokerCard> flop = new ArrayList<PokerCard>();
-	flop.add(card1);
-	flop.add(card2);
-	flop.add(card3);
-	table.setFlop(flop);
-	System.out.println(table);
 
-	this.getMoves();
-	
-}
 
-public void turn() {
-	PokerCard card1;
-	card1 = this.getUniqueCard();
-	table.setTurn(card1);
-	System.out.println(table);
-	this.getMoves();
-}
 
-public void river() {
-	PokerCard card1;
-	card1 = this.getUniqueCard();
-	table.setRiver(card1);
-	System.out.println(table);
-	this.getMoves();
-}
-
-public void displayResults() {
-	if(!gameFinished){
-		if (PokerCombination.compare(player1Combination, player2Combination) == player1Combination){
-			System.out.println(""+player1.getName()+" WINS!");
-		}else if(PokerCombination.compare(player1Combination, player2Combination) == player2Combination){
-			System.out.println(""+player2.getName()+" WINS!");
-		}else{
-			System.out.println("SPLIT POT");
-		}
-	}else{
-		System.out.println("One of the players folded");
-	}
-	
-}
 
 public void showDown() {
 	System.out.println("SHOWDOWN");
@@ -326,6 +317,14 @@ public void showDown() {
 
 	public void setGameFinished(boolean gameFinished) {
 		this.gameFinished = gameFinished;
+	}
+
+	public String getResult() {
+		return result;
+	}
+
+	public void setResult(String result) {
+		this.result = result;
 	}
 	
 	

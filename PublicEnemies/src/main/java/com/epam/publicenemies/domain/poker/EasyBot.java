@@ -6,6 +6,7 @@ import java.util.Random;
 
 import com.epam.publicenemies.web.casino.poker.CombinationChecker;
 import com.epam.publicenemies.web.casino.poker.FoldException;
+import com.epam.publicenemies.web.casino.poker.PokerGame;
 import com.epam.publicenemies.web.casino.poker.SpectrumAnalyzer;
 
 
@@ -14,6 +15,7 @@ public class EasyBot implements IPokerPlayer {
 	public String name;
 	public int cash;
 	public boolean initiative = false;
+	private PokerGame pokerGame;
 	
 	public EasyBot(String name, int cash) {
 		this.name = name;
@@ -31,9 +33,12 @@ public class EasyBot implements IPokerPlayer {
 	public void setCash(int cash) {
 		this.cash = cash;
 	}
-	public int makeMove(PokerTable deck, PokerHand hand, boolean isSmallBlind) throws FoldException {
+	public int makeMove(PokerGame game) throws FoldException {
 		int result = 0;
-		/*	
+		pokerGame = game;
+		PokerTable deck = game.getPokerGameRound().getTable();
+		PokerHand hand = game.getPokerGameRound().getPlayer2Hand();
+		boolean isSmallBlind  = !game.getPokerGameRound().isDealer() ;
 		if(isPreFlop(deck)){		//PREFLOP
 			result = this.makeMovePreFlop(deck, hand, isSmallBlind);
 		} else if (isFlop(deck)){	//FLOP
@@ -54,7 +59,7 @@ public class EasyBot implements IPokerPlayer {
 			}catch(FoldException e){
 				throw new FoldException();
 			}
-		}*/
+		}
 			
 	
 		return result;
@@ -78,45 +83,45 @@ public class EasyBot implements IPokerPlayer {
 				Random random = new Random();
 				int val = random.nextInt(100);
 				if(val <= 65){
-					result = this.bet(deck);
+					result = this.bet(pokerGame);
 					return result;
 				}
 			}
 			if((combo.getRank() == 2) && (combo.getCard3().getValue().getRank() >= 11)){
-				result = this.bet(deck);
+				result = this.bet(pokerGame);
 				return result;
 			}
 			if(combo.getRank() > 2){
-				result = this.bet(deck);
+				result = this.bet(pokerGame);
 				return result;
 			}
 			if(CombinationChecker.checkForFlushDraw(deck.getTable(), hand)){
-				result = this.bet(deck);
+				result = this.bet(pokerGame);
 				return result;
 			}
 			if(CombinationChecker.checkForStraightDraw(deck.getTable(), hand)){
-				result = this.bet(deck);
+				result = this.bet(pokerGame);
 				return result;
 			}
 			
 			result = this.check(deck);
 		}else if (!initiative){
 			if(combo.getRank() >= 3){
-				result = this.bet(deck);
+				result = this.bet(pokerGame);
 				return result;
 			}
 			if(CombinationChecker.checkForFlushDraw(deck.getTable(), hand)){
-				result = this.bet(deck);
+				result = this.bet(pokerGame);
 				return result;
 			}
 			if(CombinationChecker.checkForStraightDraw(deck.getTable(), hand)){
-				result = this.bet(deck);
+				result = this.bet(pokerGame);
 				return result;
 			}
 
-	/*		if(deck.getPlayer1Bet() == deck.getPlayer2Bet()){
+			if(pokerGame.getPokerGameRound().getPlayer1Bet() == pokerGame.getPokerGameRound().getPlayer2Bet()){
 				return this.check(deck);
-			}*/
+			}
 			return this.fold();
 		}
 		
@@ -138,11 +143,11 @@ public class EasyBot implements IPokerPlayer {
 			isDryBoard = CombinationChecker.isDryBoard(allCards);
 			
 			if(isDryBoard){
-				result = this.bet(deck);
+				result = this.bet(pokerGame);
 				return result;
 			}
 			if((combo.getRank() >= 3) && (true /*TPTK*/)){
-				result = this.bet(deck);
+				result = this.bet(pokerGame);
 				return result;
 			}
 			
@@ -150,14 +155,14 @@ public class EasyBot implements IPokerPlayer {
 		}else if (!initiative){
 			
 			if(combo.getRank() >= 3){
-				result = this.bet(deck);
+				result = this.bet(pokerGame);
 				return result;
 			}
 
 			//if TPTK = call
-		/*	if(deck.getPlayer1Bet() == deck.getPlayer2Bet()){
+			if(pokerGame.getPokerGameRound().getPlayer1Bet() == pokerGame.getPokerGameRound().getPlayer2Bet()){
 				return this.check(deck);
-			}*/
+			}
 			return this.fold();
 		}
 		
@@ -177,7 +182,7 @@ public class EasyBot implements IPokerPlayer {
 			allCards.add(hand.getCard2());
 
 			if(combo.getRank() >= 4){
-				result = this.bet(deck);
+				result = this.bet(pokerGame);
 				return result;
 			}
 			
@@ -186,7 +191,7 @@ public class EasyBot implements IPokerPlayer {
 		}else if (!initiative){
 			
 			if(combo.getRank() >= 5){
-				result = this.bet(deck);
+				result = this.bet(pokerGame);
 				return result;
 			}
 
@@ -222,19 +227,18 @@ public class EasyBot implements IPokerPlayer {
 			foldCondition.add("82s-");
 			
 			if(SpectrumAnalyzer.getInstance().inRange(hand, raiseCondition)){
-				result = this.bet(deck);
+				result = this.bet(pokerGame);
 			}else if (SpectrumAnalyzer.getInstance().inRange(hand, foldCondition)){
-				/*if (deck.getPlayer1Bet() - deck.getPlayer2Bet() == 0){
-					result = this.check(deck);*/
+				if (pokerGame.getPokerGameRound().getPlayer1Bet() - pokerGame.getPokerGameRound().getPlayer2Bet() == 0){
+					result = this.check(deck);
 				}else{
 					this.fold();				
 				}
-			}else{
-				this.setInitiative(false);
-				result = this.call(deck);
-				
-			}
-		/*	}else{
+		}else{
+			this.setInitiative(false);
+			result = this.call(deck);
+			}	
+		/*}else{
 			//top 2-3% of spectrum
 			List<String> triBetCondition = new ArrayList<String>();
 			triBetCondition.add("TT+");
@@ -258,19 +262,19 @@ public class EasyBot implements IPokerPlayer {
 					System.out.println("FOLD");
 					this.fold();
 				}
-			}
-		}*/
+			}*/
+		}
 		
 		return result;
 	}
 	private int call(PokerTable deck) {
-		int toCall = 0;//deck.getPlayer1Bet() - deck.getPlayer2Bet();
+		int toCall = pokerGame.getPokerGameRound().getPlayer1Bet() - pokerGame.getPokerGameRound().getPlayer2Bet();
 		if(toCall > 0){
 			if(toCall > cash){
 				this.allIn();
 			}
 			this.cash -=toCall;
-		//	deck.setPlayer2Bet(deck.getPlayer2Bet() + toCall);
+			 pokerGame.getPokerGameRound().setPlayer2Bet( pokerGame.getPokerGameRound().getPlayer2Bet() + toCall);
 			System.out.println(name+" called "+toCall);
 		}
 		else if (toCall == 0){
@@ -280,9 +284,9 @@ public class EasyBot implements IPokerPlayer {
 	}
 
 	private int check(PokerTable deck) {
-/*		if (deck.getPlayer1Bet() == deck.getPlayer2Bet()){
+		if ( pokerGame.getPokerGameRound().getPlayer1Bet() ==  pokerGame.getPokerGameRound().getPlayer2Bet()){
 			return 0;
-		}*/
+		}
 		return -1;
 	}
 
@@ -290,9 +294,9 @@ public class EasyBot implements IPokerPlayer {
 		return this.cash;
 	}
 
-	private int bet(PokerTable deck) {
+	private int bet(PokerGame game) {
 		this.setInitiative(true);	//initiative +
-		int raise = deck.getBigBlind() * 3;
+		int raise = (game.getPokerGameRound().getPlayer1Bet() - game.getPokerGameRound().getPlayer2Bet()) * 3;
 		if(cash > raise){
 			this.cash -= raise;
 		}else{
@@ -301,9 +305,9 @@ public class EasyBot implements IPokerPlayer {
 		return raise;
 	}
 	
-	private int triBet(PokerTable deck){
+	private int triBet(PokerGame game){
 		this.setInitiative(true);	//initiative +
-		int raise = deck.getBigBlind() * 9;
+		int raise = (game.getPokerGameRound().getPlayer1Bet() - game.getPokerGameRound().getPlayer2Bet()) * 9;
 		return raise;
 	}
 

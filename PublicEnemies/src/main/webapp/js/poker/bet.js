@@ -4,20 +4,23 @@ $(document).ready(function(){
 	var image_suffix = ".png";
 	
 	betSend(0,0);
-	//deal cards
-	/*$("img#deck").click(function(){
-		count ++;
-		if(count == 1){
-			dealFlop("Ts","Js","Qs");
-		}
-		else if (count == 2){
-			dealTurn("Ks");
-		}
-		else if (count == 3){
-			dealRiver("As");
-		}
-		
-	});*/
+	var regBet = /^([0-9]{1,20})$/;
+	$("#userBetInput").keyup(function()
+		{
+			var temp = $("#raise_button").attr("src");
+			if ($("#userBetInput").val().search(regBet) == -1)
+			{
+				$("#userBetInput").removeClass("correct").addClass("error");
+				$("#raise_button").attr("src", "img/layout/button.png");
+			}
+			else
+			{
+				$("#userBetInput").removeClass("error").addClass("correct");
+				$("#raise_button").attr("src", temp);
+
+			}
+
+		});
 	$("#botBetInput").hide();
 
 	function dealFlop (card1, card2, card3){
@@ -71,8 +74,19 @@ $(document).ready(function(){
 		if(pokerGame.pokerGameRound.player1Bet == pokerGame.pokerGameRound.player2Bet){
 			evenBets(pokerGame);
 		}
+		if(pokerGame.pokerGameRound.result == "Player Folded"){
+			alert("player Folded");
+			roundEnded();
+		}
+		if(pokerGame.pokerGameRound.result == "Bot Folded"){
+			alert("Bot Folded");
+			roundEnded();
+		}
 		if(pokerGame.comment == "Showdown"){
 			showdown(pokerGame);
+		}
+		if(pokerGame.pokerGameRound.result != null){
+			showResult(pokerGame);
 		}
 		$("img#player_avatar").attr("src", pokerGame.user1Profile.avatar);
 		$("#player_name").empty().append(pokerGame.user1Profile.nickName);
@@ -108,6 +122,39 @@ $(document).ready(function(){
 		}
 		
 	}
+	function showResult(pokerGame){
+		if(pokerGame.pokerGameRound.result != "Split pot"){
+			var my_str = pokerGame.pokerGameRound.result;
+			var str=pokerGame.pokerGameRound.player1.name;
+			if(my_str.search(str)==-1){
+				highlightCards(pokerGame.pokerGameRound.player2Combination);
+			}else{
+				highlightCards(pokerGame.pokerGameRound.player1Combination);
+			}
+		}
+	}
+	
+	function highlightCards(combo){
+		var card1 = combo.card1.value.name + combo.card1.suit.name;
+		var card2 = combo.card2.value.name + combo.card2.suit.name;
+		var card3 = combo.card3.value.name + combo.card3.suit.name;
+		var card4 = combo.card4.value.name + combo.card4.suit.name;
+		var card5 = combo.card5.value.name + combo.card5.suit.name;
+		
+		$("[src='"+image_prefix + card1 + image_suffix+"']").attr("class", "highlight");
+		$("[src='"+image_prefix + card2 + image_suffix+"']").attr("class", "highlight");
+		$("[src='"+image_prefix + card3 + image_suffix+"']").attr("class", "highlight");
+		$("[src='"+image_prefix + card4 + image_suffix+"']").attr("class", "highlight");
+		$("[src='"+image_prefix + card5 + image_suffix+"']").attr("class", "highlight");
+		roundEnded();
+	}
+
+	function roundEnded(){
+		$("body").click(function(){
+			$("img.highlight").attr("class", "none");
+		});
+		
+	}
 	
 	function showdown(pokerGame){
 		var p2c1 = pokerGame.pokerGameRound.player2Hand.card1.value.name + "" + pokerGame.pokerGameRound.player2Hand.card1.suit.name;
@@ -118,6 +165,15 @@ $(document).ready(function(){
 	
 	$(function()
 	{
+		$("#fold_button").click(function(){
+			var userBet = -1;
+			var botBet = $("#botBetInput").val();
+			
+			if (userBet != undefined & botBet != undefined)
+			{
+				betSend(userBet, botBet);
+			}
+		});
 		$("#raise_button").click(function()
 		{
 			var userBet = $("#userBetInput").val();
