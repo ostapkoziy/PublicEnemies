@@ -1,6 +1,7 @@
 package com.epam.publicenemies.service.impl;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.epam.publicenemies.dao.IUserDao;
@@ -9,21 +10,18 @@ import com.epam.publicenemies.dto.UserDto;
 import com.epam.publicenemies.service.IUserManagerService;
 
 /**
- * Updated by I. Kostyrko on May 19, 2012: removed unnecessary code TODO: REMOVE
- * DTO (use domain instead)
+ * Updated by I. Kostyrko on May 19, 2012: removed unnecessary code 
+ * TODO: REMOVE DTO (use domain instead)
  */
 @Service
 public class UserManagerServiceImpl implements IUserManagerService
 {
 	private Logger		log	= Logger.getLogger(UserManagerServiceImpl.class);
-	// @Autowired
+	
+	@Autowired
 	private IUserDao	userDao;
-	public void setUserDao(IUserDao userDao)
-	{
-		this.userDao = userDao;
-	}
-	private UserDto makeUserDto(User user)
-	{
+	
+	private UserDto makeUserDto(User user) {
 		return new UserDto(user);
 	}
 	/**

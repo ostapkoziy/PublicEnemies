@@ -5,9 +5,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.Controller;
 
 import com.epam.publicenemies.domain.Profile;
 import com.epam.publicenemies.service.IProfileManagerService;
@@ -15,25 +16,20 @@ import com.epam.publicenemies.service.IProfileManagerService;
 /**
  * TODO: use annotations
  */
-
-public class UserStartPageController implements Controller {
+@Controller
+@RequestMapping(value = "/userStartPage")
+public class UserStartPageController {
 	
 	private Logger log	= Logger.getLogger(UserStartPageController.class);
 	
 	@Autowired	
 	private IProfileManagerService	profileManagerService;
 	
-	public void setProfileManagerService(IProfileManagerService profileManagerService) {
-		this.profileManagerService = profileManagerService;
-	}
-	
-	@Override
+	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView handleRequest(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView(); 
 		log.info("Showing userStartPage");
-		//log.info("Session: userId = " + request.getSession().getAttribute("userId"));		
-		//ProfileDto pd = profileManagerService.getProfileByUserId((Integer) request.getSession().getAttribute("userId"));
 		Profile pd = profileManagerService.getProfileByUserId((Integer) request.getSession().getAttribute("userId"));
 		if (pd != null) {
 			log.info("Profile has been fetched successfully");

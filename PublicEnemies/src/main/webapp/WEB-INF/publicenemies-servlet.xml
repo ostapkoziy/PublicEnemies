@@ -12,7 +12,6 @@
 
 	<mvc:annotation-driven />
 	<context:component-scan base-package="com.epam.publicenemies.web" />
-	<context:component-scan base-package="com.epam.publicenemies.web.adminpanel" />
 	<context:component-scan base-package="com.epam.publicenemies.service.impl" />
 
 	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
@@ -34,36 +33,17 @@
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 
-
-	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-	<!-- +++++++++++++++++++++++++++++++++++ SERVICES ++++++++++++++++++++++++++++++++++++++++++++++++ -->
-	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-
-	<!-- Replaced with annotations. Below - can't remove. See exceptions -->
-	<!-- YOU CAN REMOME THEY NOW!!!!!!!!!!!!! -->
-
-	<bean id="userManagerService" class="com.epam.publicenemies.service.impl.UserManagerServiceImpl">
-		<property name="userDao" ref="userDao" />
-	</bean>
-
 	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 	<!-- +++++++++++++++++++++++++++++++++++ CONTROLLERS +++++++++++++++++++++++++++++++++++++++++++++ -->
 	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-	<bean id="editProfileFormController" class="com.epam.publicenemies.web.EditProfileFormController" />
-	<bean id="userStartPageController" class="com.epam.publicenemies.web.UserStartPageController" />
-
+	
 	<!-- +++++++++++++++++++++++++++++++++++ CASINO +++++++++++++++++++++++++++++++++++++++++++++ -->
-
 	<bean id="casinoController" class="com.epam.publicenemies.web.casino.CasinoController" />
 	<bean id="rouletteGameController" class="com.epam.publicenemies.web.casino.roulette.RouletteGameController" />
-
 	<!-- +++++++++++++++++++++++++++++++++++ BlackJack +++++++++++++++++++++++++++++++++++++++++++++ -->
-	<bean id="deck" class="com.epam.publicenemies.domain.blackjack.BlackJackDeck">
-	</bean>
-	<bean id="games" class="com.epam.publicenemies.domain.blackjack.BlackJackGameList">
-	</bean>
-	<bean id="engine" class="com.epam.publicenemies.web.casino.blackjack.BlackJackEngine">
-	</bean>
+	<bean id="deck" class="com.epam.publicenemies.domain.blackjack.BlackJackDeck" />
+	<bean id="games" class="com.epam.publicenemies.domain.blackjack.BlackJackGameList" />
+	<bean id="engine" class="com.epam.publicenemies.web.casino.blackjack.BlackJackEngine" />
 
 	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 	<!-- +++++++++++++++++++++++++++++++++++ MAPPING +++++++++++++++++++++++++++++++++++++++++++++++++ -->
