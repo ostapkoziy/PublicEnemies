@@ -86,7 +86,7 @@ public class PokerGameEngine{
 	}
 
 	public void placeBlinds() {
-		if (dealer) {
+		/*if (dealer) {
 			player1.setCash(player1.getCash() - table.getBigBlind());
 			player2.setCash(player2.getCash() - table.getSmallBlind());
 			table.setPlayer1Bet(table.getBigBlind());
@@ -96,7 +96,7 @@ public class PokerGameEngine{
 			player2.setCash(player2.getCash() - table.getBigBlind());
 			table.setPlayer1Bet(table.getSmallBlind());
 			table.setPlayer2Bet(table.getBigBlind());
-		}
+		}*/
 		// DISPLAY BLINDS ON TABLE
 	}
 
@@ -137,7 +137,7 @@ public class PokerGameEngine{
 	//the PokerHand parameter in ALL times is the BOT hand
 	public int getSbMove() {
 		int bet = 0;
-		if(dealer){
+		/*if(dealer){
 			try {
 				bet = player2.makeMove(table, player2Hand, dealer);
 			} catch (FoldException e) {
@@ -155,7 +155,7 @@ public class PokerGameEngine{
 				return -1;
 			}
 			table.setPlayer1Bet(table.getPlayer1Bet() + bet);
-		}
+		}*/
 		return bet;
 	}
 	
@@ -182,7 +182,7 @@ public class PokerGameEngine{
 	}
 
 	public void getMoves(){
-		int result, count = 0;
+		/*int result, count = 0;
 		do{
 			result = this.getSbMove();
 			if(result < 0){
@@ -197,7 +197,7 @@ public class PokerGameEngine{
 			}
 			count ++;
 		}while(table.getPlayer1Bet() != table.getPlayer2Bet());
-		
+		*/
 	}
 	
 	public void preflop() {
