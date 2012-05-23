@@ -302,9 +302,8 @@ public class PokerGameEngine{
 		return table;
 	}
 
-	public void setTable(PokerTable table) {
+	public void setTable(PokerTable table){
 		this.table = table;
 	}
-*/
+
 	}
-}

@@ -5,6 +5,9 @@ import java.util.List;
 
 public class PokerTable {
 	private List<PokerCard> flop = new ArrayList<PokerCard>();
+	private PokerCard flop1;
+	private PokerCard flop2;
+	private PokerCard flop3;
 	private PokerCard turn;
 	private PokerCard river;
 	private int smallBlind;
@@ -22,6 +25,9 @@ public class PokerTable {
 	}
 	public void setFlop(List<PokerCard> flop) {
 		this.flop = flop;
+		flop1 = flop.get(0);
+		flop2 = flop.get(1);
+		flop3 = flop.get(2);
 	}
 	public void setTurn(PokerCard turn) {
 		this.turn = turn;
@@ -58,5 +64,24 @@ public class PokerTable {
 		}
 		return result;
 	}
+	public PokerCard getFlop1() {
+		return flop1;
+	}
+	public void setFlop1(PokerCard flop1) {
+		this.flop1 = flop1;
+	}
+	public PokerCard getFlop2() {
+		return flop2;
+	}
+	public void setFlop2(PokerCard flop2) {
+		this.flop2 = flop2;
+	}
+	public PokerCard getFlop3() {
+		return flop3;
+	}
+	public void setFlop3(PokerCard flop3) {
+		this.flop3 = flop3;
+	}
+	
 	
 }

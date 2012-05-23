@@ -22,6 +22,7 @@
 				<tr align="center">
 					<td>
 						<img style="position:relative; top:90px; left:-40px; width:80px; height:80px"  border="2" SRC="img/avatars/default.png">
+						<img id="botMove" style="position:relative; top:90px; left:-40px;" src="">
 					</td>
 					<td>
 						<img style="position:relative; top:135px; left:-305px; width: 35px"src="img/chips/chips.png"></img>
@@ -104,6 +105,7 @@
 						<div id="player_chips" style="position:relative; top:-165px; left:-30px; width:80px; height:80px"></div>
 					</td>
 					<td>
+						<img id="playerMove" style="position:relative; top:-170px; left:-250px;" src="">
 						<img id="player_avatar" style="position:relative; top:-115px; left:-250px; width:80px; height:80px"  border="2" src="">
 						<div id="player_name" style="position:relative; top:-115px; left:-250px; width:80px; height:80px"></div>
 					</td>
@@ -118,7 +120,7 @@
  				<tr height="30">
  					<td>
 						<form action="pokerGame.html" method="post" style="position:relative; top:-150px; left:450px; width:80px; height:80px; border: 2px">
-							<input id="userBetInput" type="text" value="userbet">
+							<input id="userBetInput" type="text" value="0">
 						</form>
 						<div id="attackBlock"style="position:relative; top:-150px; left:0px; width:80px; border: 2px">
 							<input id="botBetInput" type="text" value="bot bet">
