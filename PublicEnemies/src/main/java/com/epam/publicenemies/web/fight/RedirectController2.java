@@ -12,26 +12,26 @@ public class RedirectController2
 	@RequestMapping("/gameStarted.html")
 	public String gameStarted()
 	{
-		return "gameStarted";
+		return "/fight/gameStarted";
 	}
 	@RequestMapping("/lose.html")
 	public String lose()
 	{
-		return "lose";
+		return "/fight/lose";
 	}
 	@RequestMapping("/resault.html")
 	public String resaultPage()
 	{
-		return "resault";
+		return "/fight/resault";
 	}
 	@RequestMapping("/win.html")
 	public String win()
 	{
-		return "win";
+		return "/fight/win";
 	}
 	@RequestMapping("/fight.html")
 	public String fight()
 	{
-		return "fight";
+		return "/fight/fight";
 	}
 }

@@ -209,6 +209,7 @@ div { /* 	outline: 1px solid red; */
 </style>
 </head>
 <body>
+	<noscript>Enable JavaScript Please</noscript>
 	<div id="content">
 		<!-- 	++++++++++++++++++++++++++++++++++++++++++CREATOR++++++++++++++++++++++++++++++++++++++ -->
 		<!-- 	+++++++++++++++LEFT CREATOR++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
@@ -265,6 +266,10 @@ div { /* 	outline: 1px solid red; */
 					<c:when test="${game.gameStarted=='false'}">
 						<script type="text/javascript">
 							waitForOpponent();
+							$(function()
+							{
+								$("#atackButton").hide();
+							});
 						</script>
 						<div id="right">
 							<div id="insideRight"></div>
@@ -328,7 +333,7 @@ div { /* 	outline: 1px solid red; */
 						<div style="float: left;">
 							<img class="map" id="doll_hit" src="img/fight/doll_hit.png" usemap="#table2" />
 						</div>
-						<jsp:include page="fight/map.jsp"></jsp:include>
+						<jsp:include page="map.jsp"></jsp:include>
 					</div>
 				</div>
 			</div>
@@ -448,7 +453,7 @@ div { /* 	outline: 1px solid red; */
 						<div style="float: left;">
 							<img class="map" id="doll_hit" src="img/fight/doll_hit.png" usemap="#table2" />
 						</div>
-						<jsp:include page="fight/map.jsp"></jsp:include>
+						<jsp:include page="map.jsp"></jsp:include>
 					</div>
 				</div>
 			</div>
