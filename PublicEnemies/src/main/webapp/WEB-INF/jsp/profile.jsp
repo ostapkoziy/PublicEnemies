@@ -8,7 +8,6 @@
 <link href="css/profile/profilestyle.css" rel="stylesheet"
 	type="text/css">
 <link href="css/popup.css" rel="stylesheet" type="text/css">
-<link href="css/shop/shopstyle.css" rel="stylesheet" type="text/css">
 
 <title>${profile.getNickName()}'s Profile</title>
 
@@ -20,9 +19,7 @@
 $(document).ready(function(){
 	$('.tTip').betterTooltip({speed: 150, delay: 300});
 });
-function showNoMoney() {
-	alert('To get money, send appropriate amount of money for 09675787** phone number and send SMS to this number with your nickname. 1grn = $100. Min sum = 5grn');
-}
+
 </script>
 </head>
 
@@ -118,8 +115,7 @@ function showNoMoney() {
 	<div class="horizontal_space"></div>
 	<div class="inventory">
 		<h3>Inventory</h3>
-		<div
-			style="display: inline-block; border: 3px solid white; vertical-align: top;">
+		<div class="set_of_items">
 			<h3>DRESSED:</h3>
 			<div class="margin_div_vertical"></div>
 			<div>
@@ -199,8 +195,7 @@ function showNoMoney() {
 
 		<div class="vertical_space"> </div>
 
-		<div
-			style="display: inline-block; border: 3px solid white; vertical-align: top;">
+		<div class="set_of_items">
 			<div>
 				<h3>TRUNK:</h3>
 				<div class="margin_div_vertical"></div>

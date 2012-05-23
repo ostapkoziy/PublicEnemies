@@ -23,8 +23,8 @@ import com.epam.publicenemies.utils.Utils;
 public class ConnectController
 {
 	private Logger					log	= Logger.getLogger(ConnectController.class);
-	@Autowired
-	@Qualifier("profileManagerService")
+	
+	@Autowired	
 	private IProfileManagerService	profileManagerService;
 	public void setProfileManagerService(IProfileManagerService profileManagerService)
 	{

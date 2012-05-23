@@ -56,6 +56,30 @@ div.profile_info {
 	/*float: left;*/
 }
 
+div.item, div.mutual_item, div.shop_item {
+	width: 100px;
+	height: 100px;
+	margin: 0 auto;
+	border-radius: 15px;
+	/*padding: 5px;*/
+	 
+}
+
+div.mutual_item, div.shop_item {
+	display:inline-block;
+}
+div.item, div.mutual_item {
+	background: url(../../img/no_item.png);
+}
+div.item:hover, div.mutual_item:hover, div.shop_item:hover {
+	background: grey; 
+}
+
+div.margin_div_vertical {
+	height: 10px; 
+	width: 5px;	
+}
+
 div.statistics {
 	margin: 0 auto;
 	padding: 10px; 
@@ -99,4 +123,10 @@ div.profile_statistics_inventory {
 	margin: 0 auto; 
 	width: 900px; 
 	background: url(../../img/dark_opacity.png);
+}
+div.set_of_items {
+	display: inline-block; 
+	border: 3px solid white; 
+	vertical-align: top;
+	padding: 10px; 
 }

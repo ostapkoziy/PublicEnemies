@@ -26,8 +26,8 @@ import com.epam.publicenemies.service.IProfileManagerService;
 public class CreateGameController
 {
 	private Logger					log	= Logger.getLogger(CreateGameController.class);
-	@Autowired
-	@Qualifier("profileManagerService")
+	
+	@Autowired	
 	private IProfileManagerService	profileManagerService;
 	public void setProfileManagerService(IProfileManagerService profileManagerService)
 	{

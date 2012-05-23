@@ -34,8 +34,8 @@ import com.epam.publicenemies.web.fight.CreateGameController;
 @Controller
 public class PokerCreateController {
 	private Logger log = Logger.getLogger(PokerCreateController.class);
-	@Autowired
-	@Qualifier("profileManagerService")
+	
+	@Autowired	
 	private IProfileManagerService	profileManagerService;
 	public void setProfileManagerService(IProfileManagerService profileManagerService)
 	{

@@ -20,8 +20,7 @@ public class UserStartPageController implements Controller {
 	
 	private Logger log	= Logger.getLogger(UserStartPageController.class);
 	
-	@Autowired
-	@Qualifier("profileManagerService")
+	@Autowired	
 	private IProfileManagerService	profileManagerService;
 	
 	public void setProfileManagerService(IProfileManagerService profileManagerService) {

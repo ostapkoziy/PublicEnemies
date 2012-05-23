@@ -45,11 +45,7 @@
 	<bean id="userManagerService"
 		class="com.epam.publicenemies.service.impl.UserManagerServiceImpl">
 		<property name="userDao" ref="userDao" />
-	</bean>
-	<bean id="profileManagerService"
-		class="com.epam.publicenemies.service.impl.ProfileManagerServiceImpl">
-		<property name="profileDao" ref="profileDao" />
-	</bean>
+	</bean>	
 
 	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 	<!-- +++++++++++++++++++++++++++++++++++ VALIDATORS ++++++++++++++++++++++++++++++++++++++++++++++ -->

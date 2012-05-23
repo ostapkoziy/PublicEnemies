@@ -27,8 +27,7 @@ public class EditProfileFormController {
 	
 	private Logger log	= Logger.getLogger(EditProfileFormController.class);
 	
-	@Autowired
-	@Qualifier("profileManagerService")
+	@Autowired	
 	private IProfileManagerService	profileManagerService;
 	
 

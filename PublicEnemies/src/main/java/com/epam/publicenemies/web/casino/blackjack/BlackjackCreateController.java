@@ -23,8 +23,8 @@ import com.epam.publicenemies.service.IProfileManagerService;
 @Controller
 public class BlackjackCreateController {
 	private Logger log = Logger.getLogger(BlackjackCreateController.class);
-	@Autowired
-	@Qualifier("profileManagerService")
+	
+	@Autowired	
 	private IProfileManagerService profileManagerService;
 
 	public void setProfileManagerService(
