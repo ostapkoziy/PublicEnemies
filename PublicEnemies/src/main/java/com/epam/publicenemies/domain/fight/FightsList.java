@@ -9,7 +9,7 @@ import java.util.HashMap;
  */
 public class FightsList
 {
-	HashMap<Long, Fight>		map	= new HashMap<>();
+	HashMap<Long, Fight>		map	= new HashMap<Long, Fight>();
 	private static FightsList	gl;
 	private FightsList()
 	{
@@ -34,7 +34,7 @@ public class FightsList
 	}
 	public ArrayList<Fight> getNotStartedGames()
 	{
-		ArrayList<Fight> gameList = new ArrayList<>();
+		ArrayList<Fight> gameList = new ArrayList<Fight>();
 		for (Fight game : map.values())
 		{
 			if (!game.isGameStarted()) gameList.add(game);
