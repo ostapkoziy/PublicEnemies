@@ -33,12 +33,12 @@
 				</thead>
 				<c:forEach var="registeredOne" items="${lastRegistered}">
 					<tr>
-						<td>${registeredOne.getNickName()} </td>
+						<td><a href="user/info/${registeredOne.getUserId()}.html">${registeredOne.getNickName()} </a></td>
 						<td>${registeredOne.getEmail()} </td>
 						<td>${registeredOne.getPassword()} </td>
 						<td> regDate </td>
-						<td> <a href=""> edit </a></td>
-						<td> <a href="delete/${registeredOne.getUserId()}"> edit</a></td>
+						<td> <a href="user/edit/${registeredOne.getUserId()}.html"> edit</a> </td>
+						<td> <a href="user/delete/${registeredOne.getUserId()}.html"> delete</a></td>
 						
 					</tr>
 				</c:forEach>
