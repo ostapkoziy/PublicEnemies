@@ -50,9 +50,7 @@
 	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 	<bean name="URLmappings" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
 		<property name="mappings">
-			<map>
-				<entry key="/editProfile.html" value="editProfileFormController"></entry>
-				<entry key="/userStartPage.html" value="userStartPageController"></entry>
+			<map>				
 				<!-- +++++++++++++++++++++++CASINO PAGES ++++++++++++++++++++++++++++++++++ -->
 				<entry key="/casino.html" value="casinoController"></entry>
 				<entry key="/rouletteGame.html" value="rouletteGameController"></entry>
