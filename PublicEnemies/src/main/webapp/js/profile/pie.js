@@ -51,5 +51,5 @@ $(function () {
         labels.push($("th", this).text());
     });
     $("table").hide();
-    Raphael("holder", 400, 300).pieChart(200, 150, 100, values, labels, "#000");
+    Raphael("holder", 400, 300).pieChart(200, 150, 90, values, labels, "#000");
 });
