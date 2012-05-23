@@ -1,0 +1,86 @@
+* {
+	margin:0;
+	padding:0;
+	list-style:none;
+}
+body {
+	background-image: url('../../img/bg_city.png');
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	color: white;	
+	font-size: 14	px;
+	margin:10px;
+}
+
+#basic-accordian{
+	/*border:5px solid #EEE;
+	padding:5px; */
+	
+}
+
+/* Unselected one*/
+.accordion_headings{
+	padding:5px;
+	background: #222222;
+	color: white;
+	border:3px solid #FFF;
+	font-size: 14pt; 
+	cursor:pointer;
+	border-radius: 10px; 
+	/*font-weight:bold;*/
+}
+
+/* On focus one*/
+.accordion_headings:hover{
+	background: #CCCCCC;
+}
+
+.accordion_child{
+	padding:15px;
+	background:#grey;
+}
+/* choosen one */
+.header_highlight{
+	background: #AAAAAA;
+}
+
+div.profile_info {
+	magrin: 0 auto; 
+	padding: 10px; 
+	background: url(../../img/opacity_background.png);
+	min-width: 400px;
+	min-height: 400px; 
+	border: 3px solid white; 
+	display: inline-block;
+	/*margin: 10px;*/ 
+	/*float: left;*/
+}
+
+div.statistics {
+	padding: 10px; 
+	background: url(../../img/opacity_background.png);
+	min-width: 300px;
+	min-height: 400px; 
+	margin: 0 auto;
+	border: 3px solid white;
+	display: inline-block;
+	/*float: left;*/  
+	/*display: inline-block;*/
+}
+div.inventory {
+	padding: 10px; 
+	background: url(../../img/opacity_background.png);
+	border: 3px solid white;
+	margin: 10px; 
+	clear: both; 
+	/*width: 300;	 
+	display: inline-block;*/
+}
+div.statistics_list {
+	padding: 5px; 
+	display: inline-block; 
+	border: 1px solid white;
+}
+img.avatar {
+	float:left; 
+    margin: 7px 7px 7px 0; 
+}

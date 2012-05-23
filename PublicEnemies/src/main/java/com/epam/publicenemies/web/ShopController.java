@@ -38,12 +38,7 @@ public class ShopController {
 	private IShopManagerService shopManagerService;
 	
 	@Autowired
-	@Qualifier("profileManagerService")
 	private IProfileManagerService	profileManagerService;
-	
-	public void setProfileManagerService(IProfileManagerService profileManagerService) {
-		this.profileManagerService = profileManagerService;
-	}
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView showShopForm(HttpServletRequest req) {
@@ -171,10 +166,6 @@ public class ShopController {
 		if (aidsToBuy.size() > 0) {
 			shopManagerService.buyAidsForUser(uid, aidsToBuy); 
 		}
-		
-		
-		
-		//profileManagerService.
 		
 		return "redirect:shop.html";	
 	}

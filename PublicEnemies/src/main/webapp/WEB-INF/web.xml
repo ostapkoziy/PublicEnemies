@@ -26,6 +26,7 @@
 		<url-pattern>/userStartPage.html</url-pattern>
 
 		<url-pattern>/adminPanel.html</url-pattern>
+		<url-pattern>/profile.html</url-pattern>
 		<url-pattern>/shop.html</url-pattern>
 		<url-pattern>/editProfile.html</url-pattern>
 
