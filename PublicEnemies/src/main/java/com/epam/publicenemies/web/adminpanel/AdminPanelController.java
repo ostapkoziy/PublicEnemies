@@ -1,5 +1,7 @@
 package com.epam.publicenemies.web.adminpanel;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.epam.publicenemies.domain.User;
 import com.epam.publicenemies.service.IAdminPanelManagerService;
 
 /**
@@ -30,19 +33,19 @@ public class AdminPanelController {
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public String showAdminPage(HttpServletRequest req) {
-		
 		return "redirect:adminPanel/summary.html";	
 	}
 	
 	@RequestMapping(value = "summary", method = RequestMethod.GET)
 	public ModelAndView showSummaryPage(HttpServletRequest req) {
-		
 		ModelAndView mav = new ModelAndView();
 		
-		mav.addObject("passedValue", adminPanelManagerService.getUsersNumber()); 
+		//List<User> lastRegistered = adminPanelManagerService.get5LastRegisteredUsers(); 
+		
+		mav.addObject("amountOfUsers", (Integer) adminPanelManagerService.getUsersNumber());
+		mav.addObject("lastRegistered", (List<User>)adminPanelManagerService.get5LastRegisteredUsers());
 		
 		mav.setViewName("/adminPanel/summary"); 
-		
 		return mav; 
 	}
 	

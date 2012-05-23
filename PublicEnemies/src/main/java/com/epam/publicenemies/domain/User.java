@@ -4,6 +4,7 @@ package com.epam.publicenemies.domain;
  * Represent user (the same way as 'users' table)
  * 
  * Updated by I. Kostyrko on 30.04.12
+ * TODO: Registered time Date() ?
  */
 public class User {
 
@@ -41,33 +42,6 @@ public class User {
 		this.characterId = userChar;
 	}
 	
-	/* 
-	 * Old code 
-	 * could be dangerous. Necessary data might be lost. 
-	 * Use the biggest constructor or constructor by default  
-	public User(int id, String email, String password) {
-		//super();
-		this.userId = id;
-		this.email = email;
-		this.password = password;
-		avatar = new String();
-	}	
-	public User (int userId, String email, String password, String nickName) {
-		this.userId = userId;
-		this.email = email;
-		this.password = password;
-		this.nickName = nickName;
-		avatar = new String();
-	}
-	public User (int userId, String email, String password, String nickName, String avatar) {
-		this.userId = userId;
-		this.email = email;
-		this.password = password;
-		this.nickName = nickName;
-		this.avatar = avatar;
-	} */
-	
-
 	public int getUserId() {
 		return userId;
 	}

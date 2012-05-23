@@ -43,5 +43,18 @@ div#summary_div {
 	border-width: 2px; 
 	border-style: solid; 
 	margin: 5px; 
+	padding: 5px; 
 	/*border-radius: 10px;*/ 
+}
+table
+{
+	border-collapse:collapse;
+}
+table,th, td
+{
+	border: 1px solid black;
+	padding: 2px 5px; 
+	text-align: center; 
+}
+table.users_table {	
 }

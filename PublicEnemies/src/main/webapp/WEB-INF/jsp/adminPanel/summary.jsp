@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -7,95 +8,48 @@
 
 <link href="../css/adminpanel/commonstyle.css" rel="stylesheet"
 	type="text/css">
-	
+
 <title>Admin Panel</title>
 
 </head>
-<body>	
+<body>
 	<jsp:include page="adminHeader.jsp"></jsp:include>
-	
+
 	<div id="summary_div">
-	SUMMARY: 
-	
-	<%@ page
-      errorPage="ErrorPage.jsp"
-      import="java.io.*"
-      import="java.util.*"
-%>
+		SUMMARY:
+		<p id="amount_of_users">Amount of registered users:
+			${amountOfUsers}</p>
+			
+		<p id="last_registered">
+			<table class="users_table">
+			<caption> The 5 Latest Registered Users </caption>
+				<thead>
+					<tr>
+						<th>Nickname</th>
+						<th>Email</th>
+						<th>Password</th>
+						<th>Registration Date</th>
+					</tr>
+				</thead>
+				<c:forEach var="registeredOne" items="${lastRegistered}">
+					<tr>
+						<td>${registeredOne.getNickName()} </td>
+						<td>${registeredOne.getEmail()} </td>
+						<td>${registeredOne.getPassword()} </td>
+						<td> regDate </td>
+						<td> <a href=""> edit </a></td>
+						<td> <a href="delete/${registeredOne.getUserId()}"> edit</a></td>
+						
+					</tr>
+				</c:forEach>
+			</table>
 
-<%
-   Enumeration enames;
-   Map map;
-   String title;
 
-   // Print the request headers
+		</div>
 
-   map = new TreeMap();
-   enames = request.getHeaderNames();
-   while (enames.hasMoreElements()) {
-      String name = (String) enames.nextElement();
-      String value = request.getHeader(name);
-      map.put(name, value);
-   }
-   out.println(createTable(map, "Request Headers"));
 
-   // Print the session attributes
 
-   map = new TreeMap();
-   enames = session.getAttributeNames();
-   while (enames.hasMoreElements()) {
-      String name = (String) enames.nextElement();
-      String value = "" + session.getAttribute(name);
-      map.put(name, value);
-   }
-   out.println(createTable(map, "Session Attributes"));
-
-%>
-
-<%-- Define a method to create an HTML table --%>
-
-<%!
-   private static String createTable(Map map, String title)
-   {
-      StringBuffer sb = new StringBuffer();
-
-      // Generate the header lines
-
-      sb.append("<table border='1' cellpadding='3'>");
-      sb.append("<tr>");
-      sb.append("<th colspan='2'>");
-      sb.append(title);
-      sb.append("</th>");
-      sb.append("</tr>");
-
-      // Generate the table rows
-
-      Iterator imap = map.entrySet().iterator();
-      while (imap.hasNext()) {
-         Map.Entry entry = (Map.Entry) imap.next();
-         String key = (String) entry.getKey();
-         String value = (String) entry.getValue();
-         sb.append("<tr>");
-         sb.append("<td>");
-         sb.append(key);
-         sb.append("</td>");
-         sb.append("<td>");
-         sb.append(value);
-         sb.append("</td>");
-         sb.append("</tr>");
-      }
-
-      // Generate the footer lines
-
-      sb.append("</table><p></p>");
-
-      // Return the generated HTML
-
-      return sb.toString();
-   }
-%>
-	
-	</div>
+	</p>
 </body>
 
 </html>

@@ -57,7 +57,7 @@ public class UserDaoImpl implements IUserDao {
 	 */
 	public List<User> getNewUsers () {
 		final String USERS_SQL = "SELECT userId, email, password, nickName, money, avatar, userCharacter" +
-				"FROM users ORDER BY regDate LIMIT 5";
+				" FROM users ORDER BY regDate LIMIT 5";
 		List<User> list = jdbcTemplate.query(USERS_SQL, new RowMapper<User>() {
 			public User mapRow(ResultSet resultSet, int rowNum) throws SQLException {
 				return new User ( resultSet.getInt("userId"), resultSet.getString("email"),
