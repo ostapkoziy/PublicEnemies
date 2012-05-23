@@ -283,4 +283,37 @@ public class WeaponsDaoImpl implements IWeaponsDao {
 			return true;
 		} else return true;
 	}
+	
+	/**
+	 * Get list of all weapons sorted by weapon name
+	 * @return list of all weapons
+	 */
+	public List<Weapon> getWeaponsSortedByName() {
+		final String SELECT_SQL = "SELECT * FROM weapons ORDER BY weaponName";
+		List<Weapon>weapons = jdbcTemplate.query(SELECT_SQL, new WeaponMapper());
+		log.info("WeaponsDaoImpl.getWeaponsSortedByName: " + weapons.size() + "were fetched");
+		return weapons;
+	}
+	
+	/**
+	 * Get list of all weapons sorted by weapon hit points
+	 * @return list of all weapons
+	 */
+	public List<Weapon> getWeaponsSortedByHitPoints() {
+		final String SELECT_SQL = "SELECT * FROM weapons ORDER BY weaponHitPoints";
+		List<Weapon>weapons = jdbcTemplate.query(SELECT_SQL, new WeaponMapper());
+		log.info("WeaponsDaoImpl.getWeaponsSortedByHitPoints: " + weapons.size() + "were fetched");
+		return weapons;
+	}
+	
+	/**
+	 * Get list of all weapons sorted by weapon price
+	 * @return list of all weapons
+	 */
+	public List<Weapon>getWeaponsSortedByPrice() {
+		final String SELECT_SQL = "SELECT * FROM weapons ORDER BY weaponPrice";
+		List<Weapon>weapons = jdbcTemplate.query(SELECT_SQL, new WeaponMapper());
+		log.info("WeaponsDaoImpl.getWeaponsSortedByPrice: " + weapons.size() + "were fetched");
+		return weapons;
+	}
 }

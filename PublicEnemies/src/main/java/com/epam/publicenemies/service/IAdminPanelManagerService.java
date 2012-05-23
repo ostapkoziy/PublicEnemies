@@ -13,6 +13,20 @@ import com.epam.publicenemies.domain.Weapon;
  */
 public interface IAdminPanelManagerService {
 	
+	
+	/**
+	 * Add new user
+	 * @param email - user email
+	 * @param password - user password
+	 * @param nickName - user nickName
+	 * @param money - money of user
+	 * @param avatar - user avatar
+	 * @param userChar - id of user's character
+	 * @return id of registered user
+	 */
+	int addUser(String email, String password, String nickName,
+			int money, String avatar);
+	
 	/**
 	 * Get amount of registered users
 	 * @return amount of registered users
@@ -49,6 +63,18 @@ public interface IAdminPanelManagerService {
 	 * @return list of all registered users
 	 */
 	public List<User> getAllUsers ();
+	
+	/**
+	 * Get sorted list of users by nick name
+	 * @return list of users
+	 */
+	List<User> sortUsersByNick();
+	
+	/**
+	 * Get sorted list of users by registration date
+	 * @return list of users
+	 */
+	List<User> sortUsersByRegDate();
 	
 	/**
 	 * Add new weapon
@@ -106,15 +132,22 @@ public interface IAdminPanelManagerService {
 	public List<Weapon> getAllWeapons(); 
 	
 	/**
-	 * Get sorted list of users by nick name
-	 * @return list of users
+	 * Get list of all weapons sorted by weapon name
+	 * @return list of all weapons
 	 */
-	List<User> sortUsersByNick();
+	List<Weapon> sortWeaponsByName();
 	
 	/**
-	 * Get sorted list of users by registration date
-	 * @return list of users
+	 * Get list of all weapons sorted by weapon hit points
+	 * @return list of all weapons
 	 */
-	List<User> sortUsersByRegDate();
+	List<Weapon> sortWeaponsByHitPoints();
+	
+	/**
+	 * Get list of all weapons sorted by weapon price
+	 * @return list of all weapons
+	 */
+	List<Weapon> sortWeaponsByPrice();
+
 	
 }

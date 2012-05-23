@@ -147,6 +147,42 @@ public class UserDaoImpl implements IUserDao {
 		return keyHolder.getKey().intValue();		
 	}
 	
+	
+	/**
+	 * Register new user
+	 * @param email - user email
+	 * @param password - user password
+	 * @param nickName - user nickName
+	 * @param money - money of user
+	 * @param avatar - user avatar
+	 * @param userChar - id of user's character
+	 * @return id of registered user
+	 */
+	public int registerUser(final String email, final String password, final String nickName,
+			final int money, final String avatar) {
+		KeyHolder keyHolder = new GeneratedKeyHolder();
+		final String INSERT_USER_SQL = "INSERT INTO users (email, password, nickName, userCharacter, " +
+				"money, avatar) VALUES (?,?,?,?,?,?)";
+		jdbcTemplate.update(
+				new PreparedStatementCreator() {
+					@Override
+					public PreparedStatement createPreparedStatement(Connection connection) 
+							throws SQLException { PreparedStatement ps = connection.prepareStatement
+							(INSERT_USER_SQL, Statement.RETURN_GENERATED_KEYS);
+						ps.setString(1, email);
+						ps.setString(2, password);
+						ps.setString(3, nickName);
+						ps.setInt(4, createCharacterEntry());
+						ps.setInt(5, money);
+						ps.setString(6, avatar);
+						return ps;
+					}
+				}, keyHolder);
+		int i = keyHolder.getKey().intValue();
+		log.info("UserDaoImpl.regiserUser: ID is " + i);
+		return i;
+	}
+	
 	/**
 	* Check for existing registered email
 	* @param email - checked email

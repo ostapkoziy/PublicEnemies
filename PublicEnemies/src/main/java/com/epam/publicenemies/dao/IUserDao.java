@@ -19,6 +19,19 @@ public interface IUserDao {
 	int registerUser(User user);
 	
 	/**
+	 * Register new user
+	 * @param email - user email
+	 * @param password - user password
+	 * @param nickName - user nickName
+	 * @param money - money of user
+	 * @param avatar - user avatar
+	 * @param userChar - id of user's character
+	 * @return id of registered user
+	 */
+	int registerUser(String email, String password, String nickName,
+			int money, String avatar);
+	
+	/**
 	 * Get amount of of registered users
 	 * @return amount of of registered users
 	 */

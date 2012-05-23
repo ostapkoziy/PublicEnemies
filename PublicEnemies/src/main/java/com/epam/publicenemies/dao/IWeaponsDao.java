@@ -121,4 +121,21 @@ public interface IWeaponsDao {
 	 */
 	boolean updateWeaponInfo(int weaponId, String weaponName, int hitPoints, String picture, boolean type, int price);
 	
+	/**
+	 * Get list of all weapons sorted by weapon name
+	 * @return list of all weapons
+	 */
+	List<Weapon> getWeaponsSortedByName(); 
+	
+	/**
+	 * Get list of all weapons sorted by weapon hit points
+	 * @return list of all weapons
+	 */
+	List<Weapon> getWeaponsSortedByHitPoints();
+	
+	/**
+	 * Get list of all weapons sorted by weapon price
+	 * @return list of all weapons
+	 */
+	List<Weapon>getWeaponsSortedByPrice();
 }

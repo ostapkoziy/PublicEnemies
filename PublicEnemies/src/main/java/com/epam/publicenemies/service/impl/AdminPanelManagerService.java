@@ -43,6 +43,21 @@ public class AdminPanelManagerService implements IAdminPanelManagerService {
 	private Logger log = Logger.getLogger(AdminPanelManagerService.class);
 	
 	/**
+	 * Add new user
+	 * @param email - user email
+	 * @param password - user password
+	 * @param nickName - user nickName
+	 * @param money - money of user
+	 * @param avatar - user avatar
+	 * @param userChar - id of user's character
+	 * @return id of registered user
+	 */
+	public int addUser(String email, String password, String nickName,
+			int money, String avatar) {
+		return userDao.registerUser(email, password, nickName, money, avatar);
+	}
+	
+	/**
 	 * Get amount of registered users
 	 * @return amount of registered users
 	 */
@@ -184,6 +199,28 @@ public class AdminPanelManagerService implements IAdminPanelManagerService {
 		return userDao.getUsersSortedByRegDate();
 	}
 	
+	/**
+	 * Get list of all weapons sorted by weapon name
+	 * @return list of all weapons
+	 */
+	public List<Weapon> sortWeaponsByName() {
+		return weaponsDao.getWeaponsSortedByName();
+	}
 	
+	/**
+	 * Get list of all weapons sorted by weapon hit points
+	 * @return list of all weapons
+	 */
+	public List<Weapon> sortWeaponsByHitPoints() {
+		return weaponsDao.getWeaponsSortedByHitPoints();
+	}
+	
+	/**
+	 * Get list of all weapons sorted by weapon price
+	 * @return list of all weapons
+	 */
+	public List<Weapon> sortWeaponsByPrice() {
+		return weaponsDao.getWeaponsSortedByPrice();
+	}
 	
 }
