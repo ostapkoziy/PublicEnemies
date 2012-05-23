@@ -5,8 +5,9 @@ import java.util.List;
 public class BlackJackRound {
 	private List<BlackJackCard> playerCards;
 	private List<BlackJackCard> dealerCards;
-	private int bet;
+	private int playerBet;
 	private int playerPoints;
+	private String playerResult;
 	
 	public List<BlackJackCard> getPlayerCards() {
 		return playerCards;
@@ -20,17 +21,23 @@ public class BlackJackRound {
 	public void setDealerCards(List<BlackJackCard> dealerCards) {
 		this.dealerCards = dealerCards;
 	}
-	public int getBet() {
-		return bet;
+	public int getPlayerBet() {
+		return playerBet;
 	}
-	public void setBet(int bet) {
-		this.bet = bet;
+	public void setPlayerBet(int bet) {
+		this.playerBet = bet;
 	}
 	public int getPlayerPoints() {
 		return playerPoints;
 	}
 	public void setPlayerPoints(int playerPoints) {
 		this.playerPoints = playerPoints;
+	}
+	public String getPlayerResult() {
+		return playerResult;
+	}
+	public void setPlayerResult(String playerResult) {
+		this.playerResult = playerResult;
 	}
 
 }

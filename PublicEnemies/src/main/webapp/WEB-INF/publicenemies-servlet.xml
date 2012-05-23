@@ -26,23 +26,22 @@
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
 	<bean id="aidDao" class="com.epam.publicenemies.dao.impl.AidsDaoImpl">
-		<property name="dataSource" ref="dataSource"/>
+		<property name="dataSource" ref="dataSource" />
 	</bean>
 	<bean id="weaponDao" class="com.epam.publicenemies.dao.impl.WeaponsDaoImpl">
-		<property name="dataSource" ref="dataSource"/>
+		<property name="dataSource" ref="dataSource" />
 	</bean>
 	<bean id="armorDao" class="com.epam.publicenemies.dao.impl.ArmorsDaoImpl">
-		<property name="dataSource" ref="dataSource"/>
+		<property name="dataSource" ref="dataSource" />
 	</bean>
 
 
 	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 	<!-- +++++++++++++++++++++++++++++++++++ SERVICES ++++++++++++++++++++++++++++++++++++++++++++++++ -->
 	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-	
-	<!-- Replaced with annotations.
-	Below - can't remove. See exceptions -->
-	
+
+	<!-- Replaced with annotations. Below - can't remove. See exceptions -->
+
 	<bean id="userManagerService"
 		class="com.epam.publicenemies.service.impl.UserManagerServiceImpl">
 		<property name="userDao" ref="userDao" />
@@ -57,11 +56,11 @@
 	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 	<bean id="registerUserFormValidator"
 		class="com.epam.publicenemies.web.validators.RegisterUserFormValidator">
-		<property name="userManagerService" ref="userManagerService"/>
+		<property name="userManagerService" ref="userManagerService" />
 	</bean>
 	<bean id="loginUserFormValidator"
 		class="com.epam.publicenemies.web.validators.LoginUserFormValidator">
-		<property name="userManagerService" ref="userManagerService"/>
+		<property name="userManagerService" ref="userManagerService" />
 	</bean>
 	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 	<!-- +++++++++++++++++++++++++++++++++++ CONTROLLERS +++++++++++++++++++++++++++++++++++++++++++++ -->
@@ -83,6 +82,10 @@
 	<bean id="games"
 		class="com.epam.publicenemies.domain.blackjack.BlackJackGameList">
 	</bean>
+	<bean id="engine"
+		class="com.epam.publicenemies.web.casino.blackjack.BlackJackEngine">
+	</bean>
+
 	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 	<!-- +++++++++++++++++++++++++++++++++++ MAPPING +++++++++++++++++++++++++++++++++++++++++++++++++ -->
 	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->

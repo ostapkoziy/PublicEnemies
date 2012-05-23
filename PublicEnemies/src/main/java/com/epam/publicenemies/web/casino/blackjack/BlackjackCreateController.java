@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
 
 import com.epam.publicenemies.domain.Profile;
 import com.epam.publicenemies.domain.blackjack.BlackJackGameList;
@@ -57,9 +56,6 @@ public class BlackjackCreateController {
 
 		objects.put("chips", chips);
 
-		ModelAndView mav = new ModelAndView(new RedirectView(
-				"blackJackGame.html"));
-		mav.addObject("chips", chips);
 		return new ModelAndView("blackJackGame", objects);
 	}
 }
