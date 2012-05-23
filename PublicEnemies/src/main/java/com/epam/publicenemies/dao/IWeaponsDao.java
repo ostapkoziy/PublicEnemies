@@ -92,7 +92,7 @@ public interface IWeaponsDao {
 	 * @param weaponType - weapon type
 	 * @return true if operation was successfully
 	 */
-	boolean updateWeaponType(int weaponid, boolean weaponType);
+	boolean updateWeaponType(int weaponId, boolean weaponType);
 	
 	/**
 	 * Update weapon price
@@ -100,6 +100,25 @@ public interface IWeaponsDao {
 	 * @param price - weapon price
 	 * @return true if operation was successfully
 	 */
-	boolean updateWeaponPrice (int weaponid, int price);
+	boolean updateWeaponPrice (int weaponId, int price);
+	
+	/**
+	 * Get List of weapons by ids
+	 * @param weaponsIds - list of weapons ids
+	 * @return list of weapons
+	 */
+	List<Weapon> getWeapons(List<Integer> weaponsIds);
+	
+	/**
+	 * Update weapon info
+	 * @param weaponId - id of weapon
+	 * @param weaponName - name of weapon
+	 * @param hitPoints - weapon hit points
+	 * @param Picture - weapon picture
+	 * @param type - weapon type
+	 * @param price - weapon price
+	 * @return true if operation was successfully
+	 */
+	boolean updateWeaponInfo(int weaponId, String weaponName, int hitPoints, String picture, boolean type, int price);
 	
 }

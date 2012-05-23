@@ -143,4 +143,15 @@ public interface IUserDao {
 	 */
 	Timestamp getUserRegDate (int userId);
 	
+	/**
+	 * Get list of all users sorted by nick name
+	 * @return list of all users
+	 */
+	List<User> getUsersSortedByNick();
+	
+	/**
+	 * Get list of all users sorted by registration date
+	 * @return list of all users
+	 */
+	List<User> getUsersSortedByRegDate();
 }

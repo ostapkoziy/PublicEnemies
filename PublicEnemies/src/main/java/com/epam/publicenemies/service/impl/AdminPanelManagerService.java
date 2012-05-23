@@ -13,6 +13,7 @@ import com.epam.publicenemies.dao.IProfileDao;
 import com.epam.publicenemies.dao.IUserDao;
 import com.epam.publicenemies.dao.IWeaponsDao;
 import com.epam.publicenemies.domain.User;
+import com.epam.publicenemies.domain.Weapon;
 import com.epam.publicenemies.service.IAdminPanelManagerService;
 
 /**
@@ -97,5 +98,92 @@ public class AdminPanelManagerService implements IAdminPanelManagerService {
 		log.info("Getting all users");
 		return userDao.findAllUsers();
 	}
+	
+	/**
+	 * Add new weapon
+	 * @param name - weapon name
+	 * @param hitPoints - weapon hit points
+	 * @param picture - weapon picture
+	 * @param weaponType - weapon type
+	 * @param price - weapon price
+	 * @return id of created weapon
+	 */
+	public int addWeapon(String name, int hitPoints, String picture, boolean weaponType, int price) {
+		return weaponsDao.addWeapon(name, hitPoints, picture, weaponType, price);
+	}
+	
+	/**
+	 * Update weapon info
+	 * @param weaponId - id of weapon
+	 * @param weaponName - name of weapon
+	 * @param hitPoints - weapon hit points
+	 * @param Picture - weapon picture
+	 * @param type - weapon type
+	 * @param price - weapon price
+	 * @return true if operation was successfully
+	 */
+	public boolean updateWeaponInfo(int weaponId, String weaponName, int hitPoints, String picture, boolean type, int price) {
+		return weaponsDao.updateWeaponInfo(weaponId, weaponName, hitPoints, picture, type, price);
+	}
+	
+	/**
+	 * Get Weapon object by id
+	 * @param weaponId - weapon id
+	 * @return Weapon object
+	 */
+	public Weapon getWeaponById(int weaponId) {
+		return weaponsDao.getWeaponById(weaponId);
+	}
+	
+	/**
+	 * Get Weapon object by weapon name 
+	 * @param name - weapon name
+	 * @return Weapon object
+	 */
+	public Weapon getWeaponByName(String name) {
+		return weaponsDao.getWeaponByName(name);
+	}
+	
+	/**
+	 * Get all firearms
+	 * @return list of firearms
+	 */
+	public List<Weapon> getAllFirearm() {
+		return weaponsDao.getAllFirearm();
+	}
+	
+	/**
+	 * Get all cold steel
+	 * @return list of all cold steel
+	 */
+	public List<Weapon> getAllColdSteel() {
+		return weaponsDao.getAllColdSteel();
+	}
+	
+	/**
+	 * Get all weapons
+	 * @return list of all weapons
+	 */
+	public List<Weapon> getAllWeapons() {
+		return weaponsDao.fetchAllWeapons();
+	}
+	
+	/**
+	 * Get sorted list of users by nick name
+	 * @return list of users
+	 */
+	public List<User> sortUsersByNick() {
+		return userDao.getUsersSortedByNick();
+	}
+	
+	/**
+	 * Get sorted list of users by registration date
+	 * @return list of users
+	 */
+	public List<User> sortUsersByRegDate() {
+		return userDao.getUsersSortedByRegDate();
+	}
+	
+	
 	
 }

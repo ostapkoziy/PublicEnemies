@@ -19,6 +19,7 @@ import org.springframework.jdbc.support.KeyHolder;
 
 import com.epam.publicenemies.dao.IUserDao;
 import com.epam.publicenemies.domain.User;
+import com.epam.publicenemies.domain.Weapon;
 
 
 /**
@@ -41,6 +42,19 @@ public class UserDaoImpl implements IUserDao {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 
+	
+	private final class UserMapper implements RowMapper<User> {
+	    public User mapRow(ResultSet rs, int rowNum) throws SQLException {
+	    	return new User(rs.getInt("userId"), 
+					rs.getString("email"), 
+					rs.getString("password"), 
+					rs.getString("nickName"),
+					rs.getInt("money"),
+					rs.getString("avatar"),
+					rs.getInt("userCharacter"),
+					rs.getTimestamp("regDate"));
+	    } 
+	}
 	
 	/**
 	 * Get user registration date
@@ -338,20 +352,8 @@ public class UserDaoImpl implements IUserDao {
 	* @return List<User> - list of all users on database
 	* */
 	public List<User> findAllUsers() {
-		String query = "SELECT * FROM users";
-		return jdbcTemplate.query(query, new RowMapper<User>() {
-			public User mapRow(ResultSet resultSet, int rowNum)
-					throws SQLException {
-				return new User(resultSet.getInt("userId"), 
-						resultSet.getString("email"), 
-						resultSet.getString("password"), 
-						resultSet.getString("nickName"),
-						resultSet.getInt("money"),
-						resultSet.getString("avatar"),
-						resultSet.getInt("userCharacter"),
-						resultSet.getTimestamp("regDate"));
-			}
-		});
+		final String SELECT_SQL = "SELECT * FROM users";
+		return jdbcTemplate.query(SELECT_SQL, new UserMapper());
 	}
 	
 	/**
@@ -390,6 +392,22 @@ public class UserDaoImpl implements IUserDao {
 		} else return false;
 	}
 	
+	/**
+	 * Get list of all users sorted by nick name
+	 * @return list of all users
+	 */
+	public List<User> getUsersSortedByNick() {
+		final String SELECT_SQL = "SELECT * FROM users ORDER BY nickName";
+		return jdbcTemplate.query(SELECT_SQL, new UserMapper());
+	}
 	
+	/**
+	 * Get list of all users sorted by registration date
+	 * @return list of all users
+	 */
+	public List<User> getUsersSortedByRegDate() {
+		final String SELECT_SQL = "SELECT * FROM users ORDER BY regDate";
+		return jdbcTemplate.query(SELECT_SQL, new UserMapper());
+	}
 	
 }
