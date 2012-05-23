@@ -29,10 +29,6 @@ public class RegisterUserFormController
 	@Autowired
 	@Qualifier("registerUserFormValidator")
 	private IValidator			validator;
-	public void setUserManagerService(IUserManagerService userManagerService)
-	{
-		this.userManagerService = userManagerService;
-	}
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView onGetRequest()
 	{

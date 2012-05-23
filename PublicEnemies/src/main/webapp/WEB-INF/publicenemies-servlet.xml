@@ -40,6 +40,7 @@
 	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 
 	<!-- Replaced with annotations. Below - can't remove. See exceptions -->
+	<!-- YOU CAN REMOME THEY NOW!!!!!!!!!!!!! -->
 
 	<bean id="userManagerService" class="com.epam.publicenemies.service.impl.UserManagerServiceImpl">
 		<property name="userDao" ref="userDao" />
@@ -48,22 +49,10 @@
 		<property name="profileDao" ref="profileDao" />
 	</bean>
 
-	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-	<!-- +++++++++++++++++++++++++++++++++++ VALIDATORS ++++++++++++++++++++++++++++++++++++++++++++++ -->
-	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-	<!-- <bean id="registerUserFormValidator" -->
-	<!-- class="com.epam.publicenemies.web.validators.RegisterUserFormValidator"> -->
-	<!-- <property name="userManagerService" ref="userManagerService" /> -->
-	<!-- </bean> -->
-	<!-- <bean id="loginUserFormValidator" -->
-	<!-- class="com.epam.publicenemies.web.validators.LoginUserFormValidator"> -->
-	<!-- <property name="userManagerService" ref="userManagerService" /> -->
-	<!-- </bean> -->
+
 	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 	<!-- +++++++++++++++++++++++++++++++++++ CONTROLLERS +++++++++++++++++++++++++++++++++++++++++++++ -->
 	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-
-
 	<bean id="editProfileFormController" class="com.epam.publicenemies.web.EditProfileFormController" />
 	<bean id="userStartPageController" class="com.epam.publicenemies.web.UserStartPageController" />
 
