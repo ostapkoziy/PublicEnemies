@@ -15,7 +15,12 @@ import com.epam.publicenemies.dao.IWeaponsDao;
 import com.epam.publicenemies.domain.User;
 import com.epam.publicenemies.service.IAdminPanelManagerService;
 
-
+/**
+ * 
+ * @author I. Kostyrko
+ * Updated by S. Chetyrkin
+ *
+ */
 @Service
 public class AdminPanelManagerService implements IAdminPanelManagerService {
 
@@ -31,9 +36,10 @@ public class AdminPanelManagerService implements IAdminPanelManagerService {
 	@Autowired
 	private IWeaponsDao weaponsDao; 
 	
+	@Autowired
 	private IUserDao userDao;
 	
-	private Logger log	= Logger.getLogger(AdminPanelManagerService.class);
+	private Logger log = Logger.getLogger(AdminPanelManagerService.class);
 	
 	/**
 	 * Get amount of registered users
@@ -49,7 +55,7 @@ public class AdminPanelManagerService implements IAdminPanelManagerService {
 	 * Get last 5 registered users
 	 * @return List of 5 users
 	 */
-	public List<User> getNewUsers() {
+	public List<User> get5LastRegisteredUsers() {
 		List<User> list = userDao.getNewUsers();
 		log.info("Getting new users");
 		return list;

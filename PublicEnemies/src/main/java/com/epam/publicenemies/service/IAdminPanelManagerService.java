@@ -4,6 +4,12 @@ import java.util.List;
 
 import com.epam.publicenemies.domain.User;
 
+/**
+ * 
+ * @author I. Kostyrko
+ * Updated by S. Chetyrkin
+ *
+ */
 public interface IAdminPanelManagerService {
 	
 	/**
@@ -16,7 +22,7 @@ public interface IAdminPanelManagerService {
 	 * Get last 5 registered users
 	 * @return List of 5 users
 	 */
-	public List<User> getNewUsers();
+	public List<User> get5LastRegisteredUsers();
 	
 	/**
 	 * Get list of users by their ids
@@ -24,6 +30,4 @@ public interface IAdminPanelManagerService {
 	 * @return list of users
 	 */
 	public List<User> getUsers(List<Integer> usersid);
-	
-
 }
