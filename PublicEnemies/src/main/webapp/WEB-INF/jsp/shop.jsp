@@ -24,9 +24,9 @@
 
 <!-- For popup. Binds class and action -->
 <script type="text/javascript">
-		$(document).ready(function(){
-			$('.tTip').betterTooltip({speed: 150, delay: 300});
-		});
+$(document).ready(function(){
+	$('.tTip').betterTooltip({speed: 150, delay: 300});
+});
 function showNoMoney() {
 	alert('To get money, send appropriate amount of money for 09675787** phone number and send SMS to this number with your nickname. 1grn = $100. Min sum = 5grn');
 }

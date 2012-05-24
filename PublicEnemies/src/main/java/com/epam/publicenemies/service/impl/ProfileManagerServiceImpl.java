@@ -14,6 +14,8 @@
 package com.epam.publicenemies.service.impl;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.epam.publicenemies.dao.IProfileDao;
 import com.epam.publicenemies.domain.Profile;
@@ -26,15 +28,17 @@ import com.epam.publicenemies.service.IProfileManagerService;
  * TODO: replace DTO objects! use domain instead
  * Updated by I. Kostyrko on 20.05.12: annotation driven style (tried but no success)
  */
+@Service
 public class ProfileManagerServiceImpl implements IProfileManagerService {
 
 	private Logger log	= Logger.getLogger(ProfileManagerServiceImpl.class);
 	
+	@Autowired
 	private IProfileDao profileDao;
 
-	public void setProfileDao(IProfileDao profileDao) {
+	/*public void setProfileDao(IProfileDao profileDao) {
 		this.profileDao = profileDao;
-	}
+	}*/
 
 	/*
 	 * Updated by I. Kostyrko by May 2, 2012

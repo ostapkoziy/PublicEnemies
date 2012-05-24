@@ -20,7 +20,7 @@ public class JoinController
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
 		FightsList gl = FightsList.newInstanse();
-		ModelAndView mav = new ModelAndView("allGames");
+		ModelAndView mav = new ModelAndView("/fight/allGames");
 		mav.addObject("list", gl.getNotStartedGames());
 		return mav;
 	}

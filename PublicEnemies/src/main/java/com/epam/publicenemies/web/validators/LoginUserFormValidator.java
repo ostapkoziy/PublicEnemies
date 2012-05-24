@@ -1,6 +1,8 @@
 package com.epam.publicenemies.web.validators;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 
@@ -10,14 +12,12 @@ import com.epam.publicenemies.service.IUserManagerService;
 /**
  * @author Alexander Ivanov 22.04.2012 18:43:23
  */
+@Service(value = "loginUserFormValidator")
 public class LoginUserFormValidator implements IValidator
 {
 	private Logger				log	= Logger.getLogger(LoginUserFormValidator.class);
+	@Autowired
 	private IUserManagerService	userManagerService;
-	public void setUserManagerService(IUserManagerService userManagerService)
-	{
-		this.userManagerService = userManagerService;
-	}
 	@Override
 	public void validate(Object obj, Errors errors)
 	{

@@ -83,7 +83,6 @@ function timerController(game)
 		if (game.round.u1Hit == true)
 		{
 			hideAttackButton();
-			$("#timer").fadeTo(0, 0);
 		}
 		else
 		{
@@ -96,7 +95,6 @@ function timerController(game)
 		if (game.round.u2Hit == true)
 		{
 			hideAttackButton();
-			$("#timer").fadeTo(0, 0);
 		}
 		else
 		{
@@ -111,6 +109,7 @@ function timerController(game)
 function hideAttackButton()
 {
 	$("#atackButton").hide();
+	$("#timer").fadeTo(0, 0);
 }
 /**
  * Show attack button
@@ -130,6 +129,8 @@ $(function()
 		if (hit != undefined & block != undefined)
 		{
 			hitSend(hit, block);
+			hideAttackButton();
+
 		}
 	});
 

@@ -3,20 +3,20 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>You Win</title>
+<title>You Lose</title>
 <style type="text/css">
-#win { /* 	outline: 2px solid red; */
-	width: 400px;
-	height: 400px;
+#lose { /* 	outline: 2px solid red; */
+	width: 334px;
+	height: 334px;
 	margin-left: auto;
 	margin-right: auto;
-	background: url("img/fight/you-win.jpg") no-repeat;
+	background: url("img/fight/you-lose.png") no-repeat;
 }
 </style>
 </head>
 
 <body>
 	<a href="newJoinGame.html">StartPage</a>
-	<div id="win"></div>
+	<div id="lose"></div>
 </body>
 </html>
