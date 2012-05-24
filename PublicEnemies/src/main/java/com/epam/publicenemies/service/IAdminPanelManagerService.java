@@ -13,7 +13,6 @@ import com.epam.publicenemies.domain.Weapon;
  */
 public interface IAdminPanelManagerService {
 	
-	
 	/**
 	 * Add new user
 	 * @param email - user email

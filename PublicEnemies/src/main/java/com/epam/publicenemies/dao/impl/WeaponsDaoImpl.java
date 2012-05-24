@@ -71,7 +71,7 @@ public class WeaponsDaoImpl implements IWeaponsDao {
 	public int addWeapon(final String name, final int hitPoints, final String picture,
 			final boolean weaponType, final int price) {
 		KeyHolder keyHolder = new GeneratedKeyHolder();
-		final String INSERT_SQL = "INSERT INTO weapons (weaponName, weaponHitPoints, weponPicture, weaponType," +
+		final String INSERT_SQL = "INSERT INTO weapons (weaponName, weaponHitPoints, weaponPicture, weaponType," +
 				"weaponPrice) VALUES (?,?,?,?,?)";
 		jdbcTemplate.update(
 		new PreparedStatementCreator() {
