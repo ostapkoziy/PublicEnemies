@@ -72,7 +72,8 @@ public class ProfileInfoController {
 				profileManagerService.undressArmor(uid);								
 			} else if (parameterName.matches("^undressAid(.*)")) {
 				profileManagerService.undressAid(uid);				
-			} else if (parameterName.matches("^dressWeapon(.*)")) {				
+			} else if (parameterName.matches("^dressWeapon(.*)")) {		
+				
 				profileManagerService.undressWeapon1(uid);
 				profileManagerService.dressWeapon1(uid, Integer.parseInt(temp[1]));
 			} else if (parameterName.matches("^dressArmor(.*)")) {
