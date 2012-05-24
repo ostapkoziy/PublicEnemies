@@ -68,9 +68,13 @@ public class HitBlackJackController {
 		// Calculate player points
 		int playerPoints = engine.calculatePoints(playerCards);
 
+		// Check result
+		String playerResult = engine.checkResult(playerPoints);
+
 		// Set round
 		round.setPlayerCards(playerCards);
 		round.setPlayerPoints(playerPoints);
+		round.setPlayerResult(playerResult);
 
 		// Round to json
 		PrintWriter out = response.getWriter();

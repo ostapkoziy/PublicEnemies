@@ -8,14 +8,16 @@
 <link rel="stylesheet" href="css/blackjack.css" type="text/css">
 <title>Insert title here</title>
 <script type="text/javascript" src="js/jquery-1.7.2.js"></script>
-<script type="text/javascript" src="js/blackjack/deal.js"></script>
 <script type="text/javascript" src="js/blackjack/chips.js"></script>
+<script type="text/javascript" src="js/blackjack/deal.js"></script>
 <script type="text/javascript" src="js/blackjack/hit.js"></script>
+<script type="text/javascript" src="js/blackjack/stand.js"></script>
 </head>
 <body>
 	<table id="blackjack_table" height="800" width="1200" align="center">
 		<tr>
-			<td>Your balance - ${chips} <br>Your bet - <div id="playerBet"></div>
+			<td>Your balance - ${chips} <br>Your bet -
+				<div id="playerBet"></div>
 			</td>
 		</tr>
 
@@ -28,16 +30,19 @@
 				style="position: relative; top: -50px; left: 290px;"> <img
 				id="100_button" src="img/chips/100.png"
 				style="position: relative; top: -25px; left: 285px;"></img></td>
-			<td><div><img id="bet"
-				style="position: relative; top: -20px; left: 330px;"></div>
+			<td><div>
+					<img id="bet" style="position: relative; top: -20px; left: 330px;">
+				</div>
 		</tr>
-				<tr align="center">
+		<tr align="center">
 			<td>
 				<div id="dealer_cards"></div>
 			</td>
 		</tr>
 		<tr align="center">
-			<td>${result}</td>
+			<td>
+				<div id="result"></div>
+			</td>
 			<td>
 				<div id="player_cards"></div>
 			</td>
@@ -46,15 +51,15 @@
 			</td>
 		</tr>
 		<tr align="center">
-			<td><img id="deal_button" src="img/layout/deal.png"
+			<td><img id="deal_button" src="img/layout/dealg.png"
 				style="position: relative; top: -90px;"></img></td>
-			<td><img id="stand_button" src="img/layout/stand.png"
+			<td><img id="stand_button" src="img/layout/standg.png"
 				style="position: relative; top: -90px;"></img></td>
-			<td><img id="hit_button" src="img/layout/hit.png"
+			<td><img id="hit_button" src="img/layout/hitg.png"
 				style="position: relative; top: -90px;"></img></td>
-			<td><img id="split_button" src="img/layout/split.png"
+			<td><img id="split_button" src="img/layout/splitg.png"
 				style="position: relative; top: -90px;"></img></td>
-			<td><img id="double_button" src="img/layout/double.png"
+			<td><img id="double_button" src="img/layout/doubleg.png"
 				style="position: relative; top: -90px;"></img></td>
 	</table>
 </body>
