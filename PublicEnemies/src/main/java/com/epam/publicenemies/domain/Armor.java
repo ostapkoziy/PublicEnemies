@@ -28,8 +28,8 @@ public class Armor extends Item {
 	 * @param armorPrice - price of armor
 	 * @param armorProtection - protection of armor
 	 */
-	public Armor (int armorId, String armorName, String armorPicture, int armorPrice, int armorProtection) {
-		super(armorId, armorName, armorPicture, armorPrice);
+	public Armor (int armorId, String armorName, String armorPicture, int armorPrice, int armorProtection, String description) {
+		super(armorId, armorName, armorPicture, armorPrice, description);
 		this.armorProtection = armorProtection;
 	}
 	

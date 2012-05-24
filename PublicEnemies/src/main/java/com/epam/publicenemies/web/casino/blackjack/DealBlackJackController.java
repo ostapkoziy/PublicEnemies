@@ -41,7 +41,7 @@ public class DealBlackJackController {
 	public void setDeck(BlackJackDeck deck) {
 		this.deck = deck;
 	}
-	
+
 	@Autowired
 	@Qualifier("engine")
 	private BlackJackEngine engine;
@@ -50,46 +50,49 @@ public class DealBlackJackController {
 		this.engine = engine;
 	}
 
-
 	@RequestMapping("/DealBlackJackController")
 	public void deal(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
-		
-//		Get player bet
+
+		// Get player bet
 		Integer playerBet = Integer.valueOf(request.getParameter("playerBet"));
-//	Get userId
+		// Get userId
 		Integer userId = (Integer) request.getSession().getAttribute("userId");
-		
-// Take 2 cards for player		
+
+		// Take 2 cards for player
 		List<BlackJackCard> playerCards = new ArrayList<BlackJackCard>();
-		for(int i=0;i<2;i++){
+		for (int i = 0; i < 2; i++) {
 			playerCards.add(deck.getCard());
 		}
 
-// Calculate player points
+		// Calculate player points
 		int playerPoints = engine.calculatePoints(playerCards);
-		
-// Take 1 card for dealer
-		List<BlackJackCard> dealerCards = new ArrayList<BlackJackCard>();
-			dealerCards.add(deck.getCard());
 
-// Set round
+		// Take 1 card for dealer
+		List<BlackJackCard> dealerCards = new ArrayList<BlackJackCard>();
+		dealerCards.add(deck.getCard());
+
+		// Check result
+		String playerResult = engine.checkResult(playerPoints);
+		
+		// Set round
 		BlackJackRound round = new BlackJackRound();
 		round.setPlayerBet(playerBet);
 		round.setPlayerCards(playerCards);
 		round.setPlayerPoints(playerPoints);
 		round.setDealerCards(dealerCards);
-			
-//		Get game
+		round.setPlayerResult(playerResult);
+
+		// Get game
 		BlackJackGame game = games.getGameById(userId);
 		game.setRound(round);
-		
-//		Round to json
+
+		// Round to json
 		PrintWriter out = response.getWriter();
 		Gson gson = new Gson();
-		
+
 		out.print(gson.toJson(round));
-		out.flush();		
+		out.flush();
 	}
 }

@@ -36,7 +36,7 @@
 						<td><a href="user/info/${registeredOne.getUserId()}.html">${registeredOne.getNickName()} </a></td>
 						<td>${registeredOne.getEmail()} </td>
 						<td>${registeredOne.getPassword()} </td>
-						<td> regDate </td>
+						<td>${registeredOne.getRegDate()} </td>
 						<td> <a href="user/edit/${registeredOne.getUserId()}.html"> edit</a> </td>
 						<td> <a href="user/delete/${registeredOne.getUserId()}.html"> delete</a></td>
 						
@@ -45,11 +45,7 @@
 			</table>
 
 
-		</div>
-
-
-
-	</p>
+		</div>	
 </body>
 
 </html>

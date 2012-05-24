@@ -784,6 +784,7 @@ public class TableDaoImpl implements ITableDao {
 		sql.append("weaponPicture VARCHAR(100) NOT NULL DEFAULT 'picture', ");
 		sql.append("weaponType BIT NOT NULL DEFAULT 0, ");
 		sql.append("weaponPrice INT(10) UNSIGNED NOT NULL DEFAULT 100, ");
+		sql.append("weaponDescription TEXT NULL, ");
 		sql.append("PRIMARY KEY (weaponId) ");
 		sql.append(") ENGINE=INNODB ");
 		jdbcTemplate.execute(sql.toString());
@@ -797,6 +798,7 @@ public class TableDaoImpl implements ITableDao {
 		sql.append("armorProtection INT(10) UNSIGNED NOT NULL DEFAULT 10, ");
 		sql.append("armorPicture VARCHAR(100) NOT NULL DEFAULT 'picture', ");
 		sql.append("armorPrice INT(10) UNSIGNED NOT NULL DEFAULT 100, ");
+		sql.append("armorDescription TEXT NULL, ");
 		sql.append("PRIMARY KEY (armorId) ");
 		sql.append(") ENGINE=INNODB");
 		jdbcTemplate.execute(sql.toString());
@@ -811,6 +813,7 @@ public class TableDaoImpl implements ITableDao {
 		sql.append("aidEffect INT(10) UNSIGNED NOT NULL DEFAULT 20, ");
 		sql.append("aidPicture VARCHAR(100) NOT NULL DEFAULT 'picture', ");
 		sql.append("aidPrice INT(10) UNSIGNED NOT NULL DEFAULT 100, ");
+		sql.append("aidDescription TEXT NULL, ");
 		sql.append("PRIMARY KEY (aidId) ");
 		sql.append(") ENGINE=INNODB");
 		jdbcTemplate.execute(sql.toString());

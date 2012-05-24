@@ -345,18 +345,20 @@ public class ProfileDaoImpl implements IProfileDao {
 
 	private List<Weapon> getWeapons(int characterId) {
 		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT weaponId, weaponName, weaponHitPoints, weaponPicture, weaponType, weaponPrice ");
+		sql.append("SELECT weaponId, weaponName, weaponHitPoints, weaponPicture, weaponType, weaponPrice, weaponDescription ");
 		sql.append("FROM weapons, charactersTrunks WHERE characterId=? AND itemType=1 AND weaponId=ItemId");
 		List<Weapon> weapons = jdbcTemplate.query(sql.toString(),
 				new Object[] { characterId }, new RowMapper<Weapon>() {
 					public Weapon mapRow(ResultSet resultSet, int rowNum)
 							throws SQLException {
+						String description = resultSet.getString("weaponDescription");
+						if(description==null) description = "no description";
 						return new Weapon(resultSet.getInt("weaponId"),
 								resultSet.getString("weaponName"), resultSet
 										.getInt("weaponHitPoints"), resultSet
 										.getString("weaponPicture"), resultSet
 										.getBoolean("weaponType"), resultSet
-										.getInt("weaponPrice"));
+										.getInt("weaponPrice"), description);
 					}
 				});
 		return weapons;
@@ -376,18 +378,20 @@ public class ProfileDaoImpl implements IProfileDao {
 
 	private List<Aid> getAids(int characterId) {
 		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT aidId, aidName, aidType, aidPicture, aidEffect, aidPrice ");
+		sql.append("SELECT aidId, aidName, aidType, aidPicture, aidEffect, aidPrice, aidDescription ");
 		sql.append("FROM aids, charactersTrunks WHERE characterId=? AND itemType=2 AND aidId=ItemId");
 		List<Aid> aids = jdbcTemplate.query(sql.toString(),
 				new Object[] { characterId }, new RowMapper<Aid>() {
 					public Aid mapRow(ResultSet resultSet, int rowNum)
 							throws SQLException {
+						String description = resultSet.getString("aidDescription");
+						if(description==null) description = "no description";
 						return new Aid(resultSet.getInt("aidId"), resultSet
 								.getString("aidName"), resultSet
 								.getString("aidPicture"), resultSet
 								.getInt("aidPrice"), resultSet
 								.getString("aidType"), resultSet
-								.getInt("aidEffect"));
+								.getInt("aidEffect"), description);
 					}
 				});
 		return aids;
@@ -407,17 +411,19 @@ public class ProfileDaoImpl implements IProfileDao {
 
 	private List<Armor> getArmors(int characterId) {
 		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT armorId, armorName, armorPicture, armorProtection, armorPrice ");
+		sql.append("SELECT armorId, armorName, armorPicture, armorProtection, armorPrice, armorDescription ");
 		sql.append("FROM armors, charactersTrunks WHERE characterId=? AND itemType=3 AND armorId=ItemId");
 		List<Armor> armors = jdbcTemplate.query(sql.toString(),
 				new Object[] { characterId }, new RowMapper<Armor>() {
 					public Armor mapRow(ResultSet resultSet, int rowNum)
 							throws SQLException {
+						String description = resultSet.getString("armorDescription");
+						if(description==null) description = "no description";
 						return new Armor(resultSet.getInt("armorId"), resultSet
 								.getString("armorName"), resultSet
 								.getString("armorPicture"), resultSet
 								.getInt("armorPrice"), resultSet
-								.getInt("armorProtection"));
+								.getInt("armorProtection"), description);
 					}
 				});
 		return armors;
@@ -748,5 +754,166 @@ public class ProfileDaoImpl implements IProfileDao {
 		else
 			log.info("ProfileDaoImpl.deleteCharacter: ID of user is " + userId);
 			return false;
+	}
+
+	/**
+	 * Undress first weapon
+	 * @return true if operation is successfully
+	 */
+	@Override
+	public boolean undressWeapon1(int userId) {
+		final String UPDATE_SQL = "UPDATE characters, users SET weapon1=0 WHERE userId=? AND characterId=userCharacter";
+		int i = jdbcTemplate.update(UPDATE_SQL, new Object[] {userId});
+		if (i>0) {
+			log.info("ProfileDaoImpl.undressWeapon1 : weapon1 for user("+userId+") was undressed");
+			return true;
+		} else
+			return false;
+	}
+
+	/**
+	 * Undress second weapon
+	 * @return true if operation is successfully
+	 */
+	@Override
+	public boolean undressWeapon2(int userId) {
+		final String UPDATE_SQL = "UPDATE characters, users SET weapon2=0 WHERE userId=? AND characterId=userCharacter";
+		int i = jdbcTemplate.update(UPDATE_SQL, new Object[] {userId});
+		if (i>0) {
+			log.info("ProfileDaoImpl.undressWeapon2 : weapon2 for user("+userId+") was undressed");
+			return true;
+		} else
+			return false;
+	}
+
+	/**
+	 * Undress aid
+	 * @return true if operation is successfully
+	 */
+	@Override
+	public boolean undresAid(int userId) {
+		final String UPDATE_SQL = "UPDATE characters, users SET aid=0 WHERE userId=? AND characterId=userCharacter";
+		int i = jdbcTemplate.update(UPDATE_SQL, new Object[] {userId});
+		if (i>0) {
+			log.info("ProfileDaoImpl.undressAid : aid for user("+userId+") was undressed");
+			return true;
+		} else
+			return false;
+	}
+
+	/**
+	 * Undress armor
+	 * @return true if operation is successfully
+	 */
+	@Override
+	public boolean undressArmor(int userId) {
+		final String UPDATE_SQL = "UPDATE characters, users SET armor=0 WHERE userId=? AND characterId=userCharacter";
+		int i = jdbcTemplate.update(UPDATE_SQL, new Object[] {userId});
+		if (i>0) {
+			log.info("ProfileDaoImpl.undressArmor : armor for user("+userId+") was undressed");
+			return true;
+		} else
+			return false;
+	}
+
+	/**
+	 * Dress first weapon
+	 * @param userId - id of user
+	 * @param weaponId - weapon id
+	 * @return true if operation is successfully
+	 */
+	@Override
+	public boolean dressWeapon1(int userId, int weaponId) {
+		final String SELECT_SQL = "SELECT trunkId FROM charactersTrunks, users WHERE " +
+				"userId=? AND itemType=1 AND itemId=? AND userCharacter=characterId";
+		final String UPDATE_SQL = "UPDATE characters, users SET weapon1=? WHERE userId=? AND characterId=userCharacter";
+		int trunkId = jdbcTemplate.queryForInt(SELECT_SQL, new Object[] {userId, weaponId});
+		int i = jdbcTemplate.update(UPDATE_SQL, new Object[] {trunkId, userId});
+		if (i>0) {
+			log.info("ProfileDaoImpl.dressWeapon1: first weapon("+weaponId+") for user("+userId+") was dressed");
+			return true;
+		} else
+			return false;
+	}
+
+	/**
+	 * Dress second weapon
+	 * @param userId - id of user
+	 * @param weaponId - weapon id
+	 * @return true if operation is successfully
+	 */
+	@Override
+	public boolean dressWeapon2(int userId, int weaponId) {
+		final String SELECT_SQL = "SELECT trunkId FROM charactersTrunks, users WHERE " +
+				"userId=? AND itemType=1 AND itemId=? AND userCharacter=characterId";
+		final String UPDATE_SQL = "UPDATE characters, users SET weapon2=? WHERE userId=? AND characterId=userCharacter";
+		int trunkId = jdbcTemplate.queryForInt(SELECT_SQL, new Object[] {userId, weaponId});
+		int i = jdbcTemplate.update(UPDATE_SQL, new Object[] {trunkId, userId});
+		if (i>0) {
+			log.info("ProfileDaoImpl.dressWeapon2: second weapon("+weaponId+") for user("+userId+") was dressed");
+			return true;
+		} else
+			return false;
+	}
+
+	/**
+	 * Dress aid
+	 * @param userId - id of user
+	 * @param aidId - aid id
+	 * @return true if operation is successfully
+	 */
+	@Override
+	public boolean dressAid(int userId, int aidId) {
+		final String SELECT_SQL = "SELECT trunkId FROM charactersTrunks, users WHERE " +
+				"userId=? AND itemType=2 AND itemId=? AND userCharacter=characterId";
+		final String UPDATE_SQL = "UPDATE characters, users SET aid=? WHERE userId=? AND characterId=userCharacter";
+		int trunkId = jdbcTemplate.queryForInt(SELECT_SQL, new Object[] {userId, aidId});
+		int i = jdbcTemplate.update(UPDATE_SQL, new Object[] {trunkId, userId});
+		if (i>0) {
+			log.info("ProfileDaoImpl.dressAid: aid("+aidId+") for user("+userId+") was dressed");
+			return true;
+		} else
+			return false;
+	}
+	
+	/**
+	 * Dress armor
+	 * @param userId - id of user
+	 * @param armorId - armor id
+	 * @return true if operation is successfully
+	 */
+	@Override
+	public boolean dressArmor(int userId, int armorId) {
+		log.info("Enter into dressArmor DAO");
+		final String SELECT_SQL = "SELECT trunkId FROM charactersTrunks, users WHERE " +
+				"userId=? AND itemType=3 AND itemId=? AND userCharacter=characterId";
+		
+		final String UPDATE_SQL = "UPDATE characters, users SET armor=? WHERE userId=? AND characterId=userCharacter";
+		int trunkId = jdbcTemplate.queryForInt(SELECT_SQL, new Object[] {userId, armorId});
+
+		int i = jdbcTemplate.update(UPDATE_SQL, new Object[] {trunkId, userId});
+		if (i>0) {
+			log.info("ProfileDaoImpl.dressArmor: armor("+armorId+") for user("+userId+") was dressed");
+			return true;
+		} else
+			return false;
+	}
+
+	/**
+	 * Check weapon2 slot
+	 * @param userId - id of user
+	 * @return true if weapon2 slot is empty
+	 */
+	@Override
+	public boolean isEmptyWeapon2(int userId) {
+		final String SELECT_SQL = "SELECT weapon2 FROM users, characters WHERE userId=? AND userCharacter=characterId";
+		int i = jdbcTemplate.queryForInt(SELECT_SQL, Integer.valueOf(userId));
+		if(i!=0) {
+			log.info("ProfileDaoImpl.isEmptyWeapon2 : not empty");
+			return false;
+		} else {
+			log.info("ProfileDaoImpl.isEmptyWeapon2 : empty");
+			return true;
+		}
 	}
 }

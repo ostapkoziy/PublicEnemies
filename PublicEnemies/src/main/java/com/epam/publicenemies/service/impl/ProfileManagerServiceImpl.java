@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.epam.publicenemies.dao.IProfileDao;
+import com.epam.publicenemies.dao.IUserDao;
 import com.epam.publicenemies.domain.Profile;
 import com.epam.publicenemies.dto.ProfileDto;
 import com.epam.publicenemies.dto.UserDto;
@@ -35,6 +36,9 @@ public class ProfileManagerServiceImpl implements IProfileManagerService {
 	
 	@Autowired
 	private IProfileDao profileDao;
+	
+	@Autowired
+	private IUserDao userDao;
 
 	/*public void setProfileDao(IProfileDao profileDao) {
 		this.profileDao = profileDao;
@@ -88,5 +92,110 @@ public class ProfileManagerServiceImpl implements IProfileManagerService {
 	public void updateProfile(int uid, String nickName, String avatar,
 			boolean sex, String prof) {
 		profileDao.updateProfile(uid, nickName, avatar, sex, prof);		
+	}
+
+	/**
+	 * Undress first weapon
+	 * @return true if operation is successfully
+	 */
+	@Override
+	public boolean undressWeapon1(int userId) {
+		return profileDao.undressWeapon1(userId);
+	}
+
+	/**
+	 * Undress second weapon
+	 * @return true if operation is successfully
+	 */
+	@Override
+	public boolean undressWeapon2(int userId) {
+		return profileDao.undressWeapon2(userId);
+	}
+
+	/**
+	 * Undress aid
+	 * @return true if operation is successfully
+	 */
+	@Override
+	public boolean undressAid(int userId) {
+		return profileDao.undresAid(userId);
+	}
+
+	/**
+	 * Undress armor
+	 * @return true if operation is successfully
+	 */
+	@Override
+	public boolean undressArmor(int userId) {
+		return profileDao.undressArmor(userId);
+	}
+	
+	/**
+	 * Dress first weapon
+	 * @param userId - id of user
+	 * @param weaponId - weapon id
+	 * @return true if operation is successfully
+	 */
+	public boolean dressWeapon1(int userId, int weaponId) {
+		return profileDao.dressWeapon1(userId, weaponId);
+	}
+	
+	/**
+	 * Dress second weapon
+	 * @param userId - id of user
+	 * @param weaponId - weapon id
+	 * @return true if operation is successfully
+	 */
+	public boolean dressWeapon2(int userId, int weaponId) {
+		return profileDao.dressWeapon2(userId, weaponId);
+	}
+	
+	/**
+	 * Dress aid
+	 * @param userId - id of user
+	 * @param aidId - aid id
+	 * @return true if operation is successfully
+	 */
+	public boolean dressAid(int userId, int aidId) {
+		return profileDao.dressAid(userId, aidId);
+	}
+	
+	/**
+	 * Dress armor
+	 * @param userId - id of user
+	 * @param armorId - armor id
+	 * @return true if operation is successfully
+	 */
+	public boolean dressArmor(int userId, int armorId) {
+		return profileDao.dressArmor(userId, armorId);
+	}
+	
+	/**
+	 * Check weapon2 slot
+	 * @param userId - id of user
+	 * @return true if weapon2 slot is empty
+	 */
+	public boolean isEmptyWeapon2(int userId) {
+		return profileDao.isEmptyWeapon2(userId);
+	}
+	
+	/**
+	 * Update money amount
+	 * 
+	 * @param userId
+	 *            - id of user
+	 * @param money
+	 *            - amount of money
+	 * @return true if operation was successful
+	 */
+	public boolean updateMoney(int userId, int money)
+	{
+		if (userDao.updateMoney(userId, money))
+		{
+			log.info("User's (" + userId + ") money (" + money + ") was updated");
+			return true;
+		}
+		else
+			return false;
 	}
 }

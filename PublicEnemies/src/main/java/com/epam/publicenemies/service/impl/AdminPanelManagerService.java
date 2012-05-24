@@ -12,6 +12,7 @@ import com.epam.publicenemies.dao.IArmorsDao;
 import com.epam.publicenemies.dao.IProfileDao;
 import com.epam.publicenemies.dao.IUserDao;
 import com.epam.publicenemies.dao.IWeaponsDao;
+import com.epam.publicenemies.domain.Armor;
 import com.epam.publicenemies.domain.User;
 import com.epam.publicenemies.domain.Weapon;
 import com.epam.publicenemies.service.IAdminPanelManagerService;
@@ -123,8 +124,8 @@ public class AdminPanelManagerService implements IAdminPanelManagerService {
 	 * @param price - weapon price
 	 * @return id of created weapon
 	 */
-	public int addWeapon(String name, int hitPoints, String picture, boolean weaponType, int price) {
-		return weaponsDao.addWeapon(name, hitPoints, picture, weaponType, price);
+	public int addWeapon(String name, int hitPoints, String picture, boolean weaponType, int price, String description) {
+		return weaponsDao.addWeapon(name, hitPoints, picture, weaponType, price, description);
 	}
 	
 	/**
@@ -137,8 +138,9 @@ public class AdminPanelManagerService implements IAdminPanelManagerService {
 	 * @param price - weapon price
 	 * @return true if operation was successfully
 	 */
-	public boolean updateWeaponInfo(int weaponId, String weaponName, int hitPoints, String picture, boolean type, int price) {
-		return weaponsDao.updateWeaponInfo(weaponId, weaponName, hitPoints, picture, type, price);
+	public boolean updateWeaponInfo(int weaponId, String weaponName, int hitPoints, 
+			String picture, boolean type, int price, String description) {
+		return weaponsDao.updateWeaponInfo(weaponId, weaponName, hitPoints, picture, type, price, description);
 	}
 	
 	/**
@@ -221,6 +223,81 @@ public class AdminPanelManagerService implements IAdminPanelManagerService {
 	 */
 	public List<Weapon> sortWeaponsByPrice() {
 		return weaponsDao.getWeaponsSortedByPrice();
+	}
+	
+	/**
+	 * Gets all armors entry from db
+	 * @return list of armors
+	 */
+	public List<Armor> fetchAllArmors() {
+		return armorsDao.fetchAllArmors();
+	}
+	
+	/**
+	 * Add new armor
+	 * @param name - armor name
+	 * @param picture - armor picture
+	 * @param protection - armor protection
+	 * @param price - armor price
+	 * @return id of created weapon
+	 */
+	public int addArmor(String name, String picture, int protection, int price, String description) {
+		return armorsDao.addArmor(name, picture, protection, price, description);
+	}
+	
+	/**
+	 * Update armor info
+	 * @param armorId - id of armor
+	 * @param name - armor name
+	 * @param protection - armor protection
+	 * @param picture - armor picture
+	 * @param price - armor price
+	 * @return true if operation was successfully
+	 */
+	public boolean updateArmorInfo(int armorId, String name, int protection, String picture, int price, String description) {
+		return armorsDao.updateArmorInfo(armorId, name, protection, picture, price, description);
+	}
+	
+	/**
+	 * Get Armor object by id
+	 * @param armorId - armor id
+	 * @return Armor object
+	 */
+	public Armor getArmorById(int armorId) {
+		return armorsDao.getArmorById(armorId);
+	}
+	
+	/**
+	 * Get Armor object by armor name 
+	 * @param name - armor name
+	 * @return Armor object
+	 */
+	public Armor getArmorByName(String name) {
+		return armorsDao.getArmorByName(name);
+	}
+	
+	/**
+	 * Get all armors sorted by name
+	 * @return - list of all armors
+	 */
+	public List<Armor> sortArmorsByName() {
+		return armorsDao.getArmorsSortedByName();
+	}
+	
+	/**
+	 * Get all armors sorted by price
+	 * @return - list of all armors
+	 */
+	public List<Armor> sortArmorsByPrice() {
+		return armorsDao.getArmorsSortedByPrice();
+	}
+	
+	/**
+	 * Get all armors sorted by protection
+	 * @return - list of all armors
+	 */
+	public List<Armor> sortedArmorsByProtection() {
+		return armorsDao.getArmorsSortedByProtection();
 	}
 	
 }

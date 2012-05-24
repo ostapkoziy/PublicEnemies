@@ -2,7 +2,6 @@ package com.epam.publicenemies.web.casino.blackjack;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -23,8 +22,9 @@ import com.epam.publicenemies.domain.blackjack.BlackJackRound;
 import com.google.gson.Gson;
 
 @Controller
-public class HitBlackJackController {
-	private static Logger log = Logger.getLogger(HitBlackJackController.class);
+public class StandBlackJackController {
+	private static Logger log = Logger
+			.getLogger(StandBlackJackController.class);
 
 	@Autowired
 	@Qualifier("games")
@@ -50,12 +50,10 @@ public class HitBlackJackController {
 		this.engine = engine;
 	}
 
-	@RequestMapping("/HitBlackJackController")
+	@RequestMapping("/StandBlackJackController")
 	public void deal(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
-		Integer chips = (Integer)request.getSession().getAttribute("chips");
-		log.info("CHIPS - " + chips);
 		// Get userId
 		Integer userId = (Integer) request.getSession().getAttribute("userId");
 
@@ -63,19 +61,20 @@ public class HitBlackJackController {
 		BlackJackGame game = games.getGameById(userId);
 		BlackJackRound round = game.getRound();
 
-		// Take 1 card for player
-		List<BlackJackCard> playerCards = round.getPlayerCards();
-		playerCards.add(deck.getCard());
-
-		// Calculate player points
-		int playerPoints = engine.calculatePoints(playerCards);
+		// Take cards for dealer
+		List<BlackJackCard> dealerCards = round.getDealerCards();
+		int dealerPoints = 0;
+		do {
+			dealerCards.add(deck.getCard());
+			dealerPoints = engine.calculatePoints(dealerCards);
+		} while (dealerPoints < 17);
 
 		// Check result
-		String playerResult = engine.checkResult(playerPoints);
+		String playerResult = engine.checkResult(round.getPlayerPoints(),
+				dealerPoints);
 
 		// Set round
-		round.setPlayerCards(playerCards);
-		round.setPlayerPoints(playerPoints);
+		round.setDealerCards(dealerCards);
 		round.setPlayerResult(playerResult);
 
 		// Round to json
@@ -84,5 +83,6 @@ public class HitBlackJackController {
 
 		out.print(gson.toJson(round));
 		out.flush();
+
 	}
 }

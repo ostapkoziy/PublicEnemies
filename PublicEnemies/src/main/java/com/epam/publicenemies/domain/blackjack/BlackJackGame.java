@@ -1,6 +1,5 @@
 package com.epam.publicenemies.domain.blackjack;
 
-import java.util.List;
 
 
 public class BlackJackGame {
