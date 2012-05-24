@@ -1,26 +1,8 @@
 $(document).ready(function(){
-	var count = 0;
 	var image_prefix = "img/cards/";
 	var image_suffix = ".png";
 	
 	betSend(0,0);
-	var regBet = /^([0-9]{1,20})$/;
-	$("#userBetInput").keyup(function()
-		{
-			var temp = $("#raise_button").attr("src");
-			if ($("#userBetInput").val().search(regBet) == -1)
-			{
-				$("#userBetInput").removeClass("correct").addClass("error");
-				$("#raise_button").attr("src", "img/layout/button.png");
-			}
-			else
-			{
-				$("#userBetInput").removeClass("error").addClass("correct");
-				$("#raise_button").attr("src", temp);
-
-			}
-
-		});
 	$("#botBetInput").hide();
 
 	function dealFlop (card1, card2, card3){
@@ -88,6 +70,7 @@ $(document).ready(function(){
 		if(pokerGame.pokerGameRound.result != null){
 			showResult(pokerGame);
 		}
+		
 		$("img#player_avatar").attr("src", pokerGame.user1Profile.avatar);
 		$("#player_name").empty().append(pokerGame.user1Profile.nickName);
 		$("#player_chips").empty().append(pokerGame.user1Profile.money);
@@ -111,14 +94,24 @@ $(document).ready(function(){
 			var card2 = pokerGame.pokerGameRound.table.flop2.value.name + pokerGame.pokerGameRound.table.flop2.suit.name;
 			var card3 = pokerGame.pokerGameRound.table.flop3.value.name + pokerGame.pokerGameRound.table.flop3.suit.name;
 			dealFlop(card1, card2, card3);
+			$("#pot_size").empty().append(pokerGame.pokerGameRound.pot);
+			$("#bot_chips").val("");
+			$("#player_chips").val("");
+			
 		}
 		else if(pokerGame.pokerGameRound.table.river == null){
 			var card1 = pokerGame.pokerGameRound.table.turn.value.name + pokerGame.pokerGameRound.table.turn.suit.name;
 			dealTurn(card1);
+			$("#pot_size").empty().append(pokerGame.pokerGameRound.pot);
+			$("#player_name").empty();
+			$("#player_chips").empty();
 		}
 		else if(pokerGame.pokerGameRound.table.river != null){
 			var card1 = pokerGame.pokerGameRound.table.river.value.name + pokerGame.pokerGameRound.table.river.suit.name;
 			dealRiver(card1);
+			$("#pot_size").empty().append(pokerGame.pokerGameRound.pot);
+			$("#player_name").empty();
+			$("#player_chips").empty();
 		}
 		
 	}
@@ -131,6 +124,9 @@ $(document).ready(function(){
 			}else{
 				highlightCards(pokerGame.pokerGameRound.player1Combination);
 			}
+		}
+		else{
+			alert("Split pot");
 		}
 	}
 	

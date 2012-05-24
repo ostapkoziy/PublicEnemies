@@ -1,0 +1,77 @@
+body {
+	background-image: url(../img/layout/casino.png);
+	background-repeat: no-repeat;
+	color: white;
+	font-family: 'impact';
+	font-size: 14pt;
+}
+#inputDiv{
+	width:200px;
+	height: 200px;
+	border: 2px solid black;
+	background-image: url(../img/opacity_background.png);
+	position: relative;
+	left: 200px;
+	top: 100px;
+}
+h4 {
+	color: white;
+	font-family: 'impact';
+	font-size: 16pt;
+}
+
+button {
+	font-family: 'impact';
+	font-size: 20px;
+	width: 100px;
+	height: 44px;
+}
+
+table#main_table {
+	margin-top: 100px;
+	
+	border-width: 2;
+}
+
+
+A:link {
+	text-decoration: underline;
+	color: white;
+	font-size: 20pt;
+}
+
+A:visited {
+	text-decoration: underline;
+	color: white;
+	font-size: 20pt;
+}
+
+A:active {
+	text-decoration: underline;
+	color: white;
+	font-size: 20pt;
+}
+
+A:hover {
+	text-decoration: underline;
+	color: white;
+	font-size: 20pt;
+}
+
+a {
+	color: black;
+	font-family: 'impact';
+	font-size: 20pt;
+}
+img.highlight{
+    float: left;
+    margin-top: 80px;
+    -webkit-transition: margin 0.5s ease-out;
+    -moz-transition: margin 0.5s ease-out;
+    -o-transition: margin 0.5s ease-out;
+}
+
+.highlight:hover {
+    margin-top: 2px;
+}
+

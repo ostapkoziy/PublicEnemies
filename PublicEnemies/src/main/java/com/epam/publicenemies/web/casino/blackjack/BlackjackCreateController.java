@@ -44,10 +44,10 @@ public class BlackjackCreateController {
 	public ModelAndView handleRequest(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		Integer userId = (Integer) request.getSession().getAttribute("userId");
-		Profile userProfile = profileManagerService.getProfileByUserId(userId);
+		Profile profile = profileManagerService.getProfileByUserId(userId);
 
 		Integer chips = Integer.valueOf(request.getParameter("chips"));
-		userProfile.setMoney(userProfile.getMoney() - chips);
+		profileManagerService.updateMoney(userId, profile.getMoney() - chips);
 
 		games.createNewGame(userId, chips);
 
@@ -55,6 +55,7 @@ public class BlackjackCreateController {
 		Map<String, Object> objects = new HashMap<String, Object>();
 
 		objects.put("chips", chips);
+		request.getSession().setAttribute("chips", chips);
 
 		return new ModelAndView("blackJackGame", objects);
 	}

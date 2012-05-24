@@ -3,6 +3,7 @@ $(document).ready(
 			$("img#deal_button").click(function() {
 				var bet = $("#playerBet").val();
 				var nothing = null;
+				var chips = $("#playerChips").val();
 				var attr = $("#deal_button").attr("src");
 				if (attr != "img/layout/dealg.png")
 					sendAjax(bet, nothing);
@@ -46,6 +47,10 @@ $(document).ready(
 				}
 				$("#player_points").empty().append(round.playerPoints);
 				$("#result").empty().append(round.playerResult);
+
+				// Chips
+				$("#playerChips").empty().val();
+				$("#playerBet").empty().append("10");
 
 				// Buttons
 				if (round.playerResult == null) {

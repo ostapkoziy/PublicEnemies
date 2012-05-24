@@ -20,6 +20,7 @@
 			<td align="center"><img src="img/gamelogo.png"></img></td>
 		</tr>
 		<tr>
+			<button id="newRound">new Round</button>
 			<table id="poker_table" class="sample" align="center" width="1000">
 				<tr align="center">
 					<td>
@@ -60,18 +61,18 @@
 							<tr height="120">
 								<td colspan="3">	
 									<!--++++++++++++++++++++++++++++++++++DECK++++++++++++++++++++++++++++++++++++ -->
-									<img id="deck" style="position:relative; top:-25px; left:40px; width: 40px" src="img/cards/deck.png"></img>
+									<img id="deck" style="position:relative; top:-20px; left:40px; width: 40px" src="img/cards/deck.png"></img>
 									<!--++++++++++++++++++++++++++++++++++FLOP++++++++++++++++++++++++++++++++++++ -->
-									<img id="flop1" class="none" style="position:relative; top:-25px; left:93px; width: 35px" src=""></img>
-									<img id="flop2" class="none"  style="position:relative; top:-25px; left:98px; width: 35px" src=""></img>
-									<img id="flop3" class="none" style="position:relative; top:-25px; left:103px; width: 35px" src=""></img>
+									<img id="flop1" class="none" style="position:relative; top:-20px; left:93px; width: 35px" src=""></img>
+									<img id="flop2" class="none"  style="position:relative; top:-20px; left:98px; width: 35px" src=""></img>
+									<img id="flop3" class="none" style="position:relative; top:-20px; left:103px; width: 35px" src=""></img>
 									<!--++++++++++++++++++++++++++++++++++TURN++++++++++++++++++++++++++++++++++++ -->
-									<img id="turn" class="none" style="position:relative; top:-25px; left:108px; width: 35px" src=""></img>
+									<img id="turn" class="none" style="position:relative; top:-20px; left:108px; width: 35px" src=""></img>
 									<!--++++++++++++++++++++++++++++++++++RIVER+++++++++++++++++++++++++++++++++++ -->
-									<img id="river" class="none" style="position:relative; top:-25px; left:113px; width: 35px" src=""></img>
+									<img id="river" class="none" style="position:relative; top:-20px; left:113px; width: 35px" src=""></img>
 									<!--++++++++++++++++++++++++++++++++++POT++++++++++++++++++++++++++++++++++++ -->
-									<img id="pot_chips" style="position:relative; top:-25px; left:130px; width: 35px" src="img/chips/chips.png"></img>
-									<font id="pot_size" style="position:relative; top:-40px; left:140px;">pot</font>
+									<img id="pot_chips" style="position:relative; top:-30px; left:130px; width: 35px" src="img/chips/chips.png"></img>
+									<a id="pot_size" style="position:relative; top:-40px; left:130px">0</a>
 								</td>
 							</tr>
 							<tr height="50">
