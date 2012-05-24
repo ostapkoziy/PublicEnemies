@@ -30,8 +30,8 @@ public class Aid extends Item {
 	 * @param aidType - type of Aid
 	 * @param aidEffect - effect of Aid
 	 */
-	public Aid(int aidId, String aidName, String aidPicture, int aidPrice, String aidType, int aidEffect) {
-		super(aidId, aidName, aidPicture, aidPrice);
+	public Aid(int aidId, String aidName, String aidPicture, int aidPrice, String aidType, int aidEffect, String description) {
+		super(aidId, aidName, aidPicture, aidPrice, description);
 		this.aidType = aidType;
 		this.aidEffect = aidEffect;
 	}

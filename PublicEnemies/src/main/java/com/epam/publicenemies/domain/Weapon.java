@@ -21,8 +21,8 @@ public class Weapon extends Item {
 	 * @param weaponType - type of Weapon
 	 * @param price - Weapon price
 	 */
-	public Weapon (int id, String name, int hitPoints, String picture, boolean weaponType, int price){
-		super(id, name, picture, price);
+	public Weapon (int id, String name, int hitPoints, String picture, boolean weaponType, int price, String description){
+		super(id, name, picture, price, description);
 		this.hitPoints = hitPoints;
 		this.weaponType = weaponType;		
 	}

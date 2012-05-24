@@ -13,6 +13,7 @@ public abstract class Item {
 	private int itemPrice;
 	private int itemId;
 	private String itemPicture;
+	private String itemDescription;
 	
 	/**
 	 * Item non-default constructor
@@ -21,11 +22,12 @@ public abstract class Item {
 	 * @param itemPicture - path to picture
 	 * @param itemPrice - item price
 	 */
-	public Item (int itemId, String itemName, String itemPicture, int itemPrice) {
+	public Item (int itemId, String itemName, String itemPicture, int itemPrice, String itemDescription) {
 		this.itemId = itemId;
 		this.itemName = itemName;
 		this.itemPicture = itemPicture;
 		this.itemPrice = itemPrice;
+		this.itemDescription = itemDescription;
 	}
 	/**
 	 * Item default constructor
@@ -35,6 +37,7 @@ public abstract class Item {
 		itemPicture = new String();
 		itemId = 0;
 		itemPrice = 0;
+		itemDescription = new String();
 	}
 	/**
 	 * Get name of item
@@ -97,6 +100,12 @@ public abstract class Item {
 	 */
 	public void setItemPicture(String itemPicture) {
 		this.itemPicture = itemPicture;
+	}
+	public String getItemDescription() {
+		return itemDescription;
+	}
+	public void setItemDescription(String itemDescription) {
+		this.itemDescription = itemDescription;
 	}
 
 }

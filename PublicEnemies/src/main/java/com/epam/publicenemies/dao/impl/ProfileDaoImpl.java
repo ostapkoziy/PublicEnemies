@@ -345,18 +345,20 @@ public class ProfileDaoImpl implements IProfileDao {
 
 	private List<Weapon> getWeapons(int characterId) {
 		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT weaponId, weaponName, weaponHitPoints, weaponPicture, weaponType, weaponPrice ");
+		sql.append("SELECT weaponId, weaponName, weaponHitPoints, weaponPicture, weaponType, weaponPrice, weaponDescription ");
 		sql.append("FROM weapons, charactersTrunks WHERE characterId=? AND itemType=1 AND weaponId=ItemId");
 		List<Weapon> weapons = jdbcTemplate.query(sql.toString(),
 				new Object[] { characterId }, new RowMapper<Weapon>() {
 					public Weapon mapRow(ResultSet resultSet, int rowNum)
 							throws SQLException {
+						String description = resultSet.getString("weaponDescription");
+						if(description==null) description = "no description";
 						return new Weapon(resultSet.getInt("weaponId"),
 								resultSet.getString("weaponName"), resultSet
 										.getInt("weaponHitPoints"), resultSet
 										.getString("weaponPicture"), resultSet
 										.getBoolean("weaponType"), resultSet
-										.getInt("weaponPrice"));
+										.getInt("weaponPrice"), description);
 					}
 				});
 		return weapons;
@@ -376,18 +378,20 @@ public class ProfileDaoImpl implements IProfileDao {
 
 	private List<Aid> getAids(int characterId) {
 		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT aidId, aidName, aidType, aidPicture, aidEffect, aidPrice ");
+		sql.append("SELECT aidId, aidName, aidType, aidPicture, aidEffect, aidPrice, aidDescription ");
 		sql.append("FROM aids, charactersTrunks WHERE characterId=? AND itemType=2 AND aidId=ItemId");
 		List<Aid> aids = jdbcTemplate.query(sql.toString(),
 				new Object[] { characterId }, new RowMapper<Aid>() {
 					public Aid mapRow(ResultSet resultSet, int rowNum)
 							throws SQLException {
+						String description = resultSet.getString("aidDescription");
+						if(description==null) description = "no description";
 						return new Aid(resultSet.getInt("aidId"), resultSet
 								.getString("aidName"), resultSet
 								.getString("aidPicture"), resultSet
 								.getInt("aidPrice"), resultSet
 								.getString("aidType"), resultSet
-								.getInt("aidEffect"));
+								.getInt("aidEffect"), description);
 					}
 				});
 		return aids;
@@ -407,17 +411,19 @@ public class ProfileDaoImpl implements IProfileDao {
 
 	private List<Armor> getArmors(int characterId) {
 		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT armorId, armorName, armorPicture, armorProtection, armorPrice ");
+		sql.append("SELECT armorId, armorName, armorPicture, armorProtection, armorPrice, armorDescription ");
 		sql.append("FROM armors, charactersTrunks WHERE characterId=? AND itemType=3 AND armorId=ItemId");
 		List<Armor> armors = jdbcTemplate.query(sql.toString(),
 				new Object[] { characterId }, new RowMapper<Armor>() {
 					public Armor mapRow(ResultSet resultSet, int rowNum)
 							throws SQLException {
+						String description = resultSet.getString("armorDescription");
+						if(description==null) description = "no description";
 						return new Armor(resultSet.getInt("armorId"), resultSet
 								.getString("armorName"), resultSet
 								.getString("armorPicture"), resultSet
 								.getInt("armorPrice"), resultSet
-								.getInt("armorProtection"));
+								.getInt("armorProtection"), description);
 					}
 				});
 		return armors;

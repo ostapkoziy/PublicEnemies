@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.epam.publicenemies.dao.IProfileDao;
+import com.epam.publicenemies.dao.IUserDao;
 import com.epam.publicenemies.domain.Profile;
 import com.epam.publicenemies.dto.ProfileDto;
 import com.epam.publicenemies.dto.UserDto;
@@ -35,6 +36,9 @@ public class ProfileManagerServiceImpl implements IProfileManagerService {
 	
 	@Autowired
 	private IProfileDao profileDao;
+	
+	@Autowired
+	private IUserDao userDao;
 
 	/*public void setProfileDao(IProfileDao profileDao) {
 		this.profileDao = profileDao;
@@ -175,5 +179,23 @@ public class ProfileManagerServiceImpl implements IProfileManagerService {
 		return profileDao.isEmptyWeapon2(userId);
 	}
 	
-	
+	/**
+	 * Update money amount
+	 * 
+	 * @param userId
+	 *            - id of user
+	 * @param money
+	 *            - amount of money
+	 * @return true if operation was successful
+	 */
+	public boolean updateMoney(int userId, int money)
+	{
+		if (userDao.updateMoney(userId, money))
+		{
+			log.info("User's (" + userId + ") money (" + money + ") was updated");
+			return true;
+		}
+		else
+			return false;
+	}
 }

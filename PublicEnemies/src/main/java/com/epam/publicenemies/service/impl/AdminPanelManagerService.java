@@ -124,8 +124,8 @@ public class AdminPanelManagerService implements IAdminPanelManagerService {
 	 * @param price - weapon price
 	 * @return id of created weapon
 	 */
-	public int addWeapon(String name, int hitPoints, String picture, boolean weaponType, int price) {
-		return weaponsDao.addWeapon(name, hitPoints, picture, weaponType, price);
+	public int addWeapon(String name, int hitPoints, String picture, boolean weaponType, int price, String description) {
+		return weaponsDao.addWeapon(name, hitPoints, picture, weaponType, price, description);
 	}
 	
 	/**
@@ -138,8 +138,9 @@ public class AdminPanelManagerService implements IAdminPanelManagerService {
 	 * @param price - weapon price
 	 * @return true if operation was successfully
 	 */
-	public boolean updateWeaponInfo(int weaponId, String weaponName, int hitPoints, String picture, boolean type, int price) {
-		return weaponsDao.updateWeaponInfo(weaponId, weaponName, hitPoints, picture, type, price);
+	public boolean updateWeaponInfo(int weaponId, String weaponName, int hitPoints, 
+			String picture, boolean type, int price, String description) {
+		return weaponsDao.updateWeaponInfo(weaponId, weaponName, hitPoints, picture, type, price, description);
 	}
 	
 	/**
@@ -240,8 +241,8 @@ public class AdminPanelManagerService implements IAdminPanelManagerService {
 	 * @param price - armor price
 	 * @return id of created weapon
 	 */
-	public int addArmor(String name, String picture, int protection, int price) {
-		return armorsDao.addArmor(name, picture, protection, price);
+	public int addArmor(String name, String picture, int protection, int price, String description) {
+		return armorsDao.addArmor(name, picture, protection, price, description);
 	}
 	
 	/**
@@ -253,8 +254,8 @@ public class AdminPanelManagerService implements IAdminPanelManagerService {
 	 * @param price - armor price
 	 * @return true if operation was successfully
 	 */
-	public boolean updateArmorInfo(int armorId, String name, int protection, String picture, int price) {
-		return armorsDao.updateArmorInfo(armorId, name, protection, picture, price);
+	public boolean updateArmorInfo(int armorId, String name, int protection, String picture, int price, String description) {
+		return armorsDao.updateArmorInfo(armorId, name, protection, picture, price, description);
 	}
 	
 	/**
@@ -279,7 +280,7 @@ public class AdminPanelManagerService implements IAdminPanelManagerService {
 	 * Get all armors sorted by name
 	 * @return - list of all armors
 	 */
-	public List<Armor> SortArmorsByName() {
+	public List<Armor> sortArmorsByName() {
 		return armorsDao.getArmorsSortedByName();
 	}
 	
@@ -287,7 +288,7 @@ public class AdminPanelManagerService implements IAdminPanelManagerService {
 	 * Get all armors sorted by price
 	 * @return - list of all armors
 	 */
-	public List<Armor> SortArmorsByPrice() {
+	public List<Armor> sortArmorsByPrice() {
 		return armorsDao.getArmorsSortedByPrice();
 	}
 	
@@ -295,7 +296,7 @@ public class AdminPanelManagerService implements IAdminPanelManagerService {
 	 * Get all armors sorted by protection
 	 * @return - list of all armors
 	 */
-	public List<Armor> SortedArmorsByProtection() {
+	public List<Armor> sortedArmorsByProtection() {
 		return armorsDao.getArmorsSortedByProtection();
 	}
 	

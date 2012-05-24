@@ -48,12 +48,15 @@ public class WeaponsDaoImpl implements IWeaponsDao {
 	private final class WeaponMapper implements RowMapper<Weapon> {
 	    public Weapon mapRow(ResultSet rs, int rowNum) throws SQLException {
 	        Weapon weapon = new Weapon();
+	        String description = rs.getString("weaponDescription");
+	        if (description==null) description = "no description";
 	        weapon.setItemId(rs.getInt("weaponId"));
 	        weapon.setItemName(rs.getString("weaponName"));
 	        weapon.setHitPoints(rs.getInt("weaponHitPoints"));
 	        weapon.setWeaponType(rs.getBoolean("weaponType"));
 	        weapon.setItemPicture(rs.getString("weaponPicture"));
 	        weapon.setItemPrice(rs.getInt("weaponPrice"));
+	        weapon.setItemDescription(description);
 	        return weapon;
 	    } 
 	}
@@ -69,10 +72,10 @@ public class WeaponsDaoImpl implements IWeaponsDao {
 	 */
 	@Override
 	public int addWeapon(final String name, final int hitPoints, final String picture,
-			final boolean weaponType, final int price) {
+			final boolean weaponType, final int price, final String description) {
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		final String INSERT_SQL = "INSERT INTO weapons (weaponName, weaponHitPoints, weaponPicture, weaponType," +
-				"weaponPrice) VALUES (?,?,?,?,?)";
+				"weaponPrice, weaponDescription) VALUES (?,?,?,?,?,?)";
 		jdbcTemplate.update(
 		new PreparedStatementCreator() {
 			@Override
@@ -83,6 +86,7 @@ public class WeaponsDaoImpl implements IWeaponsDao {
 				ps.setString(3, picture);
 				ps.setBoolean(4, weaponType);
 				ps.setInt(5, price);
+				ps.setString(6, description);
 				return ps;
 			}
 		}, keyHolder);
@@ -100,7 +104,7 @@ public class WeaponsDaoImpl implements IWeaponsDao {
 	public int addWeapon(final Weapon weapon) {
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		final String INSERT_SQL = "INSERT INTO weapons (weaponName, weaponHitPoints, weponPicture, weaponType," +
-				"weaponPrice) VALUES (?,?,?,?,?)";
+				"weaponPrice, weaponDescription) VALUES (?,?,?,?,?,?)";
 		jdbcTemplate.update(
 		new PreparedStatementCreator() {
 			@Override
@@ -111,6 +115,7 @@ public class WeaponsDaoImpl implements IWeaponsDao {
 				ps.setString(3, weapon.getItemPicture());
 				ps.setBoolean(4, weapon.isWeaponType());
 				ps.setInt(5, weapon.getItemPrice());
+				ps.setString(6, weapon.getItemDescription());
 				return ps;
 			}
 		}, keyHolder);
@@ -273,7 +278,7 @@ public class WeaponsDaoImpl implements IWeaponsDao {
 	 * @return true if operation was successfully
 	 */
 	public boolean updateWeaponInfo(int weaponId, String weaponName, int hitPoints, String picture, 
-			boolean type, int price) {
+			boolean type, int price, String description) {
 		final String UPDATE_SQL = "UPDATE weapons SET weaponName=?, weaponHitPoints=?, weaponPicture=?" +
 				"weaponType=?, weaponPrice=? WHERE weaponId=?";
 		int i = jdbcTemplate.update(UPDATE_SQL, new Object[] {weaponName, hitPoints, picture,

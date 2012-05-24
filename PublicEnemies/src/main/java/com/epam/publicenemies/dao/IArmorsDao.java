@@ -26,7 +26,7 @@ public interface IArmorsDao {
 	 * @param price - armor price
 	 * @return id of created weapon
 	 */
-	int addArmor(String name, String picture, int protection, int price);
+	int addArmor(String name, String picture, int protection, int price, String description);
 	
 	/**
 	 * Update armor info
@@ -37,7 +37,7 @@ public interface IArmorsDao {
 	 * @param price - armor price
 	 * @return true if operation was successfully
 	 */
-	boolean updateArmorInfo(int armorId, String name, int protection, String picture, int price);
+	boolean updateArmorInfo(int armorId, String name, int protection, String picture, int price, String description);
 	
 	/**
 	 * Get Armor object by id

@@ -85,7 +85,7 @@ public interface IAdminPanelManagerService {
 	 * @param price - weapon price
 	 * @return id of created weapon
 	 */
-	int addWeapon(String name, int hitPoints, String picture, boolean weaponType, int price);
+	int addWeapon(String name, int hitPoints, String picture, boolean weaponType, int price, String description);
 	
 	/**
 	 * Update weapon info
@@ -97,7 +97,8 @@ public interface IAdminPanelManagerService {
 	 * @param price - weapon price
 	 * @return true if operation was successfully
 	 */
-	boolean updateWeaponInfo(int weaponId, String weaponName, int hitPoints, String picture, boolean type, int price);
+	boolean updateWeaponInfo(int weaponId, String weaponName, int hitPoints, String picture,
+			boolean type, int price, String description);
 	
 	/**
 	 * Get Weapon object by id
@@ -163,7 +164,7 @@ public interface IAdminPanelManagerService {
 	 * @param price - armor price
 	 * @return id of created weapon
 	 */
-	int addArmor(String name, String picture, int protection, int price);
+	int addArmor(String name, String picture, int protection, int price, String description);
 	
 	/**
 	 * Update armor info
@@ -174,7 +175,7 @@ public interface IAdminPanelManagerService {
 	 * @param price - armor price
 	 * @return true if operation was successfully
 	 */
-	boolean updateArmorInfo(int armorId, String name, int protection, String picture, int price);
+	boolean updateArmorInfo(int armorId, String name, int protection, String picture, int price, String description);
 	
 	/**
 	 * Get Armor object by id
@@ -194,19 +195,19 @@ public interface IAdminPanelManagerService {
 	 * Get all armors sorted by name
 	 * @return - list of all armors
 	 */
-	List<Armor> SortArmorsByName();
+	List<Armor> sortArmorsByName();
 	
 	/**
 	 * Get all armors sorted by price
 	 * @return - list of all armors
 	 */
-	List<Armor> SortArmorsByPrice();
+	List<Armor> sortArmorsByPrice();
 	
 	/**
 	 * Get all armors sorted by protection
 	 * @return - list of all armors
 	 */
-	List<Armor> SortedArmorsByProtection();
+	List<Armor> sortedArmorsByProtection();
 
 	
 }

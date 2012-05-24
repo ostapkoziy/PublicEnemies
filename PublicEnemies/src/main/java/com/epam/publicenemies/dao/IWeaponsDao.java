@@ -27,7 +27,7 @@ public interface IWeaponsDao {
 	 * @param price - weapon price
 	 * @return id of created weapon
 	 */
-	int addWeapon(String name, int hitPoints, String picture, boolean weaponType, int price);
+	int addWeapon(String name, int hitPoints, String picture, boolean weaponType, int price, String description);
 	
 	/**
 	 * Add new weapon
@@ -119,7 +119,8 @@ public interface IWeaponsDao {
 	 * @param price - weapon price
 	 * @return true if operation was successfully
 	 */
-	boolean updateWeaponInfo(int weaponId, String weaponName, int hitPoints, String picture, boolean type, int price);
+	boolean updateWeaponInfo(int weaponId, String weaponName, int hitPoints, String picture,
+			boolean type, int price, String description);
 	
 	/**
 	 * Get list of all weapons sorted by weapon name

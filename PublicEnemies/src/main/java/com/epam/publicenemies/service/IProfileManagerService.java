@@ -112,5 +112,13 @@ public interface IProfileManagerService {
 	 * @return true if weapon2 slot is empty
 	 */
 	boolean isEmptyWeapon2(int userId);
+	
+	/**
+	 * Update money amount
+	 * @param userId - id of user
+	 * @param money - amount of money
+	 * @return true if operation was successful
+	 */
+	boolean updateMoney(int userId, int money);
 
 }
