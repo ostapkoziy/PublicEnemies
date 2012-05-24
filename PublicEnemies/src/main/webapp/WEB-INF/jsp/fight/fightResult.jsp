@@ -70,11 +70,10 @@ body {
 	margin-top: 20px;
 	width: 334px;
 	margin-left: auto;
-	outline: 2px solid blue;
+	/* 	outline: 2px solid blue; */
 }
 
-#createJoinWrapper {
-	outline: 10px solid red;
+#createJoinWrapper { /* 	outline: 10px solid red; */
 	margin-left: auto;
 	margin-right: auto;
 	width: auto;

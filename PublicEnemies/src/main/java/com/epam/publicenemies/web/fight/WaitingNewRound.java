@@ -23,7 +23,7 @@ public class WaitingNewRound
 {
 	private Logger	log	= Logger.getLogger(WaitingNewRound.class);
 	@RequestMapping("/WaitingNewRound")
-	public void newRound(HttpServletRequest request, HttpServletResponse response) throws IOException
+	public void newRound(HttpServletRequest request, HttpServletResponse response) throws IOException, InterruptedException
 	{
 		response.setContentType("text/html;charset=UTF-8");
 		String role = request.getSession().getAttribute("gameRole").toString();

@@ -11,13 +11,22 @@ public class Fight
 	private long				id;
 	private Profile				creatorProfile;
 	private Profile				connectorProfile;
-	private volatile boolean	gameStarted		= false;
-	private volatile boolean	gameEnd			= false;
-	private FightRound			round			= new FightRound();
+	private volatile boolean	gameStarted;
+	private volatile boolean	gameEnd;
+	private FightRound			round;
 	private String				whoIAm;
-	private boolean				creatorOnline	= true;
-	private boolean				connectorOnline	= false;
+	private boolean				creatorOnline;
+	private boolean				connectorOnline;
 	private String				whoWins;
+	public Fight()
+	{
+		gameStarted = false;
+		gameEnd = false;
+		round = new FightRound();
+		creatorOnline = true;
+		connectorOnline = false;
+		whoWins = "";
+	}
 	public long getId()
 	{
 		return id;
