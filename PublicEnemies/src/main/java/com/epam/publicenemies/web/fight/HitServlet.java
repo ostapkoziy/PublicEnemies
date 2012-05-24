@@ -26,7 +26,7 @@ public class HitServlet
 	{
 		response.setContentType("text/html;charset=UTF-8");
 		String role = request.getSession().getAttribute("gameRole").toString();
-		Fight game = (Fight) request.getSession().getAttribute("game");
+		Fight fight = (Fight) request.getSession().getAttribute("game");
 		String hit = new String(request.getParameter("userHit"));
 		String block = request.getParameter("userBlock");
 		Profile userProfile;
@@ -35,69 +35,70 @@ public class HitServlet
 		 */
 		if (role.equals("creator"))
 		{
-			userProfile = game.getUser1profile();
-			log.info("USER1 (CREATOR): " + userProfile.getNickName() + " HIT : " + hit + " BLOCK: " + block);
-			user1GameSetup(game, hit, block, role);
+			userProfile = fight.getCreatorProfile();
+			log.info("CREATOR: " + userProfile.getNickName() + " HIT : " + hit + " BLOCK: " + block);
+			user1GameSetup(fight, hit, block, role);
 		}
 		else
 		{
-			userProfile = game.getUser2profile();
-			log.info("USER2 (CONNECT): " + userProfile.getNickName() + " HIT : " + hit + " BLOCK: " + block);
-			user2GameSetup(game, hit, block, role);
+			userProfile = fight.getConnectorProfile();
+			log.info("CONNECT: " + userProfile.getNickName() + " HIT : " + hit + " BLOCK: " + block);
+			user2GameSetup(fight, hit, block, role);
 		}
 		/*
 		 * Engine Start
 		 */
-		startEngine(game);
+		startEngine(fight);
 		/*
 		 * 
 		 */
 	}
 	/**
-	 * Можна буде забрати якщо передавати в ENGINE того хто стартанув гру(він вдарив другим). Add STATIC
+	 * Можна буде забрати якщо передавати в ENGINE того хто стартанув гру(він
+	 * вдарив другим). Add STATIC
 	 */
-	protected static synchronized void setFirstHit(Fight game, String role)
+	protected static synchronized void setFirstHit(Fight fight, String role)
 	{
-		if (game.getRound().getFirstHit().equals(""))
+		if (fight.getRound().getFirstHit().equals(""))
 		{
-			game.getRound().setFirstHit(role);
+			fight.getRound().setFirstHit(role);
 		}
 	}
-	protected static synchronized void startEngine(Fight game)
+	protected static synchronized void startEngine(Fight fight)
 	{
-		if (!game.getRound().isRoundStart())
+		if (!fight.getRound().isRoundStart())
 		{
-			new FightEngine().startEngine(game);
+			new FightEngine().startEngine(fight);
 		}
 	}
-	protected static void user1GameSetup(Fight game, String hit, String block, String role)
+	protected static void user1GameSetup(Fight fight, String hit, String block, String role)
 	{
-		game.getRound().setUser1Hit(hit);
-		game.getRound().setUser1Block(block);
-		game.getRound().setU1Hit(true);
-		if (game.getRound().isU2Hit())
+		fight.getRound().setUser1Hit(hit);
+		fight.getRound().setUser1Block(block);
+		fight.getRound().setU1Hit(true);
+		if (fight.getRound().isU2Hit())
 		{
-			log.info("AND END ROUND №" + game.getRound().getRoundNumber());
-			game.getRound().setRoundStart(false);
+			log.info("AND END ROUND №" + fight.getRound().getRoundNumber());
+			fight.getRound().setRoundStart(false);
 		}
 		else
 		{
-			setFirstHit(game, role);
+			setFirstHit(fight, role);
 		}
 	}
-	protected static void user2GameSetup(Fight game, String hit, String block, String role)
+	protected static void user2GameSetup(Fight fight, String hit, String block, String role)
 	{
-		game.getRound().setUser2Hit(hit);
-		game.getRound().setUser2Block(block);
-		game.getRound().setU2Hit(true);
-		if (game.getRound().isU1Hit())
+		fight.getRound().setUser2Hit(hit);
+		fight.getRound().setUser2Block(block);
+		fight.getRound().setU2Hit(true);
+		if (fight.getRound().isU1Hit())
 		{
-			log.info("AND END ROUND №" + game.getRound().getRoundNumber());
-			game.getRound().setRoundStart(false);
+			log.info("AND END ROUND №" + fight.getRound().getRoundNumber());
+			fight.getRound().setRoundStart(false);
 		}
 		else
 		{
-			setFirstHit(game, role);
+			setFirstHit(fight, role);
 		}
 	}
 }

@@ -31,13 +31,13 @@ public class WaitingNewRound
 		Profile userProfile;
 		if (role.equals("creator"))
 		{
-			userProfile = fight.getUser1profile();
-			fight.setWhoIAm("user1");
+			userProfile = fight.getCreatorProfile();
+			fight.setWhoIAm("creator");
 		}
 		else
 		{
-			userProfile = fight.getUser2profile();
-			fight.setWhoIAm("user2");
+			userProfile = fight.getConnectorProfile();
+			fight.setWhoIAm("connector");
 		}
 		PrintWriter out = response.getWriter();
 		JSONSerializer ser = new JSONSerializer();
@@ -58,13 +58,11 @@ public class WaitingNewRound
 		{
 			if (role.equals("creator") && !fight.getRound().isU2Hit())
 			{
-				fight.setUser1resaultPage("win.html");
-				fight.setUser2resaultPage("lose.html");
+				fight.setWhoWins("creator");
 			}
 			if (role.equals("connector") && !fight.getRound().isU1Hit())
 			{
-				fight.setUser2resaultPage("win.html");
-				fight.setUser1resaultPage("lose.html");
+				fight.setWhoWins("connector");
 			}
 			fight.setGameEnd(true);
 		}

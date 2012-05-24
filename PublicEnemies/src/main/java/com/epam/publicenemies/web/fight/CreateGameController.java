@@ -7,16 +7,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
 
 import com.epam.publicenemies.domain.Profile;
 import com.epam.publicenemies.domain.fight.Fight;
 import com.epam.publicenemies.domain.fight.FightsList;
 import com.epam.publicenemies.service.IProfileManagerService;
+import com.epam.publicenemies.utils.Utils;
 
 /**
  * @author Alexander Ivanov
@@ -26,28 +24,31 @@ import com.epam.publicenemies.service.IProfileManagerService;
 public class CreateGameController
 {
 	private Logger					log	= Logger.getLogger(CreateGameController.class);
-	
-	@Autowired	
+	@Autowired
 	private IProfileManagerService	profileManagerService;
-	public void setProfileManagerService(IProfileManagerService profileManagerService)
-	{
-		this.profileManagerService = profileManagerService;
-	}
 	@RequestMapping("/createGame.html")
-	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception
+	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
+		/*
+		 * SETUP OLD GAME
+		 */
+		Fight oldFight = (Fight) request.getSession().getAttribute("game");
+		String oldRole = (String) request.getSession().getAttribute("gameRole");
+		Utils.isOldGameInSession(oldFight, oldRole);
+		/*
+		 * NEW GAME SETUP
+		 */
 		Profile userProfile = profileManagerService.getProfileByUserId((Integer) request.getSession().getAttribute("userId"));
-		Fight game = new Fight();
-		game.setId(new Random().nextInt());
-		game.setUser1profile(userProfile);
-		FightsList.newInstanse().getMap().put(game.getId(), game);
+		Fight newFight = new Fight();
+		newFight.setId(new Random().nextInt());
+		newFight.setCreatorProfile(userProfile);
+		FightsList.newInstanse().getMap().put(newFight.getId(), newFight);
 		/*
 		 * SESSION_SETUP
 		 */
-		log.info("GAME: " + game.getId() + "  CREATED");
+		log.info("GAME: " + newFight.getId() + "  CREATED");
 		request.getSession().setAttribute("gameRole", "creator");
-		request.getSession().setAttribute("game", game);
-		ModelAndView mav = new ModelAndView(new RedirectView("fight.html"));
-		return mav;
+		request.getSession().setAttribute("game", newFight);
+		return "redirect:fight.html";
 	}
 }

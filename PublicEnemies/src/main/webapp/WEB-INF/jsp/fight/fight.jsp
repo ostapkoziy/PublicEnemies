@@ -209,7 +209,6 @@ div { /* 	outline: 1px solid red; */
 </style>
 </head>
 <body>
-	<noscript>Enable JavaScript Please</noscript>
 	<div id="content">
 		<!-- 	++++++++++++++++++++++++++++++++++++++++++CREATOR++++++++++++++++++++++++++++++++++++++ -->
 		<!-- 	+++++++++++++++LEFT CREATOR++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
@@ -219,7 +218,7 @@ div { /* 	outline: 1px solid red; */
 					<div id="leftHP">
 						<div id="leftHPWrapper">
 							<img alt="HP" src="img/hp.png">
-							<span id="U1HP">${game.user1profile.getHP()}</span>
+							<span id="U1HP">${game.creatorProfile.getHP()}</span>
 						</div>
 						<div id="leftProgressHP">
 							<div id="innerLeftProgressHP" class="green"></div>
@@ -229,15 +228,15 @@ div { /* 	outline: 1px solid red; */
 						<div id="leftStatsWrapper">
 							<div id="leftAgility">
 								<img src="img/stats/agility.png">
-								${game.user1profile.getAgility()}
+								${game.creatorProfile.getAgility()}
 							</div>
 							<div id="leftStrength">
 								<img src="img/stats/strength.png">
-								${game.user1profile.getStrength()}
+								${game.creatorProfile.getStrength()}
 							</div>
 							<div id="leftInteligence">
 								<img src="img/stats/inteligence.png">
-								${game.user1profile.getIntellect()}
+								${game.creatorProfile.getIntellect()}
 							</div>
 						</div>
 					</div>
@@ -246,16 +245,16 @@ div { /* 	outline: 1px solid red; */
 					</div>
 					<div id="leftInventory">
 						<div class="item">
-							<img src="${game.user1profile.getDressedWeapon1().getItemPicture()}">
+							<img src="${game.creatorProfile.getDressedWeapon1().getItemPicture()}">
 						</div>
 						<div class="item">
-							<img src="${game.user1profile.getDressedWeapon2().getItemPicture()}">
+							<img src="${game.creatorProfile.getDressedWeapon2().getItemPicture()}">
 						</div>
 						<div class="item">
-							<img src="${game.user1profile.getDressedArmor().getItemPicture()}">
+							<img src="${game.creatorProfile.getDressedArmor().getItemPicture()}">
 						</div>
 						<div class="item">
-							<img src="${game.user1profile.getDressedAid().getItemPicture()}">
+							<img src="${game.creatorProfile.getDressedAid().getItemPicture()}">
 						</div>
 					</div>
 				</div>
@@ -282,7 +281,7 @@ div { /* 	outline: 1px solid red; */
 						<div id="right">
 							<div id="rightHP">
 								<div id="rightHPWrapper">
-									<span id="U2HP">${game.user2profile.getHP()}</span>
+									<span id="U2HP">${game.connectorProfile.getHP()}</span>
 									<img alt="HP" src="img/hp.png">
 								</div>
 								<div id="rightProgressHP">
@@ -292,15 +291,15 @@ div { /* 	outline: 1px solid red; */
 							<div id="rightStats">
 								<div id="rightStatsWrapper">
 									<div id="rightAgility">
-										${game.user2profile.getAgility()}
+										${game.connectorProfile.getAgility()}
 										<img src="img/stats/agility.png">
 									</div>
 									<div id="rightStrength">
-										${game.user2profile.getStrength()}
+										${game.connectorProfile.getStrength()}
 										<img src="img/stats/strength.png">
 									</div>
 									<div id="rightInteligence">
-										${game.user2profile.getIntellect()}
+										${game.connectorProfile.getIntellect()}
 										<img src="img/stats/inteligence.png">
 									</div>
 								</div>
@@ -310,16 +309,16 @@ div { /* 	outline: 1px solid red; */
 							</div>
 							<div id="rightInventory">
 								<div class="item">
-									<img src="${game.user2profile.getDressedWeapon1().getItemPicture()}">
+									<img src="${game.connectorProfile.getDressedWeapon1().getItemPicture()}">
 								</div>
 								<div class="item">
-									<img src="${game.user2profile.getDressedWeapon2().getItemPicture()}">
+									<img src="${game.connectorProfile.getDressedWeapon2().getItemPicture()}">
 								</div>
 								<div class="item">
-									<img src="${game.user2profile.getDressedArmor().getItemPicture()}">
+									<img src="${game.connectorProfile.getDressedArmor().getItemPicture()}">
 								</div>
 								<div class="item">
-									<img src="${game.user2profile.getDressedAid().getItemPicture()}">
+									<img src="${game.connectorProfile.getDressedAid().getItemPicture()}">
 								</div>
 							</div>
 						</div>
@@ -357,7 +356,7 @@ div { /* 	outline: 1px solid red; */
 					<div id="leftHP">
 						<div id="leftHPWrapper">
 							<img alt="HP" src="img/hp.png">
-							<span id="U2HP">${game.user2profile.getHP()}</span>
+							<span id="U2HP">${game.connectorProfile.getHP()}</span>
 						</div>
 						<div id="leftProgressHP">
 							<!-- *********************Inversion************** -->
@@ -368,15 +367,15 @@ div { /* 	outline: 1px solid red; */
 						<div id="leftStatsWrapper">
 							<div id="leftAgility">
 								<img src="img/stats/agility.png">
-								${game.user2profile.getAgility()}
+								${game.connectorProfile.getAgility()}
 							</div>
 							<div id="leftStrength">
 								<img src="img/stats/strength.png">
-								${game.user2profile.getStrength()}
+								${game.connectorProfile.getStrength()}
 							</div>
 							<div id="leftInteligence">
 								<img src="img/stats/inteligence.png">
-								${game.user2profile.getIntellect()}
+								${game.connectorProfile.getIntellect()}
 							</div>
 						</div>
 					</div>
@@ -385,16 +384,16 @@ div { /* 	outline: 1px solid red; */
 					</div>
 					<div id="leftInventory">
 						<div class="item">
-							<img src="${game.user2profile.getDressedWeapon1().getItemPicture()}">
+							<img src="${game.connectorProfile.getDressedWeapon1().getItemPicture()}">
 						</div>
 						<div class="item">
-							<img src="${game.user2profile.getDressedWeapon2().getItemPicture()}">
+							<img src="${game.connectorProfile.getDressedWeapon2().getItemPicture()}">
 						</div>
 						<div class="item">
-							<img src="${game.user2profile.getDressedArmor().getItemPicture()}">
+							<img src="${game.connectorProfile.getDressedArmor().getItemPicture()}">
 						</div>
 						<div class="item">
-							<img src="${game.user2profile.getDressedAid().getItemPicture()}">
+							<img src="${game.connectorProfile.getDressedAid().getItemPicture()}">
 						</div>
 					</div>
 				</div>
@@ -403,7 +402,7 @@ div { /* 	outline: 1px solid red; */
 				<div id="right">
 					<div id="rightHP">
 						<div id="rightHPWrapper">
-							<span id="U1HP">${game.user1profile.getHP()}</span>
+							<span id="U1HP">${game.creatorProfile.getHP()}</span>
 							<img alt="HP" src="img/hp.png">
 						</div>
 						<div id="rightProgressHP">
@@ -414,15 +413,15 @@ div { /* 	outline: 1px solid red; */
 					<div id="rightStats">
 						<div id="rightStatsWrapper">
 							<div id="rightAgility">
-								${game.user1profile.getAgility()}
+								${game.creatorProfile.getAgility()}
 								<img src="img/stats/agility.png">
 							</div>
 							<div id="rightStrength">
-								${game.user1profile.getStrength()}
+								${game.creatorProfile.getStrength()}
 								<img src="img/stats/strength.png">
 							</div>
 							<div id="rightInteligence">
-								${game.user1profile.getIntellect()}
+								${game.creatorProfile.getIntellect()}
 								<img src="img/stats/inteligence.png">
 							</div>
 						</div>
@@ -432,16 +431,16 @@ div { /* 	outline: 1px solid red; */
 					</div>
 					<div id="rightInventory">
 						<div class="item">
-							<img src="${game.user1profile.getDressedWeapon1().getItemPicture()}">
+							<img src="${game.creatorProfile.getDressedWeapon1().getItemPicture()}">
 						</div>
 						<div class="item">
-							<img src="${game.user1profile.getDressedWeapon2().getItemPicture()}">
+							<img src="${game.creatorProfile.getDressedWeapon2().getItemPicture()}">
 						</div>
 						<div class="item">
-							<img src="${game.user1profile.getDressedArmor().getItemPicture()}">
+							<img src="${game.creatorProfile.getDressedArmor().getItemPicture()}">
 						</div>
 						<div class="item">
-							<img src="${game.user1profile.getDressedAid().getItemPicture()}">
+							<img src="${game.creatorProfile.getDressedAid().getItemPicture()}">
 						</div>
 					</div>
 				</div>

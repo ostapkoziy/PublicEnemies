@@ -45,7 +45,7 @@ function waitingNewRound()
 				// ****** Redirect to gameResault page after 3 sec*************
 				setTimeout(function()
 				{
-					window.location.replace("resault.html");
+					window.location.replace("fightResult.html");
 				}, 3000);
 				// ********************************************************
 			}
@@ -65,10 +65,10 @@ function waitingNewRound()
  ******************************************************************************/
 function allDataUpdate(game)
 {
-	$("#U1HP").html(game.user1profile.HP);
-	$("#U2HP").html(game.user2profile.HP);
-	$("#innerLeftProgressHP").css("width", game.user1profile.HP / game.user1profile.allHP * 100 + "%");
-	$("#innerRightProgressHP").css("width", game.user2profile.HP / game.user2profile.allHP * 100 + "%");
+	$("#U1HP").html(game.creatorProfile.HP);
+	$("#U2HP").html(game.connectorProfile.HP);
+	$("#innerLeftProgressHP").css("width", game.creatorProfile.HP / game.creatorProfile.allHP * 100 + "%");
+	$("#innerRightProgressHP").css("width", game.connectorProfile.HP / game.connectorProfile.allHP * 100 + "%");
 	HPColor();
 }
 /**
@@ -78,7 +78,7 @@ function allDataUpdate(game)
  */
 function timerController(game)
 {
-	if (game.whoIAm == "user1")
+	if (game.whoIAm == "creator")
 	{
 		if (game.round.u1Hit == true)
 		{

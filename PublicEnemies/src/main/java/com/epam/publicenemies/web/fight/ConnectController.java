@@ -5,11 +5,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
 
 import com.epam.publicenemies.domain.Profile;
 import com.epam.publicenemies.domain.fight.Fight;
@@ -23,36 +20,46 @@ import com.epam.publicenemies.utils.Utils;
 public class ConnectController
 {
 	private Logger					log	= Logger.getLogger(ConnectController.class);
-	
-	@Autowired	
+	@Autowired
 	private IProfileManagerService	profileManagerService;
-	public void setProfileManagerService(IProfileManagerService profileManagerService)
-	{
-		this.profileManagerService = profileManagerService;
-	}
 	@RequestMapping("/connect.html")
-	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception
+	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
-		Profile userProfile = profileManagerService.getProfileByUserId((Integer) request.getSession().getAttribute("userId"));
-		long gameId = new Long(request.getParameter("gameId"));
-		Fight game = Utils.findGameById(gameId);
-		if (game.isGameStarted())
+		/*
+		 * SETUP OLD GAME
+		 */
+		Fight oldFight = (Fight) request.getSession().getAttribute("game");
+		String oldRole = (String) request.getSession().getAttribute("gameRole");
+		/*
+		 * NEW GAME
+		 */
+		long newFightId = new Long(request.getParameter("gameId"));
+		Fight newFight = Utils.findGameById(newFightId);
+		if (newFight.isGameStarted())
 		{
-			return new ModelAndView(new RedirectView("gameStarted.html"));
+			// КОЛИ ГРА СТАРТАНУЛА
+			return "redirect:gameStarted.html";
 		}
+		Profile userProfile = profileManagerService.getProfileByUserId((Integer) request.getSession().getAttribute("userId"));
+		if (newFight.getCreatorProfile().getUserId() == userProfile.getUserId())
+		{
+			// ПРИ КОНЕКТІ ДО СЕБЕ
+			return "redirect:fight.html";
+		}
+		Utils.isOldGameInSession(oldFight, oldRole);
 		/*
 		 * GAME_SETUP
 		 */
-		log.info(userProfile.getNickName() + " CONNECT TO GAME: " + game.getId());
-		game.setGameStarted(true);
-		game.setUser2profile(userProfile);
-		game.getRound().setRoundBeginTime(System.currentTimeMillis() / 1000);
+		log.info(userProfile.getNickName() + " CONNECT TO GAME: " + newFight.getId());
+		newFight.setGameStarted(true);
+		newFight.setConnectorOnline(true);
+		newFight.setConnectorProfile(userProfile);
+		newFight.getRound().setRoundBeginTime(System.currentTimeMillis() / 1000);
 		/*
 		 * SESSION_CONFIG
 		 */
 		request.getSession().setAttribute("gameRole", "connector");
-		request.getSession().setAttribute("game", game);
-		ModelAndView mav = new ModelAndView(new RedirectView("fight.html"));
-		return mav;
+		request.getSession().setAttribute("game", newFight);
+		return "redirect:fight.html";
 	}
 }

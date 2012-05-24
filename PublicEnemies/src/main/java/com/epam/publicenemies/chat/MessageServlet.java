@@ -33,11 +33,11 @@ public class MessageServlet extends HttpServlet
 		String autor;
 		if (role.equals("creator"))
 		{
-			autor = game.getUser1profile().getNickName();
+			autor = game.getCreatorProfile().getNickName();
 		}
 		else
 		{
-			autor = game.getUser2profile().getNickName();
+			autor = game.getConnectorProfile().getNickName();
 		}
 		PrintWriter pw = response.getWriter();
 		/*

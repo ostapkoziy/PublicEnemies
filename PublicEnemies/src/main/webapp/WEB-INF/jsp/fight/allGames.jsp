@@ -11,9 +11,9 @@
 	<a href="index.html">index</a>
 	<div id="games">
 		<c:forEach items="${list}" var="game">
-			<c:out value="User1:${game.user1profile.getNickName()}"></c:out>
+			<c:out value="User1:${game.creatorProfile.getNickName()}"></c:out>
 			<br />
-			<c:out value="User2:${game.user2profile.getNickName()}"></c:out>
+			<c:out value="User2:${game.connectorProfile.getNickName()}"></c:out>
 			<form action="connect.html" method="post">
 				<button id="connect" type="submit">Connect</button>
 				<label>GameId: </label>

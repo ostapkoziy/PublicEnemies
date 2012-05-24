@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Fight Resault</title>
 <script type="text/javascript" src="js/jquery-1.7.2.js"></script>
 <script type="text/javascript">
 	$(function()
@@ -72,8 +73,11 @@ body {
 	outline: 2px solid blue;
 }
 
-#createJoin {
+#createJoinWrapper {
 	outline: 10px solid red;
+	margin-left: auto;
+	margin-right: auto;
+	width: auto;
 }
 </style>
 </head>
@@ -82,10 +86,19 @@ body {
 	<div id="color1"></div>
 	<div id="color2"></div>
 	<div id="color3">
-		<div id="imageWrapper">
-			<img alt="" src="img/fight/you-win.png">
-			<!--<img alt="asfasf" src="img/fight/you-lose.png"> -->
-		</div>
+		${game}
+		<c:choose>
+			<c:when test="${gameRole=='creator'}">
+				<div id="imageWrapper">
+					<img alt="" src="img/fight/you-win.png">
+				</div>
+			</c:when>
+			<c:otherwise>
+				<div id="imageWrapper">
+					<img alt="" src="img/fight/you-lose.png">
+				</div>
+			</c:otherwise>
+		</c:choose>
 		<div id="createJoinWrapper">
 			<form action="createGame.html" method="post">
 				<button id="create" type="submit">Create</button>

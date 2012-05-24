@@ -42,46 +42,43 @@ public class FightEngine
 			msListInGame.addFirst(mess);
 		}
 	}
-	public synchronized void startEngine(Fight game)
+	public synchronized void startEngine(Fight fight)
 	{
-		int user1Damage = 50;
-		int user2HPAfterHit = game.getUser2profile().getHP() - user1Damage;
-		int user2Damage = 45;
-		int user1HPAfterHit = game.getUser1profile().getHP() - user2Damage;
-		if (user2HPAfterHit <= 0)
+		int creatorDamage = 50;
+		int connectorHPAfterHit = fight.getConnectorProfile().getHP() - creatorDamage;
+		int connectorDamage = 45;
+		int creatorHPAfterHit = fight.getCreatorProfile().getHP() - connectorDamage;
+		if (connectorHPAfterHit <= 0)
 		{
-			game.getUser2profile().setHP(0);
-			game.setUser1resaultPage("win.html");
-			game.setUser2resaultPage("lose.html");
-			FightEngine.sendServerMessage(game.getId(), game.getUser1profile().getNickName() + " WIN!");
+			fight.getConnectorProfile().setHP(0);
+			fight.setWhoWins("creator");
+			FightEngine.sendServerMessage(fight.getId(), fight.getCreatorProfile().getNickName() + " WIN!");
 		}
 		else
 		{
-			game.getUser2profile().setHP(user2HPAfterHit);
+			fight.getConnectorProfile().setHP(connectorHPAfterHit);
 		}
-		if (user1HPAfterHit <= 0)
+		if (creatorHPAfterHit <= 0)
 		{
-			game.getUser1profile().setHP(0);
-			game.setUser1resaultPage("lose.html");
-			game.setUser2resaultPage("win.html");
-			FightEngine.sendServerMessage(game.getId(), game.getUser2profile().getNickName() + " WIN!");
+			fight.getCreatorProfile().setHP(0);
+			fight.setWhoWins("connector");
+			FightEngine.sendServerMessage(fight.getId(), fight.getConnectorProfile().getNickName() + " WIN!");
 		}
 		else
 		{
-			game.getUser1profile().setHP(user1HPAfterHit);
+			fight.getCreatorProfile().setHP(creatorHPAfterHit);
 		}
-		if (game.getUser1profile().getHP() == 0 || game.getUser2profile().getHP() == 0)
+		if (fight.getCreatorProfile().getHP() == 0 || fight.getConnectorProfile().getHP() == 0)
 		{
-			game.setGameEnd(true);
+			fight.setGameEnd(true);
 			return;
 		}
 		else
 		{
 			log.info("-------------ENGINE STARTED-------------");
-			FightEngine.sendServerMessage(game.getId(), "<b>Server: </b> Round №" + game.getRound().getRoundNumber() + " end.");
-			clearHitsBlocks(game);
+			FightEngine.sendServerMessage(fight.getId(), "<b>Server: </b> Round №" + fight.getRound().getRoundNumber() + " end.");
+			clearHitsBlocks(fight);
 			log.info("--------------ENGINE END-------------");
 		}
 	}
-	// private void
 }

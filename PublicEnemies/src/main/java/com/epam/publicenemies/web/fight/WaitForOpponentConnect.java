@@ -29,9 +29,9 @@ public class WaitForOpponentConnect
 		 * Гра точно існує бо вже створена User1
 		 */
 		long gameId = ((Fight) request.getSession().getAttribute("game")).getId();
-		Fight game = Utils.findGameById(gameId);
+		Fight fight = Utils.findGameById(gameId);
 		PrintWriter out = response.getWriter();
-		out.print(game.isGameStarted());
+		out.print(fight.isGameStarted());
 		out.flush();
 	}
 }

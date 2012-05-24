@@ -9,84 +9,93 @@ import com.epam.publicenemies.domain.Profile;
 public class Fight
 {
 	private long				id;
-	private Profile				user1profile;
-	private Profile				user2profile;
-	private volatile boolean	gameStarted	= false;
-	private volatile boolean	gameEnd		= false;
-	private FightRound			round		= new FightRound();
-	private String				user1resaultPage;
-	private String				user2resaultPage;
+	private Profile				creatorProfile;
+	private Profile				connectorProfile;
+	private volatile boolean	gameStarted		= false;
+	private volatile boolean	gameEnd			= false;
+	private FightRound			round			= new FightRound();
 	private String				whoIAm;
+	private boolean				creatorOnline	= true;
+	private boolean				connectorOnline	= false;
+	private String				whoWins;
 	public long getId()
 	{
 		return id;
 	}
-	public void setId(long id)
+	public Profile getCreatorProfile()
 	{
-		this.id = id;
+		return creatorProfile;
 	}
-	public Profile getUser1profile()
+	public Profile getConnectorProfile()
 	{
-		return user1profile;
-	}
-	public void setUser1profile(Profile user1profile)
-	{
-		this.user1profile = user1profile;
-	}
-	public Profile getUser2profile()
-	{
-		return user2profile;
-	}
-	public void setUser2profile(Profile user2profile)
-	{
-		this.user2profile = user2profile;
+		return connectorProfile;
 	}
 	public boolean isGameStarted()
 	{
 		return gameStarted;
 	}
-	public void setGameStarted(boolean gameStarted)
-	{
-		this.gameStarted = gameStarted;
-	}
 	public boolean isGameEnd()
 	{
 		return gameEnd;
-	}
-	public void setGameEnd(boolean gameEnd)
-	{
-		this.gameEnd = gameEnd;
 	}
 	public FightRound getRound()
 	{
 		return round;
 	}
-	public void setRound(FightRound round)
-	{
-		this.round = round;
-	}
-	public String getUser1resaultPage()
-	{
-		return user1resaultPage;
-	}
-	public void setUser1resaultPage(String user1resaultPage)
-	{
-		this.user1resaultPage = user1resaultPage;
-	}
-	public String getUser2resaultPage()
-	{
-		return user2resaultPage;
-	}
-	public void setUser2resaultPage(String user2resaultPage)
-	{
-		this.user2resaultPage = user2resaultPage;
-	}
 	public String getWhoIAm()
 	{
 		return whoIAm;
 	}
+	public boolean isCreatorOnline()
+	{
+		return creatorOnline;
+	}
+	public boolean isConnectorOnline()
+	{
+		return connectorOnline;
+	}
+	public String getWhoWins()
+	{
+		return whoWins;
+	}
+	public void setId(long id)
+	{
+		this.id = id;
+	}
+	public void setCreatorProfile(Profile creatorProfile)
+	{
+		this.creatorProfile = creatorProfile;
+	}
+	public void setConnectorProfile(Profile connectorProfile)
+	{
+		this.connectorProfile = connectorProfile;
+	}
+	public void setGameStarted(boolean gameStarted)
+	{
+		this.gameStarted = gameStarted;
+	}
+	public void setGameEnd(boolean gameEnd)
+	{
+		this.gameEnd = gameEnd;
+	}
+	public void setRound(FightRound round)
+	{
+		this.round = round;
+	}
 	public void setWhoIAm(String whoIAm)
 	{
 		this.whoIAm = whoIAm;
+	}
+	public void setCreatorOnline(boolean creatorOnline)
+	{
+		this.creatorOnline = creatorOnline;
+	}
+	public void setConnectorOnline(boolean connectorOnline)
+	{
+		this.connectorOnline = connectorOnline;
+	}
+	public void setWhoWins(String whoWins)
+	{
+		this.whoWins = whoWins;
 	}
 }
