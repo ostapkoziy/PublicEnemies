@@ -62,8 +62,10 @@ public class PokerCreateController {
 		 */
 		request.getSession().setAttribute("pokerGame", pokerGame);
 		ModelAndView mav = new ModelAndView(new RedirectView("pokerGame.html"));
-		String chips = request.getParameter("chips");
-		mav.addObject("chips", chips);
+		Integer chips = Integer.valueOf(request.getParameter("chips"));
+		request.getSession().setAttribute("chips", chips);
+		
+		//mav.addObject("chips", chips);
 		return mav;
 	}
 	

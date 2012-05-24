@@ -20,6 +20,7 @@ public class PokerRound {
 	private PokerHand player2Hand = null;
 	private CardDeck deck = CardDeck.getInstance();
 	private PokerTable table = new PokerTable();
+	private int pot;
 	private IPokerPlayer player1;
 	private IPokerPlayer player2;
 	private int player1Bet;
@@ -38,6 +39,7 @@ public class PokerRound {
 		this.player2 = arg2;
 		table.setSmallBlind(sb);
 		table.setBigBlind(bb);
+		pot = 0;
 	}
 	
 	public int getPlayer1Bet() {
@@ -325,6 +327,14 @@ public void showDown() {
 
 	public void setResult(String result) {
 		this.result = result;
+	}
+
+	public int getPot() {
+		return pot;
+	}
+
+	public void setPot(int pot) {
+		this.pot = pot;
 	}
 	
 	

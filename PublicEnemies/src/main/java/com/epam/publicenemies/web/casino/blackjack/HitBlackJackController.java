@@ -54,6 +54,8 @@ public class HitBlackJackController {
 	public void deal(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
+		Integer chips = (Integer)request.getSession().getAttribute("chips");
+		log.info("CHIPS - " + chips);
 		// Get userId
 		Integer userId = (Integer) request.getSession().getAttribute("userId");
 

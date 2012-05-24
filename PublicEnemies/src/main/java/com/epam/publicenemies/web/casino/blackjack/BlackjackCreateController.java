@@ -55,6 +55,7 @@ public class BlackjackCreateController {
 		Map<String, Object> objects = new HashMap<String, Object>();
 
 		objects.put("chips", chips);
+		request.getSession().setAttribute("chips", chips);
 
 		return new ModelAndView("blackJackGame", objects);
 	}
