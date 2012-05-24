@@ -16,7 +16,7 @@
 <body>
 	<table id="blackjack_table" height="800" width="1200" align="center">
 		<tr>
-			<td>Your balance - ${chips} <br>Your bet -
+			<td>Your balance - <div id="playerChips"></div> <br>Your bet -
 				<div id="playerBet"></div>
 			</td>
 		</tr>
