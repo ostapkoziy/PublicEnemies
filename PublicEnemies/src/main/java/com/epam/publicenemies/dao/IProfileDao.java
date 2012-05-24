@@ -200,5 +200,12 @@ public interface IProfileDao {
 	 */
 	boolean deleteCharacter(int userId);
 	
+	/**
+	 * Check weapon2 slot
+	 * @param userId - id of user
+	 * @return true if weapon2 slot is empty
+	 */
+	boolean isEmptyWeapon2(int userId);
+	
 	
 }

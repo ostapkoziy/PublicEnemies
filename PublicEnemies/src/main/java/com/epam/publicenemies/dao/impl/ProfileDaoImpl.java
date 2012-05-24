@@ -889,4 +889,22 @@ public class ProfileDaoImpl implements IProfileDao {
 		} else
 			return false;
 	}
+
+	/**
+	 * Check weapon2 slot
+	 * @param userId - id of user
+	 * @return true if weapon2 slot is empty
+	 */
+	@Override
+	public boolean isEmptyWeapon2(int userId) {
+		final String SELECT_SQL = "SELECT weapon1 FROM users, characters WHERE userId=? AND userCharacter=characterId";
+		int i = jdbcTemplate.queryForInt(SELECT_SQL, Integer.valueOf(userId));
+		if(i!=0) {
+			log.info("ProfileDaoImpl.isEmptyWeapon2 : not empty");
+			return false;
+		} else {
+			log.info("ProfileDaoImpl.isEmptyWeapon2 : empty");
+			return true;
+		}
+	}
 }
