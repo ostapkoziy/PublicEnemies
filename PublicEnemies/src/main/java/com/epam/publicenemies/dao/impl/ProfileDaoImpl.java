@@ -900,7 +900,7 @@ public class ProfileDaoImpl implements IProfileDao {
 	 */
 	@Override
 	public boolean isEmptyWeapon2(int userId) {
-		final String SELECT_SQL = "SELECT weapon1 FROM users, characters WHERE userId=? AND userCharacter=characterId";
+		final String SELECT_SQL = "SELECT weapon2 FROM users, characters WHERE userId=? AND userCharacter=characterId";
 		int i = jdbcTemplate.queryForInt(SELECT_SQL, Integer.valueOf(userId));
 		if(i!=0) {
 			log.info("ProfileDaoImpl.isEmptyWeapon2 : not empty");

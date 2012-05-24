@@ -113,20 +113,26 @@ public class ArmorsDaoImpl implements IArmorsDao {
 
 	@Override
 	public List<Armor> getArmorsSortedByName() {
-		final String SELECT_SQL = "SELECT * FROM";
-		return null;
+		final String SELECT_SQL = "SELECT * FROM armors ORDER BY armorName";
+		List<Armor> armors = jdbcTemplate.query(SELECT_SQL, new ArmorMapper());
+		log.info("ArmorsDaoImpl.getArmorsSortedByName : " + armors.size() + " armors were fetched");
+		return armors;
 	}
 
 	@Override
 	public List<Armor> getArmorsSortedByPrice() {
-		// TODO Auto-generated method stub
-		return null;
+		final String SELECT_SQL = "SELECT * FROM armors ORDER BY armorPrice";
+		List<Armor> armors = jdbcTemplate.query(SELECT_SQL, new ArmorMapper());
+		log.info("ArmorsDaoImpl.getArmorsSortedByPrice : " + armors.size() + " armors were fetched");
+		return armors;
 	}
 
 	@Override
 	public List<Armor> getArmorsSortedByProtection() {
-		// TODO Auto-generated method stub
-		return null;
+		final String SELECT_SQL = "SELECT * FROM armors ORDER BY armorProtection";
+		List<Armor> armors = jdbcTemplate.query(SELECT_SQL, new ArmorMapper());
+		log.info("ArmorsDaoImpl.getArmorsSortedByProtection : " + armors.size() + " armors were fetched");
+		return armors;
 	}	
 
 }
