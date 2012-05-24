@@ -11,6 +11,7 @@ import com.epam.publicenemies.domain.Weapon;
  *
  */
 public interface IArmorsDao {
+	
 	/**
 	 * Gets all armors entry from db
 	 * @return list of armors
