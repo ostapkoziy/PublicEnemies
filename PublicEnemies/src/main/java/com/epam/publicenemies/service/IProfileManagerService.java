@@ -106,5 +106,11 @@ public interface IProfileManagerService {
 	 */
 	boolean dressArmor(int userId, int armorId);
 	
+	/**
+	 * Check weapon2 slot
+	 * @param userId - id of user
+	 * @return true if weapon2 slot is empty
+	 */
+	boolean isEmptyWeapon2(int userId);
 
 }

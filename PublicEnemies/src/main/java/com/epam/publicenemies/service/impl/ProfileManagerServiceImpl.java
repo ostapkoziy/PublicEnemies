@@ -165,4 +165,15 @@ public class ProfileManagerServiceImpl implements IProfileManagerService {
 	public boolean dressArmor(int userId, int armorId) {
 		return profileDao.dressArmor(userId, armorId);
 	}
+	
+	/**
+	 * Check weapon2 slot
+	 * @param userId - id of user
+	 * @return true if weapon2 slot is empty
+	 */
+	public boolean isEmptyWeapon2(int userId) {
+		return profileDao.isEmptyWeapon2(userId);
+	}
+	
+	
 }
