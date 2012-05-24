@@ -878,10 +878,13 @@ public class ProfileDaoImpl implements IProfileDao {
 	 */
 	@Override
 	public boolean dressArmor(int userId, int armorId) {
+		log.info("Enter into dressArmor DAO");
 		final String SELECT_SQL = "SELECT trunkId FROM charactersTrunks, users WHERE " +
 				"userId=? AND itemType=3 AND itemId=? AND userCharacter=characterId";
+		
 		final String UPDATE_SQL = "UPDATE characters, users SET armor=? WHERE userId=? AND characterId=userCharacter";
 		int trunkId = jdbcTemplate.queryForInt(SELECT_SQL, new Object[] {userId, armorId});
+		log.info("Enter into dressArmor DAO");
 		int i = jdbcTemplate.update(UPDATE_SQL, new Object[] {userId, trunkId});
 		if (i>0) {
 			log.info("ProfileDaoImpl.dressArmor: armor("+armorId+") for user("+userId+") was dressed");
