@@ -46,7 +46,7 @@ function showNoMoney() {
 			<a href="logout.html">LOGOUT</a> <br />
 		</div>
 		<div class="left_header_items">
-			<a href="editProfile.html"> <img src="${profile.getAvatar()}"
+			<a href="profile.html"> <img src="${profile.getAvatar()}"
 				title="${profile.getNickName()}'s profile" border="0" width="40px"></img>
 			</a>
 		</div>
@@ -98,7 +98,7 @@ function showNoMoney() {
 											<strong>TYPE: </strong> ${weaponIT.getItem().isWeaponType()} <br />
 											<strong>HIT POINTS: </strong> ${weaponIT.getItem().getHitPoints()} <br />
 											<strong>SELL PRICE: </strong> ${weaponIT.getItem().getItemPrice() * 0.6} <br />
-											<strong>Description: </strong> TODO" />
+											<strong>Description: </strong> ${weaponIT.getItem().getItemDescription()}" />
 												</a>
 											</div>
 											<!-- MAX - 3 ELEMETS  -->
@@ -145,7 +145,7 @@ function showNoMoney() {
 													title="<strong>NAME: </strong> ${armorIT.getItem().getItemName()} <br />
 											<strong>PROTECTION: </strong> ${armorIT.getItem().getArmorProtection()} <br />
 											<strong>SELL PRICE: </strong>${armorIT.getItem().getItemPrice() * 0.6} <br />
-											<strong>Description: </strong> TODO" />
+											<strong>Description: </strong> ${armorIT.getItem().getItemDescription()}" />
 												</a>
 											</div>
 											<c:if test="${(countArIT % 3) == 0 }">
@@ -186,7 +186,7 @@ function showNoMoney() {
 											<strong>TYPE: </strong> ${aidIT.getItem().getAidType()} <br />
 											<strong>EFFECT: </strong> ${aidIT.getItem().getAidEffect()} <br />
 											<strong>SELL PRICE: </strong>${aidIT.getItem().getItemPrice() * 0.6} <br />
-											<strong>Description: </strong> TODO" />
+											<strong>Description: </strong> ${aidIT.getItem().getItemDescription()} " />
 												</a>
 											</div>
 											<c:if test="${(countAidsIT % 3) == 0 }">
@@ -216,7 +216,7 @@ function showNoMoney() {
 													<strong>HIT POINTS: </strong> ${profile.getDressedWeapon1().getHitPoints()} <br />
 													<strong>PRICE: </strong> ${profile.getDressedWeapon1().getItemPrice()} <br />
 													<strong>SELL PRICE: </strong> ${profile.getDressedWeapon1().getItemPrice() * 0.6} <br />
-													<strong>Description: </strong> TODO" />
+													<strong>Description: </strong> ${profile.getDressedWeapon1().getItemDescription()}" />
 									</div>
 								</c:when>
 								<c:otherwise>
@@ -234,7 +234,7 @@ function showNoMoney() {
 													<strong>HIT POINTS: </strong> ${profile.getDressedWeapon2().getHitPoints()} <br />
 													<strong>PRICE: </strong> ${profile.getDressedWeapon2().getItemPrice()} <br />
 													<strong>SELL PRICE: </strong> ${profile.getDressedWeapon2().getItemPrice() * 0.6} <br />
-													<strong>Description: </strong> TODO" />
+													<strong>Description: </strong> ${profile.getDressedWeapon2().getItemDescription()}" />
 									</div>
 								</c:when>
 								<c:otherwise>
@@ -252,7 +252,7 @@ function showNoMoney() {
 													<strong>PROTECTION: </strong> ${profile.getDressedArmor().getArmorProtection()} <br />
 													<strong>PRICE: </strong> ${profile.getDressedArmor().getItemPrice()} <br />
 													<strong>SELL PRICE: </strong> ${profile.getDressedArmor().getItemPrice() * 0.6} <br />
-													<strong>Description: </strong> TODO" />
+													<strong>Description: </strong> ${profile.getDressedArmor().getItemDescription()}" />
 									</div>
 								</c:when>
 								<c:otherwise>
@@ -270,7 +270,7 @@ function showNoMoney() {
 													<strong>TYPE: </strong> ${profile.getDressedAid().getAidType()} <br />
 													<strong>EFFECT: </strong> ${profile.getDressedAid().getAidEffect()} <br />
 													<strong>PRICE: </strong> ${profile.getDressedAid().getItemPrice()} <br />
-													<strong>Description: </strong> TODO" />
+													<strong>Description: </strong> ${profile.getDressedAid().getItemDescription()}" />
 									</div>
 								</c:when>
 								<c:otherwise>
@@ -323,7 +323,7 @@ function showNoMoney() {
 									<strong>TYPE: </strong> ${weapon.isWeaponType()} <br />
 									<strong>HIT POINTS: </strong> ${weapon.getHitPoints()} <br />
 									<strong>PRICE: </strong> ${weapon.getItemPrice()} <br />
-									<strong>Description: </strong> TODO" />
+									<strong>Description: </strong> ${weapon.getItemDescription()}" />
 
 									</a>
 								</div>
@@ -351,7 +351,7 @@ function showNoMoney() {
 										title="<strong>NAME: </strong> ${armor.getItemName()} <br />
 											<strong>PROTECTION: </strong> ${armor.getArmorProtection()} <br />
 											<strong>PRICE: </strong> ${armor.getItemPrice()} <br />
-											<strong>Description: </strong> TODO" />
+											<strong>Description: </strong> ${armor.getItemDescription()} " />
 									</a>
 								</div>
 								<c:if test="${(countAr % 4) == 0 }">
@@ -378,7 +378,7 @@ function showNoMoney() {
 										<strong>TYPE: </strong> ${aid.getAidType()} <br />
 										<strong>EFFECT: </strong> ${aid.getAidEffect()} <br />
 										<strong>PRICE: </strong> ${aid.getItemPrice()} <br />
-										<strong>Description: </strong> TODO" />
+										<strong>Description: </strong> no description" />
 									</a>
 								</div>
 								<c:if test="${(countAids % 4) == 0 }">

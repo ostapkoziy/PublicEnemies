@@ -60,7 +60,7 @@
 							${profileInfo.getIntellect()}
 						</td>
 						<td width="100" align="right">
-							<a href="editProfile.html">
+							<a href="profile.html">
 							<img src="${profileInfo.getAvatar()}" title="${profileInfo.getNickName()}'s profile" border="0" width="40px"></img>
 							</a>
 						</td>

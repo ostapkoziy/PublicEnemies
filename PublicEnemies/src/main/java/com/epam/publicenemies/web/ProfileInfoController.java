@@ -73,14 +73,17 @@ public class ProfileInfoController {
 			} else if (parameterName.matches("^undressAid(.*)")) {
 				profileManagerService.undressAid(uid);				
 			} else if (parameterName.matches("^dressWeapon(.*)")) {		
-				
-				profileManagerService.undressWeapon1(uid);
-				profileManagerService.dressWeapon1(uid, Integer.parseInt(temp[1]));
+				if (profileManagerService.isEmptyWeapon2(uid)) {
+					profileManagerService.dressWeapon2(uid, Integer.parseInt(temp[1]));
+				} else {
+					//profileManagerService.undressWeapon1(uid);
+					profileManagerService.dressWeapon1(uid, Integer.parseInt(temp[1]));
+				}
 			} else if (parameterName.matches("^dressArmor(.*)")) {
-				profileManagerService.undressArmor(uid);
+				//profileManagerService.undressArmor(uid);
 				profileManagerService.dressArmor(uid, Integer.parseInt(temp[1]));
 			} else if (parameterName.matches("^dressAid(.*)")) {
-				profileManagerService.undressAid(uid);
+				//profileManagerService.undressAid(uid);
 				profileManagerService.dressAid(uid, Integer.parseInt(temp[1]));
 			} else {}
 			
