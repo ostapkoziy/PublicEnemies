@@ -749,4 +749,132 @@ public class ProfileDaoImpl implements IProfileDao {
 			log.info("ProfileDaoImpl.deleteCharacter: ID of user is " + userId);
 			return false;
 	}
+
+	/**
+	 * Undress first weapon
+	 * @return true if operation is successfully
+	 */
+	@Override
+	public boolean undressWeapon1(int userId) {
+		final String UPDATE_SQL = "UPDATE characters, users SET weapon1=0 WHERE userId=? AND characterId=userCharacter";
+		int i = jdbcTemplate.update(UPDATE_SQL, new Object[] {userId});
+		if (i>0) {
+			log.info("ProfileDaoImpl.undressWeapon1 : weapon1 for user("+userId+") was undressed");
+			return true;
+		} else
+			return false;
+	}
+
+	/**
+	 * Undress second weapon
+	 * @return true if operation is successfully
+	 */
+	@Override
+	public boolean undressWeapon2(int userId) {
+		final String UPDATE_SQL = "UPDATE characters, users SET weapon2=0 WHERE userId=? AND characterId=userCharacter";
+		int i = jdbcTemplate.update(UPDATE_SQL, new Object[] {userId});
+		if (i>0) {
+			log.info("ProfileDaoImpl.undressWeapon2 : weapon2 for user("+userId+") was undressed");
+			return true;
+		} else
+			return false;
+	}
+
+	/**
+	 * Undress aid
+	 * @return true if operation is successfully
+	 */
+	@Override
+	public boolean undresAid(int userId) {
+		final String UPDATE_SQL = "UPDATE characters, users SET aid=0 WHERE userId=? AND characterId=userCharacter";
+		int i = jdbcTemplate.update(UPDATE_SQL, new Object[] {userId});
+		if (i>0) {
+			log.info("ProfileDaoImpl.undressAid : aid for user("+userId+") was undressed");
+			return true;
+		} else
+			return false;
+	}
+
+	/**
+	 * Undress armor
+	 * @return true if operation is successfully
+	 */
+	@Override
+	public boolean undressArmor(int userId) {
+		final String UPDATE_SQL = "UPDATE characters, users SET armor=0 WHERE userId=? AND characterId=userCharacter";
+		int i = jdbcTemplate.update(UPDATE_SQL, new Object[] {userId});
+		if (i>0) {
+			log.info("ProfileDaoImpl.undressArmor : armor for user("+userId+") was undressed");
+			return true;
+		} else
+			return false;
+	}
+
+	/**
+	 * Dress first weapon
+	 * @param userId - id of user
+	 * @param weaponId - weapon id
+	 * @return true if operation is successfully
+	 */
+	@Override
+	public boolean dressWeapon1(int userId, int weaponId) {
+		final String UPDATE_SQL = "UPDATE characters, users SET weapon1=? WHERE userId=? AND characterId=userCharacter";
+		int i = jdbcTemplate.update(UPDATE_SQL, new Object[] {weaponId, userId});
+		if (i>0) {
+			log.info("ProfileDaoImpl.dressWeapon1: first weapon("+weaponId+") for user("+userId+") was dressed");
+			return true;
+		} else
+			return false;
+	}
+
+	/**
+	 * Dress second weapon
+	 * @param userId - id of user
+	 * @param weaponId - weapon id
+	 * @return true if operation is successfully
+	 */
+	@Override
+	public boolean dressWeapon2(int userId, int weaponId) {
+		final String UPDATE_SQL = "UPDATE characters, users SET weapon2=? WHERE userId=? AND characterId=userCharacter";
+		int i = jdbcTemplate.update(UPDATE_SQL, new Object[] {weaponId, userId});
+		if (i>0) {
+			log.info("ProfileDaoImpl.dressWeapon1: second weapon("+weaponId+") for user("+userId+") was dressed");
+			return true;
+		} else
+			return false;
+	}
+
+	/**
+	 * Dress aid
+	 * @param userId - id of user
+	 * @param aidId - aid id
+	 * @return true if operation is successfully
+	 */
+	@Override
+	public boolean dressAid(int userId, int aidId) {
+		final String UPDATE_SQL = "UPDATE characters, users SET aid=? WHERE userId=? AND characterId=userCharacter";
+		int i = jdbcTemplate.update(UPDATE_SQL, new Object[] {aidId, userId});
+		if (i>0) {
+			log.info("ProfileDaoImpl.dressWeapon1: aid("+aidId+") for user("+userId+") was dressed");
+			return true;
+		} else
+			return false;
+	}
+	
+	/**
+	 * Dress armor
+	 * @param userId - id of user
+	 * @param armorId - armor id
+	 * @return true if operation is successfully
+	 */
+	@Override
+	public boolean dressArmor(int userId, int armorId) {
+		final String UPDATE_SQL = "UPDATE characters, users SET armor=? WHERE userId=? AND characterId=userCharacter";
+		int i = jdbcTemplate.update(UPDATE_SQL, new Object[] {armorId, userId});
+		if (i>0) {
+			log.info("ProfileDaoImpl.dressWeapon1: second weapon("+armorId+") for user("+userId+") was dressed");
+			return true;
+		} else
+			return false;
+	}
 }

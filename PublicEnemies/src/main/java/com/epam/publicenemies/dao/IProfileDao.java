@@ -20,6 +20,61 @@ public interface IProfileDao {
 	Profile getProfile(int userId);
 	
 	
+	/**
+	 * Undress first weapon
+	 * @return true if operation is successfully
+	 */
+	boolean undressWeapon1(int userId);
+	
+	/**
+	 * Undress second weapon
+	 * @return true if operation is successfully
+	 */
+	boolean undressWeapon2(int userId);
+	
+	/**
+	 * Undress aid
+	 * @return true if operation is successfully
+	 */
+	boolean undresAid(int userId);
+	
+	/**
+	 * Undress armor
+	 * @return true if operation is successfully
+	 */
+	boolean undressArmor(int userId);
+	
+	/**
+	 * Dress first weapon
+	 * @param userId - id of user
+	 * @param weaponId - weapon id
+	 * @return true if operation is successfully
+	 */
+	boolean dressWeapon1(int userId, int weaponId);
+	
+	/**
+	 * Dress second weapon
+	 * @param userId - id of user
+	 * @param weaponId - weapon id
+	 * @return true if operation is successfully
+	 */
+	boolean dressWeapon2(int userId, int weaponId);
+	
+	/**
+	 * Dress aid
+	 * @param userId - id of user
+	 * @param aidId - aid id
+	 * @return true if operation is successfully
+	 */
+	boolean dressAid(int userId, int aidId);
+	
+	/**
+	 * Dress armor
+	 * @param userId - id of user
+	 * @param armorId - armor id
+	 * @return true if operation is successfully
+	 */
+	boolean dressArmor(int userId, int armorId);
 	
 	/**
 	 * Buy weapons for user
