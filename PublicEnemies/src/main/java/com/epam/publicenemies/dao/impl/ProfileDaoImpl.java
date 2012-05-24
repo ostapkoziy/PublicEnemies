@@ -822,7 +822,7 @@ public class ProfileDaoImpl implements IProfileDao {
 				"userId=? AND itemType=1 AND itemId=? AND userCharacter=characterId";
 		final String UPDATE_SQL = "UPDATE characters, users SET weapon1=? WHERE userId=? AND characterId=userCharacter";
 		int trunkId = jdbcTemplate.queryForInt(SELECT_SQL, new Object[] {userId, weaponId});
-		int i = jdbcTemplate.update(UPDATE_SQL, new Object[] {userId, trunkId});
+		int i = jdbcTemplate.update(UPDATE_SQL, new Object[] {trunkId, userId});
 		if (i>0) {
 			log.info("ProfileDaoImpl.dressWeapon1: first weapon("+weaponId+") for user("+userId+") was dressed");
 			return true;
@@ -842,7 +842,7 @@ public class ProfileDaoImpl implements IProfileDao {
 				"userId=? AND itemType=1 AND itemId=? AND userCharacter=characterId";
 		final String UPDATE_SQL = "UPDATE characters, users SET weapon2=? WHERE userId=? AND characterId=userCharacter";
 		int trunkId = jdbcTemplate.queryForInt(SELECT_SQL, new Object[] {userId, weaponId});
-		int i = jdbcTemplate.update(UPDATE_SQL, new Object[] {userId, trunkId});
+		int i = jdbcTemplate.update(UPDATE_SQL, new Object[] {trunkId, userId});
 		if (i>0) {
 			log.info("ProfileDaoImpl.dressWeapon2: second weapon("+weaponId+") for user("+userId+") was dressed");
 			return true;
@@ -862,7 +862,7 @@ public class ProfileDaoImpl implements IProfileDao {
 				"userId=? AND itemType=2 AND itemId=? AND userCharacter=characterId";
 		final String UPDATE_SQL = "UPDATE characters, users SET aid=? WHERE userId=? AND characterId=userCharacter";
 		int trunkId = jdbcTemplate.queryForInt(SELECT_SQL, new Object[] {userId, aidId});
-		int i = jdbcTemplate.update(UPDATE_SQL, new Object[] {userId, trunkId});
+		int i = jdbcTemplate.update(UPDATE_SQL, new Object[] {trunkId, userId});
 		if (i>0) {
 			log.info("ProfileDaoImpl.dressAid: aid("+aidId+") for user("+userId+") was dressed");
 			return true;
@@ -882,7 +882,7 @@ public class ProfileDaoImpl implements IProfileDao {
 				"userId=? AND itemType=3 AND itemId=? AND userCharacter=characterId";
 		final String UPDATE_SQL = "UPDATE characters, users SET armor=? WHERE userId=? AND characterId=userCharacter";
 		int trunkId = jdbcTemplate.queryForInt(SELECT_SQL, new Object[] {userId, armorId});
-		int i = jdbcTemplate.update(UPDATE_SQL, new Object[] {userId, trunkId});
+		int i = jdbcTemplate.update(UPDATE_SQL, new Object[] {trunkId, userId});
 		if (i>0) {
 			log.info("ProfileDaoImpl.dressArmor: armor("+armorId+") for user("+userId+") was dressed");
 			return true;
