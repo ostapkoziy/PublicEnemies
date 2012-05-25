@@ -12,6 +12,7 @@ import com.epam.publicenemies.dao.IArmorsDao;
 import com.epam.publicenemies.dao.IProfileDao;
 import com.epam.publicenemies.dao.IUserDao;
 import com.epam.publicenemies.dao.IWeaponsDao;
+import com.epam.publicenemies.domain.Aid;
 import com.epam.publicenemies.domain.Armor;
 import com.epam.publicenemies.domain.User;
 import com.epam.publicenemies.domain.Weapon;
@@ -306,6 +307,85 @@ public class AdminPanelManagerService implements IAdminPanelManagerService {
 	 */
 	public List<Armor> sortedArmorsByProtection() {
 		return armorsDao.getArmorsSortedByProtection();
+	}
+	
+	/**
+	 * Gets all aids entry from db
+	 * @return list of aids
+	 */
+	public List<Aid> getAllAids() {
+		return aidsDao.fetchAllAids();
+	}
+	
+	/**
+	 * Add new aid
+	 * @param name - aid name
+	 * @param type - aid type
+	 * @param effect - aid effect
+	 * @param picture - aid picture
+	 * @param price - aid price
+	 * @param description - aid description
+	 * @return id of new aid
+	 */
+	public int addAid (String name, String type, int effect, String picture, int price, String description) {
+		return aidsDao.addAid(name, type, effect, picture, price, description);
+	}
+	
+	/**
+	 * Update aid info
+	 * @param name - aid name
+	 * @param type - aid type
+	 * @param effect - aid effect
+	 * @param picture - aid picture
+	 * @param price - aid price
+	 * @param description - aid description
+	 * @return true if operation was successfully
+	 */
+	public boolean updateAidInfo (int aidId, String name, String type, int effect, 
+			String picture, int price, String description) {
+		return aidsDao.updateAidInfo(aidId, name, type, effect, picture, price, description);
+	}
+
+	/**
+	 * Get Aid object by id
+	 * @param aidId - aid id 
+	 * @return
+	 */
+	public Aid getAidById(int aidId) {
+		return aidsDao.getAidById(aidId);
+	}
+	
+	/**
+	 * Get Aid object by aid name
+	 * @param aidName - aid name
+	 * @return Aid object
+	 */
+	public Aid getAidByName(String aidName) {
+		return aidsDao.getAidByName(aidName);
+	}
+	
+	/**
+	 * Get list of all aids sorted by their names
+	 * @return list of all aids
+	 */
+	public List<Aid> getAidsSortedByName() {
+		return aidsDao.getAidsSortedByName();
+	}
+	
+	/**
+	 * Get list of all aids sorted by their prices
+	 * @return list of all aids
+	 */
+	public List<Aid> getAidsSortedByPrice() {
+		return aidsDao.getAidsSortedByPrice();
+	}
+	
+	/**
+	 * Get list of all aids sorted by their effects
+	 * @return list of all aids
+	 */
+	public List<Aid> getAidsSortedByEffect() {
+		return aidsDao.getAidsSortedByEffect();
 	}
 	
 }
