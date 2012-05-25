@@ -96,7 +96,6 @@ $(document).ready(function(){
 
 			<div class="vertical_space"></div>
 
-			<!--  <div class="horizontal_space"></div> -->
 			<div class="inventory">
 				<h3>Inventory</h3>
 				<div class="set_of_items">
@@ -117,7 +116,7 @@ $(document).ready(function(){
 													<strong>HIT POINTS: </strong> ${profile.getDressedWeapon1().getHitPoints()} <br />
 													<strong>PRICE: </strong> ${profile.getDressedWeapon1().getItemPrice()} <br />
 													<strong>SELL PRICE: </strong> ${profile.getDressedWeapon1().getItemPrice() * 0.6} <br />
-													<strong>Description: </strong> TODO" />
+													<strong>Description: </strong>  ${profile.getDressedWeapon1().getItemDescription()}" />
 									</a>
 								</div>
 							</c:when>
@@ -137,7 +136,7 @@ $(document).ready(function(){
 													<strong>HIT POINTS: </strong> ${profile.getDressedWeapon2().getHitPoints()} <br />
 													<strong>PRICE: </strong> ${profile.getDressedWeapon2().getItemPrice()} <br />
 													<strong>SELL PRICE: </strong> ${profile.getDressedWeapon2().getItemPrice() * 0.6} <br />
-													<strong>Description: </strong> TODO" />
+													<strong>Description: </strong> ${profile.getDressedWeapon2().getItemDescription()}" />
 									</a>
 								</div>
 							</c:when>
@@ -157,7 +156,7 @@ $(document).ready(function(){
 													<strong>PROTECTION: </strong> ${profile.getDressedArmor().getArmorProtection()} <br />
 													<strong>PRICE: </strong> ${profile.getDressedArmor().getItemPrice()} <br />
 													<strong>SELL PRICE: </strong> ${profile.getDressedArmor().getItemPrice() * 0.6} <br />
-													<strong>Description: </strong> TODO" />
+													<strong>Description: </strong> ${profile.getDressedArmor().getItemDescription()}" />
 									</a>
 								</div>
 							</c:when>
@@ -170,13 +169,14 @@ $(document).ready(function(){
 							<c:when test="${profile.getDressedAid().getItemId() != 0}">
 								<div class="item">
 									<a onclick="undressAid(${profile.getDressedAid().getItemId()})">
-										<img class="tTip"
-										src="${profile.getDressedAid().getItemPicture()}"
-										title="<strong>NAME: </strong> ${profile.getDressedAid().getItemName()} <br />
+										<img class="tTip" 
+											src="${profile.getDressedAid().getItemPicture()}" 
+											title="<strong>NAME: </strong> ${profile.getDressedAid().getItemName()} <br />
 													<strong>TYPE: </strong> ${profile.getDressedAid().getAidType()} <br />
 													<strong>EFFECT: </strong> ${profile.getDressedAid().getAidEffect()} <br />
 													<strong>PRICE: </strong> ${profile.getDressedAid().getItemPrice()} <br />
-													<strong>Description: </strong> TODO" />
+													<strong>DESCRIPTION: </strong> ${profile.getDressedAid().getItemDescription()}" 
+													 />
 									</a>
 								</div>
 							</c:when>
@@ -192,7 +192,7 @@ $(document).ready(function(){
 
 				<div class="set_of_items">
 
-					<h3>TRUNK:</h3>
+					<h3 id="T">TRUNK:</h3>
 
 					<div class="margin_div_vertical"></div>
 					<!-- DISPLAYS ALL WEAPONS INTO TRUNK -->
@@ -216,7 +216,7 @@ $(document).ready(function(){
 												<strong>TYPE: </strong> ${weaponIT.getItem().isWeaponType()} <br />
 												<strong>HIT POINTS: </strong> ${weaponIT.getItem().getHitPoints()} <br />
 												<strong>SELL PRICE: </strong> ${weaponIT.getItem().getItemPrice() * 0.6} <br />
-												<strong>Description: </strong> TODO" />
+												<strong>Description: </strong> ${weaponIT.getItem().getItemDescription()}" />
 										</a>
 									</div>
 									<!-- MAX - 3 ELEMETS  -->
@@ -234,7 +234,7 @@ $(document).ready(function(){
 					<div class="margin_div_vertical"></div>
 
 
-					<!-- END OF "DISPLAYS ALL WEAPONS INTO TRUNK" -->
+					<!-- END OF DISPLAYS ALL WEAPONS INTO TRUNK -->
 					<!-- <div class="horizontal_space"> </div>  -->
 
 					<!-- DISPLAYS ALL ARMORS INTO TRUNK -->
@@ -257,7 +257,7 @@ $(document).ready(function(){
 											title="<strong>NAME: </strong> ${armorIT.getItem().getItemName()} <br />
 												<strong>PROTECTION: </strong> ${armorIT.getItem().getArmorProtection()} <br />
 												<strong>SELL PRICE: </strong>${armorIT.getItem().getItemPrice() * 0.6} <br />
-												<strong>Description: </strong> TODO" />
+												<strong>Description: </strong> ${armorIT.getItem().getItemDescription()}" />
 										</a>
 									</div>
 									<c:if test="${(countArIT % 3) == 0 }">
@@ -291,7 +291,7 @@ $(document).ready(function(){
 												<strong>TYPE: </strong> ${aidIT.getItem().getAidType()} <br />
 												<strong>EFFECT: </strong> ${aidIT.getItem().getAidEffect()} <br />
 												<strong>SELL PRICE: </strong>${aidIT.getItem().getItemPrice() * 0.6} <br />
-												<strong>Description: </strong> TODO" />
+												<strong>Description: </strong> ${aidIT.getItem().getItemDescription()}" />
 										</a>
 									</div>
 									<c:if test="${(countAidsIT % 3) == 0 }">
@@ -307,7 +307,7 @@ $(document).ready(function(){
 					<div class="margin_div_vertical"></div>
 
 				</div>
-				<!-- END OF "USER'S TRUNK" -->
+				<!-- END OF USER'S TRUNK -->
 				<!-- DISPLAYS WHAT USER WEARED IN -->
 
 			</div>
@@ -317,7 +317,7 @@ $(document).ready(function(){
 		<div class="horizontal_space "></div>
 
 		<div class="statistics">
-			<h3>Statistics</h3>
+			<h3> <a name="statistics_place">Statistics</a></h3>
 			<br />
 			<p>
 				<strong> Total Fights: </strong> ${profile.getFightsTotal()}

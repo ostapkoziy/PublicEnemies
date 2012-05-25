@@ -195,9 +195,14 @@ public class ProfileDaoImpl implements IProfileDao {
 	 * @return true if operation was successfully
 	 */
 	public boolean sellAids(int userId, List<Integer> aids) {
+		log.info("sellAidsDao: enter");
 		int count = 0;
 		for (Integer i : aids) {
-			if (sellAid(userId, i)) count++;
+			log.info("Try to sell aid for user " + userId + " aid " + i);
+			if (sellAid(userId, i)) {
+				log.info(""); 
+				count++;
+			}
 		}
 		if (count == aids.size()) {
 			log.info("ProfileDaoImpl.sellAids: Were selled " + count + " aids");

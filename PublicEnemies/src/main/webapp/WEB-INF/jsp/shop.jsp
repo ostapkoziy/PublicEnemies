@@ -46,7 +46,7 @@ function showNoMoney() {
 			<a href="logout.html">LOGOUT</a> <br />
 		</div>
 		<div class="left_header_items">
-			<a href="profile.html"> <img src="${profile.getAvatar()}"
+			<a href="profile#statistics_place.html"> <img src="${profile.getAvatar()}"
 				title="${profile.getNickName()}'s profile" border="0" width="40px"></img>
 			</a>
 		</div>
@@ -179,6 +179,7 @@ function showNoMoney() {
 
 												<a
 													onclick="sell(this.id, ${aidIT.getItem().getItemPrice() * 0.6})"
+													
 													id="raid_id_${countAidsIT}|${aidIT.getItem().getItemId()}"
 													info="${aidIT.getItem().getItemName()}"> <img
 													class="tTip" src="${aidIT.getItem().getItemPicture()}"
@@ -378,7 +379,7 @@ function showNoMoney() {
 										<strong>TYPE: </strong> ${aid.getAidType()} <br />
 										<strong>EFFECT: </strong> ${aid.getAidEffect()} <br />
 										<strong>PRICE: </strong> ${aid.getItemPrice()} <br />
-										<strong>Description: </strong> no description" />
+										<strong>Description: </strong> ${aid.getItemDescription()}" />
 									</a>
 								</div>
 								<c:if test="${(countAids % 4) == 0 }">

@@ -107,6 +107,7 @@ public class ShopController {
 				armorsToSell.add(Integer.parseInt(temp[1]));
 								
 			} else if (parameterName.matches("^sell_raid(.*)")) {
+				log.info("Try to sell raid =  " + temp[1]); 
 				aidsToSell.add(Integer.parseInt(temp[1]));
 				
 			} else if (parameterName.matches("^buy_weapon(.*)")) {				
@@ -155,7 +156,9 @@ public class ShopController {
 			shopManagerService.sellArmorsForUser(uid, armorsToSell); 
 		}
 		if (aidsToSell.size() > 0) {
-			shopManagerService.sellAidsForUser(uid, aidsToSell); 
+			log.info("To shopManagerService for selling aid with id = " + aidsToSell.get(0)); 
+			shopManagerService.sellAidsForUser(uid, aidsToSell);
+			
 		}
 		if (weaponsToBuy.size() > 0) {
 			shopManagerService.buyWeaponsForUser(uid, weaponsToBuy); 

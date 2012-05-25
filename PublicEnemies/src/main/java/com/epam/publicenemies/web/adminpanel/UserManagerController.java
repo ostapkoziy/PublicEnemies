@@ -31,12 +31,9 @@ public class UserManagerController implements IManageable {
 		mav.addObject("euid", euid);
 		mav.setViewName("/adminPanel/editUser");
 		
-		return mav; 
-		
+		return mav; 		
 	}
 	
-	
-
 	@Override
 	@RequestMapping(value="delete/{duid}", method = RequestMethod.GET)
 	public ModelAndView deleteOne(@PathVariable Integer duid) {
