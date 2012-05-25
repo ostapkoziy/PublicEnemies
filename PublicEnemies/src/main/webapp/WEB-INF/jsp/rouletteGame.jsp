@@ -19,7 +19,7 @@
 <body>
 	
 	<div class="panel" id="topPanel">
-		<b><c:out value="${rouletteGameInfo.getChips()}$" /></b>
+		<h2><c:out value="${rouletteGameInfo.getChips()} chips" /></h2>
 		<p><b><c:out value="${rouletteGameInfo.msg}" /></b>
 	</div>
 
@@ -64,38 +64,38 @@
 <area class="RouletteTable" shape="rect" coords="528,126,576,184" alt="28" title="28"    />
 <area class="RouletteTable" shape="rect" coords="579,126,629,184" alt="31" title="31"    />
 <area class="RouletteTable" shape="rect" coords="632,126,681,184" alt="34" title="34"    />
-<area class="RouletteTableAdd" shape="rect" coords="63,188,163,228" alt="red1" title="red1"    />
-<area class="RouletteTableAdd" shape="rect" coords="165,188,265,228" alt="black1" title="black1"    />
-<area class="RouletteTableAdd" shape="rect" coords="270,188,369,228" alt="red2" title="red2"    />
-<area class="RouletteTableAdd" shape="rect" coords="372,188,472,228" alt="black2" title="black2"    />
-<area class="RouletteTableAdd" shape="rect" coords="476,188,576,228" alt="red3" title="red3"    />
-<area class="RouletteTableAdd" shape="rect" coords="579,188,679,228" alt="black3" title="black3"    />
-<area class="RouletteTableAdd" shape="rect" coords="62,233,162,273" alt="odd1" title="odd1"    />
-<area class="RouletteTableAdd" shape="rect" coords="269,232,369,272" alt="odd2" title="odd2"    />
-<area class="RouletteTableAdd" shape="rect" coords="476,232,576,272" alt="odd3" title="odd3"    />
-<area class="RouletteTableAdd" shape="rect" coords="166,232,266,272" alt="even1" title="even1"    />
-<area class="RouletteTableAdd" shape="rect" coords="372,232,472,272" alt="even2" title="even2"    />
-<area class="RouletteTableAdd" shape="rect" coords="579,231,679,271" alt="even3" title="even3"    />
-<area class="RouletteTableAdd" shape="rect" coords="61,275,266,315" alt="1st12" title="1st12"    />
-<area class="RouletteTableAdd" shape="rect" coords="269,275,473,315" alt="2nd12" title="2nd12"    />
-<area class="RouletteTableAdd" shape="rect" coords="477,275,680,315" alt="3rd12" title="3rd12"    />
-<area class="RouletteTableAdd" shape="rect" coords="61,317,163,357" alt="1to18" title="1to18"    />
-<area class="RouletteTableAdd" shape="rect" coords="165,317,267,357" alt="anyOdd" title="anyOdd"    />
-<area class="RouletteTableAdd" shape="rect" coords="269,317,371,357" alt="anyRed" title="anyRed"    />
-<area class="RouletteTableAdd" shape="rect" coords="374,317,473,357" alt="anyBlack" title="anyBlack"    />
-<area class="RouletteTableAdd" shape="rect" coords="477,317,577,357" alt="anyEven" title="anyEven"    />
-<area class="RouletteTableAdd" shape="rect" coords="580,317,680,357" alt="19to36" title="19to36"    />
-<area class="RouletteTableAdd" shape="rect" coords="683,1,717,62" alt="oddRow3" title="oddRow3"    />
-<area class="RouletteTableAdd" shape="rect" coords="683,63,717,123" alt="oddRow2" title="oddRow2"    />
-<area class="RouletteTableAdd" shape="rect" coords="683,124,717,184" alt="oddRow1" title="oddRow1"    />
-<area class="RouletteTableAdd" shape="rect" coords="720,1,754,61" alt="evenRow3" title="evenRow3"    />
-<area class="RouletteTableAdd" shape="rect" coords="719,64,753,124" alt="evenRow2" title="evenRow2"    />
-<area class="RouletteTableAdd" shape="rect" coords="719,124,753,184" alt="evenRow1" title="evenRow1"    />
-<area class="RouletteTableAdd" shape="rect" coords="757,0,795,61" alt="2to1Row3" title="2to1Row3"    />
-<area class="RouletteTableAdd" shape="rect" coords="757,64,795,124" alt="2to1Row2" title="2to1Row2"    />
-<area class="RouletteTableAdd" shape="rect" coords="758,126,795,185" alt="2to1Row1" title="2to1Row1"    />
-<area class="RouletteTableAdd" shape="poly" coords="59,184,59,94,29,95,1,140,30,184," alt="zero" title="Zero"   />
-<area class="RouletteTableAdd" shape="poly" coords="59,92,59,0,32,1,1,48,29,92," alt="doubleZero" title="Double Zero"   />
+<area class="RouletteTable" shape="rect" coords="63,188,163,228" alt="37" title="red1"    />
+<area class="RouletteTable" shape="rect" coords="165,188,265,228" alt="38" title="black1"    />
+<area class="RouletteTable" shape="rect" coords="270,188,369,228" alt="39" title="red2"    />
+<area class="RouletteTable" shape="rect" coords="372,188,472,228" alt="40" title="black2"    />
+<area class="RouletteTable" shape="rect" coords="476,188,576,228" alt="41" title="red3"    />
+<area class="RouletteTable" shape="rect" coords="579,188,679,228" alt="42" title="black3"    />
+<area class="RouletteTable" shape="rect" coords="62,233,162,273" alt="43" title="odd1"    />
+<area class="RouletteTable" shape="rect" coords="269,232,369,272" alt="44" title="odd2"    />
+<area class="RouletteTable" shape="rect" coords="476,232,576,272" alt="45" title="odd3"    />
+<area class="RouletteTable" shape="rect" coords="166,232,266,272" alt="46" title="Even 1"    />
+<area class="RouletteTable" shape="rect" coords="372,232,472,272" alt="47" title="Even 2"    />
+<area class="RouletteTable" shape="rect" coords="579,231,679,271" alt="48" title="Even 3"    />
+<area class="RouletteTable" shape="rect" coords="61,275,266,315" alt="49" title="1st 12"    />
+<area class="RouletteTable" shape="rect" coords="269,275,473,315" alt="50" title="2nd 12"    />
+<area class="RouletteTable" shape="rect" coords="477,275,680,315" alt="51" title="3rd 12"    />
+<area class="RouletteTable" shape="rect" coords="61,317,163,357" alt="52" title="1 to 18"    />
+<area class="RouletteTable" shape="rect" coords="165,317,267,357" alt="53" title="Any Odd"    />
+<area class="RouletteTable" shape="rect" coords="269,317,371,357" alt="54" title="Any Red"    />
+<area class="RouletteTable" shape="rect" coords="374,317,473,357" alt="55" title="Any Black"    />
+<area class="RouletteTable" shape="rect" coords="477,317,577,357" alt="56" title="Any Even"    />
+<area class="RouletteTable" shape="rect" coords="580,317,680,357" alt="57" title="19 to 36"    />
+<area class="RouletteTable" shape="rect" coords="683,1,717,62" alt="58" title="Odd Row 3"    />
+<area class="RouletteTable" shape="rect" coords="683,63,717,123" alt="59" title="Odd Row 2"    />
+<area class="RouletteTable" shape="rect" coords="683,124,717,184" alt="60" title="Odd Row 1"    />
+<area class="RouletteTable" shape="rect" coords="720,1,754,61" alt="61" title="Even Row 3"    />
+<area class="RouletteTable" shape="rect" coords="719,64,753,124" alt="62" title="Even Row 2"    />
+<area class="RouletteTable" shape="rect" coords="719,124,753,184" alt="63" title="Even Row 1"    />
+<area class="RouletteTable" shape="rect" coords="757,0,795,61" alt="64" title="2to1 Row 3"    />
+<area class="RouletteTable" shape="rect" coords="757,64,795,124" alt="65" title="2to1 Row 2"    />
+<area class="RouletteTable" shape="rect" coords="758,126,795,185" alt="66" title="2to1 Row 1"    />
+<area class="RouletteTable" shape="poly" coords="59,184,59,94,29,95,1,140,30,184," alt="67" title="Zero"   />
+<area class="RouletteTable" shape="poly" coords="59,92,59,0,32,1,1,48,29,92," alt="68" title="Double Zero"   />
 
 </map>	</div>
 	<div class="panel" id="bottomPanel">
