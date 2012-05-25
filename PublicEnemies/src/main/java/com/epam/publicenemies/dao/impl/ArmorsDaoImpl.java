@@ -66,7 +66,7 @@ public class ArmorsDaoImpl implements IArmorsDao {
 	@Override
 	public int addArmor(final String name, final String picture, final int protection, final int price, final String description) {
 		KeyHolder keyHolder = new GeneratedKeyHolder();
-		final String INSERT_SQL = "INSERT INTO armors (armorName, armorProtection, armorPicture, armorPrice, armorDescription)" +
+		final String INSERT_SQL = "INSERT IGNORE INTO armors (armorName, armorProtection, armorPicture, armorPrice, armorDescription)" +
 				" VALUES (?,?,?,?,?)";
 		jdbcTemplate.update(
 		new PreparedStatementCreator() {
@@ -89,7 +89,7 @@ public class ArmorsDaoImpl implements IArmorsDao {
 	@Override
 	public boolean updateArmorInfo(int armorId, String name, int protection,
 			String picture, int price, String description) {
-		final String UPDATE_SQL = "UPDATE armors SET armorName=?, armorProtection=?, armorPicture=?," +
+		final String UPDATE_SQL = "UPDATE IGNORE armors SET armorName=?, armorProtection=?, armorPicture=?," +
 				" armorPrice=?, armorDescription=? WHERE armorId=?";
 		int i = jdbcTemplate.update(UPDATE_SQL, new Object[] {name, protection, picture, price, armorId, description});
 		if (i>0) {
@@ -109,7 +109,7 @@ public class ArmorsDaoImpl implements IArmorsDao {
 
 	@Override
 	public Armor getArmorByName(String name) {
-		final String SELECT_SQL = "SELECT * from armors WHERE armorname=?";
+		final String SELECT_SQL = "SELECT * FROM armors WHERE armorname=?";
 		Armor armor = jdbcTemplate.queryForObject(SELECT_SQL, new Object[] {name}, new ArmorMapper());
 		log.info("ArmorsDaoImpl.getArmorById : armor("+name+") was fetched");
 		return armor;

@@ -175,7 +175,9 @@ public class Profile
 	public int getUndressedArmorsAmount() {
 		int i = 0;
 		for(TrunkItem t : this.getListOfArmors()) {
-			if (!t.isWearing()) i++;
+			if (!t.isWearing()) {
+				i++;
+			}
 		}
 		return i;
 	}
@@ -303,9 +305,19 @@ public class Profile
 	 */
 	public void fillAidsMap(List<Integer> keys, List<Aid> uAids)
 	{
-		for (int i = 0; i < keys.size(); i++)
-			putAid(keys.get(i), uAids.get(i));
-		log.info("aids map filled");
+		if (keys.size()==uAids.size()) {
+			for (int i = 0; i < keys.size(); i++) {
+				putAid(keys.get(i), uAids.get(i));
+			}
+			log.info("aids map filled");
+		} else {
+			for (int i = 0; i < keys.size(); i++) {
+				putAid(keys.get(i), uAids.get(i));
+			}
+			log.info("aids map not properly filled");
+		}
+			
+		
 	}
 	/**
 	 * Fill map of armors in trunk
@@ -317,9 +329,16 @@ public class Profile
 	 */
 	public void fillArmorsMap(List<Integer> keys, List<Armor> uArmors)
 	{
-		for (int i = 0; i < keys.size(); i++)
-			putArmor(keys.get(i), uArmors.get(i));
-		log.info("armors map filled");
+		if (keys.size()==uArmors.size()) {
+			for (int i = 0; i < keys.size(); i++)
+				putArmor(keys.get(i), uArmors.get(i));
+			log.info("armors map filled");
+		} else {
+			for (int i = 0; i < keys.size(); i++)
+				putArmor(keys.get(i), uArmors.get(i));
+			log.info("armors map not properly filled");
+		}
+		
 	}
 	public Weapon getDressedWeapon1()
 	{

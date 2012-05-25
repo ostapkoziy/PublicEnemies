@@ -107,6 +107,14 @@ public class AdminPanelManagerService implements IAdminPanelManagerService {
 	}
 	
 	/**
+	* Delete user
+	* @param userId - id of user
+	* */
+	public boolean deleteUser(int userId) {
+		return userDao.deleteUser(userId);
+	}
+	
+	/**
 	 * Get all registered users
 	 * @return list of all registered users
 	 */

@@ -74,7 +74,7 @@ public class WeaponsDaoImpl implements IWeaponsDao {
 	public int addWeapon(final String name, final int hitPoints, final String picture,
 			final boolean weaponType, final int price, final String description) {
 		KeyHolder keyHolder = new GeneratedKeyHolder();
-		final String INSERT_SQL = "INSERT INTO weapons (weaponName, weaponHitPoints, weaponPicture, weaponType," +
+		final String INSERT_SQL = "INSERT IGNORE INTO weapons (weaponName, weaponHitPoints, weaponPicture, weaponType," +
 				"weaponPrice, weaponDescription) VALUES (?,?,?,?,?,?)";
 		jdbcTemplate.update(
 		new PreparedStatementCreator() {
@@ -103,7 +103,7 @@ public class WeaponsDaoImpl implements IWeaponsDao {
 	@Override
 	public int addWeapon(final Weapon weapon) {
 		KeyHolder keyHolder = new GeneratedKeyHolder();
-		final String INSERT_SQL = "INSERT INTO weapons (weaponName, weaponHitPoints, weponPicture, weaponType," +
+		final String INSERT_SQL = "INSERT IGNORE INTO weapons (weaponName, weaponHitPoints, weponPicture, weaponType," +
 				"weaponPrice, weaponDescription) VALUES (?,?,?,?,?,?)";
 		jdbcTemplate.update(
 		new PreparedStatementCreator() {
@@ -182,7 +182,7 @@ public class WeaponsDaoImpl implements IWeaponsDao {
 	 */
 	@Override
 	public boolean updateWeaponName(int weaponId, String name) {
-		final String UPDATE_SQL = "UPDATE weapons SET weaponName=? WHERE weaponId=?";
+		final String UPDATE_SQL = "UPDATE IGNORE weapons SET weaponName=? WHERE weaponId=?";
 		int i = jdbcTemplate.update(UPDATE_SQL, new Object[] {name, weaponId});
 		if (i>0) {
 			log.info("WeaponDaoImpl.updateWeaponName : weapon(" + weaponId + ") was renamed to " + name);
@@ -279,7 +279,7 @@ public class WeaponsDaoImpl implements IWeaponsDao {
 	 */
 	public boolean updateWeaponInfo(int weaponId, String weaponName, int hitPoints, String picture, 
 			boolean type, int price, String description) {
-		final String UPDATE_SQL = "UPDATE weapons SET weaponName=?, weaponHitPoints=?, weaponPicture=?" +
+		final String UPDATE_SQL = "UPDATE IGNORE weapons SET weaponName=?, weaponHitPoints=?, weaponPicture=?" +
 				"weaponType=?, weaponPrice=? WHERE weaponId=?";
 		int i = jdbcTemplate.update(UPDATE_SQL, new Object[] {weaponName, hitPoints, picture,
 				type, price});

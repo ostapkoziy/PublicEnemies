@@ -2,6 +2,7 @@ package com.epam.publicenemies.dao;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Map;
 
 import com.epam.publicenemies.domain.User;
 
@@ -167,4 +168,17 @@ public interface IUserDao {
 	 * @return list of all users
 	 */
 	List<User> getUsersSortedByRegDate();
+	
+	/**
+	 * Get list of Maps. Map has two values: nickname with key 'nickName'
+	 * and experience with key 'experience' 
+	 * @return list of maps
+	 */
+	List<Map<String, Object>> getUsersSortedByExperience();
+	
+	/**
+	 * Get list of all users sorted by money amount
+	 * @return list of all users
+	 */
+	List<User> getUsersSortedByMoney();
 }

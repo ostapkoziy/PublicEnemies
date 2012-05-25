@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Map;
 
 import javax.sql.DataSource;
 
@@ -335,7 +336,7 @@ public class UserDaoImpl implements IUserDao {
 	* @return true if operation successfully  
 	* */
 	public boolean updateUserInfo (User user){
-		final String query = "UPDATE users SET email=?, password=?, nickName=?, avatar=?, WHERE userId = ?";
+		final String query = "UPDATE IGNORE users SET email=?, password=?, nickName=?, avatar=?, WHERE userId = ?";
 		int i = jdbcTemplate.update(query,
 				new Object[] {user.getEmail(), user.getPassword(), user.getNickName(), user.getAvatar(), user.getUserId()});
 		if (i==0) return false;
@@ -353,7 +354,7 @@ public class UserDaoImpl implements IUserDao {
 	 * @return
 	 */
 	public boolean updateUserInfo(int userId, String email, String nickName, String avatar, int money, int userCharacter) {
-		final String UPDATE_SQL = "UPDATE users SET email=?, nickName=?, avatar=?, money=?, userCharacter=? WHERE userId=?"; 
+		final String UPDATE_SQL = "UPDATE IGNORE users SET email=?, nickName=?, avatar=?, money=?, userCharacter=? WHERE userId=?"; 
 		int i = jdbcTemplate.update( UPDATE_SQL, new Object[]{ email, nickName, avatar, money, userCharacter, userId } );
 		if (i>0) {
 			log.info("UserDaoImpl.updatUserInfo : user("+userId+") updated");
@@ -366,10 +367,14 @@ public class UserDaoImpl implements IUserDao {
 	* @param userId - id of user
 	* */
 	public boolean deleteUser(User user) {
-		final String query = "DELETE FROM users WHERE id = ?";
-		int i = jdbcTemplate.update(query, new Object[] { user.getUserId() });
-		if (i==0) return false;
-		else return true;
+		final String DELERE_SQL = "DELETE u, c, ct FROM users AS u, characters AS c, charactersTrunks AS ct " +
+				"WHERE u.userId=? AND u.userCharacter=c.characterId AND c.characterId=ct.characterId";
+		int i = jdbcTemplate.update( DELERE_SQL, new Object[] { user.getUserId() });
+		if (i!=0) {
+			log.info("UserDaoImpl.deleteUser : user("+user.getUserId()+") was deleted");
+			return true;
+		} else 
+			return false;
 	}
 	
 	/**
@@ -377,10 +382,14 @@ public class UserDaoImpl implements IUserDao {
 	* @param userId - id of user
 	* */
 	public boolean deleteUser(int userId){
-		final String query = "DELETE FROM users WHERE id = ?";
+		final String query = "DELETE u, c, ct FROM users AS u, characters AS c, charactersTrunks AS ct " +
+				"WHERE u.userId=? AND u.userCharacter=c.characterId AND c.characterId=ct.characterId";
 		int i = jdbcTemplate.update(query, new Object[] { userId });
-		if (i==0) return false;
-		else return true;
+		if (i!=0) {
+			log.info("UserDaoImpl.deleteUser : user("+userId+") was deleted");
+			return true;
+		} else
+			return false;
 	}
 
 	/**
@@ -443,6 +452,28 @@ public class UserDaoImpl implements IUserDao {
 	 */
 	public List<User> getUsersSortedByRegDate() {
 		final String SELECT_SQL = "SELECT * FROM users ORDER BY regDate";
+		return jdbcTemplate.query(SELECT_SQL, new UserMapper());
+	}
+
+	/**
+	 * Get list of Maps. Map has two values: nickname with key 'nickName'
+	 * and experience with key 'experience' 
+	 * @return list of maps
+	 */
+	@Override
+	public List<Map<String, Object>> getUsersSortedByExperience() {
+		final String SELECT_SQL = "SELECT nickName, experience FROM users, characters WHERE userCharacter=characterId ORDER BY experience";
+		List<Map<String, Object>> list = jdbcTemplate.queryForList(SELECT_SQL);
+		return list;
+	}
+
+	/**
+	 * Get list of all users sorted by money amount
+	 * @return list of all users
+	 */
+	@Override
+	public List<User> getUsersSortedByMoney() {
+		final String SELECT_SQL = "SELECT * FROM users ORDER BY money";
 		return jdbcTemplate.query(SELECT_SQL, new UserMapper());
 	}
 	

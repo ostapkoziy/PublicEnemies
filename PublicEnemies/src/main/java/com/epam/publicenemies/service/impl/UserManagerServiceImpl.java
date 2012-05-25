@@ -83,4 +83,35 @@ public class UserManagerServiceImpl implements IUserManagerService
 		else
 			return false;
 	}
+	
+	
+	/**
+	 * Add new user
+	 * @param email - user email
+	 * @param password - user password
+	 * @param nickName - user nickName
+	 * @param money - money of user
+	 * @param avatar - user avatar
+	 * @param userChar - id of user's character
+	 * @return id of registered user
+	 */
+	public int addUser(String email, String password, String nickName,
+			int money, String avatar) {
+		return userDao.registerUser(email, password, nickName, money, avatar);
+	} 
+	
+	/**
+	 * Update user's fields
+	 * @param userId - user id
+	 * @param email - user's email
+	 * @param nickname - user's nick name
+	 * @param avatar - user's avatar
+	 * @param money - user's amount of money
+	 * @param userCharacter - id of users's character
+	 * @return
+	 */
+	public boolean updateUserInfo(int userId, String email, String nickName, 
+			String avatar, int money, int userCharacter) {
+		return userDao.updateUserInfo(userId, email, nickName, avatar, money, userCharacter);
+	}
 }

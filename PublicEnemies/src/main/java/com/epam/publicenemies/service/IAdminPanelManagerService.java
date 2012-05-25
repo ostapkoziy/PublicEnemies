@@ -28,6 +28,12 @@ public interface IAdminPanelManagerService {
 			int money, String avatar);
 	
 	/**
+	* Delete user
+	* @param userId - id of user
+	* */
+	boolean deleteUser(int userId);
+	
+	/**
 	 * Get amount of registered users
 	 * @return amount of registered users
 	 */
@@ -208,6 +214,8 @@ public interface IAdminPanelManagerService {
 	 * @return - list of all armors
 	 */
 	List<Armor> sortedArmorsByProtection();
+	
+
 
 	
 }
