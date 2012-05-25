@@ -46,7 +46,7 @@ function showNoMoney() {
 			<a href="logout.html">LOGOUT</a> <br />
 		</div>
 		<div class="left_header_items">
-			<a href="profile#statistics_place.html"> <img src="${profile.getAvatar()}"
+			<a href="profile.html"> <img src="${profile.getAvatar()}"
 				title="${profile.getNickName()}'s profile" border="0" width="40px"></img>
 			</a>
 		</div>
