@@ -74,13 +74,13 @@ public interface IAdminPanelManagerService {
 	 * Get sorted list of users by nick name
 	 * @return list of users
 	 */
-	List<User> sortUsersByNick();
+	public List<User> sortUsersByNick();
 	
 	/**
 	 * Get sorted list of users by registration date
 	 * @return list of users
 	 */
-	List<User> sortUsersByRegDate();
+	public List<User> sortUsersByRegDate();
 	
 	/**
 	 * Add new weapon
@@ -91,7 +91,7 @@ public interface IAdminPanelManagerService {
 	 * @param price - weapon price
 	 * @return id of created weapon
 	 */
-	int addWeapon(String name, int hitPoints, String picture, boolean weaponType, int price, String description);
+	public int addWeapon(String name, int hitPoints, String picture, boolean weaponType, int price, String description);
 	
 	/**
 	 * Update weapon info
@@ -103,7 +103,7 @@ public interface IAdminPanelManagerService {
 	 * @param price - weapon price
 	 * @return true if operation was successfully
 	 */
-	boolean updateWeaponInfo(int weaponId, String weaponName, int hitPoints, String picture,
+	public boolean updateWeaponInfo(int weaponId, String weaponName, int hitPoints, String picture,
 			boolean type, int price, String description);
 	
 	/**

@@ -92,7 +92,8 @@ function showNoMoney() {
 												<a
 													onclick="sell(this.id, ${weaponIT.getItem().getItemPrice() * 0.6})"
 													id="rweapon_id_${countWIT}|${weaponIT.getItem().getItemId()}"
-													info="${weaponIT.getItem().getItemName()}"> <img
+													info="${weaponIT.getItem().getItemName()}"> 
+												<img
 													class="tTip" src="${weaponIT.getItem().getItemPicture()}"
 													title="<strong>NAME: </strong> ${weaponIT.getItem().getItemName()} <br />
 											<strong>TYPE: </strong> ${weaponIT.getItem().isWeaponType()} <br />

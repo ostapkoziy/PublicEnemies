@@ -10,5 +10,7 @@
 </head>
 <body>
 	<h2> Edit user ${euid}</h2>
+	Nickname = ${profile.getNickName()}; 
+	TODO
 </body>
 </html>

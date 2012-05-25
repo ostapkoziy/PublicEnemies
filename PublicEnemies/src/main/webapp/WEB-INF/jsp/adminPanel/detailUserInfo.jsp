@@ -8,5 +8,7 @@
 </head>
 <body>
 	<h2>Detail User Info ${iuid}</h2>
+	<h3> Nickname = ${profile.getNickName() }</h3>
+	TODO
 </body>
 </html>

@@ -140,13 +140,13 @@ public class ShopController {
 		}
 		
 		for (Integer weapon : weaponsToBuy) {
-		    log.info("weapon id = " + weapon);
+		    log.info("Buy weapon id = " + weapon);
 		}
 		for (Integer armor : armorsToBuy) {
-		    log.info("armor id = " + armor);
+		    log.info("Buy armor id = " + armor);
 		}
 		for (Integer aid : aidsToBuy) {
-		    log.info("aid id = " + aid);
+		    log.info("Buy aid id = " + aid);
 		}
 		
 		if (weaponsToSell.size() > 0) {
