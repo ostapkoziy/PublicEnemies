@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -36,7 +37,7 @@ A:hover {
 table#main {
 	background-color: #444D48;
 	opacity: .6;
-	filter: alpha(opacity =     60);
+	filter: alpha(opacity =                       60);
 	-moz-opacity: .6;
 	border-width: 3px;
 	border-spacing: 5px;
@@ -45,14 +46,6 @@ table#main {
 	border-collapse: separate;
 }
 </style>
-<script type="text/javascript">
-	$("document").ready(function()
-	{
-		$("div#pvp").slideUp(100);
-		$("div#join").slideUp(100);
-		$("div#bot").slideUp(100);
-	});
-</script>
 </head>
 <body>
 	<table align="center" width="100%" style="background-color: transparent">
@@ -72,8 +65,7 @@ table#main {
 						<td width="20" valign="middle" align="left">34</td>
 						<td width="80" valign="middle" align="right"><img src="img/inteligence.png" width="40px" title="Inteligence"></img></td>
 						<td width="20" valign="middle" align="left">8</td>
-						<td width="100" align="right"><img src="img/avatars/gangster.png" title="${user_email}'s profile" border="1"
-								width="40px"></img></td>
+						<td width="100" align="right"><img src="img/avatars/gangster.png" title="${user_email}'s profile" border="1" width="40px"></img></td>
 						<td width="30" align="center"><a href="logout.html">Logout</a> <br /></td>
 					</tr>
 				</table>
@@ -88,8 +80,16 @@ table#main {
 								<form action="createGame.html" method="post">
 									<button id="create" type="submit">Create</button>
 								</form>
-								<!-- 	<button id="join" type="button" onclick="redirect()">Join</button> -->
-								<a href="allGames.html">ALL GAMES!!!</a>
+								<!-- 								<a href="allGames.html">ALL GAMES</a> -->
+								<div id="games">
+									<c:forEach items="${list}" var="game">
+										<form action="connect.html" method="post">
+											<button id="connect" type="submit">Connect</button>
+											<label>GameId: </label>
+											<input name="gameId" type="text" value="${game.id}">
+										</form>
+									</c:forEach>
+								</div>
 							</div>
 						</td>
 					</tr>

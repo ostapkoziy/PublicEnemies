@@ -25,9 +25,4 @@ public class RedirectController
 		session.removeAttribute("user");
 		return "index";
 	}
-	@RequestMapping("/newJoinGame.html")
-	public String newJoinGame(HttpServletRequest request)
-	{
-		return "newJoinGame";
-	}
 }

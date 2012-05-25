@@ -38,7 +38,7 @@ public class ConnectController
 		if (newFight.isGameStarted())
 		{
 			// КОЛИ ГРА СТАРТАНУЛА
-			return "redirect:gameStarted.html";
+			return "redirect:fightStarted.html";
 		}
 		Profile userProfile = profileManagerService.getProfileByUserId((Integer) request.getSession().getAttribute("userId"));
 		if (newFight.getCreatorProfile().getUserId() == userProfile.getUserId())

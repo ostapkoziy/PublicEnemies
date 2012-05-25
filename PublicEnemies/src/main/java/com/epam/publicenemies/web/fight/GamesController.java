@@ -14,13 +14,13 @@ import com.epam.publicenemies.domain.fight.FightsList;
  * @since 19.04.2012
  */
 @Controller
-public class JoinController
+public class GamesController
 {
-	@RequestMapping("/allGames.html")
+	@RequestMapping("/fights.html")
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
 		FightsList gl = FightsList.newInstanse();
-		ModelAndView mav = new ModelAndView("/fight/allGames");
+		ModelAndView mav = new ModelAndView("/fight/fights");
 		mav.addObject("list", gl.getNotStartedGames());
 		return mav;
 	}

@@ -45,7 +45,7 @@ function waitingNewRound()
 				// ****** Redirect to gameResault page after 3 sec*************
 				setTimeout(function()
 				{
-					window.location.replace("fightResult.html");
+					window.location.replace("profile.html");
 				}, 3000);
 				// ********************************************************
 			}
