@@ -28,7 +28,7 @@ $(document).ready(function(){
 <body>
 	<div class="profile_header">
 		<a href="userStartPage.html" ><span class="header_element">MAIN PAGE</span></a>
-		<a href="newJoinGame.html" ><span class="header_element">FIGHT</span></a>
+		<a href="fights.html" ><span class="header_element">FIGHT</span></a>
 		<a href="casino.html" ><span class="header_element">CASINO</span></a>
 		<a href="shop.html" ><span class="header_element">SHOP</span></a>
 		<a href="editProfile.html" ><span class="header_element">EDIT PROFILE</span></a>
@@ -317,7 +317,7 @@ $(document).ready(function(){
 		<div class="horizontal_space "></div>
 
 		<div class="statistics">
-			<h3> <a name="statistics_place">Statistics</a></h3>
+			<h3> <a name="statistics_place" class="statistics_link">Statistics</a></h3>
 			<br />
 			<p>
 				<strong> Total Fights: </strong> ${profile.getFightsTotal()}

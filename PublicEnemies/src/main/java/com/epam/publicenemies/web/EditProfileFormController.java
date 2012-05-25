@@ -5,14 +5,12 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.epam.publicenemies.domain.Profile;
-import com.epam.publicenemies.dto.ProfileDto;
+//import com.epam.publicenemies.dto.ProfileDto;
 import com.epam.publicenemies.service.IProfileManagerService;
 
 /**
@@ -58,7 +56,7 @@ public class EditProfileFormController {
 	 * @param uProfile profile with changed info
 	 */
 	@RequestMapping(method = RequestMethod.POST)
-	public String processSubmit(@ModelAttribute ProfileDto uProfile, HttpServletRequest request, BindingResult result)	{
+	public String processSubmit(HttpServletRequest request)	{
 		log.info("Updating user info with data: nickName = " + request.getParameter("nickName") + 
 				"; avatar = " + request.getParameter("avatar") + 
 				"; sex = " + request.getParameter("sex") + 

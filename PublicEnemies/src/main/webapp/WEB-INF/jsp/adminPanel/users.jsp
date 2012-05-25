@@ -32,6 +32,7 @@
 						<th>Email</th>
 						<th>Password</th>
 						<th>Registration Date</th>
+						<th colspan="2">Actions</th>
 					</tr>
 				</thead>
 				<c:forEach var="registeredOne" items="${allUsers}">

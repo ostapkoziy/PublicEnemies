@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>DELETE USER</title>
+<title>Detail Weapon Info</title>
 </head>
 <body>
-	<h2>You are attempting to delete user with id = ${duid}, nickname = </h2>
+<h2> Detail Weapon Info</h2>
 </body>
 </html>

@@ -4,9 +4,17 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>DELETE USER</title>
+<title>Create New Armor</title>
 </head>
 <body>
-	<h2>You are attempting to delete user with id = ${duid}, nickname = </h2>
+	<h2> Create New Armor </h2>
+	<form action="" method="post">
+	<table>
+	<tr>
+	<td> 1 </td> <td> 2 </td> 
+	</tr>	
+	</table>
+	<input type="submit" value="Add" />
+	</form>
 </body>
 </html>

@@ -1,8 +1,8 @@
 package com.epam.publicenemies.service;
 
 import com.epam.publicenemies.domain.Profile;
-import com.epam.publicenemies.dto.ProfileDto;
-import com.epam.publicenemies.dto.UserDto;
+//import com.epam.publicenemies.dto.ProfileDto;
+//import com.epam.publicenemies.dto.UserDto;
 
 /**
  * 
@@ -26,7 +26,7 @@ public interface IProfileManagerService {
 	 * @param profileDto
 	 * @return
 	 */	
-	ProfileDto updateProfile(ProfileDto profileDto);
+	//ProfileDto updateProfile(ProfileDto profileDto);
 	
 		
 	/**
@@ -41,7 +41,7 @@ public interface IProfileManagerService {
 	 * @param userDto 
 	 * @return profile for passed user
 	 */
-	ProfileDto getProfileByUser(UserDto userDto);
+	//ProfileDto getProfileByUser(UserDto userDto);
 	
 	/**
 	 * Returns profile for passed userId

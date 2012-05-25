@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.epam.publicenemies.service.IAdminPanelManagerService;
 import com.epam.publicenemies.service.IProfileManagerService;
+import com.epam.publicenemies.service.IUserManagerService;
 
 /**
  * Allows to manage users table
@@ -28,6 +29,8 @@ public class UserManagerController implements IManageable {
 	@Autowired
 	private IProfileManagerService profileManagerService; 
 
+	@Autowired
+	private IUserManagerService userManagerService; 
 	
 	@Override
 	@RequestMapping(value="add", method = RequestMethod.GET)

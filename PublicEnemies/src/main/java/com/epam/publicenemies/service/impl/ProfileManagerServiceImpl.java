@@ -20,8 +20,8 @@ import org.springframework.stereotype.Service;
 import com.epam.publicenemies.dao.IProfileDao;
 import com.epam.publicenemies.dao.IUserDao;
 import com.epam.publicenemies.domain.Profile;
-import com.epam.publicenemies.dto.ProfileDto;
-import com.epam.publicenemies.dto.UserDto;
+//import com.epam.publicenemies.dto.ProfileDto;
+//import com.epam.publicenemies.dto.UserDto;
 import com.epam.publicenemies.service.IProfileManagerService;
 
 /**
@@ -53,7 +53,7 @@ public class ProfileManagerServiceImpl implements IProfileManagerService {
 		Profile prof = profileDao.getProfile(userId);
 		
 		if (prof == null) {
-			log.info("ProfileDto: getProfileByUser: user was not found");
+			log.info("Profile: getProfileByUser: user was not found");
 			return null; 
 		}
 		log.info("User has been fetched with userId = " + prof.getUserId());
@@ -66,23 +66,23 @@ public class ProfileManagerServiceImpl implements IProfileManagerService {
 	 * @see com.epam.publicenemies.service.IProfileManagerService#updateProfile(com.epam.publicenemies.dto.ProfileDto)
 	 * TODO: implement it
 	 */
-	@Deprecated
-	@Override
-	public ProfileDto updateProfile(ProfileDto profileDto) {
+	//@Deprecated
+	//@Override
+	//public ProfileDto updateProfile(ProfileDto profileDto) {
 		
-		return profileDto;
-	}
+	//	return profileDto;
+	//}
 
 	/*
 	 * Updated by I. Kostyrko by May 2, 2012
 	 * @see com.epam.publicenemies.service.IProfileManagerService#getProfileByUser(com.epam.publicenemies.dto.UserDto)
 	 * no matter
 	 */
-	@Deprecated
-	@Override
-	public ProfileDto getProfileByUser(UserDto userDto) {
-		return new ProfileDto(); //getProfileByUserId(userDto.getUserId()); 
-	}
+	//@Deprecated
+	//@Override
+	//public ProfileDto getProfileByUser(UserDto userDto) {
+	//	return new ProfileDto(); //getProfileByUserId(userDto.getUserId()); 
+	//}
 
 	/*
 	 * Implements user updating

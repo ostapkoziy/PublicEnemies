@@ -122,13 +122,10 @@ $(document).ready(function(){
 					<tr>
 						<td align="center">
 							<form action="editProfile.html" method="post">
-								<spring:bind path="profileToEdit.nickName"> 
 									<p>Nickname:</p>
 									<input type="text" name="nickName" value="${profile.getNickName()}"><br />
 									<font color="red">${status.errorMessage}</font>
 									<br />
-								</spring:bind>
-								<spring:bind path="profileToEdit.avatar">
 									<p>Avatar:</p>
 									<div>
 										<img class="image_select" title="angelina" width="40" src="img/avatars/angelina.png"></img>
@@ -142,8 +139,6 @@ $(document).ready(function(){
 									<input id="avatar_input" type="text" name="avatar" value="${profile.getAvatar()}"><br />
 									<font color="red">${status.errorMessage}</font>
 									<br />
-								</spring:bind>
-								<spring:bind path="profileToEdit.sex">
 									<p>Gender:</p>
 									<select id="gender_select">
 										<option id="male">male</option>
@@ -152,8 +147,6 @@ $(document).ready(function(){
 									<input id="gender_input"  type="text" name="sex" value="${profile.isSex()}"><br />
 									<font color="red">${status.errorMessage}</font>
 									<br />
-								</spring:bind>
-								<spring:bind path="profileToSave.proffesion">									
 								<p>Proffesion:</p>
 								<select id="profession_select">
 										<option>Butcher</option>
@@ -166,7 +159,6 @@ $(document).ready(function(){
 									<input id="profession_input"  type="text" name="profession" value="${profile.getProfession()}"><br />
 									<font color="red">${status.errorMessage}</font>
 									<br />
-								</spring:bind>
 								<button type="submit" class="button">Save profile!</button>
 							</form>
 						</td>

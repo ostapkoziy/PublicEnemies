@@ -157,3 +157,22 @@ div.set_of_items {
 	vertical-align: top;
 	padding: 10px; 
 }
+a.statistics_link {
+	text-decoration: none;
+	color: white; 
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	font-size: 14pt;
+}
+/*
+a:hover,A:active,A:visited,A:link {
+	text-decoration: underline;
+	color: white;
+	font-size: 20pt;
+}
+
+a {
+	color: black;
+	font-family: 'impact';
+	font-size: 20pt;
+}*/
+

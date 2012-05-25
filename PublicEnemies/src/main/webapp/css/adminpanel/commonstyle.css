@@ -84,3 +84,7 @@ div.users_div {
 span.create_new_entry {
 	
 }
+img.item_picture {
+	float: left; 
+	margin: 10px; 
+}
