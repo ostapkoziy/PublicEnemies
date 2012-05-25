@@ -45,7 +45,6 @@ public class AdminPanelController {
 		
 		mav.addObject("amountOfUsers", (Integer) adminPanelManagerService.getUsersNumber());
 		mav.addObject("lastRegistered", (List<User>)adminPanelManagerService.get5LastRegisteredUsers());
-		
 		mav.setViewName("/adminPanel/summary"); 
 		return mav; 
 	}
@@ -54,15 +53,39 @@ public class AdminPanelController {
 	@RequestMapping(value="/users", method = RequestMethod.GET)
 	public ModelAndView showUsers(HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
-		//mav.addObject("allUsers", (Integer) adminPanelManagerService.);
+		mav.addObject("allUsers", (List<User>)adminPanelManagerService.getAllUsers());
 		mav.setViewName("/adminPanel/users");
 		
 		return mav; 
 	}
 	
+	/* Displays all registered users on site */
+	@RequestMapping(value="/usersOrderByRegDate", method = RequestMethod.GET)
+	public ModelAndView showUsersSortedByRegDabe(HttpServletRequest req) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("allUsers", (List<User>)adminPanelManagerService.sortUsersByRegDate());
+		mav.setViewName("/adminPanel/users");
+		
+		return mav; 
+	}
+	
+	/* Displays all registered users on site */
+	@RequestMapping(value="/usersOrderByNickName", method = RequestMethod.GET)
+	public ModelAndView showUsersSortedByNickName(HttpServletRequest req) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("allUsers", (List<User>)adminPanelManagerService.sortUsersByNick());
+		mav.setViewName("/adminPanel/users");
+		
+		return mav; 
+	}
+	
+	
 	@RequestMapping(value="/weapons", method = RequestMethod.GET)
 	public ModelAndView showWeapons(HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
+		
+		
+		
 		mav.setViewName("/adminPanel/weapons");
 		return mav; 
 	}

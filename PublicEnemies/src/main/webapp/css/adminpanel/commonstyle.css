@@ -3,7 +3,7 @@ body {
 }
 
 div.admin_header {
-	background: #AAAAAA;
+	background: #AAA;
 	padding: 10px; 
 	/*magrin: 5px;*/ 	
 }
@@ -32,7 +32,7 @@ span#users_area:hover,
 span#weapons_area:hover, 
 span#armors_area:hover, 
 span#aids_area:hover {
-	background:#DDDDDD 
+	background:#DDD; 
 }
 a.div_link {
 	text-decoration: none;
@@ -56,5 +56,31 @@ table,th, td
 	padding: 2px 5px; 
 	text-align: center; 
 }
-table.users_table {	
+table.users_table {	}
+
+a.new_entry {
+	text-decoration: none; 
+	
+}
+a.new_entry:hover, a.new_entry:active, a.new_entry:visited, a.new_entry:link {
+	text-decoration: none;
+	color: black;
+	font-size: 14pt;
+	padding: 5px; 
+	border: 3px solid black; 
+	background: #AAA; 
+	border-radius: 10px; 
+	
+}
+a.new_entry:hover {
+	background: #DDD; 
+}
+
+div.users_div {
+	padding: 20px; 
+	border: 2px solid black; 
+ 
+}
+span.create_new_entry {
+	
 }

@@ -120,8 +120,7 @@ function doBuy(){
 				continue;
 			}
 			child = document.createElement("input");
-			//child.type = "hidden";
-			child.type = "text";
+			child.type = "hidden";
 			child.name = "buy_" + toBuy[i];
 			child.value = Count[i];
 			document.forms.dobuy.appendChild(child);			
@@ -131,8 +130,7 @@ function doBuy(){
 				continue;
 			}
 			child = document.createElement("input");
-			//child.type = "hidden";
-			child.type = "text";
+			child.type = "hidden";
 			child.name = "sell_" + toSell[i];
 			child.value = "1";
 			document.forms.dobuy.appendChild(child);			
