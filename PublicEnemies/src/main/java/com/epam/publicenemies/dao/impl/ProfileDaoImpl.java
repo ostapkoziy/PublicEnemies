@@ -337,7 +337,7 @@ public class ProfileDaoImpl implements IProfileDao {
 	}
 
 	private List<Integer> getWeaponKeys(int characterId) {
-		String sql = "SELECT trunkId FROM weapons, charactersTrunks WHERE characterId=? AND itemType=1 AND weaponId=ItemId";
+		String sql = "SELECT trunkId FROM weapons, charactersTrunks WHERE characterId=? AND itemType=1 AND weaponId=ItemId ORDER BY itemId";
 		List<Integer> keys = jdbcTemplate.query(sql.toString(),
 				new Object[] { characterId }, new RowMapper<Integer>() {
 					public Integer mapRow(ResultSet resultSet, int rowNum)
@@ -351,7 +351,7 @@ public class ProfileDaoImpl implements IProfileDao {
 	private List<Weapon> getWeapons(int characterId) {
 		StringBuilder sql = new StringBuilder();
 		sql.append("SELECT weaponId, weaponName, weaponHitPoints, weaponPicture, weaponType, weaponPrice, weaponDescription ");
-		sql.append("FROM weapons, charactersTrunks WHERE characterId=? AND itemType=1 AND weaponId=ItemId");
+		sql.append("FROM weapons, charactersTrunks WHERE characterId=? AND itemType=1 AND weaponId=ItemId ORDER BY itemId");
 		List<Weapon> weapons = jdbcTemplate.query(sql.toString(),
 				new Object[] { characterId }, new RowMapper<Weapon>() {
 					public Weapon mapRow(ResultSet resultSet, int rowNum)
@@ -370,7 +370,7 @@ public class ProfileDaoImpl implements IProfileDao {
 	}
 
 	private List<Integer> getAidKeys(int characterId) {
-		String sql = "SELECT trunkId FROM aids, charactersTrunks WHERE characterId=? AND itemType=2 AND aidId=ItemId";
+		String sql = "SELECT trunkId FROM aids, charactersTrunks WHERE characterId=? AND itemType=2 AND aidId=ItemId ORDER BY itemId";
 		List<Integer> keys = jdbcTemplate.query(sql.toString(),
 				new Object[] { characterId }, new RowMapper<Integer>() {
 					public Integer mapRow(ResultSet resultSet, int rowNum)
@@ -384,7 +384,7 @@ public class ProfileDaoImpl implements IProfileDao {
 	private List<Aid> getAids(int characterId) {
 		StringBuilder sql = new StringBuilder();
 		sql.append("SELECT aidId, aidName, aidType, aidPicture, aidEffect, aidPrice, aidDescription ");
-		sql.append("FROM aids, charactersTrunks WHERE characterId=? AND itemType=2 AND aidId=ItemId");
+		sql.append("FROM aids, charactersTrunks WHERE characterId=? AND itemType=2 AND aidId=ItemId ORDER BY itemId");
 		List<Aid> aids = jdbcTemplate.query(sql.toString(),
 				new Object[] { characterId }, new RowMapper<Aid>() {
 					public Aid mapRow(ResultSet resultSet, int rowNum)
@@ -403,7 +403,7 @@ public class ProfileDaoImpl implements IProfileDao {
 	}
 
 	private List<Integer> getArmorKeys(int characterId) {
-		String sql = "SELECT trunkId FROM armors, charactersTrunks WHERE characterId=? AND itemType=3 AND armorId=ItemId";
+		String sql = "SELECT trunkId FROM armors, charactersTrunks WHERE characterId=? AND itemType=3 AND armorId=ItemId ORDER BY itemId";
 		List<Integer> keys = jdbcTemplate.query(sql.toString(),
 				new Object[] { characterId }, new RowMapper<Integer>() {
 					public Integer mapRow(ResultSet resultSet, int rowNum)
@@ -417,7 +417,7 @@ public class ProfileDaoImpl implements IProfileDao {
 	private List<Armor> getArmors(int characterId) {
 		StringBuilder sql = new StringBuilder();
 		sql.append("SELECT armorId, armorName, armorPicture, armorProtection, armorPrice, armorDescription ");
-		sql.append("FROM armors, charactersTrunks WHERE characterId=? AND itemType=3 AND armorId=ItemId");
+		sql.append("FROM armors, charactersTrunks WHERE characterId=? AND itemType=3 AND armorId=ItemId ORDER BY itemId");
 		List<Armor> armors = jdbcTemplate.query(sql.toString(),
 				new Object[] { characterId }, new RowMapper<Armor>() {
 					public Armor mapRow(ResultSet resultSet, int rowNum)
