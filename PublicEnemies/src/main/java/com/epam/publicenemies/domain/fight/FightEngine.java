@@ -15,42 +15,26 @@ public class FightEngine
 	private static Logger	log	= Logger.getLogger(FightEngine.class);
 	public void startEngine(Fight fight, String whoStartes)
 	{
-		int creatorDamage = creatorDamage(fight);
-		int connectorHPAfterHit = fight.getConnectorProfile().getHP() - creatorDamage;
-		int connectorDamage = connectorDamage(fight);
-		int creatorHPAfterHit = fight.getCreatorProfile().getHP() - connectorDamage;
-		if (connectorHPAfterHit <= 0)
+		boolean isGameEnd = shooting(fight);
+		log.info("-------------ENGINE STARTED-------------");
+		if (!isGameEnd)
 		{
-			fight.getConnectorProfile().setHP(0);
-			fight.setWhoWins("creator");
-			sendServerMessage(fight.getId(), fight.getCreatorProfile().getNickName() + " WIN!");
+			setupGame(fight);
 		}
 		else
 		{
-			fight.getConnectorProfile().setHP(connectorHPAfterHit);
+			gameOver(fight);
 		}
-		if (creatorHPAfterHit <= 0)
-		{
-			fight.getCreatorProfile().setHP(0);
-			fight.setWhoWins("connector");
-			sendServerMessage(fight.getId(), fight.getConnectorProfile().getNickName() + " WIN!");
-		}
-		else
-		{
-			fight.getCreatorProfile().setHP(creatorHPAfterHit);
-		}
-		if (fight.getCreatorProfile().getHP() == 0 || fight.getConnectorProfile().getHP() == 0)
-		{
-			fight.setGameEnd(true);
-			return;
-		}
-		else
-		{
-			log.info("-------------ENGINE STARTED-------------");
-			sendServerMessage(fight.getId(), "<b>Server: </b> Round №" + fight.getRound().getRoundNumber() + " end.");
-			clearHitsBlocks(fight);
-			log.info("--------------ENGINE END-------------");
-		}
+		log.info("--------------ENGINE END-------------");
+	}
+	private void setupGame(Fight fight)
+	{
+		sendServerMessage(fight.getId(), "<b>Server: </b> Round №" + fight.getRound().getRoundNumber() + " end.");
+		clearHitsBlocks(fight);
+	}
+	private void gameOver(Fight fight)
+	{
+		fight.setGameEnd(true);
 	}
 	/**
 	 * Startes when one user is offline
@@ -60,13 +44,13 @@ public class FightEngine
 	}
 	private void clearHitsBlocks(Fight game)
 	{
-		game.getRound().setUser1Hit("");
-		game.getRound().setUser2Hit("");
-		game.getRound().setUser1Block("");
-		game.getRound().setUser2Block("");
+		game.getRound().setCreatorHit("");
+		game.getRound().setConnectorHit("");
+		game.getRound().setCreatorBlock("");
+		game.getRound().setConnectorBlock("");
 		game.getRound().setFirstHit("");
-		game.getRound().setU1Hit(false);
-		game.getRound().setU2Hit(false);
+		game.getRound().setCreatorDoHit(false);
+		game.getRound().setConnectorDoHit(false);
 		game.getRound().setRoundNumber(game.getRound().getRoundNumber() + 1);
 		game.getRound().setRoundStart(true);
 		game.getRound().setRoundBeginTime(System.currentTimeMillis() / 1000);
@@ -87,18 +71,67 @@ public class FightEngine
 			msListInGame.addFirst(mess);
 		}
 	}
-	private int creatorDamage(Fight fight)
+	private int creatorBlockedDamage(Fight fight)
 	{
-		return fight.getCreatorProfile().getDamage() + skillDamage();
+		return fight.getCreatorProfile().getDamage();
 	}
-	private int connectorDamage(Fight fight)
+	private int connectorBlockedDamage(Fight fight)
 	{
-		return fight.getConnectorProfile().getDamage() + skillDamage();
+		return fight.getConnectorProfile().getDamage();
 	}
-	private void shooting()
+	private boolean shooting(Fight fight)
 	{
+		String creatorHit = fight.getRound().getCreatorHit();
+		String creatorBlock = fight.getRound().getCreatorBlock();
+		String connectorHit = fight.getRound().getConnectorHit();
+		String connectorBlock = fight.getRound().getConnectorBlock();
+		int creatorDamage = creatorBlockedDamage(fight);
+		int connectorDamage = connectorBlockedDamage(fight);
+		int creatorHPAfterHit = fight.getCreatorProfile().getHP();
+		int connectorHPAfterHit = fight.getConnectorProfile().getHP();
+		if (!creatorHit.equals(connectorBlock))
+		{
+			connectorHPAfterHit = connectorHPAfterHit - creatorDamage;
+		}
+		else
+		{
+			creatorDamage = 0;
+		}
+		if (!connectorHit.equals(creatorBlock))
+		{
+			creatorHPAfterHit = creatorHPAfterHit - connectorDamage;
+		}
+		else
+		{
+			connectorDamage = 0;
+		}
+		RoundResult rr = healthAnalizer(creatorHPAfterHit, connectorHPAfterHit, "");
+		boolean isGameEnd = rr.roundResult(fight, creatorDamage, connectorDamage);
+		return isGameEnd;
+	}
+	private RoundResult healthAnalizer(int creatorHP, int connectorHP, String firstHit)
+	{
+		if (creatorHP <= 0 && connectorHP <= 0)
+		{
+			return RoundResult.Double_Deth;
+		}
+		if (creatorHP <= 0)
+		{
+			return RoundResult.Creator_Deth;
+		}
+		if (connectorHP <= 0)
+		{
+			return RoundResult.Connector_deth;
+		}
+		else
+		{
+			return RoundResult.Alive;
+		}
 	}
 	// TODO ДОРОБИТИ СКІЛИ
+	/*
+	 * Skills damage not blocked
+	 */
 	private int skillDamage()
 	{
 		return 0;

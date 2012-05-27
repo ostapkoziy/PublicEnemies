@@ -21,7 +21,8 @@ public class StatsCalculator
 		}
 		profile.setAllHP(400 + profile.getStrength() * 10);
 		profile.setHP(profile.getAllHP());
-		profile.setDamage(20 + profile.getAgility() * 3);
+		profile.setDamage(20);
+		// profile.setDamage(20 + profile.getAgility() * 3);
 		profile.setDefence(10);
 	}
 }

@@ -105,7 +105,7 @@ function timerController(game)
 
 	if (game.whoIAm == "creator")
 	{
-		if (game.round.u1Hit == true)
+		if (game.round.creatorDoHit == true)
 		{
 			hideAttackButton();
 		}
@@ -117,7 +117,7 @@ function timerController(game)
 	}
 	else
 	{
-		if (game.round.u2Hit == true)
+		if (game.round.connectorDoHit == true)
 		{
 			hideAttackButton();
 		}

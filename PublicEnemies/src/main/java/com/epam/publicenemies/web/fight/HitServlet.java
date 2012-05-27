@@ -29,7 +29,7 @@ public class HitServlet
 		Fight fight = (Fight) request.getSession().getAttribute("game");
 		String hit = new String(request.getParameter("userHit"));
 		String block = request.getParameter("userBlock");
-		String useAid = request.getParameter("aidUse");
+		// String useAid = request.getParameter("aidUse");
 		Profile userProfile;
 		/*
 		 * 
@@ -38,13 +38,13 @@ public class HitServlet
 		{
 			userProfile = fight.getCreatorProfile();
 			log.info("CREATOR: " + userProfile.getNickName() + " HIT : " + hit + " BLOCK: " + block);
-			user1GameSetup(fight, hit, block, role);
+			creatorGameSetup(fight, hit, block, role);
 		}
 		else
 		{
 			userProfile = fight.getConnectorProfile();
 			log.info("CONNECT: " + userProfile.getNickName() + " HIT : " + hit + " BLOCK: " + block);
-			user2GameSetup(fight, hit, block, role);
+			connectorGameSetup(fight, hit, block, role);
 		}
 		/*
 		 * Engine Start
@@ -56,7 +56,7 @@ public class HitServlet
 	}
 	/**
 	 * Можна буде забрати якщо передавати в ENGINE того хто стартанув гру(він
-	 * вдарив другим). Add STATIC
+	 * вдарив другим).
 	 */
 	private synchronized void setFirstHit(Fight fight, String role)
 	{
@@ -72,12 +72,12 @@ public class HitServlet
 			new FightEngine().startEngine(fight, role);
 		}
 	}
-	private void user1GameSetup(Fight fight, String hit, String block, String role)
+	private void creatorGameSetup(Fight fight, String hit, String block, String role)
 	{
-		fight.getRound().setUser1Hit(hit);
-		fight.getRound().setUser1Block(block);
-		fight.getRound().setU1Hit(true);
-		if (fight.getRound().isU2Hit())
+		fight.getRound().setCreatorHit(hit);
+		fight.getRound().setCreatorBlock(block);
+		fight.getRound().setCreatorDoHit(true);
+		if (fight.getRound().isConnectorDoHit())
 		{
 			setRoundStart(fight);
 		}
@@ -86,12 +86,12 @@ public class HitServlet
 			setFirstHit(fight, role);
 		}
 	}
-	private void user2GameSetup(Fight fight, String hit, String block, String role)
+	private void connectorGameSetup(Fight fight, String hit, String block, String role)
 	{
-		fight.getRound().setUser2Hit(hit);
-		fight.getRound().setUser2Block(block);
-		fight.getRound().setU2Hit(true);
-		if (fight.getRound().isU1Hit())
+		fight.getRound().setConnectorHit(hit);
+		fight.getRound().setConnectorBlock(block);
+		fight.getRound().setConnectorDoHit(true);
+		if (fight.getRound().isCreatorDoHit())
 		{
 			setRoundStart(fight);
 		}

@@ -90,13 +90,13 @@ div { /* 	outline: 1px solid red; */
 	width: 96%;
 	background-color: gray;
 	float: left;
-	border-radius: 25px;
+	border-radius: 5px;
 }
 
 #innerLeftProgressHP {
 	height: 25px;
 	width: 100%;
-	border-radius: 25px;
+	border-radius: 5px;
 }
 
 #rightProgressHP {
@@ -104,14 +104,14 @@ div { /* 	outline: 1px solid red; */
 	width: 96%;
 	background-color: gray;
 	float: right;
-	border-radius: 25px;
+	border-radius: 5px;
 }
 
 #innerRightProgressHP {
 	height: 25px;
 	width: 100%;
 	float: left;
-	border-radius: 25px;
+	border-radius: 5px;
 }
 /* ************************************** */
 #rightAgility,#rightStrength,#rightInteligence,#rightDamage {

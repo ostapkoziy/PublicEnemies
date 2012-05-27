@@ -14,6 +14,8 @@ public class RedirectController2
 	{
 		return "/fight/fightStarted";
 	}
+	// TODO зробити по ГЕТ + ід гри в ГЕТ + перевіряти тут чи вона є в НАSHМАР;
+	// Нема ---> редірект
 	@RequestMapping("/fight.html")
 	public String fight()
 	{

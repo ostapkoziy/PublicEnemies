@@ -7,22 +7,22 @@ public class FightRound
 {
 	private int				roundNumber;
 	private boolean			roundStart;
-	private String			user1Hit;
-	private String			user1Block;
-	private String			user2Hit;
-	private String			user2Block;
-	private boolean			u1Hit;
-	private boolean			u2Hit;
+	private String			creatorHit;
+	private String			creatorBlock;
+	private String			connectorHit;
+	private String			connectorBlock;
+	private boolean			creatorDoHit;
+	private boolean			connectorDoHit;
 	private String			firstHit;
 	private volatile long	roundBeginTime;
 	public FightRound()
 	{
 		roundNumber = 1;
 		roundStart = true;
-		user1Hit = "";
-		user1Block = "";
-		user2Hit = "";
-		user2Block = "";
+		creatorHit = "";
+		creatorBlock = "";
+		connectorHit = "";
+		connectorBlock = "";
 		firstHit = "";
 	}
 	public int getRoundNumber()
@@ -33,29 +33,29 @@ public class FightRound
 	{
 		return roundStart;
 	}
-	public String getUser1Hit()
+	public String getCreatorHit()
 	{
-		return user1Hit;
+		return creatorHit;
 	}
-	public String getUser1Block()
+	public String getCreatorBlock()
 	{
-		return user1Block;
+		return creatorBlock;
 	}
-	public String getUser2Hit()
+	public String getConnectorHit()
 	{
-		return user2Hit;
+		return connectorHit;
 	}
-	public String getUser2Block()
+	public String getConnectorBlock()
 	{
-		return user2Block;
+		return connectorBlock;
 	}
-	public boolean isU1Hit()
+	public boolean isCreatorDoHit()
 	{
-		return u1Hit;
+		return creatorDoHit;
 	}
-	public boolean isU2Hit()
+	public boolean isConnectorDoHit()
 	{
-		return u2Hit;
+		return connectorDoHit;
 	}
 	public long getRoundBeginTime()
 	{
@@ -69,29 +69,29 @@ public class FightRound
 	{
 		this.roundStart = roundStart;
 	}
-	public void setUser1Hit(String user1Hit)
+	public void setCreatorHit(String user1Hit)
 	{
-		this.user1Hit = user1Hit;
+		this.creatorHit = user1Hit;
 	}
-	public void setUser1Block(String user1Block)
+	public void setCreatorBlock(String user1Block)
 	{
-		this.user1Block = user1Block;
+		this.creatorBlock = user1Block;
 	}
-	public void setUser2Hit(String user2Hit)
+	public void setConnectorHit(String user2Hit)
 	{
-		this.user2Hit = user2Hit;
+		this.connectorHit = user2Hit;
 	}
-	public void setUser2Block(String user2Block)
+	public void setConnectorBlock(String user2Block)
 	{
-		this.user2Block = user2Block;
+		this.connectorBlock = user2Block;
 	}
-	public void setU1Hit(boolean u1Hit)
+	public void setCreatorDoHit(boolean u1Hit)
 	{
-		this.u1Hit = u1Hit;
+		this.creatorDoHit = u1Hit;
 	}
-	public void setU2Hit(boolean u2Hit)
+	public void setConnectorDoHit(boolean u2Hit)
 	{
-		this.u2Hit = u2Hit;
+		this.connectorDoHit = u2Hit;
 	}
 	public void setRoundBeginTime(long roundBeginTime)
 	{

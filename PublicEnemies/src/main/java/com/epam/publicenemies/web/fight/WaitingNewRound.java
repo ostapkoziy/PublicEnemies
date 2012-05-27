@@ -41,7 +41,7 @@ public class WaitingNewRound
 		}
 		PrintWriter out = response.getWriter();
 		JSONSerializer ser = new JSONSerializer();
-		opponentNotHit(fight, role);
+//		opponentNotHit(fight, role);
 		if (fight.isGameEnd())
 		{
 			log.info("--------------GAME IS END FOR USER: " + userProfile.getNickName() + "----------------------");
@@ -60,18 +60,18 @@ public class WaitingNewRound
 	{
 		if ((System.currentTimeMillis() / 1000) > (fight.getRound().getRoundBeginTime() + 30) && fight.isGameStarted())
 		{
-			if (!fight.getRound().isU1Hit() && !fight.getRound().isU2Hit())
+			if (!fight.getRound().isCreatorDoHit() && !fight.getRound().isConnectorDoHit())
 			{
 				fight.setWhoWins("noWiners");
 				fight.setGameEnd(true);
 				return;
 			}
-			if (role.equals("creator") && !fight.getRound().isU2Hit())
+			if (role.equals("creator") && !fight.getRound().isConnectorDoHit())
 			{
 				fight.setWhoWins("creator");
 				fight.setGameEnd(true);
 			}
-			if (role.equals("connector") && !fight.getRound().isU1Hit())
+			if (role.equals("connector") && !fight.getRound().isCreatorDoHit())
 			{
 				fight.setWhoWins("connector");
 				fight.setGameEnd(true);
