@@ -44,7 +44,7 @@ public class ConnectController
 		if (newFight.getCreatorProfile().getUserId() == userProfile.getUserId())
 		{
 			// ПРИ КОНЕКТІ ДО СЕБЕ
-			return "redirect:fight.html";
+			return "redirect:fight.html?id=" + newFight.getId();
 		}
 		Utils.isOldGameInSession(oldFight, oldRole);
 		/*
@@ -61,6 +61,6 @@ public class ConnectController
 		 */
 		request.getSession().setAttribute("gameRole", "connector");
 		request.getSession().setAttribute("game", newFight);
-		return "redirect:fight.html";
+		return "redirect:fight.html?id=" + newFight.getId();
 	}
 }

@@ -31,6 +31,13 @@ public class Fight
 	{
 		return id;
 	}
+	public Profile getProfile(String role)
+	{
+		if (role.equals("creator"))
+			return creatorProfile;
+		else
+			return connectorProfile;
+	}
 	public Profile getCreatorProfile()
 	{
 		return creatorProfile;

@@ -53,6 +53,6 @@ public class CreateGameController
 		log.info("GAME: " + newFight.getId() + "  CREATED");
 		request.getSession().setAttribute("gameRole", "creator");
 		request.getSession().setAttribute("game", newFight);
-		return "redirect:fight.html";
+		return "redirect:fight.html?id=" + newFight.getId();
 	}
 }

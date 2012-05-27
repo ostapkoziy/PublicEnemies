@@ -13,7 +13,7 @@ import com.epam.publicenemies.chat.MessageList;
 public class FightEngine
 {
 	private static Logger	log	= Logger.getLogger(FightEngine.class);
-	public void startEngine(Fight fight, String whoStartes)
+	public void startEngine(Fight fight, String whoStartesFight)
 	{
 		boolean isGameEnd = shooting(fight);
 		log.info("-------------ENGINE STARTED-------------");
@@ -55,7 +55,7 @@ public class FightEngine
 		game.getRound().setRoundStart(true);
 		game.getRound().setRoundBeginTime(System.currentTimeMillis() / 1000);
 	}
-	private synchronized void sendServerMessage(long gameId, String mess)
+	public static synchronized void sendServerMessage(long gameId, String mess)
 	{
 		MessageList ml = MessageList.newInstanse();
 		HashMap<Long, LinkedList<String>> allMessages = ml.getGameMessages();
@@ -85,25 +85,19 @@ public class FightEngine
 		String creatorBlock = fight.getRound().getCreatorBlock();
 		String connectorHit = fight.getRound().getConnectorHit();
 		String connectorBlock = fight.getRound().getConnectorBlock();
-		int creatorDamage = creatorBlockedDamage(fight);
-		int connectorDamage = connectorBlockedDamage(fight);
+		int creatorDamage = 0;
+		int connectorDamage = 0;
 		int creatorHPAfterHit = fight.getCreatorProfile().getHP();
 		int connectorHPAfterHit = fight.getConnectorProfile().getHP();
 		if (!creatorHit.equals(connectorBlock))
 		{
+			creatorDamage = creatorBlockedDamage(fight);
 			connectorHPAfterHit = connectorHPAfterHit - creatorDamage;
-		}
-		else
-		{
-			creatorDamage = 0;
 		}
 		if (!connectorHit.equals(creatorBlock))
 		{
+			connectorDamage = connectorBlockedDamage(fight);
 			creatorHPAfterHit = creatorHPAfterHit - connectorDamage;
-		}
-		else
-		{
-			connectorDamage = 0;
 		}
 		RoundResult rr = healthAnalizer(creatorHPAfterHit, connectorHPAfterHit, "");
 		boolean isGameEnd = rr.roundResult(fight, creatorDamage, connectorDamage);

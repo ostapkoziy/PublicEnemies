@@ -30,19 +30,17 @@ public class HitServlet
 		String hit = new String(request.getParameter("userHit"));
 		String block = request.getParameter("userBlock");
 		// String useAid = request.getParameter("aidUse");
-		Profile userProfile;
+		Profile userProfile = fight.getProfile(role);
 		/*
 		 * 
 		 */
 		if (role.equals("creator"))
 		{
-			userProfile = fight.getCreatorProfile();
 			log.info("CREATOR: " + userProfile.getNickName() + " HIT : " + hit + " BLOCK: " + block);
 			creatorGameSetup(fight, hit, block, role);
 		}
 		else
 		{
-			userProfile = fight.getConnectorProfile();
 			log.info("CONNECT: " + userProfile.getNickName() + " HIT : " + hit + " BLOCK: " + block);
 			connectorGameSetup(fight, hit, block, role);
 		}

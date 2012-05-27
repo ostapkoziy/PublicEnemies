@@ -28,20 +28,17 @@ public class WaitingNewRound
 		response.setContentType("text/html;charset=UTF-8");
 		String role = request.getSession().getAttribute("gameRole").toString();
 		Fight fight = (Fight) request.getSession().getAttribute("game");
-		Profile userProfile;
-		if (role.equals("creator"))
-		{
-			userProfile = fight.getCreatorProfile();
-			fight.setWhoIAm("creator");
-		}
-		else
-		{
-			userProfile = fight.getConnectorProfile();
-			fight.setWhoIAm("connector");
-		}
+		/*
+		 * 
+		 */
+		Profile userProfile = fight.getProfile(role);
+		fight.setWhoIAm(role);
+		/*
+		 * 
+		 */
 		PrintWriter out = response.getWriter();
 		JSONSerializer ser = new JSONSerializer();
-//		opponentNotHit(fight, role);
+		opponentNotHit(fight, role);
 		if (fight.isGameEnd())
 		{
 			log.info("--------------GAME IS END FOR USER: " + userProfile.getNickName() + "----------------------");
@@ -58,7 +55,7 @@ public class WaitingNewRound
 	 */
 	private synchronized void opponentNotHit(Fight fight, String role)
 	{
-		if ((System.currentTimeMillis() / 1000) > (fight.getRound().getRoundBeginTime() + 30) && fight.isGameStarted())
+		if ((System.currentTimeMillis() / 1000) > (fight.getRound().getRoundBeginTime() + 30) && !fight.isGameEnd())
 		{
 			if (!fight.getRound().isCreatorDoHit() && !fight.getRound().isConnectorDoHit())
 			{
@@ -69,13 +66,12 @@ public class WaitingNewRound
 			if (role.equals("creator") && !fight.getRound().isConnectorDoHit())
 			{
 				fight.setWhoWins("creator");
-				fight.setGameEnd(true);
 			}
 			if (role.equals("connector") && !fight.getRound().isCreatorDoHit())
 			{
 				fight.setWhoWins("connector");
-				fight.setGameEnd(true);
 			}
+			fight.setGameEnd(true);
 		}
 	}
 }
