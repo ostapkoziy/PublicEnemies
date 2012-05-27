@@ -42,6 +42,10 @@ public class CreateGameController
 		Fight newFight = new Fight();
 		newFight.setId(new Random().nextInt());
 		newFight.setCreatorProfile(userProfile);
+		/*
+		 * Make stats
+		 */
+		StatsCalculator.makeStats(newFight, "creator");
 		FightsList.newInstanse().getMap().put(newFight.getId(), newFight);
 		/*
 		 * SESSION_SETUP

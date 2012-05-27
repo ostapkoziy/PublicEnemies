@@ -1,0 +1,58 @@
+@CHARSET "UTF-8";
+
+#color1 {
+	width: 100%;
+	height: 100%;
+	opacity: 0.7;
+	position: fixed;
+	left: 0;
+	top: 0;
+	background: url("../../img/fight/overlay.png");
+	z-index: 1000;
+}
+
+#color2 {
+	position: fixed;
+	width: 414px;
+	height: 414px;
+	z-index: 2000;
+	background: black;
+	top: 100px;
+	left: 0;
+	right: 0;
+	margin-left: auto;
+	margin-right: auto;
+	opacity: 0.6;
+	border-radius: 15px;
+}
+
+#color3 {
+	position: fixed;
+	width: 374px;
+	height: 374px;
+	top: 120px;
+	left: 0;
+	right: 0;
+	margin-left: auto;
+	margin-right: auto;
+	z-index: 3000;
+	background: white;
+	border-radius: 15px;
+}
+
+#imageWrapper {
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 20px;
+	width: 334px;
+	height: 334px;
+	margin-left: auto;
+}
+
+.win {
+	background-image: url("../../img/fight/you-win.png");
+}
+
+.lose {
+	background-image: url("../../img/fight/you-lose.png");
+}

@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class RedirectController2
 {
-	@RequestMapping("/gameStarted.html")
+	@RequestMapping("/fightStarted.html")
 	public String gameStarted()
 	{
-		return "/fight/gameStarted";
+		return "/fight/fightStarted";
 	}
 	@RequestMapping("/fight.html")
 	public String fight()

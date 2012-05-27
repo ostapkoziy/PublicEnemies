@@ -22,7 +22,8 @@ public class WaitForOpponentConnect
 {
 	private Logger	log	= Logger.getLogger(WaitForOpponentConnect.class);
 	@RequestMapping("/WaitForOpponent")
-	public void waitForOpponent(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+	public void waitForOpponent(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException,
+			InterruptedException
 	{
 		response.setContentType("text/html;charset=UTF-8");
 		/*

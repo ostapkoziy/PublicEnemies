@@ -2,10 +2,12 @@ package com.epam.publicenemies.domain;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.HashMap;
+import java.util.List;
 
 import org.apache.log4j.Logger;
+
+import com.epam.publicenemies.domain.fight.Level;
 
 /**
  * God like Profile object. Contains all information about registered user
@@ -59,186 +61,217 @@ public class Profile
 		aids = new HashMap<Integer, TrunkItem>();
 		armors = new HashMap<Integer, TrunkItem>();
 	}
-	
 	/**
 	 * Get ArrayList of character's all weapons
+	 * 
 	 * @return ArrayList of character's all weapons
 	 */
-	public ArrayList<TrunkItem> getListOfWeapons () {
+	public ArrayList<TrunkItem> getListOfWeapons()
+	{
 		return new ArrayList<TrunkItem>(weapons.values());
 	}
-	
 	/**
 	 * Get ArrayList of character's all armors
+	 * 
 	 * @return ArrayList of character's all armors
 	 */
-	public ArrayList<TrunkItem> getListOfArmors () {
+	public ArrayList<TrunkItem> getListOfArmors()
+	{
 		return new ArrayList<TrunkItem>(armors.values());
 	}
-	
 	/**
 	 * Get ArrayList of character's all aids
+	 * 
 	 * @return ArrayList of character's all aids
 	 */
-	public ArrayList<TrunkItem> getListOfAids () {
+	public ArrayList<TrunkItem> getListOfAids()
+	{
 		return new ArrayList<TrunkItem>(aids.values());
 	}
-	
 	/**
 	 * Get all ArraylList of all undressed weapons
+	 * 
 	 * @return ArraylList of all undressed weapons
 	 */
-	public ArrayList<Weapon> getUndresedWeapons() {
+	public ArrayList<Weapon> getUndresedWeapons()
+	{
 		ArrayList<Weapon> arr = new ArrayList<Weapon>();
-		for (TrunkItem t : this.getListOfWeapons()) {
-			if ( !t.isWearing() ) arr.add( (Weapon) t.getItem() );
+		for (TrunkItem t : this.getListOfWeapons())
+		{
+			if (!t.isWearing()) arr.add((Weapon) t.getItem());
 		}
 		return arr;
 	}
-	
 	/**
 	 * Get all ArraylList of all undressed armors
+	 * 
 	 * @return ArraylList of all undressed armors
 	 */
-	public ArrayList<Armor> getUndressedArmors() {
+	public ArrayList<Armor> getUndressedArmors()
+	{
 		ArrayList<Armor> arr = new ArrayList<Armor>();
-		for (TrunkItem t : this.getListOfArmors()) {
-			if ( !t.isWearing() ) arr.add( (Armor) t.getItem() );
+		for (TrunkItem t : this.getListOfArmors())
+		{
+			if (!t.isWearing()) arr.add((Armor) t.getItem());
 		}
 		return arr;
 	}
-	
 	/**
 	 * Get all ArraylList of all undressed aids
+	 * 
 	 * @return ArraylList of all undressed aids
 	 */
-	public ArrayList<Aid> getUndressedAids() {
+	public ArrayList<Aid> getUndressedAids()
+	{
 		ArrayList<Aid> arr = new ArrayList<Aid>();
-		for (TrunkItem t : this.getListOfAids()) {
-			if ( !t.isWearing() ) arr.add( (Aid) t.getItem() );
+		for (TrunkItem t : this.getListOfAids())
+		{
+			if (!t.isWearing()) arr.add((Aid) t.getItem());
 		}
 		return arr;
 	}
-	
 	/**
 	 * Get all ArraylList of all dressed weapons
+	 * 
 	 * @return ArraylList of all dressed weapons
 	 */
-	public ArrayList<Weapon> getDresedWeapons() {
+	public ArrayList<Weapon> getDresedWeapons()
+	{
 		ArrayList<Weapon> arr = new ArrayList<Weapon>();
-		for (TrunkItem t : this.getListOfWeapons()) {
-			if ( t.isWearing() ) arr.add( (Weapon) t.getItem() );
+		for (TrunkItem t : this.getListOfWeapons())
+		{
+			if (t.isWearing()) arr.add((Weapon) t.getItem());
 		}
 		return arr;
 	}
-	
 	/**
 	 * Get all ArraylList of all dressed armors
+	 * 
 	 * @return ArraylList of all dressed armors
 	 */
-	public ArrayList<Armor> getDressedArmors() {
+	public ArrayList<Armor> getDressedArmors()
+	{
 		ArrayList<Armor> arr = new ArrayList<Armor>();
-		for (TrunkItem t : this.getListOfArmors()) {
-			if ( t.isWearing() ) arr.add( (Armor) t.getItem() );
+		for (TrunkItem t : this.getListOfArmors())
+		{
+			if (t.isWearing()) arr.add((Armor) t.getItem());
 		}
 		return arr;
 	}
-	
 	/**
 	 * Get all ArraylList of all dressed aids
+	 * 
 	 * @return ArraylList of all dressed aids
 	 */
-	public ArrayList<Aid> getDressedAids() {
+	public ArrayList<Aid> getDressedAids()
+	{
 		ArrayList<Aid> arr = new ArrayList<Aid>();
-		for (TrunkItem t : this.getListOfAids()) {
-			if ( t.isWearing() ) arr.add( (Aid) t.getItem() );
+		for (TrunkItem t : this.getListOfAids())
+		{
+			if (t.isWearing()) arr.add((Aid) t.getItem());
 		}
 		return arr;
 	}
-		
 	/**
 	 * Get all weapons that are not dressed
+	 * 
 	 * @return amount of undressed weapons
 	 */
-	public int getUndressedWeaponsAmount() {
+	public int getUndressedWeaponsAmount()
+	{
 		int i = 0;
-		for(TrunkItem t : this.getListOfWeapons()) {
+		for (TrunkItem t : this.getListOfWeapons())
+		{
 			if (!t.isWearing()) i++;
 		}
 		return i;
 	}
-	
 	/**
 	 * Get amount of undressed armors
+	 * 
 	 * @return amount of undressed armors
 	 */
-	public int getUndressedArmorsAmount() {
+	public int getUndressedArmorsAmount()
+	{
 		int i = 0;
-		for(TrunkItem t : this.getListOfArmors()) {
-			if (!t.isWearing()) {
+		for (TrunkItem t : this.getListOfArmors())
+		{
+			if (!t.isWearing())
+			{
 				i++;
 			}
 		}
 		return i;
 	}
-	
 	/**
 	 * Get amount of undressed aids
+	 * 
 	 * @return amount of undressed aids
 	 */
-	public int getUndressedAidsAmount() {
+	public int getUndressedAidsAmount()
+	{
 		int i = 0;
-		for(TrunkItem t : this.getListOfAids()) {
+		for (TrunkItem t : this.getListOfAids())
+		{
 			if (!t.isWearing()) i++;
 		}
 		return i;
 	}
-	
 	/**
 	 * Get all weapons
+	 * 
 	 * @return all character's weapons
 	 */
-	public HashMap<Integer, TrunkItem> getWeapons() {
+	public HashMap<Integer, TrunkItem> getWeapons()
+	{
 		return weapons;
 	}
-	
 	/**
 	 * Set all weapons
-	 * @param weapons - map of all weapons
+	 * 
+	 * @param weapons
+	 *            - map of all weapons
 	 */
-	public void setWeapons(HashMap<Integer, TrunkItem> weapons) {
+	public void setWeapons(HashMap<Integer, TrunkItem> weapons)
+	{
 		this.weapons = weapons;
 	}
-	
 	/**
 	 * Get all character's aids
+	 * 
 	 * @return all characters aids
 	 */
-	public HashMap<Integer, TrunkItem> getAids() {
+	public HashMap<Integer, TrunkItem> getAids()
+	{
 		return aids;
 	}
-	
 	/**
 	 * Set character's aids
-	 * @param aids - map of all character aids
+	 * 
+	 * @param aids
+	 *            - map of all character aids
 	 */
-	public void setAids(HashMap<Integer, TrunkItem> aids) {
+	public void setAids(HashMap<Integer, TrunkItem> aids)
+	{
 		this.aids = aids;
 	}
-	
 	/**
 	 * Get all character armors
+	 * 
 	 * @return all character armors
 	 */
-	public HashMap<Integer, TrunkItem> getArmors() {
+	public HashMap<Integer, TrunkItem> getArmors()
+	{
 		return armors;
 	}
-	
 	/**
 	 * Set all character's armors
-	 * @param armors - map of all character armors
+	 * 
+	 * @param armors
+	 *            - map of all character armors
 	 */
-	public void setArmors(HashMap<Integer, TrunkItem> armors) {
+	public void setArmors(HashMap<Integer, TrunkItem> armors)
+	{
 		this.armors = armors;
 	}
 	/**
@@ -305,19 +338,22 @@ public class Profile
 	 */
 	public void fillAidsMap(List<Integer> keys, List<Aid> uAids)
 	{
-		if (keys.size()==uAids.size()) {
-			for (int i = 0; i < keys.size(); i++) {
+		if (keys.size() == uAids.size())
+		{
+			for (int i = 0; i < keys.size(); i++)
+			{
 				putAid(keys.get(i), uAids.get(i));
 			}
 			log.info("aids map filled");
-		} else {
-			for (int i = 0; i < keys.size(); i++) {
+		}
+		else
+		{
+			for (int i = 0; i < keys.size(); i++)
+			{
 				putAid(keys.get(i), uAids.get(i));
 			}
 			log.info("aids map not properly filled");
 		}
-			
-		
 	}
 	/**
 	 * Fill map of armors in trunk
@@ -329,16 +365,18 @@ public class Profile
 	 */
 	public void fillArmorsMap(List<Integer> keys, List<Armor> uArmors)
 	{
-		if (keys.size()==uArmors.size()) {
+		if (keys.size() == uArmors.size())
+		{
 			for (int i = 0; i < keys.size(); i++)
 				putArmor(keys.get(i), uArmors.get(i));
 			log.info("armors map filled");
-		} else {
+		}
+		else
+		{
 			for (int i = 0; i < keys.size(); i++)
 				putArmor(keys.get(i), uArmors.get(i));
 			log.info("armors map not properly filled");
 		}
-		
 	}
 	public Weapon getDressedWeapon1()
 	{
@@ -765,20 +803,44 @@ public class Profile
 	{
 		pCharacter.setHP(hp);
 	}
-	
-	public int getAllHP() {
+	public int getAllHP()
+	{
 		return pCharacter.getAllUserHP();
 	}
-	
-	public void setAllHP(int hp) {
+	public void setAllHP(int hp)
+	{
 		pCharacter.setAllUserHP(hp);
 	}
-	
-	public String getEmail() {
+	public int getDamage()
+	{
+		return pCharacter.getDamage();
+	}
+	public int getDefence()
+	{
+		return pCharacter.getDefence();
+	}
+	public Level getLevel()
+	{
+		return pCharacter.getLevel();
+	}
+	public void setDamage(int damage)
+	{
+		pCharacter.setDamage(damage);
+	}
+	public void setDefence(int defence)
+	{
+		pCharacter.setDefence(defence);
+	}
+	public void setLevel(Level level)
+	{
+		pCharacter.setLevel(level);
+	}
+	public String getEmail()
+	{
 		return pUser.getEmail();
 	}
-	
-	public Timestamp getRegDate() {
+	public Timestamp getRegDate()
+	{
 		return pUser.getRegDate();
 	}
 }

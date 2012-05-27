@@ -1,0 +1,195 @@
+@CHARSET "UTF-8";
+
+div { /* 	outline: 1px solid red; */
+	
+}
+
+#content {
+	width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+	height: 800px;
+	/* 	outline: 5px solid red; */
+}
+
+#insideRight {
+	width: 150px;
+	height: 150px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 175px;
+	background: url("../../img/fight/wait.gif") no-repeat;
+}
+
+#left {
+	float: left;
+	width: 400px;
+	height: 430px;
+	/* 	outline: 4px solid purple; */
+}
+
+#right {
+	float: right;
+	width: 400px;
+	height: 430px;
+	/* 	outline: 4px solid black; */
+}
+/* +++++++++++++HP++++++++++++++++++++++++++ */
+#leftHP {
+	height: 80px;
+}
+
+#rightHP {
+	height: 80px;
+}
+
+#rightHPWrapper {
+	float: right;
+}
+
+#leftHPWrapper {
+	float: left;
+}
+/* **************STATS****************** */
+#leftStats {
+	width: 100px;
+	height: 250px;
+	float: left;
+}
+
+#rightStats {
+	width: 100px;
+	height: 250px;
+	float: right;
+}
+
+#leftStatsWrapper {
+	float: left;
+}
+
+#rightStatsWrapper {
+	float: right;
+}
+/* *************AVATAR*********************** */
+#leftAvatar {
+	margin-left: 100px;
+	/* 	outline: 2px solid green; */
+	width: 200px;
+	height: 250px;
+}
+
+#rightAvatar {
+	margin-left: 100px;
+	/* 	outline: 2px solid green; */
+	height: 250px;
+	width: 200px;
+}
+/* +++++++++++++++++++HP++++++++++++++++++++++ */
+#leftProgressHP {
+	height: 25px;
+	width: 96%;
+	background-color: gray;
+	float: left;
+	border-radius: 25px;
+}
+
+#innerLeftProgressHP {
+	height: 25px;
+	width: 100%;
+	border-radius: 25px;
+}
+
+#rightProgressHP {
+	height: 25px;
+	width: 96%;
+	background-color: gray;
+	float: right;
+	border-radius: 25px;
+}
+
+#innerRightProgressHP {
+	height: 25px;
+	width: 100%;
+	float: left;
+	border-radius: 25px;
+}
+/* ************************************** */
+#rightAgility,#rightStrength,#rightInteligence,#rightDamage {
+	float: right;
+}
+/* ***************Attack Block**************************** */
+#attackBlock {
+	margin-left: auto;
+	margin-right: auto;
+	width: 120px;
+	clear: both;
+}
+
+#atackButtonWrapper {
+	width: 72px;
+	height: 75px;
+}
+
+#hitInput {
+	width: 30px;
+}
+
+#blockInput {
+	width: 30px;
+}
+
+#aidInput {
+	width: 30px;
+}
+/* ****************COLOR HP*********************** */
+.orange {
+	background: url("../../img/fight/orange.png");
+}
+
+.red {
+	background: url("../../img/fight/red.png");
+}
+
+.green {
+	background: url("../../img/fight/green.png");
+}
+/* ****************TIMER***************************** */
+#timer {
+	width: 100%;
+	height: 20px;
+	/* 	outline: 2px solid red; */
+	font-size: 20px;
+	text-align: center;
+}
+
+/* *************DOLL******************************/
+#attackBlockDoll {
+	width: 200px;
+	margin-left: 400px;
+	margin-right: 400px;
+}
+
+#doll {
+	width: 152px;
+	height: 430px;
+	margin: 0 auto;
+}
+/* *********************************************************** */
+#rightInventory {
+	float: right;
+	height: 100px;
+	width: 400px;
+	/* 	outline: 3px solid red; */
+}
+
+#leftInventory {
+	height: 100px;
+	width: 400px;
+	/* 	outline: 7px solid blue; */
+}
+
+.item {
+	float: left;
+	height: 100px;
+	width: 100px;
+}

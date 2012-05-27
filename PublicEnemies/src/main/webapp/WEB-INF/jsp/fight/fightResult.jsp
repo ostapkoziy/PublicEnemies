@@ -9,7 +9,6 @@
 <script type="text/javascript">
 	$(function()
 	{
-		// 		$("#color1,#color2,color3").hide();
 		$("#color1").click(function()
 		{
 			$("#color1,#color2,color3").hide();
@@ -20,7 +19,6 @@
 body {
 	padding: 0px;
 	margin: 0px;
-	height: 1200px;
 }
 
 #color1 {
@@ -85,7 +83,6 @@ body {
 	<div id="color1"></div>
 	<div id="color2"></div>
 	<div id="color3">
-		${game}
 		<c:choose>
 			<c:when test="${gameRole=='creator'}">
 				<div id="imageWrapper">
@@ -98,12 +95,6 @@ body {
 				</div>
 			</c:otherwise>
 		</c:choose>
-		<div id="createJoinWrapper">
-			<form action="createGame.html" method="post">
-				<button id="create" type="submit">Create</button>
-			</form>
-			<a href="allGames.html">ALL GAMES</a>
-		</div>
 	</div>
 </body>
 </html>

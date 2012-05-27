@@ -1,5 +1,7 @@
 package com.epam.publicenemies.domain;
 
+import com.epam.publicenemies.domain.fight.Level;
+
 public class UCharacter
 {
 	private int		characterId;
@@ -9,7 +11,7 @@ public class UCharacter
 	private int		agility;
 	private int		intellect;
 	private String	profession;
-	private String 	professionAvatar;
+	private String	professionAvatar;
 	private int		fightsTotal;
 	private int		fightsWon;
 	// id of items
@@ -17,16 +19,19 @@ public class UCharacter
 	private int		weapon2;
 	private int		armor;
 	private int		aid;
-	// not in database
+	// not in database TODO make Stats Calculator
 	private int		HP;
 	private int		allUserHP;
+	private int		damage;
+	private int		defence;
+	private Level	level;
 	public UCharacter()
 	{
 	}
 	/*
 	 * Order as in 'characters' table
 	 */
-	public UCharacter(int characterId, boolean sex, int experience, int strength, int agility, int intelect, String profession, 
+	public UCharacter(int characterId, boolean sex, int experience, int strength, int agility, int intelect, String profession,
 			String professionAvatar, int fightsTotal, int fightsWon, int weapon1, int weapon2, int armor, int aid)
 	{
 		this.characterId = characterId;
@@ -43,9 +48,11 @@ public class UCharacter
 		this.weapon2 = weapon2;
 		this.armor = armor;
 		this.aid = aid;
-		//not in DB
-		this.allUserHP = 200+strength*10;
+		// not in DB
+		this.allUserHP = 200 + strength * 10;
 		this.HP = allUserHP;
+		this.damage = 20 + agility * 3;
+		this.defence = armor;
 	}
 	public int getCharacterId()
 	{
@@ -159,19 +166,48 @@ public class UCharacter
 	{
 		HP = hP;
 	}
-	public int getAllUserHP() {
+	public int getAllUserHP()
+	{
 		return allUserHP;
 	}
-	public void setAllUserHP(int allUserHP) {
+	public void setAllUserHP(int allUserHP)
+	{
 		this.allUserHP = allUserHP;
 	}
-	public void setProfession(String profession) {
+	public void setProfession(String profession)
+	{
 		this.profession = profession;
 	}
-	public String getProfessionAvatar() {
+	public String getProfessionAvatar()
+	{
 		return professionAvatar;
 	}
-	public void setProfessionAvatar(String professionAvatar) {
+	public void setProfessionAvatar(String professionAvatar)
+	{
 		this.professionAvatar = professionAvatar;
+	}
+	public int getDamage()
+	{
+		return damage;
+	}
+	public int getDefence()
+	{
+		return defence;
+	}
+	public Level getLevel()
+	{
+		return level;
+	}
+	public void setDamage(int damage)
+	{
+		this.damage = damage;
+	}
+	public void setDefence(int defence)
+	{
+		this.defence = defence;
+	}
+	public void setLevel(Level level)
+	{
+		this.level = level;
 	}
 }

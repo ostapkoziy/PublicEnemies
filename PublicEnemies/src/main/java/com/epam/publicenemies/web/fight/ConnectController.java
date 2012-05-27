@@ -55,6 +55,7 @@ public class ConnectController
 		newFight.setConnectorOnline(true);
 		newFight.setConnectorProfile(userProfile);
 		newFight.getRound().setRoundBeginTime(System.currentTimeMillis() / 1000);
+		StatsCalculator.makeStats(newFight, "connector");
 		/*
 		 * SESSION_CONFIG
 		 */

@@ -29,6 +29,7 @@ public class HitServlet
 		Fight fight = (Fight) request.getSession().getAttribute("game");
 		String hit = new String(request.getParameter("userHit"));
 		String block = request.getParameter("userBlock");
+		String useAid = request.getParameter("aidUse");
 		Profile userProfile;
 		/*
 		 * 
@@ -48,7 +49,7 @@ public class HitServlet
 		/*
 		 * Engine Start
 		 */
-		startEngine(fight);
+		startEngine(fight, role);
 		/*
 		 * 
 		 */
@@ -57,48 +58,54 @@ public class HitServlet
 	 * Можна буде забрати якщо передавати в ENGINE того хто стартанув гру(він
 	 * вдарив другим). Add STATIC
 	 */
-	protected static synchronized void setFirstHit(Fight fight, String role)
+	private synchronized void setFirstHit(Fight fight, String role)
 	{
 		if (fight.getRound().getFirstHit().equals(""))
 		{
 			fight.getRound().setFirstHit(role);
 		}
 	}
-	protected static synchronized void startEngine(Fight fight)
+	private synchronized void startEngine(Fight fight, String role)
 	{
 		if (!fight.getRound().isRoundStart())
 		{
-			new FightEngine().startEngine(fight);
+			new FightEngine().startEngine(fight, role);
 		}
 	}
-	protected static void user1GameSetup(Fight fight, String hit, String block, String role)
+	private void user1GameSetup(Fight fight, String hit, String block, String role)
 	{
 		fight.getRound().setUser1Hit(hit);
 		fight.getRound().setUser1Block(block);
 		fight.getRound().setU1Hit(true);
 		if (fight.getRound().isU2Hit())
 		{
-			log.info("AND END ROUND №" + fight.getRound().getRoundNumber());
-			fight.getRound().setRoundStart(false);
+			setRoundStart(fight);
 		}
 		else
 		{
 			setFirstHit(fight, role);
 		}
 	}
-	protected static void user2GameSetup(Fight fight, String hit, String block, String role)
+	private void user2GameSetup(Fight fight, String hit, String block, String role)
 	{
 		fight.getRound().setUser2Hit(hit);
 		fight.getRound().setUser2Block(block);
 		fight.getRound().setU2Hit(true);
 		if (fight.getRound().isU1Hit())
 		{
-			log.info("AND END ROUND №" + fight.getRound().getRoundNumber());
-			fight.getRound().setRoundStart(false);
+			setRoundStart(fight);
 		}
 		else
 		{
 			setFirstHit(fight, role);
+		}
+	}
+	private synchronized void setRoundStart(Fight fight)
+	{
+		if (fight.getRound().isRoundStart())
+		{
+			log.info("AND END ROUND №" + fight.getRound().getRoundNumber());
+			fight.getRound().setRoundStart(false);
 		}
 	}
 }

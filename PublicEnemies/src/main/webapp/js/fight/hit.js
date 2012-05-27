@@ -1,13 +1,14 @@
 /**
  * Sends USER HIT and BLOCK
  */
-function hitSend(hit, block)
+function hitSend(hit, block, aid)
 {
 	$.ajax({
 		url : "HitServlet.html",
 		data : ({
 			userHit : hit,
-			userBlock : block }),
+			userBlock : block,
+			aidUse : aid }),
 		success : function(data)
 		{
 		},
@@ -39,14 +40,14 @@ function waitingNewRound()
 			}
 			if (game.gameEnd == true)
 			{
-
+				result(game);
 				allDataUpdate(game);
 				hideAttackButton();
 				// ****** Redirect to gameResault page after 3 sec*************
 				setTimeout(function()
 				{
 					window.location.replace("profile.html");
-				}, 3000);
+				}, 5000);
 				// ********************************************************
 			}
 		},
@@ -59,6 +60,29 @@ function waitingNewRound()
 		}
 
 	});
+}
+/**
+ * Show result picture
+ * 
+ * @param game
+ */
+function result(game)
+{
+	$("#result").removeAttr("hidden");
+	if (game.whoWins == "noWiners")
+	{
+		// TODO noWiners image
+		return;
+	}
+	if (game.whoIAm == game.whoWins)
+	{
+		$("#imageWrapper").addClass("win");
+	}
+	else
+	{
+		$("#imageWrapper").addClass("lose");
+	}
+
 }
 /*******************************************************************************
  * UPDATE ALL DATA ON PAGE
@@ -78,6 +102,7 @@ function allDataUpdate(game)
  */
 function timerController(game)
 {
+
 	if (game.whoIAm == "creator")
 	{
 		if (game.round.u1Hit == true)
@@ -125,13 +150,27 @@ $(function()
 	{
 		var hit = $("#hitInput").val();
 		var block = $("#blockInput").val();
-
+		var aid = $("#aidInput").val();
 		if (hit != undefined & block != undefined)
 		{
-			hitSend(hit, block);
+			hitSend(hit, block, aid);
 			hideAttackButton();
 
 		}
+	});
+	// **************Redirect to profile on click*****************
+	$("#color1").click(function()
+	{
+		window.location.replace("profile.html");
+	});
+	$("#leftAid").toggle(function()
+	{
+		$("#aidInput").val("true");
+		$(this).css("outline", "3px solid red");
+	}, function()
+	{
+		$("#aidInput").val("false");
+		$(this).css("outline", "");
 	});
 
 });

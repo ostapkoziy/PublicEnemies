@@ -13,7 +13,52 @@ import com.epam.publicenemies.chat.MessageList;
 public class FightEngine
 {
 	private static Logger	log	= Logger.getLogger(FightEngine.class);
-	private static void clearHitsBlocks(Fight game)
+	public void startEngine(Fight fight, String whoStartes)
+	{
+		int creatorDamage = creatorDamage(fight);
+		int connectorHPAfterHit = fight.getConnectorProfile().getHP() - creatorDamage;
+		int connectorDamage = connectorDamage(fight);
+		int creatorHPAfterHit = fight.getCreatorProfile().getHP() - connectorDamage;
+		if (connectorHPAfterHit <= 0)
+		{
+			fight.getConnectorProfile().setHP(0);
+			fight.setWhoWins("creator");
+			sendServerMessage(fight.getId(), fight.getCreatorProfile().getNickName() + " WIN!");
+		}
+		else
+		{
+			fight.getConnectorProfile().setHP(connectorHPAfterHit);
+		}
+		if (creatorHPAfterHit <= 0)
+		{
+			fight.getCreatorProfile().setHP(0);
+			fight.setWhoWins("connector");
+			sendServerMessage(fight.getId(), fight.getConnectorProfile().getNickName() + " WIN!");
+		}
+		else
+		{
+			fight.getCreatorProfile().setHP(creatorHPAfterHit);
+		}
+		if (fight.getCreatorProfile().getHP() == 0 || fight.getConnectorProfile().getHP() == 0)
+		{
+			fight.setGameEnd(true);
+			return;
+		}
+		else
+		{
+			log.info("-------------ENGINE STARTED-------------");
+			sendServerMessage(fight.getId(), "<b>Server: </b> Round №" + fight.getRound().getRoundNumber() + " end.");
+			clearHitsBlocks(fight);
+			log.info("--------------ENGINE END-------------");
+		}
+	}
+	/**
+	 * Startes when one user is offline
+	 */
+	public void startEngine(String whoOnline, Fight fight)
+	{
+	}
+	private void clearHitsBlocks(Fight game)
 	{
 		game.getRound().setUser1Hit("");
 		game.getRound().setUser2Hit("");
@@ -26,7 +71,7 @@ public class FightEngine
 		game.getRound().setRoundStart(true);
 		game.getRound().setRoundBeginTime(System.currentTimeMillis() / 1000);
 	}
-	private synchronized static void sendServerMessage(long gameId, String mess)
+	private synchronized void sendServerMessage(long gameId, String mess)
 	{
 		MessageList ml = MessageList.newInstanse();
 		HashMap<Long, LinkedList<String>> allMessages = ml.getGameMessages();
@@ -42,43 +87,20 @@ public class FightEngine
 			msListInGame.addFirst(mess);
 		}
 	}
-	public synchronized void startEngine(Fight fight)
+	private int creatorDamage(Fight fight)
 	{
-		int creatorDamage = 50;
-		int connectorHPAfterHit = fight.getConnectorProfile().getHP() - creatorDamage;
-		int connectorDamage = 45;
-		int creatorHPAfterHit = fight.getCreatorProfile().getHP() - connectorDamage;
-		if (connectorHPAfterHit <= 0)
-		{
-			fight.getConnectorProfile().setHP(0);
-			fight.setWhoWins("creator");
-			FightEngine.sendServerMessage(fight.getId(), fight.getCreatorProfile().getNickName() + " WIN!");
-		}
-		else
-		{
-			fight.getConnectorProfile().setHP(connectorHPAfterHit);
-		}
-		if (creatorHPAfterHit <= 0)
-		{
-			fight.getCreatorProfile().setHP(0);
-			fight.setWhoWins("connector");
-			FightEngine.sendServerMessage(fight.getId(), fight.getConnectorProfile().getNickName() + " WIN!");
-		}
-		else
-		{
-			fight.getCreatorProfile().setHP(creatorHPAfterHit);
-		}
-		if (fight.getCreatorProfile().getHP() == 0 || fight.getConnectorProfile().getHP() == 0)
-		{
-			fight.setGameEnd(true);
-			return;
-		}
-		else
-		{
-			log.info("-------------ENGINE STARTED-------------");
-			FightEngine.sendServerMessage(fight.getId(), "<b>Server: </b> Round №" + fight.getRound().getRoundNumber() + " end.");
-			clearHitsBlocks(fight);
-			log.info("--------------ENGINE END-------------");
-		}
+		return fight.getCreatorProfile().getDamage() + skillDamage();
+	}
+	private int connectorDamage(Fight fight)
+	{
+		return fight.getConnectorProfile().getDamage() + skillDamage();
+	}
+	private void shooting()
+	{
+	}
+	// TODO ДОРОБИТИ СКІЛИ
+	private int skillDamage()
+	{
+		return 0;
 	}
 }

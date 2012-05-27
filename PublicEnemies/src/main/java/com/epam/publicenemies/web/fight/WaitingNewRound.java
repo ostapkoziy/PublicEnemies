@@ -52,19 +52,30 @@ public class WaitingNewRound
 		out.print(ser.exclude("*.class").serialize(fight));
 		out.flush();
 	}
-	private void opponentNotHit(Fight fight, String role)
+	/**
+	 * Запускати Engine якщо хоча б один online(тобто не закрив вкладку чи
+	 * браузер)
+	 */
+	private synchronized void opponentNotHit(Fight fight, String role)
 	{
 		if ((System.currentTimeMillis() / 1000) > (fight.getRound().getRoundBeginTime() + 30) && fight.isGameStarted())
 		{
+			if (!fight.getRound().isU1Hit() && !fight.getRound().isU2Hit())
+			{
+				fight.setWhoWins("noWiners");
+				fight.setGameEnd(true);
+				return;
+			}
 			if (role.equals("creator") && !fight.getRound().isU2Hit())
 			{
 				fight.setWhoWins("creator");
+				fight.setGameEnd(true);
 			}
 			if (role.equals("connector") && !fight.getRound().isU1Hit())
 			{
 				fight.setWhoWins("connector");
+				fight.setGameEnd(true);
 			}
-			fight.setGameEnd(true);
 		}
 	}
 }
