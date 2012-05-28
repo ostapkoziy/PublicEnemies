@@ -42,7 +42,7 @@ $(document).ready(function(){
 <body>
 	<table align="center">
 		<tr>
-			<td align="center"><img src="img/gamelogo.png"></img></td>
+			<td align="center"><a href="userStartPage.html"><img src="img/gamelogo.png"></img></a></td>
 		</tr>
 		<tr>
 			<table id="main_table" class="sample" align="center" width="500" height="600">

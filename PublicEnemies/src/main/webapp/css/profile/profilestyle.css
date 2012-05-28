@@ -3,18 +3,14 @@
 	padding:0;
 	list-style:none;
 }
-body {
-	background-image: url('../../img/bg_city.png');
-	font-family: Geneva, Arial, Helvetica, sans-serif;
-	color: white;	
-	font-size: 14	px;
-	margin:10px;
+h3{
+	font-size: 20px;	
 }
 div.profile_header {
-	background-image: url('../../img/opacity_background.png');
+	
 	border-radius: 10px;
 	text-align: center; 
-	margin: 20px;
+	margin: 5px;
 	padding: 15px;  
 }
 span.header_element {
@@ -70,10 +66,10 @@ a {
 div.profile_info {
 	magrin: 0 auto; 
 	padding: 10px; 
-	background: url(../../img/opacity_background.png);
+/* 	background: url(../../img/dark_opacity.png);  */
 	min-width: 400px;
 	min-height: 400px; 
-	border: 3px solid white; 
+/* 	border: 3px solid white; */
 	display: inline-block;
 	vertical-align: top;
 }
@@ -90,9 +86,11 @@ div.mutual_item, div.shop_item {
 }
 div.item, div.mutual_item {
 	background: url(../../img/no_item.png);
+	
 }
 div.item:hover, div.mutual_item:hover, div.shop_item:hover {
 	background: grey; 
+	color: red;
 }
 
 div.margin_div_vertical {
@@ -122,8 +120,8 @@ div.statistics {
 div.inventory {
 	display: inline-block;
 	padding: 10px; 
-	background: url(../../img/opacity_background.png);
-	border: 3px solid white;
+/* 	background: url(../../img/dark_opacity.png); */
+/* 	border: 3px solid white; */
 	margin: 0 auto;
 	width: 600px; 
 	text-align: center;
@@ -132,7 +130,7 @@ div.statistics_list {
 	magrin: 0 auto; 
 	padding: 5px; 
 	display: inline-block; 
-	border: 1px solid white;
+	/* border: 1px solid white; */
 	clear: both; 
 }
 img.avatar {
@@ -148,12 +146,14 @@ div.horizontal_space {
 }
 div.profile_statistics_inventory {
 	margin: 0 auto; 
+	margin-top: 10px;
 	width: 1200px; 
+	height: 100%;
 	background: url(../../img/dark_opacity.png);
 }
 div.set_of_items {
 	display: inline-block; 
-	border: 3px solid white; 
+	border: 3px solid white;  
 	vertical-align: top;
 	padding: 10px; 
 }
@@ -163,16 +163,4 @@ a.statistics_link {
 	font-family: Geneva, Arial, Helvetica, sans-serif;
 	font-size: 14pt;
 }
-/*
-a:hover,A:active,A:visited,A:link {
-	text-decoration: underline;
-	color: white;
-	font-size: 20pt;
-}
-
-a {
-	color: black;
-	font-family: 'impact';
-	font-size: 20pt;
-}*/
 
