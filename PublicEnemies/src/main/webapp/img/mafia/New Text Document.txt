@@ -1,0 +1,3 @@
+<input type="image" style="position: relative; left:-300px; top: 100px" src="img/casino-blackjack.png" alt="Submit button">
+<input type="image" style="position: relative; left:150px; top: -100px" src="img/casino-poker.png" alt="Submit button">
+<input type="image" style="position: relative; left:550px; top: -300px" src="img/casino-roulette.png" alt="Submit button">

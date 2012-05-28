@@ -126,7 +126,7 @@
 							<input id="userBetInput" type="text" value="0">
 						</form>
 						<div id="attackBlock"style="position:relative; top:-150px; left:0px; width:80px; border: 2px">
-							<input id="botBetInput" type="text" value="bot bet">
+							<input id="botBetInput" type="text" value="0">
 						</div>
  					</td>			
 				</tr>

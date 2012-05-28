@@ -135,7 +135,7 @@ private PokerCard getUniqueCard() {
 		return result;
 	}
 	
-	public void displayResults() {
+	public String displayResults() {
 	//	if(!gameFinished){
 		log.info("player1combo - " + player1Combination.getName());
 		log.info("player2combo - " + player2Combination.getName());
@@ -149,7 +149,7 @@ private PokerCard getUniqueCard() {
 	/*	}else{
 			System.out.println("One of the players folded");
 		}*/
-		
+		return result;
 	}
 
 
