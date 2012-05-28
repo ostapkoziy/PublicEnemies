@@ -282,7 +282,7 @@ public class WeaponsDaoImpl implements IWeaponsDao {
 		final String UPDATE_SQL = "UPDATE IGNORE weapons SET weaponName=?, weaponHitPoints=?, weaponPicture=?," +
 				"weaponType=?, weaponPrice=? WHERE weaponId=?";
 		int i = jdbcTemplate.update(UPDATE_SQL, new Object[] {weaponName, hitPoints, picture,
-				type, price});
+				type, price, weaponId});
 		if (i>0) {
 			log.info("WeaponDaoImpl.updateWeaponInfo : weapon("+weaponId+") was updated");
 			return true;
