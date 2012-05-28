@@ -12,7 +12,16 @@ import com.epam.publicenemies.chat.MessageList;
  */
 public class FightEngine
 {
-	private static Logger	log	= Logger.getLogger(FightEngine.class);
+	private static Logger		log	= Logger.getLogger(FightEngine.class);
+	private volatile boolean	started;
+	public boolean isStarted()
+	{
+		return started;
+	}
+	public void setStarted(boolean started)
+	{
+		this.started = started;
+	}
 	public void startEngine(Fight fight, String whoStartesFight)
 	{
 		log.info("-------------ENGINE STARTED-------------");
@@ -23,9 +32,21 @@ public class FightEngine
 		}
 		else
 		{
+			// add expiriense and money!
 			gameOver(fight);
 		}
 		log.info("--------------ENGINE END-------------");
+	}
+	/**
+	 * Starts when one or all users are offline.
+	 * 
+	 * @param fight
+	 */
+	public void startEngine(Fight fight)
+	{
+		AreUsersInGame usersInGame = areUsersInGame(fight.getRound().getCreatorHit(), fight.getRound().getConnectorHit());
+		usersInGame.start(fight);
+		gameOver(fight);
 	}
 	private void setupGame(Fight fight)
 	{
@@ -37,11 +58,8 @@ public class FightEngine
 		fight.setGameEnd(true);
 	}
 	/**
-	 * Startes when one user is offline
+	 * Startes when one or all users is offline.
 	 */
-	public void startEngine(String whoOnline, Fight fight)
-	{
-	}
 	private void clearHitsBlocks(Fight game)
 	{
 		game.getRound().setCreatorHit("");
@@ -107,19 +125,31 @@ public class FightEngine
 	{
 		if (creatorHP <= 0 && connectorHP <= 0)
 		{
-			return RoundResult.Double_Deth;
+			return RoundResult.DOUBLE_DETH;
 		}
 		if (creatorHP <= 0)
 		{
-			return RoundResult.Creator_Deth;
+			return RoundResult.CREATOR_DETH;
 		}
 		if (connectorHP <= 0)
 		{
-			return RoundResult.Connector_deth;
+			return RoundResult.CONNECTOR_DETH;
+		}
+		return RoundResult.ALIVE;
+	}
+	private AreUsersInGame areUsersInGame(String creatorHit, String connectorHit)
+	{
+		if (creatorHit.equals("") && connectorHit.equals(""))
+		{
+			return AreUsersInGame.OFFLINE;
+		}
+		if (creatorHit.equals(""))
+		{
+			return AreUsersInGame.CREATOR_OFFLINE;
 		}
 		else
 		{
-			return RoundResult.Alive;
+			return AreUsersInGame.CONNECTOR_OFFLINE;
 		}
 	}
 }

@@ -4,6 +4,11 @@ import java.util.HashMap;
 
 import com.epam.publicenemies.domain.User;
 
+/**
+ * Map of all online users. IN PROGRESS........
+ * 
+ * @author Alexander Ivanov
+ */
 public class OnlineUsers
 {
 	HashMap<Long, User>			map	= new HashMap<Long, User>();
