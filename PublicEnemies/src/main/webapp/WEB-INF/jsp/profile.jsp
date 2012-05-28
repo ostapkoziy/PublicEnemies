@@ -16,34 +16,27 @@
 <script type="text/javascript" src="js/jquery-1.7.2.js"></script>
 <script type="text/javascript" src="js/profile/pie.js"></script>
 <script type="text/javascript" src="js/jquery.betterTooltip.js"></script>
-
+<link rel="stylesheet" href="css/hideout.css" type="text/css">
 <script type="text/javascript">
 $(document).ready(function(){
 	$('.tTip').betterTooltip({speed: 150, delay: 300});
+	
 });
 </script>
 
 </head>
 
 <body>
-	<div class="profile_header">
-		<a href="userStartPage.html" ><span class="header_element">MAIN PAGE</span></a>
-		<a href="fights.html" ><span class="header_element">FIGHT</span></a>
-		<a href="casino.html" ><span class="header_element">CASINO</span></a>
-		<a href="shop.html" ><span class="header_element">SHOP</span></a>
-		<a href="editProfile.html" ><span class="header_element">EDIT PROFILE</span></a>
-		<a href="logout.html" ><span class="header_element">LOGOUT</span></a>
-	</div>
 	<div class="profile_statistics_inventory">
 		<div style="text-align: center">
 			<div class="profile_info">
 				<h3>Profile Info</h3>
 				<img class="avatar" src="${profile.getAvatar()}" title="Avatar"
-					alt="Your profile here" />
-				<div class="statistics_list">
+					alt="Your profile here" border="2"/>
+				<div class="statistics_list" align="left">
 					<h3>Basic info:</h3>
 					<p>
-						<strong> Genger: </strong>
+						<strong> <abbr>Genger:</abbr> </strong>
 						<c:choose>
 							<c:when test="${profile.isSex() == true}">
 						male
@@ -54,43 +47,46 @@ $(document).ready(function(){
 						</c:choose>
 					</p>
 					<p>
-						<strong> Email: </strong> ${profile.getEmail()}
+						<strong> <abbr>Email:</abbr> </strong> ${profile.getEmail()}
 					</p>
 					<p>
-						<strong> Money: </strong> ${profile.getMoney()}
+						<strong> <abbr>Money:</abbr> </strong> ${profile.getMoney()}
 					</p>
 					<p>
-						<strong> RegDate: </strong> ${profile.getRegDate()}
+						<strong> <abbr>RegDate:</abbr> </strong> ${profile.getRegDate()}
 					</p>
 					<p>
-						<strong> Profession: </strong> ${profile.getProfession()}
+						<strong> <abbr>Profession:</abbr> </strong> ${profile.getProfession()}
 					</p>
 					<br />
 					<h3>Basic stats:</h3>
 					<p>
-						<strong> Experience: </strong> ${profile.getExperience()}
+						<strong> <abbr>Experience:</abbr> </strong> ${profile.getExperience()}
 					</p>
 					<p>
-						<strong> Strength: </strong> ${profile.getStrength()}
+						<strong> <abbr>Strength:</abbr> </strong> ${profile.getStrength()}
 					</p>
 					<p>
-						<strong> Agility: </strong> ${profile.getAgility()}
+						<strong> <abbr>Agility:</abbr> </strong> ${profile.getAgility()}
 					</p>
 					<p>
-						<strong> Intellect: </strong> ${profile.getIntellect()}
+						<strong> <abbr>Intelligence:</abbr> </strong> ${profile.getIntellect()}
 					</p>
 					<br />
 					<h3>Actual stats:</h3>
 					<p>
-						<strong> Strength: </strong> need to calculate
+						<strong> <abbr>Strength:</abbr> </strong> need to calculate
 					</p>
 					<p>
-						<strong> Agility: </strong> need to calculate
+						<strong> <abbr>Agility:</abbr> </strong> need to calculate
 					</p>
 					<p>
-						<strong> Intellect: </strong> need to calculate
+						<strong> <abbr>Intelligence:</abbr> </strong> need to calculate
 					</p>
 
+				</div>
+				<div>
+					<a href="editProfile.html"><button>Edit</button></a>
 				</div>
 			</div>
 
@@ -192,7 +188,7 @@ $(document).ready(function(){
 
 				<div class="set_of_items">
 
-					<h3 id="T">TRUNK:</h3>
+					<h3 id="T">AVAILABLE:</h3>
 
 					<div class="margin_div_vertical"></div>
 					<!-- DISPLAYS ALL WEAPONS INTO TRUNK -->
@@ -309,21 +305,23 @@ $(document).ready(function(){
 				</div>
 				<!-- END OF USER'S TRUNK -->
 				<!-- DISPLAYS WHAT USER WEARED IN -->
-
+				<div>
+					<a href="shop.html"><button>Buy items</button></a>
+				</div>
 			</div>
 		</div>
 
 		<form action="" method="post" name="changeForm"></form>
 		<div class="horizontal_space "></div>
 
-		<div class="statistics">
+		<div class="statistics" align="center">
 			<h3> <a name="statistics_place" class="statistics_link">Statistics</a></h3>
 			<br />
 			<p>
-				<strong> Total Fights: </strong> ${profile.getFightsTotal()}
+				<strong> <abbr>Total Fights:</abbr> </strong> ${profile.getFightsTotal()}
 			</p>
 			<p>
-				<strong> Won Fights: </strong> ${profile.getFightsWon()}
+				<strong> <abbr>Won Fights:</abbr> </strong> ${profile.getFightsWon()}
 			</p>
 			<div id="holder"></div>
 			<table>
@@ -339,7 +337,7 @@ $(document).ready(function(){
 					</tr>
 				</tbody>
 			</table>
-
+			<a id="main_page" href="userStartPage.html">main</a>
 		</div>
 	</div>
 

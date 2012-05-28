@@ -20,25 +20,27 @@
 	<div class="weapons_div">
 		<a class="new_entry" href="weapon/add.html"><span class="create_new_entry"> Create New Weapon </span> </a>
 		<p>
-		<table class="users_table">
+		<table class="weapons_table">
 		<caption> WEAPONS: </caption>
 			<thead>
 				<tr>
 					<th>Name</th>
-					<!--  <th>Email</th>
-					<th>Password</th>
-					<th>Registration Date</th>
-					<th colspan="2">Actions</th> -->
+					<th>Hit Points</th>
+					<th>Firearm</th>
+					<th>Picture (path)</th>
+					<th>Price</th>
+					<th colspan="2">Actions</th>
 				</tr>
 			</thead>
 			<c:forEach var="weapon" items="${weapons}">
 				<tr>
 					<td><a href="weapon/info/${weapon.getWeaponId()}.html">${weapon.getWeaponName()} </a></td>
-					<!--  <td>${registeredOne.getEmail()} </td>
-					<td>${registeredOne.getPassword()} </td>
-					<td>${registeredOne.getRegDate()} </td>
-					<td> <a href="user/edit/${registeredOne.getUserId()}.html"> edit</a> </td>
-					<td> <a href="user/delete/${registeredOne.getUserId()}.html"> delete</a></td>  -->						
+					<td>${weapon.getHitPoints()} </td>
+					<td>${weapon.isWeaponType()} </td>
+					<td>${weapon.getWeaponPicture()} </td>
+					<td>${weapon.getWeaponPrice()} </td>
+					<td> <a href="weapon/edit/${weapon.getWeaponId()}.html"> edit</a> </td>
+					<td> <a href="weapon/delete/${weapon.getWeaponId()}.html"> delete</a></td> 						
 				</tr>
 			</c:forEach>
 		</table>

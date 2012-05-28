@@ -16,7 +16,7 @@ public interface IArmorsDao {
 	 * Gets all armors entry from db
 	 * @return list of armors
 	 */
-	List<Armor> fetchAllArmors();
+	List<Armor> getAllArmors();
 	
 	/**
 	 * Add new armor
@@ -70,4 +70,10 @@ public interface IArmorsDao {
 	 * @return - list of all armors
 	 */
 	List<Armor> getArmorsSortedByProtection();
+	
+	/**
+	 * Get armors amount
+	 * @return amount of all armors
+	 */
+	int getArmorsAmount();
 }

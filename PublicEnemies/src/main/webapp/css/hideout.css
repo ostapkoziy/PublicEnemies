@@ -1,5 +1,5 @@
 body {
- 	background-image: url("../img/style_main.png"); 
+ 	background-image: url("../img/style_hideout.png"); 
 	color: white;
 	font-family: 'impact';
 	font-size: 14pt;
@@ -75,12 +75,35 @@ A:hover {
 }
 
 a {
-	color: black;
+	color: white;
 	font-family: 'impact';
 	font-size: 20pt;
 }
 div {
-	color: red;
+	color: gray;
 	font-family: 'impact';
 	font-size: 14pt;
+}
+img.image_select{
+    outline: border: 2px solid #ccc;
+    float: left;
+    margin: 10px;
+    margin-left : 20px;
+    -webkit-transition: margin 0.5s ease-out;
+    -moz-transition: margin 0.5s ease-out;
+    -o-transition: margin 0.5s ease-out;
+}
+
+img.image_select:hover {
+    margin-top: 2px;
+}
+abbr{
+	font-family: 'impact';
+	font-size: 20t;
+	color: red;
+}
+h3{
+	font-family: 'impact';
+	font-size: 20t;
+	color: white;
 }

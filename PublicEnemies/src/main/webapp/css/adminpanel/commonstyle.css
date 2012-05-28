@@ -7,12 +7,13 @@ div.admin_header {
 	padding: 10px; 
 	/*magrin: 5px;*/ 	
 }
+
 div#adm_panel {
 	/*margin: 5px;*/
 	margin-bottom: 10px;  
 }
+
 span#adm_panel_words {
-	
 	font-size: 32px;
 	font-weight: bold;
 	margin: 10px;  
@@ -28,40 +29,35 @@ span#aids_area {
 	border-radius: 15px;
 	padding: 5px;	 
 }
+
 span#users_area:hover, 
 span#weapons_area:hover, 
 span#armors_area:hover, 
 span#aids_area:hover {
 	background:#DDD; 
 }
+
 a.div_link {
 	text-decoration: none;
 	color:black; 	
 }
 
-div#summary_div {
-	border-width: 2px; 
-	border-style: solid; 
-	margin: 5px; 
-	padding: 5px; 
-	/*border-radius: 10px;*/ 
-}
-table
-{
+table {
 	border-collapse:collapse;
 }
-table,th, td
-{
+
+table,th, td {
 	border: 1px solid black;
 	padding: 2px 5px; 
 	text-align: center; 
 }
+
 table.users_table {	}
 
 a.new_entry {
 	text-decoration: none; 
-	
 }
+
 a.new_entry:hover, a.new_entry:active, a.new_entry:visited, a.new_entry:link {
 	text-decoration: none;
 	color: black;
@@ -70,20 +66,19 @@ a.new_entry:hover, a.new_entry:active, a.new_entry:visited, a.new_entry:link {
 	border: 3px solid black; 
 	background: #AAA; 
 	border-radius: 10px; 
-	
 }
+
 a.new_entry:hover {
 	background: #DDD; 
 }
 
-div.users_div, div.weapons_div, div.armors_div, div.aids_div {
+div.users_div, div.weapons_div, div.armors_div, div.aids_div, div#summary_div {
 	padding: 20px; 
 	border: 2px solid black; 
- 
 }
-span.create_new_entry {
-	
-}
+
+span.create_new_entry { }
+
 img.item_picture {
 	float: left; 
 	margin: 10px; 

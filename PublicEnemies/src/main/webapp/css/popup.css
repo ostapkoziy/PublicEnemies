@@ -16,6 +16,7 @@
 .tipMid {
 	background: transparent url(../img/shop/tipMid.png) repeat-y;
 	padding: 0 25px 20px 25px;
+	color: black;
 }
 
 .tipBtm {

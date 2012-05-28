@@ -19,7 +19,9 @@
 		SUMMARY:
 		<p id="amount_of_users">Amount of registered users:
 			${amountOfUsers}</p>
-			
+		<p> Amount of weapons: </p>
+		<p> Amount of armors: </p>
+		<p> Amount of aids: </p>	
 		<p id="last_registered">
 			<table class="users_table">
 			<caption> The 5 Latest Registered Users </caption>

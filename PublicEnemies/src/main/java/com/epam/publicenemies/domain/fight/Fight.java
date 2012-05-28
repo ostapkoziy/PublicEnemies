@@ -18,6 +18,7 @@ public class Fight
 	private boolean				creatorOnline;
 	private boolean				connectorOnline;
 	private String				whoWins;
+	private FightEngine			engine;
 	public Fight()
 	{
 		gameStarted = false;
@@ -26,6 +27,7 @@ public class Fight
 		creatorOnline = true;
 		connectorOnline = false;
 		whoWins = "";
+		engine = new FightEngine();
 	}
 	public long getId()
 	{
@@ -113,5 +115,13 @@ public class Fight
 	public void setWhoWins(String whoWins)
 	{
 		this.whoWins = whoWins;
+	}
+	public FightEngine getEngine()
+	{
+		return engine;
+	}
+	public void setEngine(FightEngine engine)
+	{
+		this.engine = engine;
 	}
 }

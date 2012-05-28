@@ -191,7 +191,7 @@ public class AdminPanelManagerService implements IAdminPanelManagerService {
 	 * @return list of all weapons
 	 */
 	public List<Weapon> getAllWeapons() {
-		return weaponsDao.fetchAllWeapons();
+		return weaponsDao.getAllWeapons();
 	}
 	
 	/**
@@ -239,7 +239,7 @@ public class AdminPanelManagerService implements IAdminPanelManagerService {
 	 * @return list of armors
 	 */
 	public List<Armor> fetchAllArmors() {
-		return armorsDao.fetchAllArmors();
+		return armorsDao.getAllArmors();
 	}
 	
 	/**
@@ -314,7 +314,7 @@ public class AdminPanelManagerService implements IAdminPanelManagerService {
 	 * @return list of aids
 	 */
 	public List<Aid> getAllAids() {
-		return aidsDao.fetchAllAids();
+		return aidsDao.getAllAids();
 	}
 	
 	/**
@@ -386,6 +386,96 @@ public class AdminPanelManagerService implements IAdminPanelManagerService {
 	 */
 	public List<Aid> getAidsSortedByEffect() {
 		return aidsDao.getAidsSortedByEffect();
+	}
+
+	/**
+	 * Get amount of all weapons
+	 * @return amount of all weapons
+	 */
+	@Override
+	public int getWeaponsNumber() {
+		return weaponsDao.getWeaponsAmount();
+	}
+
+	/**
+	 * Get amount of all armors
+	 * @return amount of all armors
+	 */
+	@Override
+	public int getArmorsNumber() {
+		return armorsDao.getArmorsAmount();
+	}
+
+	/**
+	 * Get amount of all aids
+	 * @return amount of all aids
+	 */
+	@Override
+	public int getAidsNumber() {
+		return aidsDao.getAidsAmount();
+	}
+	
+	/**
+	 * Add weapons for user (Doesn't change money amount. Only for admin)
+	 * @param userId - id of user
+	 * @param weapons - List of weapons ids
+	 * @return true if operation was successfully
+	 */
+	@Override
+	public boolean addWeapons(int userId, List<Integer> weapons) {
+		return  profileDao.addWeapons(userId, weapons);
+	}
+
+	/**
+	 * Add armors for user (Doesn't change money amount. Only for admin)
+	 * @param userId - id of user
+	 * @param armors - List of armors ids
+	 * @return true if operation was successfully
+	 */
+	@Override
+	public boolean addArmors(int userId, List<Integer> armors) {
+		return profileDao.addArmors(userId, armors);
+	}
+
+	/**
+	 * Add aids for user (Doesn't change money amount. Only for admin)
+	 * @param userId - id of user
+	 * @param aids - List of aids ids
+	 * @return true if operation was successfully
+	 */
+	@Override
+	public boolean addAids(int userId, List<Integer> aids) {
+		return profileDao.addAids(userId, aids);
+	}
+	
+	/**
+	 * Remove weapons from user (Doesn't change money amount. Only for admin)
+	 * @param userId - id of user
+	 * @param weapons - id of weapon
+	 * @return true if operation was successfully
+	 */
+	public boolean removeWeapons(int userId, List<Integer> weapons) {
+		return profileDao.removeWeapons(userId, weapons);
+	}
+	
+	/**
+	 * Remove aids from user (Doesn't change money amount. Only for admin)
+	 * @param userId - id of user
+	 * @param aids - id of aid
+	 * @return true if operation was successfully
+	 */
+	public boolean removeAids(int userId, List<Integer> aids) {
+		return profileDao.removeAids(userId, aids);
+	}
+	
+	/**
+	 * Remove armors from user (Doesn't change money amount. Only for admin)
+	 * @param userId - id of user
+	 * @param armors - id of armor
+	 * @return true if operation was successfully
+	 */
+	public boolean removeArmors(int userId, List<Integer> armors) {
+		return profileDao.removeArmors(userId, armors);
 	}
 	
 }

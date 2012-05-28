@@ -4,87 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" href="css/profile.css" type="text/css">
 <title>Save profile</title>
-<style type="text/css">
-body {
-	background-image: url(img/bg_city.jpg);
-	color: white;
-	font-family: 'impact';
-	font-size: 14pt;
-}
 
-h2 {
-	color: black;
-	font-family: 'impact';
-	font-size: 20pt;
-}
-
-button {
-	font-family: 'impact';
-	font-size: 20px;
-	width: 140px;
-	height: 64px;
-}
-
-table.sample {
-	margin-top: 100px;
-	background-color: #444D48;
-	opacity: .6;
-	filter: alpha(opacity = 60);
-	-moz-opacity: .6;
-	border-width: 3px;
-	border-spacing: 5px;
-	border-style: outset;
-	border-color: white;
-	border-collapse: separate;
-}
-
-table.sample th {
-	border-width: 0px;
-	padding: 3px;
-	border-style: none;
-	border-color: gray;
-	-moz-border-radius:;
-}
-
-table.sample td {
-	border-width: 0px;
-	padding: 3px;
-	border-style: none;
-	border-color: gray;
-	-moz-border-radius:;
-}
-
-A:link {
-	text-decoration: underline;
-	color: white;
-	font-size: 20pt;
-}
-
-A:visited {
-	text-decoration: underline;
-	color: white;
-	font-size: 20pt;
-}
-
-A:active {
-	text-decoration: underline;
-	color: white;
-	font-size: 20pt;
-}
-
-A:hover {
-	text-decoration: underline;
-	color: white;
-	font-size: 20pt;
-}
-
-a {
-	color: black;
-	font-family: 'impact';
-	font-size: 20pt;
-}
-</style>
 </head>
 <body>
 	<table align="center">

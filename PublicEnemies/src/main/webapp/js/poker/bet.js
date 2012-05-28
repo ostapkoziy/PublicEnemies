@@ -18,6 +18,10 @@ $(document).ready(function(){
 		$("img#river").attr("src", image_prefix + card1 + image_suffix);
 	}
 	
+	
+	$("#newRound").click(function(){
+		betSend(0, -1);
+	});
 	/**
 	 * Send USER HIT and BLOCK if <br/><b>Success:</b> coockie.hit=true and hide
 	 * attack button;
@@ -60,7 +64,10 @@ $(document).ready(function(){
 			alert("player Folded");
 			roundEnded();
 		}
-		if(pokerGame.pokerGameRound.result == "Bot Folded"){
+		if(pokerGame.pokerGameRound.result == "New Round"){
+			dropTable();
+		}
+		if(pokerGame.pokerGameRound.result == "Bot folded"){
 			alert("Bot Folded");
 			roundEnded();
 		}
@@ -74,6 +81,7 @@ $(document).ready(function(){
 		$("img#player_avatar").attr("src", pokerGame.user1Profile.avatar);
 		$("#player_name").empty().append(pokerGame.user1Profile.nickName);
 		$("#player_chips").empty().append(pokerGame.user1Profile.money);
+		$("#bot_chips").empty().append(pokerGame.pokerGameRound.player2.cash);
 		var p1c1 = pokerGame.pokerGameRound.player1Hand.card1.value.name + "" + pokerGame.pokerGameRound.player1Hand.card1.suit.name;
 		var p1c2 = pokerGame.pokerGameRound.player1Hand.card2.value.name + "" + pokerGame.pokerGameRound.player1Hand.card2.suit.name;
 		$("#player_card1").attr("src",image_prefix + p1c1 + image_suffix);
@@ -88,6 +96,7 @@ $(document).ready(function(){
 			$("#playerMove").attr("src", "img/layout/small_blind.png");
 		}
 	}
+	
 	function evenBets(pokerGame){
 		if(pokerGame.pokerGameRound.table.turn == null){
 			var card1 = pokerGame.pokerGameRound.table.flop1.value.name + pokerGame.pokerGameRound.table.flop1.suit.name;
@@ -128,6 +137,7 @@ $(document).ready(function(){
 		else{
 			alert("Split pot");
 		}
+		roundEnded();
 	}
 	
 	function highlightCards(combo){
@@ -142,14 +152,41 @@ $(document).ready(function(){
 		$("[src='"+image_prefix + card3 + image_suffix+"']").attr("class", "highlight");
 		$("[src='"+image_prefix + card4 + image_suffix+"']").attr("class", "highlight");
 		$("[src='"+image_prefix + card5 + image_suffix+"']").attr("class", "highlight");
-		roundEnded();
 	}
 
 	function roundEnded(){
 		$("body").click(function(){
-			$("img.highlight").attr("class", "none");
+			$("img.highlight").each().attr("class", "none");
+			alert("TABLE WILL BE DROPPED");
+			dropTable();
+			alert("MESSAGE WILL BE SENT");
+			betSend(0, 0);
 		});
 		
+		
+		
+	}
+	
+	function dropTable(){
+		$("img#flop1").replaceWith('<img id="flop1" class="none" style="position:relative; top:-20px; left:93px; width: 35px" src=""></img>');
+		$("img#flop2").replaceWith('<img id="flop2" class="none" style="position:relative; top:-20px; left:93px; width: 35px" src=""></img>');
+		$("img#flop3").replaceWith('<img id="flop3" class="none" style="position:relative; top:-20px; left:93px; width: 35px" src=""></img>');
+		$("img#turn").replaceWith('<img id="turn" class="none" style="position:relative; top:-20px; left:93px; width: 35px" src=""></img>');
+		$("img#river").replaceWith('<img id="river" class="none" style="position:relative; top:-20px; left:93px; width: 35px" src=""></img>');
+		$("#playerBet").replaceWith('<div id="playerBet" style="position:relative; top:-85px; left:65px">0</div>');
+		$("#botBet").replaceWith('<div id="botBet" style="position:relative; left:60px; top: 2px">0</div>');
+		$("#bot_card1").replaceWith('<img id="bot_card1" class="none" style="position:relative; top:40px; left:15px; width: 35px"  border="2" SRC="img/cards/back_image.png">');
+		$("#bot_card2").replaceWith('<img id="bot_card2" class="none" style="position:relative; top:40px; left:15px; width: 35px"  border="2" SRC="img/cards/back_image.png">');
+		
+		if($("#botMove").attr("src") ==  "img/layout/big_blind.png"){
+			$("#botMove").attr("src", "img/layout/small_blind.png");
+			$("#playerMove").attr("src", "img/layout/big_blind.png");
+		}
+		/*else if($("#botMove").attr("src") ==  "img/layout/small_blind.png"){
+			$("#botMove").attr("src", "img/layout/big_blind.png");
+			$("#playerMove").attr("src", "img/layout/small_blind.png");
+		}*/
+			
 	}
 	
 	function showdown(pokerGame){

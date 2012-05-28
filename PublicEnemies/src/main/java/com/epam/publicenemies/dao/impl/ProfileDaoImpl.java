@@ -2,8 +2,6 @@ package com.epam.publicenemies.dao.impl;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -84,11 +82,6 @@ public class ProfileDaoImpl implements IProfileDao {
 	
 	
 	private boolean sellWeapon (final int userId, final int weaponId) {
-
-		/*final String DELETE_SQL = "DELETE ct FROM charactersTrunks AS ct, users AS u, characters AS c "
-				+ "WHERE u.userId=? AND u.userCharacter=c.characterId AND c.characterId=ct.characterId AND ct.itemType=1 AND "
-				+ "ct.itemId=? AND c.weapon1<>ct.trunkId AND c.weapon2<>ct.trunkId";*/
-
 		final String DELETE_SQL = "DELETE FROM charactersTrunks WHERE characterId=? AND itemType=1 AND "
 				+ "itemId=? AND trunkId<>? AND trunkId<>? LIMIT 1";
 		final String ADD_MONEY = "UPDATE users SET money=money+"+KOEF+"*(SELECT weaponPrice FROM weapons WHERE weaponId=?) WHERE userId=?";
@@ -171,7 +164,6 @@ public class ProfileDaoImpl implements IProfileDao {
 	public boolean sellWeapons(int userId, List<Integer> weapons) {
 		int count = 0;
 		log.info("ProfileDaoImpl: sellWeapons - enter"); 
-		//Set<Integer> uniqueW = 
 		for (Integer i : weapons) {
 			if (sellWeapon(userId, i)) {
 				count++;
@@ -694,7 +686,7 @@ public class ProfileDaoImpl implements IProfileDao {
 	 * @return true if operation is successfully
 	 */
 	@Override
-	public boolean updateProfileProffesion(int userId, String profession) {
+	public boolean updateProfileProfession(int userId, String profession) {
 		String sql = "UPDATE characters, users SET profession = ? WHERE userId=? AND userCharacter=characterId";
 		int i = jdbcTemplate.update(sql, new Object[] { profession, userId });
 		if (i > 0){
@@ -796,7 +788,7 @@ public class ProfileDaoImpl implements IProfileDao {
 	 * @return true if operation is successfully
 	 */
 	@Override
-	public boolean undresAid(int userId) {
+	public boolean undressAid(int userId) {
 		final String UPDATE_SQL = "UPDATE characters, users SET aid=0 WHERE userId=? AND characterId=userCharacter";
 		int i = jdbcTemplate.update(UPDATE_SQL, new Object[] {userId});
 		if (i>0) {
@@ -920,5 +912,226 @@ public class ProfileDaoImpl implements IProfileDao {
 			log.info("ProfileDaoImpl.isEmptyWeapon2 : empty");
 			return true;
 		}
+	}
+	
+	private boolean addWeapon(final int userId, final int weaponId) {
+		final String INSERT_SQL = "INSERT INTO charactersTrunks (characterId, itemId, itemType) SELECT userCharacter, ?, 1 " +
+				"FROM users WHERE userId=?";
+		int i = jdbcTemplate.update(INSERT_SQL, new Object[] {weaponId, userId});
+		if (i>0) {
+			log.info("ProfileDaoImpl.addWeapon: ID of weapon (" + weaponId + ") for user(" + userId + ")");
+			return true;
+		} else 
+			return false;
+	}
+
+	/**
+	 * Add weapons for user (Doesn't change money amount. Only for admin)
+	 * @param userId - id of user
+	 * @param weapons - List of weapons ids
+	 * @return true if operation was successfully
+	 */
+	@Override
+	public boolean addWeapons(int userId, List<Integer> weapons) {
+		int j = 0;
+		for(Integer i : weapons) {
+			if(addWeapon(userId, i)) {
+				j++;
+			}
+		}
+		if (j==weapons.size()) {
+			log.info("ProfileDaoImpl.addWeapons : "+j+" weapons were added");
+			return true;
+		} else
+			return false;
+	}
+
+	private boolean addArmor(final int userId, final int armorId) {
+		final String INSERT_SQL = "INSERT INTO charactersTrunks (characterId, itemId, itemType) SELECT userCharacter, ?, 3 " +
+				"FROM users WHERE userId=?";
+		int i = jdbcTemplate.update(INSERT_SQL, new Object[] {armorId, userId});
+		if (i>0) {
+			log.info("ProfileDaoImpl.addArmor: ID of armor (" + armorId + ") for user(" + userId + ")");
+			return true;
+		} else 
+			return false;
+	}
+	
+	
+	/**
+	 * Add armors for user (Doesn't change money amount. Only for admin)
+	 * @param userId - id of user
+	 * @param armors - List of armors ids
+	 * @return true if operation was successfully
+	 */
+	@Override
+	public boolean addArmors(int userId, List<Integer> armors) {
+		int j = 0;
+		for(Integer i : armors) {
+			if(addArmor(userId, i)) {
+				j++;
+			}
+		}
+		if (j==armors.size()) {
+			log.info("ProfileDaoImpl.addArmors : "+j+" armors were added");
+			return true;
+		} else
+			return false;
+	}
+	
+	
+	private boolean addAid(final int userId, final int aidId) {
+		final String INSERT_SQL = "INSERT INTO charactersTrunks (characterId, itemId, itemType) SELECT userCharacter, ?, 2 " +
+				"FROM users WHERE userId=?";
+		int i = jdbcTemplate.update(INSERT_SQL, new Object[] {aidId, userId});
+		if (i>0) {
+			log.info("ProfileDaoImpl.addArmor: ID of aid (" + aidId + ") for user(" + userId + ")");
+			return true;
+		} else 
+			return false;
+	}
+
+	/**
+	 * Add aids for user (Doesn't change money amount. Only for admin)
+	 * @param userId - id of user
+	 * @param aids - List of aids ids
+	 * @return true if operation was successfully
+	 */
+	@Override
+	public boolean addAids(int userId, List<Integer> aids) {
+		int j = 0;
+		for(Integer i : aids) {
+			if(addAid(userId, i)) {
+				j++;
+			}
+		}
+		if (j==aids.size()) {
+			log.info("ProfileDaoImpl.addAids : "+j+" aids were added");
+			return true;
+		} else
+			return false;
+	}
+	
+	
+	private boolean removeWeapon(final int userId, final int weaponId) {
+			final String DELETE_SQL = "DELETE FROM charactersTrunks WHERE characterId=? AND itemType=1 AND "
+					+ "itemId=? AND trunkId<>? AND trunkId<>? LIMIT 1";
+			final String SELECT_SQL = "SELECT weapon1, weapon2, characterId FROM users, characters WHERE userId=? AND userCharacter=characterId";
+			List<Map<String, Object>> arr = jdbcTemplate.queryForList(SELECT_SQL, new Object[] {userId});
+			// This is madness!!!
+			Long longWeapon1 = (Long) arr.get(0).get("weapon1");
+			int intWeapon1 = longWeapon1.intValue();
+			Long longWeapon2 = (Long) arr.get(0).get("weapon2");
+			int intWeapon2 = longWeapon2.intValue();
+			Long longCharacterId = (Long) arr.get(0).get("characterId");
+			int intCharacter = longCharacterId.intValue();
+			// NO! THIS! IS! !!!!JAVA!!!!
+			int i = jdbcTemplate.update (DELETE_SQL, new Object[] { intCharacter, weaponId, intWeapon1, intWeapon2});
+			if (i > 0) {
+				log.info("ProfileDaoImpl.removeWeapon: ID of weapon " + weaponId);
+				return true;
+			} else 
+				return false;
+	}
+	
+	/**
+	 * Remove weapons from user (Doesn't change money amount. Only for admin)
+	 * @param userId - id of user
+	 * @param weapons - id of weapon
+	 * @return true if operation was successfully
+	 */
+	@Override
+	public boolean removeWeapons(int userId, List<Integer> weapons) {
+		int j = 0;
+		for (Integer i : weapons) {
+			if(removeWeapon(userId, i)) {
+				j++;
+			}
+		}
+		if (j==weapons.size()) {
+			return true;	
+		} else 
+			return false;
+	}
+
+	private boolean removeAid(final int userId, final int aidId) {
+		final String DELETE_SQL = "DELETE FROM charactersTrunks WHERE characterId=? AND itemType=2 AND "
+				+ "itemId=? AND trunkId<>? LIMIT 1";
+		final String SELECT_SQL = "SELECT aid, characterId FROM users, characters WHERE userId=? AND userCharacter=characterId";
+		List<Map<String, Object>> arr = jdbcTemplate.queryForList(SELECT_SQL, new Object[] {userId});
+		// This is madness!!!
+		Long longAid = (Long) arr.get(0).get("aid");
+		int intAid = longAid.intValue();
+		Long longCharacterId = (Long) arr.get(0).get("characterId");
+		int intCharacter = longCharacterId.intValue();
+		// NO! THIS! IS! !!!!JAVA!!!!
+		int j = 0;
+		int i = jdbcTemplate.update ( DELETE_SQL, new Object[] {intCharacter, aidId, intAid} );
+		if (i>0) {
+			log.info("ProfileDaoImpl.sellAid: ID of aid " + aidId);
+			return true;
+		} else	
+			return false;
+	}
+	
+	/**
+	 * Remove aids from user (Doesn't change money amount. Only for admin)
+	 * @param userId - id of user
+	 * @param aids - id of aid
+	 * @return true if operation was successfully
+	 */
+	@Override
+	public boolean removeAids(int userId, List<Integer> aids) {
+		int j = 0;
+		for (Integer i : aids) {
+			if(removeAid(userId, i)) {
+				j++;
+			}
+		}
+		if (j==aids.size()) {
+			return true;	
+		} else 
+			return false;
+	}
+
+	private boolean removeArmor(final int userId, final int armorId) {
+		final String DELETE_SQL = "DELETE FROM charactersTrunks WHERE characterId=? AND itemType=3 AND "
+				+ "itemId=? AND trunkId<>? LIMIT 1";
+		final String SELECT_SQL = "SELECT armor, characterId FROM users, characters WHERE userId=? AND usercharacter=characterId";
+		List<Map<String, Object>> arr = jdbcTemplate.queryForList(SELECT_SQL, new Object[] {userId});
+		// This is madness!!!
+		Long longArmor = (Long) arr.get(0).get("armor");
+		int intArmor = longArmor.intValue();
+		Long longCharacterId = (Long) arr.get(0).get("characterId");
+		int intCharacter = longCharacterId.intValue();
+		// NO! THIS! IS! !!!!JAVA!!!!
+		int j = 0;
+		int i = jdbcTemplate.update ( DELETE_SQL, new Object[] {intCharacter, armorId, intArmor} );
+		if (i>0) {
+			log.info("ProfileDaoImpl.sellArmor: ID of armor " + armorId);
+			return true;
+		} else
+			return false;
+	}
+	
+	
+	/**
+	 * Remove armors from user (Doesn't change money amount. Only for admin)
+	 * @param userId - id of user
+	 * @param armors - id of armor
+	 * @return true if operation was successfully
+	 */
+	@Override
+	public boolean removeArmors(int userId, List<Integer> armors) {
+		int j = 0;
+		for (Integer i : armors) {
+			if(removeArmor(userId, i)) {
+				j++;
+			}
+		}
+		if (j==armors.size()) {
+			return true;	
+		} else 
+			return false;
 	}
 }

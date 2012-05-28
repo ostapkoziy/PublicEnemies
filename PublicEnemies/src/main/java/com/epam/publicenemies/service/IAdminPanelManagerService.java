@@ -278,5 +278,70 @@ public interface IAdminPanelManagerService {
 	 */
 	List<Aid> getAidsSortedByEffect();
 
+	/**
+	 * Get amount of all weapons
+	 * @return amount of all weapons
+	 */
+	int getWeaponsNumber();
+	
+	/**
+	 * Get amount of all armors
+	 * @return amount of all armors
+	 */
+	int getArmorsNumber();
+	
+	/**
+	 * Get amount of all aids
+	 * @return amount of all aids
+	 */
+	int getAidsNumber();
+	
+	/**
+	 * Add weapons for user (Doesn't change money amount. Only for admin)
+	 * @param userId - id of user
+	 * @param weapons - List of weapons ids
+	 * @return true if operation was successfully
+	 */
+	boolean addWeapons(int userId, List<Integer> weapons);
+	
+	/**
+	 * Add armors for user (Doesn't change money amount. Only for admin)
+	 * @param userId - id of user
+	 * @param armors - List of armors ids
+	 * @return true if operation was successfully
+	 */
+	boolean addArmors(int userId, List<Integer> armors);
+	
+	/**
+	 * Add aids for user (Doesn't change money amount. Only for admin)
+	 * @param userId - id of user
+	 * @param aids - List of aids ids
+	 * @return true if operation was successfully
+	 */
+	boolean addAids(int userId, List<Integer> aids);
+	
+	/**
+	 * Remove weapons from user (Doesn't change money amount. Only for admin)
+	 * @param userId - id of user
+	 * @param weapons - id of weapon
+	 * @return true if operation was successfully
+	 */
+	boolean removeWeapons(int userId, List<Integer> weapons);
+	
+	/**
+	 * Remove aids from user (Doesn't change money amount. Only for admin)
+	 * @param userId - id of user
+	 * @param aids - id of aid
+	 * @return true if operation was successfully
+	 */
+	boolean removeAids(int userId, List<Integer> aids);
+	
+	/**
+	 * Remove armors from user (Doesn't change money amount. Only for admin)
+	 * @param userId - id of user
+	 * @param armors - id of armor
+	 * @return true if operation was successfully
+	 */
+	boolean removeArmors(int userId, List<Integer> armors);
 	
 }

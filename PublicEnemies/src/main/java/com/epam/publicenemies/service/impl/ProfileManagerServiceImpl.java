@@ -118,7 +118,7 @@ public class ProfileManagerServiceImpl implements IProfileManagerService {
 	 */
 	@Override
 	public boolean undressAid(int userId) {
-		return profileDao.undresAid(userId);
+		return profileDao.undressAid(userId);
 	}
 
 	/**

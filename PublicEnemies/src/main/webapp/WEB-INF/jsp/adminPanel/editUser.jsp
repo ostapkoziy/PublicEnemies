@@ -10,8 +10,6 @@
 </head>
 <body>
 	<h2> Edit user </h2>
-	TODO: change/create update method in dao
-	!EXCEPTION!
 	<form method="post">
 	<table>
 	<tr>

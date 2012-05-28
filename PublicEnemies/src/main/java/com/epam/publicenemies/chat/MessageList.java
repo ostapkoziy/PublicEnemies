@@ -7,6 +7,7 @@ import java.util.LinkedList;
  * @author Alexander Ivanov
  * @since 18 квіт. 2012
  */
+// TODO Прерробити!!!!!!!!!!1111
 public class MessageList
 {
 	private HashMap<Long, LinkedList<String>>	gameMessages	= new HashMap<Long, LinkedList<String>>();
@@ -31,5 +32,8 @@ public class MessageList
 	public void setGameMessages(HashMap<Long, LinkedList<String>> gameMessages)
 	{
 		this.gameMessages = gameMessages;
+	}
+	public static void sendMessage()
+	{
 	}
 }

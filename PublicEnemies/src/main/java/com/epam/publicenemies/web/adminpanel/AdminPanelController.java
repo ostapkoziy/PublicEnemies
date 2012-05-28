@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.epam.publicenemies.domain.Aid;
+import com.epam.publicenemies.domain.Armor;
 import com.epam.publicenemies.domain.User;
 import com.epam.publicenemies.domain.Weapon;
 import com.epam.publicenemies.service.IAdminPanelManagerService;
@@ -47,6 +48,7 @@ public class AdminPanelController {
 		ModelAndView mav = new ModelAndView();
 		
 		mav.addObject("amountOfUsers", (Integer) adminPanelManagerService.getUsersNumber());
+		//mav.addObject("amountOfWeapons", (Integer) adminPanelManagerService.);
 		mav.addObject("lastRegistered", (List<User>)adminPanelManagerService.get5LastRegisteredUsers());
 		mav.setViewName("/adminPanel/summary"); 
 		return mav; 
@@ -96,6 +98,9 @@ public class AdminPanelController {
 	@RequestMapping(value="/armors", method = RequestMethod.GET)
 	public ModelAndView showArmors(HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
+		
+		mav.addObject("armors", (List<Armor>)adminPanelManagerService.fetchAllArmors());
+		
 		mav.setViewName("/adminPanel/armors");
 		return mav; 
 	}

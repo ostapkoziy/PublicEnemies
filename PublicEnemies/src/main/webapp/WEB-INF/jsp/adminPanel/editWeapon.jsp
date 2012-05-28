@@ -7,7 +7,31 @@
 <title>Edit Weapon </title>
 </head>
 <body>
-<h2> Edit Weapon</h2>
-
+<h2> Edit weapon </h2>
+	<form method="post">
+	<table>
+	<tr>
+	<td> Name: </td> <td> <input name="wName" type="text" value="${weapon.getWeaponName()}" /></td> 
+	</tr>
+	<tr>
+	<td> Hit points: </td> <td> <input name="wHP" type="text" value="${weapon.getHitPoints()}"/> </td> 
+	</tr>
+	<tr> 
+	<td> Type(firearm): </td> <td> <input name="wType" type="text" value="${weapon.isWeaponType()}" /> </td>
+	</tr>
+	<tr> 
+	<td> Price: </td> <td> <input name="wPrice" type="text" value="${weapon.getWeaponPrice()}"/> </td>
+	</tr>
+	<tr> 
+	<td> Picture(Path): </td> <td> <input name="wPicturePath" type="text" value="${weapon.getWeaponPicture()}"/> </td>
+	</tr>
+	<tr> 
+	<td> Description: </td> <td> <input name="wDescription" type="text" value="${weapon.getItemDescription()}" /> </td>
+	</tr>
+	</table>
+	<input name="weaponId" type="hidden" value="${weapon.getWeaponId()}">
+	<input type="submit" value="Edit" />
+	</form>
+	
 </body>
 </html>

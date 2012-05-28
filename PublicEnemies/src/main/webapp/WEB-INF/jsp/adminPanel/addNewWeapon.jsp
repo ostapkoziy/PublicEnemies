@@ -8,11 +8,26 @@
 </head>
 <body>
 	<h2> Create New Weapon </h2>
-	<form action="" method="post">
+	<form method="post">
 	<table>
 	<tr>
-	<td> 1 </td> <td> 2 </td> 
-	</tr>	
+	<td> Name: </td> <td> <input name="wName" type="text" /></td> 
+	</tr>
+	<tr>
+	<td> Hit points: </td> <td> <input name="wHP" type="text" /> </td> 
+	</tr>
+	<tr> 
+	<td> Type: </td> <td> <input name="wType" type="text" /> </td>
+	</tr>
+	<tr> 
+	<td> Price: </td> <td> <input name="wPrice" type="text" /> </td>
+	</tr>
+	<tr> 
+	<td> Picture(Path): </td> <td> <input name="wPicturePath" type="text" /> </td>
+	</tr>
+	<tr> 
+	<td> Description: </td> <td> <input name="wDescription" type="text" /> </td>
+	</tr>
 	</table>
 	<input type="submit" value="Add" />
 	</form>

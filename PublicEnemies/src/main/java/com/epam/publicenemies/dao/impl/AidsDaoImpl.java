@@ -39,7 +39,7 @@ public class AidsDaoImpl implements IAidsDao{
 	 * @return list of aids
 	 */
 	@Override
-	public List<Aid> fetchAllAids() {
+	public List<Aid> getAllAids() {
 		log.info("AidsDaoImpl: fetchAllAids: enter");		
 		return this.jdbcTemplate.query( "SELECT * FROM aids", new AidMapper());		
 	}
@@ -126,7 +126,7 @@ public class AidsDaoImpl implements IAidsDao{
 	@Override
 	public Aid getAidById(int aidId) {
 		final String SELECT_SQL = "SELECT * FROM aids WHERE aidId=?";
-		Aid aid = jdbcTemplate.queryForObject(SELECT_SQL, new AidMapper());
+		Aid aid = jdbcTemplate.queryForObject(SELECT_SQL, new Object[] {aidId}, new AidMapper());
 		log.info("AidDaoImpl.getAidById : aid(" + aidId + ") were fetched");
 		return aid;
 	}
@@ -176,7 +176,17 @@ public class AidsDaoImpl implements IAidsDao{
 		List<Aid> aids = jdbcTemplate.query(SELECT_SQL, new AidMapper());
 		return aids;
 	}
-		
+
+	/**
+	 * Get aids amount 
+	 * @return amount of aids
+	 */
+	@Override
+	public int getAidsAmount() {
+		final String SELECT_SQL = "SELECT COUNT(*) FROM aids";
+		int i = jdbcTemplate.queryForInt(SELECT_SQL);
+		return i;
+	}
 }
 
 

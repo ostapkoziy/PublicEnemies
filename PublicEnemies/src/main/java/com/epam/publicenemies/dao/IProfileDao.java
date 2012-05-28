@@ -36,7 +36,7 @@ public interface IProfileDao {
 	 * Undress aid
 	 * @return true if operation is successfully
 	 */
-	boolean undresAid(int userId);
+	boolean undressAid(int userId);
 	
 	/**
 	 * Undress armor
@@ -101,6 +101,30 @@ public interface IProfileDao {
 	boolean buyArmors(int userId, List<Integer> armors);
 	
 	/**
+	 * Add weapons for user (Doesn't change money amount. Only for admin)
+	 * @param userId - id of user
+	 * @param weapons - List of weapons ids
+	 * @return true if operation was successfully
+	 */
+	boolean addWeapons(int userId, List<Integer> weapons);
+	
+	/**
+	 * Add armors for user (Doesn't change money amount. Only for admin)
+	 * @param userId - id of user
+	 * @param armors - List of armors ids
+	 * @return true if operation was successfully
+	 */
+	boolean addArmors(int userId, List<Integer> armors);
+	
+	/**
+	 * Add aids for user (Doesn't change money amount. Only for admin)
+	 * @param userId - id of user
+	 * @param aids - List of aids ids
+	 * @return true if operation was successfully
+	 */
+	boolean addAids(int userId, List<Integer> aids);
+	
+	/**
 	 * Sell user's weapons
 	 * @param userId - id of user
 	 * @param weapons - List of weapons ids
@@ -123,6 +147,31 @@ public interface IProfileDao {
 	 * @return true if operation was successfully
 	 */
 	boolean sellArmors(int userId, List<Integer> armors);
+	
+	/**
+	 * Remove weapons from user (Doesn't change money amount. Only for admin)
+	 * @param userId - id of user
+	 * @param weapons - id of weapon
+	 * @return true if operation was successfully
+	 */
+	boolean removeWeapons(int userId, List<Integer> weapons);
+	
+	/**
+	 * Remove aids from user (Doesn't change money amount. Only for admin)
+	 * @param userId - id of user
+	 * @param aids - id of aid
+	 * @return true if operation was successfully
+	 */
+	boolean removeAids(int userId, List<Integer> aids);
+	
+	/**
+	 * Remove armors from user (Doesn't change money amount. Only for admin)
+	 * @param userId - id of user
+	 * @param armors - id of armor
+	 * @return true if operation was successfully
+	 */
+	boolean removeArmors(int userId, List<Integer> armors);
+	
 	
 	/**
 	 * Get character by user note
@@ -177,7 +226,7 @@ public interface IProfileDao {
 	 * @param profession - character profession
 	 * @return true if operation is successfully
 	 */
-	boolean updateProfileProffesion(int userId, String profession);
+	boolean updateProfileProfession(int userId, String profession);
 	
 	/**
 	 * Add won fight

@@ -87,9 +87,9 @@ public class UserManagerController implements IManageable {
 				Integer.parseInt(request.getParameter("profileId")));
 		
 				//request.getParameter("pass")
-		mav.setViewName("/adminPanel/editUser");
+		//mav.setViewName("/adminPanel/editUser");
 		
-		return "redirect:../users.html"; 
+		return "redirect:../../users.html"; 
 	}
 	
 	@Override

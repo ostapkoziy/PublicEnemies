@@ -4,18 +4,24 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
+import com.epam.publicenemies.domain.Profile;
+import com.epam.publicenemies.domain.poker.IPokerPlayer;
 import com.epam.publicenemies.domain.poker.PokerCard;
 import com.epam.publicenemies.domain.poker.PokerCombination;
-import com.epam.publicenemies.web.fight.HitController;
+import com.epam.publicenemies.service.IProfileManagerService;
 
 import flexjson.JSONSerializer;
 
@@ -24,39 +30,57 @@ import flexjson.JSONSerializer;
  */
 @Controller
 public class PokerServlet {
-	private Logger log = Logger.getLogger(HitController.class);
+	private Logger log = Logger.getLogger(PokerServlet.class);
 	private PokerGame pokerGame;
 	static int partCounter = -1;
 	private PokerCombination player1Combination, player2Combination;
+	
+	@Autowired	
+	private IProfileManagerService	profileManagerService;
+	public void setProfileManagerService(IProfileManagerService profileManagerService)
+	{
+		this.profileManagerService = profileManagerService;
+	}
+	
 	@RequestMapping("/PokerServlet")
 	public void hit(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+		PrintWriter out = response.getWriter();
+		JSONSerializer ser = new JSONSerializer();
 		boolean playerFolded = false;
 		response.setContentType("text/html;charset=UTF-8");
 		String userBet = new String(request.getParameter("userBet"));
+		String computerBet = new String(request.getParameter("botBet"));
 		Integer chips = (Integer)request.getSession().getAttribute("chips");
 		pokerGame = (PokerGame) request.getSession().getAttribute("pokerGame");
+
+		log.info("GAME - " + ser.serialize(pokerGame));
+		
 		log.info(pokerGame.getUser1Profile().getNickName() + " BET " + userBet);
 		pokerGame.getPokerGameRound().move = !pokerGame.getPokerGameRound().move;
 		int bet = 0;
+		int bet2 = Integer.valueOf(computerBet);
 		bet = Integer.valueOf(userBet);
+		
+		if((bet2 < 0)){
+			resetGame(request, response);
+			pokerGame.getPokerGameRound().setResult("New Round");
+			log.info("New Round!");
+			sendData(request, response, bet2);
+			return;
+		}
+		
 		if(bet == -1){
 			partCounter = 0;
 		}
+		
 		bet += pokerGame.getPokerGameRound().getPlayer1Bet();
 		pokerGame.getPokerGameRound().setPlayer1Bet(bet);
-		PrintWriter out = response.getWriter();
-		JSONSerializer ser = new JSONSerializer();
 		pokerGame.getUser1Profile().setMoney(chips);
 		
 		//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 		//++++++++++++++++++++++++++++++++++++++++++++++++GAME PROCESSING+++++++++++++++++++++++++++++++++++++++++++++++++++++
 		//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-		
-		
-		
-		
 		
 		if(partCounter == 0){
 			pokerGame.setComment("PreFlop");
@@ -159,7 +183,20 @@ public class PokerServlet {
 				log.info("Poker Showdown");
 				pokerGame.setComment("Showdown");
 				pokerGame.getPokerGameRound().setPot(pokerGame.getPokerGameRound().getPlayer1Bet() + pokerGame.getPokerGameRound().getPlayer2Bet());
-				pokerGame.getPokerGameRound().displayResults();
+				String res = pokerGame.getPokerGameRound().displayResults();
+				
+				if(res.contains(pokerGame.getPokerGameRound().getPlayer1().getName())){
+					log.info("PLAYER 1 won and will recieve - "+pokerGame.getPokerGameRound().getPot());
+					pokerGame.getPokerGameRound().getPlayer1().setCash(pokerGame.getPokerGameRound().getPlayer1().getCash() + pokerGame.getPokerGameRound().getPot());
+				}
+				else if(res.contains(pokerGame.getPokerGameRound().getPlayer2().getName())){
+					log.info("PLAYER 2 won and will recieve - "+pokerGame.getPokerGameRound().getPot());
+					pokerGame.getPokerGameRound().getPlayer2().setCash(pokerGame.getPokerGameRound().getPlayer2().getCash() + pokerGame.getPokerGameRound().getPot());
+				}else if (res.contains("Split pot")){
+					log.info("NOBODY won and both will recieve - "+pokerGame.getPokerGameRound().getPot() / 2);
+					pokerGame.getPokerGameRound().getPlayer2().setCash(pokerGame.getPokerGameRound().getPlayer2().getCash() + pokerGame.getPokerGameRound().getPot() / 2);
+					pokerGame.getPokerGameRound().getPlayer1().setCash(pokerGame.getPokerGameRound().getPlayer1().getCash() + pokerGame.getPokerGameRound().getPot() / 2);
+				}
 				log.info("RESULT - " + pokerGame.getPokerGameRound().getResult());
 				sendData(request, response, bet);
 				return;
@@ -193,12 +230,39 @@ public class PokerServlet {
 		PrintWriter out = response.getWriter();
 		JSONSerializer ser = new JSONSerializer();
 		pokerGame.getPokerGameRound().setPlayer1Bet(bet);
-		int money = pokerGame.getUser1Profile().getMoney();
-		money -= bet;
-		pokerGame.getUser1Profile().setMoney(money);
+		if(bet >= 0){
+			int money = pokerGame.getUser1Profile().getMoney();
+			money -= bet;
+			pokerGame.getUser1Profile().setMoney(money);
+		}
 		log.info(ser.serialize(pokerGame));
 		out.print(ser.serialize(pokerGame));
 		out.flush();
 	}
 
+	
+	private void resetGame(HttpServletRequest request, HttpServletResponse response){
+		IPokerPlayer p1 = pokerGame.getPokerGameRound().getPlayer1();
+		IPokerPlayer p2 = pokerGame.getPokerGameRound().getPlayer2();
+		int sb1 = pokerGame.getPokerGameRound().getTable().getSmallBlind();
+		int bb1 = pokerGame.getPokerGameRound().getTable().getBigBlind();
+		int money1 = pokerGame.getUser1Profile().getMoney();
+		int money2 = pokerGame.getPokerGameRound().getPlayer2().getCash();
+		Profile userProfile = profileManagerService.getProfileByUserId((Integer) request.getSession().getAttribute("userId"));
+		PokerGame pokerGame = new PokerGame();
+		pokerGame.setId(new Random().nextInt());
+		pokerGame.setUser1Profile(userProfile);
+		pokerGame.setPokerGameRound(new PokerRound(p1, p2, sb1, bb1));
+		pokerGame.getPokerGameRound().setDealer(false);
+		pokerGame.getPokerGameRound().getPlayer1().setCash(money1);
+		pokerGame.getPokerGameRound().getPlayer2().setCash(money2);
+		pokerGame.getPokerGameRound().initGame();
+		partCounter = 0;
+		request.getSession().setAttribute("pokerGame", pokerGame);
+		request.getSession().setAttribute("userBet", 0);
+		request.getSession().setAttribute("botBet", 0);
+		Integer chips = money1;
+		request.getSession().setAttribute("chips", chips);
+		log.info("EVERYTHING RENEWED!");
+	}
 }
