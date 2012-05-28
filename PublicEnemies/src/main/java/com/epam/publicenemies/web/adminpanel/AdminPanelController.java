@@ -6,13 +6,14 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.epam.publicenemies.domain.Aid;
 import com.epam.publicenemies.domain.User;
+import com.epam.publicenemies.domain.Weapon;
 import com.epam.publicenemies.service.IAdminPanelManagerService;
 
 /**
@@ -22,11 +23,13 @@ import com.epam.publicenemies.service.IAdminPanelManagerService;
  * @author Ivan Kostyrko
  *
  * Updated 20.05.12: just for testing
- * Updated 23.o5.12: added user, weapon, armor and aid section
+ * Updated 23.05.12: added user, weapon, armor and aid section
+ * Updated 28.05.12: 90% ready
  */
 @Controller
 @RequestMapping(value = "/adminPanel")
 public class AdminPanelController {
+
 	private Logger log = Logger.getLogger(AdminPanelController.class);
 		
 	@Autowired
@@ -84,7 +87,7 @@ public class AdminPanelController {
 	public ModelAndView showWeapons(HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
 		
-		
+		mav.addObject("weapons", (List<Weapon>)adminPanelManagerService.getAllWeapons()); 
 		
 		mav.setViewName("/adminPanel/weapons");
 		return mav; 
@@ -100,6 +103,9 @@ public class AdminPanelController {
 	@RequestMapping(value="/aids", method = RequestMethod.GET)
 	public ModelAndView showAids(HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
+		
+		mav.addObject("aids", (List<Aid>)adminPanelManagerService.getAllAids());
+		
 		mav.setViewName("/adminPanel/aids");
 		return mav; 
 	}

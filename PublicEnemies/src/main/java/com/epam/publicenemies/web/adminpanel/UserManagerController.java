@@ -2,6 +2,7 @@ package com.epam.publicenemies.web.adminpanel;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,13 +24,15 @@ import com.epam.publicenemies.service.IUserManagerService;
 @RequestMapping(value = "/adminPanel/user")
 public class UserManagerController implements IManageable {
 	
+	private Logger log = Logger.getLogger(UserManagerController.class);
+	
 	@Autowired
 	private IAdminPanelManagerService adminPanelManagerService; 
 
 	@Autowired
 	private IProfileManagerService profileManagerService; 
 
-	@Autowired
+	//@Autowired
 	private IUserManagerService userManagerService; 
 	
 	@Override
@@ -50,7 +53,7 @@ public class UserManagerController implements IManageable {
 				request.getParameter("pass"),
 				request.getParameter("nickname"),
 				Integer.parseInt(request.getParameter("money")),
-				request.getParameter("avatar"));		
+				request.getParameter("avatar"));
 		return "redirect:../users.html"; 		
 	}
 
@@ -60,18 +63,30 @@ public class UserManagerController implements IManageable {
 		
 		//mav.setViewName("editUser"); 
 		mav.addObject("profile", profileManagerService.getProfileByUserId(euid)); 
-		mav.addObject("euid", euid);
+		//mav.addObject("euid", euid);
 		mav.setViewName("/adminPanel/editUser");
 		
 		return mav; 		
 	}
 	
 	@RequestMapping(value="edit/{euid}", method = RequestMethod.POST)	
-	public String doEditOne() {
+	public String doEditOne(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
+		log.info("doEdit: ");
+		log.info("   userId: " + Integer.parseInt(request.getParameter("userId")));
+		log.info("   email: " + request.getParameter("email"));
+		log.info("   nickname: " + request.getParameter("nickname"));
+		log.info("   avatar: " + request.getParameter("avatar"));
+		log.info("   money: " + Integer.parseInt(request.getParameter("money")));
+		log.info("   profileId: " + Integer.parseInt(request.getParameter("profileId")));
+		userManagerService.updateUserInfo(Integer.parseInt(request.getParameter("userId")), 
+				request.getParameter("email"), 
+				request.getParameter("nickname"), 
+				request.getParameter("avatar"), 
+				Integer.parseInt(request.getParameter("money")), 
+				Integer.parseInt(request.getParameter("profileId")));
 		
-		//mav.setViewName("editUser"); 
-		//mav.addObject("euid", euid);
+				//request.getParameter("pass")
 		mav.setViewName("/adminPanel/editUser");
 		
 		return "redirect:../users.html"; 
