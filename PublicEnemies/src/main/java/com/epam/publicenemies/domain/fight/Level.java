@@ -5,7 +5,7 @@ package com.epam.publicenemies.domain.fight;
  */
 public class Level
 {
-	/*
+	/**
 	 * Якшо userExpirienceOnCurrentLevel > expirienceForNextLevel левел++
 	 * різницю експи в базу
 	 */

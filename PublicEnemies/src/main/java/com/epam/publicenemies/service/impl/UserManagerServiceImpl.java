@@ -32,7 +32,7 @@ public class UserManagerServiceImpl implements IUserManagerService
 	 * we'll be sure that transaction done well and get more fields
 	 */
 	@Override
-	public UserDto registerNewUser(String uEmail, String uPasswd, String uNickName)
+	public User registerNewUser(String uEmail, String uPasswd, String uNickName)
 	{
 		/*
 		 * to understand action below: int insertedUserId =
@@ -40,10 +40,10 @@ public class UserManagerServiceImpl implements IUserManagerService
 		 * user User insertedUser = userDao.findUserById(insertedUserId);
 		 * UserDto returnObj = new UserDto(insertedUser); return returnObj;
 		 */
-		return new UserDto(userDao.findUserById(userDao.registerUser(uEmail, uPasswd, uNickName)));
+		return userDao.findUserById(userDao.registerUser(uEmail, uPasswd, uNickName));
 	}
 	@Override
-	public UserDto getUserByEmailAndPassword(String name, String password)
+	public User getUserByEmailAndPassword(String name, String password)
 	{
 		User user = userDao.findUserByEmailAndPassword(name, password);
 		if (user == null)
@@ -51,10 +51,10 @@ public class UserManagerServiceImpl implements IUserManagerService
 			log.info("User wasn't found with email - " + name + " and pass - " + password);
 			return null;
 		}
-		return makeUserDto(user);
+		return user;
 	}
 	@Override
-	public UserDto findUserByEmail(String email)
+	public User findUserByEmail(String email)
 	{
 		User user = userDao.findUserByEmail(email);
 		if (user == null)
@@ -62,7 +62,7 @@ public class UserManagerServiceImpl implements IUserManagerService
 			log.info("User wasn't found with email - " + email);
 			return null;
 		}
-		return makeUserDto(user);
+		return user;
 	}
 	/**
 	 * Update money amount
