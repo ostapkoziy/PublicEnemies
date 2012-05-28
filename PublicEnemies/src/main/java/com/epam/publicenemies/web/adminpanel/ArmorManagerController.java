@@ -55,7 +55,7 @@ public class ArmorManagerController implements IManageable {
 		ModelAndView mav = new ModelAndView();
 		
 		//mav.setViewName("editUser"); 
-		//mav.addObject("profile", profileManagerService.getProfileByUserId(euid)); 
+		mav.addObject("armor", adminPanelManagerService.getArmorById(eaid)); 
 		//mav.addObject("euid", euid);
 		mav.setViewName("/adminPanel/editArmor");
 		
@@ -65,28 +65,19 @@ public class ArmorManagerController implements IManageable {
 	
 	@RequestMapping(value="edit/{eaid}", method = RequestMethod.POST)	
 	public String doEditOne(HttpServletRequest request) {
-		ModelAndView mav = new ModelAndView();
-		/*log.info("doEdit: ");
-		log.info("   userId: " + Integer.parseInt(request.getParameter("userId")));
-		log.info("   email: " + request.getParameter("email"));
-		log.info("   nickname: " + request.getParameter("nickname"));
-		log.info("   avatar: " + request.getParameter("avatar"));
-		log.info("   money: " + Integer.parseInt(request.getParameter("money")));
-		log.info("   profileId: " + Integer.parseInt(request.getParameter("profileId")));
-		userManagerService.updateUserInfo(Integer.parseInt(request.getParameter("userId")), 
-				request.getParameter("email"), 
-				request.getParameter("nickname"), 
-				request.getParameter("avatar"), 
-				Integer.parseInt(request.getParameter("money")), 
-				Integer.parseInt(request.getParameter("profileId")));
+		//ModelAndView mav = new ModelAndView();
 		
-				//request.getParameter("pass")
-		mav.setViewName("/adminPanel/editUser");
-		*/
-		return "redirect:../armors.html"; 
+		adminPanelManagerService.updateArmorInfo(
+			Integer.parseInt(request.getParameter("armorId")), 
+			request.getParameter("aName"), 
+			Integer.parseInt(request.getParameter("aProtection")), 
+			request.getParameter("aPicturePath"), 
+			Integer.parseInt(request.getParameter("aPrice")), 
+			request.getParameter("aDescription")
+		);		
+		return "redirect:../../armors.html"; 
 	}
 	
-
 	@Override
 	@RequestMapping(value="info/{iaid}")
 	public ModelAndView detailInfo(@PathVariable Integer iaid) {

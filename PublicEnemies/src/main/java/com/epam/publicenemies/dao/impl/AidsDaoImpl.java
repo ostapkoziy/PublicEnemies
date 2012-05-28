@@ -126,7 +126,7 @@ public class AidsDaoImpl implements IAidsDao{
 	@Override
 	public Aid getAidById(int aidId) {
 		final String SELECT_SQL = "SELECT * FROM aids WHERE aidId=?";
-		Aid aid = jdbcTemplate.queryForObject(SELECT_SQL, new AidMapper());
+		Aid aid = jdbcTemplate.queryForObject(SELECT_SQL, new Object[] {aidId}, new AidMapper());
 		log.info("AidDaoImpl.getAidById : aid(" + aidId + ") were fetched");
 		return aid;
 	}
