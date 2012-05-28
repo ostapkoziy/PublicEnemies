@@ -18,10 +18,10 @@ import com.epam.publicenemies.domain.fight.FightEngine;
  * @author Alexander Ivanov
  */
 @Controller
-public class HitServlet
+public class HitController
 {
-	private static Logger	log	= Logger.getLogger(HitServlet.class);
-	@RequestMapping("/HitServlet")
+	private static Logger	log	= Logger.getLogger(HitController.class);
+	@RequestMapping("/HitController")
 	public void hit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		response.setContentType("text/html;charset=UTF-8");
@@ -53,16 +53,15 @@ public class HitServlet
 		 */
 	}
 	/**
-	 * Можна буде забрати якщо передавати в ENGINE того хто стартанув гру(він
-	 * вдарив другим).
+	 * Можна буде забрати якщо передавати в ENGINE того хто стартанув гру(він вдарив другим).
 	 */
-	private synchronized void setFirstHit(Fight fight, String role)
-	{
-		if (fight.getRound().getFirstHit().equals(""))
-		{
-			fight.getRound().setFirstHit(role);
-		}
-	}
+	// private synchronized void setFirstHit(Fight fight, String role)
+	// {
+	// if (fight.getRound().getFirstHit().equals(""))
+	// {
+	// fight.getRound().setFirstHit(role);
+	// }
+	// }
 	private synchronized void startEngine(Fight fight, String role)
 	{
 		if (!fight.getRound().isRoundStart())
@@ -81,7 +80,7 @@ public class HitServlet
 		}
 		else
 		{
-			setFirstHit(fight, role);
+			// setFirstHit(fight, role);
 		}
 	}
 	private void connectorGameSetup(Fight fight, String hit, String block, String role)
@@ -95,7 +94,7 @@ public class HitServlet
 		}
 		else
 		{
-			setFirstHit(fight, role);
+			// setFirstHit(fight, role);
 		}
 	}
 	private synchronized void setRoundStart(Fight fight)

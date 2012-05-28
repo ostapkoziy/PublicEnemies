@@ -26,18 +26,17 @@ public class SessionFilter implements Filter
 	{
 	}
 	@Override
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException,
-			ServletException
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException
 	{
 		HttpSession session = ((HttpServletRequest) request).getSession();
 		if (session.getAttribute("user") != null)
 		{
-			log.info("USER IS LOGGED FROM FILTER");
+			// log.info("USER IS LOGGED FROM FILTER");
 			chain.doFilter(request, response);
 		}
 		else
 		{
-			log.info("USER IS NOT LOGGED  -  REDIRECT FROM FILTER");
+			// log.info("USER IS NOT LOGGED  -  REDIRECT FROM FILTER");
 			((HttpServletResponse) response).sendRedirect("userLogin.html");
 		}
 	}

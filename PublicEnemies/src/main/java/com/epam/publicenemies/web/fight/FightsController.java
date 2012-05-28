@@ -14,7 +14,7 @@ import com.epam.publicenemies.domain.fight.FightsList;
  * @since 19.04.2012
  */
 @Controller
-public class GamesController
+public class FightsController
 {
 	@RequestMapping("/fights.html")
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception

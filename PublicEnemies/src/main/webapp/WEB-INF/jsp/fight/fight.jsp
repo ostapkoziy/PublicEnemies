@@ -27,6 +27,7 @@
 </c:choose>
 </head>
 <body>
+	!!!${WFOC}!!! ${WFOC==null}
 	<div id="content">
 		<c:if test="${gameRole=='creator'}">
 			<jsp:include page="include/creator.jsp"></jsp:include>

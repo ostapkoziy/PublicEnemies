@@ -15,8 +15,8 @@ public class FightEngine
 	private static Logger	log	= Logger.getLogger(FightEngine.class);
 	public void startEngine(Fight fight, String whoStartesFight)
 	{
-		boolean isGameEnd = shooting(fight);
 		log.info("-------------ENGINE STARTED-------------");
+		boolean isGameEnd = shooting(fight);
 		if (!isGameEnd)
 		{
 			setupGame(fight);
@@ -99,11 +99,11 @@ public class FightEngine
 			connectorDamage = connectorBlockedDamage(fight);
 			creatorHPAfterHit = creatorHPAfterHit - connectorDamage;
 		}
-		RoundResult rr = healthAnalizer(creatorHPAfterHit, connectorHPAfterHit, "");
+		RoundResult rr = healthAnalizer(creatorHPAfterHit, connectorHPAfterHit);
 		boolean isGameEnd = rr.roundResult(fight, creatorDamage, connectorDamage);
 		return isGameEnd;
 	}
-	private RoundResult healthAnalizer(int creatorHP, int connectorHP, String firstHit)
+	private RoundResult healthAnalizer(int creatorHP, int connectorHP)
 	{
 		if (creatorHP <= 0 && connectorHP <= 0)
 		{
@@ -121,13 +121,5 @@ public class FightEngine
 		{
 			return RoundResult.Alive;
 		}
-	}
-	// TODO ДОРОБИТИ СКІЛИ
-	/*
-	 * Skills damage not blocked
-	 */
-	private int skillDamage()
-	{
-		return 0;
 	}
 }
