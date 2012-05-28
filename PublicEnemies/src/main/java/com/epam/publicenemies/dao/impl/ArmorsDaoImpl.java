@@ -35,7 +35,7 @@ public class ArmorsDaoImpl implements IArmorsDao {
 	}
 	
 	@Override
-	public List<Armor> fetchAllArmors() {
+	public List<Armor> getAllArmors() {
 		log.info("ArmorsDaoImpl: fetchAllArmors: enter");		
 		return this.jdbcTemplate.query( "SELECT * FROM armors", new ArmorMapper());		
 	}
@@ -137,6 +137,17 @@ public class ArmorsDaoImpl implements IArmorsDao {
 		List<Armor> armors = jdbcTemplate.query(SELECT_SQL, new ArmorMapper());
 		log.info("ArmorsDaoImpl.getArmorsSortedByProtection : " + armors.size() + " armors were fetched");
 		return armors;
+	}
+
+	/**
+	 * Get armors amount
+	 * @return amount of all armors
+	 */
+	@Override
+	public int getArmorsAmount() {
+		final String SELECT_SQL = "SELECT COUNT(*) FROM armors";
+		int i = jdbcTemplate.queryForInt(SELECT_SQL);
+		return i;
 	}	
 
 }

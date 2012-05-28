@@ -40,7 +40,7 @@ public class WeaponsDaoImpl implements IWeaponsDao {
 	 * @return list of weapons
 	 */
 	@Override
-	public List<Weapon> fetchAllWeapons() {
+	public List<Weapon> getAllWeapons() {
 		log.info("WeaponsDaoImpl: fetchAllWeapons: enter");		
 		return this.jdbcTemplate.query( "SELECT * FROM weapons", new WeaponMapper());		
 	}
@@ -320,5 +320,16 @@ public class WeaponsDaoImpl implements IWeaponsDao {
 		List<Weapon>weapons = jdbcTemplate.query(SELECT_SQL, new WeaponMapper());
 		log.info("WeaponsDaoImpl.getWeaponsSortedByPrice: " + weapons.size() + "were fetched");
 		return weapons;
+	}
+
+	/**
+	 * Get amount of all weapons
+	 * @return amount of all weapons
+	 */
+	@Override
+	public int getWeaponsAmount() {
+		final String SELECT_SQL = "SELECT COUNT(*) FROM weapons";
+		int i = jdbcTemplate.queryForInt(SELECT_SQL);
+		return i;
 	}
 }
