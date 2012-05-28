@@ -17,8 +17,8 @@ $(document).ready(function() {
 					playerNothing2 : nothing2
 				}),
 				success : function(data) {
-					var round = jQuery.parseJSON(data);
-					allDataUpdate(round);
+					var game = jQuery.parseJSON(data);
+					allDataUpdate(game);
 				},
 				error : function(e, ajaxOptions, thrownError) {
 					alert("Make a bet!");
@@ -29,14 +29,17 @@ $(document).ready(function() {
 
 	}
 	
-	function allDataUpdate(round)
+	function allDataUpdate(game)
 	{
 		var i = 0;
 		$("#dealer_cards").empty();
-		for(i = 0; i < round.dealerCards.length ; i = i + 1){
-			$("#dealer_cards").append("<img src="+round.dealerCards[i].image+"></img>");			
+		for(i = 0; i < game.round.dealerCards.length ; i = i + 1){
+			$("#dealer_cards").append("<img src="+game.round.dealerCards[i].image+"></img>");			
 		}
-		$("#result").empty().append(round.playerResult);
+		// Chips
+		$("#playerChips").empty().append(game.chips);
+
+		$("#result").empty().append(game.round.playerResult);
 		$("#deal_button").attr("src", "img/layout/rebeat.png");
 		$("#stand_button").attr("src", "img/layout/standg.png");
 		$("#hit_button").attr("src", "img/layout/hitg.png");

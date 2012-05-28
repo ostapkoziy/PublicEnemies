@@ -18,8 +18,8 @@ $(document).ready(
 							playerNothing2 : nothing2
 						}),
 						success : function(data) {
-							var round = jQuery.parseJSON(data);
-							allDataUpdate(round);
+							var game = jQuery.parseJSON(data);
+							allDataUpdate(game);
 						},
 						error : function(e, ajaxOptions, thrownError) {
 							alert(e.status);
@@ -32,19 +32,23 @@ $(document).ready(
 
 			}
 
-			function allDataUpdate(round) {
+			function allDataUpdate(game) {
 				var i = 0;
 				$("#player_cards").empty();
-				for (i = 0; i < round.playerCards.length; i = i + 1) {
+				for (i = 0; i < game.round.playerCards.length; i = i + 1) {
 					$("#player_cards").append(
-							"<img src=" + round.playerCards[i].image
+							"<img src=" + game.round.playerCards[i].image
 									+ "></img>");
 				}
-				$("#player_points").empty().append(round.playerPoints);
-				$("#result").empty().append(round.playerResult);
+				$("#player_points").empty().append(game.round.playerPoints);
+				$("#result").empty().append(game.round.playerResult);
+
+				// Chips
+				$("#playerChips").empty().append(game.chips);
+				
 				// Buttons
 				$("#split_button").attr("src", "img/layout/splitg.png");
-				if (round.playerResult != null) {
+				if (game.round.playerResult != null) {
 					$("#stand_button").attr("src", "img/layout/standg.png");
 					$("#hit_button").attr("src", "img/layout/hitg.png");
 					$("#double_button").attr("src", "img/layout/doubleg.png");

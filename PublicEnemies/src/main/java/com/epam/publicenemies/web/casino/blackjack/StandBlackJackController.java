@@ -72,6 +72,7 @@ public class StandBlackJackController {
 		// Check result
 		String playerResult = engine.checkResult(round.getPlayerPoints(),
 				dealerPoints);
+		game.setChips(engine.updateChips(playerResult, game.getChips(), round.getPlayerBet()));
 
 		// Set round
 		round.setDealerCards(dealerCards);
@@ -81,7 +82,7 @@ public class StandBlackJackController {
 		PrintWriter out = response.getWriter();
 		Gson gson = new Gson();
 
-		out.print(gson.toJson(round));
+		out.print(gson.toJson(game));
 		out.flush();
 
 	}

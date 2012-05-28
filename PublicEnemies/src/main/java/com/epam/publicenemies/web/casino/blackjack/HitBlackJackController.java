@@ -2,7 +2,6 @@ package com.epam.publicenemies.web.casino.blackjack;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -54,8 +53,6 @@ public class HitBlackJackController {
 	public void deal(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
-		Integer chips = (Integer)request.getSession().getAttribute("chips");
-		log.info("CHIPS - " + chips);
 		// Get userId
 		Integer userId = (Integer) request.getSession().getAttribute("userId");
 
@@ -72,6 +69,7 @@ public class HitBlackJackController {
 
 		// Check result
 		String playerResult = engine.checkResult(playerPoints);
+		game.setChips(engine.updateChips(playerResult, game.getChips(), round.getPlayerBet()));
 
 		// Set round
 		round.setPlayerCards(playerCards);
@@ -82,7 +80,7 @@ public class HitBlackJackController {
 		PrintWriter out = response.getWriter();
 		Gson gson = new Gson();
 
-		out.print(gson.toJson(round));
+		out.print(gson.toJson(game));
 		out.flush();
 	}
 }
