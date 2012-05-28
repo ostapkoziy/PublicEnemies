@@ -82,11 +82,6 @@ public class ProfileDaoImpl implements IProfileDao {
 	
 	
 	private boolean sellWeapon (final int userId, final int weaponId) {
-
-		/*final String DELETE_SQL = "DELETE ct FROM charactersTrunks AS ct, users AS u, characters AS c "
-				+ "WHERE u.userId=? AND u.userCharacter=c.characterId AND c.characterId=ct.characterId AND ct.itemType=1 AND "
-				+ "ct.itemId=? AND c.weapon1<>ct.trunkId AND c.weapon2<>ct.trunkId";*/
-
 		final String DELETE_SQL = "DELETE FROM charactersTrunks WHERE characterId=? AND itemType=1 AND "
 				+ "itemId=? AND trunkId<>? AND trunkId<>? LIMIT 1";
 		final String ADD_MONEY = "UPDATE users SET money=money+"+KOEF+"*(SELECT weaponPrice FROM weapons WHERE weaponId=?) WHERE userId=?";
@@ -1016,5 +1011,67 @@ public class ProfileDaoImpl implements IProfileDao {
 			return true;
 		} else
 			return false;
+	}
+	
+	
+	private boolean removeWeapon(final int userId, final int weaponid) {
+			/*final String DELETE_SQL = "DELETE FROM charactersTrunks WHERE characterId=? AND itemType=1 AND "
+					+ "itemId=? AND trunkId<>? AND trunkId<>? LIMIT 1";
+			final String ADD_MONEY = "UPDATE users SET money=money+"+KOEF+"*(SELECT weaponPrice FROM weapons WHERE weaponId=?) WHERE userId=?";
+			final String SELECT_SQL = "SELECT weapon1, weapon2, characterId FROM users, characters WHERE userId=? AND userCharacter=characterId";
+			List<Map<String, Object>> arr = jdbcTemplate.queryForList(SELECT_SQL, new Object[] {userId});
+			// This is madness!!!
+			Long longWeapon1 = (Long) arr.get(0).get("weapon1");
+			int intWeapon1 = longWeapon1.intValue();
+			Long longWeapon2 = (Long) arr.get(0).get("weapon2");
+			int intWeapon2 = longWeapon2.intValue();
+			Long longCharacterId = (Long) arr.get(0).get("characterId");
+			int intCharacter = longCharacterId.intValue();
+			// NO! THIS! IS! !!!!JAVA!!!!
+			int j = 0;
+			int i = jdbcTemplate.update ( DELETE_SQL,	new Object[] { intCharacter, weaponId, intWeapon1, intWeapon2} );
+			if (i > 0) {
+				j = jdbcTemplate.update ( ADD_MONEY, new Object[] {weaponId,  userId} );
+				if (j > 0) {
+					log.info("ProfileDaoImpl.sellWeapon: ID of weapon " + weaponId);
+					return true;
+				} else return false;
+			} else*/ return false;
+	}
+	
+	/**
+	 * Remove weapons from user (Doesn't change money amount. Only for admin)
+	 * @param userId - id of user
+	 * @param weapons - id of weapon
+	 * @return true if operation was successfully
+	 */
+	@Override
+	public boolean removeWeapons(int userId, List<Integer> weapons) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	/**
+	 * Remove aids from user (Doesn't change money amount. Only for admin)
+	 * @param userId - id of user
+	 * @param aids - id of aid
+	 * @return true if operation was successfully
+	 */
+	@Override
+	public boolean removeAids(int userId, List<Integer> aids) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	/**
+	 * Remove armors from user (Doesn't change money amount. Only for admin)
+	 * @param userId - id of user
+	 * @param armors - id of armor
+	 * @return true if operation was successfully
+	 */
+	@Override
+	public boolean removeArmors(int userId, List<Integer> armors) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

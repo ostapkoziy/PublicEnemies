@@ -91,7 +91,7 @@ public class ArmorsDaoImpl implements IArmorsDao {
 			String picture, int price, String description) {
 		final String UPDATE_SQL = "UPDATE IGNORE armors SET armorName=?, armorProtection=?, armorPicture=?," +
 				" armorPrice=?, armorDescription=? WHERE armorId=?";
-		int i = jdbcTemplate.update(UPDATE_SQL, new Object[] {name, protection, picture, price, armorId, description});
+		int i = jdbcTemplate.update(UPDATE_SQL, new Object[] {name, protection, picture, price, description, armorId});
 		if (i>0) {
 			log.info("ArmorsDaoImpl.updateArmorInfo : armor(" + armorId + ") info was updated");
 			return true;
