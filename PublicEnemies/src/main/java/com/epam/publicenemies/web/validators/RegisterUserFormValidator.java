@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 
+import com.epam.publicenemies.domain.User;
 import com.epam.publicenemies.dto.UserDto;
 import com.epam.publicenemies.service.IUserManagerService;
 
@@ -20,7 +21,7 @@ public class RegisterUserFormValidator implements IValidator
 	private IUserManagerService	userManagerService;
 	public boolean supports(Class<?> clazz)
 	{
-		return clazz.equals(UserDto.class);
+		return clazz.equals(User.class);
 	}
 	public void validate(Object obj, Errors errors)
 	{
@@ -31,9 +32,9 @@ public class RegisterUserFormValidator implements IValidator
 		}
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "email.empty");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "password.empty");
-		UserDto user = (UserDto) obj;
-		UserDto userDTO = userManagerService.findUserByEmail(user.getEmail());
-		if (userDTO != null)
+		User user = (User) obj;
+		User userDomain = userManagerService.findUserByEmail(user.getEmail());
+		if (userDomain != null)
 		{
 			log.error("USER WITH EMAIL: " + user.getEmail() + " ALREADY EXISTS");
 			errors.rejectValue("email", "user.exist");

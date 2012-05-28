@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 
+import com.epam.publicenemies.domain.User;
 import com.epam.publicenemies.dto.UserDto;
 import com.epam.publicenemies.service.IUserManagerService;
 
@@ -26,12 +27,12 @@ public class LoginUserFormValidator implements IValidator
 		{
 			return;
 		}
-		UserDto user = (UserDto) obj;
+		User user = (User) obj;
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "email.empty");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "password.empty");
 		if (errors.hasErrors()) return;
-		UserDto uDTO = userManagerService.getUserByEmailAndPassword(user.getEmail(), user.getPassword());
-		if (uDTO == null)
+		User uDomain = userManagerService.getUserByEmailAndPassword(user.getEmail(), user.getPassword());
+		if (uDomain == null)
 		{
 			log.error("USER WITH EMAIL: " + user.getEmail() + " AND PASSWORD: " + user.getPassword() + " NOT FOUND");
 			errors.rejectValue("password", "user.not-found");
@@ -40,6 +41,6 @@ public class LoginUserFormValidator implements IValidator
 	@Override
 	public boolean supports(Class<?> clazz)
 	{
-		return clazz.equals(UserDto.class);
+		return clazz.equals(User.class);
 	}
 }

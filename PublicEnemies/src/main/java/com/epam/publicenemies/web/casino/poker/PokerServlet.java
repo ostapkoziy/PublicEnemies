@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.epam.publicenemies.domain.poker.PokerCard;
 import com.epam.publicenemies.domain.poker.PokerCombination;
-import com.epam.publicenemies.web.fight.HitServlet;
+import com.epam.publicenemies.web.fight.HitController;
 
 import flexjson.JSONSerializer;
 
@@ -24,7 +24,7 @@ import flexjson.JSONSerializer;
  */
 @Controller
 public class PokerServlet {
-	private Logger log = Logger.getLogger(HitServlet.class);
+	private Logger log = Logger.getLogger(HitController.class);
 	private PokerGame pokerGame;
 	static int partCounter = -1;
 	private PokerCombination player1Combination, player2Combination;

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.epam.publicenemies.domain.User;
 import com.epam.publicenemies.dto.UserDto;
 import com.epam.publicenemies.service.IUserManagerService;
 import com.epam.publicenemies.web.validators.IValidator;
@@ -33,11 +34,11 @@ public class LoginUserFormController
 	public String showForm(ModelMap model)
 	{
 		log.info("SHOW LOGIN FORM");
-		model.put("userDto", new UserDto());
+		model.put("userDto", new User());
 		return "userLogin";
 	}
 	@RequestMapping(method = RequestMethod.POST)
-	public String processSubmit(@ModelAttribute UserDto user, HttpServletRequest request, BindingResult result)
+	public String processSubmit(@ModelAttribute User user, HttpServletRequest request, BindingResult result)
 	{
 		log.info("PROCESS FORM");
 		validator.validate(user, result);
@@ -47,7 +48,7 @@ public class LoginUserFormController
 			return "userLogin";
 		}
 		// need to refactor. use getUserIdByEmail... (not implemented yet)
-		UserDto user2 = userManagerService.getUserByEmailAndPassword(user.getEmail(), user.getPassword());
+		User user2 = userManagerService.getUserByEmailAndPassword(user.getEmail(), user.getPassword());
 		log.info("USER = " + user2.getEmail() + " SUCCESSFULLY LOGGED");
 		// store user id into session
 		request.getSession().setAttribute("userId", user2.getUserId());

@@ -4,7 +4,7 @@
 function hitSend(hit, block, aid)
 {
 	$.ajax({
-		url : "HitServlet.html",
+		url : "HitController.html",
 		data : ({
 			userHit : hit,
 			userBlock : block,
@@ -47,7 +47,7 @@ function waitingNewRound()
 				setTimeout(function()
 				{
 					window.location.replace("profile.html");
-				}, 5000);
+				}, 50000);
 				// ********************************************************
 			}
 		},

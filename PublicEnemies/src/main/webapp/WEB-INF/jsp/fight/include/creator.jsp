@@ -53,8 +53,12 @@
 	<!-- 	+++++++++++++++RIGHT CREATOR+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 	<c:choose>
 		<c:when test="${game.gameStarted=='false'}">
+			<%-- 			<c:if test="${WFOC==null}"> --%>
 			<script type="text/javascript">
 				waitForOpponent();
+			</script>
+			<%-- 			</c:if> --%>
+			<script type="text/javascript">
 				$(function()
 				{
 					$("#atackButton").hide();

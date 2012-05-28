@@ -29,24 +29,6 @@ public class FightResultController
 		 * TODO ADD INFO WIN AND LOSE GAMES
 		 */
 		ModelAndView mav = new ModelAndView("/fight/fightResult");
-		if (role.equals("creator"))
-		{
-			if (fight.getWhoWins().equals(role))
-			{
-			}
-			else
-			{
-			}
-		}
-		else
-		{
-			if (fight.getWhoWins().equals(role))
-			{
-			}
-			else
-			{
-			}
-		}
 		return mav;
 	}
 }

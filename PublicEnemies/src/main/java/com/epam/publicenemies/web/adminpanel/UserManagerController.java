@@ -79,7 +79,7 @@ public class UserManagerController implements IManageable {
 		log.info("   avatar: " + request.getParameter("avatar"));
 		log.info("   money: " + Integer.parseInt(request.getParameter("money")));
 		log.info("   profileId: " + Integer.parseInt(request.getParameter("profileId")));
-		userManagerService.updateUserInfo(Integer.parseInt(request.getParameter("userId")), 
+		userManagerService.updateUserInfo( Integer.parseInt(request.getParameter("userId")),
 				request.getParameter("email"), 
 				request.getParameter("nickname"), 
 				request.getParameter("avatar"), 
