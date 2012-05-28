@@ -22,7 +22,7 @@ import com.epam.publicenemies.service.IAdminPanelManagerService;
 @RequestMapping(value = "/adminPanel/weapon")
 public class WeaponManagerController implements IManageable {
 
-	private Logger log = Logger.getLogger(UserManagerController.class);
+	private Logger log = Logger.getLogger(WeaponManagerController.class);
 	
 	@Autowired
 	private IAdminPanelManagerService adminPanelManagerService;	
@@ -40,12 +40,15 @@ public class WeaponManagerController implements IManageable {
 	@RequestMapping(value="add", method = RequestMethod.POST)
 	public String doAddNewOne(HttpServletRequest request) {
 		
-		//adminPanelManagerService.addWeapon(name, hitPoints, picture, weaponType, price, description)(
-		//		request.getParameter("email"), 
-		//		request.getParameter("pass"),
-		//		request.getParameter("nickname"),
-		//		Integer.parseInt(request.getParameter("money")),
-		//		request.getParameter("avatar"));
+		adminPanelManagerService.addWeapon(
+				request.getParameter("wName"), 
+				Integer.parseInt(request.getParameter("wHP")), 
+				request.getParameter("wPicturePath"), 
+				Boolean.getBoolean(request.getParameter("wType")), 
+				Integer.parseInt(request.getParameter("wPrice")), 
+				request.getParameter("wDescription")
+				);
+		
 		return "redirect:../weapons.html"; 		
 	}
 	
@@ -83,7 +86,7 @@ public class WeaponManagerController implements IManageable {
 				//request.getParameter("pass")
 		mav.setViewName("/adminPanel/editUser");
 		*/
-		return "redirect:../users.html"; 
+		return "redirect:../weapons.html"; 
 	}
 	
 
@@ -103,6 +106,7 @@ public class WeaponManagerController implements IManageable {
 	public ModelAndView deleteOne(@PathVariable Integer dwid) {
 		ModelAndView mav = new ModelAndView();
 
+		mav.setViewName("/adminPanel/deleteWeapon"); 
 		return mav;
 
 	}
