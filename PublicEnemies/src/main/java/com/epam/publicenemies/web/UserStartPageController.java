@@ -18,27 +18,28 @@ import com.epam.publicenemies.service.IProfileManagerService;
  */
 @Controller
 @RequestMapping(value = "/userStartPage")
-public class UserStartPageController {
-	
-	private Logger log	= Logger.getLogger(UserStartPageController.class);
-	
-	@Autowired	
+public class UserStartPageController
+{
+	private Logger					log	= Logger.getLogger(UserStartPageController.class);
+	@Autowired
 	private IProfileManagerService	profileManagerService;
-	
 	@RequestMapping(method = RequestMethod.GET)
-	public ModelAndView handleRequest(HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
-		ModelAndView mav = new ModelAndView(); 
+	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception
+	{
+		ModelAndView mav = new ModelAndView();
 		log.info("Showing userStartPage");
 		Profile pd = profileManagerService.getProfileByUserId((Integer) request.getSession().getAttribute("userId"));
-		if (pd != null) {
+		if (pd != null)
+		{
 			log.info("Profile has been fetched successfully");
-		} else {			
+		}
+		else
+		{
 			// TODO: error page ?, unable to find profile for user
 			log.info("Can't find profile with such user id - " + request.getSession().getAttribute("userId"));
 		}
 		mav.addObject("profileInfo", pd);
-		mav.setViewName("userStartPage"); 
+		mav.setViewName("userStartPage");
 		return mav;
 	}
 }
