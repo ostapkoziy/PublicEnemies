@@ -19,9 +19,12 @@ public class StatsCalculator
 		{
 			profile = fight.getConnectorProfile();
 		}
+		makeStats(profile);
+	}
+	public static void makeStats(Profile profile)
+	{
 		profile.setAllHP(400 + profile.getStrength() * 10);
 		profile.setHP(profile.getAllHP());
-		// profile.setDamage(20);
 		profile.setDamage(20 + profile.getAgility() * 3);
 		profile.setDefence(10);
 	}
