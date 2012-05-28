@@ -2,8 +2,6 @@ package com.epam.publicenemies.dao.impl;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -694,7 +692,7 @@ public class ProfileDaoImpl implements IProfileDao {
 	 * @return true if operation is successfully
 	 */
 	@Override
-	public boolean updateProfileProffesion(int userId, String profession) {
+	public boolean updateProfileProfession(int userId, String profession) {
 		String sql = "UPDATE characters, users SET profession = ? WHERE userId=? AND userCharacter=characterId";
 		int i = jdbcTemplate.update(sql, new Object[] { profession, userId });
 		if (i > 0){
@@ -796,7 +794,7 @@ public class ProfileDaoImpl implements IProfileDao {
 	 * @return true if operation is successfully
 	 */
 	@Override
-	public boolean undresAid(int userId) {
+	public boolean undressAid(int userId) {
 		final String UPDATE_SQL = "UPDATE characters, users SET aid=0 WHERE userId=? AND characterId=userCharacter";
 		int i = jdbcTemplate.update(UPDATE_SQL, new Object[] {userId});
 		if (i>0) {
@@ -920,5 +918,103 @@ public class ProfileDaoImpl implements IProfileDao {
 			log.info("ProfileDaoImpl.isEmptyWeapon2 : empty");
 			return true;
 		}
+	}
+	
+	private boolean addWeapon(final int userId, final int weaponId) {
+		final String INSERT_SQL = "INSERT INTO charactersTrunks (characterId, itemId, itemType) SELECT userCharacter, ?, 1 " +
+				"FROM users WHERE userId=?";
+		int i = jdbcTemplate.update(INSERT_SQL, new Object[] {weaponId, userId});
+		if (i>0) {
+			log.info("ProfileDaoImpl.addWeapon: ID of weapon (" + weaponId + ") for user(" + userId + ")");
+			return true;
+		} else 
+			return false;
+	}
+
+	/**
+	 * Add weapons for user (Doesn't change money amount. Only for admin)
+	 * @param userId - id of user
+	 * @param weapons - List of weapons ids
+	 * @return true if operation was successfully
+	 */
+	@Override
+	public boolean addWeapons(int userId, List<Integer> weapons) {
+		int j = 0;
+		for(Integer i : weapons) {
+			if(addWeapon(userId, i)) {
+				j++;
+			}
+		}
+		if (j==weapons.size()) {
+			log.info("ProfileDaoImpl.addWeapons : "+j+" weapons were added");
+			return true;
+		} else
+			return false;
+	}
+
+	private boolean addArmor(final int userId, final int armorId) {
+		final String INSERT_SQL = "INSERT INTO charactersTrunks (characterId, itemId, itemType) SELECT userCharacter, ?, 3 " +
+				"FROM users WHERE userId=?";
+		int i = jdbcTemplate.update(INSERT_SQL, new Object[] {armorId, userId});
+		if (i>0) {
+			log.info("ProfileDaoImpl.addArmor: ID of armor (" + armorId + ") for user(" + userId + ")");
+			return true;
+		} else 
+			return false;
+	}
+	
+	
+	/**
+	 * Add armors for user (Doesn't change money amount. Only for admin)
+	 * @param userId - id of user
+	 * @param armors - List of armors ids
+	 * @return true if operation was successfully
+	 */
+	@Override
+	public boolean addArmors(int userId, List<Integer> armors) {
+		int j = 0;
+		for(Integer i : armors) {
+			if(addArmor(userId, i)) {
+				j++;
+			}
+		}
+		if (j==armors.size()) {
+			log.info("ProfileDaoImpl.addArmors : "+j+" armors were added");
+			return true;
+		} else
+			return false;
+	}
+	
+	
+	private boolean addAid(final int userId, final int aidId) {
+		final String INSERT_SQL = "INSERT INTO charactersTrunks (characterId, itemId, itemType) SELECT userCharacter, ?, 2 " +
+				"FROM users WHERE userId=?";
+		int i = jdbcTemplate.update(INSERT_SQL, new Object[] {aidId, userId});
+		if (i>0) {
+			log.info("ProfileDaoImpl.addArmor: ID of aid (" + aidId + ") for user(" + userId + ")");
+			return true;
+		} else 
+			return false;
+	}
+
+	/**
+	 * Add aids for user (Doesn't change money amount. Only for admin)
+	 * @param userId - id of user
+	 * @param aids - List of aids ids
+	 * @return true if operation was successfully
+	 */
+	@Override
+	public boolean addAids(int userId, List<Integer> aids) {
+		int j = 0;
+		for(Integer i : aids) {
+			if(addAid(userId, i)) {
+				j++;
+			}
+		}
+		if (j==aids.size()) {
+			log.info("ProfileDaoImpl.addAids : "+j+" aids were added");
+			return true;
+		} else
+			return false;
 	}
 }

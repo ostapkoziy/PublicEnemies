@@ -76,7 +76,7 @@ a.new_entry:hover {
 	background: #DDD; 
 }
 
-div.users_div {
+div.users_div, div.weapons_div, div.armors_div, div.aids_div {
 	padding: 20px; 
 	border: 2px solid black; 
  

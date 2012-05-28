@@ -51,23 +51,7 @@ table#main {
 		<tr>
 			<td style="background-color: black; width: 100%;">
 				<!--  up bar with stats, gamelogo, avatar -->
-				<table width="100%">
-					<tr>
-						<td width="100" align="left"><img src="img/gamelogo_small.png" width="100px"></img></td>
-						<td width="40" valign="middle" align="right"><img src="img/coin.png" width="40px" title="Money"></img></td>
-						<td width="20" valign="middle" align="left">904</td>
-						<td width="80" valign="middle" align="right"><img src="img/hp.png" width="40px" title="Hit Points"></img></td>
-						<td width="20" valign="middle" align="left">80</td>
-						<td width="80" valign="middle" align="right"><img src="img/strength.png" width="40px" title="Strength"></img></td>
-						<td width="20" valign="middle" align="left">21</td>
-						<td width="80" valign="middle" align="right"><img src="img/agility.png" width="40px" title="Agility"></img></td>
-						<td width="20" valign="middle" align="left">34</td>
-						<td width="80" valign="middle" align="right"><img src="img/inteligence.png" width="40px" title="Inteligence"></img></td>
-						<td width="20" valign="middle" align="left">8</td>
-						<td width="100" align="right"><img src="img/avatars/gangster.png" title="${user_email}'s profile" border="1" width="40px"></img></td>
-						<td width="30" align="center"><a href="logout.html">Logout</a> <br /></td>
-					</tr>
-				</table>
+				<jsp:include page="../simple_header.jsp"></jsp:include>
 			</td>
 		</tr>
 		<tr>

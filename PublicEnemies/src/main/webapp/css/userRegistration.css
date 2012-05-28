@@ -1,17 +1,17 @@
 body {
-	background-image: url(../img/bg_city.png);
+ 	background-image: url("../img/style_main.png"); 
 	color: white;
 	font-family: 'impact';
 	font-size: 14pt;
 }
 
 h2 {
-	color: black;
+	color: white;
 	font-family: 'impact';
 	font-size: 20pt;
 }
 h1 {
-	color: red;
+	color: #3A2F0B;
 	font-family: 'impact';
 	font-size: 20pt;
 }
@@ -25,14 +25,12 @@ button {
 
 table.sample {
 	margin-top: 100px;
-	background-color: #444D48;
-	opacity: .6;
-	filter: alpha(opacity =                 60);
-	-moz-opacity: .6;
+	background-image: url("../img/dark_opacity.png");
+	
 	border-width: 3px;
-	border-spacing: 5px;
+	border-spacing: 2px;
 	border-style: outset;
-	border-color: white;
+	border-color: #3A2F0B;
 	border-collapse: separate;
 }
 
@@ -40,7 +38,7 @@ table.sample th {
 	border-width: 0px;
 	padding: 3px;
 	border-style: none;
-	border-color: gray;
+	border-color: #3A2F0B;
 	-moz-border-radius:;
 }
 
@@ -48,7 +46,7 @@ table.sample td {
 	border-width: 0px;
 	padding: 3px;
 	border-style: none;
-	border-color: gray;
+	border-color: #3A2F0B;
 	-moz-border-radius:;
 }
 

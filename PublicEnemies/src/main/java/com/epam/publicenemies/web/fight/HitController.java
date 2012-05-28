@@ -18,10 +18,10 @@ import com.epam.publicenemies.domain.fight.FightEngine;
  * @author Alexander Ivanov
  */
 @Controller
-public class HitServlet
+public class HitController
 {
-	private static Logger	log	= Logger.getLogger(HitServlet.class);
-	@RequestMapping("/HitServlet")
+	private static Logger	log	= Logger.getLogger(HitController.class);
+	@RequestMapping("/HitController")
 	public void hit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		response.setContentType("text/html;charset=UTF-8");
@@ -48,26 +48,21 @@ public class HitServlet
 		 * Engine Start
 		 */
 		startEngine(fight, role);
-		/*
-		 * 
-		 */
 	}
 	/**
-	 * Можна буде забрати якщо передавати в ENGINE того хто стартанув гру(він
-	 * вдарив другим).
+	 * 
+	 * @param fight
+	 *            - fight)
+	 * @param role
+	 *            - who starts the fight engine(second hit)
 	 */
-	private synchronized void setFirstHit(Fight fight, String role)
-	{
-		if (fight.getRound().getFirstHit().equals(""))
-		{
-			fight.getRound().setFirstHit(role);
-		}
-	}
 	private synchronized void startEngine(Fight fight, String role)
 	{
 		if (!fight.getRound().isRoundStart())
 		{
-			new FightEngine().startEngine(fight, role);
+			FightEngine engine = fight.getEngine();
+			engine.startEngine(fight, role);
+			engine.setStarted(true);
 		}
 	}
 	private void creatorGameSetup(Fight fight, String hit, String block, String role)
@@ -79,10 +74,6 @@ public class HitServlet
 		{
 			setRoundStart(fight);
 		}
-		else
-		{
-			setFirstHit(fight, role);
-		}
 	}
 	private void connectorGameSetup(Fight fight, String hit, String block, String role)
 	{
@@ -92,10 +83,6 @@ public class HitServlet
 		if (fight.getRound().isCreatorDoHit())
 		{
 			setRoundStart(fight);
-		}
-		else
-		{
-			setFirstHit(fight, role);
 		}
 	}
 	private synchronized void setRoundStart(Fight fight)

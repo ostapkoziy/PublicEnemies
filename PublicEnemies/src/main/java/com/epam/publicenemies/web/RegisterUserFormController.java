@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.epam.publicenemies.domain.User;
 import com.epam.publicenemies.dto.UserDto;
 import com.epam.publicenemies.service.IUserManagerService;
 import com.epam.publicenemies.web.validators.IValidator;
@@ -33,10 +34,10 @@ public class RegisterUserFormController
 	public ModelAndView onGetRequest()
 	{
 		log.debug("Showing registration form.");
-		return new ModelAndView("userRegistration", "userDto", new UserDto());
+		return new ModelAndView("userRegistration", "userDto", new User());
 	}
 	@RequestMapping(method = RequestMethod.POST)
-	protected ModelAndView onSubmit(UserDto userToRegister, HttpServletRequest request, BindingResult result) throws Exception
+	protected ModelAndView onSubmit(User userToRegister, HttpServletRequest request, BindingResult result) throws Exception
 	{
 		validator.validate(userToRegister, result);
 		if (result.hasErrors())
@@ -49,10 +50,10 @@ public class RegisterUserFormController
 		// nickName passed as email. need to fix this (? create 3-d field in
 		// register form?)
 		// could be refactored. pass just 3 or 2 parameters. not whole object
-		log.info("Try to register new user with attributs: email - " + ((UserDto) userToRegister).getEmail() + " and pass - "
-				+ ((UserDto) userToRegister).getPassword());
-		UserDto user = userManagerService.registerNewUser(((UserDto) userToRegister).getEmail(), ((UserDto) userToRegister).getPassword(),
-				((UserDto) userToRegister).getEmail());
+		log.info("Try to register new user with attributs: email - " + ((User) userToRegister).getEmail() + " and pass - "
+				+ ((User) userToRegister).getPassword());
+		User user = userManagerService.registerNewUser(((User) userToRegister).getEmail(), ((User) userToRegister).getPassword(),
+				((User) userToRegister).getEmail());
 		// store user id into session
 		request.getSession().setAttribute("userId", user.getUserId());
 		// old way

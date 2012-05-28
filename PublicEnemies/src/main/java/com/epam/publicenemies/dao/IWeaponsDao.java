@@ -16,7 +16,7 @@ public interface IWeaponsDao {
 	 * Gets all weapons entry from db
 	 * @return list of weapons
 	 */
-	List<Weapon> fetchAllWeapons();
+	List<Weapon> getAllWeapons();
 
 	/**
 	 * Add new weapon
@@ -139,4 +139,10 @@ public interface IWeaponsDao {
 	 * @return list of all weapons
 	 */
 	List<Weapon>getWeaponsSortedByPrice();
+	
+	/**
+	 * Get amount of all weapons
+	 * @return amount of all weapons
+	 */
+	int getWeaponsAmount();
 }

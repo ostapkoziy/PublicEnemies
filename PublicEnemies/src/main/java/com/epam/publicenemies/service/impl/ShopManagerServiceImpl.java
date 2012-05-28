@@ -35,17 +35,17 @@ public class ShopManagerServiceImpl implements IShopManagerService {
 	
 	@Override
 	public List<Aid> getAllAids() {		
-		return aidDao.fetchAllAids();		
+		return aidDao.getAllAids();		
 	}
 
 	@Override
 	public List<Weapon> getAllWeapons() {		
-		return weaponDao.fetchAllWeapons();
+		return weaponDao.getAllWeapons();
 	}
 
 	@Override
 	public List<Armor> getAllArmors() {		
-		return armorDao.fetchAllArmors();
+		return armorDao.getAllArmors();
 	}
 	// In methods below are passed user ID and lists of ID's items to sell/buy
 	// ------------------------------------------------------------------------

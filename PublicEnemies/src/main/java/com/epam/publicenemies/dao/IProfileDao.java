@@ -36,7 +36,7 @@ public interface IProfileDao {
 	 * Undress aid
 	 * @return true if operation is successfully
 	 */
-	boolean undresAid(int userId);
+	boolean undressAid(int userId);
 	
 	/**
 	 * Undress armor
@@ -99,6 +99,30 @@ public interface IProfileDao {
 	 * @return true if operation was successfully
 	 */
 	boolean buyArmors(int userId, List<Integer> armors);
+	
+	/**
+	 * Add weapons for user (Doesn't change money amount. Only for admin)
+	 * @param userId - id of user
+	 * @param weapons - List of weapons ids
+	 * @return true if operation was successfully
+	 */
+	boolean addWeapons(int userId, List<Integer> weapons);
+	
+	/**
+	 * Add armors for user (Doesn't change money amount. Only for admin)
+	 * @param userId - id of user
+	 * @param armors - List of armors ids
+	 * @return true if operation was successfully
+	 */
+	boolean addArmors(int userId, List<Integer> armors);
+	
+	/**
+	 * Add aids for user (Doesn't change money amount. Only for admin)
+	 * @param userId - id of user
+	 * @param aids - List of aids ids
+	 * @return true if operation was successfully
+	 */
+	boolean addAids(int userId, List<Integer> aids);
 	
 	/**
 	 * Sell user's weapons
@@ -177,7 +201,7 @@ public interface IProfileDao {
 	 * @param profession - character profession
 	 * @return true if operation is successfully
 	 */
-	boolean updateProfileProffesion(int userId, String profession);
+	boolean updateProfileProfession(int userId, String profession);
 	
 	/**
 	 * Add won fight

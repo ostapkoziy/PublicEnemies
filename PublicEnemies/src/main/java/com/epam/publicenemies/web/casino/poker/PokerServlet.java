@@ -22,7 +22,6 @@ import com.epam.publicenemies.domain.poker.IPokerPlayer;
 import com.epam.publicenemies.domain.poker.PokerCard;
 import com.epam.publicenemies.domain.poker.PokerCombination;
 import com.epam.publicenemies.service.IProfileManagerService;
-import com.epam.publicenemies.web.fight.HitServlet;
 
 import flexjson.JSONSerializer;
 
@@ -31,7 +30,7 @@ import flexjson.JSONSerializer;
  */
 @Controller
 public class PokerServlet {
-	private Logger log = Logger.getLogger(HitServlet.class);
+	private Logger log = Logger.getLogger(PokerServlet.class);
 	private PokerGame pokerGame;
 	static int partCounter = -1;
 	private PokerCombination player1Combination, player2Combination;

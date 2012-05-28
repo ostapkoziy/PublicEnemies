@@ -354,7 +354,7 @@ public class UserDaoImpl implements IUserDao {
 	 * @return
 	 */
 	public boolean updateUserInfo(int userId, String email, String nickName, String avatar, int money, int userCharacter) {
-		final String UPDATE_SQL = "UPDATE IGNORE users SET email=?, nickName=?, avatar=?, money=?, userCharacter=? WHERE userId=?"; 
+		final String UPDATE_SQL = "UPDATE IGNORE users SET email=?, nickName=?, avatar=?, money=?, userCharacter=? WHERE userId=?";
 		int i = jdbcTemplate.update( UPDATE_SQL, new Object[]{ email, nickName, avatar, money, userCharacter, userId } );
 		if (i>0) {
 			log.info("UserDaoImpl.updatUserInfo : user("+userId+") updated");

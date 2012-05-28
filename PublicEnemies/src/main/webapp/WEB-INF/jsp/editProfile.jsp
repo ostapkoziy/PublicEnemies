@@ -8,100 +8,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Edit profile</title>
 <script type="text/javascript" src="js/jquery-1.7.2.js"></script>
-<style type="text/css">
-body {
-	background-image: url(img/bg_city.png);
-	color: white;
-	font-family: 'impact';
-	font-size: 14pt;
-}
+<link rel="stylesheet" href="css/profile.css" type="text/css">
 
-h2 {
-	color: black;
-	font-family: 'impact';
-	font-size: 20pt;
-}
-
-button {
-	font-family: 'impact';
-	font-size: 20px;
-	width: 140px;
-	height: 64px;
-}
-
-table.sample {
-	margin-top: 100px;
-	background-color: #444D48;
-	opacity: .6;
-	filter: alpha(opacity = 60);
-	-moz-opacity: .6;
-	border-width: 3px;
-	border-spacing: 5px;
-	border-style: outset;
-	border-color: white;
-	border-collapse: separate;
-}
-
-table.sample th {
-	border-width: 0px;
-	padding: 3px;
-	border-style: none;
-	border-color: gray;
-	-moz-border-radius:;
-}
-
-table.sample td {
-	border-width: 0px;
-	padding: 3px;
-	border-style: none;
-	border-color: gray;
-	-moz-border-radius:;
-}
-
-A:link {
-	text-decoration: underline;
-	color: white;
-	font-size: 20pt;
-}
-
-A:visited {
-	text-decoration: underline;
-	color: white;
-	font-size: 20pt;
-}
-
-A:active {
-	text-decoration: underline;
-	color: white;
-	font-size: 20pt;
-}
-
-A:hover {
-	text-decoration: underline;
-	color: white;
-	font-size: 20pt;
-}
-
-a {
-	color: black;
-	font-family: 'impact';
-	font-size: 20pt;
-}
-
-img.image_select{
-    border: 2px solid #ccc;
-    float: left;
-    margin: 10px;
-    margin-left : 20px;
-    -webkit-transition: margin 0.5s ease-out;
-    -moz-transition: margin 0.5s ease-out;
-    -o-transition: margin 0.5s ease-out;
-}
-
-img.image_select:hover {
-    margin-top: 2px;
-}
-</style>
 <script type="text/javascript">
 $(document).ready(function(){
 	$("input#avatar_input").hide();
@@ -159,7 +67,7 @@ $(document).ready(function(){
 									<input id="profession_input"  type="text" name="profession" value="${profile.getProfession()}"><br />
 									<font color="red">${status.errorMessage}</font>
 									<br />
-								<button type="submit" class="button">Save profile!</button>
+								<button type="submit" class="button">Save</button>
 							</form>
 						</td>
 					</tr>
@@ -171,13 +79,13 @@ $(document).ready(function(){
 	var selected_name;
 	var src;
 	$("img.image_select").click(function(){
-		 $(this).css("border", "5px solid #ccc");
+		 $(this).css("outline", "5px solid #ccc");
 		 src = "img/avatars/" + this.title + ".png";
 		 $("input#avatar_input").val(src);
 		 selected_name = this.title;
 		 $("img.image_select").each(function(indx, element){
 			if(element.title != selected_name){
-				$(element).css("border", "2px solid #ccc");
+				$(element).css("outline", "0px solid #ccc");
 			}
 		});
 	});

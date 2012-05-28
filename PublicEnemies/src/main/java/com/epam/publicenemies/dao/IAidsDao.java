@@ -16,7 +16,7 @@ public interface IAidsDao {
 	 * Gets all aids entry from db
 	 * @return list of aids
 	 */
-	public List<Aid> fetchAllAids();
+	public List<Aid> getAllAids();
 	
 	/**
 	 * Add new aid
@@ -74,4 +74,9 @@ public interface IAidsDao {
 	 */
 	List<Aid> getAidsSortedByEffect();
 	
+	/**
+	 * Get aids amount 
+	 * @return amount of aids
+	 */
+	int getAidsAmount();
 }

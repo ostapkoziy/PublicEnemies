@@ -16,7 +16,7 @@
 <script type="text/javascript" src="js/jquery-1.7.2.js"></script>
 <script type="text/javascript" src="js/profile/pie.js"></script>
 <script type="text/javascript" src="js/jquery.betterTooltip.js"></script>
-
+<link rel="stylesheet" href="css/hideout.css" type="text/css">
 <script type="text/javascript">
 $(document).ready(function(){
 	$('.tTip').betterTooltip({speed: 150, delay: 300});

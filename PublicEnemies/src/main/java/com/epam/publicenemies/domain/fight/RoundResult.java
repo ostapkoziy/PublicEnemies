@@ -1,11 +1,13 @@
 package com.epam.publicenemies.domain.fight;
 
 /**
+ * TODO Move to FightEngine!!!!
+ * 
  * @author Alexander Ivanov
  */
 public enum RoundResult
 {
-	Double_Deth
+	DOUBLE_DETH
 	{
 		@Override
 		public boolean roundResult(Fight fight, int creatorDamage, int connectorDamage)
@@ -16,7 +18,7 @@ public enum RoundResult
 			return true;
 		}
 	},
-	Creator_Deth
+	CREATOR_DETH
 	{
 		@Override
 		public boolean roundResult(Fight fight, int creatorDamage, int connectorDamage)
@@ -28,7 +30,7 @@ public enum RoundResult
 			return true;
 		}
 	},
-	Connector_deth
+	CONNECTOR_DETH
 	{
 		@Override
 		public boolean roundResult(Fight fight, int creatorDamage, int connectorDamage)
@@ -40,7 +42,7 @@ public enum RoundResult
 			return true;
 		}
 	},
-	Alive
+	ALIVE
 	{
 		@Override
 		public boolean roundResult(Fight fight, int creatorDamage, int connectorDamage)

@@ -17,34 +17,38 @@
 			<td align="center"><img src="img/gamelogo.png"></img></td>
 		</tr>
 		<tr>
-			<table class="sample" align="center" width="300">
-				<tr>
-					<td align="center"></td>
-				</tr>
-				<tr align="center" height="200">
-					<td><form:form action="userLogin.html" method="post"
-							commandName="userDto">
-							<h2 align="center">Login</h2>
-							<form:input path="email" />
-							<div id="email_error">
-							
-							</div>
-
-							<font color="red"><br /> <form:errors path="email" /> <br /></font>
-							<h2 align="center">Password</h2>
-							<form:input type="password" path="password"  />
-							<div id="password_error">
-							</div>
-							<font color="red"><br /> <form:errors path="password" />
-								<br /></font>
-							<br />
-							<button type="submit" id="button">Log in</button>
-						</form:form></td>
-				</tr>
-				<tr>
-					<td align="center"><a href="userRegistration.html">Register</a></td>
-				</tr>
-			</table>
+			<td>
+				<div id="tableContainer">
+					<table class="sample" align="center" width="300">
+						<tr>
+							<td align="center"></td>
+						</tr>
+						<tr align="center" height="200">
+							<td><form:form action="userLogin.html" method="post"
+									commandName="userDto">
+									<h2 align="center">Login</h2>
+									<form:input path="email" />
+									<div id="email_error">
+									
+									</div>
+		
+									<font color="red"><br /> <form:errors path="email" /> <br /></font>
+									<h2 align="center">Password</h2>
+									<form:input type="password" path="password"  />
+									<div id="password_error">
+									</div>
+									<font color="red"><br /> <form:errors path="password" />
+										<br /></font>
+									<br />
+									<button type="submit" id="button">Log in</button>
+								</form:form></td>
+						</tr>
+						<tr>
+							<td align="center"><a href="userRegistration.html">Register</a></td>
+						</tr>
+					</table>
+				</div>
+			</td>
 		</tr>
 	</table>
 </body>
