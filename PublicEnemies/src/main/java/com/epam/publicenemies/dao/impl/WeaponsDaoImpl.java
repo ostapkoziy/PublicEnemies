@@ -6,7 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.sql.DataSource;
 
@@ -277,12 +279,13 @@ public class WeaponsDaoImpl implements IWeaponsDao {
 	 * @param price - weapon price
 	 * @return true if operation was successfully
 	 */
+	
 	public boolean updateWeaponInfo(int weaponId, String weaponName, int hitPoints, String picture, 
 			boolean type, int price, String description) {
 		final String UPDATE_SQL = "UPDATE IGNORE weapons SET weaponName=?, weaponHitPoints=?, weaponPicture=?," +
 				"weaponType=?, weaponPrice=? WHERE weaponId=?";
 		int i = jdbcTemplate.update(UPDATE_SQL, new Object[] {weaponName, hitPoints, picture,
-				type, price});
+				type, price, weaponId});
 		if (i>0) {
 			log.info("WeaponDaoImpl.updateWeaponInfo : weapon("+weaponId+") was updated");
 			return true;

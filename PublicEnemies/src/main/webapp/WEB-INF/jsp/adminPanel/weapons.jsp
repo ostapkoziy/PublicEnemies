@@ -27,6 +27,7 @@
 					<th>Name</th>
 					<th>Hit Points</th>
 					<th>Firearm</th>
+					<th>Picture (path)</th>
 					<th>Price</th>
 					<th colspan="2">Actions</th>
 				</tr>
@@ -36,6 +37,7 @@
 					<td><a href="weapon/info/${weapon.getWeaponId()}.html">${weapon.getWeaponName()} </a></td>
 					<td>${weapon.getHitPoints()} </td>
 					<td>${weapon.isWeaponType()} </td>
+					<td>${weapon.getWeaponPicture()} </td>
 					<td>${weapon.getWeaponPrice()} </td>
 					<td> <a href="weapon/edit/${weapon.getWeaponId()}.html"> edit</a> </td>
 					<td> <a href="weapon/delete/${weapon.getWeaponId()}.html"> delete</a></td> 						

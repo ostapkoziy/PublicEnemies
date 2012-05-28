@@ -149,6 +149,31 @@ public interface IProfileDao {
 	boolean sellArmors(int userId, List<Integer> armors);
 	
 	/**
+	 * Remove weapons from user (Doesn't change money amount. Only for admin)
+	 * @param userId - id of user
+	 * @param weapons - id of weapon
+	 * @return true if operation was successfully
+	 */
+	boolean removeWeapons(int userId, List<Integer> weapons);
+	
+	/**
+	 * Remove aids from user (Doesn't change money amount. Only for admin)
+	 * @param userId - id of user
+	 * @param aids - id of aid
+	 * @return true if operation was successfully
+	 */
+	boolean removeAids(int userId, List<Integer> aids);
+	
+	/**
+	 * Remove armors from user (Doesn't change money amount. Only for admin)
+	 * @param userId - id of user
+	 * @param armors - id of armor
+	 * @return true if operation was successfully
+	 */
+	boolean removeArmors(int userId, List<Integer> armors);
+	
+	
+	/**
 	 * Get character by user note
 	 * @param user - User object
 	 * @return UCharacter object

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.epam.publicenemies.domain.Aid;
 import com.epam.publicenemies.service.IAdminPanelManagerService;
 
 /**
@@ -55,9 +56,8 @@ public class AidManagerController implements IManageable {
 	public ModelAndView editOne(@PathVariable Integer eaid) {
 		ModelAndView mav = new ModelAndView();
 		
-		//mav.setViewName("editUser"); 
-		//mav.addObject("profile", profileManagerService.getProfileByUserId(euid)); 
-		//mav.addObject("euid", euid);
+		mav.addObject("aid", (Aid)adminPanelManagerService.getAidById(eaid)); 
+
 		mav.setViewName("/adminPanel/editAid");
 		
 		return mav;
@@ -66,25 +66,17 @@ public class AidManagerController implements IManageable {
 	
 	@RequestMapping(value="edit/{eaid}", method = RequestMethod.POST)	
 	public String doEditOne(HttpServletRequest request) {
-		ModelAndView mav = new ModelAndView();
-		/*log.info("doEdit: ");
-		log.info("   userId: " + Integer.parseInt(request.getParameter("userId")));
-		log.info("   email: " + request.getParameter("email"));
-		log.info("   nickname: " + request.getParameter("nickname"));
-		log.info("   avatar: " + request.getParameter("avatar"));
-		log.info("   money: " + Integer.parseInt(request.getParameter("money")));
-		log.info("   profileId: " + Integer.parseInt(request.getParameter("profileId")));
-		userManagerService.updateUserInfo(Integer.parseInt(request.getParameter("userId")), 
-				request.getParameter("email"), 
-				request.getParameter("nickname"), 
-				request.getParameter("avatar"), 
-				Integer.parseInt(request.getParameter("money")), 
-				Integer.parseInt(request.getParameter("profileId")));
 		
-				//request.getParameter("pass")
-		mav.setViewName("/adminPanel/editUser");
-		*/
-		return "redirect:../aids.html"; 
+		adminPanelManagerService.updateAidInfo(
+			Integer.parseInt(request.getParameter("aidId")), 
+			request.getParameter("aName"), 
+			request.getParameter("aType"), 
+			Integer.parseInt(request.getParameter("aEffect")), 
+			request.getParameter("aPicturePath"), 
+			Integer.parseInt(request.getParameter("aPrice")), 
+			request.getParameter("aDescription")
+		);		
+		return "redirect:../../aids.html"; 
 	}
 	
 
