@@ -191,7 +191,7 @@ public class AidsDaoImpl implements IAidsDao{
 
 	/**
 	 * Get all users that have same aid
-	 * @param aidId - id of weapon
+	 * @param aidId - id of aid
 	 * @return list of users
 	 */
 	@Override
@@ -207,7 +207,7 @@ public class AidsDaoImpl implements IAidsDao{
 						resultSet.getInt("userCharacter"), resultSet.getTimestamp("regDate"));
 			}
 		});
-		log.info("AIDSDaoImpl.getUsersWithAid : where finded "+users.size()+" users");
+		log.info("AidsDaoImpl.getUsersWithAid : where finded "+users.size()+" users");
 		return users;
 	}
 }

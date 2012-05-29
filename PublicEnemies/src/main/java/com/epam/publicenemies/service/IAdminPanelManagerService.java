@@ -343,5 +343,25 @@ public interface IAdminPanelManagerService {
 	 * @return true if operation was successfully
 	 */
 	boolean removeArmors(int userId, List<Integer> armors);
+
+	/**
+	 * Get all users that have same weapon
+	 * @param weaponId - id of weapon
+	 * @return list of users
+	 */
+	List<User> getUsersWithWeapon(int weaponId);
 	
+	/**
+	 * Get all users that have same aid
+	 * @param aidId - id of aid
+	 * @return list of users
+	 */
+	List<User> getUsersWithAid(int aidId);
+	
+	/**
+	 * Get all users that have same armor
+	 * @param armorId - id of armor
+	 * @return list of users
+	 */
+	List<User> getUsersWithArmor(int armorId);
 }

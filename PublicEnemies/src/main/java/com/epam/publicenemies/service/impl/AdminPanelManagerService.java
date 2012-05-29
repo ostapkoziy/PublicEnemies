@@ -477,5 +477,31 @@ public class AdminPanelManagerService implements IAdminPanelManagerService {
 	public boolean removeArmors(int userId, List<Integer> armors) {
 		return profileDao.removeArmors(userId, armors);
 	}
+
+	/**
+	 * Get all users that have same weapon
+	 * @param weaponId - id of weapon
+	 * @return list of users
+	 */
+	public List<User> getUsersWithWeapon(int weaponId) {
+		return weaponsDao.getUsersWithWeapon(weaponId);
+	} 
 	
+	/**
+	 * Get all users that have same aid
+	 * @param aidId - id of aid
+	 * @return list of users
+	 */
+	public List<User> getUsersWithAid(int aidId) {
+		return aidsDao.getUsersWithAid(aidId);
+	}
+	
+	/**
+	 * Get all users that have same armor
+	 * @param armorId - id of armor
+	 * @return list of users
+	 */
+	public List<User> getUsersWithArmor(int armorId) {
+		return armorsDao.getUsersWithArmor(armorId);
+	}
 }
