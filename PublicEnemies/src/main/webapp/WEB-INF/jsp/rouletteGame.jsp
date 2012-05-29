@@ -18,7 +18,6 @@
 </head>
 <body>
 
-	<script type="text/javascript">arr_init()</script>
 	<div class="panel" id="topPanel">
 		<h2><c:out value="${rouletteGameInfo.getChips()} chips" /></h2>
 		<p><b><c:out value="${rouletteGameInfo.msg}" /></b>

@@ -90,18 +90,18 @@ public class RouletteGameController{
 
 //	rouletteGameInfo.setChips(chips + calculatePrize( rouletteGameInfo.getBets(), rnd ));
 	int prize = 0;
-	log.debug("Roulette number = "+ rnd);
-	log.debug("lenght = "+ rouletteGameInfo.getBets().length);
+	log.info("Roulette number = "+ rnd);
 	
 	for (BetTypes betType: BetTypes.values()){
 		prize += betType.getPrize(betType, rouletteGameInfo.getBets(), rnd);
+		if (prize>0) log.info(betType.name()+" award "+ prize +" chips");
 	}
 	
 	rouletteGameInfo.setChips(chips + prize);
 
-	log.debug("rnd = " + rnd + "\nBet on: "+ (String) request.getParameter("userBetNumbers"));
+	log.info("rnd = " + rnd + "\nBet on: "+ (String) request.getParameter("userBetNumbers"));
 
-	log.debug(" Chips after:" + rouletteGameInfo.getChips());
+	log.info(" Chips after:" + rouletteGameInfo.getChips());
 
 		return "rouletteGame";
 	}
