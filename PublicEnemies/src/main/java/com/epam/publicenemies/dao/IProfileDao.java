@@ -256,5 +256,11 @@ public interface IProfileDao {
 	 */
 	boolean isEmptyWeapon2(int userId);
 	
-	
+	/**
+	 * Add some experience amount to userCharacter
+	 * @param userId - id of user
+	 * @param experience - experience amount to add
+	 * @return true if operation was successfully
+	 */
+	boolean addExperience(int userId, int experience);
 }
