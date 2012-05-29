@@ -11,27 +11,41 @@
 <title>Rating</title>
 </head>
 <body>
-	<h3>Rating</h3>
-	<c:choose>
-		<c:when test="${sortLabel == 0 }">
-			<h4>Sort by Experience</h4>
-		</c:when>
-		<c:when test="${sortLabel == 1 }">
-			<h4>Sort by Money</h4>
-		</c:when>
-	</c:choose>
+	
 	<div class="main_ranking_div">
+	<div><a href="ratingByExp.html">Experience Rating</a></div>
+	<div><a href="ratingByMoney.html">Money Rating</a></div>
 		<c:choose>
 			<c:when test="${usersList.size() == 0 }">
 				<h4>There is no user</h4>
 			</c:when>
-			<c:otherwise>
-				<h4>List of users</h4>
-				<c:forEach items="${usersList}" var="weaponIT">
-				</c:forEach>
+			<c:otherwise>				
+				<table align="center">
+				<caption>Rating</caption>
+				<thead> <tr>  
+				<th> Nickname </th>
+				<th>
+				
+				<c:choose>
+					<c:when test="${sortLabel == 0 }">
+						<h4>Experience</h4>
+					</c:when>
+					<c:when test="${sortLabel == 1 }">
+						<h4>Money</h4>
+					</c:when>
+				</c:choose>
+				
+				</th>
+				</tr></thead>
+					<c:forEach items="${usersList}" var="user">
+						<tr>
+							<td>${user.get("nickname")}</td>
+							<td>${user.get("value")}</td>
+						</tr>
+					</c:forEach>
+				</table>
 			</c:otherwise>
 		</c:choose>
 	</div>
-
 </body>
 </html>

@@ -11,37 +11,39 @@ import org.springframework.web.servlet.ModelAndView;
 import com.epam.publicenemies.service.IUserRatingService;
 
 /**
- * Generates rating list based on experience level and money  
+ * Generates rating list based on experience level and money
  * 
  * @author I. Kostyrko
- *
+ * 
  */
 @Controller
 public class RatingController {
-	
+
 	@Autowired
-	private IUserRatingService userRatingService; 
-	
-	@RequestMapping(value="/ratingByExp") 
+	private IUserRatingService userRatingService;
+
+	@RequestMapping(value = "/ratingByExp")
 	public ModelAndView showRatingByExp(HttpServletRequest request) {
-		ModelAndView mav = new ModelAndView(); 
-		
+		ModelAndView mav = new ModelAndView();
+
+		mav.addObject("usersList", userRatingService.sortUsersByExperience());
+
 		mav.addObject("sortLabel", new Integer(0));
-		mav.setViewName("rating"); 
-		
-		return mav; 
+		mav.setViewName("rating");
+
+		return mav;
 	}
-	
-	@RequestMapping(value="/ratingByMoney") 
+
+	@RequestMapping(value = "/ratingByMoney")
 	public ModelAndView showRatingBymoney(HttpServletRequest request) {
-		ModelAndView mav = new ModelAndView(); 
-		
+		ModelAndView mav = new ModelAndView();
+
 		mav.addObject("usersList", userRatingService.sortUsersByMoney());
 		// 0 == sort by exp, 1 == sort by money
 		mav.addObject("sortLabel", new Integer(1));
-		mav.setViewName("rating"); 
-		
-		return mav; 
+		mav.setViewName("rating");
+
+		return mav;
 	}
-	
+
 }
