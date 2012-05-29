@@ -15,8 +15,7 @@ public enum AreUsersInGame
 		@Override
 		public boolean start(Fight fight)
 		{
-			fight.getCreatorProfile().setHP(0);
-			fight.setWhoWins("connector");
+			fight.setWhoWins(fight.getProfile("connector"));
 			return true;
 		}
 	},
@@ -28,20 +27,19 @@ public enum AreUsersInGame
 		@Override
 		public boolean start(Fight fight)
 		{
-			fight.getConnectorProfile().setHP(0);
-			fight.setWhoWins("creator");
+			fight.setWhoWins(fight.getProfile("creator"));
 			return true;
 		}
 	},
 	/**
-	 * No exp No money. Continue game.
+	 * No exp No money. Game over.
 	 */
 	OFFLINE
 	{
 		@Override
 		public boolean start(Fight fight)
 		{
-			fight.setWhoWins("noWiners");
+			fight.setWhoWins(null);
 			return true;
 		}
 	};

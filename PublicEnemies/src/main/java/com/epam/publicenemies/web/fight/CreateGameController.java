@@ -34,6 +34,10 @@ public class CreateGameController
 		 */
 		Fight oldFight = (Fight) request.getSession().getAttribute("game");
 		String oldRole = (String) request.getSession().getAttribute("gameRole");
+		if (oldFight != null && !oldFight.isGameEnd())
+		{
+			return "redirect:fight.html";
+		}
 		Utils.isOldGameInSession(oldFight, oldRole);
 		/*
 		 * NEW GAME SETUP
@@ -53,6 +57,6 @@ public class CreateGameController
 		log.info("GAME: " + newFight.getId() + "  CREATED");
 		request.getSession().setAttribute("gameRole", "creator");
 		request.getSession().setAttribute("game", newFight);
-		return "redirect:fight.html?id=" + newFight.getId();
+		return "redirect:fight.html";
 	}
 }
