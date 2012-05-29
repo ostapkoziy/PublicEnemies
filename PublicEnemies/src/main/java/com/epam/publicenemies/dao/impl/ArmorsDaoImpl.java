@@ -18,6 +18,7 @@ import org.springframework.jdbc.support.KeyHolder;
 
 import com.epam.publicenemies.dao.IArmorsDao;
 import com.epam.publicenemies.domain.Armor;
+import com.epam.publicenemies.domain.User;
 
 /**
  * 
@@ -150,4 +151,25 @@ public class ArmorsDaoImpl implements IArmorsDao {
 		return i;
 	}	
 
+	/**
+	 * Get all users that have same armor
+	 * @param armorId - id of armor
+	 * @return list of users
+	 */
+	@Override
+	public List<User> getUsersWithArmor(int armorId) {
+		final String SELECT_SQL = "SELECT userId, email, password, regDate, money, avatar, " +
+				"userCharacter, nickName FROM users, charactersTrunks " +
+				"WHERE userCharacter=characterId AND itemType=3 AND itemId=?";
+		List<User> users = jdbcTemplate.query(SELECT_SQL, new Object[] {armorId}, new RowMapper<User>() {
+			public User mapRow (ResultSet resultSet, int rowNum) throws SQLException {
+				return new User(resultSet.getInt("userId"), resultSet.getString("email"), 
+						resultSet.getString("password"), resultSet.getString("nickName"),
+						resultSet.getInt("money"), resultSet.getString("avatar"),
+						resultSet.getInt("userCharacter"), resultSet.getTimestamp("regDate"));
+			}
+		});
+		log.info("ArmorsDaoImpl.getUsersWithArmor : where finded "+users.size()+" users");
+		return users;
+	}
 }

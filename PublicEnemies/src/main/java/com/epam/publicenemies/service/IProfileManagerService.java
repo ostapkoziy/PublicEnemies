@@ -123,9 +123,9 @@ public interface IProfileManagerService {
 
 	/**
 	 * Add some experience amount to userCharacter
-	 * @param userId - id of user
+	 * @param characterId - id of character
 	 * @param experience - experience amount to add
 	 * @return true if operation was successfully
 	 */
-	boolean addExperience(int userId, int experience);
+	boolean addExperience(int characterId, int experience);
 }

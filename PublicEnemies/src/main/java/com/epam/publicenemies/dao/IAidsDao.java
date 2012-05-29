@@ -3,6 +3,7 @@ package com.epam.publicenemies.dao;
 import java.util.List;
 
 import com.epam.publicenemies.domain.Aid;
+import com.epam.publicenemies.domain.User;
 
 /**
  * 
@@ -79,4 +80,11 @@ public interface IAidsDao {
 	 * @return amount of aids
 	 */
 	int getAidsAmount();
+	
+	/**
+	 * Get all users that have same aid
+	 * @param aidId - id of aid
+	 * @return list of users
+	 */
+	List<User> getUsersWithAid(int aidId);
 }

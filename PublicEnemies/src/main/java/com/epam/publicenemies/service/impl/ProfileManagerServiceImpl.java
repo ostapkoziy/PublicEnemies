@@ -207,12 +207,12 @@ public class ProfileManagerServiceImpl implements IProfileManagerService {
 
 	/**
 	 * Add some experience amount to userCharacter
-	 * @param userId - id of user
+	 * @param characterId - id of character
 	 * @param experience - experience amount to add
 	 * @return true if operation was successfully
 	 */
 	@Override
-	public boolean addExperience(int userId, int experience) {
-		return profileDao.addExperience(userId, experience);
+	public boolean addExperience(int characterId, int experience) {
+		return profileDao.addExperience(characterId, experience);
 	}
 }

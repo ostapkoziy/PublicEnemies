@@ -110,12 +110,6 @@ public class TableDaoImpl implements ITableDao {
 		final String fw = "INSERT INTO weapons (weaponName, weaponHitPoints, weaponType, weaponPicture, weaponPrice) ";
 		StringBuilder sql = new StringBuilder("");
 		//-------------------------------------------------------
-		/*sql.append(fw);
-		sql.append("VALUES ('Fist', 10, 0, './img/weapons/fist.png', 100)");
-		jdbcTemplate.update(sql.toString());
-		
-		sql.delete(0, sql.length());*/
-		//-------------------------------------------------------
 		sql.append(fw);
 		sql.append("VALUES ('Knuckle', 10, 0, './img/weapons/knuckle.png', 100)");
 		jdbcTemplate.update(sql.toString());
