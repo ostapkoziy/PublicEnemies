@@ -136,6 +136,7 @@ public class ProfileManagerServiceImpl implements IProfileManagerService {
 	 * @param weaponId - weapon id
 	 * @return true if operation is successfully
 	 */
+	@Override
 	public boolean dressWeapon1(int userId, int weaponId) {
 		return profileDao.dressWeapon1(userId, weaponId);
 	}
@@ -146,6 +147,7 @@ public class ProfileManagerServiceImpl implements IProfileManagerService {
 	 * @param weaponId - weapon id
 	 * @return true if operation is successfully
 	 */
+	@Override
 	public boolean dressWeapon2(int userId, int weaponId) {
 		return profileDao.dressWeapon2(userId, weaponId);
 	}
@@ -156,6 +158,7 @@ public class ProfileManagerServiceImpl implements IProfileManagerService {
 	 * @param aidId - aid id
 	 * @return true if operation is successfully
 	 */
+	@Override
 	public boolean dressAid(int userId, int aidId) {
 		return profileDao.dressAid(userId, aidId);
 	}
@@ -166,6 +169,7 @@ public class ProfileManagerServiceImpl implements IProfileManagerService {
 	 * @param armorId - armor id
 	 * @return true if operation is successfully
 	 */
+	@Override
 	public boolean dressArmor(int userId, int armorId) {
 		return profileDao.dressArmor(userId, armorId);
 	}
@@ -175,6 +179,7 @@ public class ProfileManagerServiceImpl implements IProfileManagerService {
 	 * @param userId - id of user
 	 * @return true if weapon2 slot is empty
 	 */
+	@Override
 	public boolean isEmptyWeapon2(int userId) {
 		return profileDao.isEmptyWeapon2(userId);
 	}
@@ -188,6 +193,7 @@ public class ProfileManagerServiceImpl implements IProfileManagerService {
 	 *            - amount of money
 	 * @return true if operation was successful
 	 */
+	@Override
 	public boolean updateMoney(int userId, int money)
 	{
 		if (userDao.updateMoney(userId, money))
@@ -197,5 +203,16 @@ public class ProfileManagerServiceImpl implements IProfileManagerService {
 		}
 		else
 			return false;
+	}
+
+	/**
+	 * Add some experience amount to userCharacter
+	 * @param userId - id of user
+	 * @param experience - experience amount to add
+	 * @return true if operation was successfully
+	 */
+	@Override
+	public boolean addExperience(int userId, int experience) {
+		return profileDao.addExperience(userId, experience);
 	}
 }

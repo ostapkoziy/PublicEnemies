@@ -1134,4 +1134,22 @@ public class ProfileDaoImpl implements IProfileDao {
 		} else 
 			return false;
 	}
+
+	/**
+	 * Add some experience amount to userCharacter
+	 * @param userId - id of user
+	 * @param experience - experience amount to add
+	 * @return true if operation was successfully
+	 */
+	@Override
+	public boolean addExperience(final int userId, final int experience) {
+		final String UPDATE_SQL = "UPDATE users, characters SET experience=experience+? WHERE " +
+				"userId=? AND userCharacter=characterId";
+		int i = jdbcTemplate.update(UPDATE_SQL, new Object[] {experience, userId});
+		if (i>0) {
+			log.info("ProfileDaoImpl.addExperience : "+experience+" experience where added to user("+userId+")");
+			return true;
+		} else
+			return false;
+	}
 }
