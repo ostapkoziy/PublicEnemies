@@ -1,5 +1,6 @@
 body {
 	background-image: url(../img/layout/casino.png);
+	background-attachment: fixed;
 	background-repeat: no-repeat;
 	color: white;
 	font-family: 'impact';

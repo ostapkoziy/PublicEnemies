@@ -62,7 +62,19 @@ public class PokerCreateController {
 		 */
 		request.getSession().setAttribute("pokerGame", pokerGame);
 		ModelAndView mav = new ModelAndView(new RedirectView("pokerGame.html"));
-		Integer chips = Integer.valueOf(request.getParameter("chips"));
+		Integer chips;
+		if(userProfile.getMoney() >= 3000){
+			chips = 3000;
+		}else{
+			chips = userProfile.getMoney();
+		}
+		try{
+			chips = Integer.valueOf(request.getParameter("chips"));
+		}catch (NumberFormatException e){
+			//ignore the exception and set default chip
+		}
+		userProfile.setMoney(userProfile.getMoney() - chips);
+		
 		request.getSession().setAttribute("chips", chips);
 		
 		//mav.addObject("chips", chips);

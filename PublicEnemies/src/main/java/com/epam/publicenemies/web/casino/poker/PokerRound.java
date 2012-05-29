@@ -40,6 +40,7 @@ public class PokerRound {
 		table.setSmallBlind(sb);
 		table.setBigBlind(bb);
 		pot = 0;
+		//result = "none";
 	}
 	
 	public int getPlayer1Bet() {
@@ -84,6 +85,8 @@ public class PokerRound {
 			this.setPlayer1Bet(table.getSmallBlind());
 			this.setPlayer2Bet(table.getBigBlind());
 		}
+		log.info("PokerRound player1bet - " + getPlayer1Bet());
+		log.info("PokerRound player2bet - " + getPlayer2Bet());
 	}
 
 	public List<PokerCard> flop(){
@@ -139,16 +142,17 @@ private PokerCard getUniqueCard() {
 	//	if(!gameFinished){
 		log.info("player1combo - " + player1Combination.getName());
 		log.info("player2combo - " + player2Combination.getName());
-			if (PokerCombination.compare(player1Combination, player2Combination) == player1Combination){
-				result = player1.getName()+" won with "+ player1Combination.getName();
-			}else if(PokerCombination.compare(player1Combination, player2Combination) == player2Combination){
-				result = player2.getName()+" won with "+ player2Combination.getName();
-			}else{
+			try{
+				if (PokerCombination.compare(player1Combination, player2Combination) == player1Combination){
+					result = player1.getName()+" won with "+ player1Combination.getName();
+				}else if(PokerCombination.compare(player1Combination, player2Combination) == player2Combination){
+					result = player2.getName()+" won with "+ player2Combination.getName();
+				}
+			}catch (NullPointerException e){
 				result = "Split pot";
+				return result;
 			}
-	/*	}else{
-			System.out.println("One of the players folded");
-		}*/
+
 		return result;
 	}
 

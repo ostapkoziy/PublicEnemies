@@ -1,0 +1,40 @@
+body {
+ 	background-image: url(../img/style_fight.png); 
+	background-repeat: no-repeat;
+	background-color: black;
+	color: white;
+	font-family: 'impact';
+	font-size: 14pt;
+}
+h1 {
+	color: red;
+}
+A:link {text-decoration: underline; color: white}
+A:visited {text-decoration: none}
+A:hover {text-decoration: underline; color: red;}
+table.sample {
+	margin-top: 100px;
+	background-image: url("../img/dark_opacity.png");
+	
+	border-width: 3px;
+	border-spacing: 2px;
+	border-style: outset;
+	border-color: #3A2F0B;
+	border-collapse: separate;
+}
+
+table.sample th {
+	border-width: 0px;
+	padding: 3px;
+	border-style: none;
+	border-color: #3A2F0B;
+	-moz-border-radius:;
+}
+
+table.sample td {
+	border-width: 0px;
+	padding: 3px;
+	border-style: none;
+	border-color: #3A2F0B;
+	-moz-border-radius:;
+}

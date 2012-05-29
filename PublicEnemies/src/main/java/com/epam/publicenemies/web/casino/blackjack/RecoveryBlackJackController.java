@@ -2,6 +2,7 @@ package com.epam.publicenemies.web.casino.blackjack;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -14,17 +15,18 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.epam.publicenemies.domain.Profile;
 import com.epam.publicenemies.domain.blackjack.BlackJackCard;
 import com.epam.publicenemies.domain.blackjack.BlackJackDeck;
 import com.epam.publicenemies.domain.blackjack.BlackJackGame;
 import com.epam.publicenemies.domain.blackjack.BlackJackGameList;
 import com.epam.publicenemies.domain.blackjack.BlackJackRound;
+import com.epam.publicenemies.service.IProfileManagerService;
 import com.google.gson.Gson;
 
 @Controller
-public class StandBlackJackController {
-	private static Logger log = Logger
-			.getLogger(StandBlackJackController.class);
+public class RecoveryBlackJackController {
+	private static Logger log = Logger.getLogger(RecoveryBlackJackController.class);
 
 	@Autowired
 	@Qualifier("games")
@@ -33,50 +35,17 @@ public class StandBlackJackController {
 	public void setGames(BlackJackGameList games) {
 		this.games = games;
 	}
-
-	@Autowired
-	@Qualifier("deck")
-	private BlackJackDeck deck;
-
-	public void setDeck(BlackJackDeck deck) {
-		this.deck = deck;
-	}
-
-	@Autowired
-	@Qualifier("engine")
-	private BlackJackEngine engine;
-
-	public void setEnhine(BlackJackEngine engine) {
-		this.engine = engine;
-	}
-
-	@RequestMapping("/standBlackJackController")
-	public void stand(HttpServletRequest request, HttpServletResponse response)
+	
+	
+	@RequestMapping("/recoveryBlackJackController")
+	public void recovery(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
 		// Get userId
 		Integer userId = (Integer) request.getSession().getAttribute("userId");
-
+	
 		// Get game
 		BlackJackGame game = games.getGameById(userId);
-		BlackJackRound round = game.getRound();
-
-		// Take cards for dealer
-		List<BlackJackCard> dealerCards = round.getDealerCards();
-		int dealerPoints = 0;
-		do {
-			dealerCards.add(deck.getCard());
-			dealerPoints = engine.calculatePoints(dealerCards);
-		} while (dealerPoints < 17);
-
-		// Check result
-		String playerResult = engine.checkResult(round.getPlayerPoints(),
-				dealerPoints);
-		game.setChips(engine.updateChips(playerResult, game.getChips(),
-				round.getPlayerBet()));
-
-		// Set round
-		round.setPlayerResult(playerResult);
 
 		// Round to json
 		PrintWriter out = response.getWriter();
@@ -84,8 +53,5 @@ public class StandBlackJackController {
 
 		out.print(gson.toJson(game));
 		out.flush();
-		
-		// Set null for split
-		round.setPlayerCardsSplit(null);
 	}
 }

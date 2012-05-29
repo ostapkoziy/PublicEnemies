@@ -61,7 +61,8 @@ public class ShopController {
 		}
 		
 		mav.addObject("money", pd.getMoney()); 
-		mav.addObject("profile", pd); 
+		mav.addObject("profile", pd);
+		mav.addObject("profileInfo", pd);
 		mav.addObject("aidsList", aids);
 		mav.addObject("armorsList", armors);
 		mav.addObject("weaponsList", weapons);		 

@@ -33,6 +33,7 @@ public class PokerServlet {
 	private Logger log = Logger.getLogger(PokerServlet.class);
 	private PokerGame pokerGame;
 	static int partCounter = -1;
+	private boolean dealer = false;
 	private PokerCombination player1Combination, player2Combination;
 	
 	@Autowired	
@@ -59,19 +60,29 @@ public class PokerServlet {
 		log.info(pokerGame.getUser1Profile().getNickName() + " BET " + userBet);
 		pokerGame.getPokerGameRound().move = !pokerGame.getPokerGameRound().move;
 		int bet = 0;
-		int bet2 = Integer.valueOf(computerBet);
+		int bet2 = 0;
+		bet2 = Integer.valueOf(computerBet);
 		bet = Integer.valueOf(userBet);
 		
-		if((bet2 < 0)){
+		if((bet2 == -2)){
 			resetGame(request, response);
 			pokerGame.getPokerGameRound().setResult("New Round");
 			log.info("New Round!");
-			sendData(request, response, bet2);
-			return;
+			sendData(request, response, -1);
+			if(pokerGame.getPokerGameRound().isDealer() == false){
+				return;
+			}else{
+				//sendData(request, response, -1);
+				
+				pokerGame.getPokerGameRound().setResult("none");
+				return;
+			}
+			
 		}
 		
 		if(bet == -1){
 			partCounter = 0;
+			bet = 0;
 		}
 		
 		bet += pokerGame.getPokerGameRound().getPlayer1Bet();
@@ -83,19 +94,26 @@ public class PokerServlet {
 		//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 		
 		if(partCounter == 0){
+			log.info("PreFlop");
 			pokerGame.setComment("PreFlop");
 			int botBet = 0;
 			if(pokerGame.getPokerGameRound().getPlayer1Bet() > pokerGame.getPokerGameRound().getPlayer2Bet()){
-				
-				try {
-					botBet = pokerGame.getPokerGameRound().getPlayer2().makeMove(pokerGame);
-				} catch (FoldException e) {
-					partCounter = -1;
-					playerFolded = true;
-					log.info("Bot folded");
-					pokerGame.getPokerGameRound().setResult("Bot folded");
+				/*try {
+				botBet = pokerGame.getPokerGameRound().getPlayer2().makeMove(pokerGame);
+			} catch (FoldException e) {
+				partCounter = -1;
+				playerFolded = true;
+				log.info("Bot folded");
+				pokerGame.getPokerGameRound().setResult("Bot folded");
+			}*/
+			botBet = pokerGame.getPokerGameRound().getPlayer1Bet() - pokerGame.getPokerGameRound().getPlayer2Bet();
+			if(pokerGame.getPokerGameRound().isDealer()== true){
+				if(bet == 0){
+					botBet+=50;
+					log.info("bot bulls");
 				}
-				pokerGame.getPokerGameRound().setPlayer2Bet(pokerGame.getPokerGameRound().getPlayer2Bet() + botBet);
+			}
+			pokerGame.getPokerGameRound().setPlayer2Bet(pokerGame.getPokerGameRound().getPlayer2Bet() + botBet);
 			}
 			log.info("BETS - " + pokerGame.getPokerGameRound().getPlayer1Bet() + " and " + pokerGame.getPokerGameRound().getPlayer2Bet());
 			if(pokerGame.getPokerGameRound().getPlayer1Bet() == pokerGame.getPokerGameRound().getPlayer2Bet()){
@@ -105,7 +123,7 @@ public class PokerServlet {
 				List<PokerCard> flop = pokerGame.getPokerGameRound().flop();
 				log.info("Poker flop - " + flop);
 			}
-			log.info("Bot bet - " + botBet +" to make his bet a total of " + pokerGame.getPokerGameRound().getPlayer2Bet());
+			log.info("on preflop Bot bet - " + botBet +" to make his bet a total of " + pokerGame.getPokerGameRound().getPlayer2Bet());
 			sendData(request, response, bet);
 		}
 		
@@ -114,13 +132,21 @@ public class PokerServlet {
 			log.info("FLOP USER BET IS - " + bet);
 			int botBet = 0;
 			if(pokerGame.getPokerGameRound().getPlayer1Bet() > pokerGame.getPokerGameRound().getPlayer2Bet()){
-				try {
+				/*try {
 					botBet = pokerGame.getPokerGameRound().getPlayer2().makeMove(pokerGame);
 				} catch (FoldException e) {
 					partCounter = -1;
 					playerFolded = true;
 					log.info("Bot folded");
 					pokerGame.getPokerGameRound().setResult("Bot folded");
+				}*/
+				botBet = pokerGame.getPokerGameRound().getPlayer1Bet() - pokerGame.getPokerGameRound().getPlayer2Bet();
+				if(pokerGame.getPokerGameRound().isDealer()== true){
+					if(bet == 0){
+						botBet+=50;
+						log.info("bot bulls");
+					}
+					
 				}
 				pokerGame.getPokerGameRound().setPlayer2Bet(pokerGame.getPokerGameRound().getPlayer2Bet() + botBet);
 			}
@@ -131,6 +157,7 @@ public class PokerServlet {
 				log.info("Poker turn - " + turn);
 				log.info("Bot bet - " + pokerGame.getPokerGameRound().getPlayer2Bet());
 			}
+			log.info("on flop Bot bet - " + botBet +" to make his bet a total of " + pokerGame.getPokerGameRound().getPlayer2Bet());
 			sendData(request, response, bet);
 		}
 		
@@ -139,16 +166,22 @@ public class PokerServlet {
 			log.info("TURN USER BET IS - " + bet);
 			int botBet = 0;
 			if(pokerGame.getPokerGameRound().getPlayer1Bet() > pokerGame.getPokerGameRound().getPlayer2Bet()){
-				
-				try {
-					botBet = pokerGame.getPokerGameRound().getPlayer2().makeMove(pokerGame);
-				} catch (FoldException e) {
-					partCounter = -1;
-					playerFolded = true;
-					log.info("Bot folded");
-					pokerGame.getPokerGameRound().setResult("Bot folded");
+				/*try {
+				botBet = pokerGame.getPokerGameRound().getPlayer2().makeMove(pokerGame);
+			} catch (FoldException e) {
+				partCounter = -1;
+				playerFolded = true;
+				log.info("Bot folded");
+				pokerGame.getPokerGameRound().setResult("Bot folded");
+			}*/
+			botBet = pokerGame.getPokerGameRound().getPlayer1Bet() - pokerGame.getPokerGameRound().getPlayer2Bet();
+			if(pokerGame.getPokerGameRound().isDealer()== true){
+				if(bet == 0){
+					botBet+=50;
+					log.info("bot bulls");
 				}
-				pokerGame.getPokerGameRound().setPlayer2Bet(pokerGame.getPokerGameRound().getPlayer2Bet() + botBet);
+			}
+			pokerGame.getPokerGameRound().setPlayer2Bet(pokerGame.getPokerGameRound().getPlayer2Bet() + botBet);
 			}
 			if(pokerGame.getPokerGameRound().getPlayer1Bet() == pokerGame.getPokerGameRound().getPlayer2Bet()){
 				partCounter ++;
@@ -158,6 +191,7 @@ public class PokerServlet {
 				
 				log.info("Bot bet - " + pokerGame.getPokerGameRound().getPlayer2Bet());
 			}
+			log.info("on turn Bot bet - " + botBet +" to make his bet a total of " + pokerGame.getPokerGameRound().getPlayer2Bet());
 			sendData(request, response, bet);
 		}
 		
@@ -166,20 +200,26 @@ public class PokerServlet {
 			log.info("RIVER USER BET IS - " + bet);
 			int botBet = 0;
 			if(pokerGame.getPokerGameRound().getPlayer1Bet() > pokerGame.getPokerGameRound().getPlayer2Bet()){
-				
-				try {
-					botBet = pokerGame.getPokerGameRound().getPlayer2().makeMove(pokerGame);
-				} catch (FoldException e) {
-					partCounter = -1;
-					playerFolded = true;
-					log.info("Bot folded");
-					pokerGame.getPokerGameRound().setResult("Bot folded");
+				/*try {
+				botBet = pokerGame.getPokerGameRound().getPlayer2().makeMove(pokerGame);
+			} catch (FoldException e) {
+				partCounter = -1;
+				playerFolded = true;
+				log.info("Bot folded");
+				pokerGame.getPokerGameRound().setResult("Bot folded");
+			}*/
+			botBet = pokerGame.getPokerGameRound().getPlayer1Bet() - pokerGame.getPokerGameRound().getPlayer2Bet();
+			if(pokerGame.getPokerGameRound().isDealer()== true){
+				if(bet == 0){
+					botBet+=50;
+					log.info("bot bulls");
 				}
-				pokerGame.getPokerGameRound().setPlayer2Bet(pokerGame.getPokerGameRound().getPlayer2Bet() + botBet);
+			}
+			pokerGame.getPokerGameRound().setPlayer2Bet(pokerGame.getPokerGameRound().getPlayer2Bet() + botBet);
 			}
 			if(pokerGame.getPokerGameRound().getPlayer1Bet() == pokerGame.getPokerGameRound().getPlayer2Bet()){
 				pokerGame.getPokerGameRound().setPot(pokerGame.getPokerGameRound().getPlayer1Bet() + pokerGame.getPokerGameRound().getPlayer2Bet());
-				log.info("Bot bet - " + pokerGame.getPokerGameRound().getPlayer2Bet());
+				log.info("on river Bot bet - " + botBet +" to make his bet a total of " + pokerGame.getPokerGameRound().getPlayer2Bet());
 				log.info("Poker Showdown");
 				pokerGame.setComment("Showdown");
 				pokerGame.getPokerGameRound().setPot(pokerGame.getPokerGameRound().getPlayer1Bet() + pokerGame.getPokerGameRound().getPlayer2Bet());
@@ -229,8 +269,8 @@ public class PokerServlet {
 			throws ServletException, IOException{
 		PrintWriter out = response.getWriter();
 		JSONSerializer ser = new JSONSerializer();
-		pokerGame.getPokerGameRound().setPlayer1Bet(bet);
-		if(bet >= 0){
+		if((bet >= 0) && (bet != -1)){
+			pokerGame.getPokerGameRound().setPlayer1Bet(bet);
 			int money = pokerGame.getUser1Profile().getMoney();
 			money -= bet;
 			pokerGame.getUser1Profile().setMoney(money);
@@ -242,6 +282,8 @@ public class PokerServlet {
 
 	
 	private void resetGame(HttpServletRequest request, HttpServletResponse response){
+		JSONSerializer ser = new JSONSerializer();
+		
 		IPokerPlayer p1 = pokerGame.getPokerGameRound().getPlayer1();
 		IPokerPlayer p2 = pokerGame.getPokerGameRound().getPlayer2();
 		int sb1 = pokerGame.getPokerGameRound().getTable().getSmallBlind();
@@ -249,20 +291,24 @@ public class PokerServlet {
 		int money1 = pokerGame.getUser1Profile().getMoney();
 		int money2 = pokerGame.getPokerGameRound().getPlayer2().getCash();
 		Profile userProfile = profileManagerService.getProfileByUserId((Integer) request.getSession().getAttribute("userId"));
-		PokerGame pokerGame = new PokerGame();
+		pokerGame = new PokerGame();
+		pokerGame.setComment("PreFlop");
 		pokerGame.setId(new Random().nextInt());
 		pokerGame.setUser1Profile(userProfile);
 		pokerGame.setPokerGameRound(new PokerRound(p1, p2, sb1, bb1));
-		pokerGame.getPokerGameRound().setDealer(false);
+		dealer = !dealer;
+		pokerGame.getPokerGameRound().setDealer(true);
+		pokerGame.getPokerGameRound().setResult("none");
 		pokerGame.getPokerGameRound().getPlayer1().setCash(money1);
 		pokerGame.getPokerGameRound().getPlayer2().setCash(money2);
+		pokerGame.getPokerGameRound().setPlayer1Bet(0);
 		pokerGame.getPokerGameRound().initGame();
+		log.info("game inited here - " + ser.serialize(pokerGame));
 		partCounter = 0;
 		request.getSession().setAttribute("pokerGame", pokerGame);
 		request.getSession().setAttribute("userBet", 0);
 		request.getSession().setAttribute("botBet", 0);
 		Integer chips = money1;
 		request.getSession().setAttribute("chips", chips);
-		log.info("EVERYTHING RENEWED!");
 	}
 }

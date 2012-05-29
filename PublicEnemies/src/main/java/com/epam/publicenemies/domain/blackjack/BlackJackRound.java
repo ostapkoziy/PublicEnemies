@@ -4,6 +4,7 @@ import java.util.List;
 
 public class BlackJackRound {
 	private List<BlackJackCard> playerCards;
+	private List<BlackJackCard> playerCardsSplit;
 	private List<BlackJackCard> dealerCards;
 	private int playerBet;
 	private int playerPoints;
@@ -38,6 +39,12 @@ public class BlackJackRound {
 	}
 	public void setPlayerResult(String playerResult) {
 		this.playerResult = playerResult;
+	}
+	public List<BlackJackCard> getPlayerCardsSplit() {
+		return playerCardsSplit;
+	}
+	public void setPlayerCardsSplit(List<BlackJackCard> playerCardsSplit) {
+		this.playerCardsSplit = playerCardsSplit;
 	}
 
 }

@@ -1,6 +1,5 @@
-<div style="border: 2px, solid, white">
-	
-	<table>
+<div style="margin-top: 0px;">
+	<table style="width: 100%; height: 100%;">
 		<tr>
 			<td width="100" align="left"><a href="userStartPage.html"><img src="img/gamelogo_small.png"
 				width="100px"></img></a></td>

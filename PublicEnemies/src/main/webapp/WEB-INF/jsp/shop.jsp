@@ -26,6 +26,8 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	$('.tTip').betterTooltip({speed: 150, delay: 300});
+	
+	$("#money, #dollar").hide();
 });
 function showNoMoney() {
 	alert('To get money, send appropriate amount of money for 09675787** phone number and send SMS to this number with your nickname. 1grn = $100. Min sum = 5grn');
@@ -36,12 +38,12 @@ function showNoMoney() {
 </head>
 
 <body>
-	<!-- HEADER (TODO: need to refactor) -->
 	<div class="shop_header">
-		<div id="main_page">
+		<jsp:include page="simple_header.jsp"></jsp:include>
+		<img id="dollar" src="./img/dollar_sign.png"> <span id="money">${money}</span>
+<!-- 		<div id="main_page">
 			<a href="userStartPage.html">MAIN PAGE </a>
 		</div>
-		<img src="./img/dollar_sign.png"> <span id="money">${money}</span>
 		<div class="left_header_items">
 			<a href="logout.html">LOGOUT</a> <br />
 		</div>
@@ -49,9 +51,8 @@ function showNoMoney() {
 			<a href="profile.html"> <img src="${profile.getAvatar()}"
 				title="${profile.getNickName()}'s profile" border="0" width="40px"></img>
 			</a>
-		</div>
+		</div> --!>
 	</div>
-
 	<!-- ------------------------------ CONTENT AREA ------------------------------ -->
 	<div id="center_div">
 		<!-- COUNTERS -->
@@ -66,11 +67,11 @@ function showNoMoney() {
 		<table width="100%">
 			<tr valign="top">
 				<!-- DISPLAYS WHAT USER HAVE -->
-				<td>
+				<td align="right">
 					<!-- USER'S TRUNK -->
 					<div id="user_div">
 						<div>
-							<div>INTO TRUNK:</div>
+							<div>YOUR ITEMS:</div>
 							<div class="margin_div_vertical"></div>
 							<div>
 								<span class="weapon_name"> WEAPONS </span>
@@ -78,6 +79,7 @@ function showNoMoney() {
 							<div class="margin_div_vertical"></div>
 							<!-- DISPLAYS ALL WEAPONS INTO TRUNK -->
 							<!-- IF THERE IS WEAPONS INTO TRUNK -->
+							<div id="weapon_shop">
 							<c:choose>
 								
 								<c:when test="${profile.getUndresedWeapons().size() != 0}">
@@ -114,6 +116,7 @@ function showNoMoney() {
 									<div class="item"></div>
 								</c:otherwise>
 							</c:choose>
+						</div>
 						</div>
 						<!-- END OF "DISPLAYS ALL WEAPONS INTO TRUNK" -->
 						<div class="magrin_div_vertical"></div>
@@ -283,10 +286,10 @@ function showNoMoney() {
 					</div> <!-- END OF "DISPLAYS WHAT USER WEARED IN" -->
 				</td>
 				<!-- END OF "DISPLAYS WHAT USER HAVE" -->
-				<td>
+				<td align="center" width="100">
 					<!-- USER'S CART -->
 					<div id="basket_div">
-						<div id="balance_inscription">BALANCE AFTER APPROVING:</div>
+						<div id="balance_inscription">Balance:</div>
 						<div id="balance_after">
 							<span id="money_value">$ ${profile.getMoney()}</span>
 						</div>
@@ -306,8 +309,10 @@ function showNoMoney() {
 				</td>
 				<td>
 					<!-- DISPLAYS WHAT USER CAN BUY -->
-					<div id="shop_div">
+					<div id="shop_div" align="right">
 						<!-- WEAPONS -->
+						<div>SHOP ITEMS</div>
+						<div class="margin_div_vertical"></div>
 						<div>
 							<span class="weapon_name">WEAPONS </span>
 							<div class="margin_div_vertical"></div>

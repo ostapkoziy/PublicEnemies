@@ -49,8 +49,8 @@ public class HitBlackJackController {
 		this.engine = engine;
 	}
 
-	@RequestMapping("/HitBlackJackController")
-	public void deal(HttpServletRequest request, HttpServletResponse response)
+	@RequestMapping("/hitBlackJackController")
+	public void hit(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
 		// Get userId
@@ -61,7 +61,12 @@ public class HitBlackJackController {
 		BlackJackRound round = game.getRound();
 
 		// Take 1 card for player
-		List<BlackJackCard> playerCards = round.getPlayerCards();
+		List<BlackJackCard> playerCards;
+		if (round.getPlayerCardsSplit() == null) {
+			playerCards = round.getPlayerCards();
+		} else {
+			playerCards = round.getPlayerCardsSplit();
+		}
 		playerCards.add(deck.getCard());
 
 		// Calculate player points
@@ -69,10 +74,10 @@ public class HitBlackJackController {
 
 		// Check result
 		String playerResult = engine.checkResult(playerPoints);
-		game.setChips(engine.updateChips(playerResult, game.getChips(), round.getPlayerBet()));
+		game.setChips(engine.updateChips(playerResult, game.getChips(),
+				round.getPlayerBet()));
 
 		// Set round
-		round.setPlayerCards(playerCards);
 		round.setPlayerPoints(playerPoints);
 		round.setPlayerResult(playerResult);
 
@@ -82,5 +87,9 @@ public class HitBlackJackController {
 
 		out.print(gson.toJson(game));
 		out.flush();
+		
+		if(playerResult != null){
+			round.setPlayerCardsSplit(null);
+		}
 	}
 }

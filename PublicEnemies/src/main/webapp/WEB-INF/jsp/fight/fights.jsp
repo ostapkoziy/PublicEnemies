@@ -6,64 +6,30 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Game</title>
 <script type="text/javascript" src="js/jquery-1.7.2.js"></script>
-<style type="text/css">
-body {
-	background-image: url('img/bg_city.png');
-	color: white;
-	font-family: 'impact';
-	font-size: 14pt;
-}
-
-table {
-	background-color: black
-}
-
-A:link {
-	text-decoration: underline;
-	color: white
-}
-
-A:visited {
-	text-decoration: none;
-	color: white;
-}
-
-A:hover {
-	text-decoration: underline;
-	color: red;
-}
-
-table#main {
-	background-color: #444D48;
-	opacity: .6;
-	filter: alpha(opacity =        60);
-	-moz-opacity: .6;
-	border-width: 3px;
-	border-spacing: 5px;
-	border-style: outset;
-	border-color: white;
-	border-collapse: separate;
-}
-</style>
+<link rel="stylesheet" href="css/fights.css" type="text/css">
 </head>
 <body>
 	<table align="center" width="100%" style="background-color: transparent">
-		<tr>
+		<tr style="margin-top: 2px;">
 			<td style="background-color: black; width: 100%;">
 				<!--  up bar with stats, gamelogo, avatar -->
+			<div style="border-radius: 15px;">
 				<jsp:include page="../simple_header.jsp"></jsp:include>
+			</div>
 			</td>
 		</tr>
 		<tr>
 			<td>
-				<table id="main" align="center" width="500" height="500" style="margin-top: 50px">
+				<table class="sample" align="center" width="500" height="500" style="margin-top: 50px">
 					<tr>
 						<td>
 							<div>
 								<form action="createGame.html" method="post">
-									<button id="create" type="submit">Create</button>
+									<button id="create" type="submit">Create game</button>
 								</form>
-								<!-- 								<a href="allGames.html">ALL GAMES</a> -->
+							</div>
+							<div>
+								<!-- <a href="allGames.html">ALL GAMES</a> -->
 								<div id="games">
 									<c:forEach items="${list}" var="game">
 										<form action="connect.html" method="post">
