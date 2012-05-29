@@ -462,7 +462,8 @@ public class UserDaoImpl implements IUserDao {
 	 */
 	@Override
 	public List<Map<String, Object>> getUsersSortedByExperience() {
-		final String SELECT_SQL = "SELECT nickName, experience AS value FROM users, characters WHERE userCharacter=characterId ORDER BY experience";
+		final String SELECT_SQL = "SELECT nickName, experience AS value FROM users, characters WHERE " +
+				"userCharacter=characterId ORDER BY experience DESC";
 		List<Map<String, Object>> list = jdbcTemplate.queryForList(SELECT_SQL);
 		log.info("UserDaoImpl.getUsersSortedByExperience : "+list.size()+" users were fetched");
 		return list;
@@ -474,7 +475,7 @@ public class UserDaoImpl implements IUserDao {
 	 */
 	@Override
 	public List<Map<String, Object>> getUsersSortedByMoney() {
-		final String SELECT_SQL = "SELECT nickName, money AS value FROM users ORDER BY money";
+		final String SELECT_SQL = "SELECT nickName, money AS value FROM users ORDER BY money DESC";
 		List <Map<String, Object>> list = jdbcTemplate.queryForList(SELECT_SQL);
 		log.info("UserDaoImpl.getUsersSortedByMoney : "+list.size()+" users were fetched");
 		return list;
