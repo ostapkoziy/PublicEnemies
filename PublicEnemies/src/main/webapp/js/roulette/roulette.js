@@ -5,7 +5,6 @@
 	var clearBetToggle = new Boolean(false);
 	var faded = "0.6";
 $(document).ready(function(){
-	
 
 	$("#clearBet").toggle(function(){
 		$(this).css("opacity", faded);

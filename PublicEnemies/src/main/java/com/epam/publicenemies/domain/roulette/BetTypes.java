@@ -22,37 +22,37 @@ public enum BetTypes {
 
 		if ((betType==COLUMN1)&&(betNumbers[46]!=null)) {
 			for (int i = 1; i<=36; i+=3){
-				if ((betNumbers[i]!=null)&&(betNumbers[i]==rnd)) return this.WinMultiplier*betNumbers[46]; //46 is index of COLUMN 1 in JSP
+				if (i==rnd) return this.WinMultiplier*betNumbers[46]; //46 is index of COLUMN 1 in JSP
 			}
 		}
 
 		if ((betType==COLUMN2)&&(betNumbers[47]!=null)) {
 			for (int i = 2; i<=36; i+=3){
-				if ((betNumbers[i]!=null)&&(betNumbers[i]==rnd)) return this.WinMultiplier*betNumbers[47]; //47 is index of COLUMN 2 in JSP
+				if (i==rnd) return this.WinMultiplier*betNumbers[47]; //47 is index of COLUMN 2 in JSP
 			}
 		}
 
 		if ((betType==COLUMN3)&&(betNumbers[48]!=null)) {
 			for (int i = 3; i<=36; i+=3){
-				if ((betNumbers[i]!=null)&&(betNumbers[i]==rnd)) return this.WinMultiplier*betNumbers[48]; //48 is index of COLUMN 3 in JSP
+				if (i==rnd) return this.WinMultiplier*betNumbers[48]; //48 is index of COLUMN 3 in JSP
 			}
 		}
 
 		if ((betType==DOZEN1)&&(betNumbers[37]!=null)) {
 			for (int i = 1; i<=12; i++){
-				if ((betNumbers[i]!=null)&&(betNumbers[i]==rnd)) return this.WinMultiplier*betNumbers[37];
+				if (i==rnd) return this.WinMultiplier*betNumbers[37];
 			}
 		}
 
 		if ((betType==DOZEN2)&&(betNumbers[38]!=null)) {
 			for (int i = 13; i<=24; i++){
-				if ((betNumbers[i]!=null)&&(betNumbers[i]==rnd)) return this.WinMultiplier*betNumbers[38];
+				if (i==rnd) return this.WinMultiplier*betNumbers[38];
 			}
 		}
 		
 		if ((betType==DOZEN3)&&(betNumbers[39]!=null)) {
 			for (int i = 25; i<=36; i++){
-				if ((betNumbers[i]!=null)&&(betNumbers[i]==rnd)) return this.WinMultiplier*betNumbers[39];
+				if (i==rnd) return this.WinMultiplier*betNumbers[39];
 			}
 		}
 
@@ -72,25 +72,25 @@ public enum BetTypes {
 
 		if ((betType==EVEN)&&(betNumbers[43]!=null)) {
 			for (int i = 2; i<=36; i+=2){
-				if ((betNumbers[i]!=null)&&(betNumbers[i]==rnd)) return this.WinMultiplier*betNumbers[43];
+				if (i==rnd) return this.WinMultiplier*betNumbers[43];
 			}
 		}
 
 		if ((betType==ODD)&&(betNumbers[40]!=null)) {
 			for (int i = 1; i<=36; i+=2){
-				if ((betNumbers[i]!=null)&&(betNumbers[i]==rnd)) return this.WinMultiplier*betNumbers[40];
+				if (i==rnd) return this.WinMultiplier*betNumbers[40];
 			}
 		}
 
 		if ((betType==LOW)&&(betNumbers[44]!=null)) {
 			for (int i = 1; i<=18; i++){
-				if ((betNumbers[i]!=null)&&(betNumbers[i]==rnd)) return this.WinMultiplier*betNumbers[44];
+				if (i==rnd) return this.WinMultiplier*betNumbers[44];
 			}
 		}
 		
 		if ((betType==HIGH)&&(betNumbers[45]!=null)) {
 			for (int i = 19; i<=36; i++){
-				if ((betNumbers[i]!=null)&&(betNumbers[i]==rnd)) return this.WinMultiplier*betNumbers[45];
+				if (i==rnd) return this.WinMultiplier*betNumbers[45];
 			}
 		}
 		
