@@ -19,7 +19,7 @@
 <body>
 
 <div id="layer1">
-    <img src="/PublicEnemies/img/404error.png" height="100%" width="100%" alt="">
+    <img src="/PublicEnemies/img/500error.png" height="100%" width="100%" alt="">
   </div>
 </body>
 </html>
