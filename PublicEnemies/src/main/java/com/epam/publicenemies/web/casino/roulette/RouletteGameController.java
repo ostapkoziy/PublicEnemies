@@ -46,8 +46,9 @@ public class RouletteGameController{
 			log.debug("No "+ RouletteGameController.class +" instance, creating new one for session.");
 			rouletteGameInfo = new RouletteGameInfo();
 			
-			if (request.getParameter("chips")!=null) rouletteGameInfo.setChips(Integer.valueOf(request.getParameter("chips")));
-			else rouletteGameInfo.setChips(0);
+			try{
+			rouletteGameInfo.setChips(Integer.valueOf(request.getParameter("chips")));
+			}catch(NumberFormatException e){rouletteGameInfo.setChips(0);}
 			
 			session.setAttribute("rouletteGameInfo", rouletteGameInfo);
 			return "rouletteGame";

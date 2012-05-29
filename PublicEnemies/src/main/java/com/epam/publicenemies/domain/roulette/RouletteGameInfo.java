@@ -8,6 +8,7 @@ public class RouletteGameInfo {
 	private int luckyNumber;
 	private int chips;
 	private String msg = "";
+	private String[] history;
 
 	public int getPrize() {
 		return prize;
@@ -44,5 +45,11 @@ public class RouletteGameInfo {
 	}
 	public void setChips(int chips) {
 		this.chips = chips;
+	}
+	public String[] getHistory() {
+		return history;
+	}
+	public void setHistory(String[] history) {
+		this.history = history;
 	}
 }

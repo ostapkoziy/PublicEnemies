@@ -23,8 +23,8 @@
 		<p><b><c:out value="${rouletteGameInfo.msg}" /></b>
 	</div>
 
-	<div class="panel" id="leftPanel">leftPanel<p>BET AMOUNT<p>BET:<h1 id="showBet">0</h1></div>
-	<div class="panel" id="rightPanel">RightPanel<p>HISTORY</div>
+	<div class="panel" id="leftPanel">leftPanel<p>Bet on table:<div id="betOnTable">0</div><p>Current BET:<h2 id="showBet">0</h2></div>
+	<div class="panel" id="rightPanel">RightPanel<p>HISTORY<p><c:out value="${rouletteGameInfo.history}" /></div>
 	<div class="panel" id="centerPanel">
 <img id="rouletteTable" src="img/roulette/table.png" usemap="rouletteNumbers" border="0" width="800" height="362" alt="" />
 <map id="rouletteNumbers" name="rouletteNumbers">
