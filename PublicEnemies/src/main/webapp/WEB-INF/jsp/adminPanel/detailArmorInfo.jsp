@@ -4,9 +4,33 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="../../../css/adminpanel/commonstyle.css" rel="stylesheet"
+	type="text/css">
 <title>Detail Armor Info</title>
 </head>
 <body>
 <h2>Detail Armor Info</h2>
+<table>
+			<tr>
+				<td>Name:</td>
+				<td>${armor.getArmorName()}</td>
+			</tr>
+			<tr>
+				<td>Protection:</td>
+				<td>${armor.getArmorProtection()}</td>
+			</tr>
+			<tr>
+				<td>Price:</td>
+				<td>${armor.getArmorPrice()}</td>
+			</tr>
+			<tr>
+				<td>Picture(Path):</td>
+				<td>${armor.getArmorPicture()}</td>
+			</tr>
+			<tr>
+				<td>Description:</td>
+				<td>${armor.getItemDescription()}</td>
+			</tr>
+		</table>
 </body>
 </html>

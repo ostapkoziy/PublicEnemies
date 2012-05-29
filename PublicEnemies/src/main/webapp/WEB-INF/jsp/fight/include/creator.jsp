@@ -1,5 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- 	+++++++++++++++LEFT CREATOR++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+<%-- ${game.getProfile("${gameRole}").getDressedWeapon1().getItemPicture()} --%>
 <div id="leftRightWrapper">
 	<div id="left">
 		<div id="leftHP">
@@ -8,7 +10,7 @@
 				<span id="U1HP">${game.creatorProfile.getHP()}</span>
 			</div>
 			<div id="leftProgressHP">
-				<div id="innerLeftProgressHP" class="green"></div>
+				<div id="innerLeftProgressHP" class="green" style="text-align: center;"></div>
 			</div>
 		</div>
 		<div id="leftStats">
@@ -48,16 +50,19 @@
 				<img src="${game.creatorProfile.getDressedAid().getItemPicture()}">
 			</div>
 		</div>
+		<div id="expAndSkillsWrapper">
+			<div id="exp">
+				<div id="innerExp" style="width: ${game.creatorProfile.getLevel().getNextLevelInPercent()}%;"></div>
+			</div>
+		</div>
 	</div>
 	<!-- 	+++++++++++++++END LEFT CREATOR++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 	<!-- 	+++++++++++++++RIGHT CREATOR+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 	<c:choose>
 		<c:when test="${game.gameStarted=='false'}">
-			<%-- 			<c:if test="${WFOC==null}"> --%>
 			<script type="text/javascript">
 				waitForOpponent();
 			</script>
-			<%-- 			</c:if> --%>
 			<script type="text/javascript">
 				$(function()
 				{

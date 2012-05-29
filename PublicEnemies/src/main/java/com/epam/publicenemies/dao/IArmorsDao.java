@@ -3,6 +3,7 @@ package com.epam.publicenemies.dao;
 import java.util.List;
 
 import com.epam.publicenemies.domain.Armor;
+import com.epam.publicenemies.domain.User;
 import com.epam.publicenemies.domain.Weapon;
 
 /**
@@ -76,4 +77,11 @@ public interface IArmorsDao {
 	 * @return amount of all armors
 	 */
 	int getArmorsAmount();
+	
+	/**
+	 * Get all users that have same armor
+	 * @param armorId - id of armor
+	 * @return list of users
+	 */
+	List<User> getUsersWithArmor(int armorId);
 }

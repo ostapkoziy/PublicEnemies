@@ -8,5 +8,7 @@
 </head>
 <body>
 <h2>Delete Weapon</h2>
+
+
 </body>
 </html>

@@ -9,14 +9,16 @@ public class Level
 	 * Якшо userExpirienceOnCurrentLevel > expirienceForNextLevel левел++
 	 * різницю експи в базу
 	 */
-	private int	currentLevel;					// from_DB
-	private int	userExpirienceOnCurrentLevel;	// from_DB
+	private int	currentLevel					= 1;	// from_DB
+	private int	userExpirienceOnCurrentLevel	= 1200; // from_DB
+	private int	expirienceAfterFight;
 	private int	expirienceForNextLevel;
 	private int	nextLevelInPercent;
 	public Level()
 	{
+		expirienceAfterFight = 0;
 		expirienceForNextLevel = 2 * 1000 * currentLevel;
-		nextLevelInPercent = userExpirienceOnCurrentLevel / expirienceForNextLevel;
+		nextLevelInPercent = (int) (((float) userExpirienceOnCurrentLevel / expirienceForNextLevel) * 100);
 	}
 	public int getCurrentLevel()
 	{
@@ -49,5 +51,13 @@ public class Level
 	public void setNextLevelInPercent(int nextLevelInPercent)
 	{
 		this.nextLevelInPercent = nextLevelInPercent;
+	}
+	public int getExpirienceAfterFight()
+	{
+		return expirienceAfterFight;
+	}
+	public void setExpirienceAfterFight(int expirienceAfterFight)
+	{
+		this.expirienceAfterFight = expirienceAfterFight;
 	}
 }

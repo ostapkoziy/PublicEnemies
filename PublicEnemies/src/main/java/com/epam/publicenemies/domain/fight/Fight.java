@@ -17,7 +17,8 @@ public class Fight
 	private String				whoIAm;
 	private boolean				creatorOnline;
 	private boolean				connectorOnline;
-	private String				whoWins;
+	private Profile				whoWins;
+	private Profile				whoLoses;
 	private FightEngine			engine;
 	public Fight()
 	{
@@ -26,12 +27,7 @@ public class Fight
 		round = new FightRound();
 		creatorOnline = true;
 		connectorOnline = false;
-		whoWins = "";
 		engine = new FightEngine();
-	}
-	public long getId()
-	{
-		return id;
 	}
 	public Profile getProfile(String role)
 	{
@@ -39,6 +35,10 @@ public class Fight
 			return creatorProfile;
 		else
 			return connectorProfile;
+	}
+	public long getId()
+	{
+		return id;
 	}
 	public Profile getCreatorProfile()
 	{
@@ -72,9 +72,17 @@ public class Fight
 	{
 		return connectorOnline;
 	}
-	public String getWhoWins()
+	public Profile getWhoWins()
 	{
 		return whoWins;
+	}
+	public Profile getWhoLoses()
+	{
+		return whoLoses;
+	}
+	public FightEngine getEngine()
+	{
+		return engine;
 	}
 	public void setId(long id)
 	{
@@ -112,13 +120,13 @@ public class Fight
 	{
 		this.connectorOnline = connectorOnline;
 	}
-	public void setWhoWins(String whoWins)
+	public void setWhoWins(Profile whoWins)
 	{
 		this.whoWins = whoWins;
 	}
-	public FightEngine getEngine()
+	public void setWhoLoses(Profile whoLoses)
 	{
-		return engine;
+		this.whoLoses = whoLoses;
 	}
 	public void setEngine(FightEngine engine)
 	{

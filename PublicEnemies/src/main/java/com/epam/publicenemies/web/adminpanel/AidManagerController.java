@@ -83,8 +83,9 @@ public class AidManagerController implements IManageable {
 	@Override
 	@RequestMapping(value="info/{iaid}")
 	public ModelAndView detailInfo(@PathVariable Integer iaid) {
-
 		ModelAndView mav = new ModelAndView();
+		
+		mav.addObject("aid", adminPanelManagerService.getAidById(iaid));
 		
 		mav.setViewName("/adminPanel/detailAidInfo");
 

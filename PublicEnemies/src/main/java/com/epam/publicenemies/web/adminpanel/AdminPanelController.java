@@ -48,7 +48,9 @@ public class AdminPanelController {
 		ModelAndView mav = new ModelAndView();
 		
 		mav.addObject("amountOfUsers", (Integer) adminPanelManagerService.getUsersNumber());
-		//mav.addObject("amountOfWeapons", (Integer) adminPanelManagerService.);
+		mav.addObject("amountOfWeapons", (Integer) adminPanelManagerService.getWeaponsNumber());
+		mav.addObject("amountOfArmors", (Integer) adminPanelManagerService.getArmorsNumber());
+		mav.addObject("amountOfAids", (Integer) adminPanelManagerService.getAidsNumber());
 		mav.addObject("lastRegistered", (List<User>)adminPanelManagerService.get5LastRegisteredUsers());
 		mav.setViewName("/adminPanel/summary"); 
 		return mav; 

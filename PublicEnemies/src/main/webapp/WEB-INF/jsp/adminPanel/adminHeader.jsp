@@ -4,6 +4,9 @@
 	<span id="adm_panel_words">Admin panel </span>
 </a>
 </div>
+<a class="div_link" href="summary.html"> <span
+	id="users_area"> SUMMARY </span>
+</a>
 <a class="div_link" href="users.html"> <span
 	id="users_area"> USERS </span>
 </a>

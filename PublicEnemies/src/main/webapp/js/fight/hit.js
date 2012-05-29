@@ -40,14 +40,13 @@ function waitingNewRound()
 			}
 			if (game.gameEnd == true)
 			{
-				result(game);
 				allDataUpdate(game);
 				hideAttackButton();
 				// ****** Redirect to gameResault page after 3 sec*************
 				setTimeout(function()
 				{
-					window.location.replace("profile.html");
-				}, 50000);
+					window.location.replace("fightResult.html");
+				}, 1000);
 				// ********************************************************
 			}
 		},
@@ -60,29 +59,6 @@ function waitingNewRound()
 		}
 
 	});
-}
-/**
- * Show result picture
- * 
- * @param game
- */
-function result(game)
-{
-	$("#result").removeAttr("hidden");
-	if (game.whoWins == "noWiners")
-	{
-		// TODO noWiners image
-		return;
-	}
-	if (game.whoIAm == game.whoWins)
-	{
-		$("#imageWrapper").addClass("win");
-	}
-	else
-	{
-		$("#imageWrapper").addClass("lose");
-	}
-
 }
 /*******************************************************************************
  * UPDATE ALL DATA ON PAGE

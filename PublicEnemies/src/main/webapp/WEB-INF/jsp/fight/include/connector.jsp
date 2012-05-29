@@ -1,4 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<%-- ${game.getProfile("${gameRole}").getDressedWeapon1().getItemPicture()} --%>
 <div id="leftRightWrapper">
 	<script type="text/javascript">
 		waitingNewRound();
@@ -49,6 +51,11 @@
 			</div>
 			<div id="leftAid" class="item">
 				<img src="${game.connectorProfile.getDressedAid().getItemPicture()}">
+			</div>
+		</div>
+		<div id="expAndSkillsWrapper">
+			<div id="exp">
+				<div id="innerExp" style="width: ${game.connectorProfile.getLevel().getNextLevelInPercent()}%;"></div>
 			</div>
 		</div>
 	</div>

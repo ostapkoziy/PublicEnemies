@@ -35,16 +35,16 @@ public class ConnectController
 		 */
 		long newFightId = new Long(request.getParameter("gameId"));
 		Fight newFight = Utils.findGameById(newFightId);
-		if (newFight.isGameStarted())
+		if (newFight == null || newFight.isGameStarted())
 		{
-			// КОЛИ ГРА СТАРТАНУЛА
+			// If game started or deleted
 			return "redirect:fightStarted.html";
 		}
 		Profile userProfile = profileManagerService.getProfileByUserId((Integer) request.getSession().getAttribute("userId"));
 		if (newFight.getCreatorProfile().getUserId() == userProfile.getUserId())
 		{
 			// ПРИ КОНЕКТІ ДО СЕБЕ
-			return "redirect:fight.html?id=" + newFight.getId();
+			return "redirect:fight.html";
 		}
 		Utils.isOldGameInSession(oldFight, oldRole);
 		/*
@@ -59,8 +59,8 @@ public class ConnectController
 		/*
 		 * SESSION_CONFIG
 		 */
-		request.getSession().setAttribute("gameRole", "connector");
 		request.getSession().setAttribute("game", newFight);
-		return "redirect:fight.html?id=" + newFight.getId();
+		request.getSession().setAttribute("gameRole", "connector");
+		return "redirect:fight.html";
 	}
 }

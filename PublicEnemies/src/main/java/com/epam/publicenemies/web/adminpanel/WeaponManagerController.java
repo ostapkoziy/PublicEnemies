@@ -60,13 +60,10 @@ public class WeaponManagerController implements IManageable {
 		mav.setViewName("/adminPanel/editWeapon");
 
 		return mav;
-
 	}
 
 	@RequestMapping(value = "edit/{ewid}", method = RequestMethod.POST)
 	public String doEditOne(HttpServletRequest request) {
-		ModelAndView mav = new ModelAndView();
-		
 		adminPanelManagerService.updateWeaponInfo(
 				Integer.parseInt(request.getParameter("weaponId")),
 				request.getParameter("wName"),
@@ -81,12 +78,9 @@ public class WeaponManagerController implements IManageable {
 	@Override
 	@RequestMapping(value = "info/{iwid}")
 	public ModelAndView detailInfo(@PathVariable Integer iwid) {
-
 		ModelAndView mav = new ModelAndView();
-		
 		mav.addObject("weapon",
 				(Weapon) adminPanelManagerService.getWeaponById(iwid));
-		
 		mav.setViewName("/adminPanel/detailWeaponInfo");
 
 		return mav;

@@ -1,7 +1,7 @@
 $(document).ready(function(){
 	var image_prefix = "img/cards/";
 	var image_suffix = ".png";
-	
+	var globalGame;
 	betSend(0,0);
 	$("#botBetInput").hide();
 
@@ -18,10 +18,10 @@ $(document).ready(function(){
 		$("img#river").attr("src", image_prefix + card1 + image_suffix);
 	}
 	
-	
+	/*
 	$("#newRound").click(function(){
-		betSend(0, -1);
-	});
+		roundEnded();
+	});*/
 	/**
 	 * Send USER HIT and BLOCK if <br/><b>Success:</b> coockie.hit=true and hide
 	 * attack button;
@@ -54,7 +54,7 @@ $(document).ready(function(){
 	 ******************************************************************************/
 	function allDataUpdate(pokerGame)
 	{
-
+		globalGame = pokerGame;
 		$("div#botBet").empty().append(pokerGame.pokerGameRound.player2Bet);
 		$("div#playerBet").empty().append(pokerGame.pokerGameRound.player1Bet);
 		if(pokerGame.pokerGameRound.player1Bet == pokerGame.pokerGameRound.player2Bet){
@@ -122,8 +122,8 @@ $(document).ready(function(){
 			$("#player_name").empty();
 			$("#player_chips").empty();
 		}
-		
 	}
+	
 	function showResult(pokerGame){
 		if(pokerGame.pokerGameRound.result != "Split pot"){
 			var my_str = pokerGame.pokerGameRound.result;
@@ -137,7 +137,6 @@ $(document).ready(function(){
 		else{
 			alert("Split pot");
 		}
-		roundEnded();
 	}
 	
 	function highlightCards(combo){
@@ -152,14 +151,14 @@ $(document).ready(function(){
 		$("[src='"+image_prefix + card3 + image_suffix+"']").attr("class", "highlight");
 		$("[src='"+image_prefix + card4 + image_suffix+"']").attr("class", "highlight");
 		$("[src='"+image_prefix + card5 + image_suffix+"']").attr("class", "highlight");
+		roundEnded();
 	}
 
 	function roundEnded(){
 		$("body").click(function(){
+			betSend(0, -2);
 			$("img.highlight").each().attr("class", "none");
-			alert("TABLE WILL BE DROPPED");
 			dropTable();
-			alert("MESSAGE WILL BE SENT");
 			betSend(0, 0);
 		});
 		
@@ -177,16 +176,28 @@ $(document).ready(function(){
 		$("#botBet").replaceWith('<div id="botBet" style="position:relative; left:60px; top: 2px">0</div>');
 		$("#bot_card1").replaceWith('<img id="bot_card1" class="none" style="position:relative; top:40px; left:15px; width: 35px"  border="2" SRC="img/cards/back_image.png">');
 		$("#bot_card2").replaceWith('<img id="bot_card2" class="none" style="position:relative; top:40px; left:15px; width: 35px"  border="2" SRC="img/cards/back_image.png">');
-		
+		$("#pot_size").empty().append("0");
 		if($("#botMove").attr("src") ==  "img/layout/big_blind.png"){
 			$("#botMove").attr("src", "img/layout/small_blind.png");
 			$("#playerMove").attr("src", "img/layout/big_blind.png");
 		}
+		$("#player_card1").attr("class", "none");
+		$("#player_card2").attr("class", "none");
+		
+		var p1c1 = globalGame.pokerGameRound.player1Hand.card1.value.name + "" + globalGame.pokerGameRound.player1Hand.card1.suit.name;
+		var p1c2 = globalGame.pokerGameRound.player1Hand.card2.value.name + "" + globalGame.pokerGameRound.player1Hand.card2.suit.name;
+		$("#player_card1").attr("src",image_prefix + p1c1 + image_suffix);
+		$("#player_card2").attr("src",image_prefix + p1c2 + image_suffix);
+		
+
+		$("div#botBet").empty().append(globalGame.pokerGameRound.player2Bet);
+		$("div#playerBet").empty().append(globalGame.pokerGameRound.player1Bet);
+		
 		/*else if($("#botMove").attr("src") ==  "img/layout/small_blind.png"){
 			$("#botMove").attr("src", "img/layout/big_blind.png");
 			$("#playerMove").attr("src", "img/layout/small_blind.png");
 		}*/
-			
+		betSend(0,0);
 	}
 	
 	function showdown(pokerGame){
@@ -207,6 +218,24 @@ $(document).ready(function(){
 				betSend(userBet, botBet);
 			}
 		});
+		
+		$("#call_button").click(function(){
+			
+			var toCall = 0;
+			var bot =  $("#botBet").html();
+			var player = $("#playerBet").html();
+			
+			if(bot > player){
+				toCall = bot - player; 
+				$("#userBetInput").val(toCall);
+				$("#raise_button").click();
+			}
+			
+			
+			
+			
+		});
+		
 		$("#raise_button").click(function()
 		{
 			var userBet = $("#userBetInput").val();
@@ -221,4 +250,3 @@ $(document).ready(function(){
 	});
 
 });
-

@@ -2,6 +2,7 @@ package com.epam.publicenemies.dao;
 
 import java.util.List;
 
+import com.epam.publicenemies.domain.User;
 import com.epam.publicenemies.domain.Weapon;
 
 /**
@@ -145,4 +146,11 @@ public interface IWeaponsDao {
 	 * @return amount of all weapons
 	 */
 	int getWeaponsAmount();
+	
+	/**
+	 * Get all users that have same weapon
+	 * @param weaponId - id of weapon
+	 * @return list of users
+	 */
+	List<User> getUsersWithWeapon(int weaponId);
 }
