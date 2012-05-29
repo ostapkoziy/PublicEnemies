@@ -16,19 +16,6 @@
 	<context:component-scan base-package="com.epam.publicenemies.dao.impl" />
 
 	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-	<!-- +++++++++++++++++++++++++++++++++++ DAO +++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-	<!--  <bean id="userDao" class="com.epam.publicenemies.dao.impl.UserDaoImpl">
-		<property name="dataSource" ref="dataSource"></property>
-	</bean>
-	<bean id="profileDao" class="com.epam.publicenemies.dao.impl.ProfileDaoImpl">
-		<property name="dataSource" ref="dataSource"></property>
-	</bean>
-	<bean id="armorDao" class="com.epam.publicenemies.dao.impl.ArmorsDaoImpl">
-		<property name="dataSource" ref="dataSource" />
-	</bean> -->
-
-	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 	<!-- +++++++++++++++++++++++++++++++++++ CONTROLLERS +++++++++++++++++++++++++++++++++++++++++++++ -->
 	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 	

@@ -14,6 +14,12 @@
 		<description>sessionListener</description>
 		<listener-class>com.epam.publicenemies.web.listeners.SessionListener</listener-class>
 	</listener>
+	
+	<error-page>
+    	<error-code>404</error-code>
+    	<location>/errors/404.html</location>
+	</error-page>
+	
 	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 	<!-- ++++++++++++++++++++++++++++++++++++++++++++FILTERS++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
@@ -86,4 +92,7 @@
 	<session-config>
 		<session-timeout>30</session-timeout>
 	</session-config>
+	
+	
+    
 </web-app>

@@ -60,5 +60,4 @@ public class DataBaseManagerServiceImpl implements IDataBaseManagerService {
 	public String getMySQLVersion() {
 		return dataBaseDao.getMySQLVersion();
 	}
-
 }
