@@ -13,11 +13,13 @@ import java.util.Set;
 import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.stereotype.Repository;
 
 import com.epam.publicenemies.dao.IWeaponsDao;
 import com.epam.publicenemies.domain.User;
@@ -28,12 +30,13 @@ import com.epam.publicenemies.domain.Weapon;
  * @author Ivan Kostyrko
  *
  */
+@Repository
 public class WeaponsDaoImpl implements IWeaponsDao {
 
 	private Logger log	= Logger.getLogger(WeaponsDaoImpl.class);
 	private JdbcTemplate jdbcTemplate;
 
-	
+	@Autowired
 	public void setDataSource(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
