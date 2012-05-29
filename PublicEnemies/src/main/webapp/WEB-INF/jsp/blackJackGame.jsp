@@ -6,12 +6,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="css/blackjack.css" type="text/css">
-<title>Insert title here</title>
+<title>PublicEnemies - BlackJack</title>
 <script type="text/javascript" src="js/jquery-1.7.2.js"></script>
 <script type="text/javascript" src="js/blackjack/chips.js"></script>
 <script type="text/javascript" src="js/blackjack/deal.js"></script>
 <script type="text/javascript" src="js/blackjack/hit.js"></script>
 <script type="text/javascript" src="js/blackjack/stand.js"></script>
+<script type="text/javascript" src="js/blackjack/double.js"></script>
+<script type="text/javascript" src="js/blackjack/split.js"></script>
 </head>
 <body>
 	<table id="blackjack_table" height="800" width="1200" align="center">
@@ -51,6 +53,9 @@
 				<div id="player_cards"></div>
 			</td>
 			<td>
+				<div id="player_cardsSplit"></div>
+			</td>
+			<td>
 				<div id="player_points"></div>
 			</td>
 		</tr>
@@ -65,6 +70,10 @@
 				style="position: relative; top: -90px;"></img></td>
 			<td><img id="double_button" src="img/layout/doubleg.png"
 				style="position: relative; top: -90px;"></img></td>
+			<td><form action="exitBlackJackController.html">
+					<input type="image" src="img/layout/exit.png" alt="Submit button" 
+						style="position: relative; top: -90px;">
+			</form></td>
 	</table>
 </body>
 </html>

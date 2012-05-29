@@ -1,29 +1,33 @@
 $(document)
 		.ready(
 				function() {
-					$("img#deal_button").click(function() {
-						var bet = $("#playerBet").html();
-						var chips = $("#playerChips").html();
-						var attr = $("#deal_button").attr("src");
-						if (attr != "img/layout/dealg.png")
-							sendAjax(bet, chips);
+					$("#blackjack").click(function(){
+						var nothing1 = null;
+						var nothing2 = null;
+						var attr = $("#hit_button").attr("src");
+						if (attr != "img/layout/hitg.png")
+							sendAjax(nothing1, nothing2);
 					});
 
-					function sendAjax(bet, chips) {
+					function sendAjax(nothing1, nothing2) {
 						$.ajax
 						{
 							$.ajax({
-								url : "dealBlackJackController.html",
+								url : "checkForBlackJackGame.html",
 								data : ({
-									playerBet : bet,
-									playerChips : chips
+									playerNothing1 : nothing1,
+									playerNothing2 : nothing2
 								}),
 								success : function(data) {
 									var game = jQuery.parseJSON(data);
-									allDataUpdate(game);
+									if(game != null){
+									window.location.replace("blaBlaBlackJackController.html");
+									allDataUpdate(game);}
 								},
 								error : function(e, ajaxOptions, thrownError) {
-									alert("Choose bet");
+									alert(e.status);
+									alert(thrownError);
+									alert("Error in dealSend()");
 								}
 
 							});
@@ -33,7 +37,6 @@ $(document)
 
 					function allDataUpdate(game) {
 						var i = 0;
-						$("#player_cards").empty();
 						for (i = 0; i < game.round.playerCards.length; i = i + 1) {
 							$("#player_cards").append(
 									"<img src="
@@ -41,6 +44,12 @@ $(document)
 											+ "></img>");
 						}
 						$("#player_cardsSplit").empty();
+						for (i = 0; i < game.round.playerCardsSplit.length; i = i + 1) {
+							$("#player_cardsSplit").append(
+									"<img src="
+											+ game.round.playerCardsSplit[i].image
+											+ "></img>");
+						}
 						$("#dealer_cards").empty();
 						for (i = 0; i < game.round.dealerCards.length; i = i + 1) {
 							$("#dealer_cards").append(
@@ -54,6 +63,7 @@ $(document)
 
 						// Chips
 						$("#playerChips").empty().append(game.chips);
+						$("#playerBet").empty().append(game.round.playerBet);
 
 						// Buttons
 						if (game.round.playerResult == null) {
@@ -72,5 +82,7 @@ $(document)
 									"img/layout/rebeat.png");
 						}
 					}
+
+
 
 				});

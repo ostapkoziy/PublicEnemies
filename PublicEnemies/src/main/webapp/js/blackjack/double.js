@@ -1,10 +1,10 @@
 $(document).ready(
 		function() {
-			$("img#hit_button").click(function() {
+			$("img#double_button").click(function() {
 				var nothing1 = null;
 				var nothing2 = null;
-				var attr = $("#hit_button").attr("src");
-				if (attr != "img/layout/hitg.png")
+				var attr = $("#double_button").attr("src");
+				if (attr != "img/layout/doubleg.png")
 					sendAjax(nothing1, nothing2);
 			});
 
@@ -12,7 +12,7 @@ $(document).ready(
 				$.ajax
 				{
 					$.ajax({
-						url : "hitBlackJackController.html",
+						url : "doubleBlackJackController.html",
 						data : ({
 							playerNothing1 : nothing1,
 							playerNothing2 : nothing2
@@ -22,9 +22,7 @@ $(document).ready(
 							allDataUpdate(game);
 						},
 						error : function(e, ajaxOptions, thrownError) {
-							alert(e.status);
-							alert(thrownError);
-							alert("Error in dealSend()");
+							alert("Make a bet!");
 						}
 
 					});
@@ -50,18 +48,22 @@ $(document).ready(
 					}
 				}
 				$("#player_points").empty().append(game.round.playerPoints);
-				$("#result").empty().append(game.round.playerResult);
-
+				$("#dealer_cards").empty();
+				for (i = 0; i < game.round.dealerCards.length; i = i + 1) {
+					$("#dealer_cards").append(
+							"<img src=" + game.round.dealerCards[i].image
+									+ "></img>");
+				}
 				// Chips
 				$("#playerChips").empty().append(game.chips);
+				$("#playerBet").empty().append(game.round.playerBet);
 
-				// Buttons
-				$("#split_button").attr("src", "img/layout/splitg.png");
-				if (game.round.playerResult != null && game.round.playerCardsSplit == null) {
+				if (game.round.playerCardsSplit == null) {
+					$("#result").empty().append(game.round.playerResult);
+					$("#deal_button").attr("src", "img/layout/rebeat.png");
 					$("#stand_button").attr("src", "img/layout/standg.png");
 					$("#hit_button").attr("src", "img/layout/hitg.png");
 					$("#double_button").attr("src", "img/layout/doubleg.png");
-					$("#deal_button").attr("src", "img/layout/rebeat.png");
 				}
 			}
 

@@ -14,17 +14,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.epam.publicenemies.domain.Profile;
+import com.epam.publicenemies.domain.blackjack.BlackJackGame;
 import com.epam.publicenemies.domain.blackjack.BlackJackGameList;
 import com.epam.publicenemies.service.IProfileManagerService;
 
-/**
- * @author Danylo Batyuk
- */
 @Controller
-public class BlackjackCreateController {
-	private Logger log = Logger.getLogger(BlackjackCreateController.class);
-	
-	@Autowired	
+public class ExitBlakcJackController {
+	private static Logger log = Logger.getLogger(ExitBlakcJackController.class);
+	@Autowired
 	private IProfileManagerService profileManagerService;
 
 	public void setProfileManagerService(
@@ -40,22 +37,20 @@ public class BlackjackCreateController {
 		this.games = games;
 	}
 
-	@RequestMapping("/blackJackGame.html")
+	@RequestMapping("/exitBlackJackController")
 	public ModelAndView handleRequest(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		Integer userId = (Integer) request.getSession().getAttribute("userId");
 		Profile profile = profileManagerService.getProfileByUserId(userId);
 
-		Integer chips = Integer.valueOf(request.getParameter("chips"));
-		profileManagerService.updateMoney(userId, profile.getMoney() - chips);
+		BlackJackGame game = games.getGameById(userId);
 
-		games.createNewGame(userId, chips);
+		profileManagerService.updateMoney(userId,
+				profile.getMoney() + game.getChips());
 
-		log.info("BLACKJACK GAME: " + userId + "  CREATED");
-		Map<String, Object> objects = new HashMap<String, Object>();
+		log.info("BLACKJACK GAME: " + userId + "  DESTROYED");
 
-		objects.put("chips", chips);
-
-		return new ModelAndView("blackJackGame", objects);
+		games.removeGame(userId);
+		return new ModelAndView("userStartPage");
 	}
 }
