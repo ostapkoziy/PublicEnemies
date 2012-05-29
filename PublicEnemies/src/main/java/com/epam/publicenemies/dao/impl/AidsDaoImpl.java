@@ -10,11 +10,13 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.stereotype.Repository;
 
 import com.epam.publicenemies.dao.IAidsDao;
 import com.epam.publicenemies.domain.Aid;
@@ -26,11 +28,13 @@ import com.epam.publicenemies.domain.User;
  * Updated Chetyrkin S.V.
  *
  */
+@Repository
 public class AidsDaoImpl implements IAidsDao{
 	
 	private Logger log	= Logger.getLogger(AidsDaoImpl.class);
 	private JdbcTemplate jdbcTemplate;
-
+	
+	@Autowired
 	public void setDataSource(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}

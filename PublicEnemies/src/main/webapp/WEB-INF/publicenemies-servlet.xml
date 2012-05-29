@@ -18,18 +18,15 @@
 	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 	<!-- +++++++++++++++++++++++++++++++++++ DAO +++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-	<bean id="userDao" class="com.epam.publicenemies.dao.impl.UserDaoImpl">
+	<!--  <bean id="userDao" class="com.epam.publicenemies.dao.impl.UserDaoImpl">
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
 	<bean id="profileDao" class="com.epam.publicenemies.dao.impl.ProfileDaoImpl">
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
-	<bean id="aidDao" class="com.epam.publicenemies.dao.impl.AidsDaoImpl">
-		<property name="dataSource" ref="dataSource" />
-	</bean>	
 	<bean id="armorDao" class="com.epam.publicenemies.dao.impl.ArmorsDaoImpl">
 		<property name="dataSource" ref="dataSource" />
-	</bean>
+	</bean> -->
 
 	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 	<!-- +++++++++++++++++++++++++++++++++++ CONTROLLERS +++++++++++++++++++++++++++++++++++++++++++++ -->

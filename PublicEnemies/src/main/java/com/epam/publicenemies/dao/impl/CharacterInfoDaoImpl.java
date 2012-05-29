@@ -8,21 +8,30 @@ import java.sql.Statement;
 import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.stereotype.Repository;
 
 import com.epam.publicenemies.dao.ICharacterInfoDao;
 import com.epam.publicenemies.domain.User;
 import com.epam.publicenemies.domain.UCharacter;
 
+/**
+ * 
+ * @author Chetyrkin_Sviatoslav 18.05.2012
+ *
+ */
+@Repository
 public class CharacterInfoDaoImpl implements ICharacterInfoDao {
 	
 	private Logger log = Logger.getLogger(CharacterInfoDaoImpl.class);
 	
 	private JdbcTemplate jdbcTemplate;
 
+	@Autowired
 	public void setDataSource(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}

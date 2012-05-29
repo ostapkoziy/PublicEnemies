@@ -3,16 +3,24 @@ package com.epam.publicenemies.dao.impl;
 import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 import com.epam.publicenemies.dao.ITrunkDao;
 
+/**
+ * 
+ * @author Chetyrkin_Sviatoslav 20.05.2012
+ *
+ */
+@Repository
 public class TrunkDaoImpl implements ITrunkDao {
 
 	private Logger log = Logger.getLogger(TrunkDaoImpl.class);
 	private JdbcTemplate jdbcTemplate;
 	
-	
+	@Autowired
 	public void setDataSource(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
