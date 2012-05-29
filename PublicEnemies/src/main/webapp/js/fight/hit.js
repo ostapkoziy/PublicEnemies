@@ -42,11 +42,11 @@ function waitingNewRound()
 			{
 				allDataUpdate(game);
 				hideAttackButton();
-				// ****** Redirect to gameResault page after 3 sec*************
-				setTimeout(function()
-				{
-					window.location.replace("fightResult.html");
-				}, 1000);
+				// ****** Redirect to gameResault page after 1 sec*************
+				// setTimeout(function()
+				// {
+				window.location.replace("fightResult.html");
+				// }, 1000);
 				// ********************************************************
 			}
 		},

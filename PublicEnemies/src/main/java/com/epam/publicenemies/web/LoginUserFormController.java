@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.epam.publicenemies.domain.User;
-import com.epam.publicenemies.dto.UserDto;
 import com.epam.publicenemies.service.IUserManagerService;
 import com.epam.publicenemies.web.validators.IValidator;
 
@@ -23,26 +22,28 @@ import com.epam.publicenemies.web.validators.IValidator;
  */
 @Controller
 @RequestMapping(value = "/userLogin")
-public class LoginUserFormController {
+public class LoginUserFormController
+{
 	private Logger				log	= Logger.getLogger(LoginUserFormController.class);
 	@Autowired
 	private IUserManagerService	userManagerService;
 	@Autowired
 	@Qualifier("loginUserFormValidator")
 	private IValidator			validator;
-	
 	@RequestMapping(method = RequestMethod.GET)
-	public String showForm(ModelMap model)	{
+	public String showForm(ModelMap model)
+	{
 		log.info("SHOW LOGIN FORM");
-		model.put("User", new User());
+		model.put("user", new User());
 		return "userLogin";
 	}
-	
 	@RequestMapping(method = RequestMethod.POST)
-	public String processSubmit(@ModelAttribute User user, HttpServletRequest request, BindingResult result) {
+	public String processSubmit(@ModelAttribute User user, HttpServletRequest request, BindingResult result)
+	{
 		log.info("PROCESS FORM");
 		validator.validate(user, result);
-		if (result.hasErrors()) {
+		if (result.hasErrors())
+		{
 			log.info("VALIDATING FALSE.....");
 			return "userLogin";
 		}

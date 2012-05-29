@@ -11,15 +11,7 @@ public class StatsCalculator
 {
 	public static void makeStats(Fight fight, String role)
 	{
-		Profile profile = null;
-		if (role.equals("creator"))
-		{
-			profile = fight.getCreatorProfile();
-		}
-		else
-		{
-			profile = fight.getConnectorProfile();
-		}
+		Profile profile = fight.getProfile(role);
 		makeStats(profile);
 	}
 	public static void makeStats(Profile profile)

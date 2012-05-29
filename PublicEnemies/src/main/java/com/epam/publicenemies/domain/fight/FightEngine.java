@@ -4,16 +4,21 @@ import java.util.HashMap;
 import java.util.LinkedList;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.epam.publicenemies.chat.MessageList;
+import com.epam.publicenemies.service.IProfileManagerService;
+import com.epam.publicenemies.service.impl.ProfileManagerServiceImpl;
 
 /**
  * @author Alexander Ivanov
  */
 public class FightEngine
 {
-	private static Logger		log	= Logger.getLogger(FightEngine.class);
-	private volatile boolean	started;
+	private static Logger			log		= Logger.getLogger(FightEngine.class);
+	private volatile boolean		started;
+	@Autowired
+	private IProfileManagerService	service	= new ProfileManagerServiceImpl();
 	public boolean isStarted()
 	{
 		return started;
@@ -32,7 +37,6 @@ public class FightEngine
 		}
 		else
 		{
-			// add expiriense and money!
 			gameOver(fight);
 		}
 		log.info("--------------ENGINE END-------------");
@@ -55,7 +59,38 @@ public class FightEngine
 	}
 	private void gameOver(Fight fight)
 	{
+		// fight.getWhoWins().getLevel().setExpirienceAfterFight(100);
 		fight.setGameEnd(true);
+	}
+	private boolean shooting(Fight fight)
+	{
+		String creatorHit = fight.getRound().getCreatorHit();
+		String creatorBlock = fight.getRound().getCreatorBlock();
+		String connectorHit = fight.getRound().getConnectorHit();
+		String connectorBlock = fight.getRound().getConnectorBlock();
+		int creatorDamage = 0;
+		int connectorDamage = 0;
+		int creatorHPAfterHit = fight.getCreatorProfile().getHP();
+		int connectorHPAfterHit = fight.getConnectorProfile().getHP();
+		if (!creatorHit.equals(connectorBlock))
+		{
+			creatorDamage = creatorBlockedDamage(fight);
+			connectorHPAfterHit = connectorHPAfterHit - creatorDamage;
+		}
+		if (!connectorHit.equals(creatorBlock))
+		{
+			connectorDamage = connectorBlockedDamage(fight);
+			creatorHPAfterHit = creatorHPAfterHit - connectorDamage;
+		}
+		/*
+		 * Add skill damage
+		 */
+		RoundResult rr = healthAnalizer(creatorHPAfterHit, connectorHPAfterHit);
+		boolean isGameEnd = rr.roundResult(fight, creatorDamage, connectorDamage);
+		return isGameEnd;
+	}
+	private void damageAndDefence(Fight fight)
+	{
 	}
 	/**
 	 * Startes when one or all users is offline.
@@ -66,7 +101,6 @@ public class FightEngine
 		game.getRound().setConnectorHit("");
 		game.getRound().setCreatorBlock("");
 		game.getRound().setConnectorBlock("");
-		game.getRound().setFirstHit("");
 		game.getRound().setCreatorDoHit(false);
 		game.getRound().setConnectorDoHit(false);
 		game.getRound().setRoundNumber(game.getRound().getRoundNumber() + 1);
@@ -97,43 +131,19 @@ public class FightEngine
 	{
 		return fight.getConnectorProfile().getDamage();
 	}
-	private boolean shooting(Fight fight)
-	{
-		String creatorHit = fight.getRound().getCreatorHit();
-		String creatorBlock = fight.getRound().getCreatorBlock();
-		String connectorHit = fight.getRound().getConnectorHit();
-		String connectorBlock = fight.getRound().getConnectorBlock();
-		int creatorDamage = 0;
-		int connectorDamage = 0;
-		int creatorHPAfterHit = fight.getCreatorProfile().getHP();
-		int connectorHPAfterHit = fight.getConnectorProfile().getHP();
-		if (!creatorHit.equals(connectorBlock))
-		{
-			creatorDamage = creatorBlockedDamage(fight);
-			connectorHPAfterHit = connectorHPAfterHit - creatorDamage;
-		}
-		if (!connectorHit.equals(creatorBlock))
-		{
-			connectorDamage = connectorBlockedDamage(fight);
-			creatorHPAfterHit = creatorHPAfterHit - connectorDamage;
-		}
-		RoundResult rr = healthAnalizer(creatorHPAfterHit, connectorHPAfterHit);
-		boolean isGameEnd = rr.roundResult(fight, creatorDamage, connectorDamage);
-		return isGameEnd;
-	}
 	private RoundResult healthAnalizer(int creatorHP, int connectorHP)
 	{
 		if (creatorHP <= 0 && connectorHP <= 0)
 		{
-			return RoundResult.DOUBLE_DETH;
+			return RoundResult.DOUBLE_DEATH;
 		}
 		if (creatorHP <= 0)
 		{
-			return RoundResult.CREATOR_DETH;
+			return RoundResult.CREATOR_DEATH;
 		}
 		if (connectorHP <= 0)
 		{
-			return RoundResult.CONNECTOR_DETH;
+			return RoundResult.CONNECTOR_DEATH;
 		}
 		return RoundResult.ALIVE;
 	}

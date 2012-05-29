@@ -16,8 +16,8 @@
 <link href="css/fight/content.css" rel="stylesheet" type="text/css">
 <link href="css/fight/fight.css" rel="stylesheet" type="text/css">
 <style type="text/css">
-div {
-/* 	outline: 2px solid green; */
+div { /* 	outline: 2px solid green; */
+	
 }
 </style>
 <c:choose>

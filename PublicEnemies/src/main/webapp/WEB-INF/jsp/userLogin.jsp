@@ -25,7 +25,7 @@
 						</tr>
 						<tr align="center" height="200">
 							<td><form:form action="userLogin.html" method="post"
-									commandName="User">
+									commandName="user">
 									<h2 align="center">Login</h2>
 									<form:input type="text" path="email" />
 									<div id="email_error"></div>

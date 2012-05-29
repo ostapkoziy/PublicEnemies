@@ -1,0 +1,17 @@
+@CHARSET "UTF-8";
+
+#color {
+	width: 943px;
+	height: 754px;
+	position: absolute;
+	left: 0;
+	right: 0;
+	margin-left: auto;
+	margin-right: auto;
+	background: url("../../img/fight/loseBackground.png") no-repeat;
+	z-index: 500;
+}
+
+#imageWrapper {
+	background: url("../../img/fight/you-lose.png");
+}
