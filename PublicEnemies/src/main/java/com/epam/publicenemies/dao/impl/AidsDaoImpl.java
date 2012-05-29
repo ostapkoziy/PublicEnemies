@@ -18,6 +18,7 @@ import org.springframework.jdbc.support.KeyHolder;
 
 import com.epam.publicenemies.dao.IAidsDao;
 import com.epam.publicenemies.domain.Aid;
+import com.epam.publicenemies.domain.User;
 
 /**
  * Works with aids table
@@ -186,6 +187,28 @@ public class AidsDaoImpl implements IAidsDao{
 		final String SELECT_SQL = "SELECT COUNT(*) FROM aids";
 		int i = jdbcTemplate.queryForInt(SELECT_SQL);
 		return i;
+	}
+
+	/**
+	 * Get all users that have same aid
+	 * @param aidId - id of weapon
+	 * @return list of users
+	 */
+	@Override
+	public List<User> getUsersWithAid(int aidId) {
+		final String SELECT_SQL = "SELECT userId, email, password, regDate, money, avatar, " +
+				"userCharacter, nickName FROM users, charactersTrunks " +
+				"WHERE userCharacter=characterId AND itemType=2 AND itemId=?";
+		List<User> users = jdbcTemplate.query(SELECT_SQL, new Object[] {aidId}, new RowMapper<User>() {
+			public User mapRow (ResultSet resultSet, int rowNum) throws SQLException {
+				return new User(resultSet.getInt("userId"), resultSet.getString("email"), 
+						resultSet.getString("password"), resultSet.getString("nickName"),
+						resultSet.getInt("money"), resultSet.getString("avatar"),
+						resultSet.getInt("userCharacter"), resultSet.getTimestamp("regDate"));
+			}
+		});
+		log.info("AIDSDaoImpl.getUsersWithAid : where finded "+users.size()+" users");
+		return users;
 	}
 }
 

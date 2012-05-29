@@ -148,9 +148,9 @@ public interface IWeaponsDao {
 	int getWeaponsAmount();
 	
 	/**
-	 * Get all users that have weapon same weapon
+	 * Get all users that have same weapon
 	 * @param weaponId - id of weapon
-	 * @return lsist of users
+	 * @return list of users
 	 */
 	List<User> getUsersWithWeapon(int weaponId);
 }
