@@ -1152,4 +1152,7 @@ public class ProfileDaoImpl implements IProfileDao {
 		} else
 			return false;
 	}
+	
+	
+	
 }

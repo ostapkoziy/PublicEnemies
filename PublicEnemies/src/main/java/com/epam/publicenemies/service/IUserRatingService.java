@@ -6,6 +6,7 @@ package com.epam.publicenemies.service;
 import java.util.List;
 import java.util.Map;
 
+import com.epam.publicenemies.domain.Profile;
 import com.epam.publicenemies.domain.User;
 
 /**
@@ -25,14 +26,6 @@ public interface IUserRatingService {
 	 * Get list of all users sorted by money amount
 	 * @return list of all users
 	 */
-	List<User> sortUsersByMoney();
+	List<Map<String, Object>> sortUsersByMoney();
 	
-	/**
-	 * Get list of all users sorted by registration date
-	 * @return list of all users
-	 */
-	List<User> sortUsersByRegDate();
-	
-	
-
 }

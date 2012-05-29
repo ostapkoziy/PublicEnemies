@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.epam.publicenemies.dao.impl.UserDaoImpl;
+import com.epam.publicenemies.domain.Profile;
 import com.epam.publicenemies.domain.User;
 import com.epam.publicenemies.service.IUserRatingService;
 
@@ -15,6 +16,7 @@ public class UserRatingServiceImpl implements IUserRatingService {
 
 	@Autowired
 	private UserDaoImpl userDao;
+	
 	
 	/**
 	 * Get list of Maps. Map has two values: nickname with key 'nickName'
@@ -31,17 +33,8 @@ public class UserRatingServiceImpl implements IUserRatingService {
 	 * @return list of all users
 	 */
 	@Override
-	public List<User> sortUsersByMoney() {
+	public List<Map<String, Object>> sortUsersByMoney() {
 		return userDao.getUsersSortedByMoney();
-	}
-
-	/**
-	 * Get list of all users sorted by registration date
-	 * @return list of all users
-	 */
-	@Override
-	public List<User> sortUsersByRegDate() {
-		return userDao.getUsersSortedByRegDate();
 	}
 
 }

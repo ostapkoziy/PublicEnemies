@@ -263,4 +263,6 @@ public interface IProfileDao {
 	 * @return true if operation was successfully
 	 */
 	boolean addExperience(int characterId, int experience);
+	
+	
 }
