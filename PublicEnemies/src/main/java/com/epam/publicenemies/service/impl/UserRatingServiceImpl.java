@@ -4,11 +4,13 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.epam.publicenemies.dao.impl.UserDaoImpl;
 import com.epam.publicenemies.domain.User;
 import com.epam.publicenemies.service.IUserRatingService;
 
+@Service
 public class UserRatingServiceImpl implements IUserRatingService {
 
 	@Autowired

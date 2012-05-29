@@ -18,20 +18,15 @@
 	<div class="users_div">
 		<a class="new_entry" href="user/add.html"><span class="create_new_entry"> Create New User </span> </a>
 		<p id="all_users">
-		<table>
-		<tr>
-		<td> <a href="usersOrderByNickName.html"><span> Sort by nickname </span></a></td> 
-		<td> <a href="usersOrderByRegDate.html"> <span> Sort by regdate </span></a> </td>
-		</tr>
-		</table>
+		
 			<table class="users_table">
 			<caption> USERS: </caption>
 				<thead>
 					<tr>
-						<th>Nickname</th>
+						<th> <a href="usersOrderByNickName.html"> Nickname</a></th>
 						<th>Email</th>
 						<th>Password</th>
-						<th>Registration Date</th>
+						<th> <a href="usersOrderByRegDate.html"> Registration Date </a> </th>
 						<th colspan="2">Actions</th>
 					</tr>
 				</thead>
