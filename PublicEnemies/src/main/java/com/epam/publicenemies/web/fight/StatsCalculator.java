@@ -2,6 +2,7 @@ package com.epam.publicenemies.web.fight;
 
 import com.epam.publicenemies.domain.Profile;
 import com.epam.publicenemies.domain.fight.Fight;
+import com.epam.publicenemies.domain.fight.Level;
 
 /**
  * @author Alexander Ivanov
@@ -27,5 +28,6 @@ public class StatsCalculator
 		profile.setHP(profile.getAllHP());
 		profile.setDamage(20 + profile.getAgility() * 3);
 		profile.setDefence(10);
+		profile.setLevel(new Level());
 	}
 }

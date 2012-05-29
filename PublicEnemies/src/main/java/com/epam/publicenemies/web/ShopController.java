@@ -26,7 +26,6 @@ import com.epam.publicenemies.service.IShopManagerService;
  * 
  * @author Ivan Kostyrko
  * 
- * TODO: bug! ListOfWeapons.size retuns 2 but there is no weapon into
  */
 @Controller
 @RequestMapping(value = "/shop")
@@ -129,7 +128,7 @@ public class ShopController {
 			} else {}		
 		}
 		
-		log.info("to sell: ");
+		/*log.info("to sell: ");
 		for (Integer weapon : weaponsToSell) {
 		    log.info("sell weapon id = " + weapon);
 		}
@@ -148,7 +147,7 @@ public class ShopController {
 		}
 		for (Integer aid : aidsToBuy) {
 		    log.info("Buy aid id = " + aid);
-		}
+		}*/
 		
 		if (weaponsToSell.size() > 0) {
 			shopManagerService.sellWeaponsForUser(uid, weaponsToSell); 
@@ -159,7 +158,6 @@ public class ShopController {
 		if (aidsToSell.size() > 0) {
 			log.info("To shopManagerService for selling aid with id = " + aidsToSell.get(0)); 
 			shopManagerService.sellAidsForUser(uid, aidsToSell);
-			
 		}
 		if (weaponsToBuy.size() > 0) {
 			shopManagerService.buyWeaponsForUser(uid, weaponsToBuy); 

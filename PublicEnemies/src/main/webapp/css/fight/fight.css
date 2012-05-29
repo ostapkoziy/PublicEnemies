@@ -1,9 +1,5 @@
 @CHARSET "UTF-8";
 
-div { /* 	outline: 1px solid red; */
-	
-}
-
 #content {
 	width: 1000px;
 	margin-left: auto;
@@ -24,14 +20,14 @@ div { /* 	outline: 1px solid red; */
 #left {
 	float: left;
 	width: 400px;
-	height: 430px;
+	height: 480px;
 	/* 	outline: 4px solid purple; */
 }
 
 #right {
 	float: right;
 	width: 400px;
-	height: 430px;
+	height: 480px;
 	/* 	outline: 4px solid black; */
 }
 /* +++++++++++++HP++++++++++++++++++++++++++ */
@@ -49,40 +45,6 @@ div { /* 	outline: 1px solid red; */
 
 #leftHPWrapper {
 	float: left;
-}
-/* **************STATS****************** */
-#leftStats {
-	width: 100px;
-	height: 250px;
-	float: left;
-}
-
-#rightStats {
-	width: 100px;
-	height: 250px;
-	float: right;
-}
-
-#leftStatsWrapper {
-	float: left;
-}
-
-#rightStatsWrapper {
-	float: right;
-}
-/* *************AVATAR*********************** */
-#leftAvatar {
-	margin-left: 100px;
-	/* 	outline: 2px solid green; */
-	width: 200px;
-	height: 250px;
-}
-
-#rightAvatar {
-	margin-left: 100px;
-	/* 	outline: 2px solid green; */
-	height: 250px;
-	width: 200px;
 }
 /* +++++++++++++++++++HP++++++++++++++++++++++ */
 #leftProgressHP {
@@ -116,6 +78,11 @@ div { /* 	outline: 1px solid red; */
 /* ************************************** */
 #rightAgility,#rightStrength,#rightInteligence,#rightDamage {
 	float: right;
+	/* 	height: 40px; */
+}
+
+#leftAgility,#leftStrength,#leftInteligence,#leftDamage { /* 	height: 40px; */
+	
 }
 /* ***************Attack Block**************************** */
 #attackBlock {
@@ -171,25 +138,78 @@ div { /* 	outline: 1px solid red; */
 
 #doll {
 	width: 152px;
-	height: 430px;
+	height: 400px;
 	margin: 0 auto;
 }
-/* *********************************************************** */
+/* **************STATS****************** */
+#leftStats {
+	width: 100px;
+	height: 250px;
+	float: left;
+}
+
+#rightStats {
+	width: 100px;
+	height: 250px;
+	float: right;
+}
+
+#leftStatsWrapper {
+	float: left;
+}
+
+#rightStatsWrapper {
+	float: right;
+}
+/* *************AVATAR*********************** */
+#leftAvatar { /* 	margin-left: 100px; */
+	width: 200px;
+	height: 250px;
+	float: left;
+}
+
+#rightAvatar { /* 	margin-left: 100px; */
+	height: 250px;
+	width: 200px;
+	float: right;
+}
+/* *********************INVENTORY************************************** */
 #rightInventory {
 	float: right;
-	height: 100px;
-	width: 400px;
+	height: 400px;
+	width: 100px;
 	/* 	outline: 3px solid red; */
+	float: left;
 }
 
 #leftInventory {
-	height: 100px;
-	width: 400px;
+	height: 400px;
+	width: 100px;
 	/* 	outline: 7px solid blue; */
+	float: left;
 }
 
 .item {
 	float: left;
 	height: 100px;
 	width: 100px;
+}
+/* *************EXPIRIENCE******************************* */
+#expAndSkillsWrapper {
+	width: 300px;
+	height: 140px;
+	margin-top: 260px;
+}
+
+#exp {
+	width: 100%;
+	height: 10px;
+	margin-top: 10px;
+}
+
+#innerExp {
+	height: inherit;
+	/* 	float: left; */
+	background-color: blue;
+	border-radius: 5px;
 }

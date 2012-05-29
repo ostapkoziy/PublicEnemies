@@ -13,13 +13,16 @@ import java.util.Set;
 import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.stereotype.Repository;
 
 import com.epam.publicenemies.dao.IWeaponsDao;
+import com.epam.publicenemies.domain.User;
 import com.epam.publicenemies.domain.Weapon;
 
 /**
@@ -27,12 +30,13 @@ import com.epam.publicenemies.domain.Weapon;
  * @author Ivan Kostyrko
  *
  */
+@Repository
 public class WeaponsDaoImpl implements IWeaponsDao {
 
 	private Logger log	= Logger.getLogger(WeaponsDaoImpl.class);
 	private JdbcTemplate jdbcTemplate;
 
-	
+	@Autowired
 	public void setDataSource(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
@@ -261,6 +265,7 @@ public class WeaponsDaoImpl implements IWeaponsDao {
 	 * @param weaponsIds - list of weapons ids
 	 * @return list of weapons
 	 */
+	@Override
 	public List<Weapon> getWeapons(List<Integer> weaponsIds) {
 		ArrayList<Weapon> weapons = new ArrayList<Weapon>();
 		for (Integer i : weaponsIds) 
@@ -279,7 +284,7 @@ public class WeaponsDaoImpl implements IWeaponsDao {
 	 * @param price - weapon price
 	 * @return true if operation was successfully
 	 */
-	
+	@Override
 	public boolean updateWeaponInfo(int weaponId, String weaponName, int hitPoints, String picture, 
 			boolean type, int price, String description) {
 		final String UPDATE_SQL = "UPDATE IGNORE weapons SET weaponName=?, weaponHitPoints=?, weaponPicture=?," +
@@ -296,6 +301,7 @@ public class WeaponsDaoImpl implements IWeaponsDao {
 	 * Get list of all weapons sorted by weapon name
 	 * @return list of all weapons
 	 */
+	@Override
 	public List<Weapon> getWeaponsSortedByName() {
 		final String SELECT_SQL = "SELECT * FROM weapons ORDER BY weaponName";
 		List<Weapon>weapons = jdbcTemplate.query(SELECT_SQL, new WeaponMapper());
@@ -307,6 +313,7 @@ public class WeaponsDaoImpl implements IWeaponsDao {
 	 * Get list of all weapons sorted by weapon hit points
 	 * @return list of all weapons
 	 */
+	@Override
 	public List<Weapon> getWeaponsSortedByHitPoints() {
 		final String SELECT_SQL = "SELECT * FROM weapons ORDER BY weaponHitPoints";
 		List<Weapon>weapons = jdbcTemplate.query(SELECT_SQL, new WeaponMapper());
@@ -318,6 +325,7 @@ public class WeaponsDaoImpl implements IWeaponsDao {
 	 * Get list of all weapons sorted by weapon price
 	 * @return list of all weapons
 	 */
+	@Override
 	public List<Weapon>getWeaponsSortedByPrice() {
 		final String SELECT_SQL = "SELECT * FROM weapons ORDER BY weaponPrice";
 		List<Weapon>weapons = jdbcTemplate.query(SELECT_SQL, new WeaponMapper());
@@ -334,5 +342,27 @@ public class WeaponsDaoImpl implements IWeaponsDao {
 		final String SELECT_SQL = "SELECT COUNT(*) FROM weapons";
 		int i = jdbcTemplate.queryForInt(SELECT_SQL);
 		return i;
+	}
+	
+	/**
+	 * Get all users that have same weapon
+	 * @param weaponId - id of weapon
+	 * @return list of users
+	 */
+	@Override
+	public List<User> getUsersWithWeapon(int weaponId) {
+		final String SELECT_SQL = "SELECT userId, email, password, regDate, money, avatar, " +
+				"userCharacter, nickName FROM users, charactersTrunks " +
+				"WHERE userCharacter=characterId AND itemType=1 AND itemId=?";
+		List<User> users = jdbcTemplate.query(SELECT_SQL, new Object[] {weaponId}, new RowMapper<User>() {
+			public User mapRow (ResultSet resultSet, int rowNum) throws SQLException {
+				return new User(resultSet.getInt("userId"), resultSet.getString("email"), 
+						resultSet.getString("password"), resultSet.getString("nickName"),
+						resultSet.getInt("money"), resultSet.getString("avatar"),
+						resultSet.getInt("userCharacter"), resultSet.getTimestamp("regDate"));
+			}
+		});
+		log.info("WeaponsDaoImpl.getUsersWithWeapon : where finded "+users.size()+" users");
+		return users;
 	}
 }

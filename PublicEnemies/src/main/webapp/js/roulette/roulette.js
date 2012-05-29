@@ -1,14 +1,11 @@
-var redOnes = 	new Array(1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36);
-var blackOnes = new Array(2,4,6,8,10,11,13,15,17,20,22,24,26,28,29,31,33,35);
-var bets = new Object();
-	bets.betsOnNumbers = [];
+	var bets = new Object();
+		bets.betsOnNumbers = [];
 
-
-//var arr = new Array();
-var currentBet;
-var clearBetToggle = new Boolean(false);
-var faded = "0.6";
+	var currentBet;
+	var clearBetToggle = new Boolean(false);
+	var faded = "0.6";
 $(document).ready(function(){
+	
 
 	$("#clearBet").toggle(function(){
 		$(this).css("opacity", faded);
@@ -34,7 +31,12 @@ $(document).ready(function(){
 	// ====================================================
 	$("#btn_test").click(
 		function() {
-			alert(JSON.stringify(bets));
+			$("#userBetNumbers").val("");
+			for ( var i = 0; i < (parseInt(bets.betsOnNumbers.length.toString())); i++) {
+				if (bets.betsOnNumbers[i] > 0) {
+					$("#userBetNumbers").val($("#userBetNumbers").val() + i + ":" + bets.betsOnNumbers[i] + ';');
+				}
+			}
 	});
 	
 	$(".RouletteTable").mousemove(function(){
@@ -48,6 +50,8 @@ $(document).ready(function(){
 		}, function(){}
 	);
 });
+
+//function arr_init(){for (var i = 0; i < 48; i++) bets.betsOnNumbers[i] = 0;}
 
 function form_send() { //MAKE UP!!!!!!!!!!!!
 //	$("#userBetNumbers").val(JSON.stringify(bets));

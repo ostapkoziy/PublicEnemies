@@ -24,7 +24,6 @@ public class WaitingNewRound
 {
 	private Logger	log	= Logger.getLogger(WaitingNewRound.class);
 	@RequestMapping("/WaitingNewRound")
-	// TODO add return type - Model and view!! if game is over--->redirect to result page.
 	public void newRound(HttpServletRequest request, HttpServletResponse response) throws IOException, InterruptedException
 	{
 		response.setContentType("text/html;charset=UTF-8");
@@ -40,7 +39,7 @@ public class WaitingNewRound
 		 */
 		PrintWriter out = response.getWriter();
 		JSONSerializer ser = new JSONSerializer();
-		startEngineIfOpponentNotHit(fight, role);
+		// startEngineIfOpponentNotHit(fight, role);
 		if (fight.isGameEnd())
 		{
 			log.info("--------------GAME IS END FOR USER: " + userProfile.getNickName() + "----------------------");
@@ -52,29 +51,14 @@ public class WaitingNewRound
 		out.flush();
 	}
 	/**
-	 * Запускати Engine якщо хоча б один online(тобто не закрив вкладку чи браузер)
+	 * Запускати Engine якщо хоча б один online(тобто не закрив вкладку чи
+	 * браузер)
 	 * 
 	 */
 	private synchronized void startEngineIfOpponentNotHit(Fight fight, String role)
 	{
 		if ((System.currentTimeMillis() / 1000) > (fight.getRound().getRoundBeginTime() + 30) && !fight.isGameEnd())
 		{
-			// if (!fight.getRound().isCreatorDoHit() && !fight.getRound().isConnectorDoHit())
-			// {
-			// fight.setWhoWins("noWiners");
-			// fight.setGameEnd(true);
-			// return;
-			// }
-			// if (role.equals("creator") && !fight.getRound().isConnectorDoHit())
-			// {
-			// fight.setWhoWins("creator");
-			// }
-			// if (role.equals("connector") && !fight.getRound().isCreatorDoHit())
-			// {
-			// fight.setWhoWins("connector");
-			// }
-			// fight.setGameEnd(true);
-			// TODO Add link to FightEngine into Fight object
 			FightEngine engine = fight.getEngine();
 			engine.startEngine(fight);
 			engine.setStarted(true);

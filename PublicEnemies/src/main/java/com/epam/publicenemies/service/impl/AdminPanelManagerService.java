@@ -448,4 +448,60 @@ public class AdminPanelManagerService implements IAdminPanelManagerService {
 		return profileDao.addAids(userId, aids);
 	}
 	
+	/**
+	 * Remove weapons from user (Doesn't change money amount. Only for admin)
+	 * @param userId - id of user
+	 * @param weapons - id of weapon
+	 * @return true if operation was successfully
+	 */
+	public boolean removeWeapons(int userId, List<Integer> weapons) {
+		return profileDao.removeWeapons(userId, weapons);
+	}
+	
+	/**
+	 * Remove aids from user (Doesn't change money amount. Only for admin)
+	 * @param userId - id of user
+	 * @param aids - id of aid
+	 * @return true if operation was successfully
+	 */
+	public boolean removeAids(int userId, List<Integer> aids) {
+		return profileDao.removeAids(userId, aids);
+	}
+	
+	/**
+	 * Remove armors from user (Doesn't change money amount. Only for admin)
+	 * @param userId - id of user
+	 * @param armors - id of armor
+	 * @return true if operation was successfully
+	 */
+	public boolean removeArmors(int userId, List<Integer> armors) {
+		return profileDao.removeArmors(userId, armors);
+	}
+
+	/**
+	 * Get all users that have same weapon
+	 * @param weaponId - id of weapon
+	 * @return list of users
+	 */
+	public List<User> getUsersWithWeapon(int weaponId) {
+		return weaponsDao.getUsersWithWeapon(weaponId);
+	} 
+	
+	/**
+	 * Get all users that have same aid
+	 * @param aidId - id of aid
+	 * @return list of users
+	 */
+	public List<User> getUsersWithAid(int aidId) {
+		return aidsDao.getUsersWithAid(aidId);
+	}
+	
+	/**
+	 * Get all users that have same armor
+	 * @param armorId - id of armor
+	 * @return list of users
+	 */
+	public List<User> getUsersWithArmor(int armorId) {
+		return armorsDao.getUsersWithArmor(armorId);
+	}
 }

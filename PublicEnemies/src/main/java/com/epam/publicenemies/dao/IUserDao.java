@@ -180,5 +180,5 @@ public interface IUserDao {
 	 * Get list of all users sorted by money amount
 	 * @return list of all users
 	 */
-	List<User> getUsersSortedByMoney();
+	List<Map<String, Object>> getUsersSortedByMoney();
 }

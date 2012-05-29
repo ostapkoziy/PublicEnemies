@@ -14,9 +14,12 @@
 <script type="text/javascript" src="js/fight/timer.js"></script>
 
 <link href="css/fight/content.css" rel="stylesheet" type="text/css">
-<link href="css/fight/result.css" rel="stylesheet" type="text/css">
 <link href="css/fight/fight.css" rel="stylesheet" type="text/css">
-
+<style type="text/css">
+div {
+/* 	outline: 2px solid green; */
+}
+</style>
 <c:choose>
 	<c:when test="${gameRole=='creator'}">
 		<title>${game.creatorProfile.getNickName()} vs. ${game.connectorProfile.getNickName()}</title>
@@ -27,7 +30,6 @@
 </c:choose>
 </head>
 <body>
-	!!!${WFOC}!!! ${WFOC==null}
 	<div id="content">
 		<c:if test="${gameRole=='creator'}">
 			<jsp:include page="include/creator.jsp"></jsp:include>
@@ -64,6 +66,9 @@
 		<!-- ******************************************************* -->
 		<!-- ********************CHAT**************************** -->
 		<!-- ******************************************************* -->
+
+
+
 		<div id="box">
 			<div id="allMesseges"></div>
 			<textarea id="myMessege"></textarea>
@@ -73,13 +78,6 @@
 		</div>
 
 
-		<div id="result" hidden="true">
-			<div id="color1"></div>
-			<div id="color2"></div>
-			<div id="color3">
-				<div id="imageWrapper"></div>
-			</div>
-		</div>
 
 
 	</div>

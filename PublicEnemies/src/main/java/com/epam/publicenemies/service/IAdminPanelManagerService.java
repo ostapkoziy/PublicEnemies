@@ -320,4 +320,48 @@ public interface IAdminPanelManagerService {
 	 */
 	boolean addAids(int userId, List<Integer> aids);
 	
+	/**
+	 * Remove weapons from user (Doesn't change money amount. Only for admin)
+	 * @param userId - id of user
+	 * @param weapons - id of weapon
+	 * @return true if operation was successfully
+	 */
+	boolean removeWeapons(int userId, List<Integer> weapons);
+	
+	/**
+	 * Remove aids from user (Doesn't change money amount. Only for admin)
+	 * @param userId - id of user
+	 * @param aids - id of aid
+	 * @return true if operation was successfully
+	 */
+	boolean removeAids(int userId, List<Integer> aids);
+	
+	/**
+	 * Remove armors from user (Doesn't change money amount. Only for admin)
+	 * @param userId - id of user
+	 * @param armors - id of armor
+	 * @return true if operation was successfully
+	 */
+	boolean removeArmors(int userId, List<Integer> armors);
+
+	/**
+	 * Get all users that have same weapon
+	 * @param weaponId - id of weapon
+	 * @return list of users
+	 */
+	List<User> getUsersWithWeapon(int weaponId);
+	
+	/**
+	 * Get all users that have same aid
+	 * @param aidId - id of aid
+	 * @return list of users
+	 */
+	List<User> getUsersWithAid(int aidId);
+	
+	/**
+	 * Get all users that have same armor
+	 * @param armorId - id of armor
+	 * @return list of users
+	 */
+	List<User> getUsersWithArmor(int armorId);
 }
