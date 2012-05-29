@@ -9,7 +9,7 @@
 <script type="text/javascript" src="js/jquery-1.7.2.js"></script>
 <script type="text/javascript" src="js/poker/jquery.valid8.js"></script>
 
-<title>Poker</title>
+<title>Public Enemies Poker</title>
 <script type="text/javascript" src="js/poker/bet.js"></script>
 
 <title>Poker</title>
@@ -17,10 +17,12 @@
 <body>
 	<table align="center">
 		<tr>
-			<td align="center"><img src="img/gamelogo.png"></img></td>
+			<td align="center"><a href="userStartPage.html"><img src="img/gamelogo.png"></img></a></td>
 		</tr>
 		<tr>
-			<button id="newRound">new Round</button>
+			<div id="attackBlock"style="position:relative; top:-150px; left:0px; width:80px; border: 2px">
+				<input id="botBetInput" type="text" value="0">
+			</div>
 			<table id="poker_table" class="sample" align="center" width="1000">
 				<tr align="center">
 					<td>
@@ -125,9 +127,6 @@
 						<form action="pokerGame.html" method="post" style="position:relative; top:-150px; left:450px; width:80px; height:80px; border: 2px">
 							<input id="userBetInput" type="text" value="0">
 						</form>
-						<div id="attackBlock"style="position:relative; top:-150px; left:0px; width:80px; border: 2px">
-							<input id="botBetInput" type="text" value="0">
-						</div>
  					</td>			
 				</tr>
 			</table>

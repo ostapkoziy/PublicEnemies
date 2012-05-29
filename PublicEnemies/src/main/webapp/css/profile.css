@@ -1,5 +1,7 @@
 body {
  	background-image: url("../img/style_main.png"); 
+	background-attachment: fixed;
+	background-repeat: no-repeat;
 	color: white;
 	font-family: 'impact';
 	font-size: 14pt;
