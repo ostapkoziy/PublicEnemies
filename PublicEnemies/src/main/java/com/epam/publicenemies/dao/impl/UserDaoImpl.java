@@ -474,7 +474,7 @@ public class UserDaoImpl implements IUserDao {
 	 */
 	@Override
 	public List<Map<String, Object>> getUsersSortedByMoney() {
-		final String SELECT_SQL = "SELECT name, money FROM users ORDER BY money";
+		final String SELECT_SQL = "SELECT nickName, money FROM users ORDER BY money";
 		List <Map<String, Object>> list = jdbcTemplate.queryForList(SELECT_SQL);
 		log.info("UserDaoImpl.getUsersSortedByMoney : "+list.size()+" users were fetched");
 		return list;
