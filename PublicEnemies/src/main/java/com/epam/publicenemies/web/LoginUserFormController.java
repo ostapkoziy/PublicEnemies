@@ -19,31 +19,30 @@ import com.epam.publicenemies.web.validators.IValidator;
 
 /**
  * @author Alexander Ivanov 22.04.2012 18:41:20
+ * 
  */
 @Controller
 @RequestMapping(value = "/userLogin")
-public class LoginUserFormController
-{
+public class LoginUserFormController {
 	private Logger				log	= Logger.getLogger(LoginUserFormController.class);
 	@Autowired
 	private IUserManagerService	userManagerService;
 	@Autowired
 	@Qualifier("loginUserFormValidator")
 	private IValidator			validator;
+	
 	@RequestMapping(method = RequestMethod.GET)
-	public String showForm(ModelMap model)
-	{
+	public String showForm(ModelMap model)	{
 		log.info("SHOW LOGIN FORM");
-		model.put("userDto", new User());
+		model.put("User", new User());
 		return "userLogin";
 	}
+	
 	@RequestMapping(method = RequestMethod.POST)
-	public String processSubmit(@ModelAttribute User user, HttpServletRequest request, BindingResult result)
-	{
+	public String processSubmit(@ModelAttribute User user, HttpServletRequest request, BindingResult result) {
 		log.info("PROCESS FORM");
 		validator.validate(user, result);
-		if (result.hasErrors())
-		{
+		if (result.hasErrors()) {
 			log.info("VALIDATING FALSE.....");
 			return "userLogin";
 		}

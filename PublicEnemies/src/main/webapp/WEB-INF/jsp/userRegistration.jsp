@@ -28,7 +28,7 @@
 
 					<tr align="center" height="200">
 						<td><form:form action="userRegistration.html" method="post"
-								commandName="userDto">
+								commandName="user">
 								<h1 align="center">REGISTER</h1>
 								<h2 align="center">Login</h2>
 								<form:input type="text" name="email" path="email" />
