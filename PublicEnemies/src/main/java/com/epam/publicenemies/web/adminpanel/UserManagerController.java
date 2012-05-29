@@ -60,10 +60,8 @@ public class UserManagerController implements IManageable {
 	@RequestMapping(value="edit/{euid}", method = RequestMethod.GET)	
 	public ModelAndView editOne(@PathVariable Integer euid) {
 		ModelAndView mav = new ModelAndView();
-		
-		//mav.setViewName("editUser"); 
 		mav.addObject("profile", profileManagerService.getProfileByUserId(euid)); 
-		//mav.addObject("euid", euid);
+		
 		mav.setViewName("/adminPanel/editUser");
 		
 		return mav; 		
@@ -71,23 +69,12 @@ public class UserManagerController implements IManageable {
 	
 	@RequestMapping(value="edit/{euid}", method = RequestMethod.POST)	
 	public String doEditOne(HttpServletRequest request) {
-		ModelAndView mav = new ModelAndView();
-		log.info("doEdit: ");
-		log.info("   userId: " + Integer.parseInt(request.getParameter("userId")));
-		log.info("   email: " + request.getParameter("email"));
-		log.info("   nickname: " + request.getParameter("nickname"));
-		log.info("   avatar: " + request.getParameter("avatar"));
-		log.info("   money: " + Integer.parseInt(request.getParameter("money")));
-		log.info("   profileId: " + Integer.parseInt(request.getParameter("profileId")));
 		userManagerService.updateUserInfo( Integer.parseInt(request.getParameter("userId")),
 				request.getParameter("email"), 
 				request.getParameter("nickname"), 
 				request.getParameter("avatar"), 
 				Integer.parseInt(request.getParameter("money")), 
-				Integer.parseInt(request.getParameter("profileId")));
-		
-				//request.getParameter("pass")
-		//mav.setViewName("/adminPanel/editUser");
+				Integer.parseInt(request.getParameter("profileId")));	
 		
 		return "redirect:../../users.html"; 
 	}
@@ -97,12 +84,16 @@ public class UserManagerController implements IManageable {
 	public ModelAndView deleteOne(@PathVariable Integer duid) {
 		ModelAndView mav = new ModelAndView();
 		
-		//mav.setViewName("editUser"); 
 		mav.addObject("euid", duid);
 		mav.setViewName("/adminPanel/deleteUser");
 		
 		return mav; 
-		
+	}
+	
+	@RequestMapping(value="delete/{duid}", method = RequestMethod.POST)
+	public String doDeleteUser(HttpServletRequest request) {
+		adminPanelManagerService.deleteUser(Integer.parseInt(request.getParameter("duid"))); 
+		return "redirect:../../users.html"; 
 	}
 
 	@Override
@@ -110,14 +101,12 @@ public class UserManagerController implements IManageable {
 	public ModelAndView detailInfo(@PathVariable Integer iuid) {
 		
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("iuid", iuid);
 		
 		mav.addObject("profile", profileManagerService.getProfileByUserId(iuid)); 
+		
 		mav.setViewName("/adminPanel/detailUserInfo");
 		
-		return mav; 
-
-		
+		return mav;	
 	}
 
 }

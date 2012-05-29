@@ -54,19 +54,14 @@ public class ArmorManagerController implements IManageable {
 	public ModelAndView editOne(@PathVariable Integer eaid) {
 		ModelAndView mav = new ModelAndView();
 		
-		//mav.setViewName("editUser"); 
 		mav.addObject("armor", adminPanelManagerService.getArmorById(eaid)); 
-		//mav.addObject("euid", euid);
 		mav.setViewName("/adminPanel/editArmor");
 		
 		return mav;
-
 	}
 	
 	@RequestMapping(value="edit/{eaid}", method = RequestMethod.POST)	
 	public String doEditOne(HttpServletRequest request) {
-		//ModelAndView mav = new ModelAndView();
-		
 		adminPanelManagerService.updateArmorInfo(
 			Integer.parseInt(request.getParameter("armorId")), 
 			request.getParameter("aName"), 
@@ -84,6 +79,7 @@ public class ArmorManagerController implements IManageable {
 
 		ModelAndView mav = new ModelAndView();
 		
+		mav.addObject("armor", adminPanelManagerService.getArmorById(iaid)); 
 		mav.setViewName("/adminPanel/detailArmorInfo");
 
 		return mav;
