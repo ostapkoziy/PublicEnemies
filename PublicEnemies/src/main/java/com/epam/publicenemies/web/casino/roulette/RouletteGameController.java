@@ -6,17 +6,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.epam.publicenemies.domain.Profile;
 import com.epam.publicenemies.domain.roulette.BetTypes;
 import com.epam.publicenemies.domain.roulette.RouletteGameInfo;
+import com.epam.publicenemies.service.IProfileManagerService;
 
 
 @Controller
 @RequestMapping("/rouletteGame.html")
 public class RouletteGameController{
+	@Autowired	
+	private IProfileManagerService	profileManagerService;
 	
 	RouletteGameInfo rouletteGameInfo;
 
@@ -24,6 +29,11 @@ public class RouletteGameController{
 	
 	final int ROULETTE_NUMBERS = 48;// 0..36
 	
+	public void setProfileManagerService(IProfileManagerService profileManagerService)
+	{
+		this.profileManagerService = profileManagerService;
+	}
+
 	@RequestMapping(method = RequestMethod.GET)
 	public String showRouletteGame(){
 		log.debug("In da rouletteGameController, GET method.");
@@ -39,40 +49,24 @@ public class RouletteGameController{
 		log.debug("In da rouletteGameController, POST method.");
 		
 		HttpSession session = request.getSession();
+		
 		rouletteGameInfo = (RouletteGameInfo)session.getAttribute("rouletteGameInfo");
-		if ((session.getAttribute("rouletteGameInfo")==null)||(request.getParameter("userBetNumbers")==null)) 
+		
+		if ( (session.getAttribute("rouletteGameInfo")==null)||(request.getParameter("userBetNumbers")==null) ) 
 		{
-			//old way getting user
-			log.debug("No "+ RouletteGameController.class +" instance, creating new one for session.");
-			rouletteGameInfo = new RouletteGameInfo();
-			
-			try{
-			rouletteGameInfo.setChips(Integer.valueOf(request.getParameter("chips")));
-			}catch(NumberFormatException e){rouletteGameInfo.setChips(0);}
-			
-			session.setAttribute("rouletteGameInfo", rouletteGameInfo);
+			createGameObjInSession(request);
 			return "rouletteGame";
 		}
 		else
 		{
-			String[] unparsedBets = request.getParameter("userBetNumbers").split(";");
-			log.info(request.getParameter("userBetNumbers"));
-			Integer[] bets = new Integer[ROULETTE_NUMBERS + 1];
-			rouletteGameInfo.setMsg("");
-		
-			if ( request.getParameter("userBetNumbers") == "" ) {
+			if ( request.getParameter("userBetNumbers") != "" ){
+				parseBetString(request.getParameter("userBetNumbers"));
+			}else{
 				rouletteGameInfo.setMsg("Make your BET on Roulette table! ");
 				return "rouletteGame";
 			}
-
-			for(String s:unparsedBets){
-				String[] buf = s.split(":");
-//				log.debug("buf[0]=" + buf[0] + "buf[1]="+buf[1]);
-				bets[Integer.valueOf(buf[0])] = Integer.valueOf(buf[1]);
-			}
-			
-			rouletteGameInfo.setBets(bets);
-			
+			Integer[] bets = rouletteGameInfo.getBets();
+				
 			rouletteGameInfo.setBetAmount(0);
 			for(int i=0; i<bets.length; i++){
 				if (bets[i]!=null) rouletteGameInfo.setBetAmount(rouletteGameInfo.getBetAmount() + bets[i]); 
@@ -89,7 +83,6 @@ public class RouletteGameController{
 			
 	}
 
-//	rouletteGameInfo.setChips(chips + calculatePrize( rouletteGameInfo.getBets(), rnd ));
 	int prize = 0;
 	log.info("Roulette number = "+ rnd);
 	
@@ -100,10 +93,43 @@ public class RouletteGameController{
 	
 	rouletteGameInfo.setChips(chips + prize);
 
-	log.info("rnd = " + rnd + "\nBet on: "+ (String) request.getParameter("userBetNumbers"));
+	log.debug("rnd = " + rnd + "\nBet on: "+ (String) request.getParameter("userBetNumbers"));
 
-	log.info(" Chips after:" + rouletteGameInfo.getChips());
+	log.debug(" Chips after:" + rouletteGameInfo.getChips());
 
 		return "rouletteGame";
+	}
+
+	private void parseBetString(String unparsedStr) {
+		String[] unparsedBets = unparsedStr.split(";");
+		Integer[] bets = new Integer[ROULETTE_NUMBERS + 1];
+		rouletteGameInfo.setMsg("");
+	
+		for(String s:unparsedBets){
+			String[] buf = s.split(":");
+			bets[Integer.valueOf(buf[0])] = Integer.valueOf(buf[1]);
+		}
+		rouletteGameInfo.setBets(bets);
+	}
+
+	private void createGameObjInSession(HttpServletRequest request) {
+		log.debug("No "+ RouletteGameController.class +" instance, creating new one for session.");
+		HttpSession session = request.getSession();
+
+		Profile userProfile = profileManagerService.getProfileByUserId((Integer) session.getAttribute("userId"));
+		rouletteGameInfo = new RouletteGameInfo();
+		rouletteGameInfo.setUserProfile(userProfile);
+		
+		try{
+			if ( userProfile.getMoney() >= Integer.valueOf(request.getParameter("chips")) )
+			rouletteGameInfo.setChips(Integer.valueOf(request.getParameter("chips")));
+			else rouletteGameInfo.setChips(userProfile.getMoney());
+		}catch	( NumberFormatException e ){
+			if ( userProfile.getMoney() >= 1000 ) rouletteGameInfo.setChips( 1000 );
+			else rouletteGameInfo.setChips(userProfile.getMoney());
+		}finally{
+			profileManagerService.updateMoney((Integer) session.getAttribute("userId"), userProfile.getMoney() - rouletteGameInfo.getChips());
+		}
+		session.setAttribute("rouletteGameInfo", rouletteGameInfo);
 	}
 }

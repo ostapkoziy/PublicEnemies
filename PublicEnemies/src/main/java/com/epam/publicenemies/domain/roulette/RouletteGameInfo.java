@@ -1,5 +1,7 @@
 package com.epam.publicenemies.domain.roulette;
 
+import com.epam.publicenemies.domain.Profile;
+
 public class RouletteGameInfo {
 	
 	private Integer bets[];
@@ -9,7 +11,14 @@ public class RouletteGameInfo {
 	private int chips;
 	private String msg = "";
 	private String[] history;
+	private Profile userProfile;
 
+	public Profile getUserProfile() {
+		return userProfile;
+	}
+	public void setUserProfile(Profile userProfile) {
+		this.userProfile = userProfile;
+	}
 	public int getPrize() {
 		return prize;
 	}

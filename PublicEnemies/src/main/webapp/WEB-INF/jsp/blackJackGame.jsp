@@ -14,6 +14,7 @@
 <script type="text/javascript" src="js/blackjack/stand.js"></script>
 <script type="text/javascript" src="js/blackjack/double.js"></script>
 <script type="text/javascript" src="js/blackjack/split.js"></script>
+<script type="text/javascript" src="js/blackjack/recovery.js"></script>
 </head>
 <body>
 	<table id="blackjack_table" height="800" width="1200" align="center">

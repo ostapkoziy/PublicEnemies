@@ -7,17 +7,21 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.epam.publicenemies.domain.blackjack.BlackJackGame;
 import com.epam.publicenemies.domain.blackjack.BlackJackGameList;
 import com.google.gson.Gson;
 
 @Controller
-public class CheckForBlackJackGame {
+public class RecoveryForBlackJackGame {
+	private Logger log = Logger.getLogger(RecoveryForBlackJackGame.class);
+
 	@Autowired
 	@Qualifier("games")
 	private BlackJackGameList games;
@@ -33,7 +37,7 @@ public class CheckForBlackJackGame {
 
 		// Get game
 		BlackJackGame game = games.getGameById(userId);
-
+		
 		PrintWriter out = response.getWriter();
 		Gson gson = new Gson();
 
@@ -41,4 +45,10 @@ public class CheckForBlackJackGame {
 		out.flush();
 
 		}
+	
+	@RequestMapping("/emptyBlackJack")
+	public ModelAndView empty(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		return new ModelAndView("blackJackGame");
+	}
 }

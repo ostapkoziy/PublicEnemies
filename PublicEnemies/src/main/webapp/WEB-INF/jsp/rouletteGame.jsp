@@ -91,6 +91,9 @@
 		<input id="clearBet" type="button" value="Clear bet">
 	</form>
 	</div>
+	<form method="post" action="rouletteRedirectController.html">
+		<input id="exit" type="submit" value="(MAKEUP!)Leave roulette table">
+	</form>
 	
 </body>
 </html>
