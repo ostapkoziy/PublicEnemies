@@ -16,7 +16,7 @@ public class FightEngine
 	public void startEngine(Fight fight)
 	{
 		log.info("-------------ENGINE STARTED-------------");
-		AreUsersInGame auig = areUsersInGame(fight.getRound().getCreatorHit(), fight.getRound().getConnectorHit());
+		AreUsersInGame auig = areUsersInGame(fight);
 		boolean offline = auig.start(fight);
 		if (offline)
 		{
@@ -51,10 +51,10 @@ public class FightEngine
 	}
 	private boolean shooting(Fight fight)
 	{
-		String creatorHit = fight.getRound().getCreatorHit();
-		String creatorBlock = fight.getRound().getCreatorBlock();
-		String connectorHit = fight.getRound().getConnectorHit();
-		String connectorBlock = fight.getRound().getConnectorBlock();
+		String creatorHit = fight.getRound().getCreatorAction().getHit();
+		String creatorBlock = fight.getRound().getCreatorAction().getBlock();
+		String connectorHit = fight.getRound().getConnectorAction().getHit();
+		String connectorBlock = fight.getRound().getConnectorAction().getBlock();
 		int creatorDamage = 0;
 		int connectorDamage = 0;
 		int creatorHPAfterHit = fight.getCreatorProfile().getHP();
@@ -79,12 +79,14 @@ public class FightEngine
 	}
 	private void clearHitsBlocks(Fight game)
 	{
-		game.getRound().setCreatorHit("");
-		game.getRound().setConnectorHit("");
-		game.getRound().setCreatorBlock("");
-		game.getRound().setConnectorBlock("");
-		game.getRound().setCreatorDoHit(false);
-		game.getRound().setConnectorDoHit(false);
+		game.getRound().getCreatorAction().setHit("");
+		game.getRound().getCreatorAction().setBlock("");
+		game.getRound().getCreatorAction().setDidHit(false);
+		// *************************************
+		game.getRound().getConnectorAction().setHit("");
+		game.getRound().getConnectorAction().setBlock("");
+		game.getRound().getConnectorAction().setDidHit(false);
+		// ***************************************
 		game.getRound().setRoundNumber(game.getRound().getRoundNumber() + 1);
 		game.getRound().setRoundStart(true);
 		game.getRound().setRoundBeginTime(System.currentTimeMillis() / 1000);
@@ -129,8 +131,10 @@ public class FightEngine
 		}
 		return RoundResult.ALIVE;
 	}
-	private AreUsersInGame areUsersInGame(String creatorHit, String connectorHit)
+	private AreUsersInGame areUsersInGame(Fight fight)
 	{
+		String creatorHit = fight.getRound().getCreatorAction().getHit();
+		String connectorHit = fight.getRound().getConnectorAction().getHit();
 		if (creatorHit.equals("") && connectorHit.equals(""))
 		{
 			return AreUsersInGame.OFFLINE;

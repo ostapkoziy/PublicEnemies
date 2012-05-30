@@ -7,21 +7,15 @@ public class FightRound
 {
 	private int				roundNumber;
 	private boolean			roundStart;
-	private String			creatorHit;
-	private String			creatorBlock;
-	private String			connectorHit;
-	private String			connectorBlock;
-	private boolean			creatorDoHit;
-	private boolean			connectorDoHit;
+	private Action			creatorAction;
+	private Action			connectorAction;
 	private volatile long	roundBeginTime;
 	public FightRound()
 	{
 		roundNumber = 1;
 		roundStart = true;
-		creatorHit = "";
-		creatorBlock = "";
-		connectorHit = "";
-		connectorBlock = "";
+		creatorAction = new Action();
+		connectorAction = new Action();
 	}
 	public int getRoundNumber()
 	{
@@ -31,29 +25,13 @@ public class FightRound
 	{
 		return roundStart;
 	}
-	public String getCreatorHit()
+	public Action getCreatorAction()
 	{
-		return creatorHit;
+		return creatorAction;
 	}
-	public String getCreatorBlock()
+	public Action getConnectorAction()
 	{
-		return creatorBlock;
-	}
-	public String getConnectorHit()
-	{
-		return connectorHit;
-	}
-	public String getConnectorBlock()
-	{
-		return connectorBlock;
-	}
-	public boolean isCreatorDoHit()
-	{
-		return creatorDoHit;
-	}
-	public boolean isConnectorDoHit()
-	{
-		return connectorDoHit;
+		return connectorAction;
 	}
 	public long getRoundBeginTime()
 	{
@@ -67,29 +45,13 @@ public class FightRound
 	{
 		this.roundStart = roundStart;
 	}
-	public void setCreatorHit(String user1Hit)
+	public void setCreatorAction(Action creatorAction)
 	{
-		this.creatorHit = user1Hit;
+		this.creatorAction = creatorAction;
 	}
-	public void setCreatorBlock(String user1Block)
+	public void setConnectorAction(Action connectorAction)
 	{
-		this.creatorBlock = user1Block;
-	}
-	public void setConnectorHit(String user2Hit)
-	{
-		this.connectorHit = user2Hit;
-	}
-	public void setConnectorBlock(String user2Block)
-	{
-		this.connectorBlock = user2Block;
-	}
-	public void setCreatorDoHit(boolean u1Hit)
-	{
-		this.creatorDoHit = u1Hit;
-	}
-	public void setConnectorDoHit(boolean u2Hit)
-	{
-		this.connectorDoHit = u2Hit;
+		this.connectorAction = connectorAction;
 	}
 	public void setRoundBeginTime(long roundBeginTime)
 	{
