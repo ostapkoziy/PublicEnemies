@@ -46,7 +46,7 @@ public class RecoveryForBlackJackGame {
 
 		}
 	
-	@RequestMapping("/emptyBlackJack")
+	@RequestMapping("/BlackJackGame")
 	public ModelAndView empty(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		return new ModelAndView("blackJackGame");

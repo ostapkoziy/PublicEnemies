@@ -21,7 +21,7 @@ $(document)
 										success : function(data) {
 											var game = jQuery.parseJSON(data);
 											if (game != null) {
-												window.location.replace("/PublicEnemies/emptyBlackJack.html");
+												window.location.replace("/PublicEnemies/BlackJackGame.html");
 											}
 										},
 										error : function(e, ajaxOptions,

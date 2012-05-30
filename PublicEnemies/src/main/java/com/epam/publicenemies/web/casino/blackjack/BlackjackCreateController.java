@@ -40,7 +40,7 @@ public class BlackjackCreateController {
 		this.games = games;
 	}
 
-	@RequestMapping("/blackJackGame.html")
+	@RequestMapping("/blackJackGame")
 	public ModelAndView handleRequest(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		Integer userId = (Integer) request.getSession().getAttribute("userId");

@@ -51,21 +51,29 @@ public class DealBlackJackController {
 	public void setEnhine(BlackJackEngine engine) {
 		this.engine = engine;
 	}
-	
+
 	@RequestMapping("/dealBlackJackController")
 	public void deal(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
-		
+
+		// Get userId
+		Integer userId = (Integer) request.getSession().getAttribute("userId");
+
+		// Get game
+		BlackJackGame game = games.getGameById(userId);
+
 		// Get player bet
 		Integer playerBet = Integer.valueOf(request.getParameter("playerBet"));
 		// Get player chips
 		Integer playerChips = Integer.valueOf(request
 				.getParameter("playerChips"));
-		playerChips = playerChips - playerBet;
-		// Get userId
-		Integer userId = (Integer) request.getSession().getAttribute("userId");
-		
+		if (playerChips - playerBet < 0) {
+			game.setEnoughChips(false);
+		} else{
+			game.setEnoughChips(true);
+		}
+
 		// Take 2 cards for player
 		List<BlackJackCard> playerCards = new ArrayList<BlackJackCard>();
 		for (int i = 0; i < 2; i++) {
@@ -91,8 +99,7 @@ public class DealBlackJackController {
 		round.setDealerCards(dealerCards);
 		round.setPlayerResult(playerResult);
 
-		// Get game
-		BlackJackGame game = games.getGameById(userId);
+		// Set Game
 		game.setRound(round);
 		game.setChips(playerChips);
 
