@@ -12,11 +12,13 @@ import java.util.Map;
 import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.stereotype.Repository;
 
 import com.epam.publicenemies.dao.IUserDao;
 import com.epam.publicenemies.domain.User;
@@ -33,12 +35,13 @@ import com.epam.publicenemies.domain.Weapon;
  * 
  * TODO: add moneyUpdate method; to declare all queries as final fields etc.
  * */
+@Repository
 public class UserDaoImpl implements IUserDao {
 
 	private Logger log = Logger.getLogger(UserDaoImpl.class);
 	private JdbcTemplate jdbcTemplate;
 	
-	
+	@Autowired
 	public void setDataSource(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}

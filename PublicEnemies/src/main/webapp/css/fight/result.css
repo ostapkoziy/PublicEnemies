@@ -1,5 +1,9 @@
 @CHARSET "UTF-8";
 
+body {
+	background-color: black;
+}
+
 #color1 {
 	width: 100%;
 	height: 100%;
@@ -17,11 +21,11 @@
 	height: 414px;
 	z-index: 2000;
 	background: black;
-	top: 100px;
-	left: 0;
-	right: 0;
-	margin-left: auto;
-	margin-right: auto;
+	top: 50px;
+	left: 50px;
+	/* 	right: 0; */
+	/* 	margin-left: auto; */
+	/* 	margin-right: auto; */
 	opacity: 0.6;
 	border-radius: 15px;
 }
@@ -30,11 +34,11 @@
 	position: fixed;
 	width: 374px;
 	height: 374px;
-	top: 120px;
-	left: 0;
-	right: 0;
-	margin-left: auto;
-	margin-right: auto;
+	top: 70px;
+	left: 70px;
+	/* 	right: 0; */
+	/* 	margin-left: auto; */
+	/* 	margin-right: auto; */
 	z-index: 3000;
 	background: white;
 	border-radius: 15px;
@@ -49,10 +53,8 @@
 	margin-left: auto;
 }
 
-.win {
-	background-image: url("../../img/fight/you-win.png");
-}
-
-.lose {
-	background-image: url("../../img/fight/you-lose.png");
+#expirience {
+	outline: 20px solid red;
+	width: 100px;
+	height: 100px;
 }

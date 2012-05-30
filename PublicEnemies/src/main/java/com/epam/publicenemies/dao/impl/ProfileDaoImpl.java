@@ -8,8 +8,10 @@ import java.util.Map;
 import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 
 import com.epam.publicenemies.dao.IProfileDao;
 import com.epam.publicenemies.domain.Profile;
@@ -29,6 +31,7 @@ import com.epam.publicenemies.domain.Armor;
  *         TODO: Null Pointer exception if profile doesn't exist. Fix it!
  * 
  */
+@Repository
 public class ProfileDaoImpl implements IProfileDao {
 
 	private Logger log = Logger.getLogger(ProfileDaoImpl.class);
@@ -37,6 +40,7 @@ public class ProfileDaoImpl implements IProfileDao {
 	
 	final static public double KOEF = 0.6;
 	
+	@Autowired
 	public void setDataSource(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}

@@ -3,25 +3,29 @@ package com.epam.publicenemies.dao.impl;
 import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 import com.epam.publicenemies.dao.ITableDao;
 
 
-//TODO check for table creations
 /**
+ * 
  * This class intended to create and delete all necessary tables
  * Be caution - its destroys all existing data in db
  * Updated by I. Kostyrko on Apr 27, 2012
  * Updated by I. Kostyrko on May 16, 2012 - filling tables
- *
+ * 
  */
+@Repository
 public class TableDaoImpl implements ITableDao {
 	
 	private Logger log = Logger.getLogger(TableDaoImpl.class);
 	
 	private JdbcTemplate jdbcTemplate;
 
+	@Autowired
 	public void setDataSource(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}

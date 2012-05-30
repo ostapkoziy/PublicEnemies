@@ -7,7 +7,7 @@ package com.epam.publicenemies.domain.fight;
  */
 public enum RoundResult
 {
-	DOUBLE_DETH
+	DOUBLE_DEATH
 	{
 		@Override
 		public boolean roundResult(Fight fight, int creatorDamage, int connectorDamage)
@@ -18,7 +18,7 @@ public enum RoundResult
 			return true;
 		}
 	},
-	CREATOR_DETH
+	CREATOR_DEATH
 	{
 		@Override
 		public boolean roundResult(Fight fight, int creatorDamage, int connectorDamage)
@@ -30,7 +30,7 @@ public enum RoundResult
 			return true;
 		}
 	},
-	CONNECTOR_DETH
+	CONNECTOR_DEATH
 	{
 		@Override
 		public boolean roundResult(Fight fight, int creatorDamage, int connectorDamage)
@@ -39,6 +39,7 @@ public enum RoundResult
 			fight.getConnectorProfile().setHP(0);
 			fight.getCreatorProfile().setHP(creatorHP - connectorDamage);
 			fight.setWhoWins(fight.getProfile("creator"));
+			fight.getCreatorProfile().getLevel().setExpirienceAfterFight(800);
 			return true;
 		}
 	},

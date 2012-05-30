@@ -39,7 +39,7 @@ public class WaitingNewRound
 		 */
 		PrintWriter out = response.getWriter();
 		JSONSerializer ser = new JSONSerializer();
-		// startEngineIfOpponentNotHit(fight, role);
+		startEngineIfOpponentNotHit(fight, role);
 		if (fight.isGameEnd())
 		{
 			log.info("--------------GAME IS END FOR USER: " + userProfile.getNickName() + "----------------------");
@@ -51,8 +51,7 @@ public class WaitingNewRound
 		out.flush();
 	}
 	/**
-	 * Запускати Engine якщо хоча б один online(тобто не закрив вкладку чи
-	 * браузер)
+	 * Запускати Engine якщо хоча б один online(тобто не закрив вкладку чи браузер)
 	 * 
 	 */
 	private synchronized void startEngineIfOpponentNotHit(Fight fight, String role)

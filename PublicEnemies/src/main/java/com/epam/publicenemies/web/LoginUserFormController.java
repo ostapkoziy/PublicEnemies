@@ -13,12 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.epam.publicenemies.domain.User;
-import com.epam.publicenemies.dto.UserDto;
 import com.epam.publicenemies.service.IUserManagerService;
 import com.epam.publicenemies.web.validators.IValidator;
 
 /**
  * @author Alexander Ivanov 22.04.2012 18:41:20
+ * 
  */
 @Controller
 @RequestMapping(value = "/userLogin")
@@ -34,7 +34,7 @@ public class LoginUserFormController
 	public String showForm(ModelMap model)
 	{
 		log.info("SHOW LOGIN FORM");
-		model.put("userDto", new User());
+		model.put("user", new User());
 		return "userLogin";
 	}
 	@RequestMapping(method = RequestMethod.POST)

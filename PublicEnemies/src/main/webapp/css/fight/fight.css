@@ -1,5 +1,9 @@
 @CHARSET "UTF-8";
 
+body { /* 	background: url("../../img/fight/bg3.png") no-repeat; */
+	
+}
+
 #content {
 	width: 1000px;
 	margin-left: auto;
