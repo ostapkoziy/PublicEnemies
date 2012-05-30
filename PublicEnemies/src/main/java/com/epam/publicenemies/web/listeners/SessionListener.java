@@ -51,9 +51,11 @@ public class SessionListener implements HttpSessionListener {
 		Integer userId = (Integer) event.getSession().getAttribute("userId");
 		Profile profile = profileManagerService.getProfileByUserId(userId);
 		BlackJackGame game = games.getGameById(userId);
-		profileManagerService.updateMoney(userId,
-				profile.getMoney() + game.getChips());
-		log.info("BLACKJACK GAME: " + userId + "  DESTROYED");
-		games.removeGame(userId);
+		if (game != null) {
+			profileManagerService.updateMoney(userId,
+					profile.getMoney() + game.getChips());
+			log.info("BLACKJACK GAME: " + userId + "  DESTROYED");
+			games.removeGame(userId);
+		}
 	}
 }

@@ -33,7 +33,6 @@ $(document)
 
 					function allDataUpdate(game) {
 						if (game.enoughChips == true) {
-							alert(game.enoughChips);
 							var i = 0;
 							$("#player_cards").empty();
 							for (i = 0; i < game.round.playerCards.length; i = i + 1) {

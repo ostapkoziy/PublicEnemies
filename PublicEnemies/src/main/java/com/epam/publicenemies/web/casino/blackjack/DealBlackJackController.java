@@ -72,6 +72,7 @@ public class DealBlackJackController {
 			game.setEnoughChips(false);
 		} else{
 			game.setEnoughChips(true);
+			playerChips = playerChips - playerBet;
 		}
 
 		// Take 2 cards for player
