@@ -1,9 +1,7 @@
-package com.epam.publicenemies.web.casino.poker;
+package com.epam.publicenemies.domain.poker;
 
 import java.util.Comparator;
 
-import com.epam.publicenemies.domain.poker.PokerCard;
-import com.epam.publicenemies.domain.poker.Value;
 
 
 public class PokerCardComparator implements Comparator<PokerCard> {

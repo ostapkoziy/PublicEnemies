@@ -4,10 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import com.epam.publicenemies.web.casino.poker.CombinationChecker;
-import com.epam.publicenemies.web.casino.poker.FoldException;
 import com.epam.publicenemies.web.casino.poker.PokerGame;
-import com.epam.publicenemies.web.casino.poker.SpectrumAnalyzer;
 
 
 public class EasyBot implements IPokerPlayer {

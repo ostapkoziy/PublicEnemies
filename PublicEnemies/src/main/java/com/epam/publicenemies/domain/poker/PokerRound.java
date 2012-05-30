@@ -1,4 +1,4 @@
-package com.epam.publicenemies.web.casino.poker;
+package com.epam.publicenemies.domain.poker;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,12 +6,6 @@ import java.util.Random;
 
 import org.apache.log4j.Logger;
 
-import com.epam.publicenemies.domain.poker.CardDeck;
-import com.epam.publicenemies.domain.poker.IPokerPlayer;
-import com.epam.publicenemies.domain.poker.PokerCard;
-import com.epam.publicenemies.domain.poker.PokerCombination;
-import com.epam.publicenemies.domain.poker.PokerHand;
-import com.epam.publicenemies.domain.poker.PokerTable;
 
 public class PokerRound {
 	private Logger log = Logger.getLogger(PokerRound.class);
@@ -55,7 +49,6 @@ public class PokerRound {
 	public void setPlayer2Bet(int player2Bet) {
 		this.player2Bet = player2Bet;
 	}
-	
 	public void initGame(){
 		List<PokerHand> result = new ArrayList<PokerHand>();
 		deck.shuffleDeck(); // shuffle the deck
@@ -87,6 +80,8 @@ public class PokerRound {
 		}
 		log.info("PokerRound player1bet - " + getPlayer1Bet());
 		log.info("PokerRound player2bet - " + getPlayer2Bet());
+		pot += player1Bet;
+		pot += player2Bet;
 	}
 
 	public List<PokerCard> flop(){

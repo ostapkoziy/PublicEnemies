@@ -1,4 +1,4 @@
-package com.epam.publicenemies.web.casino.poker;
+package com.epam.publicenemies.domain.poker;
 
 public class FoldException extends Exception {
 

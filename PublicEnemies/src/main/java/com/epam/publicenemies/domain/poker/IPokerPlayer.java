@@ -2,7 +2,6 @@ package com.epam.publicenemies.domain.poker;
 
 import java.io.Serializable;
 
-import com.epam.publicenemies.web.casino.poker.FoldException;
 import com.epam.publicenemies.web.casino.poker.PokerGame;
 
 

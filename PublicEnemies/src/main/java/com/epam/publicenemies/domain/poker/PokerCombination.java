@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import com.epam.publicenemies.web.casino.poker.PokerCardComparator;
 
 
 public class PokerCombination {

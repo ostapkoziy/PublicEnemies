@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 import com.epam.publicenemies.domain.poker.CardDeck;
+import com.epam.publicenemies.domain.poker.CombinationChecker;
 import com.epam.publicenemies.domain.poker.IPokerPlayer;
 import com.epam.publicenemies.domain.poker.PokerCard;
 import com.epam.publicenemies.domain.poker.PokerCombination;

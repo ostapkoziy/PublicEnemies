@@ -27,6 +27,9 @@
 	<bean id="games" class="com.epam.publicenemies.domain.blackjack.BlackJackGameList" />
 	<bean id="engine" class="com.epam.publicenemies.web.casino.blackjack.BlackJackEngine" />
 
+	<!-- +++++++++++++++++++++++++++++++++++ Poker +++++++++++++++++++++++++++++++++++++++++++++ -->
+	<bean id="pokerGames" class="com.epam.publicenemies.domain.poker.PokerGameList" />
+
 	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 	<!-- +++++++++++++++++++++++++++++++++++ MAPPING +++++++++++++++++++++++++++++++++++++++++++++++++ -->
 	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->

@@ -1,21 +1,29 @@
 package com.epam.publicenemies.web.casino.poker;
 
 import com.epam.publicenemies.domain.Profile;
+import com.epam.publicenemies.domain.poker.PokerRound;
 
 /*
  * @author Ostap Koziy
  */
 public class PokerGame {
 
-	private long id;
+	private int id;
 	private Profile user1Profile;
 	private PokerRound pokerGameRound;
-	private String userResultPage;
 	private String comment;
-	public long getId() {
+	
+	public PokerGame (int id, Profile user){
+		this.user1Profile = user;
+		this.id = id;
+	}
+	public PokerGame (){
+	}
+	
+	public int getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public Profile getUser1Profile() {
@@ -30,12 +38,6 @@ public class PokerGame {
 	}
 	public void setPokerGameRound(PokerRound pokerGameRound) {
 		this.pokerGameRound = pokerGameRound;
-	}
-	public String getUserResultPage() {
-		return userResultPage;
-	}
-	public void setUserResultPage(String userResultPage) {
-		this.userResultPage = userResultPage;
 	}
 	public String getComment() {
 		return comment;

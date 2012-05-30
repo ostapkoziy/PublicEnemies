@@ -21,6 +21,7 @@ import com.epam.publicenemies.domain.Profile;
 import com.epam.publicenemies.domain.poker.IPokerPlayer;
 import com.epam.publicenemies.domain.poker.PokerCard;
 import com.epam.publicenemies.domain.poker.PokerCombination;
+import com.epam.publicenemies.domain.poker.PokerRound;
 import com.epam.publicenemies.domain.poker.PokerTable;
 import com.epam.publicenemies.service.IProfileManagerService;
 
@@ -291,7 +292,7 @@ public class PokerServlet {
 		int money1 = pokerGame.getUser1Profile().getMoney();
 		int money2 = pokerGame.getPokerGameRound().getPlayer2().getCash();
 		Profile userProfile = profileManagerService.getProfileByUserId((Integer) request.getSession().getAttribute("userId"));
-		pokerGame = new PokerGame();
+		//pokerGame = new PokerGame();
 		pokerGame.setComment("PreFlop");
 		pokerGame.setId(new Random().nextInt());
 		pokerGame.setUser1Profile(userProfile);

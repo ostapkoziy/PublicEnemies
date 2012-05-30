@@ -1,7 +1,7 @@
 package com.epam.publicenemies.web.casino.poker;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,12 +16,14 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.epam.publicenemies.domain.Profile;
+import com.epam.publicenemies.domain.blackjack.BlackJackGameList;
 import com.epam.publicenemies.domain.fight.Fight;
 import com.epam.publicenemies.domain.fight.FightsList;
 import com.epam.publicenemies.domain.poker.EasyBot;
 import com.epam.publicenemies.domain.poker.IPokerPlayer;
 import com.epam.publicenemies.domain.poker.PokerCard;
 import com.epam.publicenemies.domain.poker.PokerCombination;
+import com.epam.publicenemies.domain.poker.PokerGameList;
 import com.epam.publicenemies.domain.poker.PokerPlayer;
 import com.epam.publicenemies.service.IProfileManagerService;
 import com.epam.publicenemies.utils.Utils;
@@ -35,6 +37,18 @@ import com.epam.publicenemies.web.fight.CreateGameController;
 public class PokerCreateController {
 	private Logger log = Logger.getLogger(PokerCreateController.class);
 	
+	
+	@Autowired
+	@Qualifier("pokerGames")
+	private PokerGameList games;
+
+	public void setGames(PokerGameList games) {
+		this.games = games;
+	}
+
+	
+	
+	
 	@Autowired	
 	private IProfileManagerService	profileManagerService;
 	public void setProfileManagerService(IProfileManagerService profileManagerService)
@@ -45,40 +59,25 @@ public class PokerCreateController {
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
 		Profile userProfile = profileManagerService.getProfileByUserId((Integer) request.getSession().getAttribute("userId"));
-		PokerGame pokerGame = new PokerGame();
-		pokerGame.setId(new Random().nextInt());
-		
-		log.info("POKER GAME: " + pokerGame.getId() + "  CREATED");
-		
-		pokerGame.setUser1Profile(userProfile);
+		Integer userId = (Integer) request.getSession().getAttribute("userId");
+		Profile profile = profileManagerService.getProfileByUserId(userId);
 
-		IPokerPlayer player1 = new PokerPlayer(pokerGame.getUser1Profile().getNickName(), pokerGame.getUser1Profile().getMoney());
-		IPokerPlayer player2 = new EasyBot("Dirty Sanzhez", 3000);
-		pokerGame.setPokerGameRound(new PokerRound(player1, player2, 25, 50));
-		pokerGame.getPokerGameRound().initGame();
-		PokerServlet.partCounter = 0;
-		/*
-		 * SESSION_SETUP
-		 */
-		request.getSession().setAttribute("pokerGame", pokerGame);
-		ModelAndView mav = new ModelAndView(new RedirectView("pokerGame.html"));
-		Integer chips;
-		if(userProfile.getMoney() >= 3000){
-			chips = 3000;
-		}else{
-			chips = userProfile.getMoney();
-		}
-		try{
-			chips = Integer.valueOf(request.getParameter("chips"));
-		}catch (NumberFormatException e){
-			//ignore the exception and set default chip
-		}
-		userProfile.setMoney(userProfile.getMoney() - chips);
+		Integer chips = Integer.valueOf(request.getParameter("chips"));
+		profileManagerService.updateMoney(userId, profile.getMoney() - chips);
+
+		//==================CREATE GAME====================
+		games.createNewGame(userId, userProfile);
+		RaisePokerController.botChips = 5000;
+		RaisePokerController.counter = 0;
+		//==================CREATE GAME====================
 		
-		request.getSession().setAttribute("chips", chips);
-		
-		//mav.addObject("chips", chips);
-		return mav;
+		request.getSession().setAttribute("userProfile", profile);
+		log.info("POKER GAME: " + userId + "  CREATED");
+		Map<String, Object> objects = new HashMap<String, Object>();
+
+		objects.put("chips", chips);
+
+		return new ModelAndView("pokerGame", objects);
 	}
 	
 }

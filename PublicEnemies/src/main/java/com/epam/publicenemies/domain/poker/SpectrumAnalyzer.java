@@ -1,11 +1,10 @@
-package com.epam.publicenemies.web.casino.poker;
+package com.epam.publicenemies.domain.poker;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
-import com.epam.publicenemies.domain.poker.PokerHand;
 
 
 public class SpectrumAnalyzer {

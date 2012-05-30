@@ -7,19 +7,22 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="css/poker.css" type="text/css">
 <script type="text/javascript" src="js/jquery-1.7.2.js"></script>
-<script type="text/javascript" src="js/poker/jquery.valid8.js"></script>
+<script type="text/javascript" src="js/poker/pokerGame.js"></script>
+<script type="text/javascript" src="js/poker/raise.js"></script>
 
 <title>Public Enemies Poker</title>
-<script type="text/javascript" src="js/poker/bet.js"></script>
+<!-- <script type="text/javascript" src="js/poker/bet.js"></script> -->
+
 
 <title>Poker</title>
 </head>
 <body>
-	<table align="center">
+	<table align="center" height="120">
 		<tr>
 			<td align="center"><a href="userStartPage.html"><img src="img/gamelogo.png"></img></a></td>
 		</tr>
 		<tr>
+			<button id="newRound">New Round</button>
 			<table id="poker_table" class="sample" align="center" width="1000">
 				<tr align="center">
 					<td>
