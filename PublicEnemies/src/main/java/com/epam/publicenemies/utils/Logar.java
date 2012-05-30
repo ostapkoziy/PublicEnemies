@@ -13,7 +13,7 @@ public class Logar
 		int leftGr = 0;
 		int rightGr = 0;
 		int lvl = 0;
-		int allExp = 2600;
+		int allExp = 4500;
 		while (true)
 		{
 			lvl++;

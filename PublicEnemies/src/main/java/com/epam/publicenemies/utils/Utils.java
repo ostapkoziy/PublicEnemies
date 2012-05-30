@@ -4,9 +4,9 @@ import java.util.HashMap;
 
 import org.apache.log4j.Logger;
 
-import com.epam.publicenemies.domain.Profile;
 import com.epam.publicenemies.domain.fight.Fight;
 import com.epam.publicenemies.domain.fight.FightsList;
+import com.epam.publicenemies.domain.fight.Level;
 
 /**
  * @author Alexander Ivanov
@@ -67,22 +67,26 @@ public class Utils
 			Utils.isUsersOffline(oldFight);
 		}
 	}
-	// TODO !!!!!!!!!!!!!!!!!!!!111
-	public static void expAnalizer(Profile profile)
+	public static void expAnalizer(Level level)
 	{
-		int curLVL = profile.getLevel().getCurrentLevel();
-		int expAfterFight = profile.getLevel().getCurrentUserExpirience() + profile.getLevel().getExpirienceAfterFight();
-		int levelExpGr = 0;
-		while (curLVL > 0)
+		int allExp = level.getAllExpirience();
+		int leftGr = 0;
+		int rightGr = 0;
+		int lvl = 0;
+		while (true)
 		{
-			levelExpGr = levelExpGr + 1000 + curLVL * curLVL * 100;
+			lvl++;
+			rightGr = rightGr + 1000 + lvl * lvl * 100;
+			if (rightGr > allExp)
+			{
+				break;
+			}
+			leftGr = rightGr;
 		}
-		log.info("levelExpGRanucja: " + expAfterFight);
-		log.info("expAfterFight: " + expAfterFight);
-		if (expAfterFight > levelExpGr)
-		{
-			profile.getLevel().setCurrentLevel(curLVL++);
-			log.info("NEXT LEVEL");
-		}
+		int expOnCurrentLvl = allExp - leftGr;
+		level.setCurrentLevel(lvl);
+		level.setExpOnCurrentLevel(expOnCurrentLvl);
+		level.setRightBound(rightGr);
+		level.setLeftBound(leftGr);
 	}
 }

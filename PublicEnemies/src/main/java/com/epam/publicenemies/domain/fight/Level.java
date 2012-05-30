@@ -1,5 +1,7 @@
 package com.epam.publicenemies.domain.fight;
 
+import com.epam.publicenemies.utils.Utils;
+
 /**
  * @author Alexander Ivanov
  */
@@ -8,51 +10,39 @@ public class Level
 	/**
 	 * Якшо userExpirienceOnCurrentLevel > expirienceForNextLevel левел++ різницю експи в базу
 	 */
-	private int	currentLevel			= 2;
-	private int	currentUserExpirience	= 2400; // from_DB
+	private int	allExpirience	= 4500; // from_DB
+	private int	currentLevel;
 	private int	expirienceAfterFight;
-	private int	expirienceForNextLevel;
-	private int	nextLevelInPercent;
+	private int	leftBound;
+	private int	rightBound;
+	private int	expOnCurrentLevel;
+	/*
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 */
 	public Level()
 	{
-		// currentLevel = (currentUserExpirience + (2000 - 1)) / 2000;
-		// expirienceForNextLevel = 2000 * currentLevel;
-		// nextLevelInPercent = (int) ((double) currentUserExpirience / expirienceForNextLevel * 100);
-		// expirienceAfterFight = 0;
-		expirienceAfterFight = 0;
-		expirienceForNextLevel = 1000 + currentLevel * currentLevel * 100;
+		Utils.expAnalizer(this);
+	}
+	private int	nextLevelInPercent;
+	public int getAllExpirience()
+	{
+		return allExpirience;
+	}
+	public void setAllExpirience(int allExpirience)
+	{
+		this.allExpirience = allExpirience;
 	}
 	public int getCurrentLevel()
 	{
 		return currentLevel;
 	}
-	public int getCurrentUserExpirience()
-	{
-		return currentUserExpirience;
-	}
-	public int getExpirienceForNextLevel()
-	{
-		return expirienceForNextLevel;
-	}
-	public int getNextLevelInPercent()
-	{
-		return nextLevelInPercent;
-	}
 	public void setCurrentLevel(int currentLevel)
 	{
 		this.currentLevel = currentLevel;
-	}
-	public void setCurrentUserExpirience(int userExpirienceOnCurrentLevel)
-	{
-		this.currentUserExpirience = userExpirienceOnCurrentLevel;
-	}
-	public void setExpirienceForNextLevel(int expirienceForNextLevel)
-	{
-		this.expirienceForNextLevel = expirienceForNextLevel;
-	}
-	public void setNextLevelInPercent(int nextLevelInPercent)
-	{
-		this.nextLevelInPercent = nextLevelInPercent;
 	}
 	public int getExpirienceAfterFight()
 	{
@@ -61,5 +51,37 @@ public class Level
 	public void setExpirienceAfterFight(int expirienceAfterFight)
 	{
 		this.expirienceAfterFight = expirienceAfterFight;
+	}
+	public int getLeftBound()
+	{
+		return leftBound;
+	}
+	public void setLeftBound(int leftBound)
+	{
+		this.leftBound = leftBound;
+	}
+	public int getRightBound()
+	{
+		return rightBound;
+	}
+	public void setRightBound(int rightBound)
+	{
+		this.rightBound = rightBound;
+	}
+	public int getExpOnCurrentLevel()
+	{
+		return expOnCurrentLevel;
+	}
+	public void setExpOnCurrentLevel(int expOnCurrentLevel)
+	{
+		this.expOnCurrentLevel = expOnCurrentLevel;
+	}
+	public int getNextLevelInPercent()
+	{
+		return nextLevelInPercent;
+	}
+	public void setNextLevelInPercent(int nextLevelInPercent)
+	{
+		this.nextLevelInPercent = nextLevelInPercent;
 	}
 }

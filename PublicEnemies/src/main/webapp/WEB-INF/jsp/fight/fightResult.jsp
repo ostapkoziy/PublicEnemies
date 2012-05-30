@@ -19,6 +19,7 @@
 				<c:choose>
 					<c:when test="${win==true}">
 						<link href="css/fight/winnerB.css" rel="stylesheet" type="text/css">
+						All Exp: ${myProfile.getLevel().getAllExpirience()};
 					</c:when>
 					<c:otherwise>
 						<link href="css/fight/loserB.css" rel="stylesheet" type="text/css">
