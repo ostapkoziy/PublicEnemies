@@ -3,7 +3,7 @@ $(document).ready(function(){
 	var image_suffix = ".png";
 	var globalGame;
 	betSend(0,0);
-	$("#botBetInput").hide();
+	//$("#botBetInput").hide();
 
 	function dealFlop (card1, card2, card3){
 		$("img#flop1").attr("src", image_prefix + card1 + image_suffix);
@@ -29,6 +29,7 @@ $(document).ready(function(){
 	 */
 	function betSend(userBet, botBet)
 	{
+		alert("BetSend " + userBet + " and " + botBet);
 		$.ajax({
 			url : "PokerServlet.html",
 			data : ({
@@ -54,9 +55,11 @@ $(document).ready(function(){
 	 ******************************************************************************/
 	function allDataUpdate(pokerGame)
 	{
+		alert("allDataUpdate with " +pokerGame.pokerGameRound.result);
 		globalGame = pokerGame;
 		$("div#botBet").empty().append(pokerGame.pokerGameRound.player2Bet);
 		$("div#playerBet").empty().append(pokerGame.pokerGameRound.player1Bet);
+		
 		if(pokerGame.pokerGameRound.player1Bet == pokerGame.pokerGameRound.player2Bet){
 			evenBets(pokerGame);
 		}
@@ -72,9 +75,11 @@ $(document).ready(function(){
 			roundEnded();
 		}
 		if(pokerGame.comment == "Showdown"){
+			alert("Entering showdown");
 			showdown(pokerGame);
 		}
-		if(pokerGame.pokerGameRound.result != null){
+		if(pokerGame.pokerGameRound.result != "none"){
+			alert("Entering showResult " + pokerGame.pokerGameRound.result);
 			showResult(pokerGame);
 		}
 		
@@ -98,17 +103,18 @@ $(document).ready(function(){
 	}
 	
 	function evenBets(pokerGame){
+		alert("EvenBets");
 		if(pokerGame.pokerGameRound.table.turn == null){
+			alert("EvenBets.flop");
 			var card1 = pokerGame.pokerGameRound.table.flop1.value.name + pokerGame.pokerGameRound.table.flop1.suit.name;
 			var card2 = pokerGame.pokerGameRound.table.flop2.value.name + pokerGame.pokerGameRound.table.flop2.suit.name;
 			var card3 = pokerGame.pokerGameRound.table.flop3.value.name + pokerGame.pokerGameRound.table.flop3.suit.name;
 			dealFlop(card1, card2, card3);
 			$("#pot_size").empty().append(pokerGame.pokerGameRound.pot);
-			$("#bot_chips").val("");
-			$("#player_chips").val("");
 			
 		}
 		else if(pokerGame.pokerGameRound.table.river == null){
+			alert("EvenBets.turn");
 			var card1 = pokerGame.pokerGameRound.table.turn.value.name + pokerGame.pokerGameRound.table.turn.suit.name;
 			dealTurn(card1);
 			$("#pot_size").empty().append(pokerGame.pokerGameRound.pot);
@@ -116,6 +122,7 @@ $(document).ready(function(){
 			$("#player_chips").empty();
 		}
 		else if(pokerGame.pokerGameRound.table.river != null){
+			alert("EvenBets.river");
 			var card1 = pokerGame.pokerGameRound.table.river.value.name + pokerGame.pokerGameRound.table.river.suit.name;
 			dealRiver(card1);
 			$("#pot_size").empty().append(pokerGame.pokerGameRound.pot);
@@ -125,6 +132,7 @@ $(document).ready(function(){
 	}
 	
 	function showResult(pokerGame){
+		alert("ShowResult");
 		if(pokerGame.pokerGameRound.result != "Split pot"){
 			var my_str = pokerGame.pokerGameRound.result;
 			var str=pokerGame.pokerGameRound.player1.name;
@@ -140,6 +148,7 @@ $(document).ready(function(){
 	}
 	
 	function highlightCards(combo){
+		alert("HighlightCards");
 		var card1 = combo.card1.value.name + combo.card1.suit.name;
 		var card2 = combo.card2.value.name + combo.card2.suit.name;
 		var card3 = combo.card3.value.name + combo.card3.suit.name;
@@ -155,6 +164,7 @@ $(document).ready(function(){
 	}
 
 	function roundEnded(){
+		alert("RoundEnded");
 		$("body").click(function(){
 			betSend(0, -2);
 			$("img.highlight").each().attr("class", "none");
@@ -167,6 +177,7 @@ $(document).ready(function(){
 	}
 	
 	function dropTable(){
+		alert("dropTable");
 		$("img#flop1").replaceWith('<img id="flop1" class="none" style="position:relative; top:-20px; left:93px; width: 35px" src=""></img>');
 		$("img#flop2").replaceWith('<img id="flop2" class="none" style="position:relative; top:-20px; left:93px; width: 35px" src=""></img>');
 		$("img#flop3").replaceWith('<img id="flop3" class="none" style="position:relative; top:-20px; left:93px; width: 35px" src=""></img>');
@@ -201,6 +212,7 @@ $(document).ready(function(){
 	}
 	
 	function showdown(pokerGame){
+		alert("ShowDown");
 		var p2c1 = pokerGame.pokerGameRound.player2Hand.card1.value.name + "" + pokerGame.pokerGameRound.player2Hand.card1.suit.name;
 		var p2c2 = pokerGame.pokerGameRound.player2Hand.card2.value.name + "" + pokerGame.pokerGameRound.player2Hand.card2.suit.name;
 		$("#bot_card1").attr("src",image_prefix + p2c1 + image_suffix);

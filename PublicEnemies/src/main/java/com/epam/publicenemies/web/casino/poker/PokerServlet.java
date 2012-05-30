@@ -21,6 +21,7 @@ import com.epam.publicenemies.domain.Profile;
 import com.epam.publicenemies.domain.poker.IPokerPlayer;
 import com.epam.publicenemies.domain.poker.PokerCard;
 import com.epam.publicenemies.domain.poker.PokerCombination;
+import com.epam.publicenemies.domain.poker.PokerTable;
 import com.epam.publicenemies.service.IProfileManagerService;
 
 import flexjson.JSONSerializer;
@@ -54,8 +55,8 @@ public class PokerServlet {
 		String computerBet = new String(request.getParameter("botBet"));
 		Integer chips = (Integer)request.getSession().getAttribute("chips");
 		pokerGame = (PokerGame) request.getSession().getAttribute("pokerGame");
-
 		log.info("GAME - " + ser.serialize(pokerGame));
+		log.info("Part counter - " + partCounter);
 		
 		log.info(pokerGame.getUser1Profile().getNickName() + " BET " + userBet);
 		pokerGame.getPokerGameRound().move = !pokerGame.getPokerGameRound().move;
@@ -63,23 +64,21 @@ public class PokerServlet {
 		int bet2 = 0;
 		bet2 = Integer.valueOf(computerBet);
 		bet = Integer.valueOf(userBet);
-		
-		if((bet2 == -2)){
-			resetGame(request, response);
+		log.info("COMPUTER BET - " + bet2);
+		if(bet2 == -2){
 			pokerGame.getPokerGameRound().setResult("New Round");
 			log.info("New Round!");
 			sendData(request, response, -1);
+			log.info("Data sent");
 			if(pokerGame.getPokerGameRound().isDealer() == false){
 				return;
 			}else{
-				//sendData(request, response, -1);
-				
-				pokerGame.getPokerGameRound().setResult("none");
+				resetGame(request, response);
+				sendData(request, response, -1);
 				return;
 			}
 			
 		}
-		
 		if(bet == -1){
 			partCounter = 0;
 			bet = 0;
@@ -96,6 +95,7 @@ public class PokerServlet {
 		if(partCounter == 0){
 			log.info("PreFlop");
 			pokerGame.setComment("PreFlop");
+			pokerGame.getPokerGameRound().setResult("none");
 			int botBet = 0;
 			if(pokerGame.getPokerGameRound().getPlayer1Bet() > pokerGame.getPokerGameRound().getPlayer2Bet()){
 				/*try {
@@ -275,7 +275,7 @@ public class PokerServlet {
 			money -= bet;
 			pokerGame.getUser1Profile().setMoney(money);
 		}
-		log.info(ser.serialize(pokerGame));
+		log.info("Sending data - " + ser.serialize(pokerGame));
 		out.print(ser.serialize(pokerGame));
 		out.flush();
 	}
@@ -303,6 +303,11 @@ public class PokerServlet {
 		pokerGame.getPokerGameRound().getPlayer2().setCash(money2);
 		pokerGame.getPokerGameRound().setPlayer1Bet(0);
 		pokerGame.getPokerGameRound().initGame();
+		pokerGame.getPokerGameRound().getTable().setFlop1(null);
+		pokerGame.getPokerGameRound().getTable().setFlop2(null);
+		pokerGame.getPokerGameRound().getTable().setFlop3(null);
+		pokerGame.getPokerGameRound().getTable().setTurn(null);
+		pokerGame.getPokerGameRound().getTable().setRiver(null);
 		log.info("game inited here - " + ser.serialize(pokerGame));
 		partCounter = 0;
 		request.getSession().setAttribute("pokerGame", pokerGame);
@@ -310,5 +315,6 @@ public class PokerServlet {
 		request.getSession().setAttribute("botBet", 0);
 		Integer chips = money1;
 		request.getSession().setAttribute("chips", chips);
+		log.info("NEW GAME");
 	}
 }

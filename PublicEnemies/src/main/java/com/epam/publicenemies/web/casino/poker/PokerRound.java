@@ -40,7 +40,7 @@ public class PokerRound {
 		table.setSmallBlind(sb);
 		table.setBigBlind(bb);
 		pot = 0;
-		//result = "none";
+		result = "none";
 	}
 	
 	public int getPlayer1Bet() {

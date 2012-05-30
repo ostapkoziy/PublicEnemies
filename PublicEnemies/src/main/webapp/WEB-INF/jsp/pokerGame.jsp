@@ -20,9 +20,6 @@
 			<td align="center"><a href="userStartPage.html"><img src="img/gamelogo.png"></img></a></td>
 		</tr>
 		<tr>
-			<div id="attackBlock"style="position:relative; top:-150px; left:0px; width:80px; border: 2px">
-				<input id="botBetInput" type="text" value="0">
-			</div>
 			<table id="poker_table" class="sample" align="center" width="1000">
 				<tr align="center">
 					<td>
@@ -127,6 +124,9 @@
 						<form action="pokerGame.html" method="post" style="position:relative; top:-150px; left:450px; width:80px; height:80px; border: 2px">
 							<input id="userBetInput" type="text" value="0">
 						</form>
+						<div id="attackBlock"style="position:relative; top:-150px; left:0px; width:80px; border: 2px">
+				<input id="botBetInput" type="text" value="0">
+			</div>
  					</td>			
 				</tr>
 			</table>
