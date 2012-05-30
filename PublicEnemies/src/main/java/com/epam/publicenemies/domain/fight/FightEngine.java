@@ -20,7 +20,7 @@ public class FightEngine
 		boolean offline = auig.start(fight);
 		if (offline)
 		{
-			log.info("GAME OVER OFFLINE");
+			log.info("---------GAME OVER! REASON: USER OFFLINE---------");
 			fight.setGameEnd(true);
 		}
 		else
@@ -28,15 +28,15 @@ public class FightEngine
 			boolean isGameEnd = shooting(fight);
 			if (isGameEnd)
 			{
-				log.info("GAME OVER");
+				log.info("---------GAME OVER---------");
 				fight.setGameEnd(true);
 			}
 			else
 			{
 				setupGame(fight);
 			}
-			log.info("--------------ENGINE END-------------");
 		}
+		log.info("--------------ENGINE END-------------");
 	}
 	/**
 	 * Starts when one or all users are offline.
@@ -45,11 +45,9 @@ public class FightEngine
 	 */
 	private void setupGame(Fight fight)
 	{
-		log.info("-----GAME SETUP IN ENGINE-----");
+		log.info("---------GAME SETUP IN ENGINE--------");
 		sendServerMessage(fight.getId(), "<b>Server: </b> Round №" + fight.getRound().getRoundNumber() + " end.");
 		clearHitsBlocks(fight);
-		// setStarted(false);
-		log.info("------ENDGAME SETUP IN ENGINE-----");
 	}
 	private boolean shooting(Fight fight)
 	{
@@ -75,17 +73,10 @@ public class FightEngine
 		 * Add skill damage
 		 */
 		RoundResult rr = healthAnalizer(creatorHPAfterHit, connectorHPAfterHit);
-		log.info("HEALTH ANALIZER: " + rr);
+		log.info("---------HEALTH ANALIZER: " + rr);
 		boolean isGameEnd = rr.roundResult(fight, creatorDamage, connectorDamage);
-		log.info("AFTER HEALTH ANALIZER: " + rr);
 		return isGameEnd;
 	}
-	private void damageAndDefence(Fight fight)
-	{
-	}
-	/**
-	 * Startes when one or all users is offline.
-	 */
 	private void clearHitsBlocks(Fight game)
 	{
 		game.getRound().setCreatorHit("");

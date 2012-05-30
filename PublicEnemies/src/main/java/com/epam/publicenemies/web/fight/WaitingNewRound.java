@@ -32,7 +32,7 @@ public class WaitingNewRound
 		/*
 		 * 
 		 */
-		startEngineIfOpponentNotHit(fight, role);
+		startEngine(fight, role);
 		Profile userProfile = fight.getProfile(role);
 		fight.setWhoIAm(role);
 		/*
@@ -54,14 +54,13 @@ public class WaitingNewRound
 	 * Запускати Engine якщо хоча б один online(тобто не закрив вкладку чи браузер)
 	 * 
 	 */
-	private synchronized void startEngineIfOpponentNotHit(Fight fight, String role)
+	private synchronized void startEngine(Fight fight, String role)
 	{
 		if ((System.currentTimeMillis() / 1000) > (fight.getRound().getRoundBeginTime() + 30) && !fight.isGameEnd())
 		{
 			log.info(role + ": INSIDE IN START ENGINE IF OPPONENT NOT HIT");
 			FightEngine engine = fight.getEngine();
 			engine.startEngine(fight);
-			// engine.setStarted(true);
 		}
 	}
 }

@@ -67,6 +67,7 @@ public class Utils
 			Utils.isUsersOffline(oldFight);
 		}
 	}
+	// TODO !!!!!!!!!!!!!!!!!!!!111
 	public static void expAnalizer(Profile profile)
 	{
 		int curLVL = profile.getLevel().getCurrentLevel();

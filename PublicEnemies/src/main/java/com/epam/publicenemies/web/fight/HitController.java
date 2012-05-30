@@ -45,13 +45,6 @@ public class HitController
 			connectorGameSetup(fight, hit, block, role);
 		}
 	}
-	/**
-	 * 
-	 * @param fight
-	 *            - fight)
-	 * @param role
-	 *            - who starts the fight engine(second hit)
-	 */
 	private void startEngine(Fight fight)
 	{
 		if (!fight.getRound().isRoundStart())
@@ -82,12 +75,17 @@ public class HitController
 			setRoundStart(fight);
 		}
 	}
+	/**
+	 * Sets round end and starts ENGINE
+	 * 
+	 * @param fight
+	 */
 	private synchronized void setRoundStart(Fight fight)
 	{
 		log.info("SET ROUND START");
 		if (fight.getRound().isRoundStart())
 		{
-			log.info("AND END ROUND №" + fight.getRound().getRoundNumber());
+			log.info("END OF ROUND №" + fight.getRound().getRoundNumber());
 			fight.getRound().setRoundStart(false);
 			startEngine(fight);
 		}
