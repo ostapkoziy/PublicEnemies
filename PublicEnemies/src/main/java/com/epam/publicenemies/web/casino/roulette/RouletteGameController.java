@@ -28,7 +28,7 @@ public class RouletteGameController{
 	private Logger log = Logger.getLogger(RouletteGameController.class); 
 	
 	final int ROULETTE_NUMBERS = 48;// 0..36
-	
+	final int DEFAULT_CHIPS_AMMOUNT = 1000;
 	public void setProfileManagerService(IProfileManagerService profileManagerService)
 	{
 		this.profileManagerService = profileManagerService;
@@ -113,23 +113,27 @@ public class RouletteGameController{
 	}
 
 	private void createGameObjInSession(HttpServletRequest request) {
-		log.debug("No "+ RouletteGameController.class +" instance, creating new one for session.");
+		log.info("No "+ RouletteGameController.class +" instance, creating new one for session.");
 		HttpSession session = request.getSession();
 
-		Profile userProfile = profileManagerService.getProfileByUserId((Integer) session.getAttribute("userId"));
 		rouletteGameInfo = new RouletteGameInfo();
-		rouletteGameInfo.setUserProfile(userProfile);
 		
+		
+		Profile userProfile = profileManagerService.getProfileByUserId((Integer) session.getAttribute("userId"));
 		try{
 			if ( userProfile.getMoney() >= Integer.valueOf(request.getParameter("chips")) )
 			rouletteGameInfo.setChips(Integer.valueOf(request.getParameter("chips")));
 			else rouletteGameInfo.setChips(userProfile.getMoney());
 		}catch	( NumberFormatException e ){
-			if ( userProfile.getMoney() >= 1000 ) rouletteGameInfo.setChips( 1000 );
+			if ( userProfile.getMoney() >= DEFAULT_CHIPS_AMMOUNT ) rouletteGameInfo.setChips( DEFAULT_CHIPS_AMMOUNT );
 			else rouletteGameInfo.setChips(userProfile.getMoney());
 		}finally{
-			profileManagerService.updateMoney((Integer) session.getAttribute("userId"), userProfile.getMoney() - rouletteGameInfo.getChips());
+			profileManagerService.updateMoney((Integer) session.getAttribute("userId"), (userProfile.getMoney() - rouletteGameInfo.getChips()));
+			userProfile = profileManagerService.getProfileByUserId((Integer) session.getAttribute("userId"));
+
+			rouletteGameInfo.setUserProfile(userProfile);
+			session.setAttribute("rouletteGameInfo", rouletteGameInfo);
+//			System.out.println("UserMoney:"+userProfile.getMoney()+"\tChips:"+rouletteGameInfo.getChips());
 		}
-		session.setAttribute("rouletteGameInfo", rouletteGameInfo);
 	}
 }
