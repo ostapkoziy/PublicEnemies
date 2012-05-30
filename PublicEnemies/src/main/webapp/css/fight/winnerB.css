@@ -1,6 +1,6 @@
 @CHARSET "UTF-8";
 
-#color {
+#result {
 	width: 1920px;
 	height: 1200px;
 	position: absolute;
@@ -13,5 +13,5 @@
 }
 
 #imageWrapper {
-	background: url("../../img/fight/you-win.png");
+	background: url("../../img/fight/you-win-min.png") no-repeat;
 }

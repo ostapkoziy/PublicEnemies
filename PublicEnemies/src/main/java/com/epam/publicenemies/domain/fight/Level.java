@@ -10,7 +10,7 @@ public class Level
 	/**
 	 * Якшо userExpirienceOnCurrentLevel > expirienceForNextLevel левел++ різницю експи в базу
 	 */
-	private int	allExpirience	= 4500; // from_DB
+	private int	allExpirience	= 5600; // from_DB
 	private int	currentLevel;
 	private int	expirienceAfterFight;
 	private int	leftBound;

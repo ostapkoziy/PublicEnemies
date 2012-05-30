@@ -1,6 +1,6 @@
 @CHARSET "UTF-8";
 
-#color {
+#result {
 	width: 943px;
 	height: 754px;
 	position: absolute;
@@ -13,5 +13,25 @@
 }
 
 #imageWrapper {
-	background: url("../../img/fight/you-lose.png");
+	background: url("../../img/fight/you-lose-min.png") no-repeat;
+}
+
+#bulletHole1 {
+	background: url("../../img/fight/bulletHole.png");
+	width: 400px;
+	height: 267px;
+	position: absolute;
+	top: 300px;
+	left: 500px;
+	z-index: 600;
+}
+
+#bulletHole2 {
+	background: url("../../img/fight/bulletHole.png");
+	width: 400px;
+	height: 267px;
+	position: absolute;
+	top: 140px;
+	left: 600px;
+	z-index: 600;
 }

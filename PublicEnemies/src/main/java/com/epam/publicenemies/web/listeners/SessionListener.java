@@ -19,41 +19,43 @@ import com.epam.publicenemies.utils.Utils;
  * 
  * @author Alexander Ivanov
  */
-public class SessionListener implements HttpSessionListener {
+public class SessionListener implements HttpSessionListener
+{
 	@Autowired
-	private IProfileManagerService profileManagerService;
-
-	public void setProfileManagerService(
-			IProfileManagerService profileManagerService) {
+	private IProfileManagerService	profileManagerService;
+	public void setProfileManagerService(IProfileManagerService profileManagerService)
+	{
 		this.profileManagerService = profileManagerService;
 	}
-
 	@Autowired
 	@Qualifier("games")
-	private BlackJackGameList games;
-
-	public void setGames(BlackJackGameList games) {
+	private BlackJackGameList	games;
+	public void setGames(BlackJackGameList games)
+	{
 		this.games = games;
 	}
-
-	private static Logger log = Logger.getLogger(SessionListener.class);
-
-	public void sessionCreated(HttpSessionEvent event) {
+	private static Logger	log	= Logger.getLogger(SessionListener.class);
+	public void sessionCreated(HttpSessionEvent event)
+	{
 		log.info("SESSION CREATED: " + event.getSession().getId());
 	}
-
-	public void sessionDestroyed(HttpSessionEvent event) {
+	//
+	public void sessionDestroyed(HttpSessionEvent event)
+	{
 		log.info("SESSION DESTROYED");
 		Fight fight = (Fight) event.getSession().getAttribute("game");
 		String role = (String) event.getSession().getAttribute("gameRole");
 		Utils.isOldGameInSession(fight, role);
 		// BlackJack Game Remove
 		Integer userId = (Integer) event.getSession().getAttribute("userId");
+		// ***************************************************************
+		// TODO java.lang.NullPointerException!!!!!!!!!!!!!!!!!!!!!!!!!
 		Profile profile = profileManagerService.getProfileByUserId(userId);
+		// ***************************************************************
 		BlackJackGame game = games.getGameById(userId);
-		if (game != null) {
-			profileManagerService.updateMoney(userId,
-					profile.getMoney() + game.getChips());
+		if (game != null)
+		{
+			profileManagerService.updateMoney(userId, profile.getMoney() + game.getChips());
 			log.info("BLACKJACK GAME: " + userId + "  DESTROYED");
 			games.removeGame(userId);
 		}
