@@ -89,6 +89,7 @@
 		<input id ="btn_test" type="button" value="test">
 		<input id ="submit" type="submit" value="DEAL">
 		<input id="clearBet" type="button" value="Clear bet">
+		<input id="exit" type="button" value="(MAKEUP!)Leave roulette table">
 	</form>
 	</div>
 	
