@@ -109,7 +109,6 @@ public class RouletteGameController{
 			String[] buf = s.split(":");
 			bets[Integer.valueOf(buf[0])] = Integer.valueOf(buf[1]);
 		}
-		
 		rouletteGameInfo.setBets(bets);
 	}
 
@@ -126,12 +125,11 @@ public class RouletteGameController{
 			rouletteGameInfo.setChips(Integer.valueOf(request.getParameter("chips")));
 			else rouletteGameInfo.setChips(userProfile.getMoney());
 		}catch	( NumberFormatException e ){
-			if (userProfile.getMoney() >= 1000) rouletteGameInfo.setChips(1000);
+			if ( userProfile.getMoney() >= 1000 ) rouletteGameInfo.setChips( 1000 );
 			else rouletteGameInfo.setChips(userProfile.getMoney());
+		}finally{
+			profileManagerService.updateMoney((Integer) session.getAttribute("userId"), userProfile.getMoney() - rouletteGameInfo.getChips());
 		}
-
-//		profileManagerService.updateMoney((Integer) session.getAttribute("userId"), money);
-		
 		session.setAttribute("rouletteGameInfo", rouletteGameInfo);
 	}
 }
