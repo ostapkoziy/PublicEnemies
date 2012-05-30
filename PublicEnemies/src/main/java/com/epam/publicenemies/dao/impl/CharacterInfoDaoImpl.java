@@ -45,7 +45,7 @@ public class CharacterInfoDaoImpl implements ICharacterInfoDao {
 	@Override
 	public int addCharacter(final UCharacter character, User user) {
 		KeyHolder keyHolder = new GeneratedKeyHolder();
-		final String INSERT_CHARACTER_SQL = "INSERT INTO characters (sex, experience, strenght, agility, intellect, profession," +
+		final String INSERT_CHARACTER_SQL = "INSERT INTO characters (sex, experience, strenght, agility, intellect, characterProfession," +
 				" fightsWon, fightsTotal) VALUES (?,?,?,?,?,?,?,?)";
 		jdbcTemplate.update(
 				new PreparedStatementCreator() {
@@ -57,7 +57,7 @@ public class CharacterInfoDaoImpl implements ICharacterInfoDao {
 						ps.setInt(3, character.getStrength());
 						ps.setInt(4, character.getAgility());
 						ps.setInt(5, character.getIntellect());
-						ps.setString(6, character.getProfession());
+						ps.setByte(6, character.getCharacterProfession().getProfessionId());
 						ps.setInt(7, character.getFightsWon());
 						ps.setInt(8, character.getFightsTotal());
 						return ps;

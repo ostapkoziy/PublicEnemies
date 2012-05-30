@@ -9,7 +9,7 @@ import com.epam.publicenemies.domain.User;
 public interface IProfileDao {
 	
 	void updateProfile(int uid, String nickName, String avatar, boolean sex,
-			String prof);
+			byte prof);
 	
 	User getUserById(int userId);
 

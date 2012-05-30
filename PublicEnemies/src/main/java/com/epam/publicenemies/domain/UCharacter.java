@@ -10,8 +10,7 @@ public class UCharacter
 	private int		strength;
 	private int		agility;
 	private int		intellect;
-	private String	profession;
-	private String	professionAvatar;
+	private Profession		characterProfession;
 	private int		fightsTotal;
 	private int		fightsWon;
 	// id of items
@@ -31,8 +30,8 @@ public class UCharacter
 	/*
 	 * Order as in 'characters' table
 	 */
-	public UCharacter(int characterId, boolean sex, int experience, int strength, int agility, int intelect, String profession,
-			String professionAvatar, int fightsTotal, int fightsWon, int weapon1, int weapon2, int armor, int aid)
+	public UCharacter(int characterId, boolean sex, int experience, int strength, int agility, int intelect, Profession characterProfession,
+			int fightsTotal, int fightsWon, int weapon1, int weapon2, int armor, int aid)
 	{
 		this.characterId = characterId;
 		this.sex = sex;
@@ -40,8 +39,7 @@ public class UCharacter
 		this.strength = strength;
 		this.agility = agility;
 		this.intellect = intelect;
-		this.profession = profession;
-		this.setProfessionAvatar(professionAvatar);
+		this.characterProfession = characterProfession;
 		this.fightsTotal = fightsTotal;
 		this.fightsWon = fightsWon;
 		this.weapon1 = weapon1;
@@ -102,14 +100,7 @@ public class UCharacter
 	{
 		this.intellect = intellect;
 	}
-	public String getProfession()
-	{
-		return profession;
-	}
-	public void setProffesion(String profession)
-	{
-		this.profession = profession;
-	}
+	
 	public int getFightsTotal()
 	{
 		return fightsTotal;
@@ -174,18 +165,7 @@ public class UCharacter
 	{
 		this.allUserHP = allUserHP;
 	}
-	public void setProfession(String profession)
-	{
-		this.profession = profession;
-	}
-	public String getProfessionAvatar()
-	{
-		return professionAvatar;
-	}
-	public void setProfessionAvatar(String professionAvatar)
-	{
-		this.professionAvatar = professionAvatar;
-	}
+	
 	public int getDamage()
 	{
 		return damage;
@@ -209,5 +189,11 @@ public class UCharacter
 	public void setLevel(Level level)
 	{
 		this.level = level;
+	}
+	public Profession getCharacterProfession() {
+		return characterProfession;
+	}
+	public void setCharacterProfession(Profession characterProfession) {
+		this.characterProfession = characterProfession;
 	}
 }

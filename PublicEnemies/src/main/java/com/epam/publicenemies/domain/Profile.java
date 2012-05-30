@@ -734,9 +734,9 @@ public class Profile
 	 * 
 	 * @return character's profession
 	 */
-	public String getProfession()
+	public Profession getCharacterProfession()
 	{
-		return pCharacter.getProfession();
+		return pCharacter.getCharacterProfession();
 	}
 	/**
 	 * Set profession of character
@@ -744,9 +744,9 @@ public class Profile
 	 * @param profession
 	 *            - name of profession
 	 */
-	public void setProfession(String profession)
+	public void setCharacterProfession(Profession characterProfession)
 	{
-		pCharacter.setProffesion(profession);
+		pCharacter.setCharacterProfession(characterProfession);
 	}
 	/**
 	 * Get amount of all fights
