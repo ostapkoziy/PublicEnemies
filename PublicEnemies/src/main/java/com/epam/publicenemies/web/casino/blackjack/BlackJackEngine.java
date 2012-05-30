@@ -26,7 +26,9 @@ public class BlackJackEngine {
 	}
 
 	public String checkResult(int playerPoints, int dealerPoints) {
-		if (dealerPoints > 21) {
+		if (playerPoints > 21) {
+			return lose;
+		} else if (dealerPoints > 21) {
 			return win;
 		} else if (dealerPoints == 21) {
 			return lose;

@@ -50,8 +50,8 @@ public class StandBlackJackController {
 		this.engine = engine;
 	}
 
-	@RequestMapping("/StandBlackJackController")
-	public void deal(HttpServletRequest request, HttpServletResponse response)
+	@RequestMapping("/standBlackJackController")
+	public void stand(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
 		// Get userId
@@ -72,10 +72,10 @@ public class StandBlackJackController {
 		// Check result
 		String playerResult = engine.checkResult(round.getPlayerPoints(),
 				dealerPoints);
-		game.setChips(engine.updateChips(playerResult, game.getChips(), round.getPlayerBet()));
+		game.setChips(engine.updateChips(playerResult, game.getChips(),
+				round.getPlayerBet()));
 
 		// Set round
-		round.setDealerCards(dealerCards);
 		round.setPlayerResult(playerResult);
 
 		// Round to json
@@ -84,6 +84,8 @@ public class StandBlackJackController {
 
 		out.print(gson.toJson(game));
 		out.flush();
-
+		
+		// Set null for split
+		round.setPlayerCardsSplit(null);
 	}
 }

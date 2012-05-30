@@ -18,4 +18,12 @@ public class BlackJackGameList {
 		allGames.add(new BlackJackGame(id,chips));
 	}
 	
+	public void removeGame(int id){
+		for (BlackJackGame game : allGames){
+			if (game.getId()==id){
+				allGames.remove(game);
+				return;
+			}
+		}
+	}
 }

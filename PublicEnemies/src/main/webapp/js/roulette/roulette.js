@@ -5,7 +5,6 @@
 	var clearBetToggle = new Boolean(false);
 	var faded = "0.6";
 $(document).ready(function(){
-	
 
 	$("#clearBet").toggle(function(){
 		$(this).css("opacity", faded);
@@ -18,6 +17,7 @@ $(document).ready(function(){
 	$(".RouletteTable").click(function() {
 		if (clearBetToggle == false){
 			$(this).css("opacity", faded);
+			$("#betOnTable").html(parseInt($("#betOnTable").html()) + parseInt($("input[@name=betVal]:checked").val()));
 			if (isNaN(bets.betsOnNumbers[$(this).attr("alt")])) bets.betsOnNumbers[$(this).attr("alt")] = 0;
 			bets.betsOnNumbers[$(this).attr("alt")] += parseInt($("input[@name=betVal]:checked").val());
 			

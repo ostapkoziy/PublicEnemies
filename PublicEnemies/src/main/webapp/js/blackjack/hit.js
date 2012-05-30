@@ -12,7 +12,7 @@ $(document).ready(
 				$.ajax
 				{
 					$.ajax({
-						url : "HitBlackJackController.html",
+						url : "hitBlackJackController.html",
 						data : ({
 							playerNothing1 : nothing1,
 							playerNothing2 : nothing2
@@ -40,15 +40,24 @@ $(document).ready(
 							"<img src=" + game.round.playerCards[i].image
 									+ "></img>");
 				}
+				if (game.round.playerCardsSplit != null) {
+					i = 0;
+					$("#player_cardsSplit").empty();
+					for (i = 0; i < game.round.playerCardsSplit.length; i = i + 1) {
+						$("#player_cardsSplit").append(
+								"<img src=" + game.round.playerCardsSplit[i].image
+										+ "></img>");
+					}
+				}
 				$("#player_points").empty().append(game.round.playerPoints);
 				$("#result").empty().append(game.round.playerResult);
 
 				// Chips
 				$("#playerChips").empty().append(game.chips);
-				
+
 				// Buttons
 				$("#split_button").attr("src", "img/layout/splitg.png");
-				if (game.round.playerResult != null) {
+				if (game.round.playerResult != null && game.round.playerCardsSplit == null) {
 					$("#stand_button").attr("src", "img/layout/standg.png");
 					$("#hit_button").attr("src", "img/layout/hitg.png");
 					$("#double_button").attr("src", "img/layout/doubleg.png");

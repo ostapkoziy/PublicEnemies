@@ -15,11 +15,13 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.epam.publicenemies.domain.Profile;
 import com.epam.publicenemies.domain.blackjack.BlackJackCard;
 import com.epam.publicenemies.domain.blackjack.BlackJackDeck;
 import com.epam.publicenemies.domain.blackjack.BlackJackGame;
 import com.epam.publicenemies.domain.blackjack.BlackJackGameList;
 import com.epam.publicenemies.domain.blackjack.BlackJackRound;
+import com.epam.publicenemies.service.IProfileManagerService;
 import com.google.gson.Gson;
 
 @Controller
@@ -49,12 +51,12 @@ public class DealBlackJackController {
 	public void setEnhine(BlackJackEngine engine) {
 		this.engine = engine;
 	}
-
-	@RequestMapping("/DealBlackJackController")
+	
+	@RequestMapping("/dealBlackJackController")
 	public void deal(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
-
+		
 		// Get player bet
 		Integer playerBet = Integer.valueOf(request.getParameter("playerBet"));
 		// Get player chips
@@ -63,7 +65,7 @@ public class DealBlackJackController {
 		playerChips = playerChips - playerBet;
 		// Get userId
 		Integer userId = (Integer) request.getSession().getAttribute("userId");
-
+		
 		// Take 2 cards for player
 		List<BlackJackCard> playerCards = new ArrayList<BlackJackCard>();
 		for (int i = 0; i < 2; i++) {

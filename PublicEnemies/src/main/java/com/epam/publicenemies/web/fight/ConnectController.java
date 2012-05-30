@@ -47,6 +47,7 @@ public class ConnectController
 			return "redirect:fight.html";
 		}
 		Utils.isOldGameInSession(oldFight, oldRole);
+		request.getSession().removeAttribute("win");
 		/*
 		 * GAME_SETUP
 		 */

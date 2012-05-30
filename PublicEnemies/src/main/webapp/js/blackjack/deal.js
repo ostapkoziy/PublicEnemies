@@ -2,7 +2,7 @@ $(document)
 		.ready(
 				function() {
 					$("img#deal_button").click(function() {
-						var bet = $("#playerBet").val();
+						var bet = $("#playerBet").html();
 						var chips = $("#playerChips").html();
 						var attr = $("#deal_button").attr("src");
 						if (attr != "img/layout/dealg.png")
@@ -13,7 +13,7 @@ $(document)
 						$.ajax
 						{
 							$.ajax({
-								url : "DealBlackJackController.html",
+								url : "dealBlackJackController.html",
 								data : ({
 									playerBet : bet,
 									playerChips : chips
@@ -40,6 +40,7 @@ $(document)
 											+ game.round.playerCards[i].image
 											+ "></img>");
 						}
+						$("#player_cardsSplit").empty();
 						$("#dealer_cards").empty();
 						for (i = 0; i < game.round.dealerCards.length; i = i + 1) {
 							$("#dealer_cards").append(

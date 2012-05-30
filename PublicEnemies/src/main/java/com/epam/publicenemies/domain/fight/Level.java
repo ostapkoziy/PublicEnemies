@@ -6,27 +6,27 @@ package com.epam.publicenemies.domain.fight;
 public class Level
 {
 	/**
-	 * Якшо userExpirienceOnCurrentLevel > expirienceForNextLevel левел++
-	 * різницю експи в базу
+	 * Якшо userExpirienceOnCurrentLevel > expirienceForNextLevel левел++ різницю експи в базу
 	 */
-	private int	currentLevel					= 1;	// from_DB
-	private int	userExpirienceOnCurrentLevel	= 1200; // from_DB
+	private int	currentLevel;
+	private int	currentUserExpirience	= 1200; // from_DB
 	private int	expirienceAfterFight;
 	private int	expirienceForNextLevel;
 	private int	nextLevelInPercent;
 	public Level()
 	{
+		currentLevel = (currentUserExpirience + (2000 - 1)) / 2000;
+		expirienceForNextLevel = 2000 * currentLevel;
+		nextLevelInPercent = (int) ((double) currentUserExpirience / expirienceForNextLevel * 100);
 		expirienceAfterFight = 0;
-		expirienceForNextLevel = 2 * 1000 * currentLevel;
-		nextLevelInPercent = (int) (((float) userExpirienceOnCurrentLevel / expirienceForNextLevel) * 100);
 	}
 	public int getCurrentLevel()
 	{
 		return currentLevel;
 	}
-	public int getUserExpirienceOnCurrentLevel()
+	public int getCurrentUserExpirience()
 	{
-		return userExpirienceOnCurrentLevel;
+		return currentUserExpirience;
 	}
 	public int getExpirienceForNextLevel()
 	{
@@ -40,9 +40,9 @@ public class Level
 	{
 		this.currentLevel = currentLevel;
 	}
-	public void setUserExpirienceOnCurrentLevel(int userExpirienceOnCurrentLevel)
+	public void setCurrentUserExpirience(int userExpirienceOnCurrentLevel)
 	{
-		this.userExpirienceOnCurrentLevel = userExpirienceOnCurrentLevel;
+		this.currentUserExpirience = userExpirienceOnCurrentLevel;
 	}
 	public void setExpirienceForNextLevel(int expirienceForNextLevel)
 	{

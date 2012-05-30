@@ -39,6 +39,7 @@ public class CreateGameController
 			return "redirect:fight.html";
 		}
 		Utils.isOldGameInSession(oldFight, oldRole);
+		request.getSession().removeAttribute("win");
 		/*
 		 * NEW GAME SETUP
 		 */

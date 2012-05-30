@@ -34,14 +34,13 @@ public class RegisterUserFormController
 	public ModelAndView onGetRequest()
 	{
 		log.debug("Showing registration form.");
-		return new ModelAndView("userRegistration", "userDto", new User());
+		return new ModelAndView("userRegistration", "user", new User());
 	}
 	@RequestMapping(method = RequestMethod.POST)
 	protected ModelAndView onSubmit(User userToRegister, HttpServletRequest request, BindingResult result) throws Exception
 	{
 		validator.validate(userToRegister, result);
-		if (result.hasErrors())
-		{
+		if (result.hasErrors())	{
 			log.debug("Validation of REGISTRATION FORM FAILED.");
 			return new ModelAndView("userRegistration");
 		}

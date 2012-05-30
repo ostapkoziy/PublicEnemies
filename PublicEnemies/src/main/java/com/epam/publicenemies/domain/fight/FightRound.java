@@ -13,7 +13,6 @@ public class FightRound
 	private String			connectorBlock;
 	private boolean			creatorDoHit;
 	private boolean			connectorDoHit;
-	private String			firstHit;
 	private volatile long	roundBeginTime;
 	public FightRound()
 	{
@@ -23,7 +22,6 @@ public class FightRound
 		creatorBlock = "";
 		connectorHit = "";
 		connectorBlock = "";
-		firstHit = "";
 	}
 	public int getRoundNumber()
 	{
@@ -96,13 +94,5 @@ public class FightRound
 	public void setRoundBeginTime(long roundBeginTime)
 	{
 		this.roundBeginTime = roundBeginTime;
-	}
-	public String getFirstHit()
-	{
-		return firstHit;
-	}
-	public void setFirstHit(String firstHit)
-	{
-		this.firstHit = firstHit;
 	}
 }

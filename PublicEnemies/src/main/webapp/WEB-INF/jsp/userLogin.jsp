@@ -25,18 +25,14 @@
 						</tr>
 						<tr align="center" height="200">
 							<td><form:form action="userLogin.html" method="post"
-									commandName="userDto">
+									commandName="user">
 									<h2 align="center">Login</h2>
-									<form:input path="email" />
-									<div id="email_error">
-									
-									</div>
-		
-									<font color="red"><br /> <form:errors path="email" /> <br /></font>
+									<form:input type="text" path="email" />
+									<div id="email_error"></div>
+									<font color="red"><br /><form:errors path="email" /><br /></font>
 									<h2 align="center">Password</h2>
-									<form:input type="password" path="password"  />
-									<div id="password_error">
-									</div>
+									<form:input type="password" path="password" />
+									<div id="password_error"></div>
 									<font color="red"><br /> <form:errors path="password" />
 										<br /></font>
 									<br />
