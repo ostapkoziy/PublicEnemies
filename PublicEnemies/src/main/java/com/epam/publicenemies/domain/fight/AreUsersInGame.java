@@ -42,6 +42,14 @@ public enum AreUsersInGame
 			fight.setWhoWins(null);
 			return true;
 		}
+	},
+	ONLINE
+	{
+		@Override
+		public boolean start(Fight fight)
+		{
+			return false;
+		}
 	};
 	public abstract boolean start(Fight fight);
 }

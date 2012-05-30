@@ -15,6 +15,7 @@
 		<div id="color2"></div>
 		<div id="color3">
 			<div id="imageWrapper">
+				Creator: ${game.getCreatorProfile().getLevel().getCurrentLevel()} <br />Connector: ${game.getConnectorProfile().getLevel().getCurrentLevel()}
 				<c:choose>
 					<c:when test="${win==true}">
 						<link href="css/fight/winnerB.css" rel="stylesheet" type="text/css">

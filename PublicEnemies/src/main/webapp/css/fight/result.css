@@ -53,8 +53,7 @@ body {
 	margin-left: auto;
 }
 
-#expirience {
-	outline: 20px solid red;
+#expirience { /* 	outline: 20px solid red; */
 	width: 100px;
 	height: 100px;
 }

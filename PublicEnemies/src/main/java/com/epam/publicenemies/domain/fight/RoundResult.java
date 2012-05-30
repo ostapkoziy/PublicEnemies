@@ -15,6 +15,7 @@ public enum RoundResult
 			fight.getCreatorProfile().setHP(0);
 			fight.getConnectorProfile().setHP(0);
 			fight.setWhoWins(null);
+			fight.setGameEnd(true);
 			return true;
 		}
 	},
@@ -27,6 +28,8 @@ public enum RoundResult
 			fight.getCreatorProfile().setHP(0);
 			fight.getConnectorProfile().setHP(connectorHP - creatorDamage);
 			fight.setWhoWins(fight.getProfile("connector"));
+			// fight.getConnectorProfile().getLevel().setExpirienceAfterFight(200);
+			fight.setGameEnd(true);
 			return true;
 		}
 	},
@@ -39,7 +42,8 @@ public enum RoundResult
 			fight.getConnectorProfile().setHP(0);
 			fight.getCreatorProfile().setHP(creatorHP - connectorDamage);
 			fight.setWhoWins(fight.getProfile("creator"));
-			fight.getCreatorProfile().getLevel().setExpirienceAfterFight(800);
+			// fight.getCreatorProfile().getLevel().setExpirienceAfterFight(200);
+			fight.setGameEnd(true);
 			return true;
 		}
 	},

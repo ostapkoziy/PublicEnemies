@@ -32,6 +32,7 @@ public class WaitingNewRound
 		/*
 		 * 
 		 */
+		startEngineIfOpponentNotHit(fight, role);
 		Profile userProfile = fight.getProfile(role);
 		fight.setWhoIAm(role);
 		/*
@@ -39,7 +40,6 @@ public class WaitingNewRound
 		 */
 		PrintWriter out = response.getWriter();
 		JSONSerializer ser = new JSONSerializer();
-		startEngineIfOpponentNotHit(fight, role);
 		if (fight.isGameEnd())
 		{
 			log.info("--------------GAME IS END FOR USER: " + userProfile.getNickName() + "----------------------");
@@ -58,9 +58,10 @@ public class WaitingNewRound
 	{
 		if ((System.currentTimeMillis() / 1000) > (fight.getRound().getRoundBeginTime() + 30) && !fight.isGameEnd())
 		{
+			log.info(role + ": INSIDE IN START ENGINE IF OPPONENT NOT HIT");
 			FightEngine engine = fight.getEngine();
 			engine.startEngine(fight);
-			engine.setStarted(true);
+			// engine.setStarted(true);
 		}
 	}
 }

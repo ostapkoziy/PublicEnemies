@@ -8,17 +8,19 @@ public class Level
 	/**
 	 * Якшо userExpirienceOnCurrentLevel > expirienceForNextLevel левел++ різницю експи в базу
 	 */
-	private int	currentLevel;
-	private int	currentUserExpirience	= 1200; // from_DB
+	private int	currentLevel			= 2;
+	private int	currentUserExpirience	= 2400; // from_DB
 	private int	expirienceAfterFight;
 	private int	expirienceForNextLevel;
 	private int	nextLevelInPercent;
 	public Level()
 	{
-		currentLevel = (currentUserExpirience + (2000 - 1)) / 2000;
-		expirienceForNextLevel = 2000 * currentLevel;
-		nextLevelInPercent = (int) ((double) currentUserExpirience / expirienceForNextLevel * 100);
+		// currentLevel = (currentUserExpirience + (2000 - 1)) / 2000;
+		// expirienceForNextLevel = 2000 * currentLevel;
+		// nextLevelInPercent = (int) ((double) currentUserExpirience / expirienceForNextLevel * 100);
+		// expirienceAfterFight = 0;
 		expirienceAfterFight = 0;
+		expirienceForNextLevel = 1000 + currentLevel * currentLevel * 100;
 	}
 	public int getCurrentLevel()
 	{

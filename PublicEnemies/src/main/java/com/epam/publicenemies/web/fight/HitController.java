@@ -44,10 +44,6 @@ public class HitController
 			log.info("CONNECT: " + userProfile.getNickName() + " HIT : " + hit + " BLOCK: " + block);
 			connectorGameSetup(fight, hit, block, role);
 		}
-		/*
-		 * Engine Start
-		 */
-		startEngine(fight, role);
 	}
 	/**
 	 * 
@@ -56,17 +52,17 @@ public class HitController
 	 * @param role
 	 *            - who starts the fight engine(second hit)
 	 */
-	private synchronized void startEngine(Fight fight, String role)
+	private void startEngine(Fight fight)
 	{
 		if (!fight.getRound().isRoundStart())
 		{
 			FightEngine engine = fight.getEngine();
-			engine.startEngine(fight, role);
-			engine.setStarted(true);
+			engine.startEngine(fight);
 		}
 	}
 	private void creatorGameSetup(Fight fight, String hit, String block, String role)
 	{
+		log.info("CREATOR GAME SETUP");
 		fight.getRound().setCreatorHit(hit);
 		fight.getRound().setCreatorBlock(block);
 		fight.getRound().setCreatorDoHit(true);
@@ -77,6 +73,7 @@ public class HitController
 	}
 	private void connectorGameSetup(Fight fight, String hit, String block, String role)
 	{
+		log.info("CONNECTOR GAME SETUP");
 		fight.getRound().setConnectorHit(hit);
 		fight.getRound().setConnectorBlock(block);
 		fight.getRound().setConnectorDoHit(true);
@@ -87,10 +84,12 @@ public class HitController
 	}
 	private synchronized void setRoundStart(Fight fight)
 	{
+		log.info("SET ROUND START");
 		if (fight.getRound().isRoundStart())
 		{
 			log.info("AND END ROUND №" + fight.getRound().getRoundNumber());
 			fight.getRound().setRoundStart(false);
+			startEngine(fight);
 		}
 	}
 }

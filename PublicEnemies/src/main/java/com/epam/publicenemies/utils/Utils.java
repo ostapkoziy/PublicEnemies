@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import org.apache.log4j.Logger;
 
+import com.epam.publicenemies.domain.Profile;
 import com.epam.publicenemies.domain.fight.Fight;
 import com.epam.publicenemies.domain.fight.FightsList;
 
@@ -64,6 +65,23 @@ public class Utils
 				oldFight.setConnectorOnline(false);
 			}
 			Utils.isUsersOffline(oldFight);
+		}
+	}
+	public static void expAnalizer(Profile profile)
+	{
+		int curLVL = profile.getLevel().getCurrentLevel();
+		int expAfterFight = profile.getLevel().getCurrentUserExpirience() + profile.getLevel().getExpirienceAfterFight();
+		int levelExpGr = 0;
+		while (curLVL > 0)
+		{
+			levelExpGr = levelExpGr + 1000 + curLVL * curLVL * 100;
+		}
+		log.info("levelExpGRanucja: " + expAfterFight);
+		log.info("expAfterFight: " + expAfterFight);
+		if (expAfterFight > levelExpGr)
+		{
+			profile.getLevel().setCurrentLevel(curLVL++);
+			log.info("NEXT LEVEL");
 		}
 	}
 }
