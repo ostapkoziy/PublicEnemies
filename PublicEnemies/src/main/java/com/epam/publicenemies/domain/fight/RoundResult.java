@@ -3,8 +3,6 @@ package com.epam.publicenemies.domain.fight;
 import org.apache.log4j.Logger;
 
 /**
- * TODO Move to FightEngine!!!!
- * 
  * @author Alexander Ivanov
  */
 public enum RoundResult

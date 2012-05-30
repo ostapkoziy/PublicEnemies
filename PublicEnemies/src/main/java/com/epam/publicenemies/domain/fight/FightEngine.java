@@ -16,8 +16,8 @@ public class FightEngine
 	public void startEngine(Fight fight)
 	{
 		log.info("-------------ENGINE STARTED-------------");
-		AreUsersInGame auig = areUsersInGame(fight);
-		boolean offline = auig.start(fight);
+		UsersStatus auig = areUsersInGame(fight);
+		boolean offline = auig.check(fight);
 		if (offline)
 		{
 			log.info("---------GAME OVER! REASON: USER OFFLINE---------");
@@ -131,22 +131,22 @@ public class FightEngine
 		}
 		return RoundResult.ALIVE;
 	}
-	private AreUsersInGame areUsersInGame(Fight fight)
+	private UsersStatus areUsersInGame(Fight fight)
 	{
 		String creatorHit = fight.getRound().getCreatorAction().getHit();
 		String connectorHit = fight.getRound().getConnectorAction().getHit();
 		if (creatorHit.equals("") && connectorHit.equals(""))
 		{
-			return AreUsersInGame.OFFLINE;
+			return UsersStatus.OFFLINE;
 		}
 		if (creatorHit.equals(""))
 		{
-			return AreUsersInGame.CREATOR_OFFLINE;
+			return UsersStatus.CREATOR_OFFLINE;
 		}
 		if (connectorHit.equals(""))
 		{
-			return AreUsersInGame.CONNECTOR_OFFLINE;
+			return UsersStatus.CONNECTOR_OFFLINE;
 		}
-		return AreUsersInGame.ONLINE;
+		return UsersStatus.ONLINE;
 	}
 }
