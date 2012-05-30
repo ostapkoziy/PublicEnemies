@@ -12,9 +12,10 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
-	/* $("input#avatar_input").hide();
+	$("#profession_input").val("1");
+	$("input#avatar_input").hide();
 	$("input#gender_input").hide();
-	$("input#profession_input").hide(); */
+	$("input#profession_input").hide(); 
 
 });
 </script>

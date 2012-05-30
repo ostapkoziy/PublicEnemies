@@ -53,6 +53,8 @@ public class TableDaoImpl implements ITableDao {
 		log.info("TableDaoImpl: \"ignoredUsers\" added");
 		createCharactersTrunksTable();
 		log.info("TableDaoImpl: \"charactersTrunks\" added");
+		createPokerStatsTable();		
+		log.info("TableDaoImpl: \"pokerStatistics\" added");
 		createUsersTable();		
 		log.info("TableDaoImpl: \"user\" added");
 	}
@@ -77,6 +79,9 @@ public class TableDaoImpl implements ITableDao {
 		sql.append("DROP TABLE IF EXISTS users");
 		jdbcTemplate.execute(sql.toString());
 		sql.delete(0, sql.length());
+		sql.append("DROP TABLE IF EXISTS pokerStatistics");
+		jdbcTemplate.execute(sql.toString());
+		sql.delete(0, sql.length());
 		sql.append("DROP TABLE IF EXISTS ignoredUsers");
 		jdbcTemplate.execute(sql.toString());
 		sql.delete(0, sql.length());
@@ -91,7 +96,7 @@ public class TableDaoImpl implements ITableDao {
 		sql.delete(0, sql.length());
 		sql.append("DROP TABLE IF EXISTS chatProperties");
 		jdbcTemplate.execute(sql.toString());
-		sql.delete(0, sql.length());	
+		sql.delete(0, sql.length());
 		log.info("TableDaoImpl: all tables DELETED");
 	}	
 	
@@ -110,12 +115,27 @@ public class TableDaoImpl implements ITableDao {
 		log.info("TableDaoImpl: \"charactersTrunks\" filled");
 		fillChatProperties();
 		log.info("TableDaoImpl: \"chatProperties\" filled");
+		fillPokerStatistics();
+		log.info("TableDaoImpl: \"pokerStatistics\" filled");
 		fillUsers();
 		log.info("TableDaoImpl: \"users\" filled");
 	}
 	
 	
 	// below methods are hidden from external access
+	
+	
+	private void fillPokerStatistics() {
+		final String INSERT = "INSERT INTO pokerStatistics (VPIP, PFR, 3BET, F3BET) VALUES ";
+		StringBuilder sql = new StringBuilder();
+		sql.append(INSERT);
+		sql.append("(0,0,0,0)");
+		for (int i = 0; i<6; i++) {
+			jdbcTemplate.update(sql.toString());
+//			sql.delete(0, sql.length());
+		}
+		//-------------------------------------------------------
+	}
 	
 	private void fillWeapons(){
 		final String fw = "INSERT INTO weapons (weaponName, weaponHitPoints, weaponType, weaponPicture, weaponPrice) ";
@@ -637,8 +657,8 @@ public class TableDaoImpl implements ITableDao {
 	private void fillUsers() {
 		// janukovych
 		StringBuilder sql = new StringBuilder("INSERT INTO users ");
-		sql.append("(email, password, money, chatProperty, userCharacter, nickName, avatar) ");
-		sql.append("VALUES ('janukovych@mail.ru', 'asdfasdf', 1000000, 1, 1, 'president', './img/avatars/godfather.png')");
+		sql.append("(email, password, money, chatProperty, userCharacter, nickName, avatar, userPoker) ");
+		sql.append("VALUES ('janukovych@mail.ru', 'asdfasdf', 1000000, 1, 1, 'president', './img/avatars/godfather.png', 1)");
 		jdbcTemplate.update(sql.toString());
 		sql.delete(0, sql.length());
 		try {
@@ -648,8 +668,8 @@ public class TableDaoImpl implements ITableDao {
 		}
 		// tymoshenko
 		sql.append("INSERT INTO users ");
-		sql.append("(email, password, money, chatProperty, userCharacter, nickName, avatar) ");
-		sql.append("VALUES ('tymoshenko@ukr.net', 'asdfasdf', 100000, 2, 2, 'troublesome', './img/avatars/angelina.png')");
+		sql.append("(email, password, money, chatProperty, userCharacter, nickName, avatar, userPoker) ");
+		sql.append("VALUES ('tymoshenko@ukr.net', 'asdfasdf', 100000, 2, 2, 'troublesome', './img/avatars/angelina.png', 2)");
 		jdbcTemplate.update(sql.toString());
 		sql.delete(0, sql.length());
 		try {
@@ -659,8 +679,8 @@ public class TableDaoImpl implements ITableDao {
 		}
 		// admin
 		sql.append("INSERT INTO users ");
-		sql.append("(email, password, money, chatProperty, userCharacter, nickName, avatar) ");
-		sql.append("VALUES ('admin@admin', 'admin', 100000, 3, 3, 'admin', './img/avatars/tommy.png')");
+		sql.append("(email, password, money, chatProperty, userCharacter, nickName, avatar, userPoker) ");
+		sql.append("VALUES ('admin@admin', 'admin', 100000, 3, 3, 'admin', './img/avatars/tommy.png', 3)");
 		jdbcTemplate.update(sql.toString());
 		try {
 			Thread.sleep(1000);
@@ -670,8 +690,8 @@ public class TableDaoImpl implements ITableDao {
 		// 1
 		sql.delete(0, sql.length());
 		sql.append("INSERT INTO users ");
-		sql.append("(email, password, money, chatProperty, userCharacter, nickName, avatar) ");
-		sql.append("VALUES ('1', '1', 100000, 4, 4, '1', './img/avatars/gangster.png')");
+		sql.append("(email, password, money, chatProperty, userCharacter, nickName, avatar, userPoker) ");
+		sql.append("VALUES ('1', '1', 100000, 4, 4, '1', './img/avatars/gangster.png', 4)");
 		jdbcTemplate.update(sql.toString());
 		try {
 			Thread.sleep(1000);
@@ -681,8 +701,8 @@ public class TableDaoImpl implements ITableDao {
 		// 2
 		sql.delete(0, sql.length());
 		sql.append("INSERT INTO users ");
-		sql.append("(email, password, money, chatProperty, userCharacter, nickName, avatar) ");
-		sql.append("VALUES ('2', '2', 100000, 5, 5, '2', './img/avatars/mafia.png')");
+		sql.append("(email, password, money, chatProperty, userCharacter, nickName, avatar, userPoker) ");
+		sql.append("VALUES ('2', '2', 100000, 5, 5, '2', './img/avatars/mafia.png', 5)");
 		jdbcTemplate.update(sql.toString());
 		try {
 			Thread.sleep(1000);
@@ -692,8 +712,8 @@ public class TableDaoImpl implements ITableDao {
 		// someone
 		sql.delete(0, sql.length());
 		sql.append("INSERT INTO users ");
-		sql.append("(email, password, money, chatProperty, userCharacter, nickName, avatar) ");
-		sql.append("VALUES ('someone@some.ua', 'someone', 100000, 6, 6, 'someone', './img/avatars/default.png')");
+		sql.append("(email, password, money, chatProperty, userCharacter, nickName, avatar, userPoker) ");
+		sql.append("VALUES ('someone@some.ua', 'someone', 100000, 6, 6, 'someone', './img/avatars/default.png', 6)");
 		jdbcTemplate.update(sql.toString());
 		
 	}
@@ -725,13 +745,16 @@ public class TableDaoImpl implements ITableDao {
 		sql.append("password VARCHAR(100) NOT NULL, ");
 		sql.append("regDate TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, ");
 		sql.append("money INT(10) UNSIGNED NOT NULL DEFAULT 200, ");
-		sql.append("avatar VARCHAR(100) NOT NULL DEFAULT 'avatar', ");
+		sql.append("avatar VARCHAR(100) NOT NULL DEFAULT './img/avatars/default.png', ");
 		sql.append("chatProperty INT(10) UNSIGNED NULL UNIQUE, ");
 		sql.append("userCharacter INT(10) UNSIGNED NULL UNIQUE, ");
 		sql.append("nickName VARCHAR(100) NULL UNIQUE, ");
+		sql.append("userPoker INT(10) NULL UNIQUE, ");
 		sql.append("PRIMARY KEY (userId), ");
 		sql.append("INDEX (chatProperty), ");
 		sql.append("FOREIGN KEY (chatProperty) REFERENCES chatProperties(chatpropertyId), ");
+		sql.append("INDEX (userPoker), ");
+		sql.append("FOREIGN KEY (userPoker) REFERENCES pokerStatistics(pokerId), ");
 		sql.append("INDEX (userCharacter), ");
 		sql.append("FOREIGN KEY (userCharacter) REFERENCES characters(characterId) ON DELETE CASCADE ");
 		sql.append(") ENGINE=INNODB");
@@ -747,11 +770,7 @@ public class TableDaoImpl implements ITableDao {
 		sql.append("strength INT(5) UNSIGNED NOT NULL DEFAULT 5, ");
 		sql.append("agility INT(5) UNSIGNED NOT NULL DEFAULT 5, ");
 		sql.append("intellect INT(5) UNSIGNED NOT NULL DEFAULT 5, ");
-//		sql.append("profession VARCHAR(100) NOT NULL DEFAULT 'Gangster' ");
-//		sql.append("check (profession in('Butcher', 'Gangster', 'Criminal', ");
-//		sql.append("'Thief', 'Assasin', 'Professor' )), ");
-//		sql.append("professionAvatar VARCHAR(100) NOT NULL DEFAULT '', ");
-		sql.append("characterProfession TINYINT(1) UNSIGNED NULL, ");
+		sql.append("characterProfession TINYINT(1) UNSIGNED NULL DEFAULT 1, ");
 		sql.append("fightsTotal INT(10) UNSIGNED NOT NULL DEFAULT 0, ");
 		sql.append("fightsWon INT(10) UNSIGNED NOT NULL DEFAULT 0, ");
 		sql.append("weapon1 INT(10) UNSIGNED NOT NULL DEFAULT 0, ");
@@ -770,7 +789,7 @@ public class TableDaoImpl implements ITableDao {
 		sql.append("CREATE TABLE professions ( ");
 		sql.append("professionId TINYINT(1) UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE, ");
 		sql.append("professionName VARCHAR(100) NOT NULL UNIQUE, ");
-		sql.append("professionAvatar VARCHAR(100) DEFAULT 'avatar', ");
+		sql.append("professionAvatar VARCHAR(100) DEFAULT './img/avatars/default.png', ");
 		sql.append("PRIMARY KEY (professionId) ) ENGINE=INNODB");
 		jdbcTemplate.execute(sql.toString());
 	}
@@ -855,4 +874,20 @@ public class TableDaoImpl implements ITableDao {
 		sql.append(") ENGINE=INNODB");
 		jdbcTemplate.execute(sql.toString());
 	}
+	
+	private void createPokerStatsTable() {
+		StringBuilder sql = new StringBuilder();
+		sql.append("CREATE TABLE pokerStatistics ( ");
+		sql.append("pokerId INT(10) UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE, ");
+		sql.append("VPIP TINYINT(3) UNSIGNED NOT NULL DEFAULT 0, ");
+		sql.append("PFR TINYINT(3) UNSIGNED NOT NULL DEFAULT 0, ");
+		sql.append("3BET TINYINT(3) UNSIGNED NOT NULL DEFAULT 0, ");
+		sql.append("F3BET TINYINT(3) UNSIGNED NOT NULL DEFAULT 0,  ");
+		sql.append("PRIMARY KEY (pokerId) ");
+		sql.append(") ENGINE=INNODB");
+		jdbcTemplate.execute(sql.toString());
+	}
+	
+	
+	
 }

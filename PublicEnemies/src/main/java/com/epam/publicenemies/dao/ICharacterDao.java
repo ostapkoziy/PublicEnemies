@@ -1,12 +1,14 @@
 package com.epam.publicenemies.dao;
 
 //import com.epam.publicenemies.domain.UCharacter;
+import java.util.List;
+
 import com.epam.publicenemies.domain.*;
 
 
 /**
  * @author Chetyrkin S.V.
- * Updated by Chetyrkin S.V. 27.04.2012
+ * Updated by Chetyrkin S.V. 27 ���. 2012
  */
 public interface ICharacterDao {
 
@@ -19,106 +21,111 @@ public interface ICharacterDao {
 	int addCharacter(UCharacter character, User user);
 	
 	/**
-	 * Add new character with default values
-	 * @param userId - user id
-	 * @return id of new character
+	 * Add new character
+	 * @param sex - character gender
+	 * @param experience - character experience
+	 * @param strength - character strength
+	 * @param agility - character agility
+	 * @param intellect - character intellect
+	 * @param charcaterProfession - profession of character
+	 * @param fightsTotal - total spent fights
+	 * @param fightsWon - won fights
+	 * @param weapon1 - first dressed weapon 
+	 * @param weapon2 - second dressed weapon
+	 * @param aid - dressed aid
+	 * @param armor - dressed armor
+	 * @return id of of created character injection
 	 */
-	int addCharacter(int userId);
-	
-	
-//	int addCharacter(boolean sex, int experience, int strength, int agility, int intellect,
-//			String profession, );
-//	
-	/**
-	 * Get Character by its id
-	 * @param characterId - character id
-	 * @return character object
-	 */
-	UCharacter getCharacter(int CharacterId);
-	
-	
-	
-	/**
-	 * Get Character by user note
-	 * @param user - User object
-	 * @return character object
-	 */
-	UCharacter getCharacter(User user);
+	int addCharacter(boolean sex, int experience, int strength, int agility, int intellect,
+			byte charcaterProfession);
 	
 	/**
-	 * Update character sex
+	 * Create default character
+	 * @return id of of created character injection
+	 */
+	int addCharacter();
+	
+	/**
+	 * Update character info
+	 * @param sex - character gender
+	 * @param experience - character experience
+	 * @param strength - character strength
+	 * @param agility - character agility
+	 * @param intellect - character intellect
+	 * @param charcaterProfession - profession of character
+	 * @param fightsTotal - total spent fights
+	 * @param fightsWon - won fights
+	 * @param weapon1 - first dressed weapon 
+	 * @param weapon2 - second dressed weapon
+	 * @param aid - dressed aid
+	 * @param armor - dressed armor
+	 * @return true if operation was successfully
+	 */
+	boolean updateCharacterInfo(int characterId, boolean sex, int experience, int strength, int agility, int intellect,
+			byte charcaterProfession, int fightsTotal, int fightsWon);
+	
+	/**
+	 * Get UCharacter object by userId
+	 * @param userId - id of user
+	 * @return UCharacter object
+	 */
+	boolean getCharacterByUserId(int userId);
+	
+	/**
+	 * Get UCharacter object by characterId
 	 * @param characterId - id of character
-	 * @param sex - character sex
-	 * @return true if operation is successfully
+	 * @return UCharacter object
 	 */
-	boolean updateCharacterSex(int characterId, boolean sex);
+	boolean getCharacterByCharacterId(int characterId);
 	
 	/**
-	 * Update character experience
-	 * @param characterId - id of character 
-	 * @param experiance - amount of experience
-	 * @return true if operation is successfully
+	 * Delete character 
+	 * @param userId - id of user
+	 * @return true if operation was successfully
 	 */
-	boolean updateCharacterExpirience(int characterId, int experiance);
+	boolean deleteCharacterByUserId(int userId);
 	
 	/**
-	 * Update character strength
-	 * @param characterId - id of character 
-	 * @param strength - amount of strength
-	 * @return true if operation is successfully
-	 */
-	boolean updateCharacterStrength(int characterId, int strength);
-	
-	/**
-	 * Update character agility
-	 * @param characterId - id of character 
-	 * @param agility - amount of agility
-	 * @return true if operation is successfully
-	 */
-	boolean updateCharacterAgilty(int characterId, int agilty);
-	
-	/**
-	 * Update character intellect
+	 * Delete character 
 	 * @param characterId - id of character
-	 * @param intellect - amount of intellect
-	 * @return true if operation is successfully
+	 * @return true if operation was successfully
 	 */
-	boolean updateCharacterIntellect(int characterId, int intellect);
+	boolean deleteCharacterByCharacterId(int characterId);
 	
 	/**
-	 * Update character profession
-	 * @param characterId - id of character
-	 * @param profession - character profession
-	 * @return true if operation is successfully
+	 * Get list of all registered characters
+	 * @return list of all characters
 	 */
-	boolean updateCharacterProffesion(int characterId, String proffesion);
+	List<UCharacter> getAllCharacters();
 	
 	/**
-	 * Add won fight
-	 * @param characterId - id of character
-	 * @return true if operation is successfully
+	 * Get list of all registered characters sorted by strength 
+	 * @return list of all characters
 	 */
-	boolean addWonFight(int characterId);
+	List<UCharacter> getCharactersSortedByStrength();
 	
 	/**
-	 * Add lost fight 
-	 * @param characterId - id of character
-	 * @return true if operation is successfully
+	 * Get list of all registered characters sorted by agility 
+	 * @return list of all characters
 	 */
-	boolean addLostFight(int characterId);
-		
+	List<UCharacter> getCharactersSortedByAgility();
+	
 	/**
-	 * Update Character information
-	 * @param character - Character object
-	 * @return true if operation is successfully
+	 * Get list of all registered characters sorted by intellect
+	 * @return list of all characters
 	 */
-	boolean updateCharacterInfo(UCharacter character);
-
+	List<UCharacter> getCharactersSortedByIntellect();
+	
 	/**
-	 * Delete character
-	 * @param character - Character object
-	 * @return true if operation is successfully
+	 * Get list of all registered characters sorted by spent fights
+	 * @return list of all characters
 	 */
-	boolean deleteCharacter(UCharacter character);
+	List<UCharacter> getCharactersSortedByFights();
+	
+	/**
+	 * Get list of all registered characters sorted by won fights
+	 * @return list of all characters
+	 */
+	List<UCharacter> getCharactersSortedByWonFughts();
 	
 }

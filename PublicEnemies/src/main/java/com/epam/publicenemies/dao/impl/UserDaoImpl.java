@@ -133,7 +133,7 @@ public class UserDaoImpl implements IUserDao {
 		}
 		// will contain id of inserted entry
 		KeyHolder keyHolder = new GeneratedKeyHolder();
-		final String INSERT_USER_SQL = "INSERT INTO users (email, password, nickName, userCharacter) VALUES (?,?,?,?)";
+		final String INSERT_USER_SQL = "INSERT INTO users (email, password, nickName, userCharacter, userPoker) VALUES (?,?,?,?,?)";
 		jdbcTemplate.update(
 				new PreparedStatementCreator() {
 					@Override
@@ -142,8 +142,8 @@ public class UserDaoImpl implements IUserDao {
 						ps.setString(1, email);
 						ps.setString(2, password);
 						ps.setString(3, nickName);
-						// create new character entry
 						ps.setInt(4, createCharacterEntry()); 
+						ps.setInt(5, createPokerStatisticsEntry());
 						return ps;
 					}
 				}, keyHolder);
@@ -410,18 +410,33 @@ public class UserDaoImpl implements IUserDao {
 	 */
 	private int createCharacterEntry() {
 		KeyHolder keyHolder = new GeneratedKeyHolder();
-		final String INSERT_CHARACTER_SQL = "INSERT INTO characters (sex) VALUES (?)";
+		final String INSERT_CHARACTER_SQL = "INSERT INTO characters VALUES()";
 		jdbcTemplate.update(
 				new PreparedStatementCreator() {
 					@Override
 					public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
 						PreparedStatement ps = connection.prepareStatement(INSERT_CHARACTER_SQL, Statement.RETURN_GENERATED_KEYS);
-						ps.setBoolean(1, true);						 
+//						ps.setBoolean(1, true);						 
 						return ps;
 					}
 				}, keyHolder);
 		log.info("UserDaoImpl.createCharacterEntry: ID is " + keyHolder.getKey().intValue());
 		return keyHolder.getKey().intValue();	
+	}
+	
+	private int createPokerStatisticsEntry() {
+		KeyHolder keyHolder = new GeneratedKeyHolder();
+		final String INSERT_CHARACTER_SQL = "INSERT INTO pokerStatistics VALUES()";
+		jdbcTemplate.update(
+				new PreparedStatementCreator() {
+					@Override
+					public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
+						PreparedStatement ps = connection.prepareStatement(INSERT_CHARACTER_SQL, Statement.RETURN_GENERATED_KEYS);
+						return ps;
+					}
+				}, keyHolder);
+		log.info("UserDaoImpl.createPokerStatisticsEntry: ID is " + keyHolder.getKey().intValue());
+		return keyHolder.getKey().intValue();
 	}
 
 	/**
