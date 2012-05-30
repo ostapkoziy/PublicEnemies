@@ -12,9 +12,9 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
-	$("input#avatar_input").hide();
+	/* $("input#avatar_input").hide();
 	$("input#gender_input").hide();
-	$("input#profession_input").hide();
+	$("input#profession_input").hide(); */
 
 });
 </script>
@@ -57,14 +57,11 @@ $(document).ready(function(){
 									<br />
 								<p>Proffesion:</p>
 								<select id="profession_select">
-										<option>Butcher</option>
-										<option>Gangster</option>
-										<option>Criminal</option>
-										<option>Thief</option>
-										<option>Assassin</option>
-										<option>Professor</option>
+										<option id="1">Butcher</option>
+										<option id="2">Gangster</option>
+										<option id="3">Criminal</option>
 									</select>
-									<input id="profession_input"  type="text" name="profession" value="${profile.getProfession()}"><br />
+									<input id="profession_input"  type="text" name="profession" value="${profile.getCharacterProfession().getProfessionName()}"><br />
 									<font color="red">${status.errorMessage}</font>
 									<br />
 								<button type="submit" class="button">Save</button>
@@ -100,7 +97,7 @@ $(document).ready(function(){
 		$("input#gender_input").val(sex);
 	});
 	$("#profession_select").click(function(){
-		var profession = $("#profession_select option:selected").val();
+		var profession = $("#profession_select option:selected").attr("id");
 		$("input#profession_input").val(profession);
 	});
 </script>	 

@@ -14,6 +14,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.epam.publicenemies.dao.IProfileDao;
+import com.epam.publicenemies.domain.Profession;
 import com.epam.publicenemies.domain.Profile;
 import com.epam.publicenemies.domain.UCharacter;
 import com.epam.publicenemies.domain.User;
@@ -463,27 +464,26 @@ public class ProfileDaoImpl implements IProfileDao {
 	 */
 	@Override
 	public UCharacter getCharacterByUserId(int userId) {
-		String sql = "SELECT characterId, sex, experience, strength, agility, intellect, "
-				+ "profession,  fightsTotal, fightsWon, weapon1, weapon2, aid, armor "
-				+ "FROM users, characters WHERE userId=? AND userCharacter=characterId";
-		UCharacter ch = jdbcTemplate.queryForObject(sql,
+		
+		final String SELECT_SQL = "SELECT characterId, sex, experience, strength, agility, intellect, "
+				+ "characterProfession,  fightsTotal, fightsWon, weapon1, weapon2, aid, armor, " +
+				"professionId, professionName, professionAvatar FROM users, characters, professions" +
+				"  WHERE userId=? AND userCharacter=characterId AND characterProfession=professionId LIMIT 1";
+		UCharacter ch = jdbcTemplate.queryForObject(SELECT_SQL,
 				new Object[] { userId }, new RowMapper<UCharacter>() {
 					public UCharacter mapRow(ResultSet resultSet, int rowNum)
 							throws SQLException {
-						return new UCharacter(resultSet.getInt("characterId"),
-								resultSet.getBoolean("sex"), resultSet
-										.getInt("experience"), resultSet
-										.getInt("strength"), resultSet
-										.getInt("agility"), resultSet
-										.getInt("intellect"), resultSet
-										.getString("profession"), resultSet
-										.getString("professionAvatar"), resultSet
-										.getInt("fightsTotal"), resultSet
-										.getInt("fightsWon"), resultSet
-										.getInt("weapon1"), resultSet
-										.getInt("weapon2"), resultSet
-										.getInt("armor"), resultSet
-										.getInt("aid"));
+						return new UCharacter(resultSet.getInt("characterId"), resultSet.getBoolean("sex"), 
+								resultSet.getInt("experience"),	resultSet.getInt("strength"), 
+								resultSet.getInt("agility"), resultSet.getInt("intellect"), 
+								new Profession( 
+										resultSet.getByte("professionId"),
+										resultSet.getString("professionName"), 
+										resultSet.getString("professionAvatar")
+										),
+								resultSet.getInt("fightsTotal"), resultSet.getInt("fightsWon"),
+								resultSet.getInt("weapon1"), resultSet.getInt("weapon2"),
+								resultSet.getInt("armor"), resultSet.getInt("aid"));
 					}
 				});
 		log.info("ProfileDaoImpl.getCharacterByUserId: ID of user is " + userId);
@@ -502,18 +502,24 @@ public class ProfileDaoImpl implements IProfileDao {
 		log.info("ProfileDaoImpl: GetCharacterById, characterId = "
 				+ characterId);
 		UCharacter uch = this.jdbcTemplate.queryForObject(
-				"SELECT * FROM characters WHERE characterId=?",
+				"SELECT characterId, sex, experience, strength, agility, intellect, "
+				+ "characterProfession,  fightsTotal, fightsWon, weapon1, weapon2, aid, armor, " +
+				"professionId, professionName, professionAvatar FROM users, characters, professions " +
+				"WHERE characterId=? AND characterProfession=professionId LIMIT 1",
 				new Object[] { characterId }, new RowMapper<UCharacter>() {
-					public UCharacter mapRow(ResultSet rs, int rowNum)
+					public UCharacter mapRow(ResultSet resultSet, int rowNum)
 							throws SQLException {
-						return new UCharacter(characterId,
-								rs.getBoolean("sex"), rs.getInt("experience"),
-								rs.getInt("strength"), rs.getInt("agility"), 
-								rs.getInt("intellect"), rs.getString("profession"), 
-								rs.getString("professionAvatar"),
-								rs.getInt("fightsTotal"), rs.getInt("fightsWon"), 
-								rs.getInt("weapon1"), rs.getInt("weapon2"), 
-								rs.getInt("armor"),	rs.getInt("aid"));
+						return new UCharacter(resultSet.getInt("characterId"), resultSet.getBoolean("sex"), 
+								resultSet.getInt("experience"),	resultSet.getInt("strength"), 
+								resultSet.getInt("agility"), resultSet.getInt("intellect"), 
+								new Profession( 
+										resultSet.getByte("professionId"),
+										resultSet.getString("professionName"), 
+										resultSet.getString("professionAvatar")
+										),
+								resultSet.getInt("fightsTotal"), resultSet.getInt("fightsWon"),
+								resultSet.getInt("weapon1"), resultSet.getInt("weapon2"),
+								resultSet.getInt("armor"), resultSet.getInt("aid"));
 					}
 				});
 		log.info("ProfileDaoImpl.getCharacterById: ID of character is "
@@ -535,9 +541,9 @@ public class ProfileDaoImpl implements IProfileDao {
 	 */
 	@Override
 	public void updateProfile(int uid, String nickName, String avatar,
-			boolean sex, String prof) {
+			boolean sex, byte prof) {
 		this.jdbcTemplate
-				.update("UPDATE users, characters SET nickName = ?, avatar = ?, sex=?, profession=? WHERE userId = ? and characterId=userCharacter",
+				.update("UPDATE users, characters SET nickName = ?, avatar = ?, sex=?, characterProfession=? WHERE userId = ? and characterId=userCharacter",
 						new Object[] { nickName, avatar, sex, prof, uid });
 		log.info("ProfileDaoImpl.getUpdateProfile: ID of user is " + uid);
 	}
@@ -551,28 +557,28 @@ public class ProfileDaoImpl implements IProfileDao {
 	 */
 	@Override
 	public UCharacter getCharacter(final User user) {
-		String sql = "SELECT sex, experience, strength, agility, intellect, "
-				+ "profession,  fightsTotal, fightsWon, weapon1, weapon2, aid, armor "
-				+ "FROM characters WHERE characterId=?";
-		UCharacter ch = jdbcTemplate.queryForObject(sql,
+		final String SQL = "SELECT sex, experience, strength, agility, intellect, "
+				+ "characterProfession, fightsTotal, fightsWon, weapon1, weapon2, aid, armor, " +
+				"professionId, professionName, professionAvatarvFROM characters, professions " +
+				"WHERE characterId=? AND professionAvatar=professionId LIMIT 1";
+//		final String SELECT_FOR_PROFESSION = "SELECT * FROM ";
+		UCharacter ch = jdbcTemplate.queryForObject(SQL,
 				new Object[] { user.getCharacterId() },
 				new RowMapper<UCharacter>() {
 					public UCharacter mapRow(ResultSet resultSet, int rowNum)
 							throws SQLException {
 						return new UCharacter(user.getCharacterId(), resultSet
-								.getBoolean("sex"), resultSet
-								.getInt("experience"), resultSet
-								.getInt("strength"), resultSet
-								.getInt("agility"), resultSet
-								.getInt("intellect"), resultSet
-								.getString("profession"), resultSet
-								.getString("professionAvatar"), resultSet
-								.getInt("fightsTotal"), resultSet
-								.getInt("fightsWon"), resultSet
-								.getInt("weapon1"),
-								resultSet.getInt("weapon2"), resultSet
-										.getInt("armor"), resultSet
-										.getInt("aid"));
+								.getBoolean("sex"), resultSet.getInt("experience"),
+								resultSet.getInt("strength"), resultSet.getInt("agility"), 
+								resultSet.getInt("intellect"), 
+								new Profession( 
+										resultSet.getByte("professionId"),
+										resultSet.getString("professionName"), 
+										resultSet.getString("professionAvatar")
+										),
+								resultSet.getInt("fightsTotal"), resultSet.getInt("fightsWon"),
+								resultSet.getInt("weapon1"), resultSet.getInt("weapon2"),
+								resultSet.getInt("armor"), resultSet.getInt("aid"));
 					}
 				});
 		log.info("ProfileDaoImpl.getCharacterByUserId: ID of character is "

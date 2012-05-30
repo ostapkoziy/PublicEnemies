@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.epam.publicenemies.domain.Profession;
 import com.epam.publicenemies.domain.Profile;
 //import com.epam.publicenemies.dto.ProfileDto;
 import com.epam.publicenemies.service.IProfileManagerService;
@@ -40,9 +41,12 @@ public class EditProfileFormController {
 		} else {
 			// TODO: error page ?, unable to find profile for user
 		}
-		// doesn't matter. sets default profession
-		if (pd.getProfession() == null || pd.getProfession() == "") {
-			pd.setProfession("unknown"); 
+		// doesn't matter. sets default profession TODO
+//		if (pd.getCharacterProfession() == null || pd.getCharacterProfession() == "") {
+//			pd.setCharacterProfession("unknown"); 
+//		}
+		if (pd.getCharacterProfession() == null) {
+			pd.setCharacterProfession(new Profession()); 
 		}
 		mav.addObject("profile", pd);
 		mav.setViewName("editProfile"); 
@@ -67,7 +71,7 @@ public class EditProfileFormController {
 				request.getParameter("avatar"),
 				// TODO: change parsing
 				Boolean.parseBoolean(request.getParameter("sex")), 
-				request.getParameter("profession")); 
+				Byte.parseByte(request.getParameter("profession"))); 
 		// Note: exceptions in case empty fields
 		// TODO: do changes
 		return "redirect:userStartPage.html";		

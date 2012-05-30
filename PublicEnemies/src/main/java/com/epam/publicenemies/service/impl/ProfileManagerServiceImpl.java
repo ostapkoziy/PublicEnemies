@@ -90,7 +90,7 @@ public class ProfileManagerServiceImpl implements IProfileManagerService {
 	 */
 	@Override
 	public void updateProfile(int uid, String nickName, String avatar,
-			boolean sex, String prof) {
+			boolean sex, byte prof) {
 		profileDao.updateProfile(uid, nickName, avatar, sex, prof);		
 	}
 

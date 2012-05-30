@@ -33,7 +33,7 @@ public interface IProfileManagerService {
 	 * Updates nickName, avatar, sex (?) and profession for user (uId)
 	 * TODO: change return type (boolean, ProfileDto) 
 	 */
-	void updateProfile(int uid, String nickName, String avatar, boolean sex, String prof);
+	void updateProfile(int uid, String nickName, String avatar, boolean sex, byte prof);
 
 	/**
 	 * Returns profile for passed user

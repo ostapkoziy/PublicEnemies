@@ -56,7 +56,7 @@ $(document).ready(function(){
 						<strong> <abbr>RegDate:</abbr> </strong> ${profile.getRegDate()}
 					</p>
 					<p>
-						<strong> <abbr>Profession:</abbr> </strong> ${profile.getProfession()}
+						<strong> <abbr>Profession:</abbr> </strong> ${profile.getCharacterProfession().getProfessionName()}
 					</p>
 					<br />
 					<h3>Basic stats:</h3>

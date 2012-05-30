@@ -43,6 +43,8 @@ public class TableDaoImpl implements ITableDao {
 		log.info("TableDaoImpl: \"armors\" added");
 		createAidsTable();		
 		log.info("TableDaoImpl: \"aids\" added");
+		createProfessionsTable();
+		log.info("TableDaoImpl: \"professions\" added");
 		createCharactersTable();
 		log.info("TableDaoImpl: \"characters\" added");
 		createChatPropertiesTable();		
@@ -84,6 +86,9 @@ public class TableDaoImpl implements ITableDao {
 		sql.append("DROP TABLE IF EXISTS characters");
 		jdbcTemplate.execute(sql.toString());
 		sql.delete(0, sql.length());
+		sql.append("DROP TABLE IF EXISTS professions");
+		jdbcTemplate.execute(sql.toString());
+		sql.delete(0, sql.length());
 		sql.append("DROP TABLE IF EXISTS chatProperties");
 		jdbcTemplate.execute(sql.toString());
 		sql.delete(0, sql.length());	
@@ -97,6 +102,8 @@ public class TableDaoImpl implements ITableDao {
 		log.info("TableDaoImpl: \"aids\" filled");
 		fillArmors();
 		log.info("TableDaoImpl: \"armors\" filled");
+		fillProfessions();
+		log.info("TableDaoImpl: \"professions\" filled");
 		fillCharacters();
 		log.info("TableDaoImpl: \"characters\" filled");
 		fillCharactersTrunks();
@@ -294,44 +301,44 @@ public class TableDaoImpl implements ITableDao {
 	private void fillCharacters() {
 		// 1-st character
 		StringBuilder sql = new StringBuilder("INSERT INTO characters ");
-		sql.append("(experience, strength, agility, intellect, profession, ");
+		sql.append("(experience, strength, agility, intellect, characterProfession, ");
 		sql.append("fightsTotal, fightsWon, weapon1, weapon2, aid, armor) ");
-		sql.append("VALUES (500, 20, 25, 1, 'Gangster', 50, 1, 1, 2, 5, 7)");
+		sql.append("VALUES (500, 20, 25, 1, 1, 50, 1, 1, 2, 5, 7)");
 		jdbcTemplate.update(sql.toString());
 		sql.delete(0, sql.length());
 		// 2-nd character
 		sql.append("INSERT INTO characters ");
-		sql.append("(sex, strength, agility, intellect, profession, ");
+		sql.append("(sex, strength, agility, intellect, characterProfession, ");
 		sql.append("fightsTotal, fightsWon, weapon1, weapon2, aid, armor) ");
-		sql.append("VALUES (0, 5, 50, 6, 'Thief', 20, 5, 9, 10, 13, 15)");
+		sql.append("VALUES (0, 5, 50, 6, 2, 20, 5, 9, 10, 13, 15)");
 		jdbcTemplate.update(sql.toString());
 		sql.delete(0, sql.length());
 		// 3-rd character 
 		sql.append("INSERT INTO characters ");
-		sql.append("(sex, strength, agility, intellect, profession, ");
+		sql.append("(sex, strength, agility, intellect, characterProfession, ");
 		sql.append("fightsTotal, fightsWon, weapon1, weapon2, aid, armor) ");
-		sql.append("VALUES (1, 5, 50, 6, 'Assasin', 20, 5, 17, 18, 22, 23)");
+		sql.append("VALUES (1, 5, 50, 6, 3, 20, 5, 17, 18, 22, 23)");
 		jdbcTemplate.update(sql.toString());
 		sql.delete(0, sql.length());
 		// 4-th character
 		sql.append("INSERT INTO characters ");
-		sql.append("(sex, strength, agility, intellect, profession, ");
+		sql.append("(sex, strength, agility, intellect, characterProfession, ");
 		sql.append("fightsTotal, fightsWon, weapon1, weapon2, aid, armor) ");
-		sql.append("VALUES (1, 5, 50, 6, 'Criminal', 20, 5, 25, 26, 30, 31)");
+		sql.append("VALUES (1, 5, 50, 6, 1, 20, 5, 25, 26, 30, 31)");
 		jdbcTemplate.update(sql.toString());
 		sql.delete(0, sql.length());
 		// 5-th character
 		sql.append("INSERT INTO characters ");
-		sql.append("(sex, strength, agility, intellect, profession, ");
+		sql.append("(sex, strength, agility, intellect, characterProfession, ");
 		sql.append("fightsTotal, fightsWon, weapon1, weapon2, aid, armor) ");
-		sql.append("VALUES (1, 5, 50, 6, 'Professor', 20, 5, 33, 34, 38, 39)");
+		sql.append("VALUES (1, 5, 50, 6, 2, 20, 5, 33, 34, 38, 39)");
 		jdbcTemplate.update(sql.toString());
 		sql.delete(0, sql.length());
 		// 6-th character
 		sql.append("INSERT INTO characters ");
-		sql.append("(sex, strength, agility, intellect, profession, ");
+		sql.append("(sex, strength, agility, intellect, characterProfession, ");
 		sql.append("fightsTotal, fightsWon, weapon1, weapon2, aid, armor) ");
-		sql.append("VALUES (1, 5, 50, 6, 'Butcher', 20, 5, 41, 42, 46, 47)");
+		sql.append("VALUES (1, 5, 50, 6, 3, 20, 5, 41, 42, 46, 47)");
 		jdbcTemplate.update(sql.toString());
 	}
 	
@@ -691,6 +698,24 @@ public class TableDaoImpl implements ITableDao {
 		
 	}
 	
+	private void fillProfessions() {
+		StringBuilder sql = new StringBuilder();
+		sql.append("INSERT INTO professions ");
+		sql.append("(professionName, professionAvatar) ");
+		sql.append("VALUES ('Butcher', '.img/avatars/default.png')");
+		jdbcTemplate.update(sql.toString());
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO professions ");
+		sql.append("(professionName, professionAvatar) ");
+		sql.append("VALUES ('Gangster', '.img/avatars/default.png')");
+		jdbcTemplate.update(sql.toString());
+		sql.delete(0, sql.length());
+		sql.append("INSERT INTO professions ");
+		sql.append("(professionName, professionAvatar) ");
+		sql.append("VALUES ('Crimanal', '.img/avatars/default.png')");
+		jdbcTemplate.update(sql.toString());
+	}
+	
 	
 	private void createUsersTable() {
 		StringBuilder sql = new StringBuilder();
@@ -722,17 +747,31 @@ public class TableDaoImpl implements ITableDao {
 		sql.append("strength INT(5) UNSIGNED NOT NULL DEFAULT 5, ");
 		sql.append("agility INT(5) UNSIGNED NOT NULL DEFAULT 5, ");
 		sql.append("intellect INT(5) UNSIGNED NOT NULL DEFAULT 5, ");
-		sql.append("profession VARCHAR(100) NOT NULL DEFAULT 'Gangster' ");
-		sql.append("check (profession in('Butcher', 'Gangster', 'Criminal', ");
-		sql.append("'Thief', 'Assasin', 'Professor' )), ");
-		sql.append("professionAvatar VARCHAR(100) NOT NULL DEFAULT '', ");
+//		sql.append("profession VARCHAR(100) NOT NULL DEFAULT 'Gangster' ");
+//		sql.append("check (profession in('Butcher', 'Gangster', 'Criminal', ");
+//		sql.append("'Thief', 'Assasin', 'Professor' )), ");
+//		sql.append("professionAvatar VARCHAR(100) NOT NULL DEFAULT '', ");
+		sql.append("characterProfession TINYINT(1) UNSIGNED NULL, ");
 		sql.append("fightsTotal INT(10) UNSIGNED NOT NULL DEFAULT 0, ");
 		sql.append("fightsWon INT(10) UNSIGNED NOT NULL DEFAULT 0, ");
 		sql.append("weapon1 INT(10) UNSIGNED NOT NULL DEFAULT 0, ");
 		sql.append("weapon2 INT(10) UNSIGNED NOT NULL DEFAULT 0, ");
 		sql.append("aid INT(10) UNSIGNED NOT NULL DEFAULT 0, ");
 		sql.append("armor INT(10) UNSIGNED NOT NULL DEFAULT 0, ");
-		sql.append("PRIMARY KEY (characterId) ) ENGINE=INNODB");
+		sql.append("PRIMARY KEY (characterId), ");
+		sql.append("INDEX (characterProfession), ");
+		sql.append("FOREIGN KEY (characterProfession) REFERENCES professions(professionId)");
+		sql.append(") ENGINE=INNODB");
+		jdbcTemplate.execute(sql.toString());
+	}
+	
+	private void createProfessionsTable() {
+		StringBuilder sql = new StringBuilder();
+		sql.append("CREATE TABLE professions ( ");
+		sql.append("professionId TINYINT(1) UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE, ");
+		sql.append("professionName VARCHAR(100) NOT NULL UNIQUE, ");
+		sql.append("professionAvatar VARCHAR(100) DEFAULT 'avatar', ");
+		sql.append("PRIMARY KEY (professionId) ) ENGINE=INNODB");
 		jdbcTemplate.execute(sql.toString());
 	}
 
