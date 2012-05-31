@@ -22,117 +22,157 @@
 			<td align="center"><a href="userStartPage.html"><img src="img/gamelogo.png"></img></a></td>
 		</tr>
 		<tr>
+			<td>
 			<button id="newRound">New Round</button>
-			<table id="poker_table" class="sample" align="center" width="1000">
-				<tr align="center">
-					<td>
-						<img style="position:relative; top:90px; left:-40px; width:80px; height:80px"  border="2" SRC="img/avatars/default.png">
-						<img id="botMove" style="position:relative; top:90px; left:-40px;" src="">
-					</td>
-					<td>
-						<img style="position:relative; top:135px; left:-305px; width: 35px"src="img/chips/chips.png"></img>
-						<div id="bot_chips"style="position:relative; top:105px; left: -270px">1488</div>
-					</td>
-				</tr>
-				<tr align="center" height="270">
-					<td colspan="2">
-						<table width="500">
-							<tr height="80">
-								<td width="200">
-								</td>
-								<td>
-									<table>
-										<tr>
-											<td>
-												<img id="bot_card1" style="position:relative; top:40px; left:10px; width: 35px"  border="2" SRC="img/cards/back_image.png">
-												<img id="bot_card2" style="position:relative; top:40px; left:15px; width: 35px"  border="2" SRC="img/cards/back_image.png">
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<img style="position:relative; top:40px; left:20px; width: 35px"src="img/chips/chips.png"></img>
-												<div id="botBet" style="position:relative; left:60px; top: 2px"></div>
-											</td>
-										</tr>
-									</table>
-								</td>
-								<td>
-									<h4 id="bot_chips" style="position:relative; left:-35px; top: 40px"></h4>
-								</td>
-							</tr>
-							<tr height="120">
-								<td colspan="3">	
-									<!--++++++++++++++++++++++++++++++++++DECK++++++++++++++++++++++++++++++++++++ -->
-									<img id="deck" style="position:relative; top:-20px; left:40px; width: 40px" src="img/cards/deck.png"></img>
-									<!--++++++++++++++++++++++++++++++++++FLOP++++++++++++++++++++++++++++++++++++ -->
-									<img id="flop1" class="none" style="position:relative; top:-20px; left:93px; width: 35px" src=""></img>
-									<img id="flop2" class="none"  style="position:relative; top:-20px; left:98px; width: 35px" src=""></img>
-									<img id="flop3" class="none" style="position:relative; top:-20px; left:103px; width: 35px" src=""></img>
-									<!--++++++++++++++++++++++++++++++++++TURN++++++++++++++++++++++++++++++++++++ -->
-									<img id="turn" class="none" style="position:relative; top:-20px; left:108px; width: 35px" src=""></img>
-									<!--++++++++++++++++++++++++++++++++++RIVER+++++++++++++++++++++++++++++++++++ -->
-									<img id="river" class="none" style="position:relative; top:-20px; left:113px; width: 35px" src=""></img>
-									<!--++++++++++++++++++++++++++++++++++POT++++++++++++++++++++++++++++++++++++ -->
-									<img id="pot_chips" style="position:relative; top:-30px; left:130px; width: 35px" src="img/chips/chips.png"></img>
-									<a id="pot_size" style="position:relative; top:-40px; left:130px">0</a>
-								</td>
-							</tr>
-							<tr height="50">
-								<td width="100">
-									<img style="position:relative; top:-35px; left:35px; width: 35px"src="img/chips/chips.png"></img>
-								</td>
-								<td>
-									<table>
-										<tr>
-											<td>
-												<img style="position:relative; top:-55px; left:20px; width: 35px"src="img/chips/chips.png"></img>
-												<div id="playerBet" style="position:relative; top:-85px; left:65px"></div>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<img id="player_card1" style="position:relative; top:-55px; left:10px; width: 35px"  border="2" SRC="img/cards/Ac.png">
-												<img id="player_card2" style="position:relative; top:-55px; left:15px; width: 35px"  border="2" SRC="img/cards/Kc.png">
-											</td>
-										</tr>
-									</table>
-									
-								</td>
-								<td>
-								</td>
-							</tr>
-						</table>
-					</td>
-
-				</tr>
-				<tr align="center" height="70">
-					<td>
-						<div id="player_chips" style="position:relative; top:-165px; left:-30px; width:80px; height:80px"></div>
-					</td>
-					<td>
-						<img id="playerMove" style="position:relative; top:-170px; left:-250px;" src="">
-						<img id="player_avatar" style="position:relative; top:-115px; left:-250px; width:80px; height:80px"  border="2" src="">
-						<div id="player_name" style="position:relative; top:-115px; left:-250px; width:80px; height:80px"></div>
-					</td>
-				</tr>
- 				<tr>
- 					<td>
- 						<img id="fold_button" name="active" src="img/layout/fold.png" style="position:relative; top:-150px; left:300px;"></img>
- 						<img id="call_button" name="active" src="img/layout/call.png" style="position:relative; top:-150px; left:340px;"></img>
- 						<img id="raise_button" name="active" src="img/layout/raise.png" style="position:relative; top:-150px; left:390px;"></img>
- 					</td>
- 				</tr>
- 				<tr height="30">
- 					<td>
-						<form action="pokerGame.html" method="post" style="position:relative; top:-150px; left:450px; width:80px; height:80px; border: 2px">
-							<input id="userBetInput" type="text" value="0">
-						</form>
-						<div id="attackBlock"style="position:relative; top:-150px; left:0px; width:80px; border: 2px">
-				<input id="botBetInput" type="text" value="0">
-			</div>
- 					</td>			
-				</tr>
-			</table>
+				<table id="poker_table" class="sample" align="center" width="1000">
+					<tr align="center">
+						<td>
+							<img style="position:relative; top:110px; left:-40px; width:80px; height:80px"  border="2" SRC="img/avatars/default.png">
+							<img id="botMove" style="position:relative; top:110px; left:-40px;" src="">
+						</td>
+						<td>
+							<img style="position:relative; top:145px; left:-305px; width: 35px"src="img/chips/chips.png"></img>
+							<div id="bot_chips"style="position:relative; top:115px; left: -270px">1488</div>
+						</td>
+					</tr>
+					<tr align="center" height="270">
+						<td colspan="2">
+							<table width="500">
+								<tr height="80">
+									<td width="200">
+									</td>
+									<td>
+										<table>
+											<tr>
+												<td>
+													<img id="bot_card1" style="position:relative; top:50px; left:10px; width: 35px"  border="2" SRC="img/cards/back_image.png">
+													<img id="bot_card2" style="position:relative; top:50px; left:15px; width: 35px"  border="2" SRC="img/cards/back_image.png">
+												</td>
+											</tr>
+											<tr>
+												<td>
+													<img style="position:relative; top:50px; left:20px; width: 35px"src="img/chips/chips.png"></img>
+													<div id="botBet" style="position:relative; top: 12px; left:60px;"></div>
+												</td>
+											</tr>
+										</table>
+									</td>
+									<td>
+										<h4 id="bot_chips" style="position:relative; left:-35px; top: 50px"></h4>
+									</td>
+								</tr>
+								<tr height="20">
+									<td colspan="3">	
+										<!--++++++++++++++++++++++++++++++++++DECK++++++++++++++++++++++++++++++++++++ -->
+										<img id="deck" style="position:relative; top:15px; left:40px; width: 40px" src="img/cards/deck.png"></img>
+										<!--++++++++++++++++++++++++++++++++++FLOP++++++++++++++++++++++++++++++++++++ -->
+										<img id="flop1" class="none" style="position:relative; top:15px; left:93px; width: 35px" src=""></img>
+										<img id="flop2" class="none"  style="position:relative; top:15px; left:98px; width: 35px" src=""></img>
+										<img id="flop3" class="none" style="position:relative; top:15px; left:103px; width: 35px" src=""></img>
+										<!--++++++++++++++++++++++++++++++++++TURN++++++++++++++++++++++++++++++++++++ -->
+										<img id="turn" class="none" style="position:relative; top:15px; left:108px; width: 35px" src=""></img>
+										<!--++++++++++++++++++++++++++++++++++RIVER+++++++++++++++++++++++++++++++++++ -->
+										<img id="river" class="none" style="position:relative; top:15px; left:113px; width: 35px" src=""></img>
+										<!--++++++++++++++++++++++++++++++++++POT++++++++++++++++++++++++++++++++++++ -->
+										<img id="pot_chips" style="position:relative; top:10px; left:130px; width: 35px" src="img/chips/chips.png"></img>
+										<a id="pot_size" style="position:relative; top:5px; left:130px">0</a>
+									</td>
+								</tr>
+								<tr height="20">
+									<td width="100">
+										<img style="position:relative; top:25px; left:35px; width: 35px"src="img/chips/chips.png"></img>
+									</td>
+									<td>
+										<table>
+											<tr>
+												<td>
+													<img style="position:relative; top:25px; left:20px; width: 35px"src="img/chips/chips.png"></img>
+													<div id="playerBet" style="position:relative; top:-10px; left:65px"></div>
+												</td>
+											</tr>
+											<tr>
+												<td>
+													<img id="player_card1" style="position:relative; top:-5px; left:10px; width: 35px"  border="2" SRC="img/cards/Ac.png">
+													<img id="player_card2" style="position:relative; top:-5px; left:15px; width: 35px"  border="2" SRC="img/cards/Kc.png">
+												</td>
+											</tr>
+										</table>
+										
+									</td>
+									<td>
+									</td>
+								</tr>
+							</table>
+						</td>
+	
+					</tr>
+					<tr align="center" height="70">
+						<td>
+							<div id="player_chips" style="position:relative; top:-112px; left:-85px; width:80px; height:80px"></div>
+						</td>
+						<td>
+							<img id="playerMove" style="position:relative; top:-110px; left:-300px;" src="">
+							<img id="player_avatar" style="position:relative; top:-65px; left:-300px; width:80px; height:80px"  border="2" src="">
+							<div id="player_name" style="position:relative; top:-65px; left:-300px; width:80px; height:80px"></div>
+						</td>
+					</tr>
+	 				<tr>
+	 					<td>
+	 						<img id="fold_button" name="active" src="img/layout/fold.png" style="position:relative; top:-100px; left:300px;"></img>
+	 						<img id="call_button" name="active" src="img/layout/call.png" style="position:relative; top:-100px; left:340px;"></img>
+	 						<img id="raise_button" name="active" src="img/layout/raise.png" style="position:relative; top:-100px; left:390px;"></img>
+	 					</td>
+	 				</tr>
+	 				<tr height="10">
+	 					<td>
+							<form action="pokerGame.html" method="post" style="position:relative; top:-100px; left:450px; width:80px; height:80px; border: 2px">
+								<input id="userBetInput" type="text" value="0">
+							</form>
+							<div id="attackBlock"style="position:relative; top:-90px; left:40px; border: 2px" align="right">
+								<input id="botBetInput" type="text" value="0">
+								<table width="800">
+								<tr align="center">
+									<td class="" id="1">
+										<img class="combo" src="img/layout/combos/1.png">
+										Pair
+									</td>
+									<td class="" id="2">
+										<img class="combo" src="img/layout/combos/2.png">
+										Two Pairs
+									</td>
+									<td class="" id="3">
+										<img class="combo" src="img/layout/combos/3.png">
+										Set
+									</td>
+									<td class="" id="4">
+										<img class="combo" src="img/layout/combos/4.png">
+										Straight
+									</td>
+								</tr>
+								<tr align="center">
+									<td class="" id="5">
+										<img class="combo" src="img/layout/combos/5.png">
+										Flush
+									</td>
+									<td class="" id="6">
+										<img class="combo" src="img/layout/combos/6.png">
+										Full House
+									</td>
+									<td class="" id="7">
+										<img class="combo" src="img/layout/combos/7.png">
+										Quads
+									</td>
+									<td class="" id="8">
+										<img class="combo" src="img/layout/combos/8.png">
+										Straight Flush
+									</td>
+								</tr>
+							</table>
+							</div>
+	 					</td>			
+					</tr>
+				</table>
+			</td>
 		</tr>
 	</table>
 </body>

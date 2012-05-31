@@ -3,10 +3,7 @@ $(document)
 				function() {
 					var image_prefix = "img/cards/";
 					var image_suffix = ".png";
-					
-					sendAjax(0,0);
-					
-					
+					sendAjax(0, 0);
 					$("#newRound").click(function() {
 							var bet = $("#userBetInput").val();
 							var botBet = $("#botBetInput").val();
@@ -38,11 +35,11 @@ $(document)
 					function allDataUpdate(pokerGame) {
 						$("div#botBet").empty().append(pokerGame.pokerGameRound.player2Bet);
 						$("div#playerBet").empty().append(pokerGame.pokerGameRound.player1Bet);
-						$("img#flop1").replaceWith('<img id="flop1" class="none" style="position:relative; top:-20px; left:93px; width: 35px" src=""></img>');
-						$("img#flop2").replaceWith('<img id="flop2" class="none" style="position:relative; top:-20px; left:98px; width: 35px" src=""></img>');
-						$("img#flop3").replaceWith('<img id="flop3" class="none" style="position:relative; top:-20px; left:103px; width: 35px" src=""></img>');
-						$("img#turn").replaceWith('<img id="turn" class="none" style="position:relative; top:-20px; left:108px; width: 35px" src=""></img>');
-						$("img#river").replaceWith('<img id="river" class="none" style="position:relative; top:-20px; left:113px; width: 35px" src=""></img>');
+						$("img#flop1").replaceWith('<img id="flop1" class="none" style="position:relative; top:15px; left:90px; width: 35px" src=""></img>');
+						$("img#flop2").replaceWith('<img id="flop2" class="none" style="position:relative; top:15px; left:95px; width: 35px" src=""></img>');
+						$("img#flop3").replaceWith('<img id="flop3" class="none" style="position:relative; top:15px; left:100px; width: 35px" src=""></img>');
+						$("img#turn").replaceWith('<img id="turn" class="none" style="position:relative; top:15px; left:105px; width: 35px" src=""></img>');
+						$("img#river").replaceWith('<img id="river" class="none" style="position:relative; top:15px; left:110px; width: 35px" src=""></img>');
 						$("#bot_card1").replaceWith('<img id="bot_card1" class="none" style="position:relative; top:40px; left:15px; width: 35px"  border="2" SRC="img/cards/back_image.png">');
 						$("#bot_card2").replaceWith('<img id="bot_card2" class="none" style="position:relative; top:40px; left:15px; width: 35px"  border="2" SRC="img/cards/back_image.png">');
 						$("#pot_size").empty().append("0");
@@ -69,7 +66,15 @@ $(document)
 							$("#botMove").attr("src", "img/layout/big_blind.png");
 							$("#playerMove").attr("src", "img/layout/small_blind.png");
 						}
-
+						
+						$("td#1").attr("class", "no");
+						$("td#2").attr("class", "no");
+						$("td#3").attr("class", "no");
+						$("td#4").attr("class", "no");
+						$("td#5").attr("class", "no");
+						$("td#6").attr("class", "no");
+						$("td#7").attr("class", "no");
+						$("td#8").attr("class", "no");
 					}
 
 				});

@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script type="text/javascript" src="js/jquery-1.7.2.js"></script>
 <script type="text/javascript" src="js/blackjack/casino.js"></script>
+<script type="text/javascript" src="js/casinoValidator.js"></script>
 <link rel="stylesheet" href="css/casino.css" type="text/css">
 <title>Casino</title>
 <script type="text/javascript">
@@ -20,21 +21,6 @@
 		$("#rouletteSubmit").hide();
 
 		$("#inputDiv").hide();
-		var gameType = "";
-		var game = "";
-		$("#blackjack, #poker, #roulette").click(function() {
-			gameType = $(this).attr("id");
-			$("#inputDiv").slideDown(1000).delay(5000).slideUp(1000);
-			game = gameType;
-			gameType += "Input";
-		});
-
-		$("#submitButton").click(function() {
-			var chips = $("#chipInput").val();
-			$("#" + gameType).val(chips);
-			game += "Submit";
-			$("#" + game).click();
-		});
 	});
 </script>
 </head>
@@ -82,8 +68,8 @@
 					<td>
 						<div align="center" id="inputDiv">
 							<h4>Enter the amount of chips</h4>
+							<h5 id="chips_error"></h5>
 							<input id="chipInput">
-							<div id="chips_error"></div>
 							<button id="submitButton">Start</button>
 						</div>
 					</td>

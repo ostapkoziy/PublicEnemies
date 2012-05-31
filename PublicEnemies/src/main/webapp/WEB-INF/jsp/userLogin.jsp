@@ -12,6 +12,7 @@
 <title>Public Enemies login</title>
 </head>
 <body>
+	<div style="width: 100%; height: 100%; background-image: url('../img/style_main.png'); ">
 	<table align="center">
 		<tr>
 			<td align="center"><img src="img/gamelogo.png"></img></td>
@@ -47,5 +48,6 @@
 			</td>
 		</tr>
 	</table>
+	</div>
 </body>
 </html>

@@ -33,7 +33,6 @@ import flexjson.JSONSerializer;
 public class DealPokerController {
 	private static Logger log = Logger.getLogger(DealPokerController.class);
 
-	private static boolean dealer = false;
 	@Autowired
 	@Qualifier("pokerGames")
 	private PokerGameList games;
@@ -42,21 +41,6 @@ public class DealPokerController {
 		this.games = games;
 	}
 
-	@Autowired
-	@Qualifier("deck")
-	private BlackJackDeck deck;
-
-	public void setDeck(BlackJackDeck deck) {
-		this.deck = deck;
-	}
-
-	@Autowired
-	@Qualifier("engine")
-	private BlackJackEngine engine;
-
-	public void setEnhine(BlackJackEngine engine) {
-		this.engine = engine;
-	}
 	@RequestMapping("/dealPokerController")
 	public void deal(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -75,10 +59,12 @@ public class DealPokerController {
 		IPokerPlayer player2 = new EasyBot("Dirty Sanzhez", RaisePokerController.botChips);
 		PokerRound round = new PokerRound(player1, player2, 25, 50);
 		log.info("DIRTY SANCHEZ HAS - " + RaisePokerController.botChips);
-		round.setDealer(dealer);
-		dealer = !dealer;
+		round.setDealer(false);
 		round.initGame();
 		RaisePokerController.counter = 0;
+		
+		Integer chips = 0;
+		log.info("PUSH PUSH" + chips);
 		
 		// Get game
 		PokerGame game = games.getGameById(userId);

@@ -28,11 +28,11 @@ table.sample {
 	opacity: .95;
 	filter: alpha(opacity =                 95);
 	-moz-opacity: .95;
-	border-width: 3px;
+	/* border-width: 3px;
 	border-spacing: 5px;
 	border-style: outset;
 	border-color: white;
-	border-collapse: separate;
+	border-collapse: separate; */
 }
 
 
@@ -87,6 +87,28 @@ img.highlight {
   -moz-box-shadow: 0px 0px 20px rgba(255,255,255,0.99);
   box-shadow: 0px 0px 20px rgba(255,255,255,0.99);
 }
+.combo{
+    float: left;
+    margin: 40px;
+    -webkit-transition: margin 0.5s ease-out;
+    -moz-transition: margin 0.5s ease-out;
+    -o-transition: margin 0.5s ease-out;
+}
 
+.combo:hover {
+	margin-top: 2px;
+}
+
+.container{
+	 opacity: 1;
+ 
+   /*отражение*/
+  -webkit-box-reflect: below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(.8, transparent), to(rgba(0,0,0,0.4)));
+ 
+   /*свечение*/
+  -webkit-box-shadow: 0px 0px 20px rgba(255,255,255,0.99);
+  -moz-box-shadow: 0px 0px 20px rgba(255,255,255,0.99);
+  box-shadow: 0px 0px 20px rgba(255,255,255,0.99);
+}
 
 
