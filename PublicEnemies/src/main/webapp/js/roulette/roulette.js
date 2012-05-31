@@ -1,25 +1,26 @@
 	var bets = new Object();
 		bets.betsOnNumbers = [];
 
-	var currentBet;
 	var clearBetToggle = new Boolean(false);
 	var faded = "0.6";
 $(document).ready(function(){
-
-	$("#clearBet").toggle(function(){
-		$(this).css("opacity", faded);
-		clearBetToggle = true;
-	}, function(){
-		$(this).css("opacity", "1");
-		clearBetToggle = false;
+	var currentBet=0;
+	
+	$("#clearBet").click(function(){
+		for ( var i = 0; i < (parseInt(bets.betsOnNumbers.length.toString())); i++) {
+			bets.betsOnNumbers[i] = 0;
+		}
+		$("#betOnTable").html(0);
 	});
 	
 	$(".RouletteTable").click(function() {
 		if (clearBetToggle == false){
 			$(this).css("opacity", faded);
-			$("#betOnTable").html(parseInt($("#betOnTable").html()) + parseInt($("input[@name=betVal]:checked").val()));
+//			$("#betOnTable").html(parseInt($("#betOnTable").html()) + parseInt($("input[@name=betVal]:checked").val()));
+			$("#betOnTable").html(parseInt($("#betOnTable").html()) + currentBet);
 			if (isNaN(bets.betsOnNumbers[$(this).attr("alt")])) bets.betsOnNumbers[$(this).attr("alt")] = 0;
-			bets.betsOnNumbers[$(this).attr("alt")] += parseInt($("input[@name=betVal]:checked").val());
+//			bets.betsOnNumbers[$(this).attr("alt")] += parseInt($("input[@name=betVal]:checked").val());
+			bets.betsOnNumbers[$(this).attr("alt")] += currentBet;
 			
 //			alert(arr[$(this).attr("alt")]);
 		}else 
@@ -29,6 +30,16 @@ $(document).ready(function(){
 	});
 
 	// ====================================================
+	$(".chips").toggle(function(){
+		currentBet += parseInt($(this).attr("alt"));
+ 		$(this).addClass("highlighted");
+	},function(){
+		currentBet -= parseInt($(this).attr("alt"));
+		$(this).removeClass("highlighted");
+	});
+	
+
+	
 	$("#btn_test").click(
 		function() {
 			$("#userBetNumbers").val("");
@@ -39,16 +50,13 @@ $(document).ready(function(){
 			}
 	});
 	
+	
+	
 	$(".RouletteTable").mousemove(function(){
 		if (isNaN(bets.betsOnNumbers[$(this).attr("alt")])) bets.betsOnNumbers[$(this).attr("alt")]=0;
 		$("#showBet").html(bets.betsOnNumbers[$(this).attr("alt")]);
 	});
 
-	$(".RouletteTable").hover(function(){
-			$(this).fadeOut(100);
-			$(this).fadeIn(300);
-		}, function(){}
-	);
 });
 
 //function arr_init(){for (var i = 0; i < 48; i++) bets.betsOnNumbers[i] = 0;}

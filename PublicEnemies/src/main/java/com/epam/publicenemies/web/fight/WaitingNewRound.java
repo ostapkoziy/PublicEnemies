@@ -3,6 +3,7 @@ package com.epam.publicenemies.web.fight;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -24,7 +25,7 @@ public class WaitingNewRound
 {
 	private Logger	log	= Logger.getLogger(WaitingNewRound.class);
 	@RequestMapping("/WaitingNewRound")
-	public void newRound(HttpServletRequest request, HttpServletResponse response) throws IOException, InterruptedException
+	public void newRound(HttpServletRequest request, HttpServletResponse response) throws IOException, InterruptedException, ServletException
 	{
 		response.setContentType("text/html;charset=UTF-8");
 		String role = request.getSession().getAttribute("gameRole").toString();
@@ -32,11 +33,10 @@ public class WaitingNewRound
 		/*
 		 * 
 		 */
-		startEngine(fight, role);
+		// startEngine(fight, role);
 		Profile userProfile = fight.getProfile(role);
 		fight.setWhoIAm(role);
 		/*
-		 * 
 		 */
 		PrintWriter out = response.getWriter();
 		JSONSerializer ser = new JSONSerializer();
@@ -45,14 +45,15 @@ public class WaitingNewRound
 			log.info("--------------GAME IS END FOR USER: " + userProfile.getNickName() + "----------------------");
 			out.print(ser.exclude("*.class").serialize(fight));
 			out.flush();
-			return;
 		}
-		out.print(ser.exclude("*.class").serialize(fight));
-		out.flush();
+		else
+		{
+			out.print(ser.exclude("*.class").serialize(fight));
+			out.flush();
+		}
 	}
 	/**
 	 * Запускати Engine якщо хоча б один online(тобто не закрив вкладку чи браузер)
-	 * 
 	 */
 	private synchronized void startEngine(Fight fight, String role)
 	{

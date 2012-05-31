@@ -460,7 +460,7 @@ public class UserDaoImpl implements IUserDao {
 	 * @return list of all users
 	 */
 	public List<User> getUsersSortedByNick() {
-		final String SELECT_SQL = "SELECT * FROM users ORDER BY nickName";
+		final String SELECT_SQL = "SELECT * FROM users ORDER BY nickName DESC";
 		return jdbcTemplate.query(SELECT_SQL, new UserMapper());
 	}
 	
@@ -469,7 +469,7 @@ public class UserDaoImpl implements IUserDao {
 	 * @return list of all users
 	 */
 	public List<User> getUsersSortedByRegDate() {
-		final String SELECT_SQL = "SELECT * FROM users ORDER BY regDate";
+		final String SELECT_SQL = "SELECT * FROM users ORDER BY regDate DESC";
 		return jdbcTemplate.query(SELECT_SQL, new UserMapper());
 	}
 

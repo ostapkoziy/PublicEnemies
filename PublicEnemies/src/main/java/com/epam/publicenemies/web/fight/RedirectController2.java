@@ -1,5 +1,7 @@
 package com.epam.publicenemies.web.fight;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -21,5 +23,11 @@ public class RedirectController2
 	public String fight(HttpServletRequest request, HttpServletResponse response)
 	{
 		return "/fight/fight";
+	}
+	@RequestMapping("/saveResults.html")
+	public String trololo(HttpServletRequest request, HttpServletResponse response) throws IOException
+	{
+		System.out.println("TROLOLOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
+		return "redirect:fightResult.html";
 	}
 }

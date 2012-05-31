@@ -20,6 +20,6 @@ public class StatsCalculator
 		profile.setHP(profile.getAllHP());
 		profile.setDamage(20 + profile.getAgility() * 3);
 		profile.setDefence(10);
-		profile.setLevel(new Level());
+		profile.setLevel(new Level(profile.getExperience()));
 	}
 }
