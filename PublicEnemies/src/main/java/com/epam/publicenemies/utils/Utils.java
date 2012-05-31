@@ -11,7 +11,6 @@ import com.epam.publicenemies.domain.fight.Level;
 /**
  * @author Alexander Ivanov
  */
-// TODO Change to Service
 public class Utils
 {
 	private static Logger	log	= Logger.getLogger(Utils.class);
@@ -70,23 +69,47 @@ public class Utils
 	public static void expAnalizer(Level level)
 	{
 		int allExp = level.getAllExpirience();
-		int leftGr = 0;
-		int rightGr = 0;
-		int lvl = 0;
+		int leftBound = 0;
+		int rightBound = 0;
+		int newLvl = 0;
 		while (true)
 		{
-			lvl++;
-			rightGr = rightGr + 1000 + lvl * lvl * 100;
-			if (rightGr > allExp)
+			newLvl++;
+			rightBound = rightBound + 1000 + newLvl * newLvl * 100;
+			if (rightBound > allExp)
 			{
 				break;
 			}
-			leftGr = rightGr;
+			leftBound = rightBound;
 		}
-		int expOnCurrentLvl = allExp - leftGr;
-		level.setCurrentLevel(lvl);
+		int expOnCurrentLvl = allExp - leftBound;
+		level.setCurrentLevel(newLvl);
 		level.setExpOnCurrentLevel(expOnCurrentLvl);
-		level.setRightBound(rightGr);
-		level.setLeftBound(leftGr);
+		level.setRightBound(rightBound);
+		level.setLeftBound(leftBound);
+		level.setNextLevelInPercent((int) ((float) (expOnCurrentLvl) / (rightBound - leftBound) * 100));
+	}
+	public static void isNewLevel(Level level, int oldLvl, int newLvl)
+	{
+		if (newLvl > oldLvl)
+		{
+			level.setNewLevel(true);
+		}
+	}
+	public static void creatorWins(Fight fight)
+	{
+		int allExp = fight.getCreatorProfile().getLevel().getAllExpirience();
+		int lvlDiff = fight.getConnectorProfile().getLevel().getCurrentLevel() - fight.getCreatorProfile().getLevel().getCurrentLevel();
+		int expAfterFight = 250 + lvlDiff * 20;
+		fight.getCreatorProfile().getLevel().setExpirienceAfterFight(expAfterFight);
+		fight.getCreatorProfile().getLevel().setAllExpirience(allExp + expAfterFight);
+	}
+	public static void connectorWins(Fight fight)
+	{
+		int allExp = fight.getConnectorProfile().getLevel().getAllExpirience();
+		int lvlDiff = fight.getCreatorProfile().getLevel().getCurrentLevel() - fight.getConnectorProfile().getLevel().getCurrentLevel();
+		int expAfterFight = 250 + lvlDiff * 20;
+		fight.getConnectorProfile().getLevel().setExpirienceAfterFight(expAfterFight);
+		fight.getConnectorProfile().getLevel().setAllExpirience(allExp + expAfterFight);
 	}
 }

@@ -271,8 +271,6 @@ public class EasyBot implements IPokerPlayer {
 				this.allIn();
 			}
 			this.cash -=toCall;
-			 pokerGame.getPokerGameRound().setPlayer2Bet( pokerGame.getPokerGameRound().getPlayer2Bet() + toCall);
-			System.out.println(name+" called "+toCall);
 		}
 		else if (toCall == 0){
 			System.out.println("Check!");

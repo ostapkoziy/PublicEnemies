@@ -15,3 +15,101 @@
 #imageWrapper {
 	background: url("../../img/fight/you-win-min.png") no-repeat;
 }
+
+#result1 {
+	background: url("../../img/fight/overlay.png");
+}
+/* *************NEW LVL****************** */
+#newLevel { /* 	outline: 2px solid red; */
+	width: 128px;
+	height: 128px;
+	background: url("../../img/fight/newLvl.png") no-repeat;
+	z-index: 4000;
+	position: absolute;
+}
+
+#statsWrapper {
+	width: 120px;
+	height: 300px;
+	position: fixed;
+	margin-left: auto;
+	margin-right: auto;
+	top: 300px;
+	left: 0;
+	right: 0;
+	z-index: 999999;
+}
+
+.greenPlus {
+	background: url("../../img/fight/green_plus.png") no-repeat;
+	width: 26px;
+	height: 26px;
+	margin: 0 auto;
+}
+
+.redMinus {
+	background: url("../../img/fight/minus.png") no-repeat;
+	width: 26px;
+	height: 26px;
+	margin: 0 auto;
+}
+
+#strPlus {
+	
+}
+
+#aglPlus {
+	
+}
+
+#intPlus {
+	
+}
+
+#statsSubmit {
+	width: 50px;
+	margin: 0 auto;
+	display: block;
+}
+
+.statsInput {
+	width: 20px;
+	height: 20px;
+	top: 0;
+	left: 0;
+	margin-right: auto;
+	margin-left: auto;
+	display: block;
+	background: transparent;
+	border: 0px;
+}
+
+#strImg {
+	background: url("../../img/strength.png");
+	width: 40px;
+	height: 40px;
+}
+
+#aglImg {
+	background: url("../../img/agility.png");
+	width: 40px;
+	height: 40px;
+}
+
+#intImg {
+	background: url("../../img/inteligence.png");
+	width: 40px;
+	height: 40px;
+}
+
+#strWrapper {
+	float: left;
+}
+
+#aglWrapper {
+	float: left;
+}
+
+#intWrapper {
+	float: left;
+}

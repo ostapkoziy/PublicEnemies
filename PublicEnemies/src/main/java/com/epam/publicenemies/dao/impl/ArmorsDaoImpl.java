@@ -121,7 +121,7 @@ public class ArmorsDaoImpl implements IArmorsDao {
 
 	@Override
 	public List<Armor> getArmorsSortedByName() {
-		final String SELECT_SQL = "SELECT * FROM armors ORDER BY armorName";
+		final String SELECT_SQL = "SELECT * FROM armors ORDER BY armorName DESC";
 		List<Armor> armors = jdbcTemplate.query(SELECT_SQL, new ArmorMapper());
 		log.info("ArmorsDaoImpl.getArmorsSortedByName : " + armors.size() + " armors were fetched");
 		return armors;
@@ -129,7 +129,7 @@ public class ArmorsDaoImpl implements IArmorsDao {
 
 	@Override
 	public List<Armor> getArmorsSortedByPrice() {
-		final String SELECT_SQL = "SELECT * FROM armors ORDER BY armorPrice";
+		final String SELECT_SQL = "SELECT * FROM armors ORDER BY armorPrice DESC";
 		List<Armor> armors = jdbcTemplate.query(SELECT_SQL, new ArmorMapper());
 		log.info("ArmorsDaoImpl.getArmorsSortedByPrice : " + armors.size() + " armors were fetched");
 		return armors;
@@ -137,7 +137,7 @@ public class ArmorsDaoImpl implements IArmorsDao {
 
 	@Override
 	public List<Armor> getArmorsSortedByProtection() {
-		final String SELECT_SQL = "SELECT * FROM armors ORDER BY armorProtection";
+		final String SELECT_SQL = "SELECT * FROM armors ORDER BY armorProtection DESC";
 		List<Armor> armors = jdbcTemplate.query(SELECT_SQL, new ArmorMapper());
 		log.info("ArmorsDaoImpl.getArmorsSortedByProtection : " + armors.size() + " armors were fetched");
 		return armors;
