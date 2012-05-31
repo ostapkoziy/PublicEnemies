@@ -1,6 +1,6 @@
 package com.epam.publicenemies.domain.fight;
 
-import org.apache.log4j.Logger;
+import com.epam.publicenemies.utils.Utils;
 
 /**
  * @author Alexander Ivanov
@@ -27,7 +27,8 @@ public enum RoundResult
 			fight.getCreatorProfile().setHP(0);
 			fight.getConnectorProfile().setHP(connectorHP - creatorDamage);
 			fight.setWhoWins(fight.getProfile("connector"));
-			// fight.getConnectorProfile().getLevel().setExpirienceAfterFight(10000);
+			fight.setWhoLoses(fight.getProfile("creator"));
+			Utils.connectorWins(fight);
 			return true;
 		}
 	},
@@ -40,7 +41,8 @@ public enum RoundResult
 			fight.getConnectorProfile().setHP(0);
 			fight.getCreatorProfile().setHP(creatorHP - connectorDamage);
 			fight.setWhoWins(fight.getProfile("creator"));
-			// fight.getCreatorProfile().getLevel().setExpirienceAfterFight(10000);
+			fight.setWhoLoses(fight.getProfile("connector"));
+			Utils.creatorWins(fight);
 			return true;
 		}
 	},
@@ -64,5 +66,4 @@ public enum RoundResult
 	 * @return is Game End
 	 */
 	public abstract boolean roundResult(Fight fight, int creatorDamage, int connectorDamage);
-	private Logger	log	= Logger.getLogger(RoundResult.class);
 }

@@ -10,6 +10,7 @@
 	margin-right: auto;
 	background: url("../../img/fight/loseBackground.png") no-repeat;
 	z-index: 500;
+	/* 	outline: 2px solid red; */
 }
 
 #imageWrapper {
@@ -21,9 +22,13 @@
 	width: 400px;
 	height: 267px;
 	position: absolute;
-	top: 300px;
-	left: 500px;
 	z-index: 600;
+	/* 	outline: 2px solid red; */
+	left: 650px;
+	right: 0;
+	top: 90px;
+	margin-right: auto;
+	margin-left: auto;
 }
 
 #bulletHole2 {
@@ -31,7 +36,11 @@
 	width: 400px;
 	height: 267px;
 	position: absolute;
-	top: 140px;
-	left: 600px;
 	z-index: 600;
+	/* 	outline: 2px solid green; */
+	left: 0;
+	right: 0;
+	top: 400px;
+	margin-right: auto;
+	margin-left: auto;
 }

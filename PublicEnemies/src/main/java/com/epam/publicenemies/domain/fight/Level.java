@@ -7,27 +7,20 @@ import com.epam.publicenemies.utils.Utils;
  */
 public class Level
 {
-	/**
-	 * Якшо userExpirienceOnCurrentLevel > expirienceForNextLevel левел++ різницю експи в базу
-	 */
-	private int	allExpirience	= 5600; // from_DB
-	private int	currentLevel;
-	private int	expirienceAfterFight;
-	private int	leftBound;
-	private int	rightBound;
-	private int	expOnCurrentLevel;
-	/*
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 */
-	public Level()
+	private int		allExpirience;
+	private int		currentLevel;
+	private int		expirienceAfterFight;
+	private int		leftBound;
+	private int		rightBound;
+	private int		expOnCurrentLevel;
+	private int		nextLevelInPercent;
+	private boolean	newLevel;
+	public Level(int experience)
 	{
+		allExpirience = experience;
+		newLevel = false;
 		Utils.expAnalizer(this);
 	}
-	private int	nextLevelInPercent;
 	public int getAllExpirience()
 	{
 		return allExpirience;
@@ -83,5 +76,13 @@ public class Level
 	public void setNextLevelInPercent(int nextLevelInPercent)
 	{
 		this.nextLevelInPercent = nextLevelInPercent;
+	}
+	public boolean isNewLevel()
+	{
+		return newLevel;
+	}
+	public void setNewLevel(boolean newLevel)
+	{
+		this.newLevel = newLevel;
 	}
 }

@@ -46,11 +46,6 @@ public class UCharacter
 		this.weapon2 = weapon2;
 		this.armor = armor;
 		this.aid = aid;
-		// not in DB
-		this.allUserHP = 200 + strength * 10;
-		this.HP = allUserHP;
-		this.damage = 20 + agility * 3;
-		this.defence = armor;
 	}
 	public int getCharacterId()
 	{
@@ -100,7 +95,6 @@ public class UCharacter
 	{
 		this.intellect = intellect;
 	}
-	
 	public int getFightsTotal()
 	{
 		return fightsTotal;
@@ -165,7 +159,6 @@ public class UCharacter
 	{
 		this.allUserHP = allUserHP;
 	}
-	
 	public int getDamage()
 	{
 		return damage;
@@ -190,10 +183,12 @@ public class UCharacter
 	{
 		this.level = level;
 	}
-	public Profession getCharacterProfession() {
+	public Profession getCharacterProfession()
+	{
 		return characterProfession;
 	}
-	public void setCharacterProfession(Profession characterProfession) {
+	public void setCharacterProfession(Profession characterProfession)
+	{
 		this.characterProfession = characterProfession;
 	}
 }

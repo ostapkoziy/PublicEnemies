@@ -15,3 +15,17 @@
 #imageWrapper {
 	background: url("../../img/fight/you-win-min.png") no-repeat;
 }
+
+#result1 {
+	background: url("../../img/fight/overlay.png");
+}
+
+#newLevel {
+	outline: 2px solid red;
+	width: 128px;
+	height: 128px;
+	background: url("../../img/fight/newLvl.png") no-repeat;
+	z-index: 4000;
+	position: absolute;
+	
+}
