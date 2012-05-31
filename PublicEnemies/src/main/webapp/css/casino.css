@@ -8,13 +8,19 @@ body {
 }
 #inputDiv{
 	width:200px;
-	height: 200px;
+	height: 220px;
 	border: 2px solid black;
 	background-image: url(../img/opacity_background.png);
 	position: relative;
 	left: 200px;
 	top: 100px;
+	border-width: 3px;
+	border-spacing: 2px;
+	border-style: outset;
+	border-color: #3A2F0B;
+	border-collapse: separate;
 }
+
 h4 {
 	color: white;
 	font-family: 'impact';
@@ -76,7 +82,8 @@ img.highlight{
     margin-top: 2px;
 }
 
-h5{
-	color:red;
+div#chips_error{
+	font-size: 12pt;
+	color: red;
 }
 

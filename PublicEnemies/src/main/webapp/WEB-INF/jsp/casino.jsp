@@ -68,7 +68,7 @@
 					<td>
 						<div align="center" id="inputDiv">
 							<h4>Enter the amount of chips</h4>
-							<h5 id="chips_error"></h5>
+							<div id="chips_error"></div>
 							<input id="chipInput">
 							<button id="submitButton">Start</button>
 						</div>

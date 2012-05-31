@@ -161,6 +161,13 @@ public class RaisePokerController {
 				botChips = round.getPlayer2().getCash();
 			}
 			round.setPot(round.getPlayer1Bet() + round.getPlayer2Bet());
+		}else{
+			game.setPokerGameRound(round);
+			log.info("Pot - " + round.getPot());
+			log.info("Sending game after raise - " + json.serialize(game));
+			out.print(json.serialize(game));
+			out.flush();
+			return;
 		}
 		
 		if(counter != 0){
