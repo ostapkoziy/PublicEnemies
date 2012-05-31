@@ -6,6 +6,7 @@ import com.epam.publicenemies.service.ITableManagerService;
 
 /**
  * 
+ * @author Danylo_Batyuk
  * Updated by I. Kostyrko on Apr 26, 2012
  *
  */

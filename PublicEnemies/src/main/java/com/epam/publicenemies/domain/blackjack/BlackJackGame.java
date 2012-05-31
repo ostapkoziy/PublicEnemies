@@ -1,18 +1,20 @@
 package com.epam.publicenemies.domain.blackjack;
 
-
+/**
+ * @author Danylo_Batyuk
+ */
 
 public class BlackJackGame {
 	private final int id;
 	private BlackJackRound round;
 	private int chips;
 	private boolean enoughChips;
-	
-	public BlackJackGame(int id,int chips){
+
+	public BlackJackGame(int id, int chips) {
 		this.id = id;
 		this.chips = chips;
 	}
-	
+
 	public int getChips() {
 		return chips;
 	}
@@ -24,7 +26,7 @@ public class BlackJackGame {
 	public int getId() {
 		return id;
 	}
-	
+
 	public BlackJackRound getRound() {
 		return round;
 	}

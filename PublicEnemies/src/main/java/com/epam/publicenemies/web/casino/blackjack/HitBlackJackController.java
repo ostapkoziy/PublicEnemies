@@ -1,5 +1,9 @@
 package com.epam.publicenemies.web.casino.blackjack;
 
+/**
+ * @author Danylo_Batyuk
+ */
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -87,9 +91,10 @@ public class HitBlackJackController {
 
 		out.print(gson.toJson(game));
 		out.flush();
-		
-		if(playerResult != null){
+
+		if (playerResult != null) {
 			round.setPlayerCardsSplit(null);
 		}
+		log.info("HIT WAS DONE IN BLACKJACK GAME " + userId);
 	}
 }

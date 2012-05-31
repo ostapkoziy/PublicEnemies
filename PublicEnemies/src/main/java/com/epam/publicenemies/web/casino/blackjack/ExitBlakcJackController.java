@@ -1,7 +1,8 @@
 package com.epam.publicenemies.web.casino.blackjack;
 
-import java.util.HashMap;
-import java.util.Map;
+/**
+ * @author Danylo_Batyuk
+ */
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -48,9 +49,8 @@ public class ExitBlakcJackController {
 		profileManagerService.updateMoney(userId,
 				profile.getMoney() + game.getChips());
 
-		log.info("BLACKJACK GAME: " + userId + "  DESTROYED");
-
 		games.removeGame(userId);
-		return new ModelAndView("userStartPage");
+		log.info("BLACKJACK GAME: " + userId + "  DESTROYED");
+		return new ModelAndView("casino");
 	}
 }

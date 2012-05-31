@@ -1,5 +1,9 @@
 package com.epam.publicenemies.web.casino.blackjack;
 
+/**
+ * @author Danylo_Batyuk
+ */
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -51,8 +55,8 @@ public class DoubleBlackJackController {
 	}
 
 	@RequestMapping("/doubleBlackJackController")
-	public void doublebet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	public void doublebet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
 		// Get userId
 		Integer userId = (Integer) request.getSession().getAttribute("userId");
@@ -100,5 +104,6 @@ public class DoubleBlackJackController {
 
 		// Set null for split
 		round.setPlayerCardsSplit(null);
+		log.info("BET WAS DOUBLED IN BLACKJACK GAME " + userId);
 	}
 }

@@ -78,7 +78,7 @@ $(document)
 							}
 						} else{
 							alert("Not enough chips! Start new game!");
-							window.location.replace("/PublicEnemies/casino.html");
+							window.location.replace("/PublicEnemies/exitBlackJackController.html");
 						}
 					}
 

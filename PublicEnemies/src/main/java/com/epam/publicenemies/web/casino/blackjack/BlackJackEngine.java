@@ -1,5 +1,8 @@
 package com.epam.publicenemies.web.casino.blackjack;
 
+/**
+ * @author Danylo_Batyuk
+ */
 import java.util.List;
 
 import com.epam.publicenemies.domain.blackjack.BlackJackCard;
