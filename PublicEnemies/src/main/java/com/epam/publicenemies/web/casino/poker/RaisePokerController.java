@@ -65,6 +65,8 @@ public class RaisePokerController {
 	public void deal(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		JSONSerializer json = new JSONSerializer();
 		int botBet = 0;
 		// Get player bet
 		Integer playerBet = Integer.valueOf(request.getParameter("playerBet"));
@@ -79,8 +81,7 @@ public class RaisePokerController {
 		// If Player Folds
 		if(playerBet < 0){
 			round.setResult("Player folded");
-			PrintWriter out = response.getWriter();
-			JSONSerializer json = new JSONSerializer();
+
 			game.setPokerGameRound(round);
 			log.info("Pot - " + round.getPot());
 			log.info("Sending game after raise - " + json.serialize(game));
@@ -92,25 +93,46 @@ public class RaisePokerController {
 		
 		
 		round.setPlayer1Bet(round.getPlayer1Bet() + playerBet);
-		round.getPlayer1().setCash(round.getPlayer1().getCash() - playerBet); 
-		log.info("Player1 cash updated to " + round.getPlayer1().getCash());
+		round.getPlayer1().setCash(round.getPlayer1().getCash() - playerBet); 	
 		log.info(round.getPlayer1().getName() + " BET " + playerBet);
+		log.info("Player1 cash updated to " + round.getPlayer1().getCash());
 		botChips = round.getPlayer2().getCash();
 		
 		
 		
 		if(round.getPlayer1Bet() > round.getPlayer2Bet()){
+			log.info("Bot bet before move - " + round.getPlayer2Bet());
 			try {
 				botBet = round.getPlayer2().makeMove(game);
 			} catch (FoldException e) {
 				//If Bot Folds
 				log.info("Bot folded");
 				round.setResult("Bot folded");
+				game.setPokerGameRound(round);
+				log.info("Pot - " + round.getPot());
+				log.info("Sending game after bot fold - " + json.serialize(game));
+				out.print(json.serialize(game));
+				out.flush();
+				return;
 			}
+			if(botBet == 0){
+				log.info("Bot folded");
+				round.setResult("Bot folded");
+				game.setPokerGameRound(round);
+				log.info("Pot - " + round.getPot());
+				log.info("Sending game after bot fold - " + json.serialize(game));
+				out.print(json.serialize(game));
+				out.flush();
+				return;
+			}
+			
+			
+			log.info("Bot bet after move - " + round.getPlayer2Bet());
+			log.info("bot just bet - " + botBet);
 			round.setPlayer2Bet(round.getPlayer2Bet() + botBet);
-			log.info("Bot bet " + botBet);
+			log.info("Bot bet after adding - " + round.getPlayer2Bet());
 			round.getPlayer2().setCash(round.getPlayer2().getCash() - botBet);
-			log.info("Bot cash updated to " + round.getPlayer2().getCash());
+			log.info("Bet 1 - " + round.getPlayer1Bet() + " Bet 2 - " + round.getPlayer2Bet());
 		}
 		if(round.getPlayer1Bet() == round.getPlayer2Bet()){
 			counter++;
@@ -138,13 +160,12 @@ public class RaisePokerController {
 				log.info("RESULT - " + round.getResult());
 				botChips = round.getPlayer2().getCash();
 			}
-			round.setPot(round.getPot() + playerBet + botBet);
+			round.setPot(round.getPlayer1Bet() + round.getPlayer2Bet());
 		}
 		
 		if(counter != 0){
 			// Round to json
-			PrintWriter out = response.getWriter();
-			JSONSerializer json = new JSONSerializer();
+			
 			game.setPokerGameRound(round);
 			log.info("Pot - " + round.getPot());
 			log.info("Sending game after raise - " + json.serialize(game));
