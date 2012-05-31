@@ -749,14 +749,14 @@ public class TableDaoImpl implements ITableDao {
 		sql.append("chatProperty INT(10) UNSIGNED NULL UNIQUE, ");
 		sql.append("userCharacter INT(10) UNSIGNED NULL UNIQUE, ");
 		sql.append("nickName VARCHAR(100) NULL UNIQUE, ");
-		sql.append("userPoker INT(10) NULL UNIQUE, ");
+		sql.append("userPoker INT(10) UNSIGNED NULL UNIQUE, ");
 		sql.append("PRIMARY KEY (userId), ");
 		sql.append("INDEX (chatProperty), ");
 		sql.append("FOREIGN KEY (chatProperty) REFERENCES chatProperties(chatpropertyId), ");
 		sql.append("INDEX (userPoker), ");
 		sql.append("FOREIGN KEY (userPoker) REFERENCES pokerStatistics(pokerId), ");
 		sql.append("INDEX (userCharacter), ");
-		sql.append("FOREIGN KEY (userCharacter) REFERENCES characters(characterId) ON DELETE CASCADE ");
+		sql.append("FOREIGN KEY (userCharacter) REFERENCES characters(characterId) ");
 		sql.append(") ENGINE=INNODB");
 		jdbcTemplate.execute(sql.toString());
 	}
