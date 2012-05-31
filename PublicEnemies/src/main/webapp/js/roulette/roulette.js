@@ -1,11 +1,11 @@
 	var bets = new Object();
 		bets.betsOnNumbers = [];
 
-	var currentBet;
 	var clearBetToggle = new Boolean(false);
 	var faded = "0.6";
 $(document).ready(function(){
-
+	var currentBet=0;
+	
 	$("#clearBet").toggle(function(){
 		$(this).css("opacity", faded);
 		clearBetToggle = true;
@@ -17,9 +17,11 @@ $(document).ready(function(){
 	$(".RouletteTable").click(function() {
 		if (clearBetToggle == false){
 			$(this).css("opacity", faded);
-			$("#betOnTable").html(parseInt($("#betOnTable").html()) + parseInt($("input[@name=betVal]:checked").val()));
+//			$("#betOnTable").html(parseInt($("#betOnTable").html()) + parseInt($("input[@name=betVal]:checked").val()));
+			$("#betOnTable").html(parseInt($("#betOnTable").html()) + currentBet);
 			if (isNaN(bets.betsOnNumbers[$(this).attr("alt")])) bets.betsOnNumbers[$(this).attr("alt")] = 0;
-			bets.betsOnNumbers[$(this).attr("alt")] += parseInt($("input[@name=betVal]:checked").val());
+//			bets.betsOnNumbers[$(this).attr("alt")] += parseInt($("input[@name=betVal]:checked").val());
+			bets.betsOnNumbers[$(this).attr("alt")] += currentBet;
 			
 //			alert(arr[$(this).attr("alt")]);
 		}else 
@@ -29,6 +31,18 @@ $(document).ready(function(){
 	});
 
 	// ====================================================
+	$(".chips").toggle(function(){
+		currenBet += parseInt($(this).attr("alt"));
+		alert(parseInt($(this).attr("alt")));
+ 		$(this).addClass("highlighted");
+	},function(){
+		$(this).removeClass("highlighted");
+		currenBet -= parseInt($(this).attr("alt"));
+		alert(currenBet);
+	});
+	
+
+	
 	$("#btn_test").click(
 		function() {
 			$("#userBetNumbers").val("");
@@ -38,6 +52,8 @@ $(document).ready(function(){
 				}
 			}
 	});
+	
+	
 	
 	$(".RouletteTable").mousemove(function(){
 		if (isNaN(bets.betsOnNumbers[$(this).attr("alt")])) bets.betsOnNumbers[$(this).attr("alt")]=0;

@@ -12,13 +12,14 @@
 <title>Public Enemies Roulette</title>
 <script src="js/jquery-1.7.2.js" type="text/javascript"></script>
 <script type="text/javascript" src="js/jquery.imagemapster.js"></script>
+<script type="text/javascript" src="js/jquery.maphilight.min.js"></script>
+<script type="text/javascript" src="js/jquery.metadata.min.js"></script>
+
 <script type="text/javascript" src="js/roulette/hilight.js"></script>
 <script type="text/javascript" src="js/roulette/roulette.js"></script>
 
-
 </head>
 <body>
-
 	<div class="panel" id="topPanel">
 		<h2><c:out value="${rouletteGameInfo.getChips()} chips" /></h2>
 		<p><b><c:out value="${rouletteGameInfo.msg}" /></b>
@@ -29,7 +30,7 @@
 	<div class="panel" id="centerPanel">
 <img id="rouletteTable" src="img/roulette/table.png" usemap="rouletteNumbers" border="0" width="800" height="362" alt="" />
 <map id="rouletteNumbers" name="rouletteNumbers">
-<area group="3" class="RouletteTable" shape="rect" coords="61,0,113,63" alt="3" title="3"	/>
+<area class="RouletteTable" shape="rect" coords="61,0,113,63" alt="3" title="3"	/>
 <area class="RouletteTable" shape="rect" coords="114,0,163,62" alt="6" title="6"    />
 <area class="RouletteTable" shape="rect" coords="167,0,215,62" alt="9" title="9"    />
 <area class="RouletteTable" shape="rect" coords="219,0,267,62" alt="12" title="12"    />
@@ -86,6 +87,11 @@
 		<input class="bet" type="radio" name="betVal" value="10"><b>10</b>
 		<input class="bet" type="radio" name="betVal" value="25" checked="checked"><b>25</b>
 		<input class="bet" type="radio" name="betVal" value="50"><b>50</b><p>
+		
+		<img class="chips" id="10" alt="10" src="img/roulette/Chip_10.png" width="80" height="80">
+		<img class="chips" id="25" alt="25" src="img/roulette/Chip_25.png" width="80" height="80">
+		<img class="chips" id="50" alt="50" src="img/roulette/Chip_50.png" width="80" height="80">
+		
 		<b>(to send):</b> <input id="userBetNumbers" type="text" name="userBetNumbers" readonly="readonly">
 		<input id ="btn_test" type="button" value="test">
 		<input id ="submit" type="submit" value="DEAL">
@@ -93,7 +99,7 @@
 	</form>
 	</div>
 	<form method="post" action="rouletteRedirectController.html">
-		<input id="exit" type="submit" value="(MAKEUP!)Leave roulette table">
+		<input id="exit" type="submit" value="Leave roulette table">
 	</form>
 	
 </body>
