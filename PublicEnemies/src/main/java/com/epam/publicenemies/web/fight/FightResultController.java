@@ -41,7 +41,9 @@ public class FightResultController
 			/*
 			 * 
 			 */
+			int oldLvl = profile.getLevel().getCurrentLevel();
 			Utils.expAnalizer(profile.getLevel());
+			Utils.isNewLevel(profile.getLevel(), oldLvl, profile.getLevel().getCurrentLevel());
 			/*
 			 * SESSION CONFIG
 			 */

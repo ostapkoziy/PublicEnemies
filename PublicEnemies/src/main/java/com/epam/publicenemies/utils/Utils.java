@@ -69,7 +69,6 @@ public class Utils
 	public static void expAnalizer(Level level)
 	{
 		int allExp = level.getAllExpirience();
-		int oldLvl = level.getCurrentLevel();
 		int leftBound = 0;
 		int rightBound = 0;
 		int newLvl = 0;
@@ -89,7 +88,6 @@ public class Utils
 		level.setRightBound(rightBound);
 		level.setLeftBound(leftBound);
 		level.setNextLevelInPercent((int) ((float) (expOnCurrentLvl) / (rightBound - leftBound) * 100));
-		isNewLevel(level, oldLvl, newLvl);
 	}
 	public static void isNewLevel(Level level, int oldLvl, int newLvl)
 	{
@@ -108,7 +106,10 @@ public class Utils
 	}
 	public static void connectorWins(Fight fight)
 	{
+		int allExp = fight.getConnectorProfile().getLevel().getAllExpirience();
 		int lvlDiff = fight.getCreatorProfile().getLevel().getCurrentLevel() - fight.getConnectorProfile().getLevel().getCurrentLevel();
-		fight.getConnectorProfile().getLevel().setExpirienceAfterFight(250 + lvlDiff * 20);
+		int expAfterFight = 250 + lvlDiff * 20;
+		fight.getConnectorProfile().getLevel().setExpirienceAfterFight(expAfterFight);
+		fight.getConnectorProfile().getLevel().setAllExpirience(allExp + expAfterFight);
 	}
 }

@@ -39,9 +39,8 @@
 	<div id="bulletHole2"></div>
 
 	<c:if test="${myProfile.getLevel().isNewLevel()}">
-
 		<div id="newLevel"></div>
-
+		<div id="statsPlus" hidden="true"></div>
 	</c:if>
 
 </body>
