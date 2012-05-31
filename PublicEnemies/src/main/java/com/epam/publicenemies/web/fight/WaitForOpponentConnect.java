@@ -12,7 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.epam.publicenemies.domain.fight.Fight;
-import com.epam.publicenemies.utils.Utils;
 
 /**
  * @author Alexander Ivanov
@@ -26,13 +25,8 @@ public class WaitForOpponentConnect
 	{
 		response.setContentType("text/html;charset=UTF-8");
 		/*
-		 * Гра точно існує бо вже створена User1
 		 */
-		long gameId = ((Fight) request.getSession().getAttribute("game")).getId();
-		Fight fight = Utils.findGameById(gameId);
-		/*
-		 * 
-		 */
+		Fight fight = ((Fight) request.getSession().getAttribute("game"));
 		PrintWriter out = response.getWriter();
 		out.print(fight.isGameStarted());
 		out.flush();

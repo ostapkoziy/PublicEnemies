@@ -14,7 +14,6 @@ function hitSend(hit, block, aid)
 		},
 		error : function(e, ajaxOptions, thrownError)
 		{
-			// TODO if error redirect to userStartPage.html
 			alert(e.status);
 			alert(thrownError);
 			alert("Error in hitSend()");
@@ -40,19 +39,11 @@ function waitingNewRound()
 			}
 			if (game.gameEnd == true)
 			{
-				allDataUpdate(game);
-				hideAttackButton();
-				// ****** Redirect to gameResault page after 1 sec*************
-				// setTimeout(function()
-				// {
 				window.location.replace("fightResult.html");
-				// }, 1000);
-				// ********************************************************
 			}
 		},
 		error : function(e, ajaxOptions, thrownError)
 		{
-			// TODO if error redirect to userStartPage.html
 			alert(e.status);
 			alert(thrownError);
 			alert("Error in waitingNewRound()");
@@ -81,7 +72,7 @@ function timerController(game)
 
 	if (game.whoIAm == "creator")
 	{
-		if (game.round.creatorDoHit == true)
+		if (game.round.creatorAction.didHit == true)
 		{
 			hideAttackButton();
 		}
@@ -93,7 +84,7 @@ function timerController(game)
 	}
 	else
 	{
-		if (game.round.connectorDoHit == true)
+		if (game.round.connectorAction.didHit == true)
 		{
 			hideAttackButton();
 		}
@@ -139,6 +130,7 @@ $(function()
 	{
 		window.location.replace("profile.html");
 	});
+	// ------------------AID----------------------
 	$("#leftAid").toggle(function()
 	{
 		$("#aidInput").val("true");

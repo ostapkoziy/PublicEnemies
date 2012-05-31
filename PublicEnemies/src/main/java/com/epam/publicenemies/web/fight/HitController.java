@@ -37,12 +37,12 @@ public class HitController
 		if (role.equals("creator"))
 		{
 			log.info("CREATOR: " + userProfile.getNickName() + " HIT : " + hit + " BLOCK: " + block);
-			creatorGameSetup(fight, hit, block, role);
+			creatorGameSetup(fight, hit, block);
 		}
 		else
 		{
 			log.info("CONNECT: " + userProfile.getNickName() + " HIT : " + hit + " BLOCK: " + block);
-			connectorGameSetup(fight, hit, block, role);
+			connectorGameSetup(fight, hit, block);
 		}
 	}
 	private void startEngine(Fight fight)
@@ -53,24 +53,24 @@ public class HitController
 			engine.startEngine(fight);
 		}
 	}
-	private void creatorGameSetup(Fight fight, String hit, String block, String role)
+	private void creatorGameSetup(Fight fight, String hit, String block)
 	{
 		log.info("CREATOR GAME SETUP");
-		fight.getRound().setCreatorHit(hit);
-		fight.getRound().setCreatorBlock(block);
-		fight.getRound().setCreatorDoHit(true);
-		if (fight.getRound().isConnectorDoHit())
+		fight.getRound().getCreatorAction().setHit(hit);
+		fight.getRound().getCreatorAction().setBlock(block);
+		fight.getRound().getCreatorAction().setDidHit(true);
+		if (fight.getRound().getConnectorAction().isDidHit())
 		{
 			setRoundStart(fight);
 		}
 	}
-	private void connectorGameSetup(Fight fight, String hit, String block, String role)
+	private void connectorGameSetup(Fight fight, String hit, String block)
 	{
 		log.info("CONNECTOR GAME SETUP");
-		fight.getRound().setConnectorHit(hit);
-		fight.getRound().setConnectorBlock(block);
-		fight.getRound().setConnectorDoHit(true);
-		if (fight.getRound().isCreatorDoHit())
+		fight.getRound().getConnectorAction().setHit(hit);
+		fight.getRound().getConnectorAction().setBlock(block);
+		fight.getRound().getConnectorAction().setDidHit(true);
+		if (fight.getRound().getCreatorAction().isDidHit())
 		{
 			setRoundStart(fight);
 		}

@@ -3,8 +3,6 @@ package com.epam.publicenemies.domain.fight;
 import org.apache.log4j.Logger;
 
 /**
- * TODO Move to FightEngine!!!!
- * 
  * @author Alexander Ivanov
  */
 public enum RoundResult
@@ -17,7 +15,6 @@ public enum RoundResult
 			fight.getCreatorProfile().setHP(0);
 			fight.getConnectorProfile().setHP(0);
 			fight.setWhoWins(null);
-			fight.setGameEnd(true);
 			return true;
 		}
 	},
@@ -30,7 +27,7 @@ public enum RoundResult
 			fight.getCreatorProfile().setHP(0);
 			fight.getConnectorProfile().setHP(connectorHP - creatorDamage);
 			fight.setWhoWins(fight.getProfile("connector"));
-			fight.setGameEnd(true);
+			// fight.getConnectorProfile().getLevel().setExpirienceAfterFight(10000);
 			return true;
 		}
 	},
@@ -43,7 +40,7 @@ public enum RoundResult
 			fight.getConnectorProfile().setHP(0);
 			fight.getCreatorProfile().setHP(creatorHP - connectorDamage);
 			fight.setWhoWins(fight.getProfile("creator"));
-			fight.setGameEnd(true);
+			// fight.getCreatorProfile().getLevel().setExpirienceAfterFight(10000);
 			return true;
 		}
 	},
