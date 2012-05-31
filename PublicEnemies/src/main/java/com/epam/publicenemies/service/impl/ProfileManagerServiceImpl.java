@@ -215,4 +215,14 @@ public class ProfileManagerServiceImpl implements IProfileManagerService {
 	public boolean addExperience(int characterId, int experience) {
 		return profileDao.addExperience(characterId, experience);
 	}
+	
+	/**
+	 * Update experience amount for character
+	 * @param characterId - id of character
+	 * @param experience - new experience amount
+	 * @return true if operation was successfully
+	 */
+	public boolean updateExperience(int characterId, int experience) {
+		return profileDao.updateExperience(characterId, experience);
+	}
 }
