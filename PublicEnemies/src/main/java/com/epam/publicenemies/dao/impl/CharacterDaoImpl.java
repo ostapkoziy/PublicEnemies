@@ -241,8 +241,28 @@ public class CharacterDaoImpl implements ICharacterDao {
 	 */
 	@Override
 	public List<UCharacter> getAllCharacters() {
-		// TODO Auto-generated method stub
-		return null;
+		final String SELECT_SQL = "SELECT c.characterId, c.sex, c.experience, c.strength, c.agility, c.intellect, " + 
+				"c.characterProfession, c.fightsTotal, c.fightsWon, c.weapon1, c.weapon2, c.aid, c.armor, " +
+				"p.professionName, p.professionAvatar FROM characters As c, professions As p " +
+				"WHERE c.characterProfession=p.professionId";
+		List<UCharacter> list = this.jdbcTemplate.query(SELECT_SQL, new RowMapper<UCharacter>() {
+					public UCharacter mapRow(ResultSet resultSet, int rowNum)
+							throws SQLException {
+						return new UCharacter(resultSet.getInt("characterId"), resultSet.getBoolean("sex"), 
+								resultSet.getInt("experience"),	resultSet.getInt("strength"), 
+								resultSet.getInt("agility"), resultSet.getInt("intellect"), 
+								new Profession( 
+										resultSet.getByte("characterProfession"),
+										resultSet.getString("professionName"), 
+										resultSet.getString("professionAvatar")
+										),
+								resultSet.getInt("fightsTotal"), resultSet.getInt("fightsWon"),
+								resultSet.getInt("weapon1"), resultSet.getInt("weapon2"),
+								resultSet.getInt("armor"), resultSet.getInt("aid"));
+					}
+				});
+		log.info("CharacterDaoImpl.getAllCharacters: "+list.size()+" characters were fetched");
+		return list;
 	}
 
 	/**
@@ -251,11 +271,28 @@ public class CharacterDaoImpl implements ICharacterDao {
 	 */
 	@Override
 	public List<UCharacter> getCharactersSortedByStrength() {
-		final String SELECT_SQL = "SELECT c.characterId, c.sex, c.experience, c.strength, agility, intellect, " + 
-				"characterProfession, fightsTotal, fightsWon, weapon1, weapon2, aid, armor, " +
-				"professionId, professionName, professionAvatar FROM characters As c, professions As p " +
-				"ORDER BY strength, professionId DESC";
-		return null;
+		final String SELECT_SQL = "SELECT c.characterId, c.sex, c.experience, c.strength, c.agility, c.intellect, " + 
+				"c.characterProfession, c.fightsTotal, c.fightsWon, c.weapon1, c.weapon2, c.aid, c.armor, " +
+				"p.professionName, p.professionAvatar FROM characters As c, professions As p " +
+				"WHERE c.characterProfession=p.professionId ORDER BY c.strength DESC";
+		List<UCharacter> list = this.jdbcTemplate.query(SELECT_SQL, new RowMapper<UCharacter>() {
+					public UCharacter mapRow(ResultSet resultSet, int rowNum)
+							throws SQLException {
+						return new UCharacter(resultSet.getInt("characterId"), resultSet.getBoolean("sex"), 
+								resultSet.getInt("experience"),	resultSet.getInt("strength"), 
+								resultSet.getInt("agility"), resultSet.getInt("intellect"), 
+								new Profession( 
+										resultSet.getByte("characterProfession"),
+										resultSet.getString("professionName"), 
+										resultSet.getString("professionAvatar")
+										),
+								resultSet.getInt("fightsTotal"), resultSet.getInt("fightsWon"),
+								resultSet.getInt("weapon1"), resultSet.getInt("weapon2"),
+								resultSet.getInt("armor"), resultSet.getInt("aid"));
+					}
+				});
+		log.info("CharacterDaoImpl.getCharactersSortedByStrength: "+list.size()+" characters were fetched");
+		return list;
 	}
 
 	/**
@@ -264,8 +301,28 @@ public class CharacterDaoImpl implements ICharacterDao {
 	 */
 	@Override
 	public List<UCharacter> getCharactersSortedByAgility() {
-		// TODO Auto-generated method stub
-		return null;
+		final String SELECT_SQL = "SELECT c.characterId, c.sex, c.experience, c.strength, c.agility, c.intellect, " + 
+				"c.characterProfession, c.fightsTotal, c.fightsWon, c.weapon1, c.weapon2, c.aid, c.armor, " +
+				"p.professionName, p.professionAvatar FROM characters As c, professions As p " +
+				"WHERE c.characterProfession=p.professionId ORDER BY c.agility DESC";
+		List<UCharacter> list = this.jdbcTemplate.query(SELECT_SQL, new RowMapper<UCharacter>() {
+					public UCharacter mapRow(ResultSet resultSet, int rowNum)
+							throws SQLException {
+						return new UCharacter(resultSet.getInt("characterId"), resultSet.getBoolean("sex"), 
+								resultSet.getInt("experience"),	resultSet.getInt("strength"), 
+								resultSet.getInt("agility"), resultSet.getInt("intellect"), 
+								new Profession( 
+										resultSet.getByte("characterProfession"),
+										resultSet.getString("professionName"), 
+										resultSet.getString("professionAvatar")
+										),
+								resultSet.getInt("fightsTotal"), resultSet.getInt("fightsWon"),
+								resultSet.getInt("weapon1"), resultSet.getInt("weapon2"),
+								resultSet.getInt("armor"), resultSet.getInt("aid"));
+					}
+				});
+		log.info("CharacterDaoImpl.getCharactersSortedByAgility: "+list.size()+" characters were fetched");
+		return list;
 	}
 
 	/**
@@ -274,8 +331,28 @@ public class CharacterDaoImpl implements ICharacterDao {
 	 */
 	@Override
 	public List<UCharacter> getCharactersSortedByIntellect() {
-		// TODO Auto-generated method stub
-		return null;
+		final String SELECT_SQL = "SELECT c.characterId, c.sex, c.experience, c.strength, c.agility, c.intellect, " + 
+				"c.characterProfession, c.fightsTotal, c.fightsWon, c.weapon1, c.weapon2, c.aid, c.armor, " +
+				"p.professionName, p.professionAvatar FROM characters As c, professions As p " +
+				"WHERE c.characterProfession=p.professionId ORDER BY c.intellect DESC";
+		List<UCharacter> list = this.jdbcTemplate.query(SELECT_SQL, new RowMapper<UCharacter>() {
+					public UCharacter mapRow(ResultSet resultSet, int rowNum)
+							throws SQLException {
+						return new UCharacter(resultSet.getInt("characterId"), resultSet.getBoolean("sex"), 
+								resultSet.getInt("experience"),	resultSet.getInt("strength"), 
+								resultSet.getInt("agility"), resultSet.getInt("intellect"), 
+								new Profession( 
+										resultSet.getByte("characterProfession"),
+										resultSet.getString("professionName"), 
+										resultSet.getString("professionAvatar")
+										),
+								resultSet.getInt("fightsTotal"), resultSet.getInt("fightsWon"),
+								resultSet.getInt("weapon1"), resultSet.getInt("weapon2"),
+								resultSet.getInt("armor"), resultSet.getInt("aid"));
+					}
+				});
+		log.info("CharacterDaoImpl.getCharactersSortedByIntellect: "+list.size()+" characters were fetched");
+		return list;
 	}
 
 	/**
@@ -284,8 +361,28 @@ public class CharacterDaoImpl implements ICharacterDao {
 	 */
 	@Override
 	public List<UCharacter> getCharactersSortedByFights() {
-		// TODO Auto-generated method stub
-		return null;
+		final String SELECT_SQL = "SELECT c.characterId, c.sex, c.experience, c.strength, c.agility, c.intellect, " + 
+				"c.characterProfession, c.fightsTotal, c.fightsWon, c.weapon1, c.weapon2, c.aid, c.armor, " +
+				"p.professionName, p.professionAvatar FROM characters As c, professions As p " +
+				"WHERE c.characterProfession=p.professionId ORDER BY c.fightsTotal DESC";
+		List<UCharacter> list = this.jdbcTemplate.query(SELECT_SQL, new RowMapper<UCharacter>() {
+					public UCharacter mapRow(ResultSet resultSet, int rowNum)
+							throws SQLException {
+						return new UCharacter(resultSet.getInt("characterId"), resultSet.getBoolean("sex"), 
+								resultSet.getInt("experience"),	resultSet.getInt("strength"), 
+								resultSet.getInt("agility"), resultSet.getInt("intellect"), 
+								new Profession( 
+										resultSet.getByte("characterProfession"),
+										resultSet.getString("professionName"), 
+										resultSet.getString("professionAvatar")
+										),
+								resultSet.getInt("fightsTotal"), resultSet.getInt("fightsWon"),
+								resultSet.getInt("weapon1"), resultSet.getInt("weapon2"),
+								resultSet.getInt("armor"), resultSet.getInt("aid"));
+					}
+				});
+		log.info("CharacterDaoImpl.getCharactersSortedByFights: "+list.size()+" characters were fetched");
+		return list;
 	}
 
 	/**
@@ -294,8 +391,28 @@ public class CharacterDaoImpl implements ICharacterDao {
 	 */
 	@Override
 	public List<UCharacter> getCharactersSortedByWonFights() {
-		// TODO Auto-generated method stub
-		return null;
+		final String SELECT_SQL = "SELECT c.characterId, c.sex, c.experience, c.strength, c.agility, c.intellect, " + 
+				"c.characterProfession, c.fightsTotal, c.fightsWon, c.weapon1, c.weapon2, c.aid, c.armor, " +
+				"p.professionName, p.professionAvatar FROM characters As c, professions As p " +
+				"WHERE c.characterProfession=p.professionId ORDER BY c.fightsWon DESC";
+		List<UCharacter> list = this.jdbcTemplate.query(SELECT_SQL, new RowMapper<UCharacter>() {
+					public UCharacter mapRow(ResultSet resultSet, int rowNum)
+							throws SQLException {
+						return new UCharacter(resultSet.getInt("characterId"), resultSet.getBoolean("sex"), 
+								resultSet.getInt("experience"),	resultSet.getInt("strength"), 
+								resultSet.getInt("agility"), resultSet.getInt("intellect"), 
+								new Profession( 
+										resultSet.getByte("characterProfession"),
+										resultSet.getString("professionName"), 
+										resultSet.getString("professionAvatar")
+										),
+								resultSet.getInt("fightsTotal"), resultSet.getInt("fightsWon"),
+								resultSet.getInt("weapon1"), resultSet.getInt("weapon2"),
+								resultSet.getInt("armor"), resultSet.getInt("aid"));
+					}
+				});
+		log.info("CharacterDaoImpl.getCharactersSortedByWonFights: "+list.size()+" characters were fetched");
+		return list;
 	}
 
 	
