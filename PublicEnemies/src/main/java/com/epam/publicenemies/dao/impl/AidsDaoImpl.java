@@ -155,7 +155,7 @@ public class AidsDaoImpl implements IAidsDao{
 	 */
 	@Override
 	public List<Aid> getAidsSortedByName() {
-		final String SELECT_SQL = "SELECT * FROM aids ORDER BY aidName";
+		final String SELECT_SQL = "SELECT * FROM aids ORDER BY aidName DESC";
 		List<Aid> aids = jdbcTemplate.query(SELECT_SQL, new AidMapper());
 		return aids;
 	}
@@ -166,7 +166,7 @@ public class AidsDaoImpl implements IAidsDao{
 	 */
 	@Override
 	public List<Aid> getAidsSortedByPrice() {
-		final String SELECT_SQL = "SELECT * FROM aids ORDER BY aidPrice";
+		final String SELECT_SQL = "SELECT * FROM aids ORDER BY aidPrice DESC";
 		List<Aid> aids = jdbcTemplate.query(SELECT_SQL, new AidMapper());
 		return aids;
 	}
@@ -177,7 +177,7 @@ public class AidsDaoImpl implements IAidsDao{
 	 */
 	@Override
 	public List<Aid> getAidsSortedByEffect() {
-		final String SELECT_SQL = "SELECT * FROM aids ORDER BY aidEffect";
+		final String SELECT_SQL = "SELECT * FROM aids ORDER BY aidEffect DESC";
 		List<Aid> aids = jdbcTemplate.query(SELECT_SQL, new AidMapper());
 		return aids;
 	}

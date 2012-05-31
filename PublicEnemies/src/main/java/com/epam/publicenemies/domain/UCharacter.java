@@ -6,7 +6,6 @@ public class UCharacter
 {
 	private int			characterId;
 	private boolean		sex;
-	private int			experience;
 	private int			strength;
 	private int			agility;
 	private int			intellect;
@@ -35,7 +34,7 @@ public class UCharacter
 	{
 		this.characterId = characterId;
 		this.sex = sex;
-		this.experience = experience;
+		level = new Level(experience);
 		this.strength = strength;
 		this.agility = agility;
 		this.intellect = intelect;
@@ -65,11 +64,11 @@ public class UCharacter
 	}
 	public int getExperience()
 	{
-		return experience;
+		return level.getAllExpirience();
 	}
 	public void setExperience(int experience)
 	{
-		this.experience = experience;
+		this.level.setAllExpirience(experience);
 	}
 	public int getStrength()
 	{
