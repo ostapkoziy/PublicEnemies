@@ -40,7 +40,33 @@
 
 	<c:if test="${myProfile.getLevel().isNewLevel()}">
 		<div id="newLevel"></div>
-		<div id="statsPlus" hidden="true"></div>
+		<div id="statsWrapper">
+			<form action="">
+				Points:
+				<input type="text" value="5" class="statsInput">
+				<div id="wrapper">
+					<div id="strWrapper">
+						<div id="strImg"></div>
+						<div id="strMinus" class="redMinus"></div>
+						<input type="text" value="${myProfile.getStrength()}" class="statsInput">
+						<div id="strPlus" class="greenPlus"></div>
+					</div>
+					<div id="aglWrapper">
+						<div id="aglImg"></div>
+						<div id="aglMinus" class="redMinus"></div>
+						<input type="text" value="${myProfile.getAgility()}" class="statsInput">
+						<div id="aglPlus" class="greenPlus"></div>
+					</div>
+					<div id="intWrapper">
+						<div id="intImg"></div>
+						<div id="intMinus" class="redMinus"></div>
+						<input type="text" value="${myProfile.getIntellect()}" class="statsInput">
+						<div id="intPlus" class="greenPlus"></div>
+					</div>
+				</div>
+				<button id="statsSubmit" type="submit">Ok</button>
+			</form>
+		</div>
 	</c:if>
 
 </body>

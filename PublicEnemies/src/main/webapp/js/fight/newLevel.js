@@ -2,11 +2,11 @@ $(function()
 {
 	$("#newLevel").toggle(function()
 	{
-		$("#statsPlus").removeAttr("hidden");
+		$("#statsWrapper").removeAttr("hidden");
 
 	}, function()
 	{
-		$("#statsPlus").attr("hidden", true);
+		$("#statsWrapper").attr("hidden", true);
 	});
 
 	function hideShow()

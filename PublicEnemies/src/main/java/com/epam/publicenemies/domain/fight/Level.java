@@ -7,7 +7,7 @@ import com.epam.publicenemies.utils.Utils;
  */
 public class Level
 {
-	private int		allExpirience;
+	private int		allExpirience;			// from DB
 	private int		currentLevel;
 	private int		expirienceAfterFight;
 	private int		leftBound;
