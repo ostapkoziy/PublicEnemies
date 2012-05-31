@@ -30,13 +30,13 @@
 
 		<tr>
 			<td><img id="10_button" src="img/chips/10.png"
-				style="position: relative; top: -110px; left: 310px;"> <img
+				style="position: relative; top: -110px; left: 310px;" class="active"> <img
 				id="25_button" src="img/chips/25.png"
-				style="position: relative; top: -80px; left: 300px;"> <img
+				style="position: relative; top: -80px; left: 300px;" class="active"> <img
 				id="50_button" src="img/chips/50.png"
-				style="position: relative; top: -50px; left: 290px;"> <img
+				style="position: relative; top: -50px; left: 290px;" class="active"> <img
 				id="100_button" src="img/chips/100.png"
-				style="position: relative; top: -25px; left: 285px;"></img></td>
+				style="position: relative; top: -25px; left: 285px;" class="active"></img></td>
 			<td><div>
 					<img id="bet" style="position: relative; top: -20px; left: 330px;">
 				</div>
@@ -62,15 +62,15 @@
 		</tr>
 		<tr align="center">
 			<td><img id="deal_button" src="img/layout/dealg.png"
-				style="position: relative; top: -90px;"></img></td>
+				style="position: relative; top: -90px;" class="notactive"></img></td>
 			<td><img id="stand_button" src="img/layout/standg.png"
-				style="position: relative; top: -90px;"></img></td>
+				style="position: relative; top: -90px;" class="notactive"></img></td>
 			<td><img id="hit_button" src="img/layout/hitg.png"
-				style="position: relative; top: -90px;"></img></td>
+				style="position: relative; top: -90px;" class="notactive"></img></td>
 			<td><img id="split_button" src="img/layout/splitg.png"
-				style="position: relative; top: -90px;"></img></td>
+				style="position: relative; top: -90px;" class="notactive"></img></td>
 			<td><img id="double_button" src="img/layout/doubleg.png"
-				style="position: relative; top: -90px;"></img></td>
+				style="position: relative; top: -90px;" class="notactive"></img></td>
 			<td><form action="exitBlackJackController.html">
 					<input type="image" src="img/layout/exit.png" alt="Submit button" 
 						style="position: relative; top: -90px;">
