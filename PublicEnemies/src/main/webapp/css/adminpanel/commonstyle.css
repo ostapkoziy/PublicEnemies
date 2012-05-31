@@ -3,9 +3,16 @@ body {
 }
 
 div.admin_header {
-	background: #AAA;
+	background: #CCC;
 	padding: 10px; 
+	height: 100px; 
+	border: 3px solid black; 
+	border-radius: 10px; 
 	/*magrin: 5px;*/ 	
+}
+img.admin_logo {
+	margin-right: 20px; 
+	float: left;
 }
 
 div#adm_panel {
@@ -64,7 +71,7 @@ a.new_entry:hover, a.new_entry:active, a.new_entry:visited, a.new_entry:link {
 	font-size: 14pt;
 	padding: 5px; 
 	border: 3px solid black; 
-	background: #AAA; 
+	background: #CCC; 
 	border-radius: 10px; 
 }
 
@@ -72,7 +79,9 @@ a.new_entry:hover {
 	background: #DDD; 
 }
 
-div.users_div, div.weapons_div, div.armors_div, div.aids_div, div#summary_div {
+div.users_div, div.weapons_div, div.armors_div, div.aids_div, div.summary_div {
+	margin-top: 5px; 
+	border-radius: 10px; 
 	padding: 20px; 
 	border: 2px solid black; 
 }

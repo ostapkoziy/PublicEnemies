@@ -1,5 +1,8 @@
 package com.epam.publicenemies.web.casino.blackjack;
 
+/**
+ * @author Danylo_Batyuk
+ */
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -16,7 +19,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.epam.publicenemies.domain.blackjack.BlackJackCard;
-import com.epam.publicenemies.domain.blackjack.BlackJackDeck;
 import com.epam.publicenemies.domain.blackjack.BlackJackGame;
 import com.epam.publicenemies.domain.blackjack.BlackJackGameList;
 import com.epam.publicenemies.domain.blackjack.BlackJackRound;
@@ -33,14 +35,6 @@ public class SplitBlackJackController {
 
 	public void setGames(BlackJackGameList games) {
 		this.games = games;
-	}
-
-	@Autowired
-	@Qualifier("deck")
-	private BlackJackDeck deck;
-
-	public void setDeck(BlackJackDeck deck) {
-		this.deck = deck;
 	}
 
 	@Autowired
@@ -67,7 +61,7 @@ public class SplitBlackJackController {
 		List<BlackJackCard> playerCardsSplit = new ArrayList<BlackJackCard>();
 		playerCardsSplit.add(playerCards.get(1));
 		playerCards.remove(1);
-		
+
 		// Calculate player points
 		int playerPoints = engine.calculatePoints(playerCardsSplit);
 
@@ -82,5 +76,6 @@ public class SplitBlackJackController {
 
 		out.print(gson.toJson(game));
 		out.flush();
+		log.info("SPLIT WAS DONE IN BLACKJACK GAME " + userId);
 	}
 }

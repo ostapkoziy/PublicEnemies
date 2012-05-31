@@ -1,5 +1,9 @@
 package com.epam.publicenemies.web.casino.blackjack;
 
+/**
+ * @author Danylo_Batyuk
+ */
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -15,13 +19,11 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.epam.publicenemies.domain.Profile;
 import com.epam.publicenemies.domain.blackjack.BlackJackCard;
 import com.epam.publicenemies.domain.blackjack.BlackJackDeck;
 import com.epam.publicenemies.domain.blackjack.BlackJackGame;
 import com.epam.publicenemies.domain.blackjack.BlackJackGameList;
 import com.epam.publicenemies.domain.blackjack.BlackJackRound;
-import com.epam.publicenemies.service.IProfileManagerService;
 import com.google.gson.Gson;
 
 @Controller
@@ -70,7 +72,7 @@ public class DealBlackJackController {
 				.getParameter("playerChips"));
 		if (playerChips - playerBet < 0) {
 			game.setEnoughChips(false);
-		} else{
+		} else {
 			game.setEnoughChips(true);
 			playerChips = playerChips - playerBet;
 		}
@@ -110,5 +112,6 @@ public class DealBlackJackController {
 
 		out.print(gson.toJson(game));
 		out.flush();
+		log.info("DEAL WAS DONE IN BLACKJACK GAME: " + userId + "  DESTROYED");
 	}
 }

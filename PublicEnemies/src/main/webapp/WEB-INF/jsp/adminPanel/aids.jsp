@@ -7,8 +7,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<link href="../css/adminpanel/commonstyle.css" rel="stylesheet"
-	type="text/css">
+<link href="/PublicEnemies/css/adminpanel/commonstyle.css"
+	rel="stylesheet" type="text/css">
 
 <title>Aids</title>
 
@@ -17,7 +17,7 @@
 	<jsp:include page="adminHeader.jsp"></jsp:include>
 
 	<div class="aids_div">
-		<a class="new_entry" href="aid/add.html"><span
+		<a class="new_entry" style="float:right" href="/PublicEnemies/adminPanel/aid/add.html"><span
 			class="create_new_entry"> Create New Aid </span> </a>
 		<p>
 		<table class="aids_table">

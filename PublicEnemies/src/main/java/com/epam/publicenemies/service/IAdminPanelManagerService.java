@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.epam.publicenemies.domain.Aid;
 import com.epam.publicenemies.domain.Armor;
+import com.epam.publicenemies.domain.UCharacter;
 import com.epam.publicenemies.domain.User;
 import com.epam.publicenemies.domain.Weapon;
 
@@ -364,4 +365,106 @@ public interface IAdminPanelManagerService {
 	 * @return list of users
 	 */
 	List<User> getUsersWithArmor(int armorId);
+	
+	/**
+	 * Add new character for user
+	 * @param character - Character object
+	 * @param user - User object
+	 * @return id of new character
+	 */
+	int addCharacter(UCharacter character, User user);
+	
+	/**
+	 * Add new character
+	 * @param sex - character gender
+	 * @param experience - character experience
+	 * @param strength - character strength
+	 * @param agility - character agility
+	 * @param intellect - character intellect
+	 * @param charcaterProfession - profession of character
+	 * @param fightsTotal - total spent fights
+	 * @param fightsWon - won fights
+	 * @param weapon1 - first dressed weapon 
+	 * @param weapon2 - second dressed weapon
+	 * @param aid - dressed aid
+	 * @param armor - dressed armor
+	 * @return id of of created character injection
+	 */
+	int addCharacter(boolean sex, int experience, int strength, int agility, int intellect,
+			byte charcaterProfession);
+	
+	/**
+	 * Create default character
+	 * @return id of of created character injection
+	 */
+	int addCharacter();
+	
+	/**
+	 * Update character info
+	 * @param sex - character gender
+	 * @param experience - character experience
+	 * @param strength - character strength
+	 * @param agility - character agility
+	 * @param intellect - character intellect
+	 * @param charcaterProfession - profession of character
+	 * @param fightsTotal - total spent fights
+	 * @param fightsWon - won fights
+	 * @param weapon1 - first dressed weapon 
+	 * @param weapon2 - second dressed weapon
+	 * @param aid - dressed aid
+	 * @param armor - dressed armor
+	 * @return true if operation was successfully
+	 */
+	boolean updateCharacterInfo(int characterId, boolean sex, int experience, int strength, int agility, int intellect,
+			byte charcaterProfession, int fightsTotal, int fightsWon);
+	
+	/**
+	 * Get UCharacter object by userId
+	 * @param userId - id of user
+	 * @return UCharacter object
+	 */
+	UCharacter getCharacterByUserId(int userId);
+	
+	/**
+	 * Get UCharacter object by characterId
+	 * @param characterId - id of character
+	 * @return UCharacter object
+	 */
+	UCharacter getCharacterByCharacterId(int characterId);
+	
+	/**
+	 * Get list of all registered characters
+	 * @return list of all characters
+	 */
+	List<UCharacter> getAllCharacters();
+	
+	/**
+	 * Get list of all registered characters sorted by strength 
+	 * @return list of all characters
+	 */
+	List<UCharacter> getCharactersSortedByStrength();
+	
+	/**
+	 * Get list of all registered characters sorted by agility 
+	 * @return list of all characters
+	 */
+	List<UCharacter> getCharactersSortedByAgility();
+	
+	/**
+	 * Get list of all registered characters sorted by intellect
+	 * @return list of all characters
+	 */
+	List<UCharacter> getCharactersSortedByIntellect();
+	
+	/**
+	 * Get list of all registered characters sorted by spent fights
+	 * @return list of all characters
+	 */
+	List<UCharacter> getCharactersSortedByFights();
+	
+	/**
+	 * Get list of all registered characters sorted by won fights
+	 * @return list of all characters
+	 */
+	List<UCharacter> getCharactersSortedByWonFights();
 }

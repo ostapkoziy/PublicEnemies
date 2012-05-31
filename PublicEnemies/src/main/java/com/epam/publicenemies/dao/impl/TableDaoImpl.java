@@ -721,18 +721,18 @@ public class TableDaoImpl implements ITableDao {
 	private void fillProfessions() {
 		StringBuilder sql = new StringBuilder();
 		sql.append("INSERT INTO professions ");
-		sql.append("(professionName, professionAvatar) ");
-		sql.append("VALUES ('Butcher', '.img/avatars/default.png')");
+		sql.append("(professionName) ");
+		sql.append("VALUES ('Butcher')");
 		jdbcTemplate.update(sql.toString());
 		sql.delete(0, sql.length());
 		sql.append("INSERT INTO professions ");
-		sql.append("(professionName, professionAvatar) ");
-		sql.append("VALUES ('Gangster', '.img/avatars/default.png')");
+		sql.append("(professionName) ");
+		sql.append("VALUES ('Gangster')");
 		jdbcTemplate.update(sql.toString());
 		sql.delete(0, sql.length());
 		sql.append("INSERT INTO professions ");
-		sql.append("(professionName, professionAvatar) ");
-		sql.append("VALUES ('Crimanal', '.img/avatars/default.png')");
+		sql.append("(professionName)");
+		sql.append("VALUES ('Crimanal')");
 		jdbcTemplate.update(sql.toString());
 	}
 	
@@ -879,6 +879,7 @@ public class TableDaoImpl implements ITableDao {
 		StringBuilder sql = new StringBuilder();
 		sql.append("CREATE TABLE pokerStatistics ( ");
 		sql.append("pokerId INT(10) UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE, ");
+		sql.append("totalGames INT(10) UNSIGNED NOT NULL DEFAULT 0, ");
 		sql.append("VPIP TINYINT(3) UNSIGNED NOT NULL DEFAULT 0, ");
 		sql.append("PFR TINYINT(3) UNSIGNED NOT NULL DEFAULT 0, ");
 		sql.append("3BET TINYINT(3) UNSIGNED NOT NULL DEFAULT 0, ");

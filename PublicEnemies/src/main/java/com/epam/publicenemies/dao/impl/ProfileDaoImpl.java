@@ -465,10 +465,10 @@ public class ProfileDaoImpl implements IProfileDao {
 	@Override
 	public UCharacter getCharacterByUserId(int userId) {
 		
-		final String SELECT_SQL = "SELECT characterId, sex, experience, strength, agility, intellect, "
-				+ "characterProfession,  fightsTotal, fightsWon, weapon1, weapon2, aid, armor, " +
-				"professionId, professionName, professionAvatar FROM users, characters, professions" +
-				"  WHERE userId=? AND userCharacter=characterId AND characterProfession=professionId LIMIT 1";
+		final String SELECT_SQL = "SELECT characterId, sex, experience, strength, agility, intellect, " +
+				"characterProfession,  fightsTotal, fightsWon, weapon1, weapon2, aid, armor, " +
+				"professionId, professionName, professionAvatar FROM users, characters, professions " +
+				"WHERE userId=? AND userCharacter=characterId AND characterProfession=professionId LIMIT 1";
 		UCharacter ch = jdbcTemplate.queryForObject(SELECT_SQL,
 				new Object[] { userId }, new RowMapper<UCharacter>() {
 					public UCharacter mapRow(ResultSet resultSet, int rowNum)
@@ -499,14 +499,12 @@ public class ProfileDaoImpl implements IProfileDao {
 	 */
 	@Override
 	public UCharacter getCharacterById(final int characterId) {
-		log.info("ProfileDaoImpl: GetCharacterById, characterId = "
-				+ characterId);
-		UCharacter uch = this.jdbcTemplate.queryForObject(
-				"SELECT characterId, sex, experience, strength, agility, intellect, "
-				+ "characterProfession,  fightsTotal, fightsWon, weapon1, weapon2, aid, armor, " +
-				"professionId, professionName, professionAvatar FROM users, characters, professions " +
-				"WHERE characterId=? AND characterProfession=professionId LIMIT 1",
-				new Object[] { characterId }, new RowMapper<UCharacter>() {
+		final String SELECT_SQL = "SELECT characterId, sex, experience, strength, agility, intellect, " + 
+				"characterProfession, fightsTotal, fightsWon, weapon1, weapon2, aid, armor, " +
+				"professionId, professionName, professionAvatar FROM characters, professions " +
+				"WHERE characterId=? AND characterProfession=professionId";
+		UCharacter uch = this.jdbcTemplate.queryForObject( SELECT_SQL,	new Object[] { characterId }, 
+				new RowMapper<UCharacter>() {
 					public UCharacter mapRow(ResultSet resultSet, int rowNum)
 							throws SQLException {
 						return new UCharacter(resultSet.getInt("characterId"), resultSet.getBoolean("sex"), 
@@ -557,11 +555,10 @@ public class ProfileDaoImpl implements IProfileDao {
 	 */
 	@Override
 	public UCharacter getCharacter(final User user) {
-		final String SQL = "SELECT sex, experience, strength, agility, intellect, "
-				+ "characterProfession, fightsTotal, fightsWon, weapon1, weapon2, aid, armor, " +
-				"professionId, professionName, professionAvatarvFROM characters, professions " +
-				"WHERE characterId=? AND professionAvatar=professionId LIMIT 1";
-//		final String SELECT_FOR_PROFESSION = "SELECT * FROM ";
+		final String SQL = "SELECT sex, experience, strength, agility, intellect, "	+ 
+				"characterProfession, fightsTotal, fightsWon, weapon1, weapon2, aid, armor, " +
+				"professionId, professionName, professionAvatar FROM characters, professions " +
+				"WHERE characterId=? AND professionAvatar=professionId";
 		UCharacter ch = jdbcTemplate.queryForObject(SQL,
 				new Object[] { user.getCharacterId() },
 				new RowMapper<UCharacter>() {
@@ -1163,6 +1160,22 @@ public class ProfileDaoImpl implements IProfileDao {
 			return false;
 	}
 	
+	/**
+	 * Update experience amount for character
+	 * @param characterId - id of character
+	 * @param experience - new experience amount
+	 * @return true if operation was successfully
+	 */
+	@Override
+	public boolean updateExperience(int characterId, int experience) {
+		final String UPDATE_SQL = "UPDATE characters SET experience=? WHERE characterId=?";
+		int i = jdbcTemplate.update(UPDATE_SQL, new Object[] {experience, characterId});
+		if (i>0) {
+			log.info("ProfileDaoImpl.updateExperience : "+experience+" experience where updated for character("+characterId+")");
+			return true;
+		} else
+			return false;
+	}
 	
 	
 }

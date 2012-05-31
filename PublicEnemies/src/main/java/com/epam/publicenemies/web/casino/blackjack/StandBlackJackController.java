@@ -1,5 +1,9 @@
 package com.epam.publicenemies.web.casino.blackjack;
 
+/**
+ * @author Danylo_Batyuk
+ */
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -84,8 +88,9 @@ public class StandBlackJackController {
 
 		out.print(gson.toJson(game));
 		out.flush();
-		
+
 		// Set null for split
 		round.setPlayerCardsSplit(null);
+		log.info("STAND WAS DONE IN BLACKJACK GAME " + userId);
 	}
 }

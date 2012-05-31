@@ -4,26 +4,26 @@ import com.epam.publicenemies.domain.fight.Level;
 
 public class UCharacter
 {
-	private int		characterId;
-	private boolean	sex;
-	private int		experience;
-	private int		strength;
-	private int		agility;
-	private int		intellect;
-	private Profession		characterProfession;
-	private int		fightsTotal;
-	private int		fightsWon;
+	private int			characterId;
+	private boolean		sex;
+	private int			experience;
+	private int			strength;
+	private int			agility;
+	private int			intellect;
+	private Profession	characterProfession;
+	private int			fightsTotal;
+	private int			fightsWon;
 	// id of items
-	private int		weapon1;
-	private int		weapon2;
-	private int		armor;
-	private int		aid;
+	private int			weapon1;
+	private int			weapon2;
+	private int			armor;
+	private int			aid;
 	// not in database TODO make Stats Calculator
-	private int		HP;
-	private int		allUserHP;
-	private int		damage;
-	private int		defence;
-	private Level	level;
+	private int			HP;
+	private int			allUserHP;
+	private int			damage;
+	private int			defence;
+	private Level		level;
 	public UCharacter()
 	{
 	}

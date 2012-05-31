@@ -1,5 +1,9 @@
 package com.epam.publicenemies.web.casino.blackjack;
 
+/**
+ * @author Danylo Batyuk
+ */
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,14 +21,11 @@ import com.epam.publicenemies.domain.Profile;
 import com.epam.publicenemies.domain.blackjack.BlackJackGameList;
 import com.epam.publicenemies.service.IProfileManagerService;
 
-/**
- * @author Danylo Batyuk
- */
 @Controller
 public class BlackjackCreateController {
 	private Logger log = Logger.getLogger(BlackjackCreateController.class);
-	
-	@Autowired	
+
+	@Autowired
 	private IProfileManagerService profileManagerService;
 
 	public void setProfileManagerService(

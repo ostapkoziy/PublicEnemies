@@ -4,13 +4,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link href="../../../css/adminpanel/commonstyle.css" rel="stylesheet"
-	type="text/css">
+<link href="/PublicEnemies/css/adminpanel/commonstyle.css"
+	rel="stylesheet" type="text/css">
 
 <title>DELETE USER</title>
 </head>
 <body>
-	<div id="summary_div">
+	<jsp:include page="adminHeader.jsp"></jsp:include>
+	<div class="summary_div">
 		<h2>YOU ARE ATTEMPTION TO DELETE USER WITH ID = ${duid}!
 			CONTINUE?</h2>
 		<form method="post">

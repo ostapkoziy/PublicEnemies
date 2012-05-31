@@ -1,9 +1,10 @@
 package com.epam.publicenemies.dao;
 
-//import com.epam.publicenemies.domain.UCharacter;
 import java.util.List;
 
-import com.epam.publicenemies.domain.*;
+import com.epam.publicenemies.domain.UCharacter;
+import com.epam.publicenemies.domain.User;
+
 
 
 /**
@@ -69,28 +70,14 @@ public interface ICharacterDao {
 	 * @param userId - id of user
 	 * @return UCharacter object
 	 */
-	boolean getCharacterByUserId(int userId);
+	UCharacter getCharacterByUserId(int userId);
 	
 	/**
 	 * Get UCharacter object by characterId
 	 * @param characterId - id of character
 	 * @return UCharacter object
 	 */
-	boolean getCharacterByCharacterId(int characterId);
-	
-	/**
-	 * Delete character 
-	 * @param userId - id of user
-	 * @return true if operation was successfully
-	 */
-	boolean deleteCharacterByUserId(int userId);
-	
-	/**
-	 * Delete character 
-	 * @param characterId - id of character
-	 * @return true if operation was successfully
-	 */
-	boolean deleteCharacterByCharacterId(int characterId);
+	UCharacter getCharacterByCharacterId(int characterId);
 	
 	/**
 	 * Get list of all registered characters
@@ -126,6 +113,6 @@ public interface ICharacterDao {
 	 * Get list of all registered characters sorted by won fights
 	 * @return list of all characters
 	 */
-	List<UCharacter> getCharactersSortedByWonFughts();
+	List<UCharacter> getCharactersSortedByWonFights();
 	
 }

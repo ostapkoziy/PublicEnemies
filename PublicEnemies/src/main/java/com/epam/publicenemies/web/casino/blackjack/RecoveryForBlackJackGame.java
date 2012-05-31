@@ -1,5 +1,9 @@
 package com.epam.publicenemies.web.casino.blackjack;
 
+/**
+ * @author Danylo_Batyuk
+ */
+
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -29,6 +33,7 @@ public class RecoveryForBlackJackGame {
 	public void setGames(BlackJackGameList games) {
 		this.games = games;
 	}
+
 	@RequestMapping("/checkForBlackJackGame")
 	public void check(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -37,18 +42,19 @@ public class RecoveryForBlackJackGame {
 
 		// Get game
 		BlackJackGame game = games.getGameById(userId);
-		
+
 		PrintWriter out = response.getWriter();
 		Gson gson = new Gson();
 
 		out.print(gson.toJson(game));
 		out.flush();
 
-		}
-	
+	}
+
 	@RequestMapping("/BlackJackGame")
-	public ModelAndView empty(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	public ModelAndView empty(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		log.info("BLACKJACK TABLE WAS CREATED");
 		return new ModelAndView("blackJackGame");
 	}
 }

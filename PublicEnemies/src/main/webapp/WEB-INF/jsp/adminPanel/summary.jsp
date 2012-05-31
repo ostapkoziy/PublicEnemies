@@ -6,8 +6,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<link href="../css/adminpanel/commonstyle.css" rel="stylesheet"
-	type="text/css">
+<link href="/PublicEnemies/css/adminpanel/commonstyle.css"
+	rel="stylesheet" type="text/css">
 
 <title>Admin Panel</title>
 
@@ -15,7 +15,26 @@
 <body>
 	<jsp:include page="adminHeader.jsp"></jsp:include>
 
-	<div id="summary_div">
+	<div class="summary_div">
+		<div style="float: right; text-align: right;">
+			<p style="margin-top: 20px; margin-bottom: 20px">
+				<a class="new_entry" href="/PublicEnemies/adminPanel/user/add.html">Create New
+					User </a>
+			</p>
+			<p style="margin-top: 20px; margin-bottom: 20px">
+				<a class="new_entry" href="/PublicEnemies/adminPanel/weapon/add.html"> Create New
+					Weapon</a>
+			</p>
+			<p style="margin-top: 20px; margin-bottom: 20px">
+				<a class="new_entry"
+					href="/PublicEnemies/adminPanel/armor/add.html"> Create New
+					Armor </a>
+			</p>
+			<p style="margin-top: 20px; margin-bottom: 20px">
+				<a class="new_entry" href="/PublicEnemies/adminPanel/aid/add.html"> Create New Aid</a>
+			</p>
+		</div>
+
 		<table>
 			<caption>DB INFO:</caption>
 			<thead>
