@@ -84,9 +84,6 @@
 	<div class="panel" id="bottomPanel">
 	<form method="post" action="rouletteGame.html" onsubmit="form_send()">
 		<b>Your BET:</b>
-		<input class="bet" type="radio" name="betVal" value="10"><b>10</b>
-		<input class="bet" type="radio" name="betVal" value="25" checked="checked"><b>25</b>
-		<input class="bet" type="radio" name="betVal" value="50"><b>50</b><p>
 		
 		<img class="chips" id="10" alt="10" src="img/roulette/Chip_10.png" width="80" height="80">
 		<img class="chips" id="25" alt="25" src="img/roulette/Chip_25.png" width="80" height="80">

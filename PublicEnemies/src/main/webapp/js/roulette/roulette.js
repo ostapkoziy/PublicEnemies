@@ -32,13 +32,11 @@ $(document).ready(function(){
 
 	// ====================================================
 	$(".chips").toggle(function(){
-		currenBet += parseInt($(this).attr("alt"));
-		alert(parseInt($(this).attr("alt")));
+		currentBet += parseInt($(this).attr("alt"));
  		$(this).addClass("highlighted");
 	},function(){
+		currentBet -= parseInt($(this).attr("alt"));
 		$(this).removeClass("highlighted");
-		currenBet -= parseInt($(this).attr("alt"));
-		alert(currenBet);
 	});
 	
 
