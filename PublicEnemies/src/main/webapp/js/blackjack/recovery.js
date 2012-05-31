@@ -1,14 +1,16 @@
 $(document)
 		.ready(
 				function() {
+					
 					var nothing1 = null;
 					var nothing2 = null;
-						sendAjax(nothing1, nothing2);
+					sendAjax(nothing1, nothing2);
 
 					function sendAjax(nothing1, nothing2) {
 						$.ajax
 						{
 							$.ajax({
+								
 								url : "checkForBlackJackGame.html",
 								data : ({
 									playerNothing1 : nothing1,
@@ -65,6 +67,11 @@ $(document)
 							$("#hit_button").attr("src", "img/layout/hit.png");
 							$("#double_button").attr("src",
 									"img/layout/double.png");
+							alert($("#10_button").attr("class"));
+							$("#10_button").attr("class", "notactive");
+							$("#25_button").attr("class", "notactive");
+							$("#50_button").attr("class", "notactive");
+							$("#100_button").attr("class", "notactive");
 						} else {
 							$("#deal_button").attr("src",
 									"img/layout/rebeat.png");
