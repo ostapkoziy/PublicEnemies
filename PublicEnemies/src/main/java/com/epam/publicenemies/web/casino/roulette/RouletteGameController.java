@@ -128,8 +128,9 @@ public class RouletteGameController{
 			if ( userProfile.getMoney() >= DEFAULT_CHIPS_AMMOUNT ) rouletteGameInfo.setChips( DEFAULT_CHIPS_AMMOUNT );
 			else rouletteGameInfo.setChips(userProfile.getMoney());
 		}finally{
-			profileManagerService.updateMoney((Integer) session.getAttribute("userId"), (userProfile.getMoney() - rouletteGameInfo.getChips()));
-			userProfile = profileManagerService.getProfileByUserId((Integer) session.getAttribute("userId"));
+			userProfile.setMoney(userProfile.getMoney() - rouletteGameInfo.getChips());
+			profileManagerService.updateMoney( (Integer) session.getAttribute("userId"), userProfile.getMoney() );
+//			userProfile = profileManagerService.getProfileByUserId((Integer) session.getAttribute("userId"));
 
 			rouletteGameInfo.setUserProfile(userProfile);
 			session.setAttribute("rouletteGameInfo", rouletteGameInfo);
