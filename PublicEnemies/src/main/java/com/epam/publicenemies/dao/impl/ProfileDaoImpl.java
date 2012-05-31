@@ -1160,6 +1160,22 @@ public class ProfileDaoImpl implements IProfileDao {
 			return false;
 	}
 	
+	/**
+	 * Update experience amount for character
+	 * @param characterId - id of character
+	 * @param experience - new experience amount
+	 * @return true if operation was successfully
+	 */
+	@Override
+	public boolean updateExperience(int characterId, int experience) {
+		final String UPDATE_SQL = "UPDATE characters SET experience=? WHERE characterId=?";
+		int i = jdbcTemplate.update(UPDATE_SQL, new Object[] {experience, characterId});
+		if (i>0) {
+			log.info("ProfileDaoImpl.updateExperience : "+experience+" experience where updated for character("+characterId+")");
+			return true;
+		} else
+			return false;
+	}
 	
 	
 }

@@ -128,4 +128,12 @@ public interface IProfileManagerService {
 	 * @return true if operation was successfully
 	 */
 	boolean addExperience(int characterId, int experience);
+	
+	/**
+	 * Update experience amount for character
+	 * @param characterId - id of character
+	 * @param experience - new experience amount
+	 * @return true if operation was successfully
+	 */
+	boolean updateExperience(int characterId, int experience);
 }

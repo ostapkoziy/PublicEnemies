@@ -19,7 +19,6 @@ public interface IProfileDao {
 	
 	Profile getProfile(int userId);
 	
-	
 	/**
 	 * Undress first weapon
 	 * @return true if operation is successfully
@@ -257,12 +256,20 @@ public interface IProfileDao {
 	boolean isEmptyWeapon2(int userId);
 	
 	/**
-	 * Add some experience amount to userCharacter
+	 * Add some experience amount to character
 	 * @param characterId - id of character
 	 * @param experience - experience amount to add
 	 * @return true if operation was successfully
 	 */
 	boolean addExperience(int characterId, int experience);
+	
+	/**
+	 * Update experience amount for character
+	 * @param characterId - id of character
+	 * @param experience - new experience amount
+	 * @return true if operation was successfully
+	 */
+	boolean updateExperience(int characterId, int experience);
 	
 	
 }
