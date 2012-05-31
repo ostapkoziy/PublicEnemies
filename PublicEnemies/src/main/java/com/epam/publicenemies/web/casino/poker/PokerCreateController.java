@@ -62,7 +62,12 @@ public class PokerCreateController {
 		Integer userId = (Integer) request.getSession().getAttribute("userId");
 		Profile profile = profileManagerService.getProfileByUserId(userId);
 
-		Integer chips = Integer.valueOf(request.getParameter("chips"));
+		Integer chips = 0;
+		try{
+			chips = Integer.valueOf(request.getParameter("chips"));
+		}catch(NumberFormatException e){
+			chips = 1000;
+		}
 		profileManagerService.updateMoney(userId, profile.getMoney() - chips);
 
 		//==================CREATE GAME====================

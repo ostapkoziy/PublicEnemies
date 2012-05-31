@@ -18,6 +18,7 @@ import com.epam.publicenemies.domain.Profile;
 import com.epam.publicenemies.domain.blackjack.BlackJackDeck;
 import com.epam.publicenemies.domain.blackjack.BlackJackGameList;
 import com.epam.publicenemies.domain.poker.EasyBot;
+import com.epam.publicenemies.domain.poker.FoldException;
 import com.epam.publicenemies.domain.poker.IPokerPlayer;
 import com.epam.publicenemies.domain.poker.PokerGameList;
 import com.epam.publicenemies.domain.poker.PokerPlayer;
@@ -73,14 +74,39 @@ public class RaisePokerController {
 		
 		PokerGame game = games.getGameById(userId);
 		PokerRound round = game.getPokerGameRound();
+		
+		
+		// If Player Folds
+		if(playerBet < 0){
+			round.setResult("Player folded");
+			PrintWriter out = response.getWriter();
+			JSONSerializer json = new JSONSerializer();
+			game.setPokerGameRound(round);
+			log.info("Pot - " + round.getPot());
+			log.info("Sending game after raise - " + json.serialize(game));
+			out.print(json.serialize(game));
+			out.flush();
+			return;
+		}
+		
+		
+		
 		round.setPlayer1Bet(round.getPlayer1Bet() + playerBet);
 		round.getPlayer1().setCash(round.getPlayer1().getCash() - playerBet); 
 		log.info("Player1 cash updated to " + round.getPlayer1().getCash());
 		log.info(round.getPlayer1().getName() + " BET " + playerBet);
 		botChips = round.getPlayer2().getCash();
 		
+		
+		
 		if(round.getPlayer1Bet() > round.getPlayer2Bet()){
-			botBet = round.getPlayer1Bet() - round.getPlayer2Bet();
+			try {
+				botBet = round.getPlayer2().makeMove(game);
+			} catch (FoldException e) {
+				//If Bot Folds
+				log.info("Bot folded");
+				round.setResult("Bot folded");
+			}
 			round.setPlayer2Bet(round.getPlayer2Bet() + botBet);
 			log.info("Bot bet " + botBet);
 			round.getPlayer2().setCash(round.getPlayer2().getCash() - botBet);
@@ -120,6 +146,7 @@ public class RaisePokerController {
 			PrintWriter out = response.getWriter();
 			JSONSerializer json = new JSONSerializer();
 			game.setPokerGameRound(round);
+			log.info("Pot - " + round.getPot());
 			log.info("Sending game after raise - " + json.serialize(game));
 			out.print(json.serialize(game));
 			out.flush();
