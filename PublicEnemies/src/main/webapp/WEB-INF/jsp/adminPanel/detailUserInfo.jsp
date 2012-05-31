@@ -69,11 +69,11 @@
 		</tr>
 		<tr>
 			<td>Profession:</td>
-			<td>${profile.getProfession()}</td>
+			<td>${profile.getCharacterProfession().getProfessionName()}</td>
 		</tr>
 		<tr>
 			<td>Profession avatar (path):</td>
-			<td>TODO: path to profession avatar</td>
+			<td>${profile.getCharacterPrfession().getProfessionAvatar()}</td>
 		</tr>
 		<tr>
 			<td>Total fights:</td>
