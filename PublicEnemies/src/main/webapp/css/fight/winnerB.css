@@ -70,6 +70,7 @@
 	width: 50px;
 	margin: 0 auto;
 	display: block;
+	cursor: pointer;
 }
 
 .statsInput {
@@ -82,6 +83,7 @@
 	display: block;
 	background: transparent;
 	border: 0px;
+	color: white;
 }
 
 #strImg {

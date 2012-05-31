@@ -23,7 +23,7 @@ public class ConnectController
 	@Autowired
 	private IProfileManagerService	profileManagerService;
 	@RequestMapping("/connect.html")
-	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception
+	public String connect(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
 		/*
 		 * SETUP OLD GAME

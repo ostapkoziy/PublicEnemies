@@ -31,8 +31,9 @@
 	</div>
 	<div id="expirience2" class="result2"></div>
 	<div id="expirience3" class="result3">
-		Level: ${myProfile.getLevel().getCurrentLevel()} <br /> All Exp: ${myProfile.getLevel().getAllExpirience()} <br /> %:
-		${myProfile.getLevel().getNextLevelInPercent()}%<br /> Exp AfterFight:${myProfile.getLevel().getExpirienceAfterFight()}<br /> Exp on Current Lvl:
+		Level: ${myProfile.getLevel().getCurrentLevel()} <br /> All Exp: ${myProfile.getLevel().getAllExpirience()} <br />
+		%: ${myProfile.getLevel().getNextLevelInPercent()}%<br /> Exp
+		AfterFight:${myProfile.getLevel().getExpirienceAfterFight()}<br /> Exp on Current Lvl:
 		${myProfile.getLevel().getExpOnCurrentLevel()}
 	</div>
 	<div id="bulletHole1"></div>
@@ -41,27 +42,26 @@
 	<c:if test="${myProfile.getLevel().isNewLevel()}">
 		<div id="newLevel"></div>
 		<div id="statsWrapper">
-			<form action="">
-				Points:
-				<input type="text" value="5" class="statsInput">
+			<form action="statsUpdate.html">
+				<input id="pointsInput" type="text" value="5" class="statsInput">
 				<div id="wrapper">
 					<div id="strWrapper">
 						<div id="strImg"></div>
-						<div id="strMinus" class="redMinus"></div>
-						<input type="text" value="${myProfile.getStrength()}" class="statsInput">
 						<div id="strPlus" class="greenPlus"></div>
+						<input id="strInput" type="text" value="${myProfile.getStrength()}" class="statsInput" name="strength">
+						<div id="strMinus" class="redMinus"></div>
 					</div>
 					<div id="aglWrapper">
 						<div id="aglImg"></div>
-						<div id="aglMinus" class="redMinus"></div>
-						<input type="text" value="${myProfile.getAgility()}" class="statsInput">
 						<div id="aglPlus" class="greenPlus"></div>
+						<input id="aglInput" type="text" value="${myProfile.getAgility()}" class="statsInput" name="agility">
+						<div id="aglMinus" class="redMinus"></div>
 					</div>
 					<div id="intWrapper">
 						<div id="intImg"></div>
-						<div id="intMinus" class="redMinus"></div>
-						<input type="text" value="${myProfile.getIntellect()}" class="statsInput">
 						<div id="intPlus" class="greenPlus"></div>
+						<input id="intInput" type="text" value="${myProfile.getIntellect()}" class="statsInput" name="inteligance">
+						<div id="intMinus" class="redMinus"></div>
 					</div>
 				</div>
 				<button id="statsSubmit" type="submit">Ok</button>
