@@ -73,7 +73,7 @@
 		</tr>
 		<tr>
 			<td>Profession avatar (path):</td>
-			<td>${profile.getCharacterPrfession().getProfessionAvatar()}</td>
+			<td>${profile.getCharacterProfession().getProfessionAvatar()}</td>
 		</tr>
 		<tr>
 			<td>Total fights:</td>
