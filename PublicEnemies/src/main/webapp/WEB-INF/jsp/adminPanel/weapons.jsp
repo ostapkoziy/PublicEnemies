@@ -16,8 +16,11 @@
 	<jsp:include page="adminHeader.jsp"></jsp:include>
 
 	<div class="weapons_div">
-		<a class="new_entry" href="weapon/add.html"><span
+		<!-- Button -->
+		<a class="new_entry" style="float: right"
+			href="/PublicEnemies/adminPanel/weapon/add.html"><span
 			class="create_new_entry"> Create New Weapon </span> </a>
+		<!-- !Button -->
 		<p>
 		<table class="weapons_table">
 			<caption>WEAPONS:</caption>

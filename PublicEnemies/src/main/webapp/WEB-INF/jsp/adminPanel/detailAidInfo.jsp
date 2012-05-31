@@ -11,10 +11,17 @@
 <body>
 	<jsp:include page="adminHeader.jsp"></jsp:include>
 	<div class="summary_div">
-		<h2>Detail Aid Info</h2>
+		<!-- Button -->
+		<a class="new_entry" style="float: right"
+			href="/PublicEnemies/adminPanel/aid/add.html"><span
+			class="create_new_entry"> Create New Aid </span> </a>
+		<!-- Button -->
+		<h3> [ <a href="/PublicEnemies/adminPanel/aid/edit/${aid.getAidId()}.html">Edit</a> ]</h3>
+
 
 		<table>
 			<tr>
+				<td rowspan="6"><img src="../../../${aid.getAidPicture()}" /></td>
 				<td>Name:</td>
 				<td>${aid.getAidName()}</td>
 			</tr>

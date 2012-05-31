@@ -12,9 +12,16 @@
 <body>
 	<jsp:include page="adminHeader.jsp"></jsp:include>
 	<div class="summary_div">
-		<h2>Detail Weapon Info</h2>
+		<!-- Button -->
+		<a class="new_entry" style="float: right"
+			href="/PublicEnemies/adminPanel/weapon/add.html"><span
+			class="create_new_entry"> Create New Weapon </span> </a>
+		<!-- !Button -->
+		<h3> [ <a href="/PublicEnemies/adminPanel/weapon/edit/${weapon.getWeaponId()}.html">Edit</a> ]</h3>
 		<table>
 			<tr>
+				<td rowspan="6"><img
+					src="../../../${weapon.getWeaponPicture()}" /></td>
 				<td>Name:</td>
 				<td>${weapon.getWeaponName()}</td>
 			</tr>
