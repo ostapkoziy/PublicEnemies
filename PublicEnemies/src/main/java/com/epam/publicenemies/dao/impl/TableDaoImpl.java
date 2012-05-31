@@ -879,6 +879,7 @@ public class TableDaoImpl implements ITableDao {
 		StringBuilder sql = new StringBuilder();
 		sql.append("CREATE TABLE pokerStatistics ( ");
 		sql.append("pokerId INT(10) UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE, ");
+		sql.append("totalGames INT(10) UNSIGNED NOT NULL DEFAULT 0, ");
 		sql.append("VPIP TINYINT(3) UNSIGNED NOT NULL DEFAULT 0, ");
 		sql.append("PFR TINYINT(3) UNSIGNED NOT NULL DEFAULT 0, ");
 		sql.append("3BET TINYINT(3) UNSIGNED NOT NULL DEFAULT 0, ");
