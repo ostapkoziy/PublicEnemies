@@ -11,6 +11,11 @@
 <body>
 	<jsp:include page="adminHeader.jsp"></jsp:include>
 	<div class="summary_div">
+	<!-- Button -->
+		<a class="new_entry" style="float: right"
+			href="/PublicEnemies/adminPanel/armor/add.html"><span
+			class="create_new_entry"> Create New Armor </span> </a>
+		<!-- !Button -->
 		<h2>Edit Armor</h2>
 		<form method="post">
 			<table>

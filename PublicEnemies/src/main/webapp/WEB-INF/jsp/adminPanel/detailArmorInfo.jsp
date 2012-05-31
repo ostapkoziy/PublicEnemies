@@ -11,9 +11,15 @@
 <body>
 	<jsp:include page="adminHeader.jsp"></jsp:include>
 	<div class="summary_div">
-		<h2>Detail Armor Info</h2>
+		<!-- Button -->
+		<a class="new_entry" style="float: right"
+			href="/PublicEnemies/adminPanel/armor/add.html"><span
+			class="create_new_entry"> Create New Armor </span> </a>
+		<!-- !Button -->
+		<h3> [ <a href="/PublicEnemies/adminPanel/armor/edit/${armor.getArmorId()}.html">Edit</a> ]</h3>
 		<table>
 			<tr>
+				<td rowspan="6"><img src="../../../${armor.getArmorPicture()}" /></td>
 				<td>Name:</td>
 				<td>${armor.getArmorName()}</td>
 			</tr>

@@ -679,8 +679,8 @@ public class TableDaoImpl implements ITableDao {
 		}
 		// admin
 		sql.append("INSERT INTO users ");
-		sql.append("(email, password, money, chatProperty, userCharacter, nickName, avatar, userPoker) ");
-		sql.append("VALUES ('admin@admin', 'admin', 100000, 3, 3, 'admin', './img/avatars/tommy.png', 3)");
+		sql.append("(email, password, money, chatProperty, userCharacter, nickName, avatar, userPoker, role) ");
+		sql.append("VALUES ('admin@admin', 'admin', 100000, 3, 3, 'admin', './img/avatars/tommy.png', 3, 'admin')");
 		jdbcTemplate.update(sql.toString());
 		try {
 			Thread.sleep(1000);
@@ -750,6 +750,7 @@ public class TableDaoImpl implements ITableDao {
 		sql.append("userCharacter INT(10) UNSIGNED NULL UNIQUE, ");
 		sql.append("nickName VARCHAR(100) NULL UNIQUE, ");
 		sql.append("userPoker INT(10) UNSIGNED NULL UNIQUE, ");
+		sql.append("role VARCHAR(10) NOT NULL DEFAULT 'user', ");
 		sql.append("PRIMARY KEY (userId), ");
 		sql.append("INDEX (chatProperty), ");
 		sql.append("FOREIGN KEY (chatProperty) REFERENCES chatProperties(chatpropertyId), ");
@@ -879,6 +880,7 @@ public class TableDaoImpl implements ITableDao {
 		StringBuilder sql = new StringBuilder();
 		sql.append("CREATE TABLE pokerStatistics ( ");
 		sql.append("pokerId INT(10) UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE, ");
+		sql.append("totalGames INT(10) UNSIGNED NOT NULL DEFAULT 0, ");
 		sql.append("VPIP TINYINT(3) UNSIGNED NOT NULL DEFAULT 0, ");
 		sql.append("PFR TINYINT(3) UNSIGNED NOT NULL DEFAULT 0, ");
 		sql.append("3BET TINYINT(3) UNSIGNED NOT NULL DEFAULT 0, ");

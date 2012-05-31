@@ -14,6 +14,10 @@
 <body>
 	<jsp:include page="adminHeader.jsp"></jsp:include>
 	<div class="summary_div">
+	<!-- Button -->
+	<a class="new_entry" style="float:right" href="/PublicEnemies/adminPanel/user/add.html"><span
+			class="create_new_entry"> Create New User </span> </a>
+	<!-- End of Button -->
 		<h2>Edit user</h2>
 		<form method="post">
 			<table>

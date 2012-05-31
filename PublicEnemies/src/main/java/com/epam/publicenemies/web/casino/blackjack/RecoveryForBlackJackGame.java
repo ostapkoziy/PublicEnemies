@@ -55,6 +55,10 @@ public class RecoveryForBlackJackGame {
 	public ModelAndView empty(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		log.info("BLACKJACK TABLE WAS CREATED");
-		return new ModelAndView("blackJackGame");
+		// Get game
+		Integer userId = (Integer) request.getSession().getAttribute("userId");
+		BlackJackGame game = games.getGameById(userId);
+		
+		return new ModelAndView("blackJackGame","chips",game.getChips());
 	}
 }
