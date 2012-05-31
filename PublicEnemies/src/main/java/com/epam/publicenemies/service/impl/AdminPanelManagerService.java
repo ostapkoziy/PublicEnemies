@@ -9,11 +9,13 @@ import org.springframework.stereotype.Service;
 
 import com.epam.publicenemies.dao.IAidsDao;
 import com.epam.publicenemies.dao.IArmorsDao;
+import com.epam.publicenemies.dao.ICharacterDao;
 import com.epam.publicenemies.dao.IProfileDao;
 import com.epam.publicenemies.dao.IUserDao;
 import com.epam.publicenemies.dao.IWeaponsDao;
 import com.epam.publicenemies.domain.Aid;
 import com.epam.publicenemies.domain.Armor;
+import com.epam.publicenemies.domain.UCharacter;
 import com.epam.publicenemies.domain.User;
 import com.epam.publicenemies.domain.Weapon;
 import com.epam.publicenemies.service.IAdminPanelManagerService;
@@ -41,6 +43,9 @@ public class AdminPanelManagerService implements IAdminPanelManagerService {
 	
 	@Autowired
 	private IUserDao userDao;
+	
+	@Autowired
+	private ICharacterDao characterDao;
 	
 	private Logger log = Logger.getLogger(AdminPanelManagerService.class);
 	
@@ -503,5 +508,145 @@ public class AdminPanelManagerService implements IAdminPanelManagerService {
 	 */
 	public List<User> getUsersWithArmor(int armorId) {
 		return armorsDao.getUsersWithArmor(armorId);
+	}
+
+	/**
+	 * Add new character for user
+	 * @param character - Character object
+	 * @param user - User object
+	 * @return id of new character
+	 */
+	@Override
+	public int addCharacter(UCharacter character, User user) {
+		return characterDao.addCharacter(character, user);
+	}
+
+	/**
+	 * Add new character
+	 * @param sex - character gender
+	 * @param experience - character experience
+	 * @param strength - character strength
+	 * @param agility - character agility
+	 * @param intellect - character intellect
+	 * @param charcaterProfession - profession of character
+	 * @param fightsTotal - total spent fights
+	 * @param fightsWon - won fights
+	 * @param weapon1 - first dressed weapon 
+	 * @param weapon2 - second dressed weapon
+	 * @param aid - dressed aid
+	 * @param armor - dressed armor
+	 * @return id of of created character injection
+	 */
+	@Override
+	public int addCharacter(boolean sex, int experience, int strength,
+			int agility, int intellect, byte charcaterProfession) {
+		return characterDao.addCharacter(sex, experience, strength, agility, intellect, charcaterProfession);
+	}
+
+	/**
+	 * Create default character
+	 * @return id of of created character injection
+	 */
+	@Override
+	public int addCharacter() {
+		return characterDao.addCharacter();
+	}
+
+	/**
+	 * Update character info
+	 * @param sex - character gender
+	 * @param experience - character experience
+	 * @param strength - character strength
+	 * @param agility - character agility
+	 * @param intellect - character intellect
+	 * @param charcaterProfession - profession of character
+	 * @param fightsTotal - total spent fights
+	 * @param fightsWon - won fights
+	 * @param weapon1 - first dressed weapon 
+	 * @param weapon2 - second dressed weapon
+	 * @param aid - dressed aid
+	 * @param armor - dressed armor
+	 * @return true if operation was successfully
+	 */
+	@Override
+	public boolean updateCharacterInfo(int characterId, boolean sex,
+			int experience, int strength, int agility, int intellect,
+			byte charcaterProfession, int fightsTotal, int fightsWon) {
+		return characterDao.updateCharacterInfo(characterId, sex, experience, strength, agility, intellect,
+				charcaterProfession, fightsTotal, fightsWon);
+	}
+
+	/**
+	 * Get UCharacter object by userId
+	 * @param userId - id of user
+	 * @return UCharacter object
+	 */
+	@Override
+	public UCharacter getCharacterByUserId(int userId) {
+		return characterDao.getCharacterByUserId(userId);
+	}
+
+	/**
+	 * Get UCharacter object by characterId
+	 * @param characterId - id of character
+	 * @return UCharacter object
+	 */
+	@Override
+	public UCharacter getCharacterByCharacterId(int characterId) {
+		return characterDao.getCharacterByCharacterId(characterId);
+	}
+
+	/**
+	 * Get list of all registered characters
+	 * @return list of all characters
+	 */
+	@Override
+	public List<UCharacter> getAllCharacters() {
+		return characterDao.getAllCharacters();
+	}
+
+	/**
+	 * Get list of all registered characters sorted by strength 
+	 * @return list of all characters
+	 */
+	@Override
+	public List<UCharacter> getCharactersSortedByStrength() {
+		return characterDao.getCharactersSortedByStrength();
+	}
+	
+	/**
+	 * Get list of all registered characters sorted by agility 
+	 * @return list of all characters
+	 */
+	@Override
+	public List<UCharacter> getCharactersSortedByAgility() {
+		return characterDao.getCharactersSortedByAgility();
+	}
+
+	/**
+	 * Get list of all registered characters sorted by intellect
+	 * @return list of all characters
+	 */
+	@Override
+	public List<UCharacter> getCharactersSortedByIntellect() {
+		return characterDao.getCharactersSortedByIntellect();
+	}
+
+	/**
+	 * Get list of all registered characters sorted by spent fights
+	 * @return list of all characters
+	 */
+	@Override
+	public List<UCharacter> getCharactersSortedByFights() {
+		return characterDao.getCharactersSortedByFights();
+	}
+
+	/**
+	 * Get list of all registered characters sorted by won fights
+	 * @return list of all characters
+	 */
+	@Override
+	public List<UCharacter> getCharactersSortedByWonFights() {
+		return characterDao.getCharactersSortedByWonFights();
 	}
 }

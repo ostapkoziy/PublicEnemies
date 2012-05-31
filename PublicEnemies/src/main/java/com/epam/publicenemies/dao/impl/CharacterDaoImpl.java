@@ -19,7 +19,6 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import com.epam.publicenemies.dao.ICharacterDao;
-import com.epam.publicenemies.domain.Armor;
 import com.epam.publicenemies.domain.Profession;
 import com.epam.publicenemies.domain.User;
 import com.epam.publicenemies.domain.UCharacter;

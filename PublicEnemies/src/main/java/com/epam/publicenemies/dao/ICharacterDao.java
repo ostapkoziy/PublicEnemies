@@ -1,9 +1,10 @@
 package com.epam.publicenemies.dao;
 
-//import com.epam.publicenemies.domain.UCharacter;
 import java.util.List;
 
-import com.epam.publicenemies.domain.*;
+import com.epam.publicenemies.domain.UCharacter;
+import com.epam.publicenemies.domain.User;
+
 
 
 /**
