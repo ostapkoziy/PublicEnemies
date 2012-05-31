@@ -83,16 +83,15 @@
 </map>	</div>
 	<div class="panel" id="bottomPanel">
 	<form method="post" action="rouletteGame.html" onsubmit="form_send()">
-		<b>Your BET:</b>
+		<b>Your BET:</b><p>
 		
 		<img class="chips" id="10" alt="10" src="img/roulette/Chip_10.png" width="80" height="80">
 		<img class="chips" id="25" alt="25" src="img/roulette/Chip_25.png" width="80" height="80">
 		<img class="chips" id="50" alt="50" src="img/roulette/Chip_50.png" width="80" height="80">
-		
-		<b>(to send):</b> <input id="userBetNumbers" type="text" name="userBetNumbers" readonly="readonly">
-		<input id ="btn_test" type="button" value="test">
+		<p>
+		has to be invisible=><input id="userBetNumbers" type="text" name="userBetNumbers" readonly="readonly"> <p>
 		<input id ="submit" type="submit" value="DEAL">
-		<input id="clearBet" type="button" value="Clear bet">
+		<input id="clearBet" type="button" value="Clear ALL bets">
 	</form>
 	</div>
 	<form method="post" action="rouletteRedirectController.html">
