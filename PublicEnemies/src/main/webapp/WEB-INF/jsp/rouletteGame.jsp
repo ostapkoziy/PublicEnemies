@@ -11,8 +11,9 @@
 
 <title>Public Enemies Roulette</title>
 <script src="js/jquery-1.7.2.js" type="text/javascript"></script>
+<script type="text/javascript" src="js/jquery.imagemapster.js"></script>
+<script type="text/javascript" src="js/roulette/hilight.js"></script>
 <script type="text/javascript" src="js/roulette/roulette.js"></script>
-
 
 
 </head>
@@ -28,7 +29,7 @@
 	<div class="panel" id="centerPanel">
 <img id="rouletteTable" src="img/roulette/table.png" usemap="rouletteNumbers" border="0" width="800" height="362" alt="" />
 <map id="rouletteNumbers" name="rouletteNumbers">
-<area class="RouletteTable" shape="rect" coords="61,0,113,63" alt="3" title="3"	/>
+<area group="3" class="RouletteTable" shape="rect" coords="61,0,113,63" alt="3" title="3"	/>
 <area class="RouletteTable" shape="rect" coords="114,0,163,62" alt="6" title="6"    />
 <area class="RouletteTable" shape="rect" coords="167,0,215,62" alt="9" title="9"    />
 <area class="RouletteTable" shape="rect" coords="219,0,267,62" alt="12" title="12"    />

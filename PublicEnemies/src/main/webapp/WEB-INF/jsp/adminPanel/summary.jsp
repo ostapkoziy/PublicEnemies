@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<link href="../css/adminpanel/commonstyle.css" rel="stylesheet"
+<link href="/PublicEnemies/css/adminpanel/commonstyle.css" rel="stylesheet"
 	type="text/css">
 
 <title>Admin Panel</title>
@@ -15,7 +15,7 @@
 <body>
 	<jsp:include page="adminHeader.jsp"></jsp:include>
 
-	<div id="summary_div">
+	<div class="summary_div">
 		<table>
 			<caption>DB INFO:</caption>
 			<thead>

@@ -4,40 +4,37 @@ import java.util.HashMap;
 import java.util.LinkedList;
 
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import com.epam.publicenemies.chat.MessageList;
-import com.epam.publicenemies.service.IProfileManagerService;
-import com.epam.publicenemies.service.impl.ProfileManagerServiceImpl;
 
 /**
  * @author Alexander Ivanov
  */
 public class FightEngine
 {
-	private static Logger			log		= Logger.getLogger(FightEngine.class);
-	private volatile boolean		started;
-	@Autowired
-	private IProfileManagerService	service	= new ProfileManagerServiceImpl();
-	public boolean isStarted()
-	{
-		return started;
-	}
-	public void setStarted(boolean started)
-	{
-		this.started = started;
-	}
-	public void startEngine(Fight fight, String whoStartesFight)
+	private static Logger	log	= Logger.getLogger(FightEngine.class);
+	public void startEngine(Fight fight)
 	{
 		log.info("-------------ENGINE STARTED-------------");
-		boolean isGameEnd = shooting(fight);
-		if (!isGameEnd)
+		UsersStatus auig = areUsersInGame(fight);
+		boolean offline = auig.check(fight);
+		if (offline)
 		{
-			setupGame(fight);
+			log.info("---------GAME OVER! REASON: USER OFFLINE---------");
+			fight.setGameEnd(true);
 		}
 		else
 		{
-			gameOver(fight);
+			boolean isGameEnd = shooting(fight);
+			if (isGameEnd)
+			{
+				log.info("---------GAME OVER---------");
+				fight.setGameEnd(true);
+			}
+			else
+			{
+				setupGame(fight);
+			}
 		}
 		log.info("--------------ENGINE END-------------");
 	}
@@ -46,28 +43,18 @@ public class FightEngine
 	 * 
 	 * @param fight
 	 */
-	public void startEngine(Fight fight)
-	{
-		AreUsersInGame usersInGame = areUsersInGame(fight.getRound().getCreatorHit(), fight.getRound().getConnectorHit());
-		usersInGame.start(fight);
-		gameOver(fight);
-	}
 	private void setupGame(Fight fight)
 	{
+		log.info("---------GAME SETUP IN ENGINE--------");
 		sendServerMessage(fight.getId(), "<b>Server: </b> Round №" + fight.getRound().getRoundNumber() + " end.");
 		clearHitsBlocks(fight);
 	}
-	private void gameOver(Fight fight)
-	{
-		// fight.getWhoWins().getLevel().setExpirienceAfterFight(100);
-		fight.setGameEnd(true);
-	}
 	private boolean shooting(Fight fight)
 	{
-		String creatorHit = fight.getRound().getCreatorHit();
-		String creatorBlock = fight.getRound().getCreatorBlock();
-		String connectorHit = fight.getRound().getConnectorHit();
-		String connectorBlock = fight.getRound().getConnectorBlock();
+		String creatorHit = fight.getRound().getCreatorAction().getHit();
+		String creatorBlock = fight.getRound().getCreatorAction().getBlock();
+		String connectorHit = fight.getRound().getConnectorAction().getHit();
+		String connectorBlock = fight.getRound().getConnectorAction().getBlock();
 		int creatorDamage = 0;
 		int connectorDamage = 0;
 		int creatorHPAfterHit = fight.getCreatorProfile().getHP();
@@ -86,23 +73,20 @@ public class FightEngine
 		 * Add skill damage
 		 */
 		RoundResult rr = healthAnalizer(creatorHPAfterHit, connectorHPAfterHit);
+		log.info("---------HEALTH ANALIZER: " + rr);
 		boolean isGameEnd = rr.roundResult(fight, creatorDamage, connectorDamage);
 		return isGameEnd;
 	}
-	private void damageAndDefence(Fight fight)
-	{
-	}
-	/**
-	 * Startes when one or all users is offline.
-	 */
 	private void clearHitsBlocks(Fight game)
 	{
-		game.getRound().setCreatorHit("");
-		game.getRound().setConnectorHit("");
-		game.getRound().setCreatorBlock("");
-		game.getRound().setConnectorBlock("");
-		game.getRound().setCreatorDoHit(false);
-		game.getRound().setConnectorDoHit(false);
+		game.getRound().getCreatorAction().setHit("");
+		game.getRound().getCreatorAction().setBlock("");
+		game.getRound().getCreatorAction().setDidHit(false);
+		// *************************************
+		game.getRound().getConnectorAction().setHit("");
+		game.getRound().getConnectorAction().setBlock("");
+		game.getRound().getConnectorAction().setDidHit(false);
+		// ***************************************
 		game.getRound().setRoundNumber(game.getRound().getRoundNumber() + 1);
 		game.getRound().setRoundStart(true);
 		game.getRound().setRoundBeginTime(System.currentTimeMillis() / 1000);
@@ -147,19 +131,22 @@ public class FightEngine
 		}
 		return RoundResult.ALIVE;
 	}
-	private AreUsersInGame areUsersInGame(String creatorHit, String connectorHit)
+	private UsersStatus areUsersInGame(Fight fight)
 	{
+		String creatorHit = fight.getRound().getCreatorAction().getHit();
+		String connectorHit = fight.getRound().getConnectorAction().getHit();
 		if (creatorHit.equals("") && connectorHit.equals(""))
 		{
-			return AreUsersInGame.OFFLINE;
+			return UsersStatus.OFFLINE;
 		}
 		if (creatorHit.equals(""))
 		{
-			return AreUsersInGame.CREATOR_OFFLINE;
+			return UsersStatus.CREATOR_OFFLINE;
 		}
-		else
+		if (connectorHit.equals(""))
 		{
-			return AreUsersInGame.CONNECTOR_OFFLINE;
+			return UsersStatus.CONNECTOR_OFFLINE;
 		}
+		return UsersStatus.ONLINE;
 	}
 }

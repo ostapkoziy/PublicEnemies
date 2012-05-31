@@ -38,7 +38,7 @@ public class AdminPanelController {
 	
 	/* Just for redirecting. Facilitates access to AP*/
 	@RequestMapping(method = RequestMethod.GET)
-	public String showAdminPage(HttpServletRequest req) {
+	public String showAdminPage() {
 		return "redirect:adminPanel/summary.html";	
 	}
 	

@@ -31,6 +31,6 @@ public class RouletteRedirectController {
 		Profile userProfile = rouletteGameInfo.getUserProfile();
 		profileManagerService.updateMoney((Integer) session.getAttribute("userId"), userProfile.getMoney() + rouletteGameInfo.getChips());
 		
-		return "userStartPage";
+		return "redirect:userStartPage.html";
 	}
 }

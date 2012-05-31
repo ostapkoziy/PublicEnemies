@@ -7,8 +7,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<link href="../css/adminpanel/commonstyle.css" rel="stylesheet"
-	type="text/css">
+<link href="/PublicEnemies/css/adminpanel/commonstyle.css"
+	rel="stylesheet" type="text/css">
 
 <title>Aids</title>
 

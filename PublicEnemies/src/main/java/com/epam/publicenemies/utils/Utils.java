@@ -6,6 +6,7 @@ import org.apache.log4j.Logger;
 
 import com.epam.publicenemies.domain.fight.Fight;
 import com.epam.publicenemies.domain.fight.FightsList;
+import com.epam.publicenemies.domain.fight.Level;
 
 /**
  * @author Alexander Ivanov
@@ -65,5 +66,27 @@ public class Utils
 			}
 			Utils.isUsersOffline(oldFight);
 		}
+	}
+	public static void expAnalizer(Level level)
+	{
+		int allExp = level.getAllExpirience();
+		int leftGr = 0;
+		int rightGr = 0;
+		int lvl = 0;
+		while (true)
+		{
+			lvl++;
+			rightGr = rightGr + 1000 + lvl * lvl * 100;
+			if (rightGr > allExp)
+			{
+				break;
+			}
+			leftGr = rightGr;
+		}
+		int expOnCurrentLvl = allExp - leftGr;
+		level.setCurrentLevel(lvl);
+		level.setExpOnCurrentLevel(expOnCurrentLvl);
+		level.setRightBound(rightGr);
+		level.setLeftBound(leftGr);
 	}
 }

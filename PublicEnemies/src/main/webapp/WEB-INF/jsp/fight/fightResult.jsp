@@ -9,24 +9,30 @@
 <link href="css/fight/result.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-	<div id="result">
-		<div id="color"></div>
-		<div id="color1"></div>
-		<div id="color2"></div>
-		<div id="color3">
+	<div id="resultWrapper">
+		<div id="result"></div>
+		<div id="result1"></div>
+		<div id="result2" class="result2"></div>
+		<div id="result3" class="result3">
 			<div id="imageWrapper">
+				Creator: ${game.getCreatorProfile().getLevel().getCurrentLevel()} <br />Connector:
+				${game.getConnectorProfile().getLevel().getCurrentLevel()}
 				<c:choose>
 					<c:when test="${win==true}">
 						<link href="css/fight/winnerB.css" rel="stylesheet" type="text/css">
+						All Exp: ${myProfile.getLevel().getAllExpirience()};
 					</c:when>
 					<c:otherwise>
 						<link href="css/fight/loserB.css" rel="stylesheet" type="text/css">
 					</c:otherwise>
 				</c:choose>
-				<div id="expirience"></div>
 			</div>
 		</div>
 	</div>
+	<div id="expirience2" class="result2"></div>
+	<div id="expirience3" class="result3"></div>
+	<div id="bulletHole1"></div>
+	<div id="bulletHole2"></div>
 
 </body>
 </html>

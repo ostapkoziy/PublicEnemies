@@ -4,41 +4,41 @@ body {
 	background-color: black;
 }
 
-#color1 {
+#result1 {
 	width: 100%;
 	height: 100%;
 	opacity: 0.7;
 	position: fixed;
 	left: 0;
 	top: 0;
-	background: url("../../img/fight/overlay.png");
+	/* 	background: url("../../img/fight/overlay.png"); */
 	z-index: 1000;
 }
 
-#color2 {
-	position: fixed;
-	width: 414px;
-	height: 414px;
-	z-index: 2000;
-	background: black;
+#result2 {
+	width: 247px;
+	height: 247px;
 	top: 50px;
 	left: 50px;
-	/* 	right: 0; */
-	/* 	margin-left: auto; */
-	/* 	margin-right: auto; */
+}
+
+.result2 {
+	position: absolute;
+	z-index: 2000;
+	background: black;
 	opacity: 0.6;
 	border-radius: 15px;
 }
 
-#color3 {
-	position: fixed;
-	width: 374px;
-	height: 374px;
+#result3 {
+	width: 207px;
+	height: 207px;
 	top: 70px;
 	left: 70px;
-	/* 	right: 0; */
-	/* 	margin-left: auto; */
-	/* 	margin-right: auto; */
+}
+
+.result3 {
+	position: absolute;
 	z-index: 3000;
 	background: white;
 	border-radius: 15px;
@@ -48,13 +48,23 @@ body {
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 20px;
-	width: 334px;
-	height: 334px;
+	width: 167px;
+	height: 167px;
 	margin-left: auto;
 }
 
-#expirience {
-	outline: 20px solid red;
-	width: 100px;
-	height: 100px;
+#expirience2 { /* 	outline: 2px solid red; */
+	width: 247px;
+	height: 247px;
+	position: absolute;
+	top: 350px;
+	left: 50px;
+}
+
+#expirience3 {
+	width: 207px;
+	height: 207px;
+	position: absolute;
+	top: 370px;
+	left: 70px;
 }

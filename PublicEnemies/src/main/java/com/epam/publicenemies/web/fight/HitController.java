@@ -37,60 +37,57 @@ public class HitController
 		if (role.equals("creator"))
 		{
 			log.info("CREATOR: " + userProfile.getNickName() + " HIT : " + hit + " BLOCK: " + block);
-			creatorGameSetup(fight, hit, block, role);
+			creatorGameSetup(fight, hit, block);
 		}
 		else
 		{
 			log.info("CONNECT: " + userProfile.getNickName() + " HIT : " + hit + " BLOCK: " + block);
-			connectorGameSetup(fight, hit, block, role);
+			connectorGameSetup(fight, hit, block);
 		}
-		/*
-		 * Engine Start
-		 */
-		startEngine(fight, role);
 	}
-	/**
-	 * 
-	 * @param fight
-	 *            - fight)
-	 * @param role
-	 *            - who starts the fight engine(second hit)
-	 */
-	private synchronized void startEngine(Fight fight, String role)
+	private void startEngine(Fight fight)
 	{
 		if (!fight.getRound().isRoundStart())
 		{
 			FightEngine engine = fight.getEngine();
-			engine.startEngine(fight, role);
-			engine.setStarted(true);
+			engine.startEngine(fight);
 		}
 	}
-	private void creatorGameSetup(Fight fight, String hit, String block, String role)
+	private void creatorGameSetup(Fight fight, String hit, String block)
 	{
-		fight.getRound().setCreatorHit(hit);
-		fight.getRound().setCreatorBlock(block);
-		fight.getRound().setCreatorDoHit(true);
-		if (fight.getRound().isConnectorDoHit())
+		log.info("CREATOR GAME SETUP");
+		fight.getRound().getCreatorAction().setHit(hit);
+		fight.getRound().getCreatorAction().setBlock(block);
+		fight.getRound().getCreatorAction().setDidHit(true);
+		if (fight.getRound().getConnectorAction().isDidHit())
 		{
 			setRoundStart(fight);
 		}
 	}
-	private void connectorGameSetup(Fight fight, String hit, String block, String role)
+	private void connectorGameSetup(Fight fight, String hit, String block)
 	{
-		fight.getRound().setConnectorHit(hit);
-		fight.getRound().setConnectorBlock(block);
-		fight.getRound().setConnectorDoHit(true);
-		if (fight.getRound().isCreatorDoHit())
+		log.info("CONNECTOR GAME SETUP");
+		fight.getRound().getConnectorAction().setHit(hit);
+		fight.getRound().getConnectorAction().setBlock(block);
+		fight.getRound().getConnectorAction().setDidHit(true);
+		if (fight.getRound().getCreatorAction().isDidHit())
 		{
 			setRoundStart(fight);
 		}
 	}
+	/**
+	 * Sets round end and starts ENGINE
+	 * 
+	 * @param fight
+	 */
 	private synchronized void setRoundStart(Fight fight)
 	{
+		log.info("SET ROUND START");
 		if (fight.getRound().isRoundStart())
 		{
-			log.info("AND END ROUND №" + fight.getRound().getRoundNumber());
+			log.info("END OF ROUND №" + fight.getRound().getRoundNumber());
 			fight.getRound().setRoundStart(false);
+			startEngine(fight);
 		}
 	}
 }

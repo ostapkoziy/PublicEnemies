@@ -5,7 +5,7 @@ package com.epam.publicenemies.domain.fight;
  * 
  * @author Alexander Ivanov
  */
-public enum AreUsersInGame
+public enum UsersStatus
 {
 	/**
 	 * Creator is offline. Add to connector some exp and money. Game over.
@@ -13,7 +13,7 @@ public enum AreUsersInGame
 	CREATOR_OFFLINE
 	{
 		@Override
-		public boolean start(Fight fight)
+		public boolean check(Fight fight)
 		{
 			fight.setWhoWins(fight.getProfile("connector"));
 			return true;
@@ -25,7 +25,7 @@ public enum AreUsersInGame
 	CONNECTOR_OFFLINE
 	{
 		@Override
-		public boolean start(Fight fight)
+		public boolean check(Fight fight)
 		{
 			fight.setWhoWins(fight.getProfile("creator"));
 			return true;
@@ -37,11 +37,19 @@ public enum AreUsersInGame
 	OFFLINE
 	{
 		@Override
-		public boolean start(Fight fight)
+		public boolean check(Fight fight)
 		{
 			fight.setWhoWins(null);
 			return true;
 		}
+	},
+	ONLINE
+	{
+		@Override
+		public boolean check(Fight fight)
+		{
+			return false;
+		}
 	};
-	public abstract boolean start(Fight fight);
+	public abstract boolean check(Fight fight);
 }
