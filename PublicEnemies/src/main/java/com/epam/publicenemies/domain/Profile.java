@@ -843,4 +843,11 @@ public class Profile
 	{
 		return pUser.getRegDate();
 	}
+	public int getMissRate() {
+		return pCharacter.getMissRate();
+	}
+	public void setMissRate(int missRate) {
+		this.pCharacter.setMissRate(missRate);
+	}
+	
 }
