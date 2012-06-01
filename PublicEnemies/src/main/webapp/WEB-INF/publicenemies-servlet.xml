@@ -38,7 +38,7 @@
 			<map>				
 				<!-- +++++++++++++++++++++++CASINO PAGES ++++++++++++++++++++++++++++++++++ -->
 				<entry key="/casino.html" value="casinoController"></entry>
-				<entry key="/rouletteGame.html" value="rouletteGameController"></entry>
+<!-- 				<entry key="/rouletteGame.html" value="rouletteGameController"></entry> -->
 			</map>
 		</property>
 	</bean>

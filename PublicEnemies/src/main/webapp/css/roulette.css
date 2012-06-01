@@ -1,7 +1,7 @@
 @CHARSET "UTF-8";
 
 body{
-	background-color: white;
+	background-color: gray;
 /* 	background-image: url("../img/roulette/floor.jpg"); */
 }
 
@@ -17,14 +17,14 @@ body{
 #leftPanel {
 	float: left;
 	width: 200px;
-	height: 500px;
+	height: 400px;
 	margin-bottom: 150px;
 }
 
 #rightPanel {
 	float: right;
 	width: 300px;
-	height: 300px;
+	height: 400px;
 }
 
 #bottomPanel {
@@ -37,7 +37,7 @@ body{
 	text-align: center;
 	margin-left: 250px;
 	margin-right: 350px;
-/* 	min-height: 300px; */
+/*  	min-height: 500px; */
 }
 
 .highlighted {  
