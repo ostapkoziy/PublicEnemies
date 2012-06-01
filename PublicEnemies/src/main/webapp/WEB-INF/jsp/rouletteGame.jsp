@@ -23,7 +23,7 @@
 		<form method="post" action="rouletteRedirectController.html">
 			<input id="exit" type="submit" value="Leave roulette table">
 		</form>
-		<h2>
+		<h2 id="chipsAmount">
 			<c:out value="${rouletteGameInfo.getChips()} chips" />
 		</h2>
 		<p>

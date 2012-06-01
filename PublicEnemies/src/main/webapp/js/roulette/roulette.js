@@ -16,19 +16,14 @@ $(document).ready(function(){
 	$(".RouletteTable").click(function() {
 		if (clearBetToggle == false){
 			$(this).css("opacity", faded);
-//			$("#betOnTable").html(parseInt($("#betOnTable").html()) + parseInt($("input[@name=betVal]:checked").val()));
 			$("#betOnTable").html(parseInt($("#betOnTable").html()) + currentBet);
 			if (isNaN(bets.betsOnNumbers[$(this).attr("alt")])) bets.betsOnNumbers[$(this).attr("alt")] = 0;
-//			bets.betsOnNumbers[$(this).attr("alt")] += parseInt($("input[@name=betVal]:checked").val());
 			bets.betsOnNumbers[$(this).attr("alt")] += currentBet;
-			
-//			alert(arr[$(this).attr("alt")]);
 		}else 
 			{$(this).css("opacity", "1");
 			bets.betsOnNumbers[$(this).attr("alt")] = 0;
 		}
 	});
-
 	// ====================================================
 	$(".chips").toggle(function(){
 		currentBet += parseInt($(this).attr("alt"));
@@ -38,15 +33,11 @@ $(document).ready(function(){
 		$(this).removeClass("highlighted");
 	});
 	
-
-	
 	$("#btn_test").click(
 		function() {
 			$("#img_roulette").attr("src","img/roulette/roulette.gif");
 			setTimeout(function(){$("#img_roulette").attr("src","img/roulette/roulette_static.png");},3000);
 	});
-	
-	
 	
 	$(".RouletteTable").mousemove(function(){
 		if (isNaN(bets.betsOnNumbers[$(this).attr("alt")])) bets.betsOnNumbers[$(this).attr("alt")]=0;
@@ -70,16 +61,21 @@ $(document).ready(function(){
 //	});
 	
 	$("#DEAL").click(function(){
-			$.ajax({
-				
+		$("#userBetNumbers").val("");
+		for ( var i = 0; i < (parseInt(bets.betsOnNumbers.length.toString())); i++) {
+			if (bets.betsOnNumbers[i] > 0) {
+				$("#userBetNumbers").val($("#userBetNumbers").val() + i + ":" + bets.betsOnNumbers[i] + ';');
+			}
+		}
+		
+		$.ajax({
 				type: "POST",
-				url: "rouletteGame.html",
+				url: "rouletteLogic.html",
 				data : ({
 					userBetNumbers : $("#userBetNumbers").val(),
 				}),
 				success: function(data){
-					alert(data);
-//					$('form#submit').hide(function(){$('div.success').fadeIn();});
+					$("#chipsAmount").html(data);
 				}
 			});
 		return false;
