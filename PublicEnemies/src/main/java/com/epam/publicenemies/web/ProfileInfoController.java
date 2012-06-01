@@ -1,6 +1,8 @@
 package com.epam.publicenemies.web;
 
 import java.util.Enumeration;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -13,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.epam.publicenemies.domain.Profile;
 import com.epam.publicenemies.service.IProfileManagerService;
+import com.epam.publicenemies.service.IUserRatingService;
 
 /**
  * This controller allows users to see their character
@@ -31,6 +34,9 @@ public class ProfileInfoController {
 	@Autowired
 	private IProfileManagerService	profileManagerService;
 	
+	@Autowired
+	private IUserRatingService userRatingService;
+	
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView showProfile(HttpServletRequest request)	{
 		ModelAndView mav = new ModelAndView(); 
@@ -38,6 +44,21 @@ public class ProfileInfoController {
 		mav.addObject("profile", (Profile) profileManagerService
 				.getProfileByUserId((Integer) request.getSession()
 						.getAttribute("userId")));
+		List<Map<String, Object>> top10ByExp = userRatingService.sortUsersByExperience();	
+		
+		if (top10ByExp.size() < 10) {
+				mav.addObject("usersListSortedByExp", top10ByExp);
+		} else {
+			mav.addObject("usersListSortedByExp", top10ByExp.subList(0, 10));
+		}
+		
+		List<Map<String, Object>> top10ByMoney = userRatingService.sortUsersByMoney();
+		
+		if (top10ByMoney.size() < 10) {
+			mav.addObject("usersListSortedByMoney", top10ByMoney);
+		} else {
+			mav.addObject("usersListSortedByMoney", top10ByMoney.subList(0, 10));
+		}
 		
 		mav.setViewName("profile");		
 		return mav; 

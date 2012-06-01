@@ -74,6 +74,6 @@ public class EditProfileFormController {
 				Byte.parseByte(request.getParameter("profession"))); 
 		// Note: exceptions in case empty fields
 		// TODO: do changes
-		return "redirect:userStartPage.html";		
+		return "redirect:profile.html";		
 	} 
 }

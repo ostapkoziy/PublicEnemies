@@ -19,7 +19,7 @@
 <link rel="stylesheet" href="css/hideout.css" type="text/css">
 <script type="text/javascript">
 $(document).ready(function(){
-	$('.tTip').betterTooltip({speed: 150, delay: 300});
+	$('img.tTip').betterTooltip({speed: 150, delay: 300});
 	
 });
 </script>
@@ -27,73 +27,95 @@ $(document).ready(function(){
 </head>
 
 <body>
+	<div style="text-align: center; margin: 10px;">
+		<a href="/PublicEnemies/userStartPage.html"><img
+			src="/PublicEnemies/img/gamelogo.png" width="50%" height="50%" /></a>
+	</div>
 	<div class="profile_statistics_inventory">
-		<div style="text-align: center">
+		<div class="centered_psi">
 			<div class="profile_info">
-				<h3>Profile Info</h3>
-				<img class="avatar" src="${profile.getAvatar()}" title="Avatar"
-					alt="Your profile here" border="2"/>
-				<div class="statistics_list" align="left">
-					<h3>Basic info:</h3>
-					<p>
-						<strong> <abbr>Genger:</abbr> </strong>
-						<c:choose>
-							<c:when test="${profile.isSex() == true}">
+				<h2 class="inventory_and_pi">
+					PROFILE INFO [ <a class="edit_and_buy"
+						href="/PublicEnemies/editProfile.html">EDIT</a> ]
+				</h2>
+				<div>
+					<img class="avatar" src="${profile.getAvatar()}" title="Avatar"
+						alt="Your profile here" border="2" />
+					<div class="statistics_list" align="left">
+						<h3>Basic info:</h3>
+						<p>
+							<strong> <abbr>Genger:</abbr>
+							</strong>
+							<c:choose>
+								<c:when test="${profile.isSex() == true}">
 						male
 					</c:when>
-							<c:otherwise>
+								<c:otherwise>
 						female
 					</c:otherwise>
-						</c:choose>
-					</p>
-					<p>
-						<strong> <abbr>Email:</abbr> </strong> ${profile.getEmail()}
-					</p>
-					<p>
-						<strong> <abbr>Money:</abbr> </strong> ${profile.getMoney()}
-					</p>
-					<p>
-						<strong> <abbr>RegDate:</abbr> </strong> ${profile.getRegDate()}
-					</p>
-					<p>
-						<strong> <abbr>Profession:</abbr> </strong> ${profile.getCharacterProfession().getProfessionName()}
-					</p>
-					<br />
-					<h3>Basic stats:</h3>
-					<p>
-						<strong> <abbr>Experience:</abbr> </strong> ${profile.getExperience()}
-					</p>
-					<p>
-						<strong> <abbr>Strength:</abbr> </strong> ${profile.getStrength()}
-					</p>
-					<p>
-						<strong> <abbr>Agility:</abbr> </strong> ${profile.getAgility()}
-					</p>
-					<p>
-						<strong> <abbr>Intelligence:</abbr> </strong> ${profile.getIntellect()}
-					</p>
-					<br />
-					<h3>Actual stats:</h3>
-					<p>
-						<strong> <abbr>Strength:</abbr> </strong> need to calculate
-					</p>
-					<p>
-						<strong> <abbr>Agility:</abbr> </strong> need to calculate
-					</p>
-					<p>
-						<strong> <abbr>Intelligence:</abbr> </strong> need to calculate
-					</p>
+							</c:choose>
+						</p>
+						<p>
+							<strong> <abbr>Email:</abbr>
+							</strong> ${profile.getEmail()}
+						</p>
+						<p>
+							<strong> <abbr>Money:</abbr>
+							</strong> ${profile.getMoney()}
+						</p>
+						<p>
+							<strong> <abbr>RegDate:</abbr>
+							</strong> ${profile.getRegDate()}
+						</p>
+						<p>
+							<strong> <abbr>Profession:</abbr>
+							</strong> ${profile.getCharacterProfession().getProfessionName()}
+						</p>
+						<br />
+						<h3>Basic stats:</h3>
+						<p>
+							<strong> <abbr>Experience:</abbr>
+							</strong> ${profile.getExperience()}
+						</p>
+						<p>
+							<strong> <abbr>Strength:</abbr>
+							</strong> ${profile.getStrength()}
+						</p>
+						<p>
+							<strong> <abbr>Agility:</abbr>
+							</strong> ${profile.getAgility()}
+						</p>
+						<p>
+							<strong> <abbr>Intelligence:</abbr>
+							</strong> ${profile.getIntellect()}
+						</p>
+						<br />
+						<h3>Actual stats:</h3>
+						<p>
+							<strong> <abbr>Strength:</abbr>
+							</strong> need to calculate
+						</p>
+						<p>
+							<strong> <abbr>Agility:</abbr>
+							</strong> need to calculate
+						</p>
+						<p>
+							<strong> <abbr>Intelligence:</abbr>
+							</strong> need to calculate
+						</p>
 
-				</div>
-				<div>
-					<a href="editProfile.html"><button>Edit</button></a>
+					</div>
+
 				</div>
 			</div>
 
 			<div class="vertical_space"></div>
 
 			<div class="inventory">
-				<h3>Inventory</h3>
+				<h2 class="inventory_and_pi">
+					INVENTORY [ <a class="edit_and_buy" href="/PublicEnemies/shop.html">BUY</a>
+					]
+				</h2>
 				<div class="set_of_items">
 					<h3>DRESSED:</h3>
 
@@ -107,11 +129,8 @@ $(document).ready(function(){
 										onclick="undressWeapon1(${profile.getDressedWeapon1().getItemId()})">
 										<img class="tTip"
 										src="${profile.getDressedWeapon1().getItemPicture()}"
-										title="<strong>NAME: </strong> ${profile.getDressedWeapon1().getItemName()} <br />
-													<strong>TYPE: </strong> ${profile.getDressedWeapon1().isWeaponType()} <br />
-													<strong>HIT POINTS: </strong> ${profile.getDressedWeapon1().getHitPoints()} <br />
-													<strong>PRICE: </strong> ${profile.getDressedWeapon1().getItemPrice()} <br />
-													<strong>SELL PRICE: </strong> ${profile.getDressedWeapon1().getItemPrice() * 0.6} <br />
+										title="<strong>NAME: </strong> ${profile.getDressedWeapon1().getItemName()} <br />													
+													<strong>HIT POINTS: </strong> ${profile.getDressedWeapon1().getHitPoints()} <br />													
 													<strong>Description: </strong>  ${profile.getDressedWeapon1().getItemDescription()}" />
 									</a>
 								</div>
@@ -128,10 +147,7 @@ $(document).ready(function(){
 										<img class="tTip"
 										src="${profile.getDressedWeapon2().getItemPicture()}"
 										title="<strong>NAME: </strong> ${profile.getDressedWeapon2().getItemName()} <br />
-													<strong>TYPE: </strong> ${profile.getDressedWeapon2().isWeaponType()} <br />
 													<strong>HIT POINTS: </strong> ${profile.getDressedWeapon2().getHitPoints()} <br />
-													<strong>PRICE: </strong> ${profile.getDressedWeapon2().getItemPrice()} <br />
-													<strong>SELL PRICE: </strong> ${profile.getDressedWeapon2().getItemPrice() * 0.6} <br />
 													<strong>Description: </strong> ${profile.getDressedWeapon2().getItemDescription()}" />
 									</a>
 								</div>
@@ -143,41 +159,38 @@ $(document).ready(function(){
 						<div class="margin_div_vertical"></div>
 						<c:choose>
 							<c:when test="${profile.getDressedArmor().getItemId() != 0}">
-								<div class="item">
+								<div class="mutual_item">
 									<a
 										onclick="undressArmor(${profile.getDressedArmor().getItemId()})">
 										<img class="tTip"
 										src="${profile.getDressedArmor().getItemPicture()}"
 										title="<strong>NAME: </strong> ${profile.getDressedArmor().getItemName()} <br />
 													<strong>PROTECTION: </strong> ${profile.getDressedArmor().getArmorProtection()} <br />
-													<strong>PRICE: </strong> ${profile.getDressedArmor().getItemPrice()} <br />
-													<strong>SELL PRICE: </strong> ${profile.getDressedArmor().getItemPrice() * 0.6} <br />
 													<strong>Description: </strong> ${profile.getDressedArmor().getItemDescription()}" />
 									</a>
 								</div>
 							</c:when>
 							<c:otherwise>
-								<div class="item"></div>
+								<div class="mutual_item"></div>
 							</c:otherwise>
 						</c:choose>
-						<div class="margin_div_vertical"></div>
+
+						<div style="height: 10px;"></div>
+
 						<c:choose>
 							<c:when test="${profile.getDressedAid().getItemId() != 0}">
-								<div class="item">
+								<div class="mutual_item">
 									<a onclick="undressAid(${profile.getDressedAid().getItemId()})">
-										<img class="tTip" 
-											src="${profile.getDressedAid().getItemPicture()}" 
-											title="<strong>NAME: </strong> ${profile.getDressedAid().getItemName()} <br />
-													<strong>TYPE: </strong> ${profile.getDressedAid().getAidType()} <br />
+										<img class="tTip"
+										src="${profile.getDressedAid().getItemPicture()}"
+										title="<strong>NAME: </strong> ${profile.getDressedAid().getItemName()} <br />
 													<strong>EFFECT: </strong> ${profile.getDressedAid().getAidEffect()} <br />
-													<strong>PRICE: </strong> ${profile.getDressedAid().getItemPrice()} <br />
-													<strong>DESCRIPTION: </strong> ${profile.getDressedAid().getItemDescription()}" 
-													 />
+													<strong>DESCRIPTION: </strong> ${profile.getDressedAid().getItemDescription()}" />
 									</a>
 								</div>
 							</c:when>
 							<c:otherwise>
-								<div class="item"></div>
+								<div class="mutual_item"></div>
 							</c:otherwise>
 						</c:choose>
 						<div class="margin_div_vertical"></div>
@@ -209,15 +222,15 @@ $(document).ready(function(){
 											<img class="tTip"
 											src="${weaponIT.getItem().getItemPicture()}"
 											title="<strong>NAME: </strong> ${weaponIT.getItem().getItemName()} <br />
-												<strong>TYPE: </strong> ${weaponIT.getItem().isWeaponType()} <br />
 												<strong>HIT POINTS: </strong> ${weaponIT.getItem().getHitPoints()} <br />
+												<strong>ORIGIN PRICE: </strong> ${weaponIT.getItem().getItemPrice() * 1.0} <br />
 												<strong>SELL PRICE: </strong> ${weaponIT.getItem().getItemPrice() * 0.6} <br />
 												<strong>Description: </strong> ${weaponIT.getItem().getItemDescription()}" />
 										</a>
 									</div>
 									<!-- MAX - 3 ELEMETS  -->
 									<c:if test="${(countWIT % 3) == 0 }">
-										<div class="margin_div_vertical"></div>
+										<div></div>
 									</c:if>
 								</c:if>
 							</c:forEach>
@@ -252,6 +265,7 @@ $(document).ready(function(){
 											<img class="tTip" src="${armorIT.getItem().getItemPicture()}"
 											title="<strong>NAME: </strong> ${armorIT.getItem().getItemName()} <br />
 												<strong>PROTECTION: </strong> ${armorIT.getItem().getArmorProtection()} <br />
+												<strong>ORIGIN PRICE: </strong>${armorIT.getItem().getItemPrice() * 1.0} <br />
 												<strong>SELL PRICE: </strong>${armorIT.getItem().getItemPrice() * 0.6} <br />
 												<strong>Description: </strong> ${armorIT.getItem().getItemDescription()}" />
 										</a>
@@ -284,8 +298,8 @@ $(document).ready(function(){
 											id="raid_id_${countAidsIT}|${aidIT.getItem().getItemId()}">
 											<img class="tTip" src="${aidIT.getItem().getItemPicture()}"
 											title="<strong>NAME: </strong> ${aidIT.getItem().getItemName()} <br />
-												<strong>TYPE: </strong> ${aidIT.getItem().getAidType()} <br />
 												<strong>EFFECT: </strong> ${aidIT.getItem().getAidEffect()} <br />
+												<strong>ORIGIN PRICE: </strong>${aidIT.getItem().getItemPrice() * 1.0} <br />
 												<strong>SELL PRICE: </strong>${aidIT.getItem().getItemPrice() * 0.6} <br />
 												<strong>Description: </strong> ${aidIT.getItem().getItemDescription()}" />
 										</a>
@@ -305,9 +319,6 @@ $(document).ready(function(){
 				</div>
 				<!-- END OF USER'S TRUNK -->
 				<!-- DISPLAYS WHAT USER WEARED IN -->
-				<div>
-					<a href="shop.html"><button>Buy items</button></a>
-				</div>
 			</div>
 		</div>
 
@@ -315,13 +326,55 @@ $(document).ready(function(){
 		<div class="horizontal_space "></div>
 
 		<div class="statistics" align="center">
-			<h3> <a name="statistics_place" class="statistics_link">Statistics</a></h3>
+
+			<div class="ranking_by_exp">
+				Ranking by Experience (top 10)
+				<c:choose>
+					<c:when test="${usersListSortedByExp.size() == 0 }">
+						<h4>There is no user</h4>
+					</c:when>
+					<c:otherwise>
+						<c:forEach items="${usersListSortedByExp}" var="user">
+							<div
+								style="padding-top: 10px; padding-left: 25px; color: white; font-size: 12pt; text-align: left; font-family: Arial;">
+								<span style="display: inline-block; width: 160px;">${user.get("nickname")}</span>
+								<span>${user.get("value")}</span>
+							</div>
+						</c:forEach>
+					</c:otherwise>
+				</c:choose>
+			</div>
+
+			<div class="ranking_by_money">
+				Ranking by Money (top 10)
+
+				<c:choose>
+					<c:when test="${usersListSortedByMoney.size() == 0 }">
+						<h4>There is no user</h4>
+					</c:when>
+					<c:otherwise>
+						<c:forEach items="${usersListSortedByMoney}" var="userM">
+							<div
+								style="padding-top: 10px; padding-left: 25px; color: white; font-size: 12pt; text-align: left; font-family: Arial;">
+								<span style="display: inline-block; width: 160px;">${userM.get("nickname")}</span>
+								<span>${userM.get("value")}</span>
+							</div>
+						</c:forEach>
+					</c:otherwise>
+				</c:choose>
+			</div>
+
+			<h2>
+				<a name="statistics_place" class="statistics_link">STATISTICS</a>
+			</h2>
 			<br />
 			<p>
-				<strong> <abbr>Total Fights:</abbr> </strong> ${profile.getFightsTotal()}
+				<strong> <abbr style="color: white">Total Fights:</abbr>
+				</strong> ${profile.getFightsTotal()}
 			</p>
 			<p>
-				<strong> <abbr>Won Fights:</abbr> </strong> ${profile.getFightsWon()}
+				<strong> <abbr style="color: white">Won Fights:</abbr>
+				</strong> ${profile.getFightsWon()}
 			</p>
 			<div id="holder"></div>
 			<table>
@@ -337,7 +390,10 @@ $(document).ready(function(){
 					</tr>
 				</tbody>
 			</table>
-			<a id="main_page" href="userStartPage.html">main</a>
+			<h3>
+				<a id="main_page" style="color: white;" href="userStartPage.html">HOME
+					PAGE</a>
+			</h3>
 		</div>
 	</div>
 
