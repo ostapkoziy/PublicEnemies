@@ -27,7 +27,7 @@
 			<c:out value="${rouletteGameInfo.getChips()} chips" />
 		</div>
 		<p>
-			<div id="Message"></div>
+			<div id="message"></div>
 	</div>
 	<div class="panel" id="leftPanel">
 		leftPanel

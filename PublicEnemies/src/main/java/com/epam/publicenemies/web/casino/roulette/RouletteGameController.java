@@ -18,6 +18,8 @@ import com.epam.publicenemies.domain.roulette.BetTypes;
 import com.epam.publicenemies.domain.roulette.RouletteGameInfo;
 import com.epam.publicenemies.service.IProfileManagerService;
 
+import flexjson.JSONSerializer;
+
 @Controller
 @RequestMapping("/rouletteLogic.html")
 public class RouletteGameController {
@@ -31,6 +33,7 @@ public class RouletteGameController {
 	@RequestMapping(method = RequestMethod.POST)
 	public void processForm(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
+		JSONSerializer serializer = new JSONSerializer();
 		int rnd = new Random().nextInt(36);
 		int chips = 0;
 
@@ -46,6 +49,8 @@ public class RouletteGameController {
 			parseBetString(request.getParameter("userBetNumbers"));
 		} else {
 			rouletteGameInfo.setMsg("Make your BET on Roulette table! ");
+			response.getWriter().print(serializer.serialize(rouletteGameInfo));
+			return;
 		}
 		
 		Integer[] bets = rouletteGameInfo.getBets();
@@ -61,7 +66,7 @@ public class RouletteGameController {
 		// Is money enough to make this BET?
 		if (chips < 0) {
 			rouletteGameInfo.setMsg("You have not enough money to make this BET (BET on table:" + rouletteGameInfo.getBetAmount() + " chips)");
-			// return "rouletteGame";
+			return;
 		}
 
 		int prize = 0;
@@ -76,10 +81,8 @@ public class RouletteGameController {
 		rouletteGameInfo.setChips(chips + prize);
 
 		log.info("rnd = " + rnd + "\nBet on: " + (String) request.getParameter("userBetNumbers"));
-
 		log.info(" Chips after:" + rouletteGameInfo.getChips());
-
-		response.getWriter().print(rouletteGameInfo.getChips());
+		response.getWriter().print(serializer.serialize(rouletteGameInfo));
 		response.getWriter().flush();
 	}
 

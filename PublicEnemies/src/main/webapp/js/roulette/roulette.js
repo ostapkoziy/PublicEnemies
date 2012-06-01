@@ -63,10 +63,13 @@ $(document).ready(function(){
 					userBetNumbers : $("#userBetNumbers").val(),
 				}),
 				success: function(data){
-					$("#chipsAmount").html(data);
+					var rouletteGameInfo = jQuery.parseJSON(data);
+//					alert(data);
+					$("#chipsAmount").html(rouletteGameInfo.chips+" chips");
+					$("#message").html(rouletteGameInfo.msg);
 				}
 			});
-		},1000);//Roulette spinning time
+		},100);//Roulette spinning time
 	});
 
 });
