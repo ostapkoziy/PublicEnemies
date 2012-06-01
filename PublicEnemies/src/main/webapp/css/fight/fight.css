@@ -1,8 +1,7 @@
 @CHARSET "UTF-8";
 
-body {
-	background: url("../../img/fight/bg3.png") no-repeat;
-	/* 	background-color: black; */
+body { /* 	background: url("../../img/fight/bg3.png") no-repeat; */
+	background-color: black;
 }
 
 #content {
