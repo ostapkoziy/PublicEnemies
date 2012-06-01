@@ -13,7 +13,6 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.epam.publicenemies.dao.IDataBaseDao;
-import com.epam.publicenemies.domain.Aid;
 
 /**
  * 
