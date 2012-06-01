@@ -36,7 +36,6 @@
 		</div>
 
 		<table>
-			<caption>DB INFO:</caption>
 			<thead>
 				<tr>
 					<th>Entity</th>
@@ -60,7 +59,6 @@
 				<td>${amountOfAids}</td>
 			</tr>
 		</table>
-		TODO: MORE INFO
 		<p id="last_registered">
 		<table class="users_table">
 			<caption>The 5 Latest Registered Users</caption>

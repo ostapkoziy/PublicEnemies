@@ -29,7 +29,7 @@
 					<th>Effect</th>
 					<th>Picture (path)</th>
 					<th>Price</th>
-					<th colspan="2">Actions</th>
+					<th>Actions</th>
 				</tr>
 			</thead>
 			<c:forEach var="aid" items="${aids}">
@@ -41,7 +41,7 @@
 					<td>${aid.getAidPicture()}</td>
 					<td>${aid.getAidPrice()}</td>
 					<td><a href="aid/edit/${aid.getAidId()}.html"> edit</a></td>
-					<td><a href="aid/delete/${aid.getAidId()}.html"> delete</a></td>
+					<!-- td><a href="aid/delete/${aid.getAidId()}.html"> delete</a></td>  -->
 				</tr>
 			</c:forEach>
 		</table>
