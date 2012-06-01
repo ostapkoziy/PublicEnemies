@@ -21,6 +21,7 @@ public class UCharacter
 	private int			allUserHP;
 	private int			damage;
 	private int			defence;
+	private int 		miss;
 	private Level		level;
 	public UCharacter()
 	{
@@ -188,5 +189,11 @@ public class UCharacter
 	public void setCharacterProfession(Profession characterProfession)
 	{
 		this.characterProfession = characterProfession;
+	}
+	public int getMiss() {
+		return miss;
+	}
+	public void setMiss(int miss) {
+		this.miss = miss;
 	}
 }
