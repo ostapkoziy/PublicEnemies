@@ -28,7 +28,9 @@ import com.epam.publicenemies.web.casino.blackjack.DealBlackJackController;
 import com.google.gson.Gson;
 
 import flexjson.JSONSerializer;
-
+/**
+ * @author Ostap Koziy
+ */
 
 @Controller
 public class RaisePokerController {

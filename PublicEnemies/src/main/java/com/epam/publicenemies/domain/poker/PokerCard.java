@@ -1,6 +1,8 @@
 package com.epam.publicenemies.domain.poker;
 
-
+/**
+ * @author Ostap Koziy
+ */
 public class PokerCard {
 	private Suit suit;
 	private Value value;

@@ -6,7 +6,9 @@ import java.util.Random;
 
 import com.epam.publicenemies.web.casino.poker.PokerGame;
 
-
+/**
+ * @author Ostap Koziy
+ */
 public class EasyBot implements IPokerPlayer {
 
 	public String name;

@@ -5,7 +5,9 @@ import java.io.Serializable;
 import com.epam.publicenemies.web.casino.poker.PokerGame;
 
 
-
+/**
+ * @author Ostap Koziy
+ */
 public interface IPokerPlayer{
 	public int makeMove(PokerGame game) throws FoldException;
 

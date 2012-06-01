@@ -6,7 +6,9 @@ import java.util.Random;
 
 import org.apache.log4j.Logger;
 
-
+/**
+ * @author Ostap Koziy
+ */
 public class PokerRound {
 	private Logger log = Logger.getLogger(PokerRound.class);
 	

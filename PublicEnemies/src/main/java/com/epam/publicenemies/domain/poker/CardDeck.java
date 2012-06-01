@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-
+/**
+ * @author Ostap Koziy
+ */
 public class CardDeck {
 	private static final CardDeck INSTANCE = new CardDeck();
 	private List<PokerCard> deck = new ArrayList<PokerCard>();

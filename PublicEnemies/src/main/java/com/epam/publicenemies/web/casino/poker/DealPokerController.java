@@ -29,7 +29,9 @@ import com.google.gson.Gson;
 
 import flexjson.JSONSerializer;
 
-
+/**
+ * @author Ostap Koziy
+ */
 @Controller
 public class DealPokerController {
 	private static Logger log = Logger.getLogger(DealPokerController.class);

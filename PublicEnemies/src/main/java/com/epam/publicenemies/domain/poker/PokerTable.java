@@ -2,7 +2,9 @@ package com.epam.publicenemies.domain.poker;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * @author Ostap Koziy
+ */
 public class PokerTable {
 	private List<PokerCard> flop = new ArrayList<PokerCard>();
 	private PokerCard flop1;

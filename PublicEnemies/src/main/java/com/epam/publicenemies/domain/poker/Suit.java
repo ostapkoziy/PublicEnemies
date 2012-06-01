@@ -1,5 +1,7 @@
 package com.epam.publicenemies.domain.poker;
-
+/**
+ * @author Ostap Koziy
+ */
 public class Suit {
 	private final String name;
 	private Suit(String name) {this.name = name; }

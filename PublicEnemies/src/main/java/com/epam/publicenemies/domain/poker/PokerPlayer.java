@@ -8,7 +8,9 @@ import org.apache.log4j.Logger;
 
 import com.epam.publicenemies.web.casino.poker.PokerGame;
 
-
+/**
+ * @author Ostap Koziy
+ */
 public class PokerPlayer implements IPokerPlayer {
 
 

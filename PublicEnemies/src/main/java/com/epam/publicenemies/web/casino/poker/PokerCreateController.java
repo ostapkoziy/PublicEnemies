@@ -70,6 +70,15 @@ public class PokerCreateController {
 		Integer userId = (Integer) request.getSession().getAttribute("userId");
 		Profile profile = profileManagerService.getProfileByUserId(userId);
 		
+		pokerStatisticsService.updatePlayedGames(userId, 1);
+		pokerStatisticsService.updateVPIP(userId, (byte)1);
+		pokerStatisticsService.updatePFR(userId, (byte)1);
+		pokerStatisticsService.update3BET(userId, (byte)1);
+		pokerStatisticsService.updateF3BET(userId, (byte)1);
+		
+		
+		
+		
 		
 		pokerStats.setPlayedGames(pokerStatisticsService.getTotalGames(userId));
 		pokerStats.setVpip(pokerStatisticsService.getVPIP(userId));
@@ -77,6 +86,7 @@ public class PokerCreateController {
 		pokerStats.set3bet(pokerStatisticsService.get3BET(userId));
 		pokerStats.setf3bet(pokerStatisticsService.getF3BET(userId));
 		
+
 		
 		Integer chips = 0;
 		try{
