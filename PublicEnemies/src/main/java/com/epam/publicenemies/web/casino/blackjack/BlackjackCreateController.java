@@ -54,7 +54,8 @@ public class BlackjackCreateController {
 
 		log.info("BLACKJACK GAME: " + userId + "  CREATED");
 		Map<String, Object> objects = new HashMap<String, Object>();
-
+		objects.put("player_avatar", profile.getAvatar());
+		objects.put("player_nickname", profile.getNickName());
 		objects.put("chips", chips);
 
 		return new ModelAndView("blackJackGame", objects);

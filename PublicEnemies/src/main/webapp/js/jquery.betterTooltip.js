@@ -42,15 +42,16 @@ $.fn.betterTooltip = function(options){
 		var tTitle = (this.title);
 		this.title = "";
 		
-		var offset = $(this).offset();
-		var tLeft = offset.left;
-		var tTop = offset.top;
-		var tWidth = $this.width();
-		var tHeight = $this.height();
+		
 		
 		/* Mouse over and out functions*/
 		$this.hover(
 			function() {
+				var offset = $(this).offset();
+				var tLeft = offset.left;
+				var tTop = offset.top;
+				var tWidth = $this.width();
+				var tHeight = $this.height();
 				tipInner.html(tTitle);
 				setTip(tTop, tLeft);
 				setTimer();

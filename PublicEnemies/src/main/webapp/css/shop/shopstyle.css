@@ -1,9 +1,12 @@
 body {
-	background-image: url('../../img/style_shop.png');
-	background-attachment: fixed;
+	background-image: url('../../img/shop/new_shop_background.jpg');
+	
+ 	background-attachment: fixed;
 	background-repeat: no-repeat;
-	font-family: Geneva, Arial, Helvetica, sans-serif;
+	background-size: 100% 100%;
 	color: white;
+	font-family: 'impact';
+	font-size: 14pt;	
 }
 
 button {
@@ -14,17 +17,6 @@ button {
 	height: 40px;
 }
 
-A:hover,A:active,A:visited,A:link {
-	text-decoration: underline;
-	color: white;
-	font-size: 20pt;
-}
-
-A {
-	color: black;
-	font-family: 'impact';
-	font-size: 20pt;
-}
 
 div.shop_header {
 	text-align: center;
@@ -181,4 +173,8 @@ div#nomoney_div {
 	padding: 10px;
 	margin: 20px;
 	width: 320px;
+}
+a.main_and_profile, a.main_and_profile:VISITED {
+	color: white; 
+	font-size: 20pt; 
 }
