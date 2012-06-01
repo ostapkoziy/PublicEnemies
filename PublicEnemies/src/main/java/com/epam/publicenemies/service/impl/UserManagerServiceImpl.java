@@ -34,12 +34,6 @@ public class UserManagerServiceImpl implements IUserManagerService
 	@Override
 	public User registerNewUser(String uEmail, String uPasswd, String uNickName)
 	{
-		/*
-		 * to understand action below: int insertedUserId =
-		 * userDao.registerUser(uEmail, uPasswd, uNickName); // get inserted
-		 * user User insertedUser = userDao.findUserById(insertedUserId);
-		 * UserDto returnObj = new UserDto(insertedUser); return returnObj;
-		 */
 		return userDao.findUserById(userDao.registerUser(uEmail, uPasswd, uNickName));
 	}
 	@Override
@@ -64,6 +58,18 @@ public class UserManagerServiceImpl implements IUserManagerService
 		}
 		return user;
 	}
+	
+	
+	/**
+	 * Find Admin by its unique email and not unique password
+	 * @param email - admin email
+	 * @param password - admin password
+	 * @return User object
+	 */
+	public User getAdmin(String email, String password) {
+		return userDao.findAdmin(email, password);
+	}
+	
 	/**
 	 * Update money amount
 	 * 

@@ -22,6 +22,14 @@ public interface IUserManagerService {
 	User getUserById(int userId);
 	
 	/**
+	 * Find Admin by its unique email and not unique password
+	 * @param email - admin email
+	 * @param password - admin password
+	 * @return User object
+	 */
+	User getAdmin(String email, String password);
+	
+	/**
 	 * Update money amount
 	 * @param userId - id of user
 	 * @param money - amount of money
