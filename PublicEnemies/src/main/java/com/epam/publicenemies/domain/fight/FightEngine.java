@@ -2,10 +2,12 @@ package com.epam.publicenemies.domain.fight;
 
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Random;
 
 import org.apache.log4j.Logger;
 
 import com.epam.publicenemies.chat.MessageList;
+import com.epam.publicenemies.domain.Profile;
 
 /**
  * @author Alexander Ivanov
@@ -90,45 +92,49 @@ public class FightEngine
 		int creatorHPAfterHit = fight.getCreatorProfile().getHP();
 		int connectorHPAfterHit = fight.getConnectorProfile().getHP();
 		// if creator HIT(connector not blocked)
-		if (!creatorHit.equals(connectorBlock))
+		if (!creatorHit.equals(connectorBlock) && !miss(fight, fight.getCreatorProfile(), fight.getConnectorProfile().getMissRate()))
 		{
-			creatorDamage = damageAfterArmor(creatorDamage(fight), creatorDefence(fight));
-			connectorHPAfterHit = creatorHit(fight, creatorDamage);
+			creatorDamage = damageAfterArmor(creatorDamage(fight), connectorDefence(fight));
+			connectorHPAfterHit = hit(fight.getConnectorProfile().getHP(), creatorDamage);
 		}
 		// if connector HIT(creator not blocked)
-		if (!connectorHit.equals(creatorBlock))
+		if (!connectorHit.equals(creatorBlock) && !miss(fight, fight.getConnectorProfile(), fight.getCreatorProfile().getMissRate()))
 		{
-			connectorDamage = damageAfterArmor(connectorDamage(fight), connectorDefence(fight));
-			creatorHPAfterHit = connectorHit(fight, connectorDamage);
+			connectorDamage = damageAfterArmor(connectorDamage(fight), creatorDefence(fight));
+			creatorHPAfterHit = hit(fight.getCreatorProfile().getHP(), connectorDamage);
 		}
-		log.info("***CONNECTOR HP AFTER HIT" + connectorHPAfterHit);
-		log.info("***CREATOR HP AFTER HIT" + creatorHPAfterHit);
 		RoundResult rr = healthAnalizer(creatorHPAfterHit, connectorHPAfterHit);
 		log.info("---------HEALTH ANALIZER: " + rr);
 		boolean isGameEnd = rr.roundResult(fight, creatorDamage, connectorDamage);
 		return isGameEnd;
 	}
 	/**
-	 * @param fight
-	 * @return conector HP after hit.
+	 * 
+	 * @param health
+	 * @param damage
+	 * @return health after hit.
 	 */
-	private int creatorHit(Fight fight, int creatorDamage)
+	private int hit(int health, int damage)
 	{
-		int connectorHPAfterHit = fight.getConnectorProfile().getHP();
-		// damage after armor
-		connectorHPAfterHit = connectorHPAfterHit - creatorDamage;
-		return connectorHPAfterHit;
+		health = health - damage;
+		return health;
 	}
 	/**
+	 * 
 	 * @param fight
-	 * @return creator HP after hit.
+	 * @param profile
+	 * @param missChance
+	 *            opponent miss chance. DODGE
+	 * @return is player misses
 	 */
-	private int connectorHit(Fight fight, int connectorDamage)
+	private boolean miss(Fight fight, Profile profile, int missChance)
 	{
-		int creatorHPAfterHit = fight.getCreatorProfile().getHP();
-		// damage after armor
-		creatorHPAfterHit = creatorHPAfterHit - connectorDamage;
-		return creatorHPAfterHit;
+		if (missChance > new Random().nextInt(100))
+		{
+			FightEngine.sendServerMessage(fight.getId(), profile.getNickName() + ": MISS");
+			return true;
+		}
+		return false;
 	}
 	/**
 	 * 

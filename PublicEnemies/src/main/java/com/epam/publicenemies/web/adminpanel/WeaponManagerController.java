@@ -48,7 +48,7 @@ public class WeaponManagerController implements IManageable {
 				Integer.parseInt(request.getParameter("wPrice")),
 				request.getParameter("wDescription"));
 
-		return "redirect:../weapons.html";
+		return "redirect:/PublicEnemies/adminPanel/weapons.html";
 	}
 
 	@RequestMapping(value = "edit/{ewid}", method = RequestMethod.GET)
@@ -72,7 +72,7 @@ public class WeaponManagerController implements IManageable {
 				Boolean.getBoolean(request.getParameter("wType")),
 				Integer.parseInt(request.getParameter("wPrice")),
 				request.getParameter("wDescription"));
-		return "redirect:../weapons.html";
+		return "redirect:/adminPanel/weapons.html";
 	}
 
 	@Override
