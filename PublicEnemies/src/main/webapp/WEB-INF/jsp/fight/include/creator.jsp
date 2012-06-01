@@ -27,14 +27,11 @@
 					<img src="img/stats/inteligence.png">
 					${game.creatorProfile.getIntellect()}
 				</div>
-				<div id="leftDamage">
-					<img src="img/stats/inteligence.png">
-					${game.creatorProfile.getDamage()}
-				</div>
 			</div>
 		</div>
 		<div id="leftAvatar">
 			<img alt="avatar" src="img/fight/3.jpg" width="200">
+			<%-- 			<img alt="avatar" src="${game.creatorProfile.getCharacterProfession().getProfessionAvatar()}" width="200"> --%>
 		</div>
 		<div id="leftInventory">
 			<div class="item">
@@ -99,10 +96,6 @@
 						</div>
 						<div id="rightInteligence">
 							${game.connectorProfile.getIntellect()}
-							<img src="img/stats/inteligence.png">
-						</div>
-						<div id="rightDamage">
-							${game.connectorProfile.getDamage()}
 							<img src="img/stats/inteligence.png">
 						</div>
 					</div>

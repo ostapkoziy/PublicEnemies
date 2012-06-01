@@ -1,5 +1,7 @@
 package com.epam.publicenemies.domain.fight;
 
+import com.epam.publicenemies.utils.Utils;
+
 /**
  * Users status in fight
  * 
@@ -16,6 +18,8 @@ public enum UsersStatus
 		public boolean check(Fight fight)
 		{
 			fight.setWhoWins(fight.getProfile("connector"));
+			fight.setWhoLoses(fight.getProfile("creator"));
+			Utils.connectorWins(fight);
 			return true;
 		}
 	},
@@ -28,6 +32,8 @@ public enum UsersStatus
 		public boolean check(Fight fight)
 		{
 			fight.setWhoWins(fight.getProfile("creator"));
+			fight.setWhoLoses(fight.getProfile("connector"));
+			Utils.creatorWins(fight);
 			return true;
 		}
 	},

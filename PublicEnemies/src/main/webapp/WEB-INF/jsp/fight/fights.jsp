@@ -13,9 +13,9 @@
 		<tr style="margin-top: 2px;">
 			<td style="background-color: black; width: 100%;">
 				<!--  up bar with stats, gamelogo, avatar -->
-			<div style="border-radius: 15px;">
-				<jsp:include page="../simple_header.jsp"></jsp:include>
-			</div>
+				<div style="border-radius: 15px;">
+					<jsp:include page="../simple_header.jsp"></jsp:include>
+				</div>
 			</td>
 		</tr>
 		<tr>
