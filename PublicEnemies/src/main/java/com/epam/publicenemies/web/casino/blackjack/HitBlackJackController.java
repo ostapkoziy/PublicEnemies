@@ -83,7 +83,11 @@ public class HitBlackJackController {
 
 		// Set round
 		round.setPlayerPoints(playerPoints);
-		round.setPlayerResult(playerResult);
+		if (round.getPlayerCardsSplit() == null) {
+			round.setPlayerResult(playerResult);
+		} else {
+			round.setPlayerResultSplit(playerResult);
+		}
 
 		// Round to json
 		PrintWriter out = response.getWriter();

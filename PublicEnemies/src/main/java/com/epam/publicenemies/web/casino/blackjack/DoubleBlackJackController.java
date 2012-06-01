@@ -79,11 +79,11 @@ public class DoubleBlackJackController {
 
 		// Take cards for dealer
 		List<BlackJackCard> dealerCards = round.getDealerCards();
-		int dealerPoints = 0;
-		do {
+		int dealerPoints = engine.calculatePoints(dealerCards);
+		while (dealerPoints < 17) {
 			dealerCards.add(deck.getCard());
 			dealerPoints = engine.calculatePoints(dealerCards);
-		} while (dealerPoints < 17);
+		}
 
 		// Check result
 		String playerResult = engine.checkResult(playerPoints, dealerPoints);
@@ -93,8 +93,11 @@ public class DoubleBlackJackController {
 		// Set round
 		round.setPlayerPoints(playerPoints);
 		round.setPlayerBet(round.getPlayerBet() * 2);
-		round.setPlayerResult(playerResult);
-
+		if (round.getPlayerCardsSplit() == null) {
+			round.setPlayerResult(playerResult);
+		} else {
+			round.setPlayerResultSplit(playerResult);
+		}
 		// Round to json
 		PrintWriter out = response.getWriter();
 		Gson gson = new Gson();

@@ -42,12 +42,8 @@ $(document).ready(function(){
 	
 	$("#btn_test").click(
 		function() {
-			$("#userBetNumbers").val("");
-			for ( var i = 0; i < (parseInt(bets.betsOnNumbers.length.toString())); i++) {
-				if (bets.betsOnNumbers[i] > 0) {
-					$("#userBetNumbers").val($("#userBetNumbers").val() + i + ":" + bets.betsOnNumbers[i] + ';');
-				}
-			}
+			$("#img_roulette").attr("src","img/roulette/roulette.gif");
+			setTimeout(function(){$("#img_roulette").attr("src","img/roulette/roulette_static.png");},3000);
 	});
 	
 	
@@ -57,17 +53,37 @@ $(document).ready(function(){
 		$("#showBet").html(bets.betsOnNumbers[$(this).attr("alt")]);
 	});
 
+//	$("#submit").click(function(){
+//try{		
+//		$("#img_roulette").attr("src","img/roulette/roulette.gif");
+//		setTimeout(function(){$("#img_roulette").attr("src","img/roulette/roulette_static.png");},3000);
+//	
+//		$("#userBetNumbers").val("");
+//		for ( var i = 0; i < (parseInt(bets.betsOnNumbers.length.toString())); i++) {
+//			if (bets.betsOnNumbers[i] > 0) {
+//				$("#userBetNumbers").val($("#userBetNumbers").val() + i + ":" + bets.betsOnNumbers[i] + ';');
+//			}
+//		}
+//		document.forms["submitForm"].submit();
+////		$("form#submitForm").submit();
+//}catch(e){e.message;};
+//	});
+	
+	$("#DEAL").click(function(){
+			$.ajax({
+				
+				type: "POST",
+				url: "rouletteGame.html",
+				data : ({
+					userBetNumbers : $("#userBetNumbers").val(),
+				}),
+				success: function(data){
+					alert(data);
+//					$('form#submit').hide(function(){$('div.success').fadeIn();});
+				}
+			});
+		return false;
+	});
+
 });
 
-//function arr_init(){for (var i = 0; i < 48; i++) bets.betsOnNumbers[i] = 0;}
-
-function form_send() { //MAKE UP!!!!!!!!!!!!
-//	$("#userBetNumbers").val(JSON.stringify(bets));
-	
-	$("#userBetNumbers").val("");
-	for ( var i = 0; i < (parseInt(bets.betsOnNumbers.length.toString())); i++) {
-		if (bets.betsOnNumbers[i] > 0) {
-			$("#userBetNumbers").val($("#userBetNumbers").val() + i + ":" + bets.betsOnNumbers[i] + ';');
-		}
-	}
-}

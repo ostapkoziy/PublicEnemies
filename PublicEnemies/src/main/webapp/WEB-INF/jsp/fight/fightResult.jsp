@@ -31,9 +31,8 @@
 	</div>
 	<div id="expirience2" class="result2"></div>
 	<div id="expirience3" class="result3">
-		Level: ${myProfile.getLevel().getCurrentLevel()} <br /> All Exp: ${myProfile.getLevel().getAllExpirience()} <br />
-		%: ${myProfile.getLevel().getNextLevelInPercent()}%<br /> Exp
-		AfterFight:${myProfile.getLevel().getExpirienceAfterFight()}<br /> Exp on Current Lvl:
+		Level: ${myProfile.getLevel().getCurrentLevel()} <br /> All Exp: ${myProfile.getLevel().getAllExpirience()} <br /> %:
+		${myProfile.getLevel().getNextLevelInPercent()}%<br /> Exp AfterFight:${myProfile.getLevel().getExpirienceAfterFight()}<br /> Exp on Current Lvl:
 		${myProfile.getLevel().getExpOnCurrentLevel()}
 	</div>
 	<div id="bulletHole1"></div>
