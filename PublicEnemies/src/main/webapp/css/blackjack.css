@@ -14,6 +14,12 @@ h2 {
 #blackjack_table{
 	background-image: url(../img/layout/blackjack_layout.png);
 	background-repeat: no-repeat;
+	border-width: 2px;
+	border-color: #3A2F0B;
+	border-radius: 10px;
+	opacity: .95;
+	filter: alpha(opacity =  95);
+	-moz-opacity: .95;
 }
 button {
 	font-family: 'impact';
@@ -22,18 +28,6 @@ button {
 	height: 44px;
 }
 
-table.sample {
-	margin-top: 100px;
-	background-color: #444D48;
-	opacity: .95;
-	filter: alpha(opacity =                 95);
-	-moz-opacity: .95;
-	border-width: 3px;
-	border-spacing: 5px;
-	border-style: outset;
-	border-color: white;
-	border-collapse: separate;
-}
 
 
 A:link {

@@ -210,7 +210,7 @@ $(document)
 						// combo.rank);
 						clearCombo();
 						$("td#" + (combo.rank - 1)).attr("class", "container");
-						$("td#" + (combo.rank - 1)).attr("title", combo.name);
+						$("td#" + (combo.rank - 1)).attr("title", "You have " + combo.name);
 					}
 
 					function clearCombo() {

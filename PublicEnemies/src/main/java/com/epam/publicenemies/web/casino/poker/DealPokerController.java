@@ -54,16 +54,18 @@ public class DealPokerController {
 		
 		Profile profile = (Profile) request.getSession().getAttribute("userProfile");
 		
+		Integer chips = (Integer) request.getSession().getAttribute("chips");
+		Integer botChips = (Integer) request.getSession().getAttribute("botChips");
+		
 		// Set round
-		IPokerPlayer player1 = new PokerPlayer(profile.getNickName(), profile.getMoney());
-		IPokerPlayer player2 = new EasyBot("Dirty Sanzhez", RaisePokerController.botChips);
+		IPokerPlayer player1 = new PokerPlayer(profile.getNickName(), chips);
+		IPokerPlayer player2 = new EasyBot("Dirty Sanzhez", botChips);
 		PokerRound round = new PokerRound(player1, player2, 25, 50);
-		log.info("DIRTY SANCHEZ HAS - " + RaisePokerController.botChips);
+		log.info("DIRTY SANCHEZ HAS - " + botChips);
 		round.setDealer(false);
 		round.initGame();
 		RaisePokerController.counter = 0;
 		
-		Integer chips = 0;
 		log.info("PUSH PUSH" + chips);
 		
 		// Get game

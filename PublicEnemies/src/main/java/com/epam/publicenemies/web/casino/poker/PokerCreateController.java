@@ -72,12 +72,13 @@ public class PokerCreateController {
 
 		//==================CREATE GAME====================
 		games.createNewGame(userId, userProfile);
-		RaisePokerController.botChips = 5000;
 		RaisePokerController.counter = 0;
 		//==================CREATE GAME====================
 		
 		request.getSession().setAttribute("userProfile", profile);
 		log.info("POKER GAME: " + userId + "  CREATED");
+		request.getSession().setAttribute("chips", chips);
+		request.getSession().setAttribute("botChips", 4000);
 		Map<String, Object> objects = new HashMap<String, Object>();
 
 		objects.put("chips", chips);

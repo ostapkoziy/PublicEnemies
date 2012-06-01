@@ -111,10 +111,10 @@ public class EasyBot implements IPokerPlayer {
 				result = this.bet(pokerGame);
 				return result;
 			}
-			if(CombinationChecker.checkForStraightDraw(deck.getTable(), hand)){
+			/*if(CombinationChecker.checkForStraightDraw(deck.getTable(), hand)){
 				result = this.bet(pokerGame);
 				return result;
-			}
+			}*/
 
 			if(pokerGame.getPokerGameRound().getPlayer1Bet() == pokerGame.getPokerGameRound().getPlayer2Bet()){
 				return this.check(deck);
@@ -278,11 +278,11 @@ public class EasyBot implements IPokerPlayer {
 		return toCall;
 	}
 
-	private int check(PokerTable deck) {
+	private int check(PokerTable deck) throws FoldException {
 		if ( pokerGame.getPokerGameRound().getPlayer1Bet() ==  pokerGame.getPokerGameRound().getPlayer2Bet()){
 			return 0;
 		}
-		return -1;
+		throw new FoldException();
 	}
 
 	private int allIn() {
