@@ -14,5 +14,8 @@
 			<c:redirect url="userStartPage.html"></c:redirect>
 		</c:otherwise>
 	</c:choose>
+	<c:if test="${admin!=null}">
+		<c:redirect url="adminPanel.html"></c:redirect>
+	</c:if>
 </body>
 </html>

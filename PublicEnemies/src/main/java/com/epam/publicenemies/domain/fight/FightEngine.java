@@ -2,10 +2,12 @@ package com.epam.publicenemies.domain.fight;
 
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Random;
 
 import org.apache.log4j.Logger;
 
 import com.epam.publicenemies.chat.MessageList;
+import com.epam.publicenemies.domain.Profile;
 
 /**
  * @author Alexander Ivanov
@@ -13,70 +15,6 @@ import com.epam.publicenemies.chat.MessageList;
 public class FightEngine
 {
 	private static Logger	log	= Logger.getLogger(FightEngine.class);
-	public void startEngine(Fight fight)
-	{
-		log.info("-------------ENGINE STARTED-------------");
-		UsersStatus auig = areUsersInGame(fight);
-		boolean offline = auig.check(fight);
-		if (offline)
-		{
-			log.info("---------GAME OVER! REASON: USER OFFLINE---------");
-			fight.setGameEnd(true);
-		}
-		else
-		{
-			boolean isGameEnd = shooting(fight);
-			if (isGameEnd)
-			{
-				log.info("---------GAME OVER---------");
-				fight.setGameEnd(true);
-			}
-			else
-			{
-				setupGame(fight);
-			}
-		}
-		log.info("--------------ENGINE END-------------");
-	}
-	/**
-	 * Starts when one or all users are offline.
-	 * 
-	 * @param fight
-	 */
-	private void setupGame(Fight fight)
-	{
-		log.info("---------GAME SETUP IN ENGINE--------");
-		sendServerMessage(fight.getId(), "<b>Server: </b> Round №" + fight.getRound().getRoundNumber() + " end.");
-		clearHitsBlocks(fight);
-	}
-	private boolean shooting(Fight fight)
-	{
-		String creatorHit = fight.getRound().getCreatorAction().getHit();
-		String creatorBlock = fight.getRound().getCreatorAction().getBlock();
-		String connectorHit = fight.getRound().getConnectorAction().getHit();
-		String connectorBlock = fight.getRound().getConnectorAction().getBlock();
-		int creatorDamage = 0;
-		int connectorDamage = 0;
-		int creatorHPAfterHit = fight.getCreatorProfile().getHP();
-		int connectorHPAfterHit = fight.getConnectorProfile().getHP();
-		if (!creatorHit.equals(connectorBlock))
-		{
-			creatorDamage = creatorBlockedDamage(fight);
-			connectorHPAfterHit = connectorHPAfterHit - creatorDamage;
-		}
-		if (!connectorHit.equals(creatorBlock))
-		{
-			connectorDamage = connectorBlockedDamage(fight);
-			creatorHPAfterHit = creatorHPAfterHit - connectorDamage;
-		}
-		/*
-		 * Add skill damage
-		 */
-		RoundResult rr = healthAnalizer(creatorHPAfterHit, connectorHPAfterHit);
-		log.info("---------HEALTH ANALIZER: " + rr);
-		boolean isGameEnd = rr.roundResult(fight, creatorDamage, connectorDamage);
-		return isGameEnd;
-	}
 	private void clearHitsBlocks(Fight game)
 	{
 		game.getRound().getCreatorAction().setHit("");
@@ -107,13 +45,124 @@ public class FightEngine
 			msListInGame.addFirst(mess);
 		}
 	}
-	private int creatorBlockedDamage(Fight fight)
+	public void startEngine(Fight fight)
+	{
+		log.info("-------------ENGINE STARTED-------------");
+		UsersStatus auig = areUsersInGame(fight);
+		boolean offline = auig.check(fight);
+		if (offline)
+		{
+			log.info("---------GAME OVER! REASON: USER OFFLINE---------");
+			fight.setGameEnd(true);
+		}
+		else
+		{
+			boolean isGameEnd = action(fight);
+			if (isGameEnd)
+			{
+				log.info("---------GAME OVER---------");
+				fight.setGameEnd(true);
+			}
+			else
+			{
+				setupGame(fight);
+			}
+		}
+		log.info("--------------ENGINE END-------------");
+	}
+	/**
+	 * Starts when one or all users are offline.
+	 * 
+	 * @param fight
+	 */
+	private void setupGame(Fight fight)
+	{
+		log.info("---------GAME SETUP IN ENGINE--------");
+		sendServerMessage(fight.getId(), "<b>Server: </b> Round №" + fight.getRound().getRoundNumber() + " end.");
+		clearHitsBlocks(fight);
+	}
+	private boolean action(Fight fight)
+	{
+		String creatorHit = fight.getRound().getCreatorAction().getHit();
+		String creatorBlock = fight.getRound().getCreatorAction().getBlock();
+		String connectorHit = fight.getRound().getConnectorAction().getHit();
+		String connectorBlock = fight.getRound().getConnectorAction().getBlock();
+		int creatorDamage = 0;
+		int connectorDamage = 0;
+		int creatorHPAfterHit = fight.getCreatorProfile().getHP();
+		int connectorHPAfterHit = fight.getConnectorProfile().getHP();
+		// if creator HIT(connector not blocked)
+		if (!creatorHit.equals(connectorBlock) && !miss(fight, fight.getCreatorProfile(), fight.getConnectorProfile().getMissRate()))
+		{
+			creatorDamage = damageAfterArmor(creatorDamage(fight), connectorDefence(fight));
+			connectorHPAfterHit = hit(fight.getConnectorProfile().getHP(), creatorDamage);
+		}
+		// if connector HIT(creator not blocked)
+		if (!connectorHit.equals(creatorBlock) && !miss(fight, fight.getConnectorProfile(), fight.getCreatorProfile().getMissRate()))
+		{
+			connectorDamage = damageAfterArmor(connectorDamage(fight), creatorDefence(fight));
+			creatorHPAfterHit = hit(fight.getCreatorProfile().getHP(), connectorDamage);
+		}
+		RoundResult rr = healthAnalizer(creatorHPAfterHit, connectorHPAfterHit);
+		log.info("---------HEALTH ANALIZER: " + rr);
+		boolean isGameEnd = rr.roundResult(fight, creatorDamage, connectorDamage);
+		return isGameEnd;
+	}
+	/**
+	 * 
+	 * @param health
+	 * @param damage
+	 * @return health after hit.
+	 */
+	private int hit(int health, int damage)
+	{
+		health = health - damage;
+		return health;
+	}
+	/**
+	 * 
+	 * @param fight
+	 * @param profile
+	 * @param missChance
+	 *            opponent miss chance. DODGE
+	 * @return is player misses
+	 */
+	private boolean miss(Fight fight, Profile profile, int missChance)
+	{
+		if (missChance > new Random().nextInt(100))
+		{
+			FightEngine.sendServerMessage(fight.getId(), profile.getNickName() + ": MISS");
+			return true;
+		}
+		return false;
+	}
+	/**
+	 * 
+	 * @param damage
+	 * @param defencePercent
+	 * @return damage after armor
+	 */
+	private int damageAfterArmor(int damage, int defencePercent)
+	{
+		damage = (int) (damage - (float) defencePercent / 100 * damage);
+		log.info("DAMAGE AFTER ARMOR" + damage);
+		return damage;
+	}
+	private int creatorDamage(Fight fight)
 	{
 		return fight.getCreatorProfile().getDamage();
 	}
-	private int connectorBlockedDamage(Fight fight)
+	private int connectorDamage(Fight fight)
 	{
 		return fight.getConnectorProfile().getDamage();
+	}
+	private int creatorDefence(Fight fight)
+	{
+		return fight.getCreatorProfile().getDefence();
+	}
+	private int connectorDefence(Fight fight)
+	{
+		return fight.getConnectorProfile().getDefence();
 	}
 	private RoundResult healthAnalizer(int creatorHP, int connectorHP)
 	{

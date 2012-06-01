@@ -17,11 +17,11 @@ public class UCharacter
 	private int			weapon2;
 	private int			armor;
 	private int			aid;
-	// not in database TODO make Stats Calculator
 	private int			HP;
 	private int			allUserHP;
 	private int			damage;
 	private int			defence;
+	private int 		missRate;
 	private Level		level;
 	public UCharacter()
 	{
@@ -189,5 +189,11 @@ public class UCharacter
 	public void setCharacterProfession(Profession characterProfession)
 	{
 		this.characterProfession = characterProfession;
+	}
+	public int getMissRate() {
+		return missRate;
+	}
+	public void setMissRate(int missRate) {
+		this.missRate = missRate;
 	}
 }

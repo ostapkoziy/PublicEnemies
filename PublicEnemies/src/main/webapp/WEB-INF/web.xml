@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee"
-	xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 	id="WebApp_ID" version="3.0">
 
@@ -14,20 +14,30 @@
 		<description>sessionListener</description>
 		<listener-class>com.epam.publicenemies.web.listeners.SessionListener</listener-class>
 	</listener>
-	
+
 	<error-page>
-    	<error-code>404</error-code>
-    	<location>/errors/404.html</location>
+		<error-code>404</error-code>
+		<location>/errors/404.html</location>
 	</error-page>
-	
+
 	<error-page>
-    	<error-code>500</error-code>
-    	<location>/errors/500.html</location>
+		<error-code>500</error-code>
+		<location>/errors/500.html</location>
 	</error-page>
-	
+
 	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 	<!-- ++++++++++++++++++++++++++++++++++++++++++++FILTERS++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+	<!-- ******************************ADMIN***************************** -->
+	<filter>
+		<filter-name>AdminFilter</filter-name>
+		<filter-class>com.epam.publicenemies.web.filters.AdminFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>AdminFilter</filter-name>
+		<url-pattern>/adminPanel.html</url-pattern>
+	</filter-mapping>
+	<!-- ******************************ADMIN END***************************** -->
 	<filter>
 		<filter-name>SessionFilter</filter-name>
 		<filter-class>com.epam.publicenemies.web.filters.SessionFilter</filter-class>
@@ -36,7 +46,7 @@
 		<filter-name>SessionFilter</filter-name>
 		<url-pattern>/userStartPage.html</url-pattern>
 
-		<url-pattern>/adminPanel.html</url-pattern>
+		<!-- <url-pattern>/adminPanel.html</url-pattern> -->
 		<url-pattern>/profile.html</url-pattern>
 		<url-pattern>/shop.html</url-pattern>
 		<url-pattern>/editProfile.html</url-pattern>
@@ -97,7 +107,7 @@
 	<session-config>
 		<session-timeout>30</session-timeout>
 	</session-config>
-	
-	
-    
+
+
+
 </web-app>

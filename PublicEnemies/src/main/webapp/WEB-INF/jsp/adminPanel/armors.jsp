@@ -30,7 +30,7 @@
 					<th>Protection</th>
 					<th>Picture (path)</th>
 					<th>Price</th>
-					<th colspan="2">Actions</th>
+					<th>Actions</th>
 				</tr>
 			</thead>
 			<c:forEach var="armor" items="${armors}">
@@ -42,8 +42,8 @@
 					<td>${armor.getArmorPrice()}</td>
 					<td><a href="armor/edit/${armor.getArmorId()}.html"> edit</a>
 					</td>
-					<td><a href="armor/delete/${armor.getArmorId()}.html">
-							delete</a></td>
+					<!-- <td><a href="armor/delete/${armor.getArmorId()}.html">
+							delete</a></td> -->
 				</tr>
 			</c:forEach>
 		</table>

@@ -6,6 +6,7 @@ import com.epam.publicenemies.domain.Profile;
  * @author Alexander Ivanov
  * @since 19.04.2012
  */
+// TODO hashCode & equals
 public class Fight
 {
 	private long				id;

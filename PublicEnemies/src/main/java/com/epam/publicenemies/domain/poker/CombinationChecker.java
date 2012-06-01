@@ -7,7 +7,9 @@ import java.util.List;
 import java.util.Set;
 
 
-
+/**
+ * @author Ostap Koziy
+ */
 public class CombinationChecker {
 
 	public PokerCombination checkForCombinations(List<PokerCard> cards,

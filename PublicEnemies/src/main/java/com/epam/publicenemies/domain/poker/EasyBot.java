@@ -6,13 +6,39 @@ import java.util.Random;
 
 import com.epam.publicenemies.web.casino.poker.PokerGame;
 
-
+/**
+ * @author Ostap Koziy
+ */
 public class EasyBot implements IPokerPlayer {
 
 	public String name;
 	public int cash;
 	public boolean initiative = false;
 	private PokerGame pokerGame;
+	private PokerStats stats;
+	private String avatar;
+	
+	
+	
+	public String getAvatar() {
+		return avatar;
+	}
+
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
+	}
+
+	public PokerStats getStats() {
+		return stats;
+	}
+
+	public void setStats(PokerStats stats) {
+		this.stats = stats;
+	}
+	
+	
+	
+	
 	
 	public EasyBot(String name, int cash) {
 		this.name = name;

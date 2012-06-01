@@ -1,69 +1,35 @@
-body{
-	background-attachment: fixed;
+body {
+ 	background-image: url("../../img/style_hideout.png"); 
+ 	background-attachment: fixed;
 	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	color: white;
+	font-family: 'impact';
+	font-size: 14pt;	
 }
+
+button {
+	font-family: 'impact';
+	font-size: 20px;
+	width: 100px;
+	height: 44px;
+}
+
+
+abbr{
+	font-family: impact;
+	/*font-size: 20t;*/
+	color: #CC0000;
+}
+
 
 * {
 	margin:0;
 	padding:0;
 	list-style:none;
 }
-h3{
-	font-size: 20px;	
-}
-div.profile_header {
-	
-	border-radius: 10px;
-	text-align: center; 
-	margin: 5px;
-	padding: 15px;  
-}
-span.header_element {
-	padding-right: 40px;
-	padding-left: 40px;	 
-	
-}
 
-a:hover,A:active,A:visited,A:link {
-	text-decoration: underline;
-	color: white;
-	font-size: 20pt;
-}
-
-a {
-	color: black;
-	font-family: 'impact';
-	font-size: 20pt;
-}
-
-#basic-accordian{
-	/*border:5px solid #EEE;
-	padding:5px; */
-	
-}
-
-/* Unselected one*/
-.accordion_headings{
-	padding:5px;
-	background: #222222;
-	color: white;
-	border:3px solid #FFF;
-	font-size: 14pt; 
-	cursor:pointer;
-	border-radius: 10px; 
-	/*font-weight:bold;*/
-}
-
-/* On focus one*/
-.accordion_headings:hover{
-	background: #CCCCCC;
-}
-
-.accordion_child{
-	padding:15px;
-	background:#grey;
-}
-/* choosen one */
+/* choosen one*/ 
 .header_highlight{
 	background: #AAAAAA;
 }
@@ -105,22 +71,11 @@ div.margin_div_vertical {
 
 div.statistics {
 	magrin: 0 auto; 
-	text-align: center; 
-	/*background: url(../../img/opacity_background.png);*/
-	/*width: 400px;*/ 
-	/*clear: both;*/ 
+	text-align: center;
+	background: url(../../img/dark_opacity.png);
+	border-radius: 10px; 
+	padding-top: 10px; 
 	
-	/*display: block; 
-	margin: 0 auto;
-	padding: 10px; 
-	background: url(../../img/opacity_background.png);
-	min-width: 400px;
-	min-height: 400px; 
-	border: 3px solid white;
-	/*display: inline-block;*/
-	/*vertical-align: top;*/
-	/*float: left;*/  
-	/*display: inline-block;*/
 }
 div.inventory {
 	display: inline-block;
@@ -132,11 +87,14 @@ div.inventory {
 	text-align: center;
 }
 div.statistics_list {
-	magrin: 0 auto; 
+	text-align: center; 
 	padding: 5px; 
 	display: inline-block; 
-	/* border: 1px solid white; */
+	border: 1px dotted white; 
+	border-radius: 10px; 
 	clear: both; 
+	min-height: 400px;
+	
 }
 img.avatar {
 	float:left; 
@@ -154,18 +112,58 @@ div.profile_statistics_inventory {
 	margin-top: 10px;
 	width: 1200px; 
 	height: 100%;
+	/*background: url(../../img/dark_opacity.png);*/
+	
+}
+div.centered_psi {
 	background: url(../../img/dark_opacity.png);
+	text-align: center; 
+	border-radius: 10px;
 }
 div.set_of_items {
 	display: inline-block; 
-	border: 3px solid white;  
+	border: 1px dotted white; 
+	border-radius: 10px;  
 	vertical-align: top;
 	padding: 10px; 
+	min-height: 400px; 
 }
 a.statistics_link {
 	text-decoration: none;
 	color: white; 
-	font-family: Geneva, Arial, Helvetica, sans-serif;
-	font-size: 14pt;
+	font-family: impact;
+	font-size: 20pt;
 }
-
+div.ranking_by_exp {
+	margin-left: 40px;
+	float: left; 
+	width: 280px; 
+	height: 400px;
+	padding-top: 5px; 
+	color: white; 
+	font-size: 14pt; 
+	border: 1px dotted white;
+	border-radius: 10px; 
+	text-align: center; 
+}
+div.ranking_by_money {
+	margin-right: 40px; 
+	float: right;  
+	width: 280px;
+	height: 400px;
+	padding-top: 5px; 
+	color: white; 
+	font-size: 14pt; 
+	border: 1px dotted white;
+	border-radius: 10px; 
+	text-align: center;   
+}
+div#main_page {
+	
+}
+h2.inventory_and_pi {
+	margin-bottom: 10px; 
+}
+a.edit_and_buy, a.edit_and_buy:HOVER, a.edit_and_buy:VISITED {
+	color: #C00; 
+}

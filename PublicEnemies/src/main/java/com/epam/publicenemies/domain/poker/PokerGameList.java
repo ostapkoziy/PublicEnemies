@@ -5,7 +5,9 @@ import java.util.List;
 
 import com.epam.publicenemies.domain.Profile;
 import com.epam.publicenemies.web.casino.poker.PokerGame;
-
+/**
+ * @author Ostap Koziy
+ */
 public class PokerGameList {
 	private List<PokerGame> allGames = new ArrayList<PokerGame>();
 

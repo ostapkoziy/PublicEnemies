@@ -3,7 +3,9 @@ package com.epam.publicenemies.domain.poker;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-
+/**
+ * @author Ostap Koziy
+ */
 public class Value {
 	private final String name;
 	private final int rank;

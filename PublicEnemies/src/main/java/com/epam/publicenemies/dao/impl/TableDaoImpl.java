@@ -138,100 +138,123 @@ public class TableDaoImpl implements ITableDao {
 	}
 	
 	private void fillWeapons(){
-		final String fw = "INSERT INTO weapons (weaponName, weaponHitPoints, weaponType, weaponPicture, weaponPrice) ";
+		final String fw = "INSERT INTO weapons (weaponName, weaponHitPoints, weaponType, weaponPicture, weaponPrice, weaponDescription) ";
 		StringBuilder sql = new StringBuilder("");
 		//-------------------------------------------------------
 		sql.append(fw);
-		sql.append("VALUES ('Knuckle', 10, 0, './img/weapons/knuckle.png', 100)");
+		sql.append("VALUES ('Brass Knuckles', 10, 0, './img/weapons/knuckle.png', 50, ");
+		sql.append("'Brass knuckles are weapons used in hand-to-hand combat.')");
 		jdbcTemplate.update(sql.toString());
 		
 		sql.delete(0, sql.length());
 		//-------------------------------------------------------
 		sql.append(fw);
-		sql.append("VALUES ('Extinguisher', 120, 0, './img/weapons/extinguisher.png', 200)");
+		sql.append("VALUES ('Extinguisher', 120, 0, './img/weapons/extinguisher.png', 200, ");
+		sql.append("'Extinguisher is an effective and active device used to extinguish your opponent')");
 		jdbcTemplate.update(sql.toString());
 		
 		sql.delete(0, sql.length());
 		//-------------------------------------------------------
 		sql.append(fw);
-		sql.append("VALUES ('Bat', 120, 0, './img/weapons/bat.png', 200)");
+		sql.append("VALUES ('Baseball Bat', 120, 0, './img/weapons/bat.png', 200, ");
+		sql.append("'A baseball bat is a club used in the game of baseball. But you can find new usefull usage.')");
 		jdbcTemplate.update(sql.toString());
 		
 		sql.delete(0, sql.length());
 		//-------------------------------------------------------
 		sql.append(fw);
-		sql.append("VALUES ('Sickle', 120, 0, './img/weapons/sickle.png', 200)");
+		sql.append("VALUES ('Sickle', 120, 0, './img/weapons/sickle.png', 200, ");
+		sql.append("'Sickles have also been used as weapons, either in ");
+		sql.append("their original form or in various derivations.')");
 		jdbcTemplate.update(sql.toString());
 		
 		sql.delete(0, sql.length());	
 		//-------------------------------------------------------		
 		sql.append(fw);
-		sql.append("VALUES ('Katana', 120, 0, './img/weapons/katana.png', 500)");
+		sql.append("VALUES ('Katana', 120, 0, './img/weapons/katana.png', 500, ");
+		sql.append("'Historically, katana were one of the traditionally made Japanese swords.')");
 		jdbcTemplate.update(sql.toString());
 		
 		sql.delete(0, sql.length());		
 		//-------------------------------------------------------
 		sql.append(fw);
-		sql.append("VALUES ('Chainsaw', 120, 0, './img/weapons/chainsaw.png', 500)");
+		sql.append("VALUES ('Chainsaw', 120, 0, './img/weapons/chainsaw.png', 500, ");
+		sql.append("'A chainsaw is a portable mechanical saw, powered by electricity, compressed ");
+		sql.append("air, hydraulic power, or most commonly a two-stroke engine.')");
 		jdbcTemplate.update(sql.toString());
 		
 		sql.delete(0, sql.length());		
 		//-------------------------------------------------------
 		sql.append(fw);
-		sql.append("VALUES ('Desert Eagle', 120, 1, './img/weapons/desert_eagle.png', 800)");
+		sql.append("VALUES ('Browning', 120, 1, './img/weapons/desert_eagle.png', 800, ");
+		sql.append("'The Browning Hi-Power is a single-action, 9 mm semi-automatic handgun.')");
+		
 		jdbcTemplate.update(sql.toString());
 		
 		sql.delete(0, sql.length());
 		//-------------------------------------------------------
 		
 		sql.append(fw);
-		sql.append("VALUES ('USP Tactical', 120, 0, './img/weapons/usp_tactical.png', 500)");
+		sql.append("VALUES ('USP Tactical', 120, 0, './img/weapons/usp_tactical.png', 500, ");
+		sql.append("'The USP (Universale Selbstladepistole or Universal Self-loading Pistol).')");
 		jdbcTemplate.update(sql.toString());
 		
 		sql.delete(0, sql.length());		
 		//-------------------------------------------------------
 		sql.append(fw);
-		sql.append("VALUES ('Short gun', 60, 1, './img/weapons/short_gun.png', 1000)");
+		sql.append("VALUES ('Uzi', 60, 1, './img/weapons/short_gun.png', 1000, ");
+		sql.append("'The Uzi is a family of Israeli open bolt, blowback-operated submachine guns.')");
 		jdbcTemplate.update(sql.toString());
 		
 		sql.delete(0, sql.length());
 		//-------------------------------------------------------
 		sql.append(fw);
-		sql.append("VALUES ('TMP', 120, 1, './img/weapons/tmp.png', 3000)");
+		sql.append("VALUES ('MP5', 120, 1, './img/weapons/tmp.png', 3000, ");
+		sql.append("'The Heckler & Koch MP5 (from German: Maschinenpistole 5 - machine pistol model 5).')");
 		jdbcTemplate.update(sql.toString());
 		
 		sql.delete(0, sql.length());
 		//-------------------------------------------------------
 		sql.append(fw);
-		sql.append("VALUES ('M3 Super90', 120, 1, './img/weapons/m3_super90.png', 3000)");
+		sql.append("VALUES ('Winchester', 120, 1, './img/weapons/xm1014.png', 3000, ");
+		sql.append("'The Winchester repeater is colloquially known as ''The Gun that Won the West''.')");
+		jdbcTemplate.update(sql.toString());
+			
+		sql.delete(0, sql.length());
+		//-------------------------------------------------------
+		sql.append(fw);
+		sql.append("VALUES ('SPAS-12', 120, 1, './img/weapons/m3_super90.png', 3000, ");
+		sql.append("'The SPAS-12 is a combat shotgun that was manufactured by the Italian firearms company Franchi ");
+		sql.append("S.p.A. from 1979 to 2000.')");
+		jdbcTemplate.update(sql.toString());
+		
+		sql.delete(0, sql.length());
+		
+		//-------------------------------------------------------
+		sql.append(fw);
+		sql.append("VALUES ('Sniper rifle', 150, 1, './img/weapons/awp.png', 3500, ");
+		sql.append("'A typical sniper rifle is built for optimal levels of accuracy, fitted with a telescopic sight and chambered for a military.')");
 		jdbcTemplate.update(sql.toString());
 		
 		sql.delete(0, sql.length());
 		//-------------------------------------------------------
 		sql.append(fw);
-		sql.append("VALUES ('XM1014', 120, 1, './img/weapons/xm1014.png', 3000)");
+		sql.append("VALUES ('M4A1', 120, 1, './img/weapons/m4a1.png', 3000, ");
+		sql.append("'The M4 carbine is a family of firearms tracing its lineage back to earlier carbine versions of the ");
+		sql.append("M16 rifle.') ");
 		jdbcTemplate.update(sql.toString());
 		
 		sql.delete(0, sql.length());
 		//-------------------------------------------------------
 		sql.append(fw);
-		sql.append("VALUES ('M4A1', 120, 1, './img/weapons/m4a1.png', 3000)");
+		sql.append("VALUES ('AK-47', 150, 1, './img/weapons/ak-47.png', 3500, ");
+		sql.append("'The AK-47 is a selective-fire, gas-operated 7.62x39mm assault rifle, first developed in the USSR ");
+		sql.append("by Mikhail Kalashnikov.')");
 		jdbcTemplate.update(sql.toString());
 		
 		sql.delete(0, sql.length());
 		//-------------------------------------------------------
-		sql.append(fw);
-		sql.append("VALUES ('AK-47', 150, 1, './img/weapons/ak-47.png', 3500)");
-		jdbcTemplate.update(sql.toString());
 		
-		sql.delete(0, sql.length());
-		//-------------------------------------------------------
-		sql.append(fw);
-		sql.append("VALUES ('awp', 150, 1, './img/weapons/awp.png', 3500)");
-		jdbcTemplate.update(sql.toString());
-		
-		sql.delete(0, sql.length());
-		//-------------------------------------------------------
 	}
 	
 	private void fillArmors(){
@@ -880,16 +903,14 @@ public class TableDaoImpl implements ITableDao {
 		StringBuilder sql = new StringBuilder();
 		sql.append("CREATE TABLE pokerStatistics ( ");
 		sql.append("pokerId INT(10) UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE, ");
-		sql.append("totalGames INT(10) UNSIGNED NOT NULL DEFAULT 0, ");
-		sql.append("VPIP TINYINT(3) UNSIGNED NOT NULL DEFAULT 0, ");
-		sql.append("PFR TINYINT(3) UNSIGNED NOT NULL DEFAULT 0, ");
-		sql.append("3BET TINYINT(3) UNSIGNED NOT NULL DEFAULT 0, ");
-		sql.append("F3BET TINYINT(3) UNSIGNED NOT NULL DEFAULT 0,  ");
+		sql.append("totalGames INT(10) UNSIGNED NOT NULL DEFAULT 1, ");
+		sql.append("VPIP TINYINT(3) UNSIGNED NOT NULL DEFAULT 1, ");
+		sql.append("PFR TINYINT(3) UNSIGNED NOT NULL DEFAULT 1, ");
+		sql.append("3BET TINYINT(3) UNSIGNED NOT NULL DEFAULT 1, ");
+		sql.append("F3BET TINYINT(3) UNSIGNED NOT NULL DEFAULT 1,  ");
 		sql.append("PRIMARY KEY (pokerId) ");
 		sql.append(") ENGINE=INNODB");
 		jdbcTemplate.execute(sql.toString());
 	}
-	
-	
 	
 }

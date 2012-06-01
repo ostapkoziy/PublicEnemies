@@ -15,6 +15,13 @@ public interface IUserManagerService {
 	User getUserByEmailAndPassword(String name, String password);
 	
 	/**
+	 * Get User object by user id
+	 * @param userId - user id
+	 * @return User object
+	 */
+	User getUserById(int userId);
+	
+	/**
 	 * Update money amount
 	 * @param userId - id of user
 	 * @param money - amount of money

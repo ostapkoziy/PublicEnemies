@@ -6,7 +6,9 @@ import java.util.Collections;
 import java.util.List;
 
 
-
+/**
+ * @author Ostap Koziy
+ */
 public class PokerCombination {
 	private PokerCard card1;
 	private PokerCard card2;

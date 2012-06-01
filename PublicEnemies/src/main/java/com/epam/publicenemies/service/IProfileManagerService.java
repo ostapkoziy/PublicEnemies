@@ -136,4 +136,13 @@ public interface IProfileManagerService {
 	 * @return true if operation was successfully
 	 */
 	boolean updateExperience(int characterId, int experience);
+	
+	/**
+	 * Update character's stats
+	 * @param strength - strength of character
+	 * @param agility - agility of character
+	 * @param intellect - intellect of character
+	 * @return
+	 */
+	boolean updateStats(int characterId, int strength, int agility, int intellect);
 }

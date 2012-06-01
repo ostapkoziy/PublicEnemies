@@ -33,7 +33,6 @@ import com.epam.publicenemies.domain.Weapon;
  * 		select queries changed; 
  * 		register method;
  * 
- * TODO: add moneyUpdate method; to declare all queries as final fields etc.
  * */
 @Repository
 public class UserDaoImpl implements IUserDao {

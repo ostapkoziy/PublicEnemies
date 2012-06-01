@@ -12,7 +12,9 @@ import com.epam.publicenemies.domain.poker.PokerCombination;
 import com.epam.publicenemies.domain.poker.PokerHand;
 import com.epam.publicenemies.domain.poker.PokerTable;
 
-
+/**
+ * @author Ostap Koziy
+ */
 public class PokerGameEngine{
 
 	private PokerHand player1Hand = null;

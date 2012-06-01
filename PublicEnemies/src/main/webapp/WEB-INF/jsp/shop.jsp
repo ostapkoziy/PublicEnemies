@@ -38,10 +38,21 @@ function showNoMoney() {
 </head>
 
 <body>
-	<div class="shop_header">
-		<jsp:include page="simple_header.jsp"></jsp:include>
-		<img id="dollar" src="./img/dollar_sign.png"> <span id="money">${money}</span>
-<!-- 		<div id="main_page">
+	<div style="float: left; margin-left: 150px; border-radius: 10px; margin-top: 50px; padding: 5px 15px; background: url(/PublicEnemies/img/dark_opacity.png);">
+		<a class="main_and_profile" href="/PublicEnemies/userStartPage.html">MAIN PAGE</a>
+	</div>
+	<div style="float: right; margin-top: 50px; margin-right: 150px; padding: 5px 15px; background: url(/PublicEnemies/img/dark_opacity.png); border-radius: 10px;">
+		<a class="main_and_profile" href="/PublicEnemies/profile.html"> PROFILE </a>
+	</div>
+	<div style="text-align: center; margin: 10px;">
+		<a href="/PublicEnemies/userStartPage.html"><img
+			src="/PublicEnemies/img/gamelogo.png" width="50%" height="50%" /></a>
+	</div>
+	<!--  <div class="shop_header"> -->
+	<!-- <jsp:include page="simple_header.jsp"></jsp:include> -->
+	<img id="dollar" src="./img/dollar_sign.png">
+	<span id="money">${money}</span>
+	<!-- 		<div id="main_page">
 			<a href="userStartPage.html">MAIN PAGE </a>
 		</div>
 		<div class="left_header_items">
@@ -51,8 +62,9 @@ function showNoMoney() {
 			<a href="profile.html"> <img src="${profile.getAvatar()}"
 				title="${profile.getNickName()}'s profile" border="0" width="40px"></img>
 			</a>
-		</div> --!>
-	</div>
+		</div> -->
+	<!--  </div>  -->
+
 	<!-- ------------------------------ CONTENT AREA ------------------------------ -->
 	<div id="center_div">
 		<!-- COUNTERS -->
@@ -71,7 +83,7 @@ function showNoMoney() {
 					<!-- USER'S TRUNK -->
 					<div id="user_div">
 						<div>
-							<div>YOUR ITEMS:</div>
+							<h2 style="color: black;">YOUR ITEMS:</h2>
 							<div class="margin_div_vertical"></div>
 							<div>
 								<span class="weapon_name"> WEAPONS </span>
@@ -80,43 +92,41 @@ function showNoMoney() {
 							<!-- DISPLAYS ALL WEAPONS INTO TRUNK -->
 							<!-- IF THERE IS WEAPONS INTO TRUNK -->
 							<div id="weapon_shop">
-							<c:choose>
-								
-								<c:when test="${profile.getUndresedWeapons().size() != 0}">
-									<c:set var="weaponsIntoTrunk"
-										value="${profile.getListOfWeapons()}" />
-									<c:forEach items="${weaponsIntoTrunk}" var="weaponIT">
-										<c:if test="${!weaponIT.isWearing()}">
+								<c:choose>
 
-											<c:set var="countWIT" value="${countWIT + 1}" scope="page" />
+									<c:when test="${profile.getUndresedWeapons().size() != 0}">
+										<c:set var="weaponsIntoTrunk"
+											value="${profile.getListOfWeapons()}" />
+										<c:forEach items="${weaponsIntoTrunk}" var="weaponIT">
+											<c:if test="${!weaponIT.isWearing()}">
 
-											<div class="mutual_item">
-												<a
-													onclick="sell(this.id, ${weaponIT.getItem().getItemPrice() * 0.6})"
-													id="rweapon_id_${countWIT}|${weaponIT.getItem().getItemId()}"
-													info="${weaponIT.getItem().getItemName()}"> 
-												<img
-													class="tTip" src="${weaponIT.getItem().getItemPicture()}"
-													title="<strong>NAME: </strong> ${weaponIT.getItem().getItemName()} <br />
-											<strong>TYPE: </strong> ${weaponIT.getItem().isWeaponType()} <br />
+												<c:set var="countWIT" value="${countWIT + 1}" scope="page" />
+
+												<div class="mutual_item">
+													<a
+														onclick="sell(this.id, ${weaponIT.getItem().getItemPrice() * 0.6})"
+														id="rweapon_id_${countWIT}|${weaponIT.getItem().getItemId()}"
+														info="${weaponIT.getItem().getItemName()}"> <img
+														class="tTip" src="${weaponIT.getItem().getItemPicture()}"
+														title="<strong>NAME: </strong> ${weaponIT.getItem().getItemName()} <br />
 											<strong>HIT POINTS: </strong> ${weaponIT.getItem().getHitPoints()} <br />
 											<strong>SELL PRICE: </strong> ${weaponIT.getItem().getItemPrice() * 0.6} <br />
 											<strong>Description: </strong> ${weaponIT.getItem().getItemDescription()}" />
-												</a>
-											</div>
-											<!-- MAX - 3 ELEMETS  -->
-											<c:if test="${(countWIT % 3) == 0 }">
-												<div class="margin_div_vertical"></div>
+													</a>
+												</div>
+												<!-- MAX - 3 ELEMETS  -->
+												<c:if test="${(countWIT % 3) == 0 }">
+													<div class="margin_div_vertical"></div>
+												</c:if>
 											</c:if>
-										</c:if>
-									</c:forEach>
-								</c:when>
-								
-								<c:otherwise>
-									<div class="item"></div>
-								</c:otherwise>
-							</c:choose>
-						</div>
+										</c:forEach>
+									</c:when>
+
+									<c:otherwise>
+										<div class="item"></div>
+									</c:otherwise>
+								</c:choose>
+							</div>
 						</div>
 						<!-- END OF "DISPLAYS ALL WEAPONS INTO TRUNK" -->
 						<div class="magrin_div_vertical"></div>
@@ -183,12 +193,10 @@ function showNoMoney() {
 
 												<a
 													onclick="sell(this.id, ${aidIT.getItem().getItemPrice() * 0.6})"
-													
 													id="raid_id_${countAidsIT}|${aidIT.getItem().getItemId()}"
 													info="${aidIT.getItem().getItemName()}"> <img
 													class="tTip" src="${aidIT.getItem().getItemPicture()}"
 													title="<strong>NAME: </strong> ${aidIT.getItem().getItemName()} <br />
-											<strong>TYPE: </strong> ${aidIT.getItem().getAidType()} <br />
 											<strong>EFFECT: </strong> ${aidIT.getItem().getAidEffect()} <br />
 											<strong>SELL PRICE: </strong>${aidIT.getItem().getItemPrice() * 0.6} <br />
 											<strong>Description: </strong> ${aidIT.getItem().getItemDescription()} " />
@@ -208,7 +216,7 @@ function showNoMoney() {
 						</div>
 					</div> <!-- END OF "USER'S TRUNK" --> <!-- DISPLAYS WHAT USER WEARED IN -->
 					<div id="user_div">
-						<h3>${profile.getNickName()}, YOU HAVE:</h3>
+						<h3 style="color: black;">DRESSED:</h3>
 						<div>
 
 							<c:choose>
@@ -217,9 +225,7 @@ function showNoMoney() {
 										<img class="tTip"
 											src="${profile.getDressedWeapon1().getItemPicture()}"
 											title="<strong>NAME: </strong> ${profile.getDressedWeapon1().getItemName()} <br />
-													<strong>TYPE: </strong> ${profile.getDressedWeapon1().isWeaponType()} <br />
 													<strong>HIT POINTS: </strong> ${profile.getDressedWeapon1().getHitPoints()} <br />
-													<strong>PRICE: </strong> ${profile.getDressedWeapon1().getItemPrice()} <br />
 													<strong>SELL PRICE: </strong> ${profile.getDressedWeapon1().getItemPrice() * 0.6} <br />
 													<strong>Description: </strong> ${profile.getDressedWeapon1().getItemDescription()}" />
 									</div>
@@ -235,9 +241,7 @@ function showNoMoney() {
 										<img class="tTip"
 											src="${profile.getDressedWeapon2().getItemPicture()}"
 											title="<strong>NAME: </strong> ${profile.getDressedWeapon2().getItemName()} <br />
-													<strong>TYPE: </strong> ${profile.getDressedWeapon2().isWeaponType()} <br />
 													<strong>HIT POINTS: </strong> ${profile.getDressedWeapon2().getHitPoints()} <br />
-													<strong>PRICE: </strong> ${profile.getDressedWeapon2().getItemPrice()} <br />
 													<strong>SELL PRICE: </strong> ${profile.getDressedWeapon2().getItemPrice() * 0.6} <br />
 													<strong>Description: </strong> ${profile.getDressedWeapon2().getItemDescription()}" />
 									</div>
@@ -255,7 +259,6 @@ function showNoMoney() {
 											src="${profile.getDressedArmor().getItemPicture()}"
 											title="<strong>NAME: </strong> ${profile.getDressedArmor().getItemName()} <br />
 													<strong>PROTECTION: </strong> ${profile.getDressedArmor().getArmorProtection()} <br />
-													<strong>PRICE: </strong> ${profile.getDressedArmor().getItemPrice()} <br />
 													<strong>SELL PRICE: </strong> ${profile.getDressedArmor().getItemPrice() * 0.6} <br />
 													<strong>Description: </strong> ${profile.getDressedArmor().getItemDescription()}" />
 									</div>
@@ -272,9 +275,8 @@ function showNoMoney() {
 										<img class="tTip"
 											src="${profile.getDressedAid().getItemPicture()}"
 											title="<strong>NAME: </strong> ${profile.getDressedAid().getItemName()} <br />
-													<strong>TYPE: </strong> ${profile.getDressedAid().getAidType()} <br />
 													<strong>EFFECT: </strong> ${profile.getDressedAid().getAidEffect()} <br />
-													<strong>PRICE: </strong> ${profile.getDressedAid().getItemPrice()} <br />
+													<strong>SELL PRICE: </strong> ${profile.getDressedAid().getItemPrice() * 0.6} <br />
 													<strong>Description: </strong> ${profile.getDressedAid().getItemDescription()}" />
 									</div>
 								</c:when>
@@ -289,11 +291,11 @@ function showNoMoney() {
 				<td align="center" width="100">
 					<!-- USER'S CART -->
 					<div id="basket_div">
-						<div id="balance_inscription">Balance:</div>
+						<div id="balance_inscription" style="color: black;">BALANCE:</div>
 						<div id="balance_after">
 							<span id="money_value">$ ${profile.getMoney()}</span>
 						</div>
-						<div id="cart_inscription">CART:</div>
+						<div id="cart_inscription" style="color: black;">CART:</div>
 						<div id="cart_items">
 							<div id="selected_items"></div>
 						</div>
@@ -303,15 +305,15 @@ function showNoMoney() {
 
 
 					</div> <!-- END OF "USER'S CART" -->
-					<div id="nomoney_div"> 
-					<span id="nomoney" onClick="showNoMoney();">NO MONEY? </span>
-					 </div>
+					<div id="nomoney_div">
+						<span id="nomoney" onClick="showNoMoney();">NO MONEY? </span>
+					</div>
 				</td>
 				<td>
 					<!-- DISPLAYS WHAT USER CAN BUY -->
 					<div id="shop_div" align="right">
 						<!-- WEAPONS -->
-						<div>SHOP ITEMS</div>
+						<h2 style="color: black;">SHOP ITEMS:</h2>
 						<div class="margin_div_vertical"></div>
 						<div>
 							<span class="weapon_name">WEAPONS </span>
@@ -327,9 +329,8 @@ function showNoMoney() {
 										info="${weapon.getItemName()}"> <img class="tTip"
 										src="${weapon.getItemPicture()}"
 										title="<strong>NAME: </strong> ${weapon.getItemName()} <br />
-									<strong>TYPE: </strong> ${weapon.isWeaponType()} <br />
 									<strong>HIT POINTS: </strong> ${weapon.getHitPoints()} <br />
-									<strong>PRICE: </strong> ${weapon.getItemPrice()} <br />
+									<strong>PRICE: </strong> ${weapon.getItemPrice() * 1.0} <br />
 									<strong>Description: </strong> ${weapon.getItemDescription()}" />
 
 									</a>
@@ -357,7 +358,7 @@ function showNoMoney() {
 										<img class="tTip" src="${armor.getItemPicture()}"
 										title="<strong>NAME: </strong> ${armor.getItemName()} <br />
 											<strong>PROTECTION: </strong> ${armor.getArmorProtection()} <br />
-											<strong>PRICE: </strong> ${armor.getItemPrice()} <br />
+											<strong>PRICE: </strong> ${armor.getItemPrice() * 1.0} <br />
 											<strong>Description: </strong> ${armor.getItemDescription()} " />
 									</a>
 								</div>
@@ -382,9 +383,8 @@ function showNoMoney() {
 										id="aid|${aid.getItemId()}" info="${aid.getItemName()}"> <img
 										class="tTip" src="${aid.getItemPicture()}"
 										title="<strong>NAME: </strong> ${aid.getItemName()} <br />
-										<strong>TYPE: </strong> ${aid.getAidType()} <br />
 										<strong>EFFECT: </strong> ${aid.getAidEffect()} <br />
-										<strong>PRICE: </strong> ${aid.getItemPrice()} <br />
+										<strong>PRICE: </strong> ${aid.getItemPrice() * 1.0} <br />
 										<strong>Description: </strong> ${aid.getItemDescription()}" />
 									</a>
 								</div>

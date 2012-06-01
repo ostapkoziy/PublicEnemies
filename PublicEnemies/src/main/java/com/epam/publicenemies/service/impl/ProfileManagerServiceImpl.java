@@ -225,4 +225,15 @@ public class ProfileManagerServiceImpl implements IProfileManagerService {
 	public boolean updateExperience(int characterId, int experience) {
 		return profileDao.updateExperience(characterId, experience);
 	}
+	
+	/**
+	 * Update character's stats
+	 * @param strength - strength of character
+	 * @param agility - agility of character
+	 * @param intellect - intellect of character
+	 * @return
+	 */
+	public boolean updateStats(int characterId, int strength, int agility, int intellect) {
+		return profileDao.updateStats(characterId, strength, agility, intellect);
+	}
 }

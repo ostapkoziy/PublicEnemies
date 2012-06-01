@@ -6,7 +6,9 @@ import java.util.Set;
 import java.util.TreeSet;
 
 
-
+/**
+ * @author Ostap Koziy
+ */
 public class SpectrumAnalyzer {
 	private String[][] map = new String[13][13];
 	private static final SpectrumAnalyzer INSTANCE = new SpectrumAnalyzer();

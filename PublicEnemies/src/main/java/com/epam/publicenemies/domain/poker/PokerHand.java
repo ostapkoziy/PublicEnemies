@@ -1,5 +1,7 @@
 package com.epam.publicenemies.domain.poker;
-
+/**
+ * @author Ostap Koziy
+ */
 public class PokerHand {
 	private PokerCard card1;
 	private PokerCard card2;

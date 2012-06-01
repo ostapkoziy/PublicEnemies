@@ -8,7 +8,9 @@ import org.apache.log4j.Logger;
 
 import com.epam.publicenemies.web.casino.poker.PokerGame;
 
-
+/**
+ * @author Ostap Koziy
+ */
 public class PokerPlayer implements IPokerPlayer {
 
 
@@ -16,7 +18,29 @@ public class PokerPlayer implements IPokerPlayer {
 	
 	private String name;
 	private int cash;
+	private PokerStats stats;
+	private String avatar;
+	
+	
+	
+	
+	public String getAvatar() {
+		return avatar;
+	}
+
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
+	}
+
+	public PokerStats getStats() {
+		return stats;
+	}
+
+	public void setStats(PokerStats stats) {
+		this.stats = stats;
+	}
 	//===================
+	
 	
 	public PokerPlayer(String name, int cash) {
 		this.name = name;

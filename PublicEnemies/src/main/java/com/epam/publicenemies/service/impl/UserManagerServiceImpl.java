@@ -114,4 +114,13 @@ public class UserManagerServiceImpl implements IUserManagerService
 			String avatar, int money, int userCharacter) {
 		return userDao.updateUserInfo(userId, email, nickName, avatar, money, userCharacter);
 	}
+	
+	/**
+	 * Get User object by user id
+	 * @param userId - user id
+	 * @return User object
+	 */
+	public User getUserById(int userId) {
+		return userDao.findUserById(userId);
+	}
 }

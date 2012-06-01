@@ -3,7 +3,9 @@ package com.epam.publicenemies.domain.poker;
 import java.util.Comparator;
 
 
-
+/**
+ * @author Ostap Koziy
+ */
 public class PokerCardComparator implements Comparator<PokerCard> {
 
 	public int compare(PokerCard arg0, PokerCard arg1) {
