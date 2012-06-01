@@ -17,7 +17,6 @@ public class UCharacter
 	private int			weapon2;
 	private int			armor;
 	private int			aid;
-	// not in database TODO make Stats Calculator
 	private int			HP;
 	private int			allUserHP;
 	private int			damage;

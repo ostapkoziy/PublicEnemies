@@ -30,10 +30,6 @@
 					<img src="img/stats/inteligence.png">
 					${game.connectorProfile.getIntellect()}
 				</div>
-				<div id="leftDamage">
-					<img src="img/stats/inteligence.png">
-					${game.connectorProfile.getDamage()}
-				</div>
 			</div>
 		</div>
 		<div id="leftAvatar">
@@ -84,10 +80,6 @@
 				</div>
 				<div id="rightInteligence">
 					${game.creatorProfile.getIntellect()}
-					<img src="img/stats/inteligence.png">
-				</div>
-				<div id="rightDamage">
-					${game.creatorProfile.getDamage()}
 					<img src="img/stats/inteligence.png">
 				</div>
 			</div>

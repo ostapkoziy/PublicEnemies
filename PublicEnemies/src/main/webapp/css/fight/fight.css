@@ -80,12 +80,11 @@ body { /* 	background: url("../../img/fight/bg3.png") no-repeat; */
 	border-radius: 5px;
 }
 /* ************************************** */
-#rightAgility,#rightStrength,#rightInteligence,#rightDamage {
+#rightAgility,#rightStrength,#rightInteligence {
 	float: right;
-	/* 	height: 40px; */
 }
 
-#leftAgility,#leftStrength,#leftInteligence,#leftDamage { /* 	height: 40px; */
+#leftAgility,#leftStrength,#leftInteligence {
 	
 }
 /* ***************Attack Block**************************** */
@@ -166,13 +165,13 @@ body { /* 	background: url("../../img/fight/bg3.png") no-repeat; */
 	float: right;
 }
 /* *************AVATAR*********************** */
-#leftAvatar { /* 	margin-left: 100px; */
+#leftAvatar {
 	width: 200px;
 	height: 250px;
 	float: left;
 }
 
-#rightAvatar { /* 	margin-left: 100px; */
+#rightAvatar {
 	height: 250px;
 	width: 200px;
 	float: right;
@@ -182,14 +181,12 @@ body { /* 	background: url("../../img/fight/bg3.png") no-repeat; */
 	float: right;
 	height: 400px;
 	width: 100px;
-	/* 	outline: 3px solid red; */
 	float: left;
 }
 
 #leftInventory {
 	height: 400px;
 	width: 100px;
-	/* 	outline: 7px solid blue; */
 	float: left;
 }
 

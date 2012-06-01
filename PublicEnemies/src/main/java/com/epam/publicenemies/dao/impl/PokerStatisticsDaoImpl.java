@@ -50,7 +50,7 @@ public class PokerStatisticsDaoImpl implements IPokerStaticticsDao {
 	 * @return true if operation was successfully
 	 */
 	public boolean addPlayedGames(int userId, int games) {
-		final String UPDATE_SQL = "UPDATE pokerStatistics SET totalGames=totalGames+? WHERE userId=? AND userPoker=pokerId";
+		final String UPDATE_SQL = "UPDATE pokerStatistics, users SET totalGames=totalGames+? WHERE userId=? AND userPoker=pokerId";
 		int i = jdbcTemplate.update(UPDATE_SQL, new Object[] {games, userId});
 		if(i>0) {
 			log.info("PokerStatisticsDaoImpl.addPlayedGames : user's("+userId+") played games was increased");
@@ -66,7 +66,7 @@ public class PokerStatisticsDaoImpl implements IPokerStaticticsDao {
 	 * @return true if operation was successfully
 	 */
 	public boolean updatePlayedGames(int userId, int games) {
-		final String UPDATE_SQL = "UPDATE pokerStatistics SET totalGames=? WHERE userId=? AND userPoker=pokerId";
+		final String UPDATE_SQL = "UPDATE pokerStatistics, users SET totalGames=? WHERE userId=? AND userPoker=pokerId";
 		int i = jdbcTemplate.update(UPDATE_SQL, new Object[] {games, userId});
 		if(i>0) {
 			log.info("PokerStatisticsDaoImpl.updatePlayedGames : user's("+userId+") played games was updated to "+games);
