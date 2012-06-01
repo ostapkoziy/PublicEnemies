@@ -1,5 +1,6 @@
 package com.epam.publicenemies.domain.fight;
 
+import com.epam.publicenemies.domain.Profile;
 import com.epam.publicenemies.utils.Utils;
 
 /**
@@ -23,10 +24,11 @@ public enum RoundResult
 		@Override
 		public boolean roundResult(Fight fight, int creatorDamage, int connectorDamage)
 		{
+			Profile profile = fight.getProfile("connector");
 			int connectorHP = fight.getConnectorProfile().getHP();
 			fight.getCreatorProfile().setHP(0);
 			fight.getConnectorProfile().setHP(connectorHP - creatorDamage);
-			fight.setWhoWins(fight.getProfile("connector"));
+			fight.setWhoWins(profile);
 			fight.setWhoLoses(fight.getProfile("creator"));
 			Utils.connectorWins(fight);
 			return true;
@@ -37,10 +39,11 @@ public enum RoundResult
 		@Override
 		public boolean roundResult(Fight fight, int creatorDamage, int connectorDamage)
 		{
+			Profile profile = fight.getProfile("creator");
 			int creatorHP = fight.getCreatorProfile().getHP();
 			fight.getConnectorProfile().setHP(0);
 			fight.getCreatorProfile().setHP(creatorHP - connectorDamage);
-			fight.setWhoWins(fight.getProfile("creator"));
+			fight.setWhoWins(profile);
 			fight.setWhoLoses(fight.getProfile("connector"));
 			Utils.creatorWins(fight);
 			return true;

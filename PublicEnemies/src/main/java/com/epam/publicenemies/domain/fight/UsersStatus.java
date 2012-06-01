@@ -1,5 +1,6 @@
 package com.epam.publicenemies.domain.fight;
 
+import com.epam.publicenemies.domain.Profile;
 import com.epam.publicenemies.utils.Utils;
 
 /**
@@ -17,7 +18,8 @@ public enum UsersStatus
 		@Override
 		public boolean check(Fight fight)
 		{
-			fight.setWhoWins(fight.getProfile("connector"));
+			Profile profile = fight.getProfile("connector");
+			fight.setWhoWins(profile);
 			fight.setWhoLoses(fight.getProfile("creator"));
 			Utils.connectorWins(fight);
 			return true;
@@ -31,7 +33,8 @@ public enum UsersStatus
 		@Override
 		public boolean check(Fight fight)
 		{
-			fight.setWhoWins(fight.getProfile("creator"));
+			Profile profile = fight.getProfile("creator");
+			fight.setWhoWins(profile);
 			fight.setWhoLoses(fight.getProfile("connector"));
 			Utils.creatorWins(fight);
 			return true;
