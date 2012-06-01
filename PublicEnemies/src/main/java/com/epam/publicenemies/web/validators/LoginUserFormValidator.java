@@ -31,6 +31,7 @@ public class LoginUserFormValidator implements IValidator
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "password.empty");
 		if (errors.hasErrors()) return;
 		User uDomain = userManagerService.getUserByEmailAndPassword(user.getEmail(), user.getPassword());
+		log.info("**********DOMAIN: " + uDomain);
 		if (uDomain == null)
 		{
 			log.error("USER WITH EMAIL: " + user.getEmail() + " AND PASSWORD: " + user.getPassword() + " NOT FOUND");
