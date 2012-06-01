@@ -67,11 +67,11 @@ public class StandBlackJackController {
 
 		// Take cards for dealer
 		List<BlackJackCard> dealerCards = round.getDealerCards();
-		int dealerPoints = 0;
-		do {
+		int dealerPoints = engine.calculatePoints(dealerCards);
+		while (dealerPoints < 17) {
 			dealerCards.add(deck.getCard());
 			dealerPoints = engine.calculatePoints(dealerCards);
-		} while (dealerPoints < 17);
+		} 
 
 		// Check result
 		String playerResult = engine.checkResult(round.getPlayerPoints(),
@@ -80,7 +80,11 @@ public class StandBlackJackController {
 				round.getPlayerBet()));
 
 		// Set round
-		round.setPlayerResult(playerResult);
+		if (round.getPlayerCardsSplit() == null) {
+			round.setPlayerResult(playerResult);
+		} else {
+			round.setPlayerResultSplit(playerResult);
+		}
 
 		// Round to json
 		PrintWriter out = response.getWriter();
