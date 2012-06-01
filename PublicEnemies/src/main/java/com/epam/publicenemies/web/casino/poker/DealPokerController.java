@@ -18,6 +18,7 @@ import com.epam.publicenemies.domain.Profile;
 import com.epam.publicenemies.domain.blackjack.BlackJackDeck;
 import com.epam.publicenemies.domain.blackjack.BlackJackGameList;
 import com.epam.publicenemies.domain.poker.EasyBot;
+import com.epam.publicenemies.domain.poker.HardBot;
 import com.epam.publicenemies.domain.poker.IPokerPlayer;
 import com.epam.publicenemies.domain.poker.PokerGameList;
 import com.epam.publicenemies.domain.poker.PokerPlayer;
@@ -76,14 +77,27 @@ public class DealPokerController {
 		
 		// Set round
 		IPokerPlayer player1 = new PokerPlayer(profile.getNickName(), chips);
-		IPokerPlayer player2 = new EasyBot("Dirty Sanzhez", botChips);
-		PokerRound round = new PokerRound(player1, player2, 25, 50);
+		
+		String bot = (String) request.getSession().getAttribute("bot");
+		IPokerPlayer player2;
+		PokerRound round;
+		if(bot.contains("easy")){
+			player2 = new EasyBot("Dirty Sanzhez", botChips);
+			player2.setAvatar("img/avatars/poker_easy.png");
+			round = new PokerRound(player1, player2, 25, 50);
+		}
+		else{
+			player2 = new HardBot("Sam Farha", botChips);
+			player2.setAvatar("img/avatars/poker_hard.png");
+			round = new PokerRound(player1, player2, 50, 100);
+		}
+
 		log.info("DIRTY SANCHEZ HAS - " + botChips);
 		round.setDealer(false);
 		round.initGame();
 		RaisePokerController.counter = 0;
 		
-		log.info("PUSH PUSH" + chips);
+		log.info("PUSH PUSH PUSH PUSH PUSH - " + chips);
 		
 		// Get game
 		PokerGame game = games.getGameById(userId);
@@ -108,14 +122,53 @@ public class DealPokerController {
 		times3bet += PokerCreateController.pokerStats.getTribetCounter();
 		timesf3bet += PokerCreateController.pokerStats.getF3betCounter();
 		
+		if(timesPfr == 0){
+			timesPfr = 1;
+		}
+		if(timesVpip == 0){
+			timesVpip = 1;
+		}
+		if(times3bet == 0){
+			times3bet = 1;
+		}
+		if(timesf3bet == 0){
+			timesf3bet = 1;
+		}
+		
 		int games = PokerCreateController.pokerStats.getPlayedGames();
 		games += PokerCreateController.pokerStats.getPlayedGamesCounter();
 		
 		PokerCreateController.pokerStats.setPlayedGames(games);
-		PokerCreateController.pokerStats.setVpip((timesVpip / games) * 100);
-		PokerCreateController.pokerStats.setPfr((timesPfr / PokerCreateController.pokerStats.getVpip()) * 100);
-		PokerCreateController.pokerStats.set3bet((times3bet / PokerCreateController.pokerStats.getVpip()) * 100);
-		PokerCreateController.pokerStats.setf3bet((timesf3bet / PokerCreateController.pokerStats.getPfr()) * 100);
+		
+		
+		try {
+			PokerCreateController.pokerStats.setVpip((timesVpip / games) * 100);
+			if(PokerCreateController.pokerStats.getVpip() == 0){
+				PokerCreateController.pokerStats.setVpip(1);
+			}
+			
+			if((timesPfr / PokerCreateController.pokerStats.getVpip()) * 100 >= 100){
+				timesPfr = PokerCreateController.pokerStats.getVpip();
+			}
+			PokerCreateController.pokerStats.setPfr((timesPfr / PokerCreateController.pokerStats.getVpip()) * 100);
+			
+			
+			if((times3bet / PokerCreateController.pokerStats.getVpip()) * 100 >= 100){
+				times3bet = PokerCreateController.pokerStats.get3bet();
+			}
+			PokerCreateController.pokerStats.set3bet((times3bet / PokerCreateController.pokerStats.getVpip()) * 100);
+			
+			
+			if((timesf3bet / PokerCreateController.pokerStats.getPfr()) * 100 >= 100){
+				timesf3bet = PokerCreateController.pokerStats.getPfr();
+			}
+			PokerCreateController.pokerStats.setf3bet((timesf3bet / PokerCreateController.pokerStats.getPfr()) * 100);
+		} catch (ArithmeticException e) {
+			pokerStatisticsService.updateVPIP(userId, (byte)25);
+			pokerStatisticsService.updatePFR(userId, (byte)15);
+			pokerStatisticsService.update3BET(userId, (byte)22);
+			pokerStatisticsService.updateF3BET(userId, (byte)50);
+		}
 		
 		pokerStatisticsService.updatePlayedGames(userId, PokerCreateController.pokerStats.getPlayedGames());
 		pokerStatisticsService.updateVPIP(userId, PokerCreateController.pokerStats.getVpip());

@@ -3,7 +3,56 @@ $(document)
 				function() {
 					var image_prefix = "img/cards/";
 					var image_suffix = ".png";
-					sendAjax(0, 0);
+
+					$("#player_easy").click(function(){
+							var none = 0;
+							var bot = $("#player_easy").attr("id");
+							$.ajax
+							{
+								$.ajax({
+									url : "selectPlayerPokerController.html",
+									data : ({
+										playerAvatar : bot,
+										none : none
+									}),
+									success : function(data) {
+										sendAjax(0, 0);
+										$("#result").attr("hidden", "");
+										$("#select").attr("hidden", "");
+									},
+									error : function(e, ajaxOptions, thrownError) {
+										alert("Starting failed");
+									}
+
+								});
+							}
+					});
+					
+					$("#player_hard").click(function(){
+						var none = 0;
+						var bot = $("#player_hard").attr("id");
+						$.ajax
+						{
+							$.ajax({
+								url : "selectPlayerPokerController.html",
+								data : ({
+									playerAvatar : bot,
+									none : none
+								}),
+								success : function(data) {
+									sendAjax(0, 0);
+									$("#result").attr("hidden", "");
+									$("#select").attr("hidden", "");
+								},
+								error : function(e, ajaxOptions, thrownError) {
+									alert("Starting failed");
+								}
+
+							});
+						}
+					});
+					
+					
 					$("#newRound").click(function() {
 							var bet = $("#userBetInput").val();
 							var botBet = $("#botBetInput").val();
@@ -49,6 +98,7 @@ $(document)
 						}
 						$("#player_card1").attr("class", "none");
 						$("#player_card2").attr("class", "none");
+						$("img#bot_avatar").attr("src", pokerGame.pokerGameRound.player2.avatar);
 						$("img#player_avatar").attr("src", pokerGame.user1Profile.avatar);
 						$("#player_name").empty().append(pokerGame.pokerGameRound.player1.name);
 						$("#player_chips").empty().append(pokerGame.pokerGameRound.player1.cash);

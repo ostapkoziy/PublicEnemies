@@ -66,7 +66,7 @@ public class RaisePokerController {
 	@RequestMapping("/raisePokerController")
 	public void deal(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		JSONSerializer json = new JSONSerializer();
@@ -80,9 +80,10 @@ public class RaisePokerController {
 		
 		PokerGame game = games.getGameById(userId);
 		PokerRound round = game.getPokerGameRound();
+
+		log.info(round.getPlayer1().getName() + " BET " + playerBet);
 		
 		
-		// If Player Folds
 		if(playerBet < 0){
 			round.setResult("Player folded");
 
@@ -92,6 +93,7 @@ public class RaisePokerController {
 			}
 			
 			game.setPokerGameRound(round);
+			round.setPot(round.getPot());
 			log.info("Pot - " + round.getPot());
 			round.getPlayer2().setCash(round.getPlayer2().getCash() + round.getPot());
 			request.getSession().setAttribute("botChips", round.getPlayer2().getCash());
@@ -102,11 +104,12 @@ public class RaisePokerController {
 			return;
 		}
 		
-		
-		
 		round.setPlayer1Bet(round.getPlayer1Bet() + playerBet);
-		round.getPlayer1().setCash(round.getPlayer1().getCash() - playerBet); 	
-		log.info(round.getPlayer1().getName() + " BET " + playerBet);
+		round.getPlayer1().setCash(round.getPlayer1().getCash() - playerBet);
+		round.setPot(round.getPot() + playerBet);
+		
+
+		
 		if((playerBet > 0) && (round.getTable().getFlop().size() == 0)){
 			PokerCreateController.pokerStats.addVpipCounter();
 			log.info("vpip counter increased");
@@ -117,9 +120,8 @@ public class RaisePokerController {
 		}
 		log.info("Player1 cash updated to " + round.getPlayer1().getCash());
 		botChips = round.getPlayer2().getCash();
-		
-		
-		
+
+		round.getPlayer2().setStats(PokerCreateController.pokerStats);
 		if(round.getPlayer1Bet() > round.getPlayer2Bet()){
 			if(round.getTable().getFlop().size() == 0){
 				PokerCreateController.pokerStats.addPfrCounter();

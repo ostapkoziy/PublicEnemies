@@ -17,4 +17,11 @@ public interface IPokerPlayer{
 
 	public void setCash(int i);
 
+	public void setStats(PokerStats stats);
+	
+	public PokerStats getStats();
+	
+	public void setAvatar(String avatar);
+	
+	public String getAvatar();
 }

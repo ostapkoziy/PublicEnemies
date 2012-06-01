@@ -16,9 +16,22 @@ public class HardBot implements IPokerPlayer {
 	public boolean initiative = false;
 	private PokerGame pokerGame;
 	private PokerStats stats;
+	public String avatar;
 	
 	
 	
+	public String getAvatar() {
+		return avatar;
+	}
+
+
+
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
+	}
+
+
+
 	public PokerStats getStats() {
 		return stats;
 	}
@@ -117,11 +130,20 @@ public class HardBot implements IPokerPlayer {
 		int result = 0;
 		CombinationChecker cChecker = new CombinationChecker();
 		PokerCombination combo = null;
-		boolean isDryBoard = false;
 		combo = cChecker.checkForCombinations(deck.getTable(), hand);
-
+		if(stats.getPfr() < 8){
+			if(combo.getRank() > 1){
+				this.call(deck);
+			}else if(combo.getRank() >= 3){
+				this.triBet(pokerGame);
+			}
+		}else if(stats.getPfr() < 20){
+			this.bet(pokerGame);
+		}else if(stats.getPfr() < 100){
+			this.triBet(pokerGame);
+		}
 		
-		return result;
+		return call(deck);
 	}
 	
 	private int makeMoveRiver(PokerTable deck, PokerHand hand,
@@ -130,7 +152,12 @@ public class HardBot implements IPokerPlayer {
 		CombinationChecker cChecker = new CombinationChecker();
 		PokerCombination combo = null;
 		combo = cChecker.checkForCombinations(deck.getTable(), hand);
-		
+		if((stats.get3bet() < 10) || (stats.getf3bet() > 40)){
+			this.triBet(pokerGame);
+		}
+		else{
+			this.call(deck);
+		}
 		return result;
 	}
 	

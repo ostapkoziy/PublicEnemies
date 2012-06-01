@@ -111,4 +111,52 @@ img.highlight {
   box-shadow: 0px 0px 20px rgba(255,255,255,0.99);
 }
 
+div#result {
+	background: url("../img/fight/overlay.png");
+	border: 5px solid black;
+	width: 100%;
+	height: 100%;
+	opacity: 0.7;
+	position: fixed;
+	left: 0;
+	top: 0;
+	z-index: 1000;
+	
+}
+#select {
+	border: 2px solid black;
+	z-index: 4000;
+	position: absolute;
+	left: 40%;
+	top: 40%;
+}
+#select_table{
+	background: url("../img/layout/poker_div.png");
+	width: 450px;
+	height: 300px;
+}
 
+#player_easy, #player_hard{
+    opacity: 0.8;
+
+    /*Transition*/
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+
+    /*Reflection*/
+    -webkit-box-reflect: below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(.7, transparent), to(rgba(0,0,0,0.1)));
+}
+
+
+#player_easy:hover, #player_hard:hover {  
+   opacity: 1;
+	border: 2px solid white;
+   /*Reflection*/
+  -webkit-box-reflect: below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(.7, transparent), to(rgba(0,0,0,0.4)));
+
+   /*Glow*/
+  -webkit-box-shadow: 0px 0px 20px rgba(255,255,255,0.8);
+  -moz-box-shadow: 0px 0px 20px rgba(255,255,255,0.8);
+  box-shadow: 0px 0px 20px rgba(255,255,255,0.8);
+}

@@ -1,6 +1,7 @@
 $(document)
 		.ready(
 				function() {
+					var game;
 					var image_prefix = "img/cards/";
 					var image_suffix = ".png";
 					$("#botBetInput").hide();
@@ -12,12 +13,14 @@ $(document)
 						toCall = toCall - userBet;
 						$("#userBetInput").val(toCall);
 						sendAjax(toCall, 0);
+						
 					});
 
 					$("#raise_button").click(function() {
 						var bet = $("#userBetInput").val();
 						var botBet = $("#botBetInput").val();
 						sendAjax(bet, botBet);
+						
 					});
 					$("#fold_button").click(function() {
 						if (confirm('Do you really want to fold?')) {
@@ -72,6 +75,7 @@ $(document)
 					}
 
 					function allDataUpdate(pokerGame) {
+						game = pokerGame;
 						if (pokerGame.pokerGameRound.result == "Bot folded") {
 							alert("Bot folded, you Win");
 							setTimeout(function() {
@@ -223,5 +227,5 @@ $(document)
 						$("td#7").attr("class", "no").attr("title", "");
 						$("td#8").attr("class", "no").attr("title", "");
 					}
-
+					
 				});

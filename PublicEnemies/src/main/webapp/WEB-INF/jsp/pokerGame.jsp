@@ -17,6 +17,19 @@
 <title>Poker</title>
 </head>
 <body>
+	<div id="result"></div>
+	<div id="select">
+		<table id="select_table">
+			<tr>
+				<td align="center">
+					<img id="player_easy" title="Play against easy bot with blinds 25/50" src="img/avatars/poker_easy.png">
+				</td>
+				<td align="center">
+					<img id="player_hard" title="Play against hard bot with blinds 50/100" src="img/avatars/poker_hard.png">
+				</td>
+			</tr>
+		</table>
+	</div>
 	<table align="center" height="120">
 		<tr>
 			<td align="center"><a href="userStartPage.html"><img src="img/gamelogo.png"></img></a></td>
@@ -27,7 +40,7 @@
 				<table id="poker_table" class="sample" align="center" width="1000">
 					<tr align="center">
 						<td>
-							<img style="position:relative; top:110px; left:-40px; width:80px; height:80px"  border="2" SRC="img/avatars/default.png">
+							<img id="bot_avatar" style="position:relative; top:110px; left:-40px; width:80px; height:80px"  border="2" SRC="img/avatars/default.png">
 							<img id="botMove" style="position:relative; top:110px; left:-40px;" src="">
 						</td>
 						<td>
