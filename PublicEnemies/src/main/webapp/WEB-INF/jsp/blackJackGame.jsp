@@ -19,6 +19,10 @@
 <body>
 	<table align="center">
 		<tr>
+			<td><img src="${player_avatar}"></img></td>
+			<td><div>${player_nickname}</div></td>
+		</tr>
+		<tr>
 			<td align="center"><a href="userStartPage.html"><img
 					src="img/gamelogo.png"></img></a></td>
 		</tr>
@@ -26,11 +30,16 @@
 			<td>
 				<table id="blackjack_table" height="800" width="1000" align="center">
 					<tr>
-						<td><img id="10_button" src="img/chips/10.png" style="position: relative; top: 110px; left: 310px;" class="active"> 
-							<img id="25_button" src="img/chips/25.png" style="position: relative; top: 140px; left: 300px;" class="active"> 
-							<img id="50_button" src="img/chips/50.png" style="position: relative; top: 170px; left: 290px;" class="active"> 
-							<img id="100_button" src="img/chips/100.png" style="position: relative; top: 195px; left: 285px;" class="active"></img>
-							</td>
+						<td><img id="10_button" src="img/chips/10.png"
+							style="position: relative; top: 110px; left: 310px;"
+							class="active"> <img id="25_button" src="img/chips/25.png"
+							style="position: relative; top: 140px; left: 300px;"
+							class="active"> <img id="50_button" src="img/chips/50.png"
+							style="position: relative; top: 170px; left: 290px;"
+							class="active"> <img id="100_button"
+							src="img/chips/100.png"
+							style="position: relative; top: 195px; left: 285px;"
+							class="active"></img></td>
 						<td><div>
 								<img id="bet"
 									style="position: relative; top: -20px; left: 330px;">
@@ -65,15 +74,20 @@
 						</td>
 					</tr>
 					<tr align="center">
-						<td><img id="deal_button" src="img/layout/dealg.png" style="position: relative; top: -20px;" class="notactive"></img></td>
-						<td><img id="stand_button" src="img/layout/standg.png" style="position: relative; top: -20px;" class="notactive"></img></td>
-						<td><img id="hit_button" src="img/layout/hitg.png" style="position: relative; top: -20px;" class="notactive"></img></td>
-						<td><img id="split_button" src="img/layout/splitg.png" style="position: relative; top: -20px;" class="notactive"></img></td>
-						<td><img id="double_button" src="img/layout/doubleg.png" style="position: relative; top: -20px;" class="notactive"></img></td>
+						<td><img id="deal_button" src="img/layout/dealg.png"
+							style="position: relative; top: -20px;" class="notactive"></img></td>
+						<td><img id="stand_button" src="img/layout/standg.png"
+							style="position: relative; top: -20px;" class="notactive"></img></td>
+						<td><img id="hit_button" src="img/layout/hitg.png"
+							style="position: relative; top: -20px;" class="notactive"></img></td>
+						<td><img id="split_button" src="img/layout/splitg.png"
+							style="position: relative; top: -20px;" class="notactive"></img></td>
+						<td><img id="double_button" src="img/layout/doubleg.png"
+							style="position: relative; top: -20px;" class="notactive"></img></td>
 						<td><form action="exitBlackJackController.html">
-								<input type="image" src="img/layout/exit.png"alt="Submit button" style="position: relative; top: -20px;">
-							</form>
-						</td>
+								<input type="image" src="img/layout/exit.png"
+									alt="Submit button" style="position: relative; top: -20px;">
+							</form></td>
 					</tr>
 				</table>
 			</td>
