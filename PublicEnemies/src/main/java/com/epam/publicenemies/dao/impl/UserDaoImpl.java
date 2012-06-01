@@ -249,11 +249,13 @@ public class UserDaoImpl implements IUserDao {
 	* @return User object
 	* */
 	public User findUserByEmailAndPassword(final String email, final String password){
-		final String query = "SELECT userId, nickName, money, avatar, userCharacter, regDate FROM users WHERE email=? AND password=?";
+		final String query = "SELECT userId, nickName, money, avatar, userCharacter, regDate, email, password " +
+				"FROM users WHERE email=? AND password=?";
 		User user = jdbcTemplate.queryForObject(query, new Object[]{email, password}, new RowMapper<User>() {
 			public User mapRow(ResultSet resultSet, int rowNum)
 					throws SQLException {
-				return new User(resultSet.getInt("userId"), email, password, 
+				return new User(resultSet.getInt("userId"), resultSet.getString("email"),
+						resultSet.getString("password"), 
 						resultSet.getString("nickName"),
 						resultSet.getInt("money"),
 						resultSet.getString("avatar"),
@@ -277,7 +279,8 @@ public class UserDaoImpl implements IUserDao {
 		User user = jdbcTemplate.queryForObject(query, new Object[]{email, password}, new RowMapper<User>() {
 			public User mapRow(ResultSet resultSet, int rowNum)
 					throws SQLException {
-				return new User(resultSet.getInt("userId"), email, password, 
+				return new User(resultSet.getInt("userId"), resultSet.getString("email"),
+						resultSet.getString("password"), 
 						resultSet.getString("nickName"),
 						resultSet.getInt("money"),
 						resultSet.getString("avatar"),
