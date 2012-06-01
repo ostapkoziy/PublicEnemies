@@ -92,16 +92,16 @@ $(document).ready(function(){
 						<br />
 						<h3>Actual stats:</h3>
 						<p>
-							<strong> <abbr>Strength:</abbr>
-							</strong> need to calculate
+							<strong> <abbr>HP:</abbr>
+							</strong> ${profile.getAllHP()}
 						</p>
 						<p>
-							<strong> <abbr>Agility:</abbr>
-							</strong> need to calculate
+							<strong> <abbr>Damage:</abbr>
+							</strong> ${profile.getDamage()}
 						</p>
 						<p>
-							<strong> <abbr>Intelligence:</abbr>
-							</strong> need to calculate
+							<strong> <abbr>Defence:</abbr>
+							</strong> ${profile.getDefence()}
 						</p>
 
 					</div>

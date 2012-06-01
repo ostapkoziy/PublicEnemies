@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.epam.publicenemies.domain.Profile;
 import com.epam.publicenemies.service.IProfileManagerService;
 import com.epam.publicenemies.service.IUserRatingService;
+import com.epam.publicenemies.web.fight.StatsCalculator;
 
 /**
  * This controller allows users to see their character
@@ -41,9 +42,10 @@ public class ProfileInfoController {
 	public ModelAndView showProfile(HttpServletRequest request)	{
 		ModelAndView mav = new ModelAndView(); 
 		
-		mav.addObject("profile", (Profile) profileManagerService
-				.getProfileByUserId((Integer) request.getSession()
-						.getAttribute("userId")));
+		Profile profile = (Profile) profileManagerService.getProfileByUserId((Integer) request.getSession()
+						.getAttribute("userId"));
+		StatsCalculator.makeStats(profile);
+		mav.addObject("profile", profile);
 		List<Map<String, Object>> top10ByExp = userRatingService.sortUsersByExperience();	
 		
 		if (top10ByExp.size() < 10) {
