@@ -1177,5 +1177,21 @@ public class ProfileDaoImpl implements IProfileDao {
 			return false;
 	}
 	
-	
+	/**
+	 * Update character's stats
+	 * @param strength - strength of character
+	 * @param agility - agility of character
+	 * @param intellect - intellect of character
+	 * @return
+	 */
+	public boolean updateStats(int characterId, int strength, int agility, int intellect) {
+		final String UPDATE_SQL = "UPDATE characters SET strength=?, agility=?, intellect=? WHERE characterId=?";
+		int i = jdbcTemplate.update(UPDATE_SQL, new Object [] {strength, agility, intellect, characterId});
+		if (i>0) {
+			log.info("ProfileDaoImpl.updateStats : strength("+strength+"), agility("+agility+"), intellect("+intellect+") " +
+					"updated for character("+characterId+")");
+			return true;
+		} else
+			return false;
+	}
 }
