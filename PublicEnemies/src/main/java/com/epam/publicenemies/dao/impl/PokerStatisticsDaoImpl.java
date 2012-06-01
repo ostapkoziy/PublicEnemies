@@ -198,7 +198,7 @@ public class PokerStatisticsDaoImpl implements IPokerStaticticsDao {
 	 * @return true if operation was successfully
 	 */
 	 public boolean updateF3BET(int userId, byte F3BET) {
-		final String UPDATE_SQL = "UPDATE pokerStatistics, users SET 3BET=? WHERE userId=? AND userPoker=pokerId";
+		final String UPDATE_SQL = "UPDATE pokerStatistics, users SET F3BET=? WHERE userId=? AND userPoker=pokerId";
 		int i = 0;
 		i =  jdbcTemplate.update(UPDATE_SQL, new Object[] {F3BET, userId});
 		if(i>0){
