@@ -13,6 +13,7 @@ import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
@@ -249,21 +250,27 @@ public class UserDaoImpl implements IUserDao {
 	* @return User object
 	* */
 	public User findUserByEmailAndPassword(final String email, final String password){
-		final String query = "SELECT userId, nickName, money, avatar, userCharacter, regDate, email, password " +
+		final String query = "SELECT  userId, nickName, money, avatar, userCharacter, regDate, email, password " +
 				"FROM users WHERE email=? AND password=?";
-		User user = jdbcTemplate.queryForObject(query, new Object[]{email, password}, new RowMapper<User>() {
-			public User mapRow(ResultSet resultSet, int rowNum)
-					throws SQLException {
-				return new User(resultSet.getInt("userId"), resultSet.getString("email"),
-						resultSet.getString("password"), 
-						resultSet.getString("nickName"),
-						resultSet.getInt("money"),
-						resultSet.getString("avatar"),
-						resultSet.getInt("userCharacter"),
-						resultSet.getTimestamp("regDate"));
-			}
-		});
+		//User user =// new User();
+		//try {
+		User	user = jdbcTemplate.queryForObject(query, new Object[]{email, password}, new RowMapper<User>() {
+				public User mapRow(ResultSet resultSet, int rowNum)
+						throws SQLException {
+					return new User(resultSet.getInt("userId"), resultSet.getString("email"),
+							resultSet.getString("password"), 
+							resultSet.getString("nickName"),
+							resultSet.getInt("money"),
+							resultSet.getString("avatar"),
+							resultSet.getInt("userCharacter"),
+							resultSet.getTimestamp("regDate"));
+				}
+			});
+		//} catch (DataAccessException e) {
+		//	e.printStackTrace();
+		//}
 		
+		log.info("user : " + user.getEmail() + " " + user.getPassword());
 		return user;
 	}
 
@@ -274,7 +281,7 @@ public class UserDaoImpl implements IUserDao {
 	 * @return User object
 	 */
 	public User findAdmin(final String email, final String password) {
-		final String query = "SELECT userId, nickName, money, avatar, userCharacter, regDate FROM users WHERE " +
+		final String query = "SELECT userId, email, password nickName, money, avatar, userCharacter, regDate FROM users WHERE " +
 				"email=? AND password=? AND role='admin'";
 		User user = jdbcTemplate.queryForObject(query, new Object[]{email, password}, new RowMapper<User>() {
 			public User mapRow(ResultSet resultSet, int rowNum)
