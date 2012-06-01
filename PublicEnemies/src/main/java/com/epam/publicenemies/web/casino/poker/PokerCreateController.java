@@ -74,7 +74,7 @@ public class PokerCreateController {
 		pokerStatisticsService.updateVPIP(userId, (byte)1);
 		pokerStatisticsService.updatePFR(userId, (byte)1);
 		pokerStatisticsService.update3BET(userId, (byte)1);
-		pokerStatisticsService.updateF3BET(userId, (byte)1);
+		pokerStatisticsService.updateF3BET(userId, (byte)2);
 		
 		
 		
