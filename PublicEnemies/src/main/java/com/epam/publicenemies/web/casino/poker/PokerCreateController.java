@@ -25,6 +25,8 @@ import com.epam.publicenemies.domain.poker.PokerCard;
 import com.epam.publicenemies.domain.poker.PokerCombination;
 import com.epam.publicenemies.domain.poker.PokerGameList;
 import com.epam.publicenemies.domain.poker.PokerPlayer;
+import com.epam.publicenemies.domain.poker.PokerStats;
+import com.epam.publicenemies.service.IPokerStatisticsService;
 import com.epam.publicenemies.service.IProfileManagerService;
 import com.epam.publicenemies.utils.Utils;
 import com.epam.publicenemies.web.fight.ConnectController;
@@ -37,6 +39,7 @@ import com.epam.publicenemies.web.fight.CreateGameController;
 public class PokerCreateController {
 	private Logger log = Logger.getLogger(PokerCreateController.class);
 	
+	public static PokerStats pokerStats = new PokerStats();
 	
 	@Autowired
 	@Qualifier("pokerGames")
@@ -46,7 +49,12 @@ public class PokerCreateController {
 		this.games = games;
 	}
 
-	
+	@Autowired	
+	private IPokerStatisticsService pokerStatisticsService;
+	public void setPokerStatisticsService(IPokerStatisticsService pokerStatisticsService)
+	{
+		this.pokerStatisticsService = pokerStatisticsService;
+	}
 	
 	
 	@Autowired	
@@ -61,7 +69,15 @@ public class PokerCreateController {
 		Profile userProfile = profileManagerService.getProfileByUserId((Integer) request.getSession().getAttribute("userId"));
 		Integer userId = (Integer) request.getSession().getAttribute("userId");
 		Profile profile = profileManagerService.getProfileByUserId(userId);
-
+		
+		
+		pokerStats.setPlayedGames(pokerStatisticsService.getTotalGames(userId));
+		pokerStats.setVpip(pokerStatisticsService.getVPIP(userId));
+		pokerStats.setPfr(pokerStatisticsService.getPFR(userId));
+		pokerStats.set3bet(pokerStatisticsService.get3BET(userId));
+		pokerStats.setf3bet(pokerStatisticsService.getF3BET(userId));
+		
+		
 		Integer chips = 0;
 		try{
 			chips = Integer.valueOf(request.getParameter("chips"));
@@ -85,5 +101,6 @@ public class PokerCreateController {
 
 		return new ModelAndView("pokerGame", objects);
 	}
+	
 	
 }

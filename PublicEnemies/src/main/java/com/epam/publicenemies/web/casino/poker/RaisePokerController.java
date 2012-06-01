@@ -35,6 +35,7 @@ public class RaisePokerController {
 	private static Logger log = Logger.getLogger(RaisePokerController.class);
 	
 	static int counter = 0;
+	static boolean botRaised = false;
 	
 	@Autowired
 	@Qualifier("pokerGames")
@@ -63,6 +64,7 @@ public class RaisePokerController {
 	@RequestMapping("/raisePokerController")
 	public void deal(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		JSONSerializer json = new JSONSerializer();
@@ -82,6 +84,11 @@ public class RaisePokerController {
 		if(playerBet < 0){
 			round.setResult("Player folded");
 
+			if(botRaised){
+				PokerCreateController.pokerStats.addF3betCounter();
+				log.info("f3bet counter increased");
+			}
+			
 			game.setPokerGameRound(round);
 			log.info("Pot - " + round.getPot());
 			round.getPlayer2().setCash(round.getPlayer2().getCash() + round.getPot());
@@ -98,12 +105,24 @@ public class RaisePokerController {
 		round.setPlayer1Bet(round.getPlayer1Bet() + playerBet);
 		round.getPlayer1().setCash(round.getPlayer1().getCash() - playerBet); 	
 		log.info(round.getPlayer1().getName() + " BET " + playerBet);
+		if((playerBet > 0) && (round.getTable().getFlop().size() == 0)){
+			PokerCreateController.pokerStats.addVpipCounter();
+			log.info("vpip counter increased");
+		}
+		if((round.getPlayer1Bet() > round.getPlayer2Bet()) && (botRaised == true)){
+			PokerCreateController.pokerStats.addTribetCounter();
+			log.info("3bet counter increased");
+		}
 		log.info("Player1 cash updated to " + round.getPlayer1().getCash());
 		botChips = round.getPlayer2().getCash();
 		
 		
 		
 		if(round.getPlayer1Bet() > round.getPlayer2Bet()){
+			if(round.getTable().getFlop().size() == 0){
+				PokerCreateController.pokerStats.addPfrCounter();
+				log.info("pfr counter increased");
+			}
 			log.info("Bot bet before move - " + round.getPlayer2Bet());
 			try {
 				botBet = round.getPlayer2().makeMove(game);
@@ -144,6 +163,11 @@ public class RaisePokerController {
 				botBet = round.getPlayer2().getCash();
 			}
 			round.setPlayer2Bet(round.getPlayer2Bet() + botBet);
+			if(round.getPlayer2Bet() > round.getPlayer1Bet()){
+				botRaised = true;
+			}else{
+				botRaised = false;
+			}
 			log.info("Bot bet after adding - " + round.getPlayer2Bet());
 			round.getPlayer2().setCash(round.getPlayer2().getCash() - botBet);
 			log.info("Bet 1 - " + round.getPlayer1Bet() + " Bet 2 - " + round.getPlayer2Bet());

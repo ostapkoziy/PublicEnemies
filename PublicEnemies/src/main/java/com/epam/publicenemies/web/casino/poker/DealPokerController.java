@@ -22,6 +22,7 @@ import com.epam.publicenemies.domain.poker.IPokerPlayer;
 import com.epam.publicenemies.domain.poker.PokerGameList;
 import com.epam.publicenemies.domain.poker.PokerPlayer;
 import com.epam.publicenemies.domain.poker.PokerRound;
+import com.epam.publicenemies.service.IPokerStatisticsService;
 import com.epam.publicenemies.web.casino.blackjack.BlackJackEngine;
 import com.epam.publicenemies.web.casino.blackjack.DealBlackJackController;
 import com.google.gson.Gson;
@@ -33,6 +34,14 @@ import flexjson.JSONSerializer;
 public class DealPokerController {
 	private static Logger log = Logger.getLogger(DealPokerController.class);
 
+	@Autowired	
+	private IPokerStatisticsService pokerStatisticsService;
+	public void setPokerStatisticsService(IPokerStatisticsService pokerStatisticsService)
+	{
+		this.pokerStatisticsService = pokerStatisticsService;
+	}
+	
+	
 	@Autowired
 	@Qualifier("pokerGames")
 	private PokerGameList games;
@@ -46,11 +55,17 @@ public class DealPokerController {
 			throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
 		
+		PokerCreateController.pokerStats.addPlayedGames();
+		log.info("Poker stats - " + PokerCreateController.pokerStats.counters());
+		
+		
 		// Get player bet
 		Integer playerBet = Integer.valueOf(request.getParameter("playerBet"));
 
 		// Get userId
 		Integer userId = (Integer) request.getSession().getAttribute("userId");
+		
+		savePokerStats(userId);
 		
 		Profile profile = (Profile) request.getSession().getAttribute("userProfile");
 		
@@ -78,5 +93,40 @@ public class DealPokerController {
 		log.info("Sending new round - " + json.serialize(game));
 		out.print(json.serialize(game));
 		out.flush();
+	}
+	
+	public void savePokerStats(int userId) {
+		int timesVpip = (PokerCreateController.pokerStats.getVpip() / 100) * PokerCreateController.pokerStats.getPlayedGames();
+		int timesPfr = (PokerCreateController.pokerStats.getPfr() / 100) * PokerCreateController.pokerStats.getVpip();
+		int times3bet = (PokerCreateController.pokerStats.get3bet() / 100) * PokerCreateController.pokerStats.getVpip();
+		int timesf3bet = (PokerCreateController.pokerStats.getf3bet() / 100) * PokerCreateController.pokerStats.getPfr();
+		
+		timesVpip += PokerCreateController.pokerStats.getVpipCounter();
+		timesPfr += PokerCreateController.pokerStats.getPfrCounter();
+		times3bet += PokerCreateController.pokerStats.getTribetCounter();
+		timesf3bet += PokerCreateController.pokerStats.getF3betCounter();
+		
+		int games = PokerCreateController.pokerStats.getPlayedGames();
+		games += PokerCreateController.pokerStats.getPlayedGamesCounter();
+		
+		PokerCreateController.pokerStats.setPlayedGames(games);
+		PokerCreateController.pokerStats.setVpip((timesVpip / games) * 100);
+		PokerCreateController.pokerStats.setPfr((timesPfr / PokerCreateController.pokerStats.getVpip()) * 100);
+		PokerCreateController.pokerStats.set3bet((times3bet / PokerCreateController.pokerStats.getVpip()) * 100);
+		PokerCreateController.pokerStats.setf3bet((timesf3bet / PokerCreateController.pokerStats.getPfr()) * 100);
+		
+		pokerStatisticsService.updatePlayedGames(userId, PokerCreateController.pokerStats.getPlayedGames());
+		pokerStatisticsService.updateVPIP(userId, PokerCreateController.pokerStats.getVpip());
+		pokerStatisticsService.updatePFR(userId, PokerCreateController.pokerStats.getPfr());
+		pokerStatisticsService.update3BET(userId, PokerCreateController.pokerStats.get3bet());
+		pokerStatisticsService.updateF3BET(userId, PokerCreateController.pokerStats.getf3bet());
+
+		PokerCreateController.pokerStats.setTribetCounter(0);
+		PokerCreateController.pokerStats.setVpipCounter(0);
+		PokerCreateController.pokerStats.setPfrCounter(0);
+		PokerCreateController.pokerStats.setF3betCounter(0);
+		PokerCreateController.pokerStats.setPlayedGamesCounter(0);
+		
+		
 	}
 }
