@@ -22,9 +22,11 @@ public class StatsUpdateController
 	@RequestMapping("/statsUpdate.html")
 	public void statsUpdate(HttpServletRequest request, HttpServletResponse response)
 	{
-		String strenght = request.getParameter("strength");
-		String agility = request.getParameter("agility");
-		String inteligance = request.getParameter("inteligance");
-		log.info("StatsUpdateController: " + strenght + " !!!!" + agility + " !!!!" + inteligance);
+		int id = new Integer(request.getSession().getAttribute("userId").toString());
+		int strength = new Integer(request.getParameter("strength").toString());
+		int agility = new Integer(request.getParameter("agility").toString());
+		int inteligance = new Integer(request.getParameter("inteligance").toString());
+		log.info("StatsUpdateController: " + strength + " " + agility + " " + inteligance);
+		profileManagerService.updateStats(id, strength, agility, inteligance);
 	}
 }

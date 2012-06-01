@@ -36,6 +36,7 @@
 	<filter-mapping>
 		<filter-name>AdminFilter</filter-name>
 		<url-pattern>/adminPanel.html</url-pattern>
+		<url-pattern>/adminPanel</url-pattern>
 	</filter-mapping>
 	<!-- ******************************ADMIN END***************************** -->
 	<filter>
@@ -61,6 +62,7 @@
 		<url-pattern>/fight.html</url-pattern>
 		<url-pattern>/fights.html</url-pattern>
 		<url-pattern>/createGame.html</url-pattern>
+		<url-pattern>/connect.html</url-pattern>
 		<url-pattern>/fightResult.html</url-pattern>
 
 	</filter-mapping>
@@ -73,6 +75,8 @@
 		<filter-name>EndGame</filter-name>
 		<url-pattern>/fight.html</url-pattern>
 		<url-pattern>/fightResult.html</url-pattern>
+		<url-pattern>/statsUpdate.html</url-pattern>
+
 	</filter-mapping>
 	<!-- ************************************************* -->
 	<filter>
