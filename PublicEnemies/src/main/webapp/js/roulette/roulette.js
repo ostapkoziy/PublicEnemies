@@ -24,7 +24,7 @@ $(document).ready(function(){
 			bets.betsOnNumbers[$(this).attr("alt")] = 0;
 		}
 	});
-	// ====================================================
+
 	$(".chips").toggle(function(){
 		currentBet += parseInt($(this).attr("alt"));
  		$(this).addClass("highlighted");
@@ -44,22 +44,7 @@ $(document).ready(function(){
 		$("#showBet").html(bets.betsOnNumbers[$(this).attr("alt")]);
 	});
 
-//	$("#submit").click(function(){
-//try{		
-//		$("#img_roulette").attr("src","img/roulette/roulette.gif");
-//		setTimeout(function(){$("#img_roulette").attr("src","img/roulette/roulette_static.png");},3000);
-//	
-//		$("#userBetNumbers").val("");
-//		for ( var i = 0; i < (parseInt(bets.betsOnNumbers.length.toString())); i++) {
-//			if (bets.betsOnNumbers[i] > 0) {
-//				$("#userBetNumbers").val($("#userBetNumbers").val() + i + ":" + bets.betsOnNumbers[i] + ';');
-//			}
-//		}
-//		document.forms["submitForm"].submit();
-////		$("form#submitForm").submit();
-//}catch(e){e.message;};
-//	});
-	
+
 	$("#DEAL").click(function(){
 		$("#userBetNumbers").val("");
 		for ( var i = 0; i < (parseInt(bets.betsOnNumbers.length.toString())); i++) {
@@ -68,7 +53,10 @@ $(document).ready(function(){
 			}
 		}
 		
-		$.ajax({
+		$("#img_roulette").attr("src","img/roulette/roulette.gif");
+		setTimeout(function(){
+			$("#img_roulette").attr("src","img/roulette/roulette_static.png");
+			$.ajax({
 				type: "POST",
 				url: "rouletteLogic.html",
 				data : ({
@@ -78,7 +66,7 @@ $(document).ready(function(){
 					$("#chipsAmount").html(data);
 				}
 			});
-		return false;
+		},1000);//Roulette spinning time
 	});
 
 });
