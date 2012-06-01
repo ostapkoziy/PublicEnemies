@@ -44,3 +44,15 @@
 	margin-right: auto;
 	margin-left: auto;
 }
+
+#blood {
+	background: url("../../img/fight/blood.png");
+	position: absolute;
+	z-index: 1000;
+	left: 0;
+	right: 0;
+	margin-right: auto;
+	margin-left: auto;
+	width: 1600px;
+	height: 1200px;
+}

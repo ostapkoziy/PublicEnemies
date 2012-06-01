@@ -37,6 +37,7 @@
 	</div>
 	<div id="bulletHole1"></div>
 	<div id="bulletHole2"></div>
+	<div id="blood"></div>
 
 	<c:if test="${myProfile.getLevel().isNewLevel()}">
 		<div id="newLevel"></div>

@@ -39,7 +39,7 @@ body {
 .result3 {
 	position: absolute;
 	z-index: 3000;
-	background: white;
+	background: transparent;
 	border-radius: 15px;
 }
 
@@ -66,4 +66,6 @@ body {
 	position: absolute;
 	top: 370px;
 	left: 70px;
+	color: #CC0000;
+	font-family: "impact";
 }
