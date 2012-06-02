@@ -127,11 +127,6 @@ $(function()
 
 		}
 	});
-	// **************Redirect to profile on click*****************
-	$("#color1").click(function()
-	{
-		window.location.replace("profile.html");
-	});
 	// ------------------AID----------------------
 	$("#leftAid").toggle(function()
 	{

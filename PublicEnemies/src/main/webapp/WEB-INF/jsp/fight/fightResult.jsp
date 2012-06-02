@@ -7,6 +7,7 @@
 <title>Fight Result</title>
 <script type="text/javascript" src="js/jquery-1.7.2.js"></script>
 <script type="text/javascript" src="js/fight/newLevel.js"></script>
+<script type="text/javascript" src="js/fight/shootBlood.js"></script>
 <link href="css/fight/result.css" rel="stylesheet" type="text/css">
 </head>
 <body>
@@ -16,7 +17,11 @@
 		<div id="result2" class="result2"></div>
 		<div id="result3" class="result3">
 			<div id="imageWrapper">
-
+				<audio controls="controls" autoplay="autoplay">
+					<source src="/img/fight/shoot.mp3" type="audio/mpeg"></source>
+					<!-- 		<source src="song.ogg" type="audio/ogg"></source> -->
+					<!-- 		<embed height="50px" width="100px" src="song.mp3"></embed> -->
+				</audio>
 				<c:choose>
 					<c:when test="${win==true}">
 						<link href="css/fight/winnerB.css" rel="stylesheet" type="text/css">
@@ -31,13 +36,15 @@
 	</div>
 	<div id="expirience2" class="result2"></div>
 	<div id="expirience3" class="result3">
-		Level: ${myProfile.getLevel().getCurrentLevel()} <br /> All Exp: ${myProfile.getLevel().getAllExpirience()} <br /> %:
-		${myProfile.getLevel().getNextLevelInPercent()}%<br /> Exp AfterFight:${myProfile.getLevel().getExpirienceAfterFight()}<br /> Exp on Current Lvl:
-		${myProfile.getLevel().getExpOnCurrentLevel()}
+		<div>Level: ${myProfile.getLevel().getCurrentLevel()}</div>
+		<div>All Exp: ${myProfile.getLevel().getAllExpirience()}</div>
+		<div>%: ${myProfile.getLevel().getNextLevelInPercent()}%</div>
+		<div>Exp AfterFight:${myProfile.getLevel().getExpirienceAfterFight()}</div>
+		<div>Exp on Current Lvl: ${myProfile.getLevel().getExpOnCurrentLevel()}</div>
 	</div>
-	<div id="bulletHole1"></div>
-	<div id="bulletHole2"></div>
-	<div id="blood"></div>
+	<div id="bulletHole1" hidden=""></div>
+	<div id="bulletHole2" hidden=""></div>
+	<!-- 	<audio style="z-index: 90000;" controls="controls" src="img/fight/shoot.mp3" autoplay="autoplay"></audio> -->
 
 	<c:if test="${myProfile.getLevel().isNewLevel()}">
 		<div id="newLevel"></div>

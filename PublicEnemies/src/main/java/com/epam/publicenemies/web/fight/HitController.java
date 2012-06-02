@@ -29,7 +29,7 @@ public class HitController
 		Fight fight = (Fight) request.getSession().getAttribute("game");
 		String hit = new String(request.getParameter("userHit"));
 		String block = request.getParameter("userBlock");
-		// String useAid = request.getParameter("aidUse");
+		String usedAid = request.getParameter("aidUse");
 		Profile userProfile = fight.getProfile(role);
 		/*
 		 * 
@@ -37,12 +37,12 @@ public class HitController
 		if (role.equals("creator"))
 		{
 			log.info("CREATOR: " + userProfile.getNickName() + " HIT : " + hit + " BLOCK: " + block);
-			creatorGameSetup(fight, hit, block);
+			creatorGameSetup(fight, hit, block, usedAid);
 		}
 		else
 		{
 			log.info("CONNECT: " + userProfile.getNickName() + " HIT : " + hit + " BLOCK: " + block);
-			connectorGameSetup(fight, hit, block);
+			connectorGameSetup(fight, hit, block, usedAid);
 		}
 	}
 	private void startEngine(Fight fight)
@@ -53,26 +53,40 @@ public class HitController
 			engine.startEngine(fight);
 		}
 	}
-	private void creatorGameSetup(Fight fight, String hit, String block)
+	private void creatorGameSetup(Fight fight, String hit, String block, String usedAid)
 	{
 		log.info("CREATOR GAME SETUP");
 		fight.getRound().getCreatorAction().setHit(hit);
 		fight.getRound().getCreatorAction().setBlock(block);
 		fight.getRound().getCreatorAction().setDidHit(true);
+		// useAid(fight.getCreatorProfile(), usedAid);
 		if (fight.getRound().getConnectorAction().isDidHit())
 		{
 			setRoundStart(fight);
 		}
 	}
-	private void connectorGameSetup(Fight fight, String hit, String block)
+	private void connectorGameSetup(Fight fight, String hit, String block, String usedAid)
 	{
 		log.info("CONNECTOR GAME SETUP");
 		fight.getRound().getConnectorAction().setHit(hit);
 		fight.getRound().getConnectorAction().setBlock(block);
 		fight.getRound().getConnectorAction().setDidHit(true);
+		// useAid(fight.getConnectorProfile(), usedAid);
 		if (fight.getRound().getCreatorAction().isDidHit())
 		{
 			setRoundStart(fight);
+		}
+	}
+	private void useAid(Profile profile, String usedAid)
+	{
+		if (usedAid.equals("true"))
+		{
+			/*
+			 * TODO DB WORK
+			 */
+			int restoreHP = profile.getDressedAid().getAidEffect();
+			profile.setHP(profile.getHP() + restoreHP);
+			profile.setDressedAid(null);
 		}
 	}
 	/**

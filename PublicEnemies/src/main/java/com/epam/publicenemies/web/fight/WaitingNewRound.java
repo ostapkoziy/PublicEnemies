@@ -33,7 +33,7 @@ public class WaitingNewRound
 		/*
 		 * 
 		 */
-//		startEngine(fight, role);
+		startEngine(fight, role);
 		Profile userProfile = fight.getProfile(role);
 		fight.setWhoIAm(role);
 		/*
