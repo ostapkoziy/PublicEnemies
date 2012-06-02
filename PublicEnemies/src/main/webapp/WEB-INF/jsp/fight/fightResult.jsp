@@ -11,21 +11,18 @@
 <link href="css/fight/result.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+	<audio id="audio">
+		<source src="img/fight/shoot.mp3"></source>
+	</audio>
 	<div id="resultWrapper">
 		<div id="result"></div>
 		<div id="result1"></div>
 		<div id="result2" class="result2"></div>
 		<div id="result3" class="result3">
 			<div id="imageWrapper">
-				<audio controls="controls" autoplay="autoplay">
-					<source src="/img/fight/shoot.mp3" type="audio/mpeg"></source>
-					<!-- 		<source src="song.ogg" type="audio/ogg"></source> -->
-					<!-- 		<embed height="50px" width="100px" src="song.mp3"></embed> -->
-				</audio>
 				<c:choose>
 					<c:when test="${win==true}">
 						<link href="css/fight/winnerB.css" rel="stylesheet" type="text/css">
-
 					</c:when>
 					<c:otherwise>
 						<link href="css/fight/loserB.css" rel="stylesheet" type="text/css">
@@ -36,19 +33,28 @@
 	</div>
 	<div id="expirience2" class="result2"></div>
 	<div id="expirience3" class="result3">
-		<div>Level: ${myProfile.getLevel().getCurrentLevel()}</div>
-		<div>All Exp: ${myProfile.getLevel().getAllExpirience()}</div>
-		<div>%: ${myProfile.getLevel().getNextLevelInPercent()}%</div>
-		<div>Exp AfterFight:${myProfile.getLevel().getExpirienceAfterFight()}</div>
-		<div>Exp on Current Lvl: ${myProfile.getLevel().getExpOnCurrentLevel()}</div>
+		<div id="level">
+			Level: <span> ${myProfile.getLevel().getCurrentLevel()}</span>
+		</div>
+		<div id="allExp">
+			All Exp:<span> ${myProfile.getLevel().getAllExpirience()}</span>
+		</div>
+		<div id="expInPercent">
+			%: <span> ${myProfile.getLevel().getNextLevelInPercent()}%</span>
+		</div>
+		<div id="expAfterFight">
+			Exp After Fight: <span> ${myProfile.getLevel().getExpirienceAfterFight()}</span>
+		</div>
+		<div id="expOnCLVL">
+			Exp on Current Lvl:<span> ${myProfile.getLevel().getExpOnCurrentLevel()}</span>
+		</div>
 	</div>
 	<div id="bulletHole1" hidden=""></div>
 	<div id="bulletHole2" hidden=""></div>
-	<!-- 	<audio style="z-index: 90000;" controls="controls" src="img/fight/shoot.mp3" autoplay="autoplay"></audio> -->
 
 	<c:if test="${myProfile.getLevel().isNewLevel()}">
 		<div id="newLevel"></div>
-		<div id="statsWrapper">
+		<div id="statsWrapper" hidden="">
 			<form action="statsUpdate.html">
 				<input id="pointsInput" type="text" value="5" class="statsInput">
 				<div id="wrapper">

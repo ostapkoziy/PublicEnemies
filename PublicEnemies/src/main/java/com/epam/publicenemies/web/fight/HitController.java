@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.epam.publicenemies.domain.Profile;
+import com.epam.publicenemies.domain.fight.Action;
 import com.epam.publicenemies.domain.fight.Fight;
 import com.epam.publicenemies.domain.fight.FightEngine;
 
@@ -59,7 +60,7 @@ public class HitController
 		fight.getRound().getCreatorAction().setHit(hit);
 		fight.getRound().getCreatorAction().setBlock(block);
 		fight.getRound().getCreatorAction().setDidHit(true);
-		// useAid(fight.getCreatorProfile(), usedAid);
+		useAid(fight.getCreatorProfile(), fight.getRound().getCreatorAction(), usedAid);
 		if (fight.getRound().getConnectorAction().isDidHit())
 		{
 			setRoundStart(fight);
@@ -71,22 +72,27 @@ public class HitController
 		fight.getRound().getConnectorAction().setHit(hit);
 		fight.getRound().getConnectorAction().setBlock(block);
 		fight.getRound().getConnectorAction().setDidHit(true);
-		// useAid(fight.getConnectorProfile(), usedAid);
+		useAid(fight.getConnectorProfile(), fight.getRound().getConnectorAction(), usedAid);
 		if (fight.getRound().getCreatorAction().isDidHit())
 		{
 			setRoundStart(fight);
 		}
 	}
-	private void useAid(Profile profile, String usedAid)
+	private void useAid(Profile profile, Action action, String usedAid)
 	{
-		if (usedAid.equals("true"))
+		if (usedAid.equals("true") && !action.isUsedAid())
 		{
 			/*
 			 * TODO DB WORK
 			 */
+			action.setUsedAid(true);
 			int restoreHP = profile.getDressedAid().getAidEffect();
-			profile.setHP(profile.getHP() + restoreHP);
-			profile.setDressedAid(null);
+			if (profile.getHP() + restoreHP > profile.getAllHP())
+			{
+				profile.setHP(profile.getAllHP());
+			}
+			else
+				profile.setHP(profile.getHP() + restoreHP);
 		}
 	}
 	/**

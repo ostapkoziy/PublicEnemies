@@ -74,6 +74,10 @@ function timerController(game)
 
 	if (game.whoIAm == "creator")
 	{
+		if (game.round.creatorAction.usedAid == true)
+		{
+			$("#leftAid").hide();
+		}
 		if (game.round.creatorAction.didHit == true)
 		{
 			hideAttackButton();
@@ -86,6 +90,10 @@ function timerController(game)
 	}
 	else
 	{
+		if (game.round.connectorAction.usedAid == true)
+		{
+			$("#leftAid").hide();
+		}
 		if (game.round.connectorAction.didHit == true)
 		{
 			hideAttackButton();
