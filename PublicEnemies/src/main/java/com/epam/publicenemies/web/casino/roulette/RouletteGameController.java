@@ -24,14 +24,15 @@ import flexjson.JSONSerializer;
 @RequestMapping("/rouletteLogic.html")
 public class RouletteGameController {
 
-	RouletteGameInfo rouletteGameInfo;
+	private RouletteGameInfo rouletteGameInfo;
 
 	private Logger log = Logger.getLogger(RouletteGameController.class);
 
 	final int ROULETTE_NUMBERS = 48;// 0..36
 
 	@RequestMapping(method = RequestMethod.POST)
-	public void processForm(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	public void processForm(HttpServletRequest request, HttpServletResponse response)
+			throws IOException {
 
 		JSONSerializer serializer = new JSONSerializer();
 		int rnd = new Random().nextInt(36);
@@ -42,7 +43,6 @@ public class RouletteGameController {
 		log.debug("In da rouletteGameController, POST method.");
 
 		HttpSession session = request.getSession();
-
 		rouletteGameInfo = (RouletteGameInfo) session.getAttribute("rouletteGameInfo");
 
 		if (request.getParameter("userBetNumbers") != "") {
@@ -52,7 +52,7 @@ public class RouletteGameController {
 			response.getWriter().print(serializer.serialize(rouletteGameInfo));
 			return;
 		}
-		
+
 		Integer[] bets = rouletteGameInfo.getBets();
 
 		rouletteGameInfo.setBetAmount(0);
@@ -63,25 +63,26 @@ public class RouletteGameController {
 
 		chips = rouletteGameInfo.getChips() - rouletteGameInfo.getBetAmount();
 
-		// Is money enough to make this BET?
+		// Is chips enough to make this BET?
 		if (chips < 0) {
 			rouletteGameInfo.setMsg("You have not enough money to make this BET (BET on table:" + rouletteGameInfo.getBetAmount() + " chips)");
 			return;
 		}
 
 		int prize = 0;
-		log.info("Roulette number = " + rnd);
 
 		for (BetTypes betType : BetTypes.values()) {
-			prize += betType.getPrize(betType, rouletteGameInfo.getBets(), rnd);
-			if (prize > 0)
-				log.info(betType.name() + " award " + prize + " chips");
+			int betPrize = betType.getPrize(betType, rouletteGameInfo.getBets(), rnd);
+			if (betPrize > 0){
+				prize += betPrize;
+				log.info(betType.name() + " award " + betPrize + " chips");
+				}
 		}
 
 		rouletteGameInfo.setChips(chips + prize);
 
-		log.info("rnd = " + rnd + "\nBet on: " + (String) request.getParameter("userBetNumbers"));
-		log.info(" Chips after:" + rouletteGameInfo.getChips());
+		log.info("Roulette number = " + rnd + "\nBet on: " + (String) request.getParameter("userBetNumbers"));
+		log.info("Chips after:" + rouletteGameInfo.getChips());
 		response.getWriter().print(serializer.serialize(rouletteGameInfo));
 		response.getWriter().flush();
 	}

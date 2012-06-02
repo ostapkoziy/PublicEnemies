@@ -6,48 +6,25 @@ body{
 }
 
 .panel {
- 	outline: medium orange solid;
+/*  	outline: medium orange solid; */
 }
 
-#topPanel{
-	min-height: 70px;
+#TopPanel{
+	min-height: 80px;
 	text-align: center;
 }
 
-#leftPanel {
+#user_info{
+	width: 50px;
 	float: left;
-	width: 200px;
-	height: 400px;
-	margin-bottom: 150px;
 }
 
-#rightPanel {
-	float: right;
-	width: 300px;
-	height: 400px;
-}
 
 #bottomPanel {
 	text-align: center;
 	clear: both;
 }
 
-#centerPanel {
-	
-	text-align: center;
-	margin-left: 250px;
-	margin-right: 350px;
-/*  	min-height: 500px; */
-}
-
-.highlighted {  
-   opacity: 1;
- 
-   /*отражение*/
-  -webkit-box-reflect: below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(.8, transparent), to(rgba(0,0,0,0.9)));
- 
-   /*свечение*/
-  -webkit-box-shadow: 0px 0px 20px rgba(255,255,255,0.99);
-  -moz-box-shadow: 0px 0px 20px rgba(255,255,255,0.99);
-  box-shadow: 0px 0px 20px rgba(255,255,255,0.99);
+.chips {  
+   opacity: 0.6;
 }
