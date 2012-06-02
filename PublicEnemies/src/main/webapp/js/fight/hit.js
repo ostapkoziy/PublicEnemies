@@ -60,6 +60,8 @@ function allDataUpdate(game)
 	$("#U2HP").html(game.connectorProfile.HP);
 	$("#innerLeftProgressHP").css("width", game.creatorProfile.HP / game.creatorProfile.allHP * 100 + "%");
 	$("#innerRightProgressHP").css("width", game.connectorProfile.HP / game.connectorProfile.allHP * 100 + "%");
+	$("#leftHPPercent").html(game.creatorProfile.HP + "/" + game.creatorProfile.allHP);
+	$("#rightHPPercent").html(game.connectorProfile.HP + "/" + game.connectorProfile.allHP);
 	HPColor();
 }
 /**
@@ -134,11 +136,11 @@ $(function()
 	$("#leftAid").toggle(function()
 	{
 		$("#aidInput").val("true");
-		$(this).css("outline", "3px solid red");
+		$(this).css("opacity", "0.4");
 	}, function()
 	{
 		$("#aidInput").val("false");
-		$(this).css("outline", "");
+		$(this).css("opacity", "1");
 	});
 
 });

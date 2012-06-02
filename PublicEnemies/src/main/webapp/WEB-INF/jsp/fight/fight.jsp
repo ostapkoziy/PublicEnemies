@@ -47,25 +47,22 @@
 				</div>
 				<jsp:include page="include/map.jsp"></jsp:include>
 			</div>
-		</div>
-		<!-- ******************************************************* -->
-		<!-- ********************ATACK Block**************************** -->
-		<!-- ******************************************************* -->
-		<div id="attackBlock">
-			<div id="timer"></div>
-			<input id="blockInput" type="text" value="head">
-			<input id="hitInput" type="text" value="head">
-			<input id="aidInput" type="text" value="false">
-			<div id="atackButtonWrapper">
-				<img id="atackButton" src="img/fight/attack.jpg">
+			<!-- ******************************************************* -->
+			<!-- ********************ATACK Block**************************** -->
+			<!-- ******************************************************* -->
+			<div id="attackBlock">
+				<div id="timer"></div>
+				<input id="blockInput" type="text" value="head">
+				<input id="hitInput" type="text" value="head">
+				<input id="aidInput" type="text" value="false">
+				<div id="atackButtonWrapper">
+					<img id="atackButton" src="img/fight/gun2.png">
+				</div>
 			</div>
+			<!-- ******************************************************* -->
+			<!-- ********************CHAT**************************** -->
+			<!-- ******************************************************* -->
 		</div>
-		<!-- ******************************************************* -->
-		<!-- ********************CHAT**************************** -->
-		<!-- ******************************************************* -->
-
-
-
 		<div id="box">
 			<div id="allMesseges"></div>
 			<textarea id="myMessege"></textarea>
@@ -73,10 +70,6 @@
 				<input id="submit" type="button" name="submit" value="Ok">
 			</div>
 		</div>
-
-
-
-
 	</div>
 </body>
 </html>

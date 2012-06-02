@@ -7,12 +7,11 @@
 	-webkit-border-radius: 15px;
 	-moz-border-radius: 15px;
 	overflow: hidden;
-	/* 	margin: 0px 20px; */
 	box-shadow: 0 0 5px black;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 	-moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 	-webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-	/* 	outline: 3px solid red; */
+	/* 	clear: both; */
 }
 
 .boxshadow {
@@ -21,7 +20,7 @@
 	-moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 	-webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
-/* ///////////////////////////////RightBox 2////////////////////////////// */
+
 #allMesseges {
 	overflow: hidden;
 	position: relative;
