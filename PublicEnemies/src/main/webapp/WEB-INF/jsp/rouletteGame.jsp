@@ -10,64 +10,65 @@
 
 <title>Public Enemies Roulette</title>
 <script src="js/jquery-1.7.2.js" type="text/javascript"></script>
-<script type="text/javascript" src="js/jquery.imagemapster.js"></script>
-<script type="text/javascript" src="js/jquery.maphilight.min.js"></script>
+<!-- <script type="text/javascript" src="js/jquery.imagemapster.js"></script> -->
+<!-- <script type="text/javascript" src="js/jquery.maphilight.min.js"></script> -->
 <script type="text/javascript" src="js/jquery.metadata.min.js"></script>
 
 <script type="text/javascript" src="js/roulette/hilight.js"></script>
 <script type="text/javascript" src="js/roulette/roulette.js"></script>
 
 </head>
-<body style="background: url('img/roulette/roulette_foreground.jpg') no-repeat">
-	<div class="panel" style=" height: 120px;margin: 5px">
+<body>
+<!-- <a href="#" id="maplink1">Hover to highlight the first section</a> -->
+	<div id="background"><img src="img/roulette/roulette_foreground.jpg"></div>
+	
+	<div class="panel" style="height: 120px; margin: 5px">
 		<div style="float: left; font-size: 16pt; color:white; font-family:fantasy;">
-			<img width="60" height="60" src="${rouletteGameInfo.userProfile.getAvatar()}"><p>
-			<c:out value="${rouletteGameInfo.userProfile.getNickName()}"/>
+			<img width="80" height="80" src="${rouletteGameInfo.getUserAvatar()}">
+			<c:out value="${rouletteGameInfo.getUserNickname()}"/>
 		</div>
 		
 		<div class="panel" style="width:300px; float: right;">
 			<form method="post" action="rouletteRedirectController.html">
-				<input id="exit" type="submit" style="float:right;width:300px ;height: 40px; font-size: 16pt;font-family:fantasy; ;" value="Leave roulette table">
+				<input id="exit" type="submit" value="Leave roulette table">
 			</form>
-			<div style="width:200px; padding:20px; font-size: 20pt; color:white; font-family:fantasy; ">Bet on table: <div style="display: inline;color:lime" id="betOnTable">0</div></div> 
+			<div id="betOnTableWrapper">Bet on table: <div style="display: inline;color:lime" id="betOnTable">0</div></div> 
 		</div>
 
-		<div align="center" style="padding-top: 20px;">
-			<div id="chipsAmount" style=" font-size: 20pt; color:yellow; font-family:fantasy; font-smooth:large; ">
-			<c:out value="${rouletteGameInfo.getChips()} chips" /></div>
+		<div style="padding-top: 20px; margin-left: 670px">
+			<div id="chipsAmount">
+				<c:out value="${rouletteGameInfo.getChips()} chips" /></div>
 			<div id="message"></div>
 			<div style=" font-size: 20pt; color:white; font-family:fantasy; font-smooth:large; ">Current BET: 
-			<div style="display: inline;color:lime ;" id="showBet">0</div>
+			<div style="display: inline; color:lime ;" id="showBet">0</div>
 			</div>
 		</div>
 	</div>
 
-	<div class="panel" id="rightPanel" style="margin-right: 20px; width: 120px; float: right;">
+	<div class="panel" id="rightPanel">
 		<div align="center" style="width: 120px;">
 			<img class="chips" id="10" alt="10" src="img/roulette/Chip_10.png" width="80" height="80" style="padding-bottom: 10px">
 			<img class="chips" id="25" alt="25"	src="img/roulette/Chip_25.png" width="80" height="80" style="padding-bottom: 10px">
 			<img class="chips" id="50" alt="50" src="img/roulette/Chip_50.png" width="80" height="80" style="padding-bottom: 30px">
 		</div>
-		<input style="width: 120px; height: 80px; font-size: 16pt; color:purple ; font-family:fantasy;" id="clearBet" type="button" value="Clear bets">
+		<input id="clearBet" type="button" value="Clear bets">
 	</div>
 	
 
 
-	<div class="panel" style="position:relative; height:500px; width:1000px;margin-left: auto; margin-right: auto; background-image: url('img/roulette/table_foreground.png'); opacity:0.95">
+	<div class="panel" id="tableWrapper">
 		
 		<img id="img_roulette" src="img/roulette/roulette_static.png" width="140" height="140" 
 			style="position:absolute; left: 50px; top: 200px;" >
 		
-		<img id="rouletteTable" src="img/roulette/table.png" usemap="rouletteNumbers" border="0" width="800" height="280" 
+		<img id="rouletteTable" class="map" src="img/roulette/table.png" usemap="#rouletteNumbers" border="0" width="730" height="280" 
 			style="margin-left:150px; margin-top: 60px; margin-right: 50px;"/>
 		
-		<input id="DEAL" type="button" value="DEAL!" 
-			style="width: 160px; height: 60px; margin-left: auto; margin-right: auto; display: block;
-			 margin-top: 40px; font-family: fantasy; font-size: 18pt; color: green;">
+		<input id="DEAL_button" type="button" value="DEAL!">
 
-		<map id="rouletteNumbers" name="rouletteNumbers">
+		<map class= "tabs" id="rouletteNumbers" name="rouletteNumbers">
 		
-			<area class="RouletteTable" shape="rect" coords="61,0,113,63" alt="3" title="3" />
+			<area id="map1" class="RouletteTable" shape="rect" coords="61,0,113,63" alt="3" title="3" />
 			<area class="RouletteTable" shape="rect" coords="114,0,163,62" alt="6" title="6" />
 			<area class="RouletteTable" shape="rect" coords="167,0,215,62" alt="9" title="9" />
 			<area class="RouletteTable" shape="rect" coords="219,0,267,62" alt="12" title="12" />
@@ -119,8 +120,7 @@
 
 		</map>
 	</div>
-	<div class="panel" id="bottomPanel">
-	</div>
+	<div class="panel" id="history"></div>
 
 </body>
 </html>
