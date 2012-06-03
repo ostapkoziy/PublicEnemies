@@ -11,7 +11,9 @@
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 	-moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 	-webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-	/* 	clear: both; */
+	clear: both;
+	/* 	outline: 2px solid green; */
+	padding-top: 15px;
 }
 
 .boxshadow {
@@ -21,8 +23,8 @@
 	-webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
-#allMesseges {
-	overflow: hidden;
+#allMesseges { /* 	overflow: auto; */
+	overflow-y: scroll;
 	position: relative;
 	font: 12px Verdana;
 	height: 135px;
@@ -38,8 +40,6 @@
 	border: 1px solid #D6D6D6;
 	position: relative;
 	font: 12px Verdana;
-	/* 	margin-left: 100px; */
-	/* 	outline: 2px solid red; */
 }
 
 #submit {

@@ -7,14 +7,17 @@
 <title>Fight Result</title>
 <script type="text/javascript" src="js/jquery-1.7.2.js"></script>
 <script type="text/javascript" src="js/fight/newLevel.js"></script>
-<script type="text/javascript" src="js/fight/shootBlood.js"></script>
+
 <link href="css/fight/result.css" rel="stylesheet" type="text/css">
+<link href="css/fight/bulletShtorm.css" rel="stylesheet" type="text/css">
+
 </head>
 <body>
 	<audio id="audio">
 		<source src="img/fight/shoot.mp3"></source>
 	</audio>
 	<div id="resultWrapper">
+
 		<div id="result"></div>
 		<div id="result1"></div>
 		<div id="result2" class="result2"></div>
@@ -23,9 +26,11 @@
 				<c:choose>
 					<c:when test="${win==true}">
 						<link href="css/fight/winnerB.css" rel="stylesheet" type="text/css">
+						<script type="text/javascript" src="js/fight/bulletShtorm.js"></script>
 					</c:when>
 					<c:otherwise>
 						<link href="css/fight/loserB.css" rel="stylesheet" type="text/css">
+						<script type="text/javascript" src="js/fight/shootBlood.js"></script>
 					</c:otherwise>
 				</c:choose>
 			</div>
@@ -51,6 +56,7 @@
 	</div>
 	<div id="bulletHole1" hidden=""></div>
 	<div id="bulletHole2" hidden=""></div>
+	<div id="blood" hidden=""></div>
 
 	<c:if test="${myProfile.getLevel().isNewLevel()}">
 		<div id="newLevel"></div>
@@ -82,5 +88,33 @@
 		</div>
 	</c:if>
 
+
+
+
+
+	<!-- 	*************HOLES -->
+	<audio id="audio1">
+		<source src="img/fight/shoot1.mp3"></source>
+	</audio>
+	<div id="bulletShtorm">
+		<div id="hole1" class="hole"></div>
+		<div id="hole2" class="hole"></div>
+		<div id="hole3" class="hole"></div>
+		<div id="hole4" class="hole"></div>
+		<div id="hole5" class="hole"></div>
+		<div id="hole6" class="hole"></div>
+		<div id="hole7" class="hole"></div>
+		<div id="hole8" class="hole"></div>
+		<div id="hole9" class="hole"></div>
+		<div id="hole10" class="hole"></div>
+		<div id="hole11" class="hole"></div>
+		<div id="hole12" class="hole"></div>
+		<div id="hole13" class="hole"></div>
+		<div id="hole14" class="hole"></div>
+		<div id="hole15" class="hole"></div>
+		<div id="hole16" class="hole"></div>
+		<div id="hole17" class="hole"></div>
+		<div id="hole18" class="hole"></div>
+	</div>
 </body>
 </html>

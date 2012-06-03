@@ -46,7 +46,7 @@
 				<img src="${game.creatorProfile.getDressedAid().getItemPicture()}" alt="">
 			</div>
 		</div>
-		<!-- ************EXPIRIENCE********** -->
+		<!-- ***************************EXPIRIENCE****************************************** -->
 		<div id="expAndSkillsWrapper">
 			<div id="damage">DAMAGE: ${game.creatorProfile.getDamage()}</div>
 			<div id="defence">DEFENCE: ${game.creatorProfile.getDefence()}%</div>
@@ -65,12 +65,6 @@
 		<c:when test="${game.gameStarted=='false'}">
 			<script type="text/javascript">
 				waitForOpponent();
-			</script>
-			<script type="text/javascript">
-				$(function()
-				{
-					//$("#atackButton").hide();
-				});
 			</script>
 			<div id="right">
 				<div id="insideRight"></div>

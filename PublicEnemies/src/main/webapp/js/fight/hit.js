@@ -33,9 +33,9 @@ function waitingNewRound()
 			var game = jQuery.parseJSON(data);
 			if (game.gameEnd != true)
 			{
-				timerController(game);
+				attackButtonController(game);
 				allDataUpdate(game);
-				setTimeout(waitingNewRound, 1000);
+				setTimeout(waitingNewRound, 1600);
 			}
 			if (game.gameEnd == true)
 			{
@@ -69,7 +69,7 @@ function allDataUpdate(game)
  * atackButton.
  * 
  */
-function timerController(game)
+function attackButtonController(game)
 {
 
 	if (game.whoIAm == "creator")
@@ -84,8 +84,7 @@ function timerController(game)
 		}
 		else
 		{
-			$("#timer").fadeTo(0, 1);
-			timer(game.round.roundBeginTime);
+			showAttackButton();
 		}
 	}
 	else
@@ -100,8 +99,7 @@ function timerController(game)
 		}
 		else
 		{
-			$("#timer").fadeTo(0, 1);
-			timer(game.round.roundBeginTime);
+			showAttackButton();
 		}
 	}
 }
@@ -110,15 +108,14 @@ function timerController(game)
  */
 function hideAttackButton()
 {
-	$("#atackButton").hide();
-	$("#timer").fadeTo(0, 0);
+	$("#atackButton").attr("hidden", "");
 }
 /**
  * Show attack button
  */
 function showAttackButton()
 {
-	$("#atackButton").show();
+	$("#atackButton").removeAttr("hidden");
 }
 // DOM READY
 $(function()
