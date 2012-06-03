@@ -8,15 +8,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.epam.publicenemies.domain.Profile;
 import com.epam.publicenemies.domain.roulette.BetTypes;
 import com.epam.publicenemies.domain.roulette.RouletteGameInfo;
-import com.epam.publicenemies.service.IProfileManagerService;
 
 import flexjson.JSONSerializer;
 
@@ -70,21 +67,24 @@ public class RouletteGameController {
 		}
 
 		int prize = 0;
-
 		for (BetTypes betType : BetTypes.values()) {
 			int betPrize = betType.getPrize(betType, rouletteGameInfo.getBets(), rnd);
 			if (betPrize > 0){
 				prize += betPrize;
-				log.info(betType.name() + " award " + betPrize + " chips");
-				}
+				rouletteGameInfo.setHistory(rouletteGameInfo.getHistory() + "\""+  betType.name() + "\" bet gives " + betPrize + " chips<br>");
+				log.info("Bet on \""+betType.name() + "\" gives award " + betPrize + " chips");
+			}
 		}
+		if (prize==0) rouletteGameInfo.setHistory("Win no award!<br>");
 
 		rouletteGameInfo.setChips(chips + prize);
 
 		log.info("Roulette number = " + rnd + "\nBet on: " + (String) request.getParameter("userBetNumbers"));
 		log.info("Chips after:" + rouletteGameInfo.getChips());
+//		System.out.println(serializer.serialize(rouletteGameInfo));
 		response.getWriter().print(serializer.serialize(rouletteGameInfo));
 		response.getWriter().flush();
+		rouletteGameInfo.setHistory("");
 	}
 
 	private void parseBetString(String unparsedStr) {

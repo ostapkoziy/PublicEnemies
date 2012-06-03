@@ -71,8 +71,10 @@ public class RouletteConnectController {
 		} finally {
 			userProfile.setMoney(userProfile.getMoney() - rouletteGameInfo.getChips());
 			profileManagerService.updateMoney((Integer) session.getAttribute("userId"), userProfile.getMoney());
-
-			rouletteGameInfo.setUserProfile(userProfile);
+			
+			rouletteGameInfo.setUserNickname(userProfile.getNickName());
+			rouletteGameInfo.setUserAvatar(userProfile.getAvatar());
+			rouletteGameInfo.setUserMoney(userProfile.getMoney());
 			session.setAttribute("rouletteGameInfo", rouletteGameInfo);
 		}
 	}

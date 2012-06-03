@@ -1,30 +1,44 @@
 @CHARSET "UTF-8";
 
-body{
-	background-color: gray;
-/* 	background-image: url("../img/roulette/floor.jpg"); */
-}
 
 .panel {
 /*  	outline: medium orange solid; */
 }
 
-#TopPanel{
-	min-height: 80px;
-	text-align: center;
+#exit{
+	float:right;width:300px ;height: 40px; font-size: 16pt;font-family:fantasy; opacity:0.85
 }
-
-#user_info{
-	width: 50px;
-	float: left;
+#tableWrapper{
+	position:relative; height:500px; width:1000px;margin-left: auto; margin-right: auto; 
+	background-image: url('../img/roulette/table_foreground.png'); opacity:0.95
 }
-
-
-#bottomPanel {
-	text-align: center;
-	clear: both;
+#DEAL_button{
+	width: 160px; height: 60px; margin-left: auto; margin-right: auto; display: block;
+	margin-top: 40px; font-family: fantasy; font-size: 18pt; color: green; opacity:0.95
 }
-
+#history{
+	border-radius:10px; border:4px solid yellow ; width: 800px; height: 70px; margin-top: 10px; 
+	overflow: auto; margin-left: auto; margin-right: auto; background-color: white;
+	font-size: 16pt; padding-left: 10px; opacity: 0.6; 	
+}
+#background{
+	width: 100%; height: 100%; position: absolute; left: 0px; top: 0px; z-index: -1
+}
+#background img{
+	width: 100%; height: 100%; opacity:1
+}
+#betOnTableWrapper{
+	width:200px; margin-top:50px; font-size: 20pt; color:white; font-family:fantasy; opacity:0.85;
+}
+#clearBet{
+	width: 120px; height: 80px; font-size: 16pt; color:purple ; font-family:fantasy; opacity:0.9;
+}
+#rightPanel{
+	margin-right: 20px; width: 120px; float: right;
+}
+#chipsAmount{
+	font-size: 20pt; color:yellow; font-family:fantasy; font-smooth:large; opacity:0.85;
+}
 .chips {  
    opacity: 0.6;
 }

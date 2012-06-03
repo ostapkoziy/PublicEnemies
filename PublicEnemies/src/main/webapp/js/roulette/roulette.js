@@ -14,16 +14,15 @@ $(document).ready(function() {
 	});
 
 	$(".RouletteTable").click(function() {
-		if (clearBetToggle == false) {
-			$(this).css("opacity", faded);
-			$("#betOnTable").html(parseInt($("#betOnTable").html()) + currentBet);
-			if (isNaN(bets.betsOnNumbers[$(this).attr("alt")]))
-				bets.betsOnNumbers[$(this).attr("alt")] = 0;
-			bets.betsOnNumbers[$(this).attr("alt")] += currentBet;
-		} else {
-			$(this).css("opacity", "1");
-			bets.betsOnNumbers[$(this).attr("alt")] = 0;
+		if ((parseInt($("#chipsAmount").html()) < currentBet)||(parseInt(parseInt($("#chipsAmount").html())) < (parseInt($("#betOnTable").html())+currentBet))){
+			alert("You have not enough chips to make this bet");
+			return;
 		}
+		
+		$("#betOnTable").html(parseInt($("#betOnTable").html()) + currentBet);
+		if (isNaN(bets.betsOnNumbers[$(this).attr("alt")]))
+			bets.betsOnNumbers[$(this).attr("alt")] = 0;
+		bets.betsOnNumbers[$(this).attr("alt")] += currentBet;
 	});
 
 	$(".chips").toggle(function() {
@@ -47,7 +46,19 @@ $(document).ready(function() {
 		$("#showBet").html(bets.betsOnNumbers[$(this).attr("alt")]);
 	});
 
-	$("#DEAL").click(function() {
+	function _getTimeStamp(){
+		date = new Date();
+		sec = date.getSeconds();
+		if (sec<10) sec = "0"+ sec;
+		return date.getHours() +":"+date.getMinutes()+":"+sec+": ";
+	}
+	
+	$("#DEAL_button").click(function() {
+		if (parseInt($("#chipsAmount").html()) < parseInt($("#betOnTable").html())){
+			alert("You have not enough chips to make this bet");
+			return;
+		}
+			
 		betStr = "";
 		for ( var i = 0; i < (parseInt(bets.betsOnNumbers.length.toString())); i++) {
 			if (bets.betsOnNumbers[i] > 0) {
@@ -69,9 +80,11 @@ $(document).ready(function() {
 				// alert(data);
 				$("#chipsAmount").html(rouletteGameInfo.chips + " chips");
 				$("#message").html(rouletteGameInfo.msg);
+				$("#history").html("<b>"+_getTimeStamp()+"</b>"+ rouletteGameInfo.history + $("#history").html());
+//				alert(rouletteGameInfo.history);
 			}
 			});
-		}, 1500);// Roulette spinning time
+		}, 2500);// Roulette spinning time
 		}else alert("Make your BET on a roulette table!");
 
 	});

@@ -10,14 +10,31 @@ public class RouletteGameInfo {
 	private int luckyNumber;
 	private int chips;
 	private String msg = "";
-	private String[] history;
-	private Profile userProfile;
+	private String history = "";
+	private String userNickname = "";
+	private String userAvatar = "";
+	private int userMoney;
+	
+	
 
-	public Profile getUserProfile() {
-		return userProfile;
+	
+	public String getUserNickname() {
+		return userNickname;
 	}
-	public void setUserProfile(Profile userProfile) {
-		this.userProfile = userProfile;
+	public void setUserNickname(String userNickname) {
+		this.userNickname = userNickname;
+	}
+	public String getUserAvatar() {
+		return userAvatar;
+	}
+	public void setUserAvatar(String userAvatar) {
+		this.userAvatar = userAvatar;
+	}
+	public int getUserMoney() {
+		return userMoney;
+	}
+	public void setUserMoney(int userMoney) {
+		this.userMoney = userMoney;
 	}
 	public int getPrize() {
 		return prize;
@@ -55,10 +72,10 @@ public class RouletteGameInfo {
 	public void setChips(int chips) {
 		this.chips = chips;
 	}
-	public String[] getHistory() {
+	public String getHistory() {
 		return history;
 	}
-	public void setHistory(String[] history) {
+	public void setHistory(String history) {
 		this.history = history;
 	}
 }
