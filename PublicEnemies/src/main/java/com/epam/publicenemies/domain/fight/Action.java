@@ -5,10 +5,10 @@ package com.epam.publicenemies.domain.fight;
  */
 public class Action
 {
-	private String	hit;
-	private String	block;
-	private boolean	didHit;
-	private boolean	usedAid;
+	private String				hit;
+	private String				block;
+	private volatile boolean	didHit;
+	private volatile boolean	usedAid;
 	public Action()
 	{
 		hit = "";

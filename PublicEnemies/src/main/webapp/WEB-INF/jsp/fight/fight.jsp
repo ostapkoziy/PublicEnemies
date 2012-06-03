@@ -11,8 +11,6 @@
 <script type="text/javascript" src="js/fight/waitForConnect.js"></script>
 <script type="text/javascript" src="js/fight/chat.js"></script>
 <script type="text/javascript" src="js/fight/hpBar.js"></script>
-<!-- <script type="text/javascript" src="js/fight/timer.js"></script> -->
-<script type="text/javascript" src="js/fight/jquery.tinyscrollbar.min.js"></script>
 
 <link href="css/fight/content.css" rel="stylesheet" type="text/css">
 <link href="css/fight/fight.css" rel="stylesheet" type="text/css">
@@ -39,6 +37,7 @@
 		<!-- ********************ATACK DOLL**************************** -->
 		<!-- ******************************************************* -->
 
+		<jsp:include page="include/map.jsp"></jsp:include>
 		<div id="attackBlockDoll">
 			<div id="doll">
 				<div style="float: left;">
@@ -47,7 +46,6 @@
 				<div style="float: left;">
 					<img class="map" id="doll_hit" src="img/fight/doll_hit.png" usemap="#table2" />
 				</div>
-				<jsp:include page="include/map.jsp"></jsp:include>
 			</div>
 			<!-- ******************************************************* -->
 			<!-- ********************ATACK Block**************************** -->

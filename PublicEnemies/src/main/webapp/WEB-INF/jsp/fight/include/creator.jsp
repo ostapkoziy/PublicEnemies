@@ -29,8 +29,7 @@
 			</div>
 		</div>
 		<div id="leftAvatar">
-			<img alt="avatar" src="img/fight/3.jpg" width="200">
-			<%-- 			<img alt="avatar" src="${game.creatorProfile.getCharacterProfession().getProfessionAvatar()}" width="200"> --%>
+			<img alt="avatar" src="${game.creatorProfile.getCharacterProfession().getProfessionAvatar()}">
 		</div>
 		<div id="leftInventory">
 			<div class="item">
@@ -102,7 +101,7 @@
 					</div>
 				</div>
 				<div id="rightAvatar">
-					<img alt="avatar" src="img/fight/4.jpg" width="200">
+					<img alt="avatar" src="${game.connectorProfile.getCharacterProfession().getProfessionAvatar()}">
 				</div>
 				<div id="rightInventory">
 					<div class="item">

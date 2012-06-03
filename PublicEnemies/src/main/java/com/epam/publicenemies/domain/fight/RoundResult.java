@@ -31,7 +31,7 @@ public enum RoundResult
 			fight.setWhoWins(profile);
 			fight.setWhoLoses(fight.getProfile("creator"));
 			// TODO chit;
-			fight.getConnectorProfile().getLevel().setNewLevel(true);
+			// fight.getConnectorProfile().getLevel().setNewLevel(true);
 			Utils.connectorWins(fight);
 			return true;
 		}
@@ -48,7 +48,7 @@ public enum RoundResult
 			fight.setWhoWins(profile);
 			fight.setWhoLoses(fight.getProfile("connector"));
 			// TODO chit
-			fight.getCreatorProfile().getLevel().setNewLevel(true);
+			// fight.getCreatorProfile().getLevel().setNewLevel(true);
 			Utils.creatorWins(fight);
 			return true;
 		}
