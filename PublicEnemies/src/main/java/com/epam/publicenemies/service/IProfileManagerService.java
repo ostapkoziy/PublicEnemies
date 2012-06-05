@@ -145,4 +145,20 @@ public interface IProfileManagerService {
 	 * @return
 	 */
 	boolean updateStats(int characterId, int strength, int agility, int intellect);
+	
+	/**
+	 * Update won fights amount
+	 * @param characterId - character Id
+	 * @param wonFights - amount of won fights
+	 * @return true if operation was successfully
+	 */
+	boolean updateWonFights(int characterId, int wonFights);
+	
+	/**
+	 * Update lost fights amount
+	 * @param characterId - character Id
+	 * @param lostFights - amount of lost fights
+	 * @return true if operation was successfully
+	 */
+	boolean updateTotalFights(int characterId, int lostFights);
 }
