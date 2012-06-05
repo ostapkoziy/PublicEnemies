@@ -253,23 +253,7 @@ public class UserDaoImpl implements IUserDao {
 	public User findUserByEmailAndPassword(final String email, final String password){
 		final String query = "SELECT  userId, nickName, money, avatar, userCharacter, regDate, email, password " +
 				"FROM users WHERE email=? AND password=?";
-		User user;
-				if(null == jdbcTemplate.queryForObject(query, new Object[]{email, password}, new RowMapper<User>() {
-				public User mapRow(ResultSet resultSet, int rowNum)
-						throws SQLException {
-					return new User(resultSet.getInt("userId"), resultSet.getString("email"),
-							resultSet.getString("password"), 
-							resultSet.getString("nickName"),
-							resultSet.getInt("money"),
-							resultSet.getString("avatar"),
-							resultSet.getInt("userCharacter"),
-							resultSet.getTimestamp("regDate"));
-				}
-			}) ) {
-						return null;
-						
-				} else {
-				user = jdbcTemplate.queryForObject(query, new Object[]{email, password}, new RowMapper<User>() {
+		User user = jdbcTemplate.queryForObject(query, new Object[]{email, password}, new RowMapper<User>() {
 						public User mapRow(ResultSet resultSet, int rowNum)
 								throws SQLException {
 							return new User(resultSet.getInt("userId"), resultSet.getString("email"),
@@ -281,12 +265,8 @@ public class UserDaoImpl implements IUserDao {
 									resultSet.getTimestamp("regDate"));
 						}
 					});
-				return user;
-				}
-		
-		
-//		log.info("user : " + user.getEmail() + " " + user.getPassword());
-		//return user;
+		log.info("user : " + user.getEmail() + " " + user.getPassword());
+		return user;
 	}
 
 	/**

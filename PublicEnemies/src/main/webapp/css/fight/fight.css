@@ -1,5 +1,8 @@
 @CHARSET "UTF-8";
 
+body { /* 	background: url("../../img/fight/bg3.png") no-repeat; */
+	background: url("../../img/style_chase.png") no-repeat;
+=======
 body {
 	background: url("../../img/fight/overlay.png");
 	/* 	background: white; */
@@ -9,6 +12,7 @@ body {
 
 div { /* 	outline: 1px solid red; */
 	
+
 }
 
 #content {

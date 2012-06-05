@@ -19,10 +19,6 @@
 <body>
 	<table align="center">
 		<tr>
-			<td><img src="${player_avatar}"></img></td>
-			<td><div>${player_nickname}</div></td>
-		</tr>
-		<tr>
 			<td align="center"><a href="userStartPage.html"><img
 					src="img/gamelogo.png"></img></a></td>
 		</tr>
@@ -30,21 +26,16 @@
 			<td>
 				<table id="blackjack_table" height="800" width="1000" align="center">
 					<tr>
-						<td><img id="10_button" src="img/chips/10.png"
-							style="position: relative; top: 110px; left: 310px;"
-							class="active"> <img id="25_button" src="img/chips/25.png"
-							style="position: relative; top: 140px; left: 300px;"
-							class="active"> <img id="50_button" src="img/chips/50.png"
-							style="position: relative; top: 170px; left: 290px;"
-							class="active"> <img id="100_button"
-							src="img/chips/100.png"
-							style="position: relative; top: 195px; left: 285px;"
-							class="active"></img></td>
-						<td><div>
-								<img id="bet"
-									style="position: relative; top: -20px; left: 330px;">
-							</div>
+						<td><img id="10_button" src="img/roulette/Chip_10.png" width="80" class="active"> 
+							<img id="25_button" src="img/roulette/Chip_25.png" width="80" class="active"> 
+							<img id="50_button" src="img/roulette/Chip_50.png" width="80" class="active"> 
+						</td>
+						<td>
+					<div>
+						<img id="bet" width="80" style="position: relative; top: -20px; left: 330px;">
+					</div>
 					</tr>
+					
 					<tr align="center">
 						<td>
 							<div id="dealer_cards"></div>
@@ -68,6 +59,8 @@
 						</td>
 					</tr>
 					<tr>
+						<td><img src="${player_avatar}"></img></td>
+						<td><div>${player_nickname}</div></td>
 						<td>Your balance -
 							<div id="playerChips"
 								style="position: relative; top: -23px; left: 120px;">${chips}</div>
