@@ -16,6 +16,9 @@
 <script type="text/javascript" src="js/blackjack/split.js"></script>
 <script type="text/javascript" src="js/blackjack/recovery.js"></script>
 </head>
+<script type="text/javascript">
+	$("#playerBet").hide();
+</script>
 <body>
 	<table align="center">
 		<tr>
@@ -25,48 +28,57 @@
 		<tr>
 			<td>
 				<table id="blackjack_table" height="800" width="1000" align="center">
-					<tr>
-						<td><img id="10_button" src="img/roulette/Chip_10.png" width="80" class="active"> 
+					<tr align="center">
+						<td align="center" colspan="3">
+							<img id="10_button" src="img/roulette/Chip_10.png" width="80" class="active"> 
 							<img id="25_button" src="img/roulette/Chip_25.png" width="80" class="active"> 
 							<img id="50_button" src="img/roulette/Chip_50.png" width="80" class="active"> 
 						</td>
 						<td>
-					<div>
-						<img id="bet" width="80" style="position: relative; top: -20px; left: 330px;">
-					</div>
+							Your bet: 
+						</td>
+						<td align="left" colspan="2">
+							<img id="bet" width="80">
+						</td>
 					</tr>
-					
+
 					<tr align="center">
-						<td>
-							<div id="dealer_cards"></div>
+						<td colspan="6">
+							<div id="dealer_cards" style="position: relative; top:60px;"></div>
+							<!--  style="position: relative; top:60px; left: 325px;" -->
 						</td>
 					</tr>
 					<tr align="center">
-						<td>
+						<td colspan="1">
 							<div id="result"></div>
 						</td>
-						<td>
-							<div id="player_cards"></div>
+						<td colspan="2" align="center">
+							<div id="player_cards" style="position: relative; top:60px;"></div>
 						</td>
-						<td>
-							<div id="player_cardsSplit"></div>
+						<td colspan="2" align="center">
+							<div id="player_cardsSplit" style="position: relative; top:60px;"></div>
 						</td>
 						<td>
 							<div id="resultSplit"></div>
 						</td>
-						<td>
-							<div id="player_points"></div>
-						</td>
 					</tr>
 					<tr>
-						<td><img src="${player_avatar}"></img></td>
-						<td><div>${player_nickname}</div></td>
-						<td>Your balance -
+						<td colspan="3">
+							<img src="img/chips/chips.png" width="35">
 							<div id="playerChips"
-								style="position: relative; top: -23px; left: 120px;">${chips}</div>
+								style="position: relative; top: -27px; left: 45px;">${chips}</div>
+							
 							<br>Your bet -
 							<div id="playerBet"
-								style="position: relative; top: -23px; left: 80px;"></div>
+								style="position: relative; top: -25px; left: 80px;"></div>
+						</td>
+						<td>
+							Your points:
+							<div id="player_points"></div>
+						</td>
+						<td colspan="2" align="left">
+							<img src="${player_avatar}"></img>
+							<div>${player_nickname}</div>
 						</td>
 					</tr>
 					<tr align="center">

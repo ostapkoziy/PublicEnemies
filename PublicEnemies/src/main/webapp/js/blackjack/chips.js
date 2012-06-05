@@ -15,8 +15,8 @@ $(document).ready(function() {
 	$("#25_button").click(function() {
 		var attr = $("#25_button").attr("class");
 		if (attr == "active") {
-			var src = $("#10_button").attr("src");
-			var width = $("#10_button").attr("width");
+			var src = $("#25_button").attr("src");
+			var width = $("#25_button").attr("width");
 			$("#bet").attr("src", src);
 			$("#bet").attr("width", width);
 			$("#playerBet").empty().append("25");
@@ -27,8 +27,8 @@ $(document).ready(function() {
 	$("#50_button").click(function() {
 		var attr = $("#50_button").attr("class");
 		if (attr == "active") {
-			var src = $("#10_button").attr("src");
-			var width = $("#10_button").attr("width");
+			var src = $("#50_button").attr("src");
+			var width = $("#50_button").attr("width");
 			$("#bet").attr("src", src);
 			$("#bet").attr("width", width);
 			$("#playerBet").empty().append("50");

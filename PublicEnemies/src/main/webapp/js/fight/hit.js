@@ -5,6 +5,7 @@ function hitSend(hit, block, aid)
 {
 	$.ajax({
 		url : "HitController.html",
+		async : false,
 		data : ({
 			userHit : hit,
 			userBlock : block,
@@ -28,6 +29,7 @@ function waitingNewRound()
 {
 	$.ajax({
 		url : "WaitingNewRound.html",
+		async : false,
 		success : function(data)
 		{
 			var game = jQuery.parseJSON(data);
@@ -35,7 +37,7 @@ function waitingNewRound()
 			{
 				attackButtonController(game);
 				allDataUpdate(game);
-				setTimeout(waitingNewRound, 1600);
+				setTimeout(waitingNewRound, 1000);
 			}
 			if (game.gameEnd == true)
 			{

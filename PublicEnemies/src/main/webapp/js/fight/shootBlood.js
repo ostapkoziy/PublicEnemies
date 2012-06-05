@@ -14,10 +14,9 @@ $(function()
 
 		setInterval(function()
 		{
-			// $("#bulletHole2").removeAttr("hidden");
 			interv = setInterval(function()
 			{
-//				$("body").css("opacity", ap);
+				$("body").css("opacity", ap);
 				ap = ap - 0.01;
 			}, 100);
 		}, 500);

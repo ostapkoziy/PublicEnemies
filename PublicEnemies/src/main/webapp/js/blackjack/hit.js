@@ -110,7 +110,6 @@ $(document)
 								$("#10_button").attr("class", "active");
 								$("#25_button").attr("class", "active");
 								$("#50_button").attr("class", "active");
-								$("#100_button").attr("class", "active");
 							}
 						} else {
 							if (game.round.playerResultSplit != null) {
