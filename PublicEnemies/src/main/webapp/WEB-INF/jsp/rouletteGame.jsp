@@ -10,12 +10,12 @@
 
 <title>Public Enemies Roulette</title>
 <script src="js/jquery-1.7.2.js" type="text/javascript"></script>
-<script type="text/javascript" src="js/jquery.imagemapster.js"></script>
-<script type="text/javascript" src="js/rouletteMap.js"></script>
 <!-- <script type="text/javascript" src="js/jquery.maphilight.min.js"></script> -->
-<script type="text/javascript" src="js/jquery.metadata.min.js"></script>
+<!-- <script type="text/javascript" src="js/rouletteMap.js"></script> -->
+<!-- <script type="text/javascript" src="js/jquery.imagemapster.js"></script> -->
+<!-- <script type="text/javascript" src="js/jquery.metadata.min.js"></script> -->
 
-<script type="text/javascript" src="js/roulette/hilight.js"></script>
+<!-- <script type="text/javascript" src="js/roulette/hilight.js"></script> -->
 <script type="text/javascript" src="js/roulette/roulette.js"></script>
 
 </head>
@@ -24,21 +24,20 @@
 	<div id="background"><img src="img/roulette/roulette_foreground.jpg"></div>
 	
 	<div class="panel" style="height: 120px; margin: 5px">
-		<div style="float: left; font-size: 16pt; color:white; font-family:fantasy;">
-			<img width="80" height="80" src="${rouletteGameInfo.getUserAvatar()}">
+		<div style="float: left; font-size: 16pt; color:white; font-family:fantasy; ">
+			<img width="80" height="80" style="border-radius:10px;" src="${rouletteGameInfo.getUserAvatar()}">
 			<c:out value="${rouletteGameInfo.getUserNickname()}"/>
 		</div>
 		
 		<div class="panel" style="width:300px; float: right;">
 			<form method="post" action="rouletteRedirectController.html">
-				<input id="exit" type="submit" value="Leave roulette table">
+				<input id="exit_button" type="submit" value="Leave roulette table">
 			</form>
 			<div id="betOnTableWrapper">Bet on table: <div style="display: inline;color:lime" id="betOnTable">0</div></div> 
 		</div>
 
 		<div style="padding-top: 20px; margin-left: 670px">
-			<div id="chipsAmount">
-				<c:out value="${rouletteGameInfo.getChips()} chips" /></div>
+			<div id="chipsAmount"><c:out value="${rouletteGameInfo.getChips()} chips" /></div>
 			<div id="message"></div>
 			<div style=" font-size: 20pt; color:white; font-family:fantasy; font-smooth:large; ">Current BET: 
 			<div style="display: inline; color:lime ;" id="showBet">0</div>
@@ -64,12 +63,9 @@
 		
 		<img id="rouletteTable" class="map" src="img/roulette/table.png" usemap="#rouletteNumbers" border="0" width="730" height="280" 
 			style="margin-left:150px; margin-top: 60px; margin-right: 50px;"/>
-		
 		<input id="DEAL_button" type="button" value="DEAL!">
-
 		<map class= "tabs" id="rouletteNumbers" name="rouletteNumbers">
-		
-			<area href="#" id="map1" class="RouletteTable" shape="rect" coords="61,0,113,63" alt="3" title="3" group='3'/>
+			<area href="#" class="RouletteTable" shape="rect" coords="61,0,113,63" alt="3" title="3" group='3'/>
 			<area href="#" class="RouletteTable" shape="rect" coords="114,0,163,62" alt="6" title="6" group='6'/>
 			<area href="#" class="RouletteTable" shape="rect" coords="167,0,215,62" alt="9" title="9" group='9'/>
 			<area href="#" class="RouletteTable" shape="rect" coords="219,0,267,62" alt="12" title="12" group="12" />
@@ -108,15 +104,15 @@
 			<area href="#" class="RouletteTable" shape="rect" coords="63,188,267,226" alt="37" title="1st12" group="1st12" />
 			<area href="#" class="RouletteTable" shape="rect" coords="271,188,475,226" alt="38" title="2nd12" group="2nd12" />
 			<area href="#" class="RouletteTable" shape="rect" coords="477,188,681,226" alt="39" title="3rd12" group="3rd12" />
-			<area href="#" class="RouletteTable" shape="rect" coords="167,229,269,275" alt="40" title="any ODD" group="any ODD" />
-			<area href="#" class="RouletteTable" shape="rect" coords="270,228,372,274" alt="41" title="any RED" group="any RED" />
-			<area href="#" class="RouletteTable" shape="rect" coords="374,228,476,274" alt="42" title="any BLACK" group="any BLACK" />
-			<area href="#" class="RouletteTable" shape="rect" coords="478,228,578,274" alt="43" title="any EVEN" group="any EVEN" />
-			<area href="#" class="RouletteTable" shape="rect" coords="63,229,164,275" alt="44" title="1 to 18" group="1 to 18" />
-			<area href="#" class="RouletteTable" shape="rect" coords="580,229,681,275" alt="45" title="19 to 36" group="19 to 36" />
-			<area href="#" class="RouletteTable" shape="rect" coords="683,127,725,185" alt="46" title="2 to 1 1" group="2 to 1 1" />
-			<area href="#" class="RouletteTable" shape="rect" coords="683,66,725,123" alt="47" title="2 to 1 2" group="2 to 1 2" />
-			<area href="#" class="RouletteTable" shape="rect" coords="683,1,725,63" alt="48" title="2 to 1 3" group="2 to 1 3" />
+			<area href="#" class="RouletteTable" shape="rect" coords="167,229,269,275" alt="40" title="ODD" group=" ODD" />
+			<area href="#" class="RouletteTable" shape="rect" coords="270,228,372,274" alt="41" title="RED" group="any RED" />
+			<area href="#" class="RouletteTable" shape="rect" coords="374,228,476,274" alt="42" title="BLACK" group="any BLACK" />
+			<area href="#" class="RouletteTable" shape="rect" coords="478,228,578,274" alt="43" title="EVEN" group="any EVEN" />
+			<area href="#" class="RouletteTable" shape="rect" coords="63,229,164,275" alt="44" title="1to18" group="1 to 18" />
+			<area href="#" class="RouletteTable" shape="rect" coords="580,229,681,275" alt="45" title="19to36" group="19 to 36" />
+			<area href="#" class="RouletteTable" shape="rect" coords="683,127,725,185" alt="46" title="2to1 1" group="2 to 1 1" />
+			<area href="#" class="RouletteTable" shape="rect" coords="683,66,725,123" alt="47" title="2to1 2" group="2 to 1 2" />
+			<area href="#" class="RouletteTable" shape="rect" coords="683,1,725,63" alt="48" title="2to1 3" group="2 to 1 3" />
 			<area href="#" class="RouletteTable" shape="poly" coords="60,140,59,49,29,50,2,94,32,140," alt="0" title="0" group="0" />
 		</map>
 	</div>
