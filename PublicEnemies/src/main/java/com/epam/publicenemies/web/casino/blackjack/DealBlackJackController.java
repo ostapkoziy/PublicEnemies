@@ -80,7 +80,7 @@ public class DealBlackJackController {
 		// Take 2 cards for player
 		List<BlackJackCard> playerCards = new ArrayList<BlackJackCard>();
 		for (int i = 0; i < 2; i++) {
-			playerCards.add(deck.getCard());
+			playerCards.add(deck.getBlackJack());
 		}
 
 		// Calculate player points
