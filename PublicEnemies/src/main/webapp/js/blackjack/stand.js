@@ -57,6 +57,9 @@ $(document).ready(
 					$("#result").empty().append(game.round.playerResult);
 					$("#resultSplit").empty().append(
 							game.round.playerResultSplit);
+					$("#split_button").attr("src", "img/layout/splitg.png");
+					$("#split_button").attr("class", "notactive");
+					
 					$("#deal_button").attr("src", "img/layout/rebeat.png");
 					$("#deal_button").attr("class", "active");
 
