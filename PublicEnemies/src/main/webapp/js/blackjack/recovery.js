@@ -1,7 +1,7 @@
 $(document)
 		.ready(
 				function() {
-					
+
 					var nothing1 = null;
 					var nothing2 = null;
 					sendAjax(nothing1, nothing2);
@@ -10,7 +10,7 @@ $(document)
 						$.ajax
 						{
 							$.ajax({
-								
+
 								url : "checkForBlackJackGame.html",
 								data : ({
 									playerNothing1 : nothing1,
@@ -57,17 +57,26 @@ $(document)
 
 						// Buttons
 						if (game.round.playerResult == null) {
-							if (game.round.playerCards[0].rank == game.round.playerCards[1].rank)
+							if (game.round.playerCards[0].rank == game.round.playerCards[1].rank) {
 								$("#split_button").attr("src",
 										"img/layout/split.png");
+								$("#split_button").attr("class", "active");
+							}
 							$("#deal_button").attr("src",
 									"img/layout/dealg.png");
+							$("#deal_button").attr("class", "notactive");
+
 							$("#stand_button").attr("src",
 									"img/layout/stand.png");
+							$("#stand_button").attr("class", "active");
+
 							$("#hit_button").attr("src", "img/layout/hit.png");
+							$("#hit_button").attr("class", "active");
+
 							$("#double_button").attr("src",
 									"img/layout/double.png");
-							alert($("#10_button").attr("class"));
+							$("#double_button").attr("class", "active");
+
 							$("#10_button").attr("class", "notactive");
 							$("#25_button").attr("class", "notactive");
 							$("#50_button").attr("class", "notactive");
@@ -75,6 +84,7 @@ $(document)
 						} else {
 							$("#deal_button").attr("src",
 									"img/layout/rebeat.png");
+							$("#deal_button").attr("class", "active");
 						}
 						for (i = 0; i < game.round.playerCardsSplit.length; i = i + 1) {
 							$("#player_cardsSplit")
