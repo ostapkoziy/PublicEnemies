@@ -9,7 +9,7 @@
 	type="text/css">
 <link href="css/popup.css" rel="stylesheet" type="text/css">
 
-<title>${profile.getNickName()}'s Profile</title>
+<title>${profile.getNickName()}'s profile</title>
 
 <script type="text/javascript" src="js/profile/raphael.js"></script>
 <script type="text/javascript" src="js/profile/profilemanager.js"></script>
@@ -35,14 +35,18 @@ $(document).ready(function(){
 		<div class="centered_psi">
 			<div class="profile_info">
 				<h2 class="inventory_and_pi">
-					PROFILE INFO [ <a class="edit_and_buy"
+					${profile.getNickName()}'S PROFILE [ <a class="edit_and_buy"
 						href="/PublicEnemies/editProfile.html">EDIT</a> ]
 				</h2>
 				<div>
 					<img class="avatar" src="${profile.getAvatar()}" title="Avatar"
 						alt="Your profile here" border="2" />
-					<div class="statistics_list" align="left">
+					<div class="statistics_list" style="padding-left: 30px; padding-right: 30px; "align="left">
 						<h3>Basic info:</h3>
+						<p>
+							<strong> <abbr>NickName:</abbr>
+							</strong> ${profile.getNickName()}
+						</p>
 						<p>
 							<strong> <abbr>Genger:</abbr>
 							</strong>
@@ -63,10 +67,10 @@ $(document).ready(function(){
 							<strong> <abbr>Money:</abbr>
 							</strong> ${profile.getMoney()}
 						</p>
-						<p>
+						<!-- <p>
 							<strong> <abbr>RegDate:</abbr>
 							</strong> ${profile.getRegDate()}
-						</p>
+						</p>  -->
 						<p>
 							<strong> <abbr>Profession:</abbr>
 							</strong> ${profile.getCharacterProfession().getProfessionName()}
