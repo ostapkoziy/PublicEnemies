@@ -258,41 +258,41 @@ public class TableDaoImpl implements ITableDao {
 	}
 	
 	private void fillArmors(){
-		final String fa = "INSERT INTO armors (armorName, armorProtection, armorPicture, armorPrice) ";
+		final String fa = "INSERT INTO armors (armorName, armorProtection, armorPicture, armorPrice, armorDescription) ";
 		StringBuilder sql = new StringBuilder("");
 		//-------------------------------------------------------
 		sql.append(fa);
-		sql.append("VALUES ('low', 100, './img/armors/low.png', 5000)");
+		sql.append("VALUES ('low', 100, './img/armors/low.png', 5000, 'Simple helmet, could save your life.')");
 		jdbcTemplate.update(sql.toString());
 		
 		sql.delete(0, sql.length());
 		//-------------------------------------------------------
 		sql.append(fa);
-		sql.append("VALUES ('low_mid', 200, './img/armors/low_mid.png', 10000)");
+		sql.append("VALUES ('low_mid', 200, './img/armors/low_mid.png', 10000, 'Low quality armor, but more usefull then just helmet.')");
 		jdbcTemplate.update(sql.toString());
 		
 		sql.delete(0, sql.length());
 		//-------------------------------------------------------
 		sql.append(fa);
-		sql.append("VALUES ('mid', 300, './img/armors/mid.png', 18000)");
+		sql.append("VALUES ('mid', 300, './img/armors/mid.png', 18000, 'Standart armor for personal protection.')");
 		jdbcTemplate.update(sql.toString());
 		
 		sql.delete(0, sql.length());
 		//-------------------------------------------------------
 		sql.append(fa);
-		sql.append("VALUES ('mid_advanced', 400, './img/armors/mid_advanced.png', 30000)");
+		sql.append("VALUES ('mid_advanced', 400, './img/armors/mid_advanced.png', 30000, 'Armor designed for police forces.')");
 		jdbcTemplate.update(sql.toString());
 		
 		sql.delete(0, sql.length());
 		//-------------------------------------------------------
 		sql.append(fa);
-		sql.append("VALUES ('mid_hight', 500, './img/armors/mid_hight.png', 40000)");
+		sql.append("VALUES ('mid_hight', 500, './img/armors/mid_hight.png', 40000, 'Special armor for special police forces.')");
 		jdbcTemplate.update(sql.toString());
 		
 		sql.delete(0, sql.length());
 		//-------------------------------------------------------
 		sql.append(fa);
-		sql.append("VALUES ('hight', 600, './img/armors/hight.png', 55000)");
+		sql.append("VALUES ('hight', 600, './img/armors/hight.png', 55000, 'Excellent armor, was designed for military use.')");
 		jdbcTemplate.update(sql.toString());
 		
 		sql.delete(0, sql.length());
@@ -301,41 +301,41 @@ public class TableDaoImpl implements ITableDao {
 	}
 	
 	private void fillAids() {
-		final String aidsSql = "INSERT INTO aids (aidName, AidType, aidEffect, aidPicture, aidPrice) ";
+		final String aidsSql = "INSERT INTO aids (aidName, AidType, aidEffect, aidPicture, aidPrice, aidDescription) ";
 		StringBuilder sql = new StringBuilder("");
 		//-------------------------------------------------------
 		sql.append(aidsSql);
-		sql.append("VALUES ('small', 'HP', 20, './img/aids/small.png', 50)");
+		sql.append("VALUES ('Small', 'HP', 100, './img/aids/small.png', 500, 'Simple painkiller.')");
 		jdbcTemplate.update(sql.toString());
 		
 		sql.delete(0, sql.length());
 		//-------------------------------------------------------
 		sql.append(aidsSql);
-		sql.append("VALUES ('medium', 'HP', 50, './img/aids/medium.png', 70)");
+		sql.append("VALUES ('Medium', 'HP', 200, './img/aids/medium.png', 1000, 'Advanced painkiller.')");
 		jdbcTemplate.update(sql.toString());
 		
 		sql.delete(0, sql.length());
 		//-------------------------------------------------------
 		sql.append(aidsSql);
-		sql.append("VALUES ('lagre', 'HP', 70, './img/aids/large.png', 100)");
+		sql.append("VALUES ('Large', 'HP', 300, './img/aids/large.png', 2000, '''Magic'' pills, if you know what i mean.')");
 		jdbcTemplate.update(sql.toString());
 		
 		sql.delete(0, sql.length());
 		//-------------------------------------------------------
 		sql.append(aidsSql);
-		sql.append("VALUES ('very_lagre', 'HP', 100, './img/aids/very_large.png', 150)");
+		sql.append("VALUES ('Very_lagre', 'HP', 400, './img/aids/very_large.png', 4000, 'Medical bandage.')");
 		jdbcTemplate.update(sql.toString());
 		
 		sql.delete(0, sql.length());	
 		//-------------------------------------------------------
 		sql.append(aidsSql);
-		sql.append("VALUES ('Average', 'HP', 100, './img/aids/average.png', 150)");
+		sql.append("VALUES ('Average', 'HP', 500, './img/aids/average.png', 8000, 'Morphine injection.')");
 		jdbcTemplate.update(sql.toString());
 		
 		sql.delete(0, sql.length());	
 		//-------------------------------------------------------
 		sql.append(aidsSql);
-		sql.append("VALUES ('Shugar', 'HP', 100, './img/aids/extra.png', 150)");
+		sql.append("VALUES ('Shugar', 'HP', 600, './img/aids/extra.png', 16000, 'Emergency recovery kit.')");
 		jdbcTemplate.update(sql.toString());
 				
 		sql.delete(0, sql.length());	
