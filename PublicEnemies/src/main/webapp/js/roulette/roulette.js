@@ -50,7 +50,11 @@ $(document).ready(function() {
 		date = new Date();
 		sec = date.getSeconds();
 		if (sec<10) sec = "0"+ sec;
-		return date.getHours() +":"+date.getMinutes()+":"+sec+": ";
+		min = date.getMinutes();
+		if (min<10) min = "0"+ min;
+		hrs = date.getHours();
+		if (hrs<10) hrs = "0"+ hrs;
+		return hrs +":"+min+":"+sec+": ";
 	}
 	
 	$("#DEAL_button").click(function() {
