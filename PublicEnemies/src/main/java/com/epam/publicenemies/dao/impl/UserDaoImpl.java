@@ -251,8 +251,11 @@ public class UserDaoImpl implements IUserDao {
 	* @return User object
 	* */
 	public User findUserByEmailAndPassword(final String email, final String password){
+		final String CHECK_SQL = "SELECT COUNT(*) FROM users WHERE email=? AND password=?";
 		final String query = "SELECT  userId, nickName, money, avatar, userCharacter, regDate, email, password " +
 				"FROM users WHERE email=? AND password=?";
+		int i = jdbcTemplate.queryForInt(CHECK_SQL, new Object[] {email, password});
+		if (i>0){
 		User user = jdbcTemplate.queryForObject(query, new Object[]{email, password}, new RowMapper<User>() {
 						public User mapRow(ResultSet resultSet, int rowNum)
 								throws SQLException {
@@ -265,8 +268,12 @@ public class UserDaoImpl implements IUserDao {
 									resultSet.getTimestamp("regDate"));
 						}
 					});
-		log.info("user : " + user.getEmail() + " " + user.getPassword());
+		
+		log.info("UserDaoImpl.findUserByEmailAndPassword : " + user.getEmail() + " " + user.getPassword());
 		return user;
+		} else 
+			return null;
+		
 	}
 
 	/**
@@ -276,8 +283,11 @@ public class UserDaoImpl implements IUserDao {
 	 * @return User object
 	 */
 	public User findAdmin(final String email, final String password) {
+		final String CHECK_SQL = "SELECT COUNT(*) FROM users WHERE email=? AND password=? AND role='admin'";
 		final String query = "SELECT userId, email, password, nickName, money, avatar, userCharacter, regDate FROM users WHERE " +
 				"email=? AND password=? AND role='admin'";
+		int i = jdbcTemplate.queryForInt(CHECK_SQL, new Object[] {email, password});
+		if(i>0) {
 		User user = jdbcTemplate.queryForObject(query, new Object[]{email, password}, new RowMapper<User>() {
 			public User mapRow(ResultSet resultSet, int rowNum)
 					throws SQLException {
@@ -290,8 +300,10 @@ public class UserDaoImpl implements IUserDao {
 						resultSet.getTimestamp("regDate"));
 			}
 		});
-		
+		log.info("UserDaoImpl.findAdmin : "+ user.getEmail() + " " + user.getPassword());
 		return user;
+		} else 
+			return null;
 	}
 	
 	/**
