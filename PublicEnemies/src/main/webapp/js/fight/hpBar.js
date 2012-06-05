@@ -10,6 +10,7 @@ function HPColor()
 	}
 	if (parseInt(right.css("width")) < 256 && parseInt(right.css("width")) > 128)
 	{
+		right.removeClass("red");
 		right.removeClass("green");
 		right.addClass("orange");
 	}
@@ -29,6 +30,7 @@ function HPColor()
 	}
 	if (parseInt(left.css("width")) < 256 && parseInt(left.css("width")) > 128)
 	{
+		left.removeClass("red");
 		left.removeClass("green");
 		left.addClass("orange");
 	}

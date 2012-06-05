@@ -19,7 +19,7 @@ public class StatsCalculator
 		profile.setAllHP(400 + profile.getStrength() * 30);
 		profile.setHP(profile.getAllHP());
 		profile.setDamage(20 + profile.getAgility() * 3 + profile.getDressedWeapon1().getHitPoints() + profile.getDressedWeapon2().getHitPoints());
-		profile.setDefence(profile.getDressedArmor().getArmorProtection());
+		profile.setDefence(profile.getDressedArmor().getArmorProtection()/10);
 		profile.setLevel(new Level(profile.getExperience()));
 		profile.setMissRate(profile.getIntellect());
 	}
