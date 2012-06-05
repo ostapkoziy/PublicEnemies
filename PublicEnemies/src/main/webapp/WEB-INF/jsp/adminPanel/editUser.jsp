@@ -81,7 +81,7 @@
 			<input name="profileId" type="hidden"
 				value="${profile.getProfileId()}"> 			 			
 		</form>		
-		<input class="left" type="button" name="submit" value="Show" 
+		<input class="left" type="button" name="submit" value="Edit" 
     			onClick="formValidator()">
 	</div>
 </body>
