@@ -262,37 +262,37 @@ public class TableDaoImpl implements ITableDao {
 		StringBuilder sql = new StringBuilder("");
 		//-------------------------------------------------------
 		sql.append(fa);
-		sql.append("VALUES ('low', 50, './img/armors/low.png', 50)");
+		sql.append("VALUES ('low', 100, './img/armors/low.png', 5000)");
 		jdbcTemplate.update(sql.toString());
 		
 		sql.delete(0, sql.length());
 		//-------------------------------------------------------
 		sql.append(fa);
-		sql.append("VALUES ('low_mid', 60, './img/armors/low_mid.png', 60)");
+		sql.append("VALUES ('low_mid', 200, './img/armors/low_mid.png', 10000)");
 		jdbcTemplate.update(sql.toString());
 		
 		sql.delete(0, sql.length());
 		//-------------------------------------------------------
 		sql.append(fa);
-		sql.append("VALUES ('mid', 80, './img/armors/mid.png', 80)");
+		sql.append("VALUES ('mid', 300, './img/armors/mid.png', 18000)");
 		jdbcTemplate.update(sql.toString());
 		
 		sql.delete(0, sql.length());
 		//-------------------------------------------------------
 		sql.append(fa);
-		sql.append("VALUES ('mid_advanced', 90, './img/armors/mid_advanced.png', 90)");
+		sql.append("VALUES ('mid_advanced', 400, './img/armors/mid_advanced.png', 30000)");
 		jdbcTemplate.update(sql.toString());
 		
 		sql.delete(0, sql.length());
 		//-------------------------------------------------------
 		sql.append(fa);
-		sql.append("VALUES ('mid_hight', 100, './img/armors/mid_hight.png', 100)");
+		sql.append("VALUES ('mid_hight', 500, './img/armors/mid_hight.png', 40000)");
 		jdbcTemplate.update(sql.toString());
 		
 		sql.delete(0, sql.length());
 		//-------------------------------------------------------
 		sql.append(fa);
-		sql.append("VALUES ('hight', 120, './img/armors/hight.png', 120)");
+		sql.append("VALUES ('hight', 600, './img/armors/hight.png', 55000)");
 		jdbcTemplate.update(sql.toString());
 		
 		sql.delete(0, sql.length());
@@ -744,18 +744,18 @@ public class TableDaoImpl implements ITableDao {
 	private void fillProfessions() {
 		StringBuilder sql = new StringBuilder();
 		sql.append("INSERT INTO professions ");
-		sql.append("(professionName) ");
-		sql.append("VALUES ('Butcher')");
+		sql.append("(professionName, professionAvatar) ");
+		sql.append("VALUES ('Butcher', './img/avatars/butcher.png')");
 		jdbcTemplate.update(sql.toString());
 		sql.delete(0, sql.length());
 		sql.append("INSERT INTO professions ");
-		sql.append("(professionName) ");
-		sql.append("VALUES ('Gangster')");
+		sql.append("(professionName, professionAvatar) ");
+		sql.append("VALUES ('Gangster', './img/avatars/gangsterPr.png')");
 		jdbcTemplate.update(sql.toString());
 		sql.delete(0, sql.length());
 		sql.append("INSERT INTO professions ");
-		sql.append("(professionName)");
-		sql.append("VALUES ('Crimanal')");
+		sql.append("(professionName, professionAvatar)");
+		sql.append("VALUES ('Crimanal', './img/avatars/criminal.png')");
 		jdbcTemplate.update(sql.toString());
 	}
 	
