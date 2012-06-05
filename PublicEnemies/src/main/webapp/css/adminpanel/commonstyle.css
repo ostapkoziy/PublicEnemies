@@ -65,7 +65,7 @@ a.new_entry {
 	text-decoration: none; 
 }
 
-a.new_entry:hover, a.new_entry:active, a.new_entry:visited, a.new_entry:link {
+a.new_entry:hover, a.new_entry:active, a.new_entry:visited, a.new_entry:link{
 	text-decoration: none;
 	color: black;
 	font-size: 14pt;
@@ -79,10 +79,11 @@ a.new_entry:hover {
 	background: #DDD; 
 }
 
-div.users_div, div.weapons_div, div.armors_div, div.aids_div, div.summary_div {
+div.users_div, div.weapons_div, div.armors_div, div.aids_div, div.summary_div, a.logout_link, a.logout_lind:VISITED {
 	margin-top: 5px; 
-	border-radius: 10px; 
-	padding: 20px; 
+	border-radius: 15px; 
+	color: black; 
+	padding: 10px; 
 	border: 2px solid black; 
 }
 

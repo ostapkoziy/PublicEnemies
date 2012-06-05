@@ -19,4 +19,6 @@
 </a>
 <a class="div_link" href="/PublicEnemies/adminPanel/aids.html"> <span id="aids_area"> AIDS </span>
 </a>
+<div style="float: right; color: black; "> <a class="logout_link" href="/PublicEnemies/logout.html">  Logout </a>
+</div>
 </div>
