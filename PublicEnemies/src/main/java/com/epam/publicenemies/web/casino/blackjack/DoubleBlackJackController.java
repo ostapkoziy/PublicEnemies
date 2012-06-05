@@ -87,6 +87,7 @@ public class DoubleBlackJackController {
 
 		// Check result
 		String playerResult = engine.checkResult(playerPoints, dealerPoints);
+		game.setChips(game.getChips() - round.getPlayerBet());
 		game.setChips(engine.updateChips(playerResult, game.getChips(),
 				round.getPlayerBet()));
 

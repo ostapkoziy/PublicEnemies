@@ -65,37 +65,46 @@ $(document)
 						}
 						$("#player_points").empty().append(
 								game.round.playerPoints);
+						$("#playerBet").empty().append(game.round.playerBet);
 
 						if (game.round.playerCardsSplit == null) {
 							var i = 0;
 							$("#dealer_cards").empty();
 							for (i = 0; i < game.round.dealerCards.length; i = i + 1) {
-								$("#dealer_cards").append(
-										"<img src=" + game.round.dealerCards[i].image
-												+ "></img>");
+								$("#dealer_cards")
+										.append(
+												"<img src="
+														+ game.round.dealerCards[i].image
+														+ "></img>");
 							}
 							// Chips
 							$("#playerChips").empty().append(game.chips);
 
-							$("#result").empty().append(game.round.playerResult);
+							$("#result").empty()
+									.append(game.round.playerResult);
 							$("#resultSplit").empty().append(
 									game.round.playerResultSplit);
-							$("#deal_button").attr("src", "img/layout/rebeat.png");
+							$("#deal_button").attr("src",
+									"img/layout/rebeat.png");
 							$("#deal_button").attr("class", "active");
 
-							$("#stand_button").attr("src", "img/layout/standg.png");
+							$("#stand_button").attr("src",
+									"img/layout/standg.png");
 							$("#stand_button").attr("class", "notactive");
 
 							$("#hit_button").attr("src", "img/layout/hitg.png");
 							$("#hit_button").attr("class", "notactive");
 
-							$("#double_button").attr("src", "img/layout/doubleg.png");
+							$("#double_button").attr("src",
+									"img/layout/doubleg.png");
 							$("#double_button").attr("class", "notactive");
 
 							$("#10_button").attr("class", "active");
 							$("#25_button").attr("class", "active");
 							$("#50_button").attr("class", "active");
 							$("#100_button").attr("class", "active");
+						} else {
+							$("#playerChips").empty().append(game.chips);
 						}
 					}
 

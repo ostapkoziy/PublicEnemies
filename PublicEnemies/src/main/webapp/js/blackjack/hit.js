@@ -68,6 +68,7 @@ $(document)
 						$("#player_points").empty().append(
 								game.round.playerPoints);
 
+
 						// Buttons
 						$("#split_button").attr("src", "img/layout/splitg.png");
 						$("#split_button").attr("class", "notactive");
@@ -86,7 +87,7 @@ $(document)
 								$("#result").empty().append(
 										game.round.playerResult);
 								$("#resultSplit").empty().append(
-										game.round.playerResult);
+										game.round.playerResultSplit);
 								// Chips
 								$("#playerChips").empty().append(game.chips);
 
