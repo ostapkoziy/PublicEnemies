@@ -16,7 +16,7 @@ import com.epam.publicenemies.service.IUserManagerService;
  *
  */
 @Controller
-@RequestMapping(value = "/superSecretAdminLoginPath")
+@RequestMapping(value = "/secretPath")
 public class LoginAdminFormController {
 	@Autowired
 	private IUserManagerService	userManagerService;
