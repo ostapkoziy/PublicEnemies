@@ -236,4 +236,24 @@ public class ProfileManagerServiceImpl implements IProfileManagerService {
 	public boolean updateStats(int characterId, int strength, int agility, int intellect) {
 		return profileDao.updateStats(characterId, strength, agility, intellect);
 	}
+	
+	/**
+	 * Update won fights amount
+	 * @param characterId - character Id
+	 * @param wonFights - amount of won fights
+	 * @return true if operation was successfully
+	 */
+	public boolean updateWonFights(int characterId, int fightsWon) {
+		return profileDao.updateWonFights(characterId, fightsWon);
+	}
+	
+	/**
+	 * Update lost fights amount
+	 * @param characterId - character Id
+	 * @param fightsTotal - amount of all fights
+	 * @return true if operation was successfully
+	 */
+	public boolean updateTotalFights(int characterId, int fightsTotal) {
+		return profileDao.updateTotalFights(characterId, fightsTotal);
+	}
 }

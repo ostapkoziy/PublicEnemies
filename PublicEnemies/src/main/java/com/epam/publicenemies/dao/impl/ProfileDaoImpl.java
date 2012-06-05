@@ -1194,4 +1194,36 @@ public class ProfileDaoImpl implements IProfileDao {
 		} else
 			return false;
 	}
+	
+	/**
+	 * Update won fights amount
+	 * @param characterId - character Id
+	 * @param wonFights - amount of won fights
+	 * @return true if operation was successfully
+	 */
+	public boolean updateWonFights(int characterId, int fightsWon) {
+		final String UPDATE_SQL = "UPDATE charcaters SET fightsWon=? WHERE charcaterId=?";
+		int i = jdbcTemplate.update(UPDATE_SQL, new Object [] {fightsWon, characterId});
+		if (i>0) {
+			log.info("ProfileDaoImpl.updateWonFights : character("+characterId+") won fights were updated");
+			return true;
+		} else
+			return false;
+	}
+	
+	/**
+	 * Update lost fights amount
+	 * @param characterId - character Id
+	 * @param fightsTotal - amount of all fights
+	 * @return true if operation was successfully
+	 */
+	public boolean updateTotalFights(int characterId, int fightsTotal) {
+		final String UPDATE_SQL = "UPDATE charcaters SET fightsTotal=? WHERE charcaterId=?";
+		int i = jdbcTemplate.update(UPDATE_SQL, new Object [] {fightsTotal, characterId});
+		if (i>0) {
+			log.info("ProfileDaoImpl.updateTotalFights : character("+characterId+") total fights were updated");
+			return true;
+		} else
+			return false;
+	}
 }
