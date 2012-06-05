@@ -1,6 +1,6 @@
 @CHARSET "UTF-8";
 
-#result {
+#result { 
 	width: 1920px;
 	height: 1200px;
 	position: absolute;
@@ -14,8 +14,9 @@
 
 #imageWrapper {
 	background: url("../../img/fight/you-win-min.png") no-repeat;
+	play-during:
 }
-
+/* -----------GRID--------- */
 #result1 {
 	background: url("../../img/fight/overlay.png");
 }

@@ -1,53 +1,44 @@
 @CHARSET "UTF-8";
 
-body{
-	background-color: white;
-/* 	background-image: url("../img/roulette/floor.jpg"); */
-}
 
 .panel {
- 	outline: medium orange solid;
+/*  	outline: medium orange solid; */
 }
 
-#topPanel{
-	min-height: 70px;
-	text-align: center;
+#exit{
+	float:right;width:300px ;height: 40px; font-size: 16pt;font-family:fantasy; opacity:0.85
 }
-
-#leftPanel {
-	float: left;
-	width: 200px;
-	height: 500px;
-	margin-bottom: 150px;
+#tableWrapper{
+	position:relative; height:500px; width:1000px;margin-left: auto; margin-right: auto; 
+	background-image: url('../img/roulette/table_foreground.png'); opacity:0.95
 }
-
-#rightPanel {
-	float: right;
-	width: 300px;
-	height: 300px;
+#DEAL_button{
+	width: 160px; height: 60px; margin-left: auto; margin-right: auto; display: block;
+	margin-top: 40px; font-family: fantasy; font-size: 18pt; color: green; opacity:0.95
 }
-
-#bottomPanel {
-	text-align: center;
-	clear: both;
+#history{
+	border-radius:10px; border:4px solid yellow ; width: 800px; height: 70px; margin-top: 10px; 
+	overflow: auto; margin-left: auto; margin-right: auto; background-color: white;
+	font-size: 16pt; padding-left: 10px; opacity: 0.6; 	
 }
-
-#centerPanel {
-	
-	text-align: center;
-	margin-left: 250px;
-	margin-right: 350px;
-/* 	min-height: 300px; */
+#background{
+	width: 100%; height: 100%; position: absolute; left: 0px; top: 0px; z-index: -1
 }
-
-.highlighted {  
-   opacity: 1;
- 
-   /*отражение*/
-  -webkit-box-reflect: below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(.8, transparent), to(rgba(0,0,0,0.9)));
- 
-   /*свечение*/
-  -webkit-box-shadow: 0px 0px 20px rgba(255,255,255,0.99);
-  -moz-box-shadow: 0px 0px 20px rgba(255,255,255,0.99);
-  box-shadow: 0px 0px 20px rgba(255,255,255,0.99);
+#background img{
+	width: 100%; height: 100%; opacity:1
+}
+#betOnTableWrapper{
+	width:200px; margin-top:50px; font-size: 20pt; color:white; font-family:fantasy; opacity:0.85;
+}
+#clearBet{
+	width: 120px; height: 80px; font-size: 16pt; color:purple ; font-family:fantasy; opacity:0.9;
+}
+#rightPanel{
+	margin-right: 20px; width: 120px; float: right;
+}
+#chipsAmount{
+	font-size: 20pt; color:yellow; font-family:fantasy; font-smooth:large; opacity:0.85;
+}
+.chips {  
+   opacity: 0.6;
 }

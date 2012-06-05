@@ -74,6 +74,14 @@ public interface IUserDao {
 	* @return User object
 	* */
 	User findUserByEmailAndPassword(String email, String password);
+	
+	/**
+	 * Find Admin by its unique email and not unique password
+	 * @param email - admin email
+	 * @param password - admin password
+	 * @return User object
+	 */
+	User findAdmin(String email, String password);
 
 	/**
 	* Find user by his/her unique email

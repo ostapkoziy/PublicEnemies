@@ -23,6 +23,7 @@ public class RedirectController
 	{
 		HttpSession session = request.getSession();
 		session.removeAttribute("user");
+		session.removeAttribute("admin");
 		return "index";
 	}
 }

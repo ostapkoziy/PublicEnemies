@@ -61,6 +61,9 @@
 							<div id="player_cardsSplit"></div>
 						</td>
 						<td>
+							<div id="resultSplit"></div>
+						</td>
+						<td>
 							<div id="player_points"></div>
 						</td>
 					</tr>

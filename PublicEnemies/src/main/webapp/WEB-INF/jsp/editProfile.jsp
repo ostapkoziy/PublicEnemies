@@ -2,12 +2,13 @@
 	pageEncoding="ISO-8859-1"%>
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Edit profile</title>
 <script type="text/javascript" src="js/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="js/proffession.js"></script>
 <link rel="stylesheet" href="css/profile.css" type="text/css">
 
 <script type="text/javascript">
@@ -62,6 +63,11 @@ $(document).ready(function(){
 										<option id="2">Gangster</option>
 										<option id="3">Criminal</option>
 									</select>
+									<!-- *********EDIT BY ALEXANDER******************** -->
+									<div id="proffessionAvatar">
+										<div id="profImg" style="width: 200px;height: 250px; background: url('img/avatars/butcher.png');"></div>
+									</div>
+									<!--*********************** -->
 									<input id="profession_input"  type="text" name="profession" value="${profile.getCharacterProfession().getProfessionName()}"><br />
 									<font color="red">${status.errorMessage}</font>
 									<br />

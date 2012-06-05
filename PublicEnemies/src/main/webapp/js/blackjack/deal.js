@@ -35,7 +35,6 @@ $(document)
 									allDataUpdate(game);
 								},
 								error : function(e, ajaxOptions, thrownError) {
-									alert("Choose bet");
 								}
 
 							});
@@ -67,7 +66,9 @@ $(document)
 									game.round.playerPoints);
 							$("#result").empty()
 									.append(game.round.playerResult);
+							$("#resultSplit").empty();
 
+							
 							// Chips
 							$("#playerChips").empty().append(game.chips);
 

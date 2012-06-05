@@ -11,14 +11,10 @@
 <script type="text/javascript" src="js/fight/waitForConnect.js"></script>
 <script type="text/javascript" src="js/fight/chat.js"></script>
 <script type="text/javascript" src="js/fight/hpBar.js"></script>
-<script type="text/javascript" src="js/fight/timer.js"></script>
 
 <link href="css/fight/content.css" rel="stylesheet" type="text/css">
 <link href="css/fight/fight.css" rel="stylesheet" type="text/css">
 <style type="text/css">
-div { /* 	outline: 2px solid green; */
-	
-}
 </style>
 <c:choose>
 	<c:when test="${gameRole=='creator'}">
@@ -40,6 +36,8 @@ div { /* 	outline: 2px solid green; */
 		<!-- ******************************************************* -->
 		<!-- ********************ATACK DOLL**************************** -->
 		<!-- ******************************************************* -->
+
+		<jsp:include page="include/map.jsp"></jsp:include>
 		<div id="attackBlockDoll">
 			<div id="doll">
 				<div style="float: left;">
@@ -48,27 +46,23 @@ div { /* 	outline: 2px solid green; */
 				<div style="float: left;">
 					<img class="map" id="doll_hit" src="img/fight/doll_hit.png" usemap="#table2" />
 				</div>
-				<jsp:include page="include/map.jsp"></jsp:include>
 			</div>
-		</div>
-		<!-- ******************************************************* -->
-		<!-- ********************ATACK Block**************************** -->
-		<!-- ******************************************************* -->
-		<div id="attackBlock">
-			<div id="timer"></div>
-			<input id="blockInput" type="text" value="head">
-			<input id="hitInput" type="text" value="head">
-			<input id="aidInput" type="text" value="false">
-			<div id="atackButtonWrapper">
-				<img id="atackButton" src="img/fight/attack.jpg">
+			<!-- ******************************************************* -->
+			<!-- ********************ATACK Block**************************** -->
+			<!-- ******************************************************* -->
+			<div id="attackBlock">
+				<!-- 				<div id="timer"></div> -->
+				<input id="blockInput" type="text" value="head">
+				<input id="hitInput" type="text" value="head">
+				<input id="aidInput" type="text" value="false">
+				<div id="atackButtonWrapper">
+					<img id="atackButton" src="img/fight/gun2.png" hidden="">
+				</div>
 			</div>
+			<!-- ******************************************************* -->
+			<!-- ********************CHAT**************************** -->
+			<!-- ******************************************************* -->
 		</div>
-		<!-- ******************************************************* -->
-		<!-- ********************CHAT**************************** -->
-		<!-- ******************************************************* -->
-
-
-
 		<div id="box">
 			<div id="allMesseges"></div>
 			<textarea id="myMessege"></textarea>
@@ -76,10 +70,6 @@ div { /* 	outline: 2px solid green; */
 				<input id="submit" type="button" name="submit" value="Ok">
 			</div>
 		</div>
-
-
-
-
 	</div>
 </body>
 </html>

@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="css/fights.css" type="text/css">
 </head>
 <body>
-	<table align="center" width="100%" style="background-color: transparent">
+	<table align="center" width="100%" style="background-color: transparent;">
 		<tr style="margin-top: 2px;">
 			<td style="background-color: black; width: 100%;">
 				<!--  up bar with stats, gamelogo, avatar -->
@@ -20,7 +20,7 @@
 		</tr>
 		<tr>
 			<td>
-				<table class="sample" align="center" width="500" height="500" style="margin-top: 50px">
+				<table class="sample" align="center" width="500" height="500" style="margin-top: 50px; outline: 13px solid red;">
 					<tr>
 						<td>
 							<div>

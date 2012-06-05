@@ -2,6 +2,17 @@
 
 body { /* 	background: url("../../img/fight/bg3.png") no-repeat; */
 	background: url("../../img/style_chase.png") no-repeat;
+=======
+body {
+	background: url("../../img/fight/overlay.png");
+	/* 	background: white; */
+	color: #CC0000;
+	font-family: "impact";
+}
+
+div { /* 	outline: 1px solid red; */
+	
+
 }
 
 #content {
@@ -9,7 +20,6 @@ body { /* 	background: url("../../img/fight/bg3.png") no-repeat; */
 	margin-left: auto;
 	margin-right: auto;
 	height: 800px;
-	/* 	outline: 5px solid red; */
 }
 
 #insideRight {
@@ -24,15 +34,48 @@ body { /* 	background: url("../../img/fight/bg3.png") no-repeat; */
 #left {
 	float: left;
 	width: 400px;
-	height: 480px;
-	/* 	outline: 4px solid purple; */
+	height: 520px;
 }
 
 #right {
 	float: right;
 	width: 400px;
-	height: 480px;
-	/* 	outline: 4px solid black; */
+	height: 520px;
+}
+/* ************NAME LVL********* */
+#leftName { /* 	outline: 2px solid red; */
+	width: 100%;
+	height: 40px;
+}
+
+#rightName { /* 	outline: 2px solid red; */
+	width: 100%;
+	height: 40px;
+}
+
+#leftLvl {
+	float: left;
+	/* 	width: 30%; */
+	/* 	outline: 2px solid red; */
+	height: 100%;
+}
+
+#rightLvl { /* 	width: 30%; */
+	height: 100%;
+	float: right;
+	/* 	outline: 2px solid red; */
+}
+
+#leftNickName { /* 	width: 30%; */
+	height: 100%;
+	float: right;
+	/* 	outline: 2px solid red; */
+}
+
+#rightNickName { /* 	width: 30%; */
+	height: 100%;
+	float: left;
+	/* 	outline: 2px solid red; */
 }
 /* +++++++++++++HP++++++++++++++++++++++++++ */
 #leftHP {
@@ -59,12 +102,6 @@ body { /* 	background: url("../../img/fight/bg3.png") no-repeat; */
 	border-radius: 5px;
 }
 
-#innerLeftProgressHP {
-	height: 25px;
-	width: 100%;
-	border-radius: 5px;
-}
-
 #rightProgressHP {
 	height: 25px;
 	width: 96%;
@@ -73,12 +110,33 @@ body { /* 	background: url("../../img/fight/bg3.png") no-repeat; */
 	border-radius: 5px;
 }
 
+#innerLeftProgressHP {
+	height: 25px;
+	width: 100%;
+	/* 	float: left; */
+	border-radius: 5px;
+}
+
 #innerRightProgressHP {
 	height: 25px;
 	width: 100%;
-	float: left;
 	border-radius: 5px;
 }
+
+#leftHPPercent {
+	background: transparent;
+	margin-top: -25px;
+	width: 100%;
+	text-align: center;
+}
+
+#rightHPPercent {
+	background: transparent;
+	margin-top: -25px;
+	width: 100%;
+	text-align: center;
+}
+
 /* ************************************** */
 #rightAgility,#rightStrength,#rightInteligence {
 	float: right;
@@ -91,25 +149,30 @@ body { /* 	background: url("../../img/fight/bg3.png") no-repeat; */
 #attackBlock {
 	margin-left: auto;
 	margin-right: auto;
-	width: 120px;
-	clear: both;
+	width: 200px;
+	height: 80px
 }
 
 #atackButtonWrapper {
-	width: 72px;
-	height: 75px;
+	width: 100px;
+	height: 45px;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 #hitInput {
 	width: 30px;
+	display: none
 }
 
 #blockInput {
 	width: 30px;
+	display: none
 }
 
 #aidInput {
 	width: 30px;
+	display: none
 }
 /* ****************COLOR HP*********************** */
 .orange {
@@ -126,8 +189,7 @@ body { /* 	background: url("../../img/fight/bg3.png") no-repeat; */
 /* ****************TIMER***************************** */
 #timer {
 	width: 100%;
-	height: 20px;
-	/* 	outline: 2px solid red; */
+	height: 25px;
 	font-size: 20px;
 	text-align: center;
 }
@@ -140,7 +202,7 @@ body { /* 	background: url("../../img/fight/bg3.png") no-repeat; */
 }
 
 #doll {
-	width: 152px;
+	width: 150px;
 	height: 400px;
 	margin: 0 auto;
 }
@@ -187,7 +249,7 @@ body { /* 	background: url("../../img/fight/bg3.png") no-repeat; */
 #leftInventory {
 	height: 400px;
 	width: 100px;
-	float: left;
+	float: right;
 }
 
 .item {
@@ -198,19 +260,46 @@ body { /* 	background: url("../../img/fight/bg3.png") no-repeat; */
 /* *************EXPIRIENCE******************************* */
 #expAndSkillsWrapper {
 	width: 300px;
-	height: 140px;
-	margin-top: 260px;
+	height: 100px;
+	clear: left;
+	/* 	outline: 2px solid green; */
 }
 
-#exp {
+#expWrapper {
 	width: 100%;
-	height: 10px;
-	margin-top: 10px;
+	height: 25px;
 }
 
 #innerExp {
-	height: inherit;
-	/* 	float: left; */
-	background-color: blue;
+	height: 25px;
+	background: url("../../img/fight/blue.png");
 	border-radius: 5px;
+}
+
+#fullExp {
+	width: 100%;
+	background: gray;
+	border-radius: 5px;
+}
+
+#expPercent {
+	margin-top: -25px;
+	height: 25px;
+	text-align: center;
+	border-radius: 5px;
+}
+/* *************STATS************* */
+#damage {
+	width: 100%;
+	height: 20px;
+}
+
+#defence {
+	width: 100%;
+	height: 20px;
+}
+
+#dodge {
+	width: 100%;
+	height: 20px;
 }

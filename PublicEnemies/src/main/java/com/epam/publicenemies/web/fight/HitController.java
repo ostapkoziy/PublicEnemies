@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.epam.publicenemies.domain.Profile;
+import com.epam.publicenemies.domain.fight.Action;
 import com.epam.publicenemies.domain.fight.Fight;
 import com.epam.publicenemies.domain.fight.FightEngine;
 
@@ -29,7 +30,7 @@ public class HitController
 		Fight fight = (Fight) request.getSession().getAttribute("game");
 		String hit = new String(request.getParameter("userHit"));
 		String block = request.getParameter("userBlock");
-		// String useAid = request.getParameter("aidUse");
+		String usedAid = request.getParameter("aidUse");
 		Profile userProfile = fight.getProfile(role);
 		/*
 		 * 
@@ -37,12 +38,12 @@ public class HitController
 		if (role.equals("creator"))
 		{
 			log.info("CREATOR: " + userProfile.getNickName() + " HIT : " + hit + " BLOCK: " + block);
-			creatorGameSetup(fight, hit, block);
+			creatorGameSetup(fight, hit, block, usedAid);
 		}
 		else
 		{
 			log.info("CONNECT: " + userProfile.getNickName() + " HIT : " + hit + " BLOCK: " + block);
-			connectorGameSetup(fight, hit, block);
+			connectorGameSetup(fight, hit, block, usedAid);
 		}
 	}
 	private void startEngine(Fight fight)
@@ -53,26 +54,45 @@ public class HitController
 			engine.startEngine(fight);
 		}
 	}
-	private void creatorGameSetup(Fight fight, String hit, String block)
+	private void creatorGameSetup(Fight fight, String hit, String block, String usedAid)
 	{
 		log.info("CREATOR GAME SETUP");
 		fight.getRound().getCreatorAction().setHit(hit);
 		fight.getRound().getCreatorAction().setBlock(block);
 		fight.getRound().getCreatorAction().setDidHit(true);
+		useAid(fight.getCreatorProfile(), fight.getRound().getCreatorAction(), usedAid);
 		if (fight.getRound().getConnectorAction().isDidHit())
 		{
 			setRoundStart(fight);
 		}
 	}
-	private void connectorGameSetup(Fight fight, String hit, String block)
+	private void connectorGameSetup(Fight fight, String hit, String block, String usedAid)
 	{
 		log.info("CONNECTOR GAME SETUP");
 		fight.getRound().getConnectorAction().setHit(hit);
 		fight.getRound().getConnectorAction().setBlock(block);
 		fight.getRound().getConnectorAction().setDidHit(true);
+		useAid(fight.getConnectorProfile(), fight.getRound().getConnectorAction(), usedAid);
 		if (fight.getRound().getCreatorAction().isDidHit())
 		{
 			setRoundStart(fight);
+		}
+	}
+	private void useAid(Profile profile, Action action, String usedAid)
+	{
+		if (usedAid.equals("true") && !action.isUsedAid())
+		{
+			/*
+			 * TODO DB WORK
+			 */
+			action.setUsedAid(true);
+			int restoreHP = profile.getDressedAid().getAidEffect();
+			if (profile.getHP() + restoreHP > profile.getAllHP())
+			{
+				profile.setHP(profile.getAllHP());
+			}
+			else
+				profile.setHP(profile.getHP() + restoreHP);
 		}
 	}
 	/**

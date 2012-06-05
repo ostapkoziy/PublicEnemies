@@ -67,35 +67,55 @@ $(document)
 						}
 						$("#player_points").empty().append(
 								game.round.playerPoints);
-						$("#result").empty().append(game.round.playerResult);
-
-						// Chips
-						$("#playerChips").empty().append(game.chips);
 
 						// Buttons
 						$("#split_button").attr("src", "img/layout/splitg.png");
-						if (game.round.playerResult != null
-								&& game.round.playerCardsSplit == null) {
-							$("#stand_button").attr("src",
-									"img/layout/standg.png");
-							$("#stand_button").attr("class", "notactive");
+						$("#split_button").attr("class", "notactive");
+						if (game.round.playerCardsSplit == null) {
+							if (game.round.playerResult != null) {
+								var i = 0;
+								$("#dealer_cards").empty();
+								for (i = 0; i < game.round.dealerCards.length; i = i + 1) {
+									$("#dealer_cards")
+											.append(
+													"<img src="
+															+ game.round.dealerCards[i].image
+															+ "></img>");
+								}
 
-							$("#hit_button").attr("src", "img/layout/hitg.png");
-							$("#hit_button").attr("class", "notactive");
+								$("#result").empty().append(
+										game.round.playerResult);
+								$("#resultSplit").empty().append(
+										game.round.playerResult);
+								// Chips
+								$("#playerChips").empty().append(game.chips);
 
-							$("#double_button").attr("src",
-									"img/layout/doubleg.png");
-							$("#double_button").attr("class", "notactive");
+								$("#stand_button").attr("src",
+										"img/layout/standg.png");
+								$("#stand_button").attr("class", "notactive");
 
-							$("#deal_button").attr("src",
-									"img/layout/rebeat.png");
-							$("#deal_button").attr("class", "active");
-							
-							$("#10_button").attr("class", "active");
-							$("#25_button").attr("class", "active");
-							$("#50_button").attr("class", "active");
-							$("#100_button").attr("class", "active");
+								$("#hit_button").attr("src",
+										"img/layout/hitg.png");
+								$("#hit_button").attr("class", "notactive");
 
+								$("#double_button").attr("src",
+										"img/layout/doubleg.png");
+								$("#double_button").attr("class", "notactive");
+
+								$("#deal_button").attr("src",
+										"img/layout/rebeat.png");
+								$("#deal_button").attr("class", "active");
+
+								$("#10_button").attr("class", "active");
+								$("#25_button").attr("class", "active");
+								$("#50_button").attr("class", "active");
+								$("#100_button").attr("class", "active");
+							}
+						} else {
+							if (game.round.playerResultSplit != null) {
+								$("#resultSplit").empty().append(
+										game.round.playerResultSplit);
+							}
 						}
 					}
 

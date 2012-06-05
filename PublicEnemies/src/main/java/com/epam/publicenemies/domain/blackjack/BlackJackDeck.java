@@ -25,4 +25,8 @@ public class BlackJackDeck {
 		BlackJackCard card = deck.get(rand.nextInt(52));
 		return card;
 	}
+	
+	public BlackJackCard getBlackJack() {
+		return deck.get(9);
+	}
 }

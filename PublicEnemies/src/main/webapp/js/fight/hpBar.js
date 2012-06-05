@@ -2,6 +2,12 @@ function HPColor()
 {
 	var right = $("#innerRightProgressHP");
 	var left = $("#innerLeftProgressHP");
+	if (parseInt(right.css("width")) > 256)
+	{
+		right.removeClass("orange");
+		right.removeClass("red");
+		right.addClass("green");
+	}
 	if (parseInt(right.css("width")) < 256 && parseInt(right.css("width")) > 128)
 	{
 		right.removeClass("green");
@@ -15,6 +21,12 @@ function HPColor()
 	}
 
 	// ////////////////////LEFT
+	if (parseInt(left.css("width")) > 256)
+	{
+		left.removeClass("orange");
+		left.removeClass("red");
+		left.addClass("green");
+	}
 	if (parseInt(left.css("width")) < 256 && parseInt(left.css("width")) > 128)
 	{
 		left.removeClass("green");

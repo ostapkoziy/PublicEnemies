@@ -12,6 +12,7 @@ public class BlackJackRound {
 	private int playerBet;
 	private int playerPoints;
 	private String playerResult;
+	private String playerResultSplit;
 
 	public List<BlackJackCard> getPlayerCards() {
 		return playerCards;
@@ -59,6 +60,14 @@ public class BlackJackRound {
 
 	public void setPlayerCardsSplit(List<BlackJackCard> playerCardsSplit) {
 		this.playerCardsSplit = playerCardsSplit;
+	}
+
+	public String getPlayerResultSplit() {
+		return playerResultSplit;
+	}
+
+	public void setPlayerResultSplit(String playerResultSplit) {
+		this.playerResultSplit = playerResultSplit;
 	}
 
 }

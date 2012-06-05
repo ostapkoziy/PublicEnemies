@@ -1,0 +1,123 @@
+@CHARSET "UTF-8";
+
+html {
+	height: 100%;
+}
+
+body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+.hole { /* 	display: none; */
+	background: url("../../img/fight/bullet2.png") no-repeat;
+	width: 100px;
+	height: 100px;
+	display: none;
+	position: absolute;
+	z-index: 88888888;
+}
+
+#bulletShtorm { /* 	outline: 5px solid green; */
+	position: absolute;
+	width: 580px;
+	height: 160px;
+	left: 0;
+	right: 0;
+	margin-left: auto;
+	margin-right: auto;
+}
+/* ++++++++++++++++++++W+++++++++++++++++++++ */
+#hole1 {
+	top: 0px;
+	left: 0px;
+}
+
+#hole2 {
+	top: 80px;
+	left: 20px;
+}
+
+#hole3 {
+	top: 160px;
+	left: 40px;
+}
+
+#hole4 {
+	top: 100px;
+	left: 100px;
+}
+
+#hole5 {
+	top: 160px;
+	left: 160px;
+}
+
+#hole6 {
+	top: 80px;
+	left: 180px;
+}
+
+#hole7 {
+	top: 0px;
+	left: 200px;
+}
+/* ++++++++++++++++++++END W++++++++++++ */
+/* ++++++++++++++++++++I++++++++++++ */
+#hole8 {
+	top: 0px;
+	left: 300px;
+}
+
+#hole9 {
+	top: 80px;
+	left: 300px;
+}
+
+#hole10 {
+	top: 160px;
+	left: 300px;
+}
+/* ++++++++++++++++++++END I++++++++++++ */
+/* ++++++++++++++++++++N++++++++++++ */
+#hole11 {
+	top: 0px;
+	left: 400px;
+}
+
+#hole12 {
+	top: 80px;
+	left: 400px;
+}
+
+#hole13 {
+	top: 160px;
+	left: 400px;
+}
+/* --- */
+#hole14 {
+	top: 40px;
+	left: 460px;
+}
+
+#hole15 {
+	top: 100px;
+	left: 520px;
+}
+/* -- */
+#hole16 {
+	top: 160px;
+	left: 580px;
+}
+
+#hole17 {
+	top: 80px;
+	left: 580px;
+}
+
+#hole18 {
+	top: 0px;
+	left: 580px;
+}
+/* ++++++++++++++++++++END N++++++++++++ */
