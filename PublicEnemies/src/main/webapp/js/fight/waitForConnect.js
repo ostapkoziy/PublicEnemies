@@ -7,6 +7,7 @@ function waitForOpponent()
 {
 	$.ajax({
 		url : "WaitForOpponent.html",
+		async : false,
 		success : function(isStarted)
 		{
 			if (isStarted != "false")

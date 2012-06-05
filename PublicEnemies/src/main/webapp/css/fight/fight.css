@@ -1,18 +1,13 @@
 @CHARSET "UTF-8";
 
-body { /* 	background: url("../../img/fight/bg3.png") no-repeat; */
-	background: url("../../img/style_chase.png") no-repeat;
-=======
 body {
 	background: url("../../img/fight/overlay.png");
-	/* 	background: white; */
 	color: #CC0000;
 	font-family: "impact";
 }
 
 div { /* 	outline: 1px solid red; */
 	
-
 }
 
 #content {
