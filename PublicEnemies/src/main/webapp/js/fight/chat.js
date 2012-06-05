@@ -35,6 +35,7 @@ $(function()
 		$.post("ViewServlet", {}, function(data)
 		{
 			$("#allMesseges").html(data);
+			chatScroll();
 			setTimeout(autoUpdate, 2000);
 		});
 

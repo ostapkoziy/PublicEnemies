@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+	<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -10,8 +10,8 @@
 
 <title>Public Enemies Roulette</title>
 <script src="js/jquery-1.7.2.js" type="text/javascript"></script>
-<script type="text/javascript" src="js/jquery.imagemapster.js"></script>
-<script type="text/javascript" src="js/jquery.maphilight.min.js"></script>
+<!-- <script type="text/javascript" src="js/jquery.imagemapster.js"></script> -->
+<!-- <script type="text/javascript" src="js/jquery.maphilight.min.js"></script> -->
 <script type="text/javascript" src="js/jquery.metadata.min.js"></script>
 
 <script type="text/javascript" src="js/roulette/hilight.js"></script>
@@ -19,33 +19,56 @@
 
 </head>
 <body>
-	<div class="panel" id="topPanel">
-		<form method="post" action="rouletteRedirectController.html">
-			<input id="exit" type="submit" value="Leave roulette table">
-		</form>
-		<h2>
-			<c:out value="${rouletteGameInfo.getChips()} chips" />
-		</h2>
-		<p>
-			<b><c:out value="${rouletteGameInfo.msg}" /></b>
+<!-- <a href="#" id="maplink1">Hover to highlight the first section</a> -->
+	<div id="background"><img src="img/roulette/roulette_foreground.jpg"></div>
+	
+	<div class="panel" style="height: 120px; margin: 5px">
+		<div style="float: left; font-size: 16pt; color:white; font-family:fantasy;">
+			<img width="80" height="80" src="${rouletteGameInfo.getUserAvatar()}">
+			<c:out value="${rouletteGameInfo.getUserNickname()}"/>
+		</div>
+		
+		<div class="panel" style="width:300px; float: right;">
+			<form method="post" action="rouletteRedirectController.html">
+				<input id="exit" type="submit" value="Leave roulette table">
+			</form>
+			<div id="betOnTableWrapper">Bet on table: <div style="display: inline;color:lime" id="betOnTable">0</div></div> 
+		</div>
+
+		<div style="padding-top: 20px; margin-left: 670px">
+			<div id="chipsAmount">
+				<c:out value="${rouletteGameInfo.getChips()} chips" /></div>
+			<div id="message"></div>
+			<div style=" font-size: 20pt; color:white; font-family:fantasy; font-smooth:large; ">Current BET: 
+			<div style="display: inline; color:lime ;" id="showBet">0</div>
+			</div>
+		</div>
 	</div>
-	<div class="panel" id="leftPanel">
-		leftPanel
-		<p>Bet on table:
-		<div id="betOnTable">0</div>
-		<p>Current BET:
-		<h2 id="showBet">0</h2>
-	</div>
+
 	<div class="panel" id="rightPanel">
-		RightPanel
-		<p>HISTORY
-		<p>
-			<c:out value="${rouletteGameInfo.history}" />
+		<div align="center" style="width: 120px;">
+			<img class="chips" id="10" alt="10" src="img/roulette/Chip_10.png" width="80" height="80" style="padding-bottom: 10px">
+			<img class="chips" id="25" alt="25"	src="img/roulette/Chip_25.png" width="80" height="80" style="padding-bottom: 10px">
+			<img class="chips" id="50" alt="50" src="img/roulette/Chip_50.png" width="80" height="80" style="padding-bottom: 30px">
+		</div>
+		<input id="clearBet" type="button" value="Clear bets">
 	</div>
-	<div class="panel" id="centerPanel">
-		<img id="rouletteTable" src="img/roulette/table.png" usemap="rouletteNumbers" border="0" width="800" height="362" alt="" />
-		<map id="rouletteNumbers" name="rouletteNumbers">
-			<area class="RouletteTable" shape="rect" coords="61,0,113,63" alt="3" title="3" />
+	
+
+
+	<div class="panel" id="tableWrapper">
+		
+		<img id="img_roulette" src="img/roulette/roulette_static.png" width="140" height="140" 
+			style="position:absolute; left: 50px; top: 200px;" >
+		
+		<img id="rouletteTable" class="map" src="img/roulette/table.png" usemap="#rouletteNumbers" border="0" width="730" height="280" 
+			style="margin-left:150px; margin-top: 60px; margin-right: 50px;"/>
+		
+		<input id="DEAL_button" type="button" value="DEAL!">
+
+		<map class= "tabs" id="rouletteNumbers" name="rouletteNumbers">
+		
+			<area id="map1" class="RouletteTable" shape="rect" coords="61,0,113,63" alt="3" title="3" />
 			<area class="RouletteTable" shape="rect" coords="114,0,163,62" alt="6" title="6" />
 			<area class="RouletteTable" shape="rect" coords="167,0,215,62" alt="9" title="9" />
 			<area class="RouletteTable" shape="rect" coords="219,0,267,62" alt="12" title="12" />
@@ -96,23 +119,8 @@
 			<area class="RouletteTable" shape="poly" coords="60,140,59,49,29,50,2,94,32,140," alt="0" title="0" />
 
 		</map>
-		<img id="img_roulette" src="img/roulette/roulette_static.png">
 	</div>
-	<div class="panel" id="bottomPanel">
-		<form id= "submitForm" method="post" action="rouletteGame.html">
-			<b>Your BET:</b>
-			<p>
-
-				<img class="chips" id="10" alt="10" src="img/roulette/Chip_10.png" width="80" height="80"> <img class="chips" id="25" alt="25"
-					src="img/roulette/Chip_25.png" width="80" height="80"> <img class="chips" id="50" alt="50" src="img/roulette/Chip_50.png" width="80"
-					height="80">
-			<p>
-				has to be invisible=><input id="userBetNumbers" type="text" name="userBetNumbers" readonly="readonly">
-			<p>
-				<input id="DEAL" type="button" value="DEAL"> <input id="clearBet" type="button" value="Clear ALL bets">
-				<input id="btn_test" type="button" value="TEST">
-		</form>
-	</div>
+	<div class="panel" id="history"></div>
 
 </body>
 </html>

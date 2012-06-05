@@ -5,14 +5,16 @@ package com.epam.publicenemies.domain.fight;
  */
 public class Action
 {
-	private String	hit;
-	private String	block;
-	private boolean	didHit;
+	private String				hit;
+	private String				block;
+	private volatile boolean	didHit;
+	private volatile boolean	usedAid;
 	public Action()
 	{
 		hit = "";
 		block = "";
 		didHit = false;
+		usedAid = false;
 	}
 	public String getHit()
 	{
@@ -37,5 +39,13 @@ public class Action
 	public void setDidHit(boolean didHit)
 	{
 		this.didHit = didHit;
+	}
+	public boolean isUsedAid()
+	{
+		return usedAid;
+	}
+	public void setUsedAid(boolean usedAid)
+	{
+		this.usedAid = usedAid;
 	}
 }

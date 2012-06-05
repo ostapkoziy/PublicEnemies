@@ -2,13 +2,13 @@
 
 #result {
 	width: 943px;
-	height: 754px;
+	height: 538px;
 	position: absolute;
 	left: 0;
 	right: 0;
 	margin-left: auto;
 	margin-right: auto;
-	background: url("../../img/fight/loseBackground.png") no-repeat;
+	background: url("../../img/fight/loseBackground1.png") no-repeat;
 	z-index: 500;
 	/* 	outline: 2px solid red; */
 }
@@ -23,7 +23,6 @@
 	height: 267px;
 	position: absolute;
 	z-index: 600;
-	/* 	outline: 2px solid red; */
 	left: 650px;
 	right: 0;
 	top: 90px;
@@ -37,10 +36,21 @@
 	height: 267px;
 	position: absolute;
 	z-index: 600;
-	/* 	outline: 2px solid green; */
 	left: 0;
 	right: 0;
 	top: 400px;
 	margin-right: auto;
 	margin-left: auto;
+}
+
+#blood {
+	background: url("../../img/fight/blood.png") no-repeat;
+	position: absolute;
+	z-index: 1000;
+	left: 0;
+	right: 0;
+	margin-right: auto;
+	margin-left: auto;
+	width: 900px;
+	height: 553px;
 }

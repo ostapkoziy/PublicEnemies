@@ -16,7 +16,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.epam.publicenemies.domain.User;
-import com.epam.publicenemies.dto.UserDto;
 import com.epam.publicenemies.service.IUserManagerService;
 import com.epam.publicenemies.web.validators.IValidator;
 
@@ -40,7 +39,8 @@ public class RegisterUserFormController
 	protected ModelAndView onSubmit(User userToRegister, HttpServletRequest request, BindingResult result) throws Exception
 	{
 		validator.validate(userToRegister, result);
-		if (result.hasErrors())	{
+		if (result.hasErrors())
+		{
 			log.debug("Validation of REGISTRATION FORM FAILED.");
 			return new ModelAndView("userRegistration");
 		}

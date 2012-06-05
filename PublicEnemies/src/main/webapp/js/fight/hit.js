@@ -33,9 +33,9 @@ function waitingNewRound()
 			var game = jQuery.parseJSON(data);
 			if (game.gameEnd != true)
 			{
-				timerController(game);
+				attackButtonController(game);
 				allDataUpdate(game);
-				setTimeout(waitingNewRound, 1000);
+				setTimeout(waitingNewRound, 1600);
 			}
 			if (game.gameEnd == true)
 			{
@@ -60,6 +60,8 @@ function allDataUpdate(game)
 	$("#U2HP").html(game.connectorProfile.HP);
 	$("#innerLeftProgressHP").css("width", game.creatorProfile.HP / game.creatorProfile.allHP * 100 + "%");
 	$("#innerRightProgressHP").css("width", game.connectorProfile.HP / game.connectorProfile.allHP * 100 + "%");
+	$("#leftHPPercent").html(game.creatorProfile.HP + "/" + game.creatorProfile.allHP);
+	$("#rightHPPercent").html(game.connectorProfile.HP + "/" + game.connectorProfile.allHP);
 	HPColor();
 }
 /**
@@ -67,31 +69,37 @@ function allDataUpdate(game)
  * atackButton.
  * 
  */
-function timerController(game)
+function attackButtonController(game)
 {
 
 	if (game.whoIAm == "creator")
 	{
+		if (game.round.creatorAction.usedAid == true)
+		{
+			$("#leftAid").hide();
+		}
 		if (game.round.creatorAction.didHit == true)
 		{
 			hideAttackButton();
 		}
 		else
 		{
-			$("#timer").fadeTo(0, 1);
-			timer(game.round.roundBeginTime);
+			showAttackButton();
 		}
 	}
 	else
 	{
+		if (game.round.connectorAction.usedAid == true)
+		{
+			$("#leftAid").hide();
+		}
 		if (game.round.connectorAction.didHit == true)
 		{
 			hideAttackButton();
 		}
 		else
 		{
-			$("#timer").fadeTo(0, 1);
-			timer(game.round.roundBeginTime);
+			showAttackButton();
 		}
 	}
 }
@@ -100,15 +108,14 @@ function timerController(game)
  */
 function hideAttackButton()
 {
-	$("#atackButton").hide();
-	$("#timer").fadeTo(0, 0);
+	$("#atackButton").attr("hidden", "");
 }
 /**
  * Show attack button
  */
 function showAttackButton()
 {
-	$("#atackButton").show();
+	$("#atackButton").removeAttr("hidden");
 }
 // DOM READY
 $(function()
@@ -125,20 +132,15 @@ $(function()
 
 		}
 	});
-	// **************Redirect to profile on click*****************
-	$("#color1").click(function()
-	{
-		window.location.replace("profile.html");
-	});
 	// ------------------AID----------------------
 	$("#leftAid").toggle(function()
 	{
 		$("#aidInput").val("true");
-		$(this).css("outline", "3px solid red");
+		$(this).css("opacity", "0.4");
 	}, function()
 	{
 		$("#aidInput").val("false");
-		$(this).css("outline", "");
+		$(this).css("opacity", "1");
 	});
 
 });

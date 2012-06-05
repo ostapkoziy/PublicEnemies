@@ -1,89 +1,92 @@
-	var bets = new Object();
-		bets.betsOnNumbers = [];
+var bets = new Object();
+bets.betsOnNumbers = [];
 
-	var clearBetToggle = new Boolean(false);
-	var faded = "0.6";
-$(document).ready(function(){
-	var currentBet=0;
-	
-	$("#clearBet").click(function(){
+var clearBetToggle = new Boolean(false);
+var faded = "0.6";
+$(document).ready(function() {
+	var currentBet = 0;
+
+	$("#clearBet").click(function() {
 		for ( var i = 0; i < (parseInt(bets.betsOnNumbers.length.toString())); i++) {
 			bets.betsOnNumbers[i] = 0;
 		}
 		$("#betOnTable").html(0);
 	});
-	
+
 	$(".RouletteTable").click(function() {
-		if (clearBetToggle == false){
-			$(this).css("opacity", faded);
-//			$("#betOnTable").html(parseInt($("#betOnTable").html()) + parseInt($("input[@name=betVal]:checked").val()));
-			$("#betOnTable").html(parseInt($("#betOnTable").html()) + currentBet);
-			if (isNaN(bets.betsOnNumbers[$(this).attr("alt")])) bets.betsOnNumbers[$(this).attr("alt")] = 0;
-//			bets.betsOnNumbers[$(this).attr("alt")] += parseInt($("input[@name=betVal]:checked").val());
-			bets.betsOnNumbers[$(this).attr("alt")] += currentBet;
-			
-//			alert(arr[$(this).attr("alt")]);
-		}else 
-			{$(this).css("opacity", "1");
-			bets.betsOnNumbers[$(this).attr("alt")] = 0;
+		if ((parseInt($("#chipsAmount").html()) < currentBet)||(parseInt(parseInt($("#chipsAmount").html())) < (parseInt($("#betOnTable").html())+currentBet))){
+			alert("You have not enough chips to make this bet");
+			return;
 		}
+		
+		$("#betOnTable").html(parseInt($("#betOnTable").html()) + currentBet);
+		if (isNaN(bets.betsOnNumbers[$(this).attr("alt")]))
+			bets.betsOnNumbers[$(this).attr("alt")] = 0;
+		bets.betsOnNumbers[$(this).attr("alt")] += currentBet;
 	});
 
-	// ====================================================
-	$(".chips").toggle(function(){
+	$(".chips").toggle(function() {
 		currentBet += parseInt($(this).attr("alt"));
- 		$(this).addClass("highlighted");
-	},function(){
+		$(this).css("opacity",1);
+	}, function() {
 		currentBet -= parseInt($(this).attr("alt"));
-		$(this).removeClass("highlighted");
+		$(this).css("opacity",faded);
 	});
-	
 
-	
-	$("#btn_test").click(
-		function() {
-			$("#img_roulette").attr("src","img/roulette/roulette.gif");
-			setTimeout(function(){$("#img_roulette").attr("src","img/roulette/roulette_static.png");},3000);
+	$("#btn_test").click(function() {
+		$("#img_roulette").attr("src", "img/roulette/roulette.gif");
+		setTimeout(function() {
+			$("#img_roulette").attr("src", "img/roulette/roulette_static.png");
+		}, 3000);
 	});
-	
-	
-	
-	$(".RouletteTable").mousemove(function(){
-		if (isNaN(bets.betsOnNumbers[$(this).attr("alt")])) bets.betsOnNumbers[$(this).attr("alt")]=0;
+
+	$(".RouletteTable").mousemove(function() {
+		if (isNaN(bets.betsOnNumbers[$(this).attr("alt")]))
+			bets.betsOnNumbers[$(this).attr("alt")] = 0;
 		$("#showBet").html(bets.betsOnNumbers[$(this).attr("alt")]);
 	});
 
-//	$("#submit").click(function(){
-//try{		
-//		$("#img_roulette").attr("src","img/roulette/roulette.gif");
-//		setTimeout(function(){$("#img_roulette").attr("src","img/roulette/roulette_static.png");},3000);
-//	
-//		$("#userBetNumbers").val("");
-//		for ( var i = 0; i < (parseInt(bets.betsOnNumbers.length.toString())); i++) {
-//			if (bets.betsOnNumbers[i] > 0) {
-//				$("#userBetNumbers").val($("#userBetNumbers").val() + i + ":" + bets.betsOnNumbers[i] + ';');
-//			}
-//		}
-//		document.forms["submitForm"].submit();
-////		$("form#submitForm").submit();
-//}catch(e){e.message;};
-//	});
+	function _getTimeStamp(){
+		date = new Date();
+		sec = date.getSeconds();
+		if (sec<10) sec = "0"+ sec;
+		return date.getHours() +":"+date.getMinutes()+":"+sec+": ";
+	}
 	
-	$("#DEAL").click(function(){
+	$("#DEAL_button").click(function() {
+		if (parseInt($("#chipsAmount").html()) < parseInt($("#betOnTable").html())){
+			alert("You have not enough chips to make this bet");
+			return;
+		}
+			
+		betStr = "";
+		for ( var i = 0; i < (parseInt(bets.betsOnNumbers.length.toString())); i++) {
+			if (bets.betsOnNumbers[i] > 0) {
+				betStr += i + ":" + bets.betsOnNumbers[i] + ';';
+			}
+		}
+		if (betStr!=""){
+		$("#img_roulette").attr("src", "img/roulette/roulette.gif");
+		setTimeout(function() {
+			$("#img_roulette").attr("src", "img/roulette/roulette_static.png");
 			$.ajax({
-				
-				type: "POST",
-				url: "rouletteGame.html",
-				data : ({
-					userBetNumbers : $("#userBetNumbers").val(),
-				}),
-				success: function(data){
-					alert(data);
-//					$('form#submit').hide(function(){$('div.success').fadeIn();});
-				}
+			type : "POST",
+			url : "rouletteLogic.html",
+			data : ({
+				userBetNumbers : betStr
+			}),
+			success : function(data) {
+				var rouletteGameInfo = jQuery.parseJSON(data);
+				// alert(data);
+				$("#chipsAmount").html(rouletteGameInfo.chips + " chips");
+				$("#message").html(rouletteGameInfo.msg);
+				$("#history").html("<b>"+_getTimeStamp()+"</b>"+ rouletteGameInfo.history + $("#history").html());
+//				alert(rouletteGameInfo.history);
+			}
 			});
-		return false;
+		}, 2500);// Roulette spinning time
+		}else alert("Make your BET on a roulette table!");
+
 	});
 
 });
-

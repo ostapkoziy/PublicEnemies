@@ -41,6 +41,8 @@ public class LoginUserFormController
 	public String processSubmit(@ModelAttribute User user, HttpServletRequest request, BindingResult result)
 	{
 		log.info("PROCESS FORM");
+		log.info("USER:" + user.getEmail());
+		log.info("USER PASS:" + user.getPassword());
 		validator.validate(user, result);
 		if (result.hasErrors())
 		{

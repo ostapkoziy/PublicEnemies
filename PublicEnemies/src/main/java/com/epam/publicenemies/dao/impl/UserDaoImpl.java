@@ -13,6 +13,8 @@ import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
@@ -249,11 +251,58 @@ public class UserDaoImpl implements IUserDao {
 	* @return User object
 	* */
 	public User findUserByEmailAndPassword(final String email, final String password){
-		final String query = "SELECT userId, nickName, money, avatar, userCharacter, regDate FROM users WHERE email=? AND password=?";
-		List <User> list = jdbcTemplate.query(query, new Object[]{email, password}, new RowMapper<User>() {
+		final String query = "SELECT  userId, nickName, money, avatar, userCharacter, regDate, email, password " +
+				"FROM users WHERE email=? AND password=?";
+		User user;
+				if(null == jdbcTemplate.queryForObject(query, new Object[]{email, password}, new RowMapper<User>() {
+				public User mapRow(ResultSet resultSet, int rowNum)
+						throws SQLException {
+					return new User(resultSet.getInt("userId"), resultSet.getString("email"),
+							resultSet.getString("password"), 
+							resultSet.getString("nickName"),
+							resultSet.getInt("money"),
+							resultSet.getString("avatar"),
+							resultSet.getInt("userCharacter"),
+							resultSet.getTimestamp("regDate"));
+				}
+			}) ) {
+						return null;
+						
+				} else {
+				user = jdbcTemplate.queryForObject(query, new Object[]{email, password}, new RowMapper<User>() {
+						public User mapRow(ResultSet resultSet, int rowNum)
+								throws SQLException {
+							return new User(resultSet.getInt("userId"), resultSet.getString("email"),
+									resultSet.getString("password"), 
+									resultSet.getString("nickName"),
+									resultSet.getInt("money"),
+									resultSet.getString("avatar"),
+									resultSet.getInt("userCharacter"),
+									resultSet.getTimestamp("regDate"));
+						}
+					});
+				return user;
+				}
+		
+		
+//		log.info("user : " + user.getEmail() + " " + user.getPassword());
+		//return user;
+	}
+
+	/**
+	 * Find Admin by its unique email and not unique password
+	 * @param email - admin email
+	 * @param password - admin password
+	 * @return User object
+	 */
+	public User findAdmin(final String email, final String password) {
+		final String query = "SELECT userId, email, password, nickName, money, avatar, userCharacter, regDate FROM users WHERE " +
+				"email=? AND password=? AND role='admin'";
+		User user = jdbcTemplate.queryForObject(query, new Object[]{email, password}, new RowMapper<User>() {
 			public User mapRow(ResultSet resultSet, int rowNum)
 					throws SQLException {
-				return new User(resultSet.getInt("userId"), email, password, 
+				return new User(resultSet.getInt("userId"), resultSet.getString("email"),
+						resultSet.getString("password"), 
 						resultSet.getString("nickName"),
 						resultSet.getInt("money"),
 						resultSet.getString("avatar"),
@@ -261,11 +310,10 @@ public class UserDaoImpl implements IUserDao {
 						resultSet.getTimestamp("regDate"));
 			}
 		});
-		if (list.isEmpty())
-			return null;
-		return list.get(0);
+		
+		return user;
 	}
-
+	
 	/**
 	* Find user by email
 	* @param email - email of user that you are looking for

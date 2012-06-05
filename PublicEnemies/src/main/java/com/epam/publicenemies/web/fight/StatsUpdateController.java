@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.epam.publicenemies.domain.fight.Fight;
 import com.epam.publicenemies.service.IProfileManagerService;
+import com.epam.publicenemies.utils.Utils;
 
 /**
  * @author Alexander Ivanov
@@ -20,11 +22,19 @@ public class StatsUpdateController
 	@Autowired
 	private IProfileManagerService	profileManagerService;
 	@RequestMapping("/statsUpdate.html")
-	public void statsUpdate(HttpServletRequest request, HttpServletResponse response)
+	public String statsUpdate(HttpServletRequest request, HttpServletResponse response)
 	{
-		String strenght = request.getParameter("strength");
-		String agility = request.getParameter("agility");
-		String inteligance = request.getParameter("inteligance");
-		log.info("StatsUpdateController: " + strenght + " !!!!" + agility + " !!!!" + inteligance);
+		Fight oldFight = (Fight) request.getSession().getAttribute("game");
+		String role = request.getSession().getAttribute("gameRole").toString();
+		int id = new Integer(request.getSession().getAttribute("userId").toString());
+		int strength = new Integer(request.getParameter("strength").toString());
+		int agility = new Integer(request.getParameter("agility").toString());
+		int inteligance = new Integer(request.getParameter("inteligance").toString());
+		log.info("StatsUpdateController: " + strength + " " + agility + " " + inteligance);
+		profileManagerService.updateStats(id, strength, agility, inteligance);
+		Utils.isOldGameInSession(oldFight, role);
+		request.getSession().removeAttribute("game");
+		request.getSession().removeAttribute("gameRole");
+		return "redirect:userStartPage.html";
 	}
 }

@@ -8,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.epam.publicenemies.domain.Profile;
 import com.epam.publicenemies.domain.roulette.RouletteGameInfo;
 import com.epam.publicenemies.service.IProfileManagerService;
 
@@ -28,8 +27,9 @@ public class RouletteRedirectController {
 	public String setMoneyAndRedirect(HttpServletRequest request){
 		HttpSession session = request.getSession();
 		RouletteGameInfo rouletteGameInfo = (RouletteGameInfo) session.getAttribute("rouletteGameInfo");
-		Profile userProfile = rouletteGameInfo.getUserProfile();
-		profileManagerService.updateMoney((Integer) session.getAttribute("userId"), userProfile.getMoney() + rouletteGameInfo.getChips());
+		profileManagerService.updateMoney((Integer) session.getAttribute("userId"), rouletteGameInfo.getUserMoney() + rouletteGameInfo.getChips());
+		
+		session.removeAttribute("rouletteGameInfo");
 		
 		return "redirect:userStartPage.html";
 	}
