@@ -40,6 +40,7 @@ public class PokerCreateController {
 	private Logger log = Logger.getLogger(PokerCreateController.class);
 	
 	public static PokerStats pokerStats = new PokerStats();
+	public static int playerStartChips = 0;
 	
 	@Autowired
 	@Qualifier("pokerGames")
@@ -87,10 +88,11 @@ public class PokerCreateController {
 		Integer chips = 0;
 		try{
 			chips = Integer.valueOf(request.getParameter("chips"));
+			playerStartChips = chips;
 		}catch(NumberFormatException e){
 			chips = 1000;
 		}
-		profileManagerService.updateMoney(userId, profile.getMoney() - chips);
+	//	profileManagerService.updateMoney(userId, profile.getMoney() - chips);
 
 		//==================CREATE GAME====================
 		games.createNewGame(userId, userProfile);

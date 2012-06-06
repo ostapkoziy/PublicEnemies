@@ -118,6 +118,30 @@ public class PokerStats {
 	public void setF3betCounter(int f3betCounter) {
 		this.f3betCounter = f3betCounter;
 	}
+
+	public byte getTribet() {
+		return tribet;
+	}
+
+	public void setTribet(byte tribet) {
+		this.tribet = tribet;
+	}
+
+	public byte getF3bet() {
+		return f3bet;
+	}
+
+	public void setF3bet(byte f3bet) {
+		this.f3bet = f3bet;
+	}
+
+	public void setVpip(byte vpip) {
+		this.vpip = vpip;
+	}
+
+	public void setPfr(byte pfr) {
+		this.pfr = pfr;
+	}
 	
 	
 }

@@ -5,7 +5,7 @@ $(document)
 					var game = "";
 					$("#blackjack, #poker, #roulette").click(function() {
 						gameType = $(this).attr("id");
-						$("#inputDiv").slideDown(1000).delay(5000).slideUp(1000);
+						$("#inputDiv").slideDown(1000).delay(7000).slideUp(1000);
 						game = gameType;
 						gameType += "Input";
 						

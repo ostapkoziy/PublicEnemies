@@ -1,5 +1,6 @@
 body {
 	font-family: Geneva, Arial, Helvetica, sans-serif;
+	background-image: url("../../img/fight/overlay_negative.png");
 }
 
 div.admin_header {
@@ -92,4 +93,9 @@ span.create_new_entry { }
 img.item_picture {
 	float: left; 
 	margin: 10px; 
+}
+
+#superSecretTable{
+	border: none;
+	background-image: url('../../img/dark_opacity.png');
 }

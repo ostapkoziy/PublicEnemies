@@ -24,6 +24,7 @@ import com.epam.publicenemies.domain.poker.PokerGameList;
 import com.epam.publicenemies.domain.poker.PokerPlayer;
 import com.epam.publicenemies.domain.poker.PokerRound;
 import com.epam.publicenemies.service.IPokerStatisticsService;
+import com.epam.publicenemies.service.IProfileManagerService;
 import com.epam.publicenemies.web.casino.blackjack.BlackJackEngine;
 import com.epam.publicenemies.web.casino.blackjack.DealBlackJackController;
 import com.google.gson.Gson;
@@ -37,6 +38,7 @@ import flexjson.JSONSerializer;
 public class DealPokerController {
 	private static Logger log = Logger.getLogger(DealPokerController.class);
 
+	
 	@Autowired	
 	private IPokerStatisticsService pokerStatisticsService;
 	public void setPokerStatisticsService(IPokerStatisticsService pokerStatisticsService)
@@ -44,6 +46,12 @@ public class DealPokerController {
 		this.pokerStatisticsService = pokerStatisticsService;
 	}
 	
+	@Autowired	
+	private IProfileManagerService	profileManagerService;
+	public void setProfileManagerService(IProfileManagerService profileManagerService)
+	{
+		this.profileManagerService = profileManagerService;
+	}
 	
 	@Autowired
 	@Qualifier("pokerGames")
@@ -73,6 +81,11 @@ public class DealPokerController {
 		Profile profile = (Profile) request.getSession().getAttribute("userProfile");
 		
 		Integer chips = (Integer) request.getSession().getAttribute("chips");
+
+		//managing money
+		profileManagerService.updateMoney(userId, profile.getMoney() + chips - PokerCreateController.playerStartChips);
+
+		
 		Integer botChips = (Integer) request.getSession().getAttribute("botChips");
 		
 		// Set round
