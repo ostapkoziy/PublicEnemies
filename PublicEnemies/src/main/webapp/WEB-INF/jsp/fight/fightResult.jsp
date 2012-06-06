@@ -16,8 +16,8 @@
 	<audio id="audio">
 		<source src="img/fight/shoot.mp3"></source>
 	</audio>
-	<div id="resultWrapper">
 
+	<div id="shadow">
 		<div id="result"></div>
 		<div id="result1"></div>
 		<div id="result2" class="result2"></div>
@@ -35,62 +35,67 @@
 				</c:choose>
 			</div>
 		</div>
+		<div id="expirience2" class="result2"></div>
+		<div id="expirience3" class="result3">
+			<div id="level">
+				Level: <span> ${myProfile.getLevel().getCurrentLevel()}</span>
+			</div>
+			<div id="allExp">
+				All Exp:<span> ${myProfile.getLevel().getAllExpirience()}</span>
+			</div>
+			<div id="expInPercent">
+				%: <span> ${myProfile.getLevel().getNextLevelInPercent()}%</span>
+			</div>
+			<div id="expAfterFight">
+				Exp After Fight: <span> ${myProfile.getLevel().getExpirienceAfterFight()}</span>
+			</div>
+			<div id="expOnCLVL">
+				Exp on Current Lvl:<span> ${myProfile.getLevel().getExpOnCurrentLevel()}</span>
+			</div>
+		</div>
+
+
+		<div id="bulletHole1" hidden=""></div>
+		<div id="blood" hidden=""></div>
+
+		<c:if test="${myProfile.getLevel().isNewLevel()}">
+			<div id="newLevel"></div>
+			<div id="statsWrapper" hidden="">
+				<form action="statsUpdate.html">
+					<input id="pointsInput" type="text" value="5" class="statsInput">
+					<div id="wrapper">
+						<div id="strWrapper">
+							<div id="strImg"></div>
+							<div id="strPlus" class="greenPlus"></div>
+							<input id="strInput" type="text" value="${myProfile.getStrength()}" class="statsInput" name="strength">
+							<div id="strMinus" class="redMinus"></div>
+						</div>
+						<div id="aglWrapper">
+							<div id="aglImg"></div>
+							<div id="aglPlus" class="greenPlus"></div>
+							<input id="aglInput" type="text" value="${myProfile.getAgility()}" class="statsInput" name="agility">
+							<div id="aglMinus" class="redMinus"></div>
+						</div>
+						<div id="intWrapper">
+							<div id="intImg"></div>
+							<div id="intPlus" class="greenPlus"></div>
+							<input id="intInput" type="text" value="${myProfile.getIntellect()}" class="statsInput" name="inteligance">
+							<div id="intMinus" class="redMinus"></div>
+						</div>
+					</div>
+					<button id="statsSubmit" type="submit">Ok</button>
+				</form>
+			</div>
+		</c:if>
 	</div>
-	<div id="expirience2" class="result2"></div>
-	<div id="expirience3" class="result3">
-		<div id="level">
-			Level: <span> ${myProfile.getLevel().getCurrentLevel()}</span>
-		</div>
-		<div id="allExp">
-			All Exp:<span> ${myProfile.getLevel().getAllExpirience()}</span>
-		</div>
-		<div id="expInPercent">
-			%: <span> ${myProfile.getLevel().getNextLevelInPercent()}%</span>
-		</div>
-		<div id="expAfterFight">
-			Exp After Fight: <span> ${myProfile.getLevel().getExpirienceAfterFight()}</span>
-		</div>
-		<div id="expOnCLVL">
-			Exp on Current Lvl:<span> ${myProfile.getLevel().getExpOnCurrentLevel()}</span>
-		</div>
+
+
+	<!-- 	********New JOIN -->
+	<div id="newJoin">
+		<button id="create" type="button" class="buttons" onclick="window.location.replace('createGame.html')">CREATE</button>
+		<button id="join" type="button" class="buttons" onclick="window.location.replace('fights.html')">JOIN</button>
+		<button id="statistic" type="button" class="buttons" onclick="window.location.replace('profile.html')">STATISTIC</button>
 	</div>
-	<div id="bulletHole1" hidden=""></div>
-	<div id="bulletHole2" hidden=""></div>
-	<div id="blood" hidden=""></div>
-
-	<c:if test="${myProfile.getLevel().isNewLevel()}">
-		<div id="newLevel"></div>
-		<div id="statsWrapper" hidden="">
-			<form action="statsUpdate.html">
-				<input id="pointsInput" type="text" value="5" class="statsInput">
-				<div id="wrapper">
-					<div id="strWrapper">
-						<div id="strImg"></div>
-						<div id="strPlus" class="greenPlus"></div>
-						<input id="strInput" type="text" value="${myProfile.getStrength()}" class="statsInput" name="strength">
-						<div id="strMinus" class="redMinus"></div>
-					</div>
-					<div id="aglWrapper">
-						<div id="aglImg"></div>
-						<div id="aglPlus" class="greenPlus"></div>
-						<input id="aglInput" type="text" value="${myProfile.getAgility()}" class="statsInput" name="agility">
-						<div id="aglMinus" class="redMinus"></div>
-					</div>
-					<div id="intWrapper">
-						<div id="intImg"></div>
-						<div id="intPlus" class="greenPlus"></div>
-						<input id="intInput" type="text" value="${myProfile.getIntellect()}" class="statsInput" name="inteligance">
-						<div id="intMinus" class="redMinus"></div>
-					</div>
-				</div>
-				<button id="statsSubmit" type="submit">Ok</button>
-			</form>
-		</div>
-	</c:if>
-
-
-
-
 
 	<!-- 	*************HOLES -->
 	<audio id="audio1">

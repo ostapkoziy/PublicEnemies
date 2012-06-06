@@ -7,8 +7,7 @@ body {
 }
 
 #resultWrapper { /* 	outline: 20px solid green; */
-	/* 	background-color: green; */
-	
+	background-color: green;
 }
 /* -----------GRID--------- */
 #result1 {
@@ -19,7 +18,6 @@ body {
 	left: 0;
 	top: 0;
 	z-index: 1000;
-	/* 	outline: 2px solid green; */
 }
 
 #result2 {
@@ -27,10 +25,13 @@ body {
 	height: 247px;
 	top: 50px;
 	left: 50px;
-	/* 	----------------- */
-	/* 	margin-right: auto; */
-	/* 	margin-left: auto; */
-	/* 	outline: 2px solid green; */
+}
+
+#result3 {
+	width: 207px;
+	height: 207px;
+	top: 70px;
+	left: 70px;
 }
 
 .result2 {
@@ -39,15 +40,6 @@ body {
 	background: black;
 	opacity: 0.6;
 	border-radius: 15px;
-	/* 	outline: 2px solid white; */
-}
-
-#result3 {
-	width: 207px;
-	height: 207px;
-	top: 70px;
-	left: 70px;
-	/* 	outline: 2px solid red; */
 }
 
 .result3 {
@@ -55,7 +47,6 @@ body {
 	z-index: 3000;
 	background: transparent;
 	border-radius: 15px;
-	/* 	outline: 2px solid yellow; */
 }
 
 #imageWrapper {
@@ -67,7 +58,7 @@ body {
 	margin-left: auto;
 }
 
-#expirience2 { /* 	outline: 2px solid red; */
+#expirience2 {
 	width: 247px;
 	height: 247px;
 	position: absolute;
@@ -83,6 +74,37 @@ body {
 	left: 70px;
 	color: #CC0000;
 	font-family: "impact";
+}
+
+#newJoin {
+	width: 200px;
+	height: 200px;
+	position: absolute;
+	top: 200px;
+	left: 0;
+	right: 0;
+	margin-left: auto;
+	margin-right: auto;
+	color: #CC0000;
+	font-family: "impact";
+	padding: 20px;
+	opacity: 1;
+	z-index: 4000;
+}
+
+.buttons {
+	display: block;
+	cursor: pointer;
+	font-family: "impact";
+	width: 100%;
+	height: 50px;
+}
+
+#shadow {
+	width: 100%;
+	position: fixed;
+	height: 100%;
+	z-index: 4000;
 }
 
 span {

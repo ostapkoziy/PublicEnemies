@@ -27,7 +27,6 @@ public class RedirectController2
 	@RequestMapping("/saveResults.html")
 	public String trololo(HttpServletRequest request, HttpServletResponse response) throws IOException
 	{
-		System.out.println("TROLOLOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
 		return "redirect:fightResult.html";
 	}
 }
