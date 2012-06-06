@@ -21,7 +21,10 @@ abbr{
 	/*font-size: 20t;*/
 	color: #CC0000;
 }
-
+a.main_and_profile, a.main_and_profile:VISITED {
+	color: white; 
+	font-size: 20pt; 
+}
 
 * {
 	margin:0;

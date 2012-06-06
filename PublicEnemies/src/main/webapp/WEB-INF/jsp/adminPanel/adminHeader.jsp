@@ -1,10 +1,12 @@
 <div class="admin_header">
 <a href="/PublicEnemies/adminPanel/summary.html"> <img class="admin_logo" src="/PublicEnemies/img/adminpanel/ap_logo.png" alt="AdminPanel logo" title="AdminPanel" /></a>
+<a href="/PublicEnemies/logout.html"><img class="logout" src="/PublicEnemies/img/adminpanel/logout.png" alt="Logout" title="Logout"/></a>
 <div id="adm_panel">
 <a class="div_link" href="/PublicEnemies/adminPanel/summary.html">
 	<span id="adm_panel_words">Admin panel </span>
 </a>
-</div>
+<div> Hello, ??? </div>
+<!-- </div>
 <a class="div_link" href="/PublicEnemies/adminPanel/summary.html"> <span
 	id="users_area"> SUMMARY </span>
 </a>
@@ -19,6 +21,8 @@
 </a>
 <a class="div_link" href="/PublicEnemies/adminPanel/aids.html"> <span id="aids_area"> AIDS </span>
 </a>
-<div style="float: right; color: black; "> <a class="logout_link" href="/PublicEnemies/logout.html">  Logout </a>
+<!-- <div style="float: right; color: black; "> <a class="logout_link" href="/PublicEnemies/logout.html">  Logout </a>
+</div> -->
+
 </div>
 </div>

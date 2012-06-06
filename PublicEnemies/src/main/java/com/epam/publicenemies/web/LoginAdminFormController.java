@@ -32,7 +32,7 @@ public class LoginAdminFormController {
 		String aPass = request.getParameter("adminPass");
 		User aUser = userManagerService.getAdmin(aLogin, aPass); 
 		if ( aUser == null) {
-			return "redirect:superSecretAdminLoginPath.html";
+			return "redirect:secretPath.html";
 		}
 		request.getSession().setAttribute("userId", aUser.getUserId());
 		request.getSession().setAttribute("admin", 1);

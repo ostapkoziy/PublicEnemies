@@ -10,6 +10,7 @@
 </head>
 <body>
 	<jsp:include page="adminHeader.jsp"></jsp:include>
+	<jsp:include page="leftMenuDiv.jsp"></jsp:include>
 	<div class="summary_div">
 		<h2>Create New Weapon</h2>
 		<form method="post">

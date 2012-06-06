@@ -12,6 +12,7 @@
 <body>
 
 	<jsp:include page="adminHeader.jsp"></jsp:include>
+	<jsp:include page="leftMenuDiv.jsp"></jsp:include>
 
 
 	<div class="summary_div">
@@ -39,6 +40,10 @@
 			<tr>
 				<td>Email:</td>
 				<td>${profile.getEmail()}</td>
+			</tr>
+			<tr>
+				<td>Role:</td>
+				<td>TODO: user role</td>
 			</tr>
 			<tr>
 				<td>Nickname:</td>

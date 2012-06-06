@@ -11,7 +11,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>EDIT USER</title>
 <script type="text/javascript" src="/PublicEnemies/js/adminpanel/validator.js"></script>
-
+<!--  !add to others edit pagers! -->
 <script type='text/javascript'>
 	function formValidator() {
 		// Make quick references to our fields
@@ -39,10 +39,11 @@
 		return false;
 	}	
 </script>
-
+<!--  !add to others edit pagers! -->
 </head>
 <body>
 	<jsp:include page="adminHeader.jsp"></jsp:include>
+	<jsp:include page="leftMenuDiv.jsp"></jsp:include>
 	<div class="summary_div">
 		<!-- Button -->
 		<a class="new_entry" style="float: right"

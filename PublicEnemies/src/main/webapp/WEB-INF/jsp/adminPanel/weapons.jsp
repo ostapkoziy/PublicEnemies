@@ -14,6 +14,7 @@
 
 <body>
 	<jsp:include page="adminHeader.jsp"></jsp:include>
+	<jsp:include page="leftMenuDiv.jsp"></jsp:include>
 
 	<div class="weapons_div">
 		<!-- Button -->

@@ -12,8 +12,9 @@ public class User {
 	private int userId;
 	private String email;
 	// not sure we need this
-	private String password;
+	private String password;	
 	private String nickName;
+	private String role;
 	private String avatar;
 	private int money; 
 	private int characterId;
@@ -59,6 +60,12 @@ public class User {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	public String getRole() {
+		return role; 
+	}
+	public void setRole(String role) {
+		this.role = role; 
 	}
 
 	public String getPassword() {

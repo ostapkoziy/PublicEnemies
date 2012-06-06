@@ -10,6 +10,7 @@
 </head>
 <body>
 	<jsp:include page="adminHeader.jsp"></jsp:include>
+	<jsp:include page="leftMenuDiv.jsp"></jsp:include>
 	<div class="summary_div">
 		<!-- Button -->
 		<a class="new_entry" style="float: right"

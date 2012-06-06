@@ -27,6 +27,13 @@ $(document).ready(function(){
 </head>
 
 <body>
+<div style="float: left; margin-left: 150px; border-radius: 10px; margin-top: 50px; padding: 5px 15px; background: url(/PublicEnemies/img/dark_opacity.png);">
+		<a class="main_and_profile" href="/PublicEnemies/fights.html">FIGHT</a>
+	</div>
+	<div style="float: right; margin-top: 50px; margin-right: 150px; padding: 5px 15px; background: url(/PublicEnemies/img/dark_opacity.png); border-radius: 10px;">
+		<a class="main_and_profile" href="/PublicEnemies/casino.html"> CASINO </a>
+	</div>
+	
 	<div style="text-align: center; margin: 10px;">
 		<a href="/PublicEnemies/userStartPage.html"><img
 			src="/PublicEnemies/img/gamelogo.png" width="50%" height="50%" /></a>
@@ -39,7 +46,7 @@ $(document).ready(function(){
 						href="/PublicEnemies/editProfile.html">EDIT</a> ]
 				</h2>
 				<div>
-					<img class="avatar" src="${profile.getAvatar()}" title="Avatar"
+					<img class="avatar" src="${profile.getCharacterProfession().getProfessionAvatar()}" title="Avatar"
 						alt="Your profile here" border="2" />
 					<div class="statistics_list" style="padding-left: 30px; padding-right: 30px; "align="left">
 						<h3>Basic info:</h3>

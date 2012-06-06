@@ -10,73 +10,111 @@
 	rel="stylesheet" type="text/css">
 
 <title>Admin Panel</title>
+<style>
+img.pictures {
+	padding: 0px;
+}
+
+div.pic_wrapper { /*border: 1px solid black;*/
+	width: 128px;
+	height: 128px;
+	border-radius: 15px;
+	margin: 10px 30px; 
+}
+
+div.pic_wrapper:HOVER {
+	background: grey;
+}
+span.section_headline {
+	font-size: 30px; 
+}
+a.section_liks {
+	text-decoration: none;
+}
+table.category_table, .category_table th, .category_table td {
+	border: 0px solid black;
+	padding: 0px 0px; 
+	text-align: center; 
+}
+</style>
 
 </head>
 <body>
 	<jsp:include page="adminHeader.jsp"></jsp:include>
-
+	<jsp:include page="leftMenuDiv.jsp"></jsp:include>	
 	<div class="summary_div">
-		<div style="float: right; text-align: right;">
-			<p style="margin-top: 20px; margin-bottom: 20px">
-				<a class="new_entry" href="/PublicEnemies/adminPanel/user/add.html">Create New
-					User </a>
-			</p>
-			<p style="margin-top: 20px; margin-bottom: 20px">
-				<a class="new_entry" href="/PublicEnemies/adminPanel/weapon/add.html"> Create New
-					Weapon</a>
-			</p>
-			<p style="margin-top: 20px; margin-bottom: 20px">
-				<a class="new_entry"
-					href="/PublicEnemies/adminPanel/armor/add.html"> Create New
-					Armor </a>
-			</p>
-			<p style="margin-top: 20px; margin-bottom: 20px">
-				<a class="new_entry" href="/PublicEnemies/adminPanel/aid/add.html"> Create New Aid</a>
-			</p>
-		</div>
-
-		<table>
-			<thead>
+		<div
+			style="border: 0px solid black; text-align: center; padding: 5px; border-radius: 10px;">
+			<table align="center" class="category_table">
 				<tr>
-					<th>Entity</th>
-					<th>Amount</th>
+					<td><span class="section_headline"><a class="section_liks" href="/PublicEnemies/adminPanel/users.html">Users (${amountOfUsers})</a></span></td>
+					<td><span class="section_headline"><a class="section_liks" href="/PublicEnemies/adminPanel/weapons.html">Weapons (${amountOfWeapons})</a></span></td>
+					<td><span class="section_headline"><a class="section_liks" href="/PublicEnemies/adminPanel/armors.html">Armors (${amountOfArmors})</a></span></td>
+					<td><span class="section_headline"><a class="section_liks" href="/PublicEnemies/adminPanel/aids.html">Aids (${amountOfAids})</a></span></td>
 				</tr>
-			</thead>
-			<tr>
-				<td><a href="users.html">Users:</a></td>
-				<td>${amountOfUsers}</td>
-			</tr>
-			<tr>
-				<td><a href="weapons.html"> Weapons: </a></td>
-				<td>${amountOfWeapons}</td>
-			</tr>
-			<tr>
-				<td><a href="armors.html">Armors:</a></td>
-				<td>${amountOfArmors}</td>
-			</tr>
-			<tr>
-				<td><a href="aids.html">Aids:</a></td>
-				<td>${amountOfAids}</td>
-			</tr>
-		</table>
+				<tr align="center">
+					<td>
+						<div class="pic_wrapper">
+							<a class="imgs_links"
+								href="/PublicEnemies/adminPanel/user/add.html"> <img
+								class="pictures"
+								src="/PublicEnemies/img/adminpanel/add_user.png"
+								alt="Add new user picture" title="Add new user" />
+							</a>
+						</div>
+					</td>
+					<td>
+						<div class="pic_wrapper">
+							<a href="/PublicEnemies/adminPanel/weapon/add.html"> <img
+								class="pictures"
+								src="/PublicEnemies/img/adminpanel/add_weapon.png"
+								alt="Add new user picture" title="Add new weapon" />
+							</a>
+						</div>
+					</td>
+					<td>
+						<div class="pic_wrapper">
+							<a href="/PublicEnemies/adminPanel/armor/add.html"> <img
+								class="pictures"
+								src="/PublicEnemies/img/adminpanel/add_armor.png"
+								alt="Add new user picture" title="Add new armor" /></a>
+						</div>
+					</td>
+
+					<td>
+						<div class="pic_wrapper">
+							<a href="/PublicEnemies/adminPanel/aid/add.html"> <img
+								class="pictures" src="/PublicEnemies/img/adminpanel/add_aid.png"
+								alt="Add new user picture" title="Add new aid" />
+							</a>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<!-- 
+		-->
 		<p id="last_registered">
-		<table class="users_table">
+		<table class="users_table" align="center">
 			<caption>The 5 Latest Registered Users</caption>
 			<thead>
 				<tr>
+					<th>Avatar</th>
 					<th>Nickname</th>
 					<th>Email</th>
-					<th>Password</th>
+					
 					<th>Registration Date</th>
 					<th colspan="2">Actions</th>
 				</tr>
 			</thead>
 			<c:forEach var="registeredOne" items="${lastRegistered}">
 				<tr>
+					<td><img src="/PublicEnemies/${registeredOne.getAvatar()}" width="50px" height="50px" />
+					</td>
 					<td><a href="user/info/${registeredOne.getUserId()}.html">${registeredOne.getNickName()}
 					</a></td>
 					<td>${registeredOne.getEmail()}</td>
-					<td>${registeredOne.getPassword()}</td>
+					
 					<td>${registeredOne.getRegDate()}</td>
 					<td><a href="user/edit/${registeredOne.getUserId()}.html">
 							edit</a></td>

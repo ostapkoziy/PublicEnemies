@@ -1,19 +1,27 @@
 body {
 	font-family: Geneva, Arial, Helvetica, sans-serif;
-	background-image: url("../../img/fight/overlay_negative.png");
+	background-image: url("/PublicEnemies/img/adminpanel/admin.png");
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: right bottom; 
 }
 
 div.admin_header {
-	background: #CCC;
+	/*background: #CCC;*/
 	padding: 10px; 
 	height: 100px; 
-	border: 3px solid black; 
+	border: 3px outset black;
 	border-radius: 10px; 
 	/*magrin: 5px;*/ 	
 }
 img.admin_logo {
 	margin-right: 20px; 
 	float: left;
+}
+img.logout {
+	margin-right: 20px; 
+	margin-top: 15px;
+	float: right;
 }
 
 div#adm_panel {
@@ -22,7 +30,7 @@ div#adm_panel {
 }
 
 span#adm_panel_words {
-	font-size: 32px;
+	font-size: 50px;
 	font-weight: bold;
 	margin: 10px;  
 }
@@ -51,8 +59,9 @@ a.div_link {
 }
 
 table {
-	border-collapse:collapse;
+	border-collapse:collapse;	 
 }
+
 
 table,th, td {
 	border: 1px solid black;
@@ -86,6 +95,13 @@ div.users_div, div.weapons_div, div.armors_div, div.aids_div, div.summary_div, a
 	color: black; 
 	padding: 10px; 
 	border: 2px solid black; 
+	
+	width: 80%;
+	display: inline-block; 
+	vertical-align: top;
+}
+div.summary_div {
+	
 }
 
 span.create_new_entry { }
@@ -94,6 +110,18 @@ img.item_picture {
 	float: left; 
 	margin: 10px; 
 }
+
+div.left_menu_div {
+	display: inline-block; 
+	width: 15%; 
+	border: 2px solid black; 
+	vertical-align: top; 
+	border-radius: 15px; 
+	margin-top: 5px;
+	margin-right: 10px;  
+	padding: 10px;
+}
+
 
 #superSecretTable{
 	border: none;

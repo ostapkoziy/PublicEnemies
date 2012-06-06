@@ -11,6 +11,7 @@
 </head>
 <body>
 	<jsp:include page="adminHeader.jsp"></jsp:include>
+	<jsp:include page="leftMenuDiv.jsp"></jsp:include>
 	<div class="summary_div">
 		<h2>YOU ARE ATTEMPTION TO DELETE USER WITH ID = ${duid}!
 			CONTINUE?</h2>
