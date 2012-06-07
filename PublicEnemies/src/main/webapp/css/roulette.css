@@ -38,7 +38,7 @@
 	margin-right: 20px; width: 120px; float: right;
 }
 #chipsAmount{
-	font-size: 20pt; color:yellow; font-family:fantasy; font-smooth:large; opacity:0.85;
+	font-size: 20pt; color:yellow; font-family:fantasy; font-smooth:large; opacity:0.85; width: 500px;  
 }
 .chips {  
    opacity: 0.6;

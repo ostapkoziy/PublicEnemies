@@ -94,7 +94,7 @@
 	<div id="newJoin">
 		<button id="create" type="button" class="buttons" onclick="window.location.replace('createGame.html')">CREATE</button>
 		<button id="join" type="button" class="buttons" onclick="window.location.replace('fights.html')">JOIN</button>
-		<button id="statistic" type="button" class="buttons" onclick="window.location.replace('profile.html')">STATISTIC</button>
+		<button id="statistic" type="button" class="buttons" onclick="window.location.replace('profile.html#statistics_place')">STATISTIC</button>
 	</div>
 
 	<!-- 	*************HOLES -->

@@ -33,6 +33,7 @@ public class RouletteGameController {
 
 		JSONSerializer serializer = new JSONSerializer();
 		int rnd = new Random().nextInt(36);
+		rouletteGameInfo.setLuckyNumber(rnd);
 		int chips = 0;
 
 		response.setContentType("text/html;charset=UTF-8");
