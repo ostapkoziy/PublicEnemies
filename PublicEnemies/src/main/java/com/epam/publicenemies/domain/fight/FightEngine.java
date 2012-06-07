@@ -1,8 +1,8 @@
 package com.epam.publicenemies.domain.fight;
 
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Random;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.apache.log4j.Logger;
 
@@ -32,7 +32,7 @@ public class FightEngine
 	public static synchronized void sendServerMessage(long gameId, String mess)
 	{
 		MessageList ml = MessageList.newInstanse();
-		HashMap<Long, LinkedList<String>> allMessages = ml.getGameMessages();
+		ConcurrentHashMap<Long, LinkedList<String>> allMessages = ml.getGameMessages();
 		LinkedList<String> msListInGame = allMessages.get(gameId);
 		if (msListInGame == null)
 		{

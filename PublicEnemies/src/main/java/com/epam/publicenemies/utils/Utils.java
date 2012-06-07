@@ -1,6 +1,6 @@
 package com.epam.publicenemies.utils;
 
-import java.util.HashMap;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.apache.log4j.Logger;
 
@@ -35,7 +35,7 @@ public class Utils
 	 */
 	public static synchronized void deleteGame(Fight fight)
 	{
-		HashMap<Long, Fight> hm = FightsList.newInstanse().getMap();
+		ConcurrentHashMap<Long, Fight> hm = FightsList.newInstanse().getMap();
 		hm.remove(fight.getId());
 		log.info("************************************");
 		log.info("TOTAL GAMES AFTER DELETE GAME WITH ID: " + fight.getId() + ":::" + hm.size());

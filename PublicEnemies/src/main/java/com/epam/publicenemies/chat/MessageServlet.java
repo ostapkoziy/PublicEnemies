@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.concurrent.ConcurrentHashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -44,7 +45,7 @@ public class MessageServlet extends HttpServlet
 		 * 
 		 */
 		MessageList ml = MessageList.newInstanse();
-		HashMap<Long, LinkedList<String>> allMessages = ml.getGameMessages();
+		ConcurrentHashMap<Long, LinkedList<String>> allMessages = ml.getGameMessages();
 		/*
 		 * MESSEGES IN GAME
 		 */

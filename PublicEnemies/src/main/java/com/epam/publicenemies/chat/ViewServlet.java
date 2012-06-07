@@ -2,8 +2,8 @@ package com.epam.publicenemies.chat;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.concurrent.ConcurrentHashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -36,7 +36,7 @@ public class ViewServlet extends HttpServlet
 		 * 
 		 */
 		MessageList ml = MessageList.newInstanse();
-		HashMap<Long, LinkedList<String>> allMessages = ml.getGameMessages();
+		ConcurrentHashMap<Long, LinkedList<String>> allMessages = ml.getGameMessages();
 		LinkedList<String> msListInGame = allMessages.get(gameId);
 		/*
 		 * MESSAGE
