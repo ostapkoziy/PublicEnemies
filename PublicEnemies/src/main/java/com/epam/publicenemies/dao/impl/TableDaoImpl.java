@@ -515,7 +515,7 @@ public class TableDaoImpl implements ITableDao {
 		sql.append("VALUES (2, 3, 3)");
 		jdbcTemplate.update(sql.toString());
 		
-		// ------------------------ 1 weapons ----------------------------------
+		// ------------------------ prometeus weapons ----------------------------------
 		sql.delete(0, sql.length());
 		sql.append("INSERT INTO charactersTrunks ");
 		sql.append("(itemId, itemType, characterId) ");
@@ -536,7 +536,7 @@ public class TableDaoImpl implements ITableDao {
 		sql.append("(itemId, itemType, characterId) ");
 		sql.append("VALUES (12, 1, 4)");
 		jdbcTemplate.update(sql.toString());
-		// ------------------------ 1 aids ----------------------------------
+		// ------------------------ prometeus aids ----------------------------------
 		sql.delete(0, sql.length());
 		sql.append("INSERT INTO charactersTrunks ");
 		sql.append("(itemId, itemType, characterId) ");
@@ -547,7 +547,7 @@ public class TableDaoImpl implements ITableDao {
 		sql.append("(itemId, itemType, characterId) ");
 		sql.append("VALUES (4, 2, 4)");
 		jdbcTemplate.update(sql.toString());
-		// ------------------------ 1 armors ----------------------------------
+		// ------------------------ prometeus armors ----------------------------------
 		sql.delete(0, sql.length());
 		sql.append("INSERT INTO charactersTrunks ");
 		sql.append("(itemId, itemType, characterId) ");
@@ -559,7 +559,7 @@ public class TableDaoImpl implements ITableDao {
 		sql.append("VALUES (4, 3, 4)");
 		jdbcTemplate.update(sql.toString());
 		
-		// ------------------------ 2 weapons ----------------------------------
+		// ------------------------ zeus weapons ----------------------------------
 		sql.delete(0, sql.length());
 		sql.append("INSERT INTO charactersTrunks ");
 		sql.append("(itemId, itemType, characterId) ");
@@ -580,7 +580,7 @@ public class TableDaoImpl implements ITableDao {
 		sql.append("(itemId, itemType, characterId) ");
 		sql.append("VALUES (4, 1, 5)");
 		jdbcTemplate.update(sql.toString());
-		// ------------------------ 2 aids ----------------------------------
+		// ------------------------ zeus aids ----------------------------------
 		sql.delete(0, sql.length());
 		sql.append("INSERT INTO charactersTrunks ");
 		sql.append("(itemId, itemType, characterId) ");
@@ -591,7 +591,7 @@ public class TableDaoImpl implements ITableDao {
 		sql.append("(itemId, itemType, characterId) ");
 		sql.append("VALUES (2, 2, 5)");
 		jdbcTemplate.update(sql.toString());
-		// ------------------------ 2 armors ----------------------------------
+		// ------------------------ zeus armors ----------------------------------
 		sql.delete(0, sql.length());
 		sql.append("INSERT INTO charactersTrunks ");
 		sql.append("(itemId, itemType, characterId) ");
@@ -712,7 +712,7 @@ public class TableDaoImpl implements ITableDao {
 		sql.delete(0, sql.length());
 		sql.append("INSERT INTO users ");
 		sql.append("(email, password, money, chatProperty, userCharacter, nickName, avatar, userPoker) ");
-		sql.append("VALUES ('prometeus@gmail.com', 'asdfasdf', 100000, 4, 4, '1', './img/avatars/gangster.png', 4)");
+		sql.append("VALUES ('prometeus@gmail.com', 'asdfasdf', 100000, 4, 4, 'prometeus', './img/avatars/gangster.png', 4)");
 		jdbcTemplate.update(sql.toString());
 		try {
 			Thread.sleep(1000);
@@ -723,7 +723,7 @@ public class TableDaoImpl implements ITableDao {
 		sql.delete(0, sql.length());
 		sql.append("INSERT INTO users ");
 		sql.append("(email, password, money, chatProperty, userCharacter, nickName, avatar, userPoker) ");
-		sql.append("VALUES ('zeus@rambler.ru', 'asdfasdf', 100000, 5, 5, '2', './img/avatars/mafia.png', 5)");
+		sql.append("VALUES ('zeus@rambler.ru', 'asdfasdf', 100000, 5, 5, 'zeus', './img/avatars/mafia.png', 5)");
 		jdbcTemplate.update(sql.toString());
 		try {
 			Thread.sleep(1000);

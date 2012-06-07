@@ -130,7 +130,7 @@ public interface IUserDao {
 	 * @param userCharacter - id of users's character
 	 * @return
 	 */
-	boolean updateUserInfo (int userId, String email, String nickName, String avatar, int money, int userCharacter);
+	boolean updateUserInfo (int userId, String email, String nickName, String avatar, int money, int userCharacter, String role);
 	
 	/**
 	* Delete user

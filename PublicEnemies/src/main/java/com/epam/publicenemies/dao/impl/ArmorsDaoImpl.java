@@ -162,14 +162,14 @@ public class ArmorsDaoImpl implements IArmorsDao {
 	@Override
 	public List<User> getUsersWithArmor(int armorId) {
 		final String SELECT_SQL = "SELECT userId, email, password, regDate, money, avatar, " +
-				"userCharacter, nickName FROM users, charactersTrunks " +
+				"userCharacter, nickName, role FROM users, charactersTrunks " +
 				"WHERE userCharacter=characterId AND itemType=3 AND itemId=?";
 		List<User> users = jdbcTemplate.query(SELECT_SQL, new Object[] {armorId}, new RowMapper<User>() {
 			public User mapRow (ResultSet resultSet, int rowNum) throws SQLException {
 				return new User(resultSet.getInt("userId"), resultSet.getString("email"), 
 						resultSet.getString("password"), resultSet.getString("nickName"),
 						resultSet.getInt("money"), resultSet.getString("avatar"),
-						resultSet.getInt("userCharacter"), resultSet.getTimestamp("regDate"));
+						resultSet.getInt("userCharacter"), resultSet.getTimestamp("regDate"), resultSet.getString("role"));
 			}
 		});
 		log.info("ArmorsDaoImpl.getUsersWithArmor : where finded "+users.size()+" users");
