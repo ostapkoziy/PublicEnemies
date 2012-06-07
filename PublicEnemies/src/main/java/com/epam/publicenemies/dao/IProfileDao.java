@@ -295,4 +295,11 @@ public interface IProfileDao {
 	 * @return true if operation was successfully
 	 */
 	boolean updateTotalFights(int characterId, int fightsTotal);
+	
+	/**
+	 * Uses aid in battle
+	 * @param characterId - character id
+	 * @return true if operation was successfully
+	 */
+	boolean useAid(int characterId);
 }

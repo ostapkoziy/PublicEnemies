@@ -829,8 +829,9 @@ public class ProfileDaoImpl implements IProfileDao {
 	 */
 	@Override
 	public boolean dressWeapon1(int userId, int weaponId) {
-		final String SELECT_SQL = "SELECT trunkId FROM charactersTrunks, users WHERE " +
-				"userId=? AND itemType=1 AND itemId=? AND userCharacter=characterId LIMIT 1";
+		final String SELECT_SQL = "SELECT trunkId FROM charactersTrunks AS ct, users AS u, characters AS c WHERE " +
+				"u.userId=? AND ct.itemType=1 AND ct.itemId=? AND u.userCharacter=c.characterId AND c.characterId=ct.characterId " +
+				"AND ct.trunkId<>c.weapon2 LIMIT 1";
 		final String UPDATE_SQL = "UPDATE characters, users SET weapon1=? WHERE userId=? AND characterId=userCharacter";
 		int trunkId = jdbcTemplate.queryForInt(SELECT_SQL, new Object[] {userId, weaponId});
 		int i = jdbcTemplate.update(UPDATE_SQL, new Object[] {trunkId, userId});
@@ -849,8 +850,9 @@ public class ProfileDaoImpl implements IProfileDao {
 	 */
 	@Override
 	public boolean dressWeapon2(int userId, int weaponId) {
-		final String SELECT_SQL = "SELECT trunkId FROM charactersTrunks, users WHERE " +
-				"userId=? AND itemType=1 AND itemId=? AND userCharacter=characterId LIMIT 1";
+		final String SELECT_SQL = "SELECT trunkId FROM charactersTrunks AS ct, users AS u, characters AS c WHERE " +
+				"u.userId=? AND ct.itemType=1 AND ct.itemId=? AND u.userCharacter=c.characterId AND c.characterId=ct.characterId " +
+				"AND ct.trunkId<>c.weapon1 LIMIT 1";
 		final String UPDATE_SQL = "UPDATE characters, users SET weapon2=? WHERE userId=? AND characterId=userCharacter";
 		int trunkId = jdbcTemplate.queryForInt(SELECT_SQL, new Object[] {userId, weaponId});
 		int i = jdbcTemplate.update(UPDATE_SQL, new Object[] {trunkId, userId});
@@ -1225,6 +1227,26 @@ public class ProfileDaoImpl implements IProfileDao {
 			log.info("ProfileDaoImpl.updateTotalFights : character("+characterId+") total fights were updated");
 			return true;
 		} else
+			return false;
+	}
+	
+	/**
+	 * Uses aid in battle
+	 * @param characterId - character id
+	 * @return true if operation was successfully
+	 */
+	public boolean useAid(int characterId) {
+		final String SELECT_SQL = "SELECT aid FROM characters WHERE characterId=?";
+		final String UPDATE_SQL = "UPDATE characters SET aid=0 WHERE characterId=?";
+		final String DELETE_SQL = "DELETE from charactersTrunks WHERE characterId=? AND trunkId=? AND itemType=2";
+		
+		int i = jdbcTemplate.queryForInt(SELECT_SQL, new Object [] {characterId});
+		jdbcTemplate.update(UPDATE_SQL, new Object[] {characterId});
+		int j = jdbcTemplate.update(DELETE_SQL, new Object[] {characterId, i});
+		if (j>0) {
+			log.info("ProfileDaoImpl.useAid : aid was successfully used for character("+characterId+")");
+			return true;
+		}else
 			return false;
 	}
 }
