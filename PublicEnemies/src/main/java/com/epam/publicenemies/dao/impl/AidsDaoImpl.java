@@ -201,14 +201,14 @@ public class AidsDaoImpl implements IAidsDao{
 	@Override
 	public List<User> getUsersWithAid(int aidId) {
 		final String SELECT_SQL = "SELECT userId, email, password, regDate, money, avatar, " +
-				"userCharacter, nickName FROM users, charactersTrunks " +
+				"userCharacter, nickName, role FROM users, charactersTrunks " +
 				"WHERE userCharacter=characterId AND itemType=2 AND itemId=?";
 		List<User> users = jdbcTemplate.query(SELECT_SQL, new Object[] {aidId}, new RowMapper<User>() {
 			public User mapRow (ResultSet resultSet, int rowNum) throws SQLException {
 				return new User(resultSet.getInt("userId"), resultSet.getString("email"), 
 						resultSet.getString("password"), resultSet.getString("nickName"),
 						resultSet.getInt("money"), resultSet.getString("avatar"),
-						resultSet.getInt("userCharacter"), resultSet.getTimestamp("regDate"));
+						resultSet.getInt("userCharacter"), resultSet.getTimestamp("regDate"), resultSet.getString("role"));
 			}
 		});
 		log.info("AidsDaoImpl.getUsersWithAid : where finded "+users.size()+" users");

@@ -350,14 +350,15 @@ public class WeaponsDaoImpl implements IWeaponsDao {
 	@Override
 	public List<User> getUsersWithWeapon(int weaponId) {
 		final String SELECT_SQL = "SELECT userId, email, password, regDate, money, avatar, " +
-				"userCharacter, nickName FROM users, charactersTrunks " +
+				"userCharacter, nickName, role FROM users, charactersTrunks " +
 				"WHERE userCharacter=characterId AND itemType=1 AND itemId=?";
 		List<User> users = jdbcTemplate.query(SELECT_SQL, new Object[] {weaponId}, new RowMapper<User>() {
 			public User mapRow (ResultSet resultSet, int rowNum) throws SQLException {
 				return new User(resultSet.getInt("userId"), resultSet.getString("email"), 
 						resultSet.getString("password"), resultSet.getString("nickName"),
 						resultSet.getInt("money"), resultSet.getString("avatar"),
-						resultSet.getInt("userCharacter"), resultSet.getTimestamp("regDate"));
+						resultSet.getInt("userCharacter"), resultSet.getTimestamp("regDate"),
+						resultSet.getString("role"));
 			}
 		});
 		log.info("WeaponsDaoImpl.getUsersWithWeapon : where finded "+users.size()+" users");

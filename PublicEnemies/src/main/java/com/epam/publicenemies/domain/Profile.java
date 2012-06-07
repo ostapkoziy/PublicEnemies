@@ -849,5 +849,10 @@ public class Profile
 	public void setMissRate(int missRate) {
 		this.pCharacter.setMissRate(missRate);
 	}
-	
+	public String getRole() {
+		return pUser.getRole();
+	}
+	public void setRole(String role) {
+		pUser.setRole(role);
+	}
 }

@@ -35,7 +35,7 @@ public class User {
 	 * TODO: table 'user' contains more fields. They may be added later
 	 */
 	public User(int userId, String email, String password, String nickName,
-			int money, String avatar, int userChar, Timestamp regDate) {
+			int money, String avatar, int userChar, Timestamp regDate, String role) {
 		this.userId = userId;
 		this.email = email;
 		this.password = password;
@@ -44,6 +44,7 @@ public class User {
 		this.avatar = avatar;
 		this.characterId = userChar;
 		this.regDate = regDate;
+		this.role = role;
 	}
 	
 	public int getUserId() {

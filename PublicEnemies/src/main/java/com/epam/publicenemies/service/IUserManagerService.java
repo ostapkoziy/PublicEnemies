@@ -56,5 +56,5 @@ public interface IUserManagerService {
 	 * @param userCharacter - id of users's character
 	 * @return
 	 */
-	public boolean updateUserInfo(int userId, String email, String nickName, String avatar, int money, int userCharacter);
+	public boolean updateUserInfo(int userId, String email, String nickName, String avatar, int money, int userCharacter, String role);
 }

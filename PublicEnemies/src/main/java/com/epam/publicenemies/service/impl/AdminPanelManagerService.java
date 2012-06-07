@@ -108,8 +108,8 @@ public class AdminPanelManagerService implements IAdminPanelManagerService {
 	 * @return
 	 */
 	public boolean updateUserInfo(int userId, String email, String nickName, 
-			String avatar, int money, int userCharacter) {
-		return userDao.updateUserInfo(userId, email, nickName, avatar, money, userCharacter);
+			String avatar, int money, int userCharacter, String role) {
+		return userDao.updateUserInfo(userId, email, nickName, avatar, money, userCharacter, role);
 	}
 	
 	/**

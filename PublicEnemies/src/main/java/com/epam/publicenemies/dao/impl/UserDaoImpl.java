@@ -57,7 +57,8 @@ public class UserDaoImpl implements IUserDao {
 					rs.getInt("money"),
 					rs.getString("avatar"),
 					rs.getInt("userCharacter"),
-					rs.getTimestamp("regDate"));
+					rs.getTimestamp("regDate"),
+					rs.getString("role"));
 	    } 
 	}
 	
@@ -93,14 +94,15 @@ public class UserDaoImpl implements IUserDao {
 	 * @return List of 5 users
 	 */
 	public List<User> getNewUsers () {
-		final String USERS_SQL = "SELECT userId, email, password, nickName, money, avatar, userCharacter, regDate" +
+		final String USERS_SQL = "SELECT userId, email, password, nickName, money, avatar, userCharacter, regDate, role" +
 				" FROM users ORDER BY regDate LIMIT 5";
 		List<User> list = jdbcTemplate.query(USERS_SQL, new RowMapper<User>() {
 			public User mapRow(ResultSet resultSet, int rowNum) throws SQLException {
 				return new User ( resultSet.getInt("userId"), resultSet.getString("email"),
 						resultSet.getString("password"), resultSet.getString("nickName"),
 						resultSet.getInt("money"), resultSet.getString("avatar"),
-						resultSet.getInt("userCharacter"), resultSet.getTimestamp("regDate") );
+						resultSet.getInt("userCharacter"), resultSet.getTimestamp("regDate"),
+						resultSet.getString("role"));
 			}
 		});
 		return list;
@@ -222,7 +224,7 @@ public class UserDaoImpl implements IUserDao {
 	* @return User object
 	* */
 	public User findUserById(final int userId) {
-		final String query = "SELECT email, password, nickName, money, avatar, userCharacter, regDate FROM users WHERE userId=?";
+		final String query = "SELECT email, password, nickName, money, avatar, userCharacter, regDate, role FROM users WHERE userId=?";
 		List<User> list = jdbcTemplate.query(query, new Object[]{userId}, new RowMapper<User>() {
 			public User mapRow(ResultSet resultSet, int rowNum)
 					throws SQLException {
@@ -233,7 +235,8 @@ public class UserDaoImpl implements IUserDao {
 						resultSet.getInt("money"),
 						resultSet.getString("avatar"),
 						resultSet.getInt("userCharacter"),
-						resultSet.getTimestamp("regDate")
+						resultSet.getTimestamp("regDate"), 
+						resultSet.getString("role")
 						);
 			}
 		});
@@ -252,8 +255,8 @@ public class UserDaoImpl implements IUserDao {
 	* */
 	public User findUserByEmailAndPassword(final String email, final String password){
 		final String CHECK_SQL = "SELECT COUNT(*) FROM users WHERE email=? AND password=?";
-		final String query = "SELECT  userId, nickName, money, avatar, userCharacter, regDate, email, password " +
-				"FROM users WHERE email=? AND password=?";
+		final String query = "SELECT  userId, nickName, money, avatar, userCharacter, regDate, email, password,  " +
+				"role FROM users WHERE email=? AND password=?";
 		int i = jdbcTemplate.queryForInt(CHECK_SQL, new Object[] {email, password});
 		if (i>0){
 		User user = jdbcTemplate.queryForObject(query, new Object[]{email, password}, new RowMapper<User>() {
@@ -265,7 +268,8 @@ public class UserDaoImpl implements IUserDao {
 									resultSet.getInt("money"),
 									resultSet.getString("avatar"),
 									resultSet.getInt("userCharacter"),
-									resultSet.getTimestamp("regDate"));
+									resultSet.getTimestamp("regDate"),
+									resultSet.getString("role"));
 						}
 					});
 		
@@ -284,7 +288,7 @@ public class UserDaoImpl implements IUserDao {
 	 */
 	public User findAdmin(final String email, final String password) {
 		final String CHECK_SQL = "SELECT COUNT(*) FROM users WHERE email=? AND password=? AND role='admin'";
-		final String query = "SELECT userId, email, password, nickName, money, avatar, userCharacter, regDate FROM users WHERE " +
+		final String query = "SELECT userId, email, password, nickName, money, avatar, userCharacter, regDate, role FROM users WHERE " +
 				"email=? AND password=? AND role='admin'";
 		int i = jdbcTemplate.queryForInt(CHECK_SQL, new Object[] {email, password});
 		if(i>0) {
@@ -297,7 +301,8 @@ public class UserDaoImpl implements IUserDao {
 						resultSet.getInt("money"),
 						resultSet.getString("avatar"),
 						resultSet.getInt("userCharacter"),
-						resultSet.getTimestamp("regDate"));
+						resultSet.getTimestamp("regDate"),
+						resultSet.getString("role"));
 			}
 		});
 		log.info("UserDaoImpl.findAdmin : "+ user.getEmail() + " " + user.getPassword());
@@ -312,7 +317,7 @@ public class UserDaoImpl implements IUserDao {
 	* @return User object
 	* */
 	public User findUserByEmail(final String email) {
-		final String query = "SELECT userId, password, nickName, money, avatar, userCharacter, regDate FROM users WHERE email=?";
+		final String query = "SELECT userId, password, nickName, money, avatar, userCharacter, regDate, role FROM users WHERE email=?";
 		List <User> list = jdbcTemplate.query(query, new Object[]{email}, new RowMapper<User>() {
 			public User mapRow(ResultSet resultSet, int rowNum)
 					throws SQLException {
@@ -322,7 +327,8 @@ public class UserDaoImpl implements IUserDao {
 						resultSet.getInt("money"),
 						resultSet.getString("avatar"),
 						resultSet.getInt("userCharacter"),
-						resultSet.getTimestamp("regDate"));
+						resultSet.getTimestamp("regDate"),
+						resultSet.getString("role"));
 			}
 		});
 		if (list.isEmpty())
@@ -395,9 +401,9 @@ public class UserDaoImpl implements IUserDao {
 	 * @param userCharacter - id of users's character
 	 * @return
 	 */
-	public boolean updateUserInfo(int userId, String email, String nickName, String avatar, int money, int userCharacter) {
-		final String UPDATE_SQL = "UPDATE IGNORE users SET email=?, nickName=?, avatar=?, money=?, userCharacter=? WHERE userId=?";
-		int i = jdbcTemplate.update( UPDATE_SQL, new Object[]{ email, nickName, avatar, money, userCharacter, userId } );
+	public boolean updateUserInfo(int userId, String email, String nickName, String avatar, int money, int userCharacter, String role) {
+		final String UPDATE_SQL = "UPDATE IGNORE users SET email=?, nickName=?, avatar=?, money=?, userCharacter=?, role=? WHERE userId=?";
+		int i = jdbcTemplate.update( UPDATE_SQL, new Object[]{ email, nickName, avatar, money, userCharacter, role, userId } );
 		if (i>0) {
 			log.info("UserDaoImpl.updatUserInfo : user("+userId+") updated");
 			return true;
