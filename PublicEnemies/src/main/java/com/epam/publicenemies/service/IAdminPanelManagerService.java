@@ -30,6 +30,20 @@ public interface IAdminPanelManagerService {
 			int money, String avatar);
 	
 	/**
+	 * Add new user
+	 * @param email - user email
+	 * @param password - user password
+	 * @param nickName - user nickName
+	 * @param money - money of user
+	 * @param avatar - user avatar
+	 * @param userChar - id of user's character
+	 * @param role - user role
+	 * @return id of registered user
+	 */
+	int addUser(String email, String password, String nickName,
+			int money, String avatar, String role);
+	
+	/**
 	* Delete user
 	* @param userId - id of user
 	* */
