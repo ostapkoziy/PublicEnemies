@@ -84,7 +84,7 @@ $(document).ready(function() {
 				// alert(data);
 				$("#chipsAmount").html(rouletteGameInfo.chips + " chips");
 				$("#message").html(rouletteGameInfo.msg);
-				$("#history").html("<b>"+_getTimeStamp()+"</b>"+ rouletteGameInfo.history + $("#history").html());
+				$("#history").html("<b>"+_getTimeStamp()+"</b> #"+ rouletteGameInfo.luckyNumber + " winns.<br>" + rouletteGameInfo.history + $("#history").html());
 //				alert(rouletteGameInfo.history);
 			}
 			});

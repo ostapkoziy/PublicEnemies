@@ -1,7 +1,5 @@
 package com.epam.publicenemies.domain.roulette;
 
-import com.epam.publicenemies.domain.Profile;
-
 public class RouletteGameInfo {
 	
 	private Integer bets[];
@@ -14,8 +12,6 @@ public class RouletteGameInfo {
 	private String userNickname = "";
 	private String userAvatar = "";
 	private int userMoney;
-	
-	
 
 	
 	public String getUserNickname() {
