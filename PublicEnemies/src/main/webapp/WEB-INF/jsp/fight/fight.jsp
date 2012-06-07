@@ -51,7 +51,6 @@
 			<!-- ********************ATACK Block**************************** -->
 			<!-- ******************************************************* -->
 			<div id="attackBlock">
-				<!-- 				<div id="timer"></div> -->
 				<input id="blockInput" type="text" value="head">
 				<input id="hitInput" type="text" value="head">
 				<input id="aidInput" type="text" value="false">

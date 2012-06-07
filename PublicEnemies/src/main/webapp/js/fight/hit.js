@@ -80,14 +80,15 @@ function attackButtonController(game)
 		{
 			$("#leftAid").hide();
 		}
-		if (game.round.creatorAction.didHit == true)
-		{
-			hideAttackButton();
-		}
-		else
+		if (game.round.creatorAction.didHit == false)
 		{
 			showAttackButton();
 		}
+		else
+		{
+			hideAttackButton();
+		}
+
 	}
 	else
 	{
@@ -95,13 +96,13 @@ function attackButtonController(game)
 		{
 			$("#leftAid").hide();
 		}
-		if (game.round.connectorAction.didHit == true)
+		if (game.round.connectorAction.didHit == false)
 		{
-			hideAttackButton();
+			showAttackButton();
 		}
 		else
 		{
-			showAttackButton();
+			hideAttackButton();
 		}
 	}
 }
