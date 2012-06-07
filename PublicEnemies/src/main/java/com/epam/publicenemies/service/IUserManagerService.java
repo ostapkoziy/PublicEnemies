@@ -1,11 +1,7 @@
 package com.epam.publicenemies.service;
 
-import com.epam.publicenemies.dto.UserDto;
 import com.epam.publicenemies.domain.User;
 
-/**
- * TODO: remove DTO objects
- */
 public interface IUserManagerService {
 	
 	User registerNewUser(String uEmail, String uPasswd, String uNickName);

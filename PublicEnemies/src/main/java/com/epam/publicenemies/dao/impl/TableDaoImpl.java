@@ -126,12 +126,10 @@ public class TableDaoImpl implements ITableDao {
 	
 	
 	private void fillPokerStatistics() {
-		final String INSERT = "INSERT INTO pokerStatistics (VPIP, PFR, 3BET, F3BET) VALUES ";
-		StringBuilder sql = new StringBuilder();
-		sql.append(INSERT);
-		sql.append("(0,0,0,0)");
+		final String INSERT = "INSERT INTO pokerStatistics VALUES ()";
+		
 		for (int i = 0; i<6; i++) {
-			jdbcTemplate.update(sql.toString());
+			jdbcTemplate.update(INSERT);
 //			sql.delete(0, sql.length());
 		}
 		//-------------------------------------------------------
@@ -714,7 +712,7 @@ public class TableDaoImpl implements ITableDao {
 		sql.delete(0, sql.length());
 		sql.append("INSERT INTO users ");
 		sql.append("(email, password, money, chatProperty, userCharacter, nickName, avatar, userPoker) ");
-		sql.append("VALUES ('1', '1', 100000, 4, 4, '1', './img/avatars/gangster.png', 4)");
+		sql.append("VALUES ('prometeus@gmail.com', 'asdfasdf', 100000, 4, 4, '1', './img/avatars/gangster.png', 4)");
 		jdbcTemplate.update(sql.toString());
 		try {
 			Thread.sleep(1000);
@@ -725,7 +723,7 @@ public class TableDaoImpl implements ITableDao {
 		sql.delete(0, sql.length());
 		sql.append("INSERT INTO users ");
 		sql.append("(email, password, money, chatProperty, userCharacter, nickName, avatar, userPoker) ");
-		sql.append("VALUES ('2', '2', 100000, 5, 5, '2', './img/avatars/mafia.png', 5)");
+		sql.append("VALUES ('zeus@rambler.ru', 'asdfasdf', 100000, 5, 5, '2', './img/avatars/mafia.png', 5)");
 		jdbcTemplate.update(sql.toString());
 		try {
 			Thread.sleep(1000);
@@ -738,6 +736,8 @@ public class TableDaoImpl implements ITableDao {
 		sql.append("(email, password, money, chatProperty, userCharacter, nickName, avatar, userPoker) ");
 		sql.append("VALUES ('someone@some.ua', 'someone', 100000, 6, 6, 'someone', './img/avatars/default.png', 6)");
 		jdbcTemplate.update(sql.toString());
+		
+		
 		
 	}
 	
