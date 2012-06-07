@@ -1,11 +1,12 @@
 <div class="admin_header">
 <a href="/PublicEnemies/adminPanel/summary.html"> <img class="admin_logo" src="/PublicEnemies/img/adminpanel/ap_logo.png" alt="AdminPanel logo" title="AdminPanel" /></a>
 <a href="/PublicEnemies/logout.html"><img class="logout" src="/PublicEnemies/img/adminpanel/logout.png" alt="Logout" title="Logout"/></a>
+<br />
 <div id="adm_panel">
 <a class="div_link" href="/PublicEnemies/adminPanel/summary.html">
 	<span id="adm_panel_words">Admin panel </span>
 </a>
-<div> Hello, ??? </div>
+<!-- <div> Hello,  Online = ${usersOnline}</div>
 <!-- </div>
 <a class="div_link" href="/PublicEnemies/adminPanel/summary.html"> <span
 	id="users_area"> SUMMARY </span>

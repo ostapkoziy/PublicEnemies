@@ -68,6 +68,10 @@
 					<td><input name="pass" type="text" value="TODO" id="password" /></td>
 				</tr>
 				<tr>
+					<td>Role:</td>
+					<td><input name="role" type="text" value="user" id="role" /></td>
+				</tr>
+				<tr>
 					<td>Money</td>
 					<td><input name="money" type="text" id="money"
 						value="${profile.getMoney()}" /></td>

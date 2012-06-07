@@ -43,6 +43,7 @@ table.category_table, .category_table th, .category_table td {
 	<jsp:include page="adminHeader.jsp"></jsp:include>
 	<jsp:include page="leftMenuDiv.jsp"></jsp:include>	
 	<div class="summary_div">
+	<!-- HERE ONLINE = ${usersOnline}!  -->
 		<div
 			style="border: 0px solid black; text-align: center; padding: 5px; border-radius: 10px;">
 			<table align="center" class="category_table">
@@ -94,6 +95,7 @@ table.category_table, .category_table th, .category_table td {
 		</div>
 		<!-- 
 		-->
+		<br />
 		<p id="last_registered">
 		<table class="users_table" align="center">
 			<caption>The 5 Latest Registered Users</caption>

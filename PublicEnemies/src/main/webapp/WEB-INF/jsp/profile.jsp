@@ -382,11 +382,13 @@ $(document).ready(function(){
 			<p>
 				<strong> <abbr style="color: white">Total Fights:</abbr>
 				</strong> ${profile.getFightsTotal()}
-			</p>
+			</p>			
 			<p>
 				<strong> <abbr style="color: white">Won Fights:</abbr>
 				</strong> ${profile.getFightsWon()}
 			</p>
+			<br />
+			<br />
 			<div id="holder"></div>
 			<table>
 				<tbody>
@@ -401,6 +403,8 @@ $(document).ready(function(){
 					</tr>
 				</tbody>
 			</table>
+			<br />
+			<br />
 			<h3>
 				<a id="main_page" style="color: white;" href="userStartPage.html">HOME
 					PAGE</a>
