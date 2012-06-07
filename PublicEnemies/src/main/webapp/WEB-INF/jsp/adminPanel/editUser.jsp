@@ -65,11 +65,16 @@
 				</tr>
 				<tr>
 					<td>Password:</td>
-					<td><input name="pass" type="text" value="TODO" id="password" /></td>
+					<td><input name="pass" type="text" id="password" /></td>
 				</tr>
 				<tr>
 					<td>Role:</td>
-					<td><input name="role" type="text" value="user" id="role" /></td>
+					<td>
+						<select name="role">
+							<option value="user">user</option>
+							<option value="admin">admin</option>
+						</select>
+					</td>
 				</tr>
 				<tr>
 					<td>Money</td>
@@ -87,7 +92,7 @@
 				value="${profile.getProfileId()}"> 			 			
 		</form>		
 		<input class="left" type="button" name="submit" value="Edit" 
-    			onClick="formValidator()">
+    			onClick="formValidator()" />
 	</div>
 </body>
 </html>

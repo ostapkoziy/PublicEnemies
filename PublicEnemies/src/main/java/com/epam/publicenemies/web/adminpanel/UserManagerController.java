@@ -53,7 +53,8 @@ public class UserManagerController implements IManageable {
 				request.getParameter("pass"),
 				request.getParameter("nickname"),
 				Integer.parseInt(request.getParameter("money")),
-				request.getParameter("avatar"));
+				request.getParameter("avatar"),
+				request.getParameter("role"));
 		return "redirect:../users.html"; 		
 	}
 

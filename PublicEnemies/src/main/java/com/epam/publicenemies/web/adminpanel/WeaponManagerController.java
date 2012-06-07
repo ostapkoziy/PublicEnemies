@@ -44,7 +44,7 @@ public class WeaponManagerController implements IManageable {
 		adminPanelManagerService.addWeapon(request.getParameter("wName"),
 				Integer.parseInt(request.getParameter("wHP")),
 				request.getParameter("wPicturePath"),
-				Boolean.getBoolean(request.getParameter("wType")),
+				Boolean.parseBoolean(request.getParameter("wType")),
 				Integer.parseInt(request.getParameter("wPrice")),
 				request.getParameter("wDescription"));
 
@@ -69,7 +69,7 @@ public class WeaponManagerController implements IManageable {
 				request.getParameter("wName"),
 				Integer.parseInt(request.getParameter("wHP")),
 				request.getParameter("wPicturePath"),
-				Boolean.getBoolean(request.getParameter("wType")),
+				Boolean.parseBoolean(request.getParameter("wType")),
 				Integer.parseInt(request.getParameter("wPrice")),
 				request.getParameter("wDescription"));
 		return "redirect:/adminPanel/weapons.html";
