@@ -51,11 +51,12 @@ public class Utils
 			deleteGame(fight);
 		}
 	}
-	public static void isOldGameInSession(Fight oldFight, String role)
+	public static void isOldGameInSession(Fight oldFight, Object role)
 	{
 		if (oldFight != null && role != null)
 		{
-			if (role.equals("creator"))
+			String oldRole = role.toString();
+			if (oldRole.equals("creator"))
 			{
 				oldFight.setCreatorOnline(false);
 			}

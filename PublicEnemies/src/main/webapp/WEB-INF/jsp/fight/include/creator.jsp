@@ -113,7 +113,7 @@
 					<div class="item">
 						<img src="${game.connectorProfile.getDressedArmor().getItemPicture()}" alt="">
 					</div>
-					<div class="item">
+					<div class="item" id="rightAid">
 						<img src="${game.connectorProfile.getDressedAid().getItemPicture()}" alt="">
 					</div>
 				</div>

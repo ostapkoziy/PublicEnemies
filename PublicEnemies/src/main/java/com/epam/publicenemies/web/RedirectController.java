@@ -25,7 +25,9 @@ public class RedirectController
 	public String logout(HttpServletRequest request)
 	{
 		HttpSession session = request.getSession();
-		Utils.isOldGameInSession((Fight) session.getAttribute("game"), session.getAttribute("gameRole").toString());
+		Fight oldFight = (Fight) session.getAttribute("game");
+		Object oldRole = session.getAttribute("gameRole");
+		Utils.isOldGameInSession(oldFight, oldRole);
 		session.removeAttribute("user");
 		session.removeAttribute("admin");
 		session.removeAttribute("game");

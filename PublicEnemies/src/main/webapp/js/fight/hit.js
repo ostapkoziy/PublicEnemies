@@ -80,6 +80,10 @@ function attackButtonController(game)
 		{
 			$("#leftAid").hide();
 		}
+		if (game.round.connectorAction.usedAid == true)
+		{
+			$("#rightAid").hide();
+		}
 		if (game.round.creatorAction.didHit == false)
 		{
 			showAttackButton();
@@ -95,6 +99,10 @@ function attackButtonController(game)
 		if (game.round.connectorAction.usedAid == true)
 		{
 			$("#leftAid").hide();
+		}
+		if (game.round.creatorAction.usedAid == true)
+		{
+			$("#rightAid").hide();
 		}
 		if (game.round.connectorAction.didHit == false)
 		{

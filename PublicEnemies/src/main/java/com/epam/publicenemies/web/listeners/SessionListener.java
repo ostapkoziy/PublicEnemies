@@ -35,8 +35,8 @@ public class SessionListener implements HttpSessionListener
 		log.info("SESSION DESTROYED");
 		log.info("TOTAL SESSIONS: " + getCounter());
 		Fight fight = (Fight) event.getSession().getAttribute("game");
-		String role = (String) event.getSession().getAttribute("gameRole");
-		Utils.isOldGameInSession(fight, role);
+		Object oldRole = event.getSession().getAttribute("gameRole");
+		Utils.isOldGameInSession(fight, oldRole);
 		// BlackJack Game Remove
 		// ServletContext servContext = event.getSession().getServletContext();
 		// WebApplicationContext webAppContext = WebApplicationContextUtils.getWebApplicationContext(servContext);
