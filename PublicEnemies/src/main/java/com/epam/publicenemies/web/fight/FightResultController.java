@@ -1,5 +1,7 @@
 package com.epam.publicenemies.web.fight;
 
+import java.util.Random;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -28,6 +30,7 @@ public class FightResultController
 		String role = (String) request.getSession().getAttribute("gameRole");
 		ModelAndView mav = new ModelAndView("/fight/fightResult");
 		Profile profile = fight.getProfile(role);
+		profileManagerService.updateTotalFights(profile.getProfileId(), profile.getFightsTotal() + 1);
 		if (fight.getWhoWins() == null || (profile.getUserId() != fight.getWhoWins().getUserId()))
 		{
 			request.getSession().setAttribute("win", false);
@@ -38,6 +41,9 @@ public class FightResultController
 			 * Work with DB
 			 */
 			profileManagerService.updateExperience(profile.getUserId(), profile.getLevel().getAllExpirience());
+			profileManagerService.updateMoney(profile.getUserId(), profile.getMoney() + new Random().nextInt(50) + 50
+					* profile.getLevel().getCurrentLevel());
+			profileManagerService.updateWonFights(profile.getProfileId(), profile.getFightsWon() + 1);
 			/*
 			 * 
 			 */
