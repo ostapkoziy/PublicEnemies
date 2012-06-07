@@ -23,6 +23,7 @@ public class FightResultController
 {
 	@Autowired
 	private IProfileManagerService	profileManagerService;
+	private int						moneyAfterFight	= 0;
 	@RequestMapping("/fightResult.html")
 	public ModelAndView fightResault(HttpServletRequest request, HttpServletResponse response)
 	{
@@ -37,12 +38,15 @@ public class FightResultController
 		}
 		else
 		{
+			if (moneyAfterFight == 0)
+			{
+				moneyAfterFight = new Random().nextInt(300) + 100 * profile.getLevel().getCurrentLevel();
+			}
 			/*
 			 * Work with DB
 			 */
 			profileManagerService.updateExperience(profile.getUserId(), profile.getLevel().getAllExpirience());
-			profileManagerService.updateMoney(profile.getUserId(), profile.getMoney() + new Random().nextInt(50) + 50
-					* profile.getLevel().getCurrentLevel());
+			profileManagerService.updateMoney(profile.getUserId(), profile.getMoney() + moneyAfterFight);
 			profileManagerService.updateWonFights(profile.getProfileId(), profile.getFightsWon() + 1);
 			/*
 			 * 
@@ -55,6 +59,7 @@ public class FightResultController
 			 */
 			request.getSession().setAttribute("win", true);
 		}
+		mav.addObject("money", moneyAfterFight);
 		mav.addObject("myProfile", profile);
 		return mav;
 	}

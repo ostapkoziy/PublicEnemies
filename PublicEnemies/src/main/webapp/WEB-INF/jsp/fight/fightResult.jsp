@@ -52,6 +52,9 @@
 			<div id="expOnCLVL">
 				Exp on Current Lvl:<span> ${myProfile.getLevel().getExpOnCurrentLevel()}</span>
 			</div>
+			<div id="money">
+				Money:<span> ${money}</span>
+			</div>
 		</div>
 
 

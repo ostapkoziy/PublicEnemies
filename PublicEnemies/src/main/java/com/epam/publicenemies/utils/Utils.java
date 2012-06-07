@@ -101,7 +101,11 @@ public class Utils
 	{
 		int allExp = fight.getCreatorProfile().getLevel().getAllExpirience();
 		int lvlDiff = fight.getConnectorProfile().getLevel().getCurrentLevel() - fight.getCreatorProfile().getLevel().getCurrentLevel();
-		int expAfterFight = 250 + lvlDiff * 20;
+		int expAfterFight = 250 + lvlDiff * 30 + fight.getCreatorProfile().getLevel().getCurrentLevel() * 30;
+		if (expAfterFight < 0)
+		{
+			expAfterFight = 1;
+		}
 		fight.getCreatorProfile().getLevel().setExpirienceAfterFight(expAfterFight);
 		fight.getCreatorProfile().getLevel().setAllExpirience(allExp + expAfterFight);
 	}
@@ -109,7 +113,11 @@ public class Utils
 	{
 		int allExp = fight.getConnectorProfile().getLevel().getAllExpirience();
 		int lvlDiff = fight.getCreatorProfile().getLevel().getCurrentLevel() - fight.getConnectorProfile().getLevel().getCurrentLevel();
-		int expAfterFight = 250 + lvlDiff * 20;
+		int expAfterFight = 250 + lvlDiff * 30 + fight.getConnectorProfile().getLevel().getCurrentLevel() * 30;
+		if (expAfterFight < 0)
+		{
+			expAfterFight = 1;
+		}
 		fight.getConnectorProfile().getLevel().setExpirienceAfterFight(expAfterFight);
 		fight.getConnectorProfile().getLevel().setAllExpirience(allExp + expAfterFight);
 	}

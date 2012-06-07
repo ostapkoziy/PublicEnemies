@@ -90,7 +90,7 @@ public class HitController
 			 * TODO DB WORK
 			 */
 			action.setUsedAid(true);
-			profileManagerService.undressAid(profile.getUserId());
+			// profileManagerService.undressAid(profile.getUserId());
 			int restoreHP = profile.getDressedAid().getAidEffect();
 			if (profile.getHP() + restoreHP > profile.getAllHP())
 			{

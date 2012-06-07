@@ -9,8 +9,8 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class FightsList
 {
-	ConcurrentHashMap<Long, Fight>	map	= new ConcurrentHashMap<Long, Fight>();
-	private static FightsList		gl;
+	private ConcurrentHashMap<Long, Fight>	map	= new ConcurrentHashMap<Long, Fight>();
+	private static FightsList				gl;
 	private FightsList()
 	{
 	}
