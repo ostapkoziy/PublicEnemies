@@ -24,4 +24,9 @@ public class RedirectController2
 	{
 		return "redirect:fightResult.html";
 	}
+	@RequestMapping("/testLose.html")
+	public String testLose(HttpServletRequest request, HttpServletResponse response) throws IOException
+	{
+		return "/fight/testLose";
+	}
 }

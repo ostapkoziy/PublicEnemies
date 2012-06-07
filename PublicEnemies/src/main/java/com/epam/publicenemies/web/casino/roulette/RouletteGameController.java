@@ -33,7 +33,6 @@ public class RouletteGameController {
 
 		JSONSerializer serializer = new JSONSerializer();
 		int rnd = new Random().nextInt(36);
-		rouletteGameInfo.setLuckyNumber(rnd);
 		int chips = 0;
 
 		response.setContentType("text/html;charset=UTF-8");
@@ -42,6 +41,7 @@ public class RouletteGameController {
 
 		HttpSession session = request.getSession();
 		rouletteGameInfo = (RouletteGameInfo) session.getAttribute("rouletteGameInfo");
+		rouletteGameInfo.setLuckyNumber(rnd);
 
 		if (request.getParameter("userBetNumbers") != "") {
 			parseBetString(request.getParameter("userBetNumbers"));

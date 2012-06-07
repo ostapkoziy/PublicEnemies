@@ -62,9 +62,9 @@ public enum RoundResult
 			int connectorHP = fight.getConnectorProfile().getHP();
 			fight.getCreatorProfile().setHP(creatorHP - connectorDamage);
 			fight.getConnectorProfile().setHP(connectorHP - creatorDamage);
-			FightEngine.sendServerMessage(fight.getId(), "Server: " + fight.getCreatorProfile().getNickName() + " HIT : "
+			FightEngine.sendServerMessage(fight.getId(), "<b>Server:</b> " + fight.getCreatorProfile().getNickName() + " HIT : "
 					+ fight.getRound().getCreatorAction().getHit() + " BLOCK: " + fight.getRound().getCreatorAction().getBlock());
-			FightEngine.sendServerMessage(fight.getId(), "Server: " + fight.getConnectorProfile().getNickName() + " HIT : "
+			FightEngine.sendServerMessage(fight.getId(), "<b>Server:</b> " + fight.getConnectorProfile().getNickName() + " HIT : "
 					+ fight.getRound().getConnectorAction().getHit() + " BLOCK: " + fight.getRound().getConnectorAction().getBlock());
 			return false;
 		}

@@ -78,7 +78,7 @@ public class FightEngine
 	private void setupGame(Fight fight)
 	{
 		log.info("---------GAME SETUP IN ENGINE--------");
-		sendServerMessage(fight.getId(), "<b>Server: </b> Round №" + fight.getRound().getRoundNumber() + " end.");
+		sendServerMessage(fight.getId(), "<b>Server: </b> Round #" + fight.getRound().getRoundNumber() + " end.");
 		clearHitsBlocks(fight);
 	}
 	private boolean action(Fight fight)
