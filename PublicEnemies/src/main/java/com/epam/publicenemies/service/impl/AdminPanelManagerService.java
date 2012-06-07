@@ -65,6 +65,22 @@ public class AdminPanelManagerService implements IAdminPanelManagerService {
 	}
 	
 	/**
+	 * Add new user
+	 * @param email - user email
+	 * @param password - user password
+	 * @param nickName - user nickName
+	 * @param money - money of user
+	 * @param avatar - user avatar
+	 * @param userChar - id of user's character
+	 * @param role - user role
+	 * @return id of registered user
+	 */
+	public int addUser(String email, String password, String nickName,
+			int money, String avatar, String role) {
+		return userDao.registerUser(email, password, nickName, role);
+	}
+	
+	/**
 	 * Get amount of registered users
 	 * @return amount of registered users
 	 */

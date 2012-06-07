@@ -33,6 +33,18 @@ public interface IUserDao {
 			int money, String avatar);
 	
 	/**
+	 * Register new user with email, password, nickName and roe
+	 *  
+	 * @param email - email (unique)
+	 * @param password - password 
+	 * @param nickname - nickname (unique)
+	 * @param role - user role
+	 * @return id of inserted entry or -1 if parameters are bad 
+	 */
+	public int registerUser(final String email, final String password,
+			final String nickName, final String role);
+	
+	/**
 	 * Get amount of of registered users
 	 * @return amount of of registered users
 	 */
