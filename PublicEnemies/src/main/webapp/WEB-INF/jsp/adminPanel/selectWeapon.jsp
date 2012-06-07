@@ -9,7 +9,7 @@
 <link href="/PublicEnemies/css/adminpanel/commonstyle.css"
 	rel="stylesheet" type="text/css">
 
-<title>Users</title>
+<title>Select Weapon</title>
 </head>
 <body>
 

@@ -29,6 +29,7 @@
 					<th><a href="usersOrderByNickName.html"> Nickname</a></th>
 					<th>Email</th>
 					<th>Password</th>
+					<th>Role</th>
 					<th><a href="usersOrderByRegDate.html"> Registration Date
 					</a></th>
 					<th colspan="2">Actions</th>
@@ -40,6 +41,7 @@
 					</a></td>
 					<td>${registeredOne.getEmail()}</td>
 					<td>${registeredOne.getPassword()}</td>
+					<td>${registeredOne.getRole()}</td>
 					<td>${registeredOne.getRegDate()}</td>
 					<td><a href="user/edit/${registeredOne.getUserId()}.html">
 							edit</a></td>

@@ -6,7 +6,7 @@
 <link href="/PublicEnemies/css/adminpanel/commonstyle.css"
 	rel="stylesheet" type="text/css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Create New Aid</title>
+<title>Create New Weapon</title>
 </head>
 <body>
 	<jsp:include page="adminHeader.jsp"></jsp:include>
@@ -23,9 +23,15 @@
 					<td>Hit points:</td>
 					<td><input name="wHP" type="text" /></td>
 				</tr>
+				
 				<tr>
-					<td>Type:</td>
-					<td><input name="wType" type="text" /></td>
+					<td>Type(firearm):</td>
+					<td>
+						<select name="wType">
+							<option value="true">true</option>
+							<option value="false">false</option>
+						</select>
+					</td>
 				</tr>
 				<tr>
 					<td>Price:</td>

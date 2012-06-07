@@ -260,37 +260,37 @@ public class TableDaoImpl implements ITableDao {
 		StringBuilder sql = new StringBuilder("");
 		//-------------------------------------------------------
 		sql.append(fa);
-		sql.append("VALUES ('low', 100, './img/armors/low.png', 5000, 'Simple helmet, could save your life.')");
+		sql.append("VALUES ('Helmet', 100, './img/armors/low.png', 5000, 'Simple helmet, could save your life.')");
 		jdbcTemplate.update(sql.toString());
 		
 		sql.delete(0, sql.length());
 		//-------------------------------------------------------
 		sql.append(fa);
-		sql.append("VALUES ('low_mid', 200, './img/armors/low_mid.png', 10000, 'Low quality armor, but more usefull then just helmet.')");
+		sql.append("VALUES ('Simple armor', 200, './img/armors/low_mid.png', 10000, 'Low quality armor, but more usefull then just helmet.')");
 		jdbcTemplate.update(sql.toString());
 		
 		sql.delete(0, sql.length());
 		//-------------------------------------------------------
 		sql.append(fa);
-		sql.append("VALUES ('mid', 300, './img/armors/mid.png', 18000, 'Standart armor for personal protection.')");
+		sql.append("VALUES ('Standart armor', 300, './img/armors/mid.png', 18000, 'Standart armor for personal protection.')");
 		jdbcTemplate.update(sql.toString());
 		
 		sql.delete(0, sql.length());
 		//-------------------------------------------------------
 		sql.append(fa);
-		sql.append("VALUES ('mid_advanced', 400, './img/armors/mid_advanced.png', 30000, 'Armor designed for police forces.')");
+		sql.append("VALUES ('Police armor', 400, './img/armors/mid_advanced.png', 30000, 'Armor designed for police forces.')");
 		jdbcTemplate.update(sql.toString());
 		
 		sql.delete(0, sql.length());
 		//-------------------------------------------------------
 		sql.append(fa);
-		sql.append("VALUES ('mid_hight', 500, './img/armors/mid_hight.png', 40000, 'Special armor for special police forces.')");
+		sql.append("VALUES ('Special armor', 500, './img/armors/mid_hight.png', 40000, 'Special armor for special police forces.')");
 		jdbcTemplate.update(sql.toString());
 		
 		sql.delete(0, sql.length());
 		//-------------------------------------------------------
 		sql.append(fa);
-		sql.append("VALUES ('hight', 600, './img/armors/hight.png', 55000, 'Excellent armor, was designed for military use.')");
+		sql.append("VALUES ('Military armor', 600, './img/armors/hight.png', 55000, 'Excellent armor, was designed for military use.')");
 		jdbcTemplate.update(sql.toString());
 		
 		sql.delete(0, sql.length());
@@ -303,37 +303,37 @@ public class TableDaoImpl implements ITableDao {
 		StringBuilder sql = new StringBuilder("");
 		//-------------------------------------------------------
 		sql.append(aidsSql);
-		sql.append("VALUES ('Small', 'HP', 100, './img/aids/small.png', 500, 'Simple painkiller.')");
+		sql.append("VALUES ('Cheap painkiller', 'HP', 100, './img/aids/small.png', 500, 'Simple painkiller.')");
 		jdbcTemplate.update(sql.toString());
 		
 		sql.delete(0, sql.length());
 		//-------------------------------------------------------
 		sql.append(aidsSql);
-		sql.append("VALUES ('Medium', 'HP', 200, './img/aids/medium.png', 1000, 'Advanced painkiller.')");
+		sql.append("VALUES ('Standart painkiller', 'HP', 200, './img/aids/medium.png', 1000, 'Advanced painkiller.')");
 		jdbcTemplate.update(sql.toString());
 		
 		sql.delete(0, sql.length());
 		//-------------------------------------------------------
 		sql.append(aidsSql);
-		sql.append("VALUES ('Large', 'HP', 300, './img/aids/large.png', 2000, '''Magic'' pills, if you know what i mean.')");
+		sql.append("VALUES ('Strange pills', 'HP', 300, './img/aids/large.png', 2000, '''Magic'' pills, if you know what i mean.')");
 		jdbcTemplate.update(sql.toString());
 		
 		sql.delete(0, sql.length());
 		//-------------------------------------------------------
 		sql.append(aidsSql);
-		sql.append("VALUES ('Very_lagre', 'HP', 400, './img/aids/very_large.png', 4000, 'Medical bandage.')");
+		sql.append("VALUES ('Bandage', 'HP', 400, './img/aids/very_large.png', 4000, 'Medical bandage.')");
 		jdbcTemplate.update(sql.toString());
 		
 		sql.delete(0, sql.length());	
 		//-------------------------------------------------------
 		sql.append(aidsSql);
-		sql.append("VALUES ('Average', 'HP', 500, './img/aids/average.png', 8000, 'Morphine injection.')");
+		sql.append("VALUES ('Morphine', 'HP', 500, './img/aids/average.png', 8000, 'Morphine injection.')");
 		jdbcTemplate.update(sql.toString());
 		
 		sql.delete(0, sql.length());	
 		//-------------------------------------------------------
 		sql.append(aidsSql);
-		sql.append("VALUES ('Shugar', 'HP', 600, './img/aids/extra.png', 16000, 'Emergency recovery kit.')");
+		sql.append("VALUES ('Emergence kit', 'HP', 600, './img/aids/extra.png', 16000, 'Emergency recovery kit.')");
 		jdbcTemplate.update(sql.toString());
 				
 		sql.delete(0, sql.length());	
@@ -344,35 +344,35 @@ public class TableDaoImpl implements ITableDao {
 		StringBuilder sql = new StringBuilder("INSERT INTO characters ");
 		sql.append("(experience, strength, agility, intellect, characterProfession, ");
 		sql.append("fightsTotal, fightsWon, weapon1, weapon2, aid, armor) ");
-		sql.append("VALUES (500, 20, 25, 1, 1, 50, 1, 1, 2, 5, 7)");
+		sql.append("VALUES (999, 20, 25, 1, 1, 30, 9, 1, 2, 5, 7)");
 		jdbcTemplate.update(sql.toString());
 		sql.delete(0, sql.length());
 		// 2-nd character
 		sql.append("INSERT INTO characters ");
-		sql.append("(sex, strength, agility, intellect, characterProfession, ");
+		sql.append("(experience, sex, strength, agility, intellect, characterProfession, ");
 		sql.append("fightsTotal, fightsWon, weapon1, weapon2, aid, armor) ");
-		sql.append("VALUES (0, 5, 50, 6, 2, 20, 5, 9, 10, 13, 15)");
+		sql.append("VALUES (999, 0, 5, 50, 6, 1, 20, 5, 9, 10, 13, 15)");
 		jdbcTemplate.update(sql.toString());
 		sql.delete(0, sql.length());
 		// 3-rd character 
 		sql.append("INSERT INTO characters ");
-		sql.append("(sex, strength, agility, intellect, characterProfession, ");
+		sql.append("(experience, sex, strength, agility, intellect, characterProfession, ");
 		sql.append("fightsTotal, fightsWon, weapon1, weapon2, aid, armor) ");
-		sql.append("VALUES (1, 5, 50, 6, 3, 20, 5, 17, 18, 22, 23)");
+		sql.append("VALUES (536, 1, 5, 50, 6, 3, 20, 5, 17, 18, 22, 23)");
 		jdbcTemplate.update(sql.toString());
 		sql.delete(0, sql.length());
 		// 4-th character
 		sql.append("INSERT INTO characters ");
-		sql.append("(sex, strength, agility, intellect, characterProfession, ");
+		sql.append("(experience, sex, strength, agility, intellect, characterProfession, ");
 		sql.append("fightsTotal, fightsWon, weapon1, weapon2, aid, armor) ");
-		sql.append("VALUES (1, 5, 50, 6, 1, 20, 5, 25, 26, 30, 31)");
+		sql.append("VALUES (672, 1, 5, 50, 6, 1, 20, 5, 25, 26, 30, 31)");
 		jdbcTemplate.update(sql.toString());
 		sql.delete(0, sql.length());
 		// 5-th character
 		sql.append("INSERT INTO characters ");
-		sql.append("(sex, strength, agility, intellect, characterProfession, ");
+		sql.append("(experience, sex, strength, agility, intellect, characterProfession, ");
 		sql.append("fightsTotal, fightsWon, weapon1, weapon2, aid, armor) ");
-		sql.append("VALUES (1, 5, 50, 6, 2, 20, 5, 33, 34, 38, 39)");
+		sql.append("VALUES (224, 1, 5, 50, 6, 2, 20, 5, 33, 34, 38, 39)");
 		jdbcTemplate.update(sql.toString());
 		sql.delete(0, sql.length());
 		// 6-th character
@@ -690,7 +690,7 @@ public class TableDaoImpl implements ITableDao {
 		// tymoshenko
 		sql.append("INSERT INTO users ");
 		sql.append("(email, password, money, chatProperty, userCharacter, nickName, avatar, userPoker) ");
-		sql.append("VALUES ('tymoshenko@ukr.net', 'asdfasdf', 100000, 2, 2, 'troublesome', './img/avatars/angelina.png', 2)");
+		sql.append("VALUES ('tymoshenko@ukr.net', 'asdfasdf', 700000, 2, 2, 'troublesome', './img/avatars/angelina.png', 2)");
 		jdbcTemplate.update(sql.toString());
 		sql.delete(0, sql.length());
 		try {
@@ -701,7 +701,7 @@ public class TableDaoImpl implements ITableDao {
 		// admin
 		sql.append("INSERT INTO users ");
 		sql.append("(email, password, money, chatProperty, userCharacter, nickName, avatar, userPoker, role) ");
-		sql.append("VALUES ('admin@admin', 'admin', 100000, 3, 3, 'admin', './img/avatars/tommy.png', 3, 'admin')");
+		sql.append("VALUES ('admin@admin', 'admin', 250000, 3, 3, 'admin', './img/avatars/tommy.png', 3, 'admin')");
 		jdbcTemplate.update(sql.toString());
 		try {
 			Thread.sleep(1000);
@@ -712,7 +712,7 @@ public class TableDaoImpl implements ITableDao {
 		sql.delete(0, sql.length());
 		sql.append("INSERT INTO users ");
 		sql.append("(email, password, money, chatProperty, userCharacter, nickName, avatar, userPoker) ");
-		sql.append("VALUES ('prometeus@gmail.com', 'asdfasdf', 100000, 4, 4, 'prometeus', './img/avatars/gangster.png', 4)");
+		sql.append("VALUES ('prometeus@gmail.com', 'asdfasdf', 150000, 4, 4, 'prometeus', './img/avatars/gangster.png', 4)");
 		jdbcTemplate.update(sql.toString());
 		try {
 			Thread.sleep(1000);
@@ -723,7 +723,7 @@ public class TableDaoImpl implements ITableDao {
 		sql.delete(0, sql.length());
 		sql.append("INSERT INTO users ");
 		sql.append("(email, password, money, chatProperty, userCharacter, nickName, avatar, userPoker) ");
-		sql.append("VALUES ('zeus@rambler.ru', 'asdfasdf', 100000, 5, 5, 'zeus', './img/avatars/mafia.png', 5)");
+		sql.append("VALUES ('zeus@rambler.ru', 'asdfasdf', 170000, 5, 5, 'zeus', './img/avatars/mafia.png', 5)");
 		jdbcTemplate.update(sql.toString());
 		try {
 			Thread.sleep(1000);
@@ -734,7 +734,7 @@ public class TableDaoImpl implements ITableDao {
 		sql.delete(0, sql.length());
 		sql.append("INSERT INTO users ");
 		sql.append("(email, password, money, chatProperty, userCharacter, nickName, avatar, userPoker) ");
-		sql.append("VALUES ('someone@some.ua', 'someone', 100000, 6, 6, 'someone', './img/avatars/default.png', 6)");
+		sql.append("VALUES ('someone@some.ua', 'someone', 30000, 6, 6, 'someone', './img/avatars/default.png', 6)");
 		jdbcTemplate.update(sql.toString());
 		
 		

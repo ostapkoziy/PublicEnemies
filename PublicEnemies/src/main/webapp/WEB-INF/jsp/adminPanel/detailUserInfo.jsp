@@ -43,7 +43,7 @@
 			</tr>
 			<tr>
 				<td>Role:</td>
-				<td>TODO: user role</td>
+				<td>${profile.getRole()}</td>
 			</tr>
 			<tr>
 				<td>Nickname:</td>

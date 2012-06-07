@@ -394,10 +394,10 @@ $(document).ready(function(){
 				<tbody>
 					<tr>
 						<th scope="row">Won (${profile.getFightsWon()})</th>
-						<td>${profile.getFightsWon()}</td>
+						<td>${profile.getFightsWon()}</td> 
 					</tr>
 					<tr>
-						<th scope="row">Loose (${profile.getFightsTotal() -
+						<th scope="row">Lost (${profile.getFightsTotal() -
 							profile.getFightsWon()})</th>
 						<td>${profile.getFightsTotal() - profile.getFightsWon()}</td>
 					</tr>

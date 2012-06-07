@@ -22,10 +22,18 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
+	<div style="float: left; margin-left: 150px; border-radius: 10px; margin-top: 50px; padding: 5px 15px; background: url(/PublicEnemies/img/dark_opacity.png);">
+		<a class="main_and_profile" href="/PublicEnemies/userStartPage.html">MAIN PAGE</a>
+	</div>
+	<div style="float: right; margin-top: 50px; margin-right: 150px; padding: 5px 15px; background: url(/PublicEnemies/img/dark_opacity.png); border-radius: 10px;">
+		<a class="main_and_profile" href="/PublicEnemies/profile.html"> PROFILE </a>
+	</div>
+	<div style="text-align: center; margin: 10px;">
+		<a href="/PublicEnemies/userStartPage.html"><img
+			src="/PublicEnemies/img/gamelogo.png" width="50%" height="50%" /></a>
+	</div>
 	<table align="center">
-		<tr>
-			<td align="center"><img src="img/gamelogo.png"></img></td>
-		</tr>
+		
 		<tr>
 			<td align="center">
 				<table class="sample" width="400px">
@@ -35,7 +43,6 @@ $(document).ready(function(){
 									<p>Nickname:</p>
 									<input type="text" name="nickName" value="${profile.getNickName()}"><br />
 									<font color="red">${status.errorMessage}</font>
-									<br />
 									<p>Avatar:</p>
 									<div>
 										<img class="image_select" title="angelina" width="40" src="img/avatars/angelina.png"></img>
@@ -45,10 +52,8 @@ $(document).ready(function(){
 										<img class="image_select" title="mafia" width="40" src="img/avatars/mafia.png"></img>
 									</div>
 									<br/>
-									<br/>
 									<input id="avatar_input" type="text" name="avatar" value="${profile.getAvatar()}"><br />
 									<font color="red">${status.errorMessage}</font>
-									<br />
 									<p>Gender:</p>
 									<select id="gender_select">
 										<option id="male">male</option>
@@ -56,13 +61,14 @@ $(document).ready(function(){
 									</select>
 									<input id="gender_input"  type="text" name="sex" value="${profile.isSex()}"><br />
 									<font color="red">${status.errorMessage}</font>
-									<br />
 								<p>Proffesion:</p>
 								<select id="profession_select">
 										<option id="1">Butcher</option>
 										<option id="2">Gangster</option>
 										<option id="3">Criminal</option>
 									</select>
+									<br />
+									<br />
 									<!-- *********EDIT BY ALEXANDER******************** -->
 									<div id="proffessionAvatar">
 										<div id="profImg" style="width: 200px;height: 250px; background: url('img/avatars/butcher.png');"></div>
