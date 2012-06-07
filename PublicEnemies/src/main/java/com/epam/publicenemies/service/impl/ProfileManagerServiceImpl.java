@@ -256,4 +256,13 @@ public class ProfileManagerServiceImpl implements IProfileManagerService {
 	public boolean updateTotalFights(int characterId, int fightsTotal) {
 		return profileDao.updateTotalFights(characterId, fightsTotal);
 	}
+	
+	/**
+	 * Uses aid in battle
+	 * @param characterId - character id
+	 * @return true if operation was successfully
+	 */
+	public boolean useAid(int characterId) {
+		return profileDao.useAid(characterId);
+	}
 }

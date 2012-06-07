@@ -1229,4 +1229,24 @@ public class ProfileDaoImpl implements IProfileDao {
 		} else
 			return false;
 	}
+	
+	/**
+	 * Uses aid in battle
+	 * @param characterId - character id
+	 * @return true if operation was successfully
+	 */
+	public boolean useAid(int characterId) {
+		final String SELECT_SQL = "SELECT aid FROM characters WHERE characterId=?";
+		final String UPDATE_SQL = "UPDATE characters SET aid=0 WHERE characterId=?";
+		final String DELETE_SQL = "DELETE from charactersTrunks WHERE characterId=? AND trunkId=? AND itemType=2";
+		
+		int i = jdbcTemplate.queryForInt(SELECT_SQL, new Object [] {characterId});
+		jdbcTemplate.update(UPDATE_SQL, new Object[] {characterId});
+		int j = jdbcTemplate.update(DELETE_SQL, new Object[] {characterId, i});
+		if (j>0) {
+			log.info("ProfileDaoImpl.useAid : aid was successfully used for character("+characterId+")");
+			return true;
+		}else
+			return false;
+	}
 }
