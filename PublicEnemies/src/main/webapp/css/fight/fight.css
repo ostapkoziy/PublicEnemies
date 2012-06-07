@@ -153,6 +153,7 @@ div { /* 	outline: 1px solid red; */
 	height: 45px;
 	margin-left: auto;
 	margin-right: auto;
+/* 	display: none; */
 }
 
 #hitInput {

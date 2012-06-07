@@ -1,6 +1,6 @@
 @CHARSET "UTF-8";
 
-#result { 
+#result {
 	width: 1920px;
 	height: 1200px;
 	position: absolute;
@@ -35,7 +35,7 @@
 	position: fixed;
 	margin-left: auto;
 	margin-right: auto;
-	top: 380px;
+	top: 530px;
 	left: 0;
 	right: 0;
 	z-index: 999999;

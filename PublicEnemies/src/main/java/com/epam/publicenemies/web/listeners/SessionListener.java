@@ -24,6 +24,7 @@ public class SessionListener implements HttpSessionListener
 		{
 			counter++;
 		}
+		log.info("TOTAL SESSIONS: " + getCounter());
 	}
 	public void sessionDestroyed(HttpSessionEvent event)
 	{
@@ -32,6 +33,7 @@ public class SessionListener implements HttpSessionListener
 			counter--;
 		}
 		log.info("SESSION DESTROYED");
+		log.info("TOTAL SESSIONS: " + getCounter());
 		Fight fight = (Fight) event.getSession().getAttribute("game");
 		String role = (String) event.getSession().getAttribute("gameRole");
 		Utils.isOldGameInSession(fight, role);
