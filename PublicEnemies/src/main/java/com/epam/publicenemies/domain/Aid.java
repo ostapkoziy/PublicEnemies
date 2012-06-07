@@ -132,4 +132,32 @@ public class Aid extends Item {
 	public void setAidEffect(int aidEffect) {
 		this.aidEffect = aidEffect;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + aidEffect;
+		result = prime * result + ((aidType == null) ? 0 : aidType.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Aid other = (Aid) obj;
+		if (aidEffect != other.aidEffect)
+			return false;
+		if (aidType == null) {
+			if (other.aidType != null)
+				return false;
+		} else if (!aidType.equals(other.aidType))
+			return false;
+		return true;
+	}
 }

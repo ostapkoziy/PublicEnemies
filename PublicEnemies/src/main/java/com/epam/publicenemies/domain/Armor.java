@@ -113,4 +113,26 @@ public class Armor extends Item {
 		this.armorProtection = armorProtection;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + armorProtection;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Armor other = (Armor) obj;
+		if (armorProtection != other.armorProtection)
+			return false;
+		return true;
+	}
+
 }

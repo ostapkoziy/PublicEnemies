@@ -85,4 +85,45 @@ public class Level
 	{
 		this.newLevel = newLevel;
 	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + allExpirience;
+		result = prime * result + currentLevel;
+		result = prime * result + expOnCurrentLevel;
+		result = prime * result + expirienceAfterFight;
+		result = prime * result + leftBound;
+		result = prime * result + (newLevel ? 1231 : 1237);
+		result = prime * result + nextLevelInPercent;
+		result = prime * result + rightBound;
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Level other = (Level) obj;
+		if (allExpirience != other.allExpirience)
+			return false;
+		if (currentLevel != other.currentLevel)
+			return false;
+		if (expOnCurrentLevel != other.expOnCurrentLevel)
+			return false;
+		if (expirienceAfterFight != other.expirienceAfterFight)
+			return false;
+		if (leftBound != other.leftBound)
+			return false;
+		if (newLevel != other.newLevel)
+			return false;
+		if (nextLevelInPercent != other.nextLevelInPercent)
+			return false;
+		if (rightBound != other.rightBound)
+			return false;
+		return true;
+	}
 }

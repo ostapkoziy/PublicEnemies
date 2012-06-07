@@ -41,6 +41,8 @@ public class Profile
 		aids = new HashMap<Integer, TrunkItem>();
 		armors = new HashMap<Integer, TrunkItem>();
 	}
+	
+	
 	/**
 	 * Non-default Profile constructor
 	 * 
@@ -854,5 +856,83 @@ public class Profile
 	}
 	public void setRole(String role) {
 		pUser.setRole(role);
+	}
+
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((aids == null) ? 0 : aids.hashCode());
+		result = prime * result + ((armors == null) ? 0 : armors.hashCode());
+		result = prime * result + ((pAid == null) ? 0 : pAid.hashCode());
+		result = prime * result + ((pArmor == null) ? 0 : pArmor.hashCode());
+		result = prime * result
+				+ ((pCharacter == null) ? 0 : pCharacter.hashCode());
+		result = prime * result + ((pUser == null) ? 0 : pUser.hashCode());
+		result = prime * result
+				+ ((pWeapon1 == null) ? 0 : pWeapon1.hashCode());
+		result = prime * result
+				+ ((pWeapon2 == null) ? 0 : pWeapon2.hashCode());
+		result = prime * result + ((weapons == null) ? 0 : weapons.hashCode());
+		return result;
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Profile other = (Profile) obj;
+		if (aids == null) {
+			if (other.aids != null)
+				return false;
+		} else if (!aids.equals(other.aids))
+			return false;
+		if (armors == null) {
+			if (other.armors != null)
+				return false;
+		} else if (!armors.equals(other.armors))
+			return false;
+		if (pAid == null) {
+			if (other.pAid != null)
+				return false;
+		} else if (!pAid.equals(other.pAid))
+			return false;
+		if (pArmor == null) {
+			if (other.pArmor != null)
+				return false;
+		} else if (!pArmor.equals(other.pArmor))
+			return false;
+		if (pCharacter == null) {
+			if (other.pCharacter != null)
+				return false;
+		} else if (!pCharacter.equals(other.pCharacter))
+			return false;
+		if (pUser == null) {
+			if (other.pUser != null)
+				return false;
+		} else if (!pUser.equals(other.pUser))
+			return false;
+		if (pWeapon1 == null) {
+			if (other.pWeapon1 != null)
+				return false;
+		} else if (!pWeapon1.equals(other.pWeapon1))
+			return false;
+		if (pWeapon2 == null) {
+			if (other.pWeapon2 != null)
+				return false;
+		} else if (!pWeapon2.equals(other.pWeapon2))
+			return false;
+		if (weapons == null) {
+			if (other.weapons != null)
+				return false;
+		} else if (!weapons.equals(other.weapons))
+			return false;
+		return true;
 	}
 }

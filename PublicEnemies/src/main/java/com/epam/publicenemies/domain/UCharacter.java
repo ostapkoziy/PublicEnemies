@@ -196,4 +196,84 @@ public class UCharacter
 	public void setMissRate(int missRate) {
 		this.missRate = missRate;
 	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + HP;
+		result = prime * result + agility;
+		result = prime * result + aid;
+		result = prime * result + allUserHP;
+		result = prime * result + armor;
+		result = prime * result + characterId;
+		result = prime
+				* result
+				+ ((characterProfession == null) ? 0 : characterProfession
+						.hashCode());
+		result = prime * result + damage;
+		result = prime * result + defence;
+		result = prime * result + fightsTotal;
+		result = prime * result + fightsWon;
+		result = prime * result + intellect;
+		result = prime * result + ((level == null) ? 0 : level.hashCode());
+		result = prime * result + missRate;
+		result = prime * result + (sex ? 1231 : 1237);
+		result = prime * result + strength;
+		result = prime * result + weapon1;
+		result = prime * result + weapon2;
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		UCharacter other = (UCharacter) obj;
+		if (HP != other.HP)
+			return false;
+		if (agility != other.agility)
+			return false;
+		if (aid != other.aid)
+			return false;
+		if (allUserHP != other.allUserHP)
+			return false;
+		if (armor != other.armor)
+			return false;
+		if (characterId != other.characterId)
+			return false;
+		if (characterProfession == null) {
+			if (other.characterProfession != null)
+				return false;
+		} else if (!characterProfession.equals(other.characterProfession))
+			return false;
+		if (damage != other.damage)
+			return false;
+		if (defence != other.defence)
+			return false;
+		if (fightsTotal != other.fightsTotal)
+			return false;
+		if (fightsWon != other.fightsWon)
+			return false;
+		if (intellect != other.intellect)
+			return false;
+		if (level == null) {
+			if (other.level != null)
+				return false;
+		} else if (!level.equals(other.level))
+			return false;
+		if (missRate != other.missRate)
+			return false;
+		if (sex != other.sex)
+			return false;
+		if (strength != other.strength)
+			return false;
+		if (weapon1 != other.weapon1)
+			return false;
+		if (weapon2 != other.weapon2)
+			return false;
+		return true;
+	}
 }
