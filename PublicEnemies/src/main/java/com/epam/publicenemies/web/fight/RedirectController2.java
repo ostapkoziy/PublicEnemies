@@ -14,11 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class RedirectController2
 {
-	@RequestMapping("/fightStarted.html")
-	public String gameStarted()
-	{
-		return "/fight/fightStarted";
-	}
 	@RequestMapping("/fight.html")
 	public String fight(HttpServletRequest request, HttpServletResponse response)
 	{

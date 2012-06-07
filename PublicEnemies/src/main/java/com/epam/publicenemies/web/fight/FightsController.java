@@ -31,4 +31,15 @@ public class FightsController
 		mav.addObject("list", gl.getNotStartedGames());
 		return mav;
 	}
+	@RequestMapping("/fightStarted.html")
+	public ModelAndView fightStarted(HttpServletRequest request, HttpServletResponse response) throws Exception
+	{
+		FightsList gl = FightsList.newInstanse();
+		ModelAndView mav = new ModelAndView("/fight/fights");
+		Profile userProfile = profileManagerService.getProfileByUserId((Integer) request.getSession().getAttribute("userId"));
+		mav.addObject("profileInfo", userProfile);
+		mav.addObject("list", gl.getNotStartedGames());
+		mav.addObject("gameStarted", "GAME IS STARTED");
+		return mav;
+	}
 }

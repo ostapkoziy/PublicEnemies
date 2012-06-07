@@ -7,6 +7,8 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.epam.publicenemies.domain.Profile;
 import com.epam.publicenemies.domain.fight.Fight;
@@ -23,7 +25,7 @@ public class ConnectController
 	@Autowired
 	private IProfileManagerService	profileManagerService;
 	@RequestMapping("/connect.html")
-	public String connect(HttpServletRequest request, HttpServletResponse response) throws Exception
+	public ModelAndView connect(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
 		/*
 		 * SETUP OLD GAME
@@ -38,13 +40,13 @@ public class ConnectController
 		if (newFight == null || newFight.isGameStarted())
 		{
 			// If game started or deleted
-			return "redirect:fightStarted.html";
+			return new ModelAndView(new RedirectView("fightStarted.html"));
 		}
 		Profile userProfile = profileManagerService.getProfileByUserId((Integer) request.getSession().getAttribute("userId"));
 		if (newFight.getCreatorProfile().getUserId() == userProfile.getUserId())
 		{
 			// ПРИ КОНЕКТІ ДО СЕБЕ
-			return "redirect:fight.html";
+			return new ModelAndView(new RedirectView("fight.html"));
 		}
 		Utils.isOldGameInSession(oldFight, oldRole);
 		request.getSession().removeAttribute("win");
@@ -62,6 +64,6 @@ public class ConnectController
 		 */
 		request.getSession().setAttribute("game", newFight);
 		request.getSession().setAttribute("gameRole", "connector");
-		return "redirect:fight.html";
+		return new ModelAndView(new RedirectView("fight.html"));
 	}
 }

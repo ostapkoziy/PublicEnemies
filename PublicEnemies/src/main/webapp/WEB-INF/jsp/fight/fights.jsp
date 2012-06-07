@@ -22,17 +22,16 @@
 			<td>
 				<div class="sample" style="width: 500px; height: 500px; margin-left: auto; margin-right: auto; margin-top: 50px;">
 					<div>
+
 						<form action="createGame.html" method="post">
-							<button id="create" type="submit"
-								style="width: 200px; height: 50px; display: block; margin: 0 auto; cursor: pointer;">Create game</button>
+							<button id="create" type="submit" style="width: 200px; height: 50px; display: block; margin: 0 auto; cursor: pointer;">Create game</button>
 						</form>
 					</div>
 					<div>
 						<form action="connect.html" method="post">
-							<div id="fights" style="height: 400px; width: 500px; overflow: auto;">
+							<div id="fights" style="height: 380px; width: 500px; overflow: auto;">
 								<c:forEach items="${list}" var="game">
-									<div id="${game.id}" class="fight"
-										style="text-align: center; width: 250px; margin: 0 auto; margin-bottom: 5px;">
+									<div id="${game.id}" class="fight" style="text-align: center; width: 250px; margin: 0 auto; margin-bottom: 5px;">
 										<img alt="" src="${game.getCreatorProfile().getAvatar()}" width="30">
 										${game.getCreatorProfile().getNickName()} LVL: ${game.getCreatorProfile().getLevel().getCurrentLevel()}
 									</div>
@@ -40,8 +39,8 @@
 							</div>
 							<div style="position: relative;">
 								<input id="gameId" name="gameId" type="text" value="" hidden="">
-								<button disabled="disabled" id="connect" type="submit"
-									style="width: 200px; height: 50px; display: block; margin: 0 auto; cursor: pointer;">Connect</button>
+								<button disabled="disabled" id="connect" type="submit" style="width: 200px; height: 50px; display: block; margin: 0 auto; cursor: pointer;">Connect</button>
+								<div style="color: red; font-family: 'impact'; text-align: center;">${gameStarted}</div>
 							</div>
 						</form>
 					</div>
