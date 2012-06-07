@@ -100,7 +100,8 @@ public class Profile
 		ArrayList<Weapon> arr = new ArrayList<Weapon>();
 		for (TrunkItem t : this.getListOfWeapons())
 		{
-			if (!t.isWearing()) arr.add((Weapon) t.getItem());
+			if (!t.isWearing()) 
+				arr.add((Weapon) t.getItem());
 		}
 		return arr;
 	}

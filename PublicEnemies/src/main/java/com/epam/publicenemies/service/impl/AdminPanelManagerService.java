@@ -75,6 +75,7 @@ public class AdminPanelManagerService implements IAdminPanelManagerService {
 	 * @param role - user role
 	 * @return id of registered user
 	 */
+	@Override
 	public int addUser(String email, String password, String nickName,
 			int money, String avatar, String role) {
 		return userDao.registerUser(email, password, nickName, role);
