@@ -1,7 +1,7 @@
 package com.epam.publicenemies.domain.fight;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author Alexander Ivanov
@@ -9,8 +9,8 @@ import java.util.HashMap;
  */
 public class FightsList
 {
-	HashMap<Long, Fight>		map	= new HashMap<Long, Fight>();
-	private static FightsList	gl;
+	ConcurrentHashMap<Long, Fight>	map	= new ConcurrentHashMap<Long, Fight>();
+	private static FightsList		gl;
 	private FightsList()
 	{
 	}
@@ -24,11 +24,11 @@ public class FightsList
 		else
 			return gl;
 	}
-	public HashMap<Long, Fight> getMap()
+	public ConcurrentHashMap<Long, Fight> getMap()
 	{
 		return map;
 	}
-	public void setMap(HashMap<Long, Fight> list)
+	public void setMap(ConcurrentHashMap<Long, Fight> list)
 	{
 		this.map = list;
 	}
